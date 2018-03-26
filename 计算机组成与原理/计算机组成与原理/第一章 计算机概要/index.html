@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="1 硬件入门1.1  计算机组成 1.2 CPU组成 1.3 总线分类 1.4 存储器分类​    按用途分类  ​    按读写功能分类  1.5  状态寄存器 1.6 显示器 分辨率: 位图中像素的数目. 若位图中有1024行, 768列, 则分辨率为1024 * 768   位图: 由像素组成的二进制矩阵, 每个像素的值用RGB的形式编码 像素: 图像中最小的完整取样  2 指令体系2.1">
+<meta name="description" content="硬件入门计算机组成 CPU组成 总线分类 存储器分类​    按用途分类  ​    按读写功能分类  状态寄存器 显示器 分辨率: 位图中像素的数目. 若位图中有1024行, 768列, 则分辨率为1024 * 768   位图: 由像素组成的二进制矩阵, 每个像素的值用RGB的形式编码 像素: 图像中最小的完整取样  指令体系冯诺依曼体系 特点: 把程序当作数据看待, 程序和数据用同样的方式存">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第一章 计算机概要与技术">
 <meta property="og:url" content="http://utilcoder.com/计算机组成与原理/计算机组成与原理/第一章 计算机概要/index.html">
 <meta property="og:site_name" content="Code">
-<meta property="og:description" content="1 硬件入门1.1  计算机组成 1.2 CPU组成 1.3 总线分类 1.4 存储器分类​    按用途分类  ​    按读写功能分类  1.5  状态寄存器 1.6 显示器 分辨率: 位图中像素的数目. 若位图中有1024行, 768列, 则分辨率为1024 * 768   位图: 由像素组成的二进制矩阵, 每个像素的值用RGB的形式编码 像素: 图像中最小的完整取样  2 指令体系2.1">
+<meta property="og:description" content="硬件入门计算机组成 CPU组成 总线分类 存储器分类​    按用途分类  ​    按读写功能分类  状态寄存器 显示器 分辨率: 位图中像素的数目. 若位图中有1024行, 768列, 则分辨率为1024 * 768   位图: 由像素组成的二进制矩阵, 每个像素的值用RGB的形式编码 像素: 图像中最小的完整取样  指令体系冯诺依曼体系 特点: 把程序当作数据看待, 程序和数据用同样的方式存">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://CoderUtil.github.io/images/计算机组成.png">
 <meta property="og:image" content="https://CoderUtil.github.io/images/TIM截图20180326081639.png">
@@ -93,10 +93,10 @@
 <meta property="og:image" content="https://CoderUtil.github.io/images/TIM截图20180326082929.png">
 <meta property="og:image" content="https://CoderUtil.github.io/images/TIM截图20180326084420.png">
 <meta property="og:image" content="https://CoderUtil.github.io/images/TIM截图20180326091534.png">
-<meta property="og:updated_time" content="2018-03-26T01:30:46.053Z">
+<meta property="og:updated_time" content="2018-03-26T01:33:40.021Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第一章 计算机概要与技术">
-<meta name="twitter:description" content="1 硬件入门1.1  计算机组成 1.2 CPU组成 1.3 总线分类 1.4 存储器分类​    按用途分类  ​    按读写功能分类  1.5  状态寄存器 1.6 显示器 分辨率: 位图中像素的数目. 若位图中有1024行, 768列, 则分辨率为1024 * 768   位图: 由像素组成的二进制矩阵, 每个像素的值用RGB的形式编码 像素: 图像中最小的完整取样  2 指令体系2.1">
+<meta name="twitter:description" content="硬件入门计算机组成 CPU组成 总线分类 存储器分类​    按用途分类  ​    按读写功能分类  状态寄存器 显示器 分辨率: 位图中像素的数目. 若位图中有1024行, 768列, 则分辨率为1024 * 768   位图: 由像素组成的二进制矩阵, 每个像素的值用RGB的形式编码 像素: 图像中最小的完整取样  指令体系冯诺依曼体系 特点: 把程序当作数据看待, 程序和数据用同样的方式存">
 <meta name="twitter:image" content="https://CoderUtil.github.io/images/计算机组成.png">
 
 
@@ -359,26 +359,28 @@
       
 
       
-        <h1 id="1-硬件入门"><a href="#1-硬件入门" class="headerlink" title="1 硬件入门"></a>1 硬件入门</h1><h2 id="1-1-计算机组成"><a href="#1-1-计算机组成" class="headerlink" title="1.1  计算机组成"></a>1.1  计算机组成</h2><p><img src="https://CoderUtil.github.io/images/计算机组成.png" alt="计算机组成"></p>
-<h2 id="1-2-CPU组成"><a href="#1-2-CPU组成" class="headerlink" title="1.2 CPU组成"></a>1.2 CPU组成</h2><p><img src="https://CoderUtil.github.io/images/TIM截图20180326081639.png" alt="计算机组成"></p>
-<h2 id="1-3-总线分类"><a href="#1-3-总线分类" class="headerlink" title="1.3 总线分类"></a>1.3 总线分类</h2><p><img src="https://CoderUtil.github.io/images/TIM截图20180326082028.png" alt="计算机组成"></p>
-<h2 id="1-4-存储器分类"><a href="#1-4-存储器分类" class="headerlink" title="1.4 存储器分类"></a>1.4 存储器分类</h2><p>​    按用途分类</p>
+        <h1 id="硬件入门"><a href="#硬件入门" class="headerlink" title="硬件入门"></a>硬件入门</h1><h2 id="计算机组成"><a href="#计算机组成" class="headerlink" title="计算机组成"></a>计算机组成</h2><p><img src="https://CoderUtil.github.io/images/计算机组成.png" alt="计算机组成"></p>
+<h2 id="CPU组成"><a href="#CPU组成" class="headerlink" title="CPU组成"></a>CPU组成</h2><p><img src="https://CoderUtil.github.io/images/TIM截图20180326081639.png" alt="计算机组成"></p>
+<h2 id="总线分类"><a href="#总线分类" class="headerlink" title="总线分类"></a>总线分类</h2><p><img src="https://CoderUtil.github.io/images/TIM截图20180326082028.png" alt="计算机组成"></p>
+<h2 id="存储器分类"><a href="#存储器分类" class="headerlink" title="存储器分类"></a>存储器分类</h2><p>​    按用途分类</p>
 <p><img src="https://CoderUtil.github.io/images/TIM截图20180326082628.png" alt="计算机组成"></p>
 <p>​    按读写功能分类</p>
 <p><img src="https://CoderUtil.github.io/images/TIM截图20180326082929.png" alt="计算机组成"></p>
-<h2 id="1-5-状态寄存器"><a href="#1-5-状态寄存器" class="headerlink" title="1.5  状态寄存器"></a>1.5  状态寄存器</h2><p><img src="https://CoderUtil.github.io/images/TIM截图20180326084420.png" alt="计算机组成"></p>
-<h2 id="1-6-显示器"><a href="#1-6-显示器" class="headerlink" title="1.6 显示器"></a>1.6 显示器</h2><ul>
+<h2 id="状态寄存器"><a href="#状态寄存器" class="headerlink" title="状态寄存器"></a>状态寄存器</h2><p><img src="https://CoderUtil.github.io/images/TIM截图20180326084420.png" alt="计算机组成"></p>
+<h2 id="显示器"><a href="#显示器" class="headerlink" title="显示器"></a>显示器</h2><ul>
 <li>分辨率: 位图中像素的数目. 若位图中有1024行, 768列, 则分辨率为1024 * 768</li>
 </ul>
 <ul>
 <li>位图: 由像素组成的二进制矩阵, 每个像素的值用RGB的形式编码</li>
 <li>像素: 图像中最小的完整取样</li>
 </ul>
-<h1 id="2-指令体系"><a href="#2-指令体系" class="headerlink" title="2 指令体系"></a>2 指令体系</h1><h2 id="2-1-冯诺依曼体系"><a href="#2-1-冯诺依曼体系" class="headerlink" title="2.1 冯诺依曼体系"></a>2.1 冯诺依曼体系</h2><ul>
-<li>特点: 把程序当作数据看待, 程序和数据用同样的方式存储</li>
+<h1 id="指令体系"><a href="#指令体系" class="headerlink" title="指令体系"></a>指令体系</h1><h2 id="冯诺依曼体系"><a href="#冯诺依曼体系" class="headerlink" title="冯诺依曼体系"></a>冯诺依曼体系</h2><ul>
+<li><p>特点: 把程序当作数据看待, 程序和数据用同样的方式存储</p>
+<p>​</p>
+</li>
 </ul>
-<h2 id="2-2-程序控制"><a href="#2-2-程序控制" class="headerlink" title="2.2 程序控制"></a>2.2 程序控制</h2><p>​    将一大段指令和数据保存在内存中, 并将指令段首地址保存到程序计数器PC中. CPU根据PC中的地址, 从内存中读取指令并放在指令寄存器IR中. 然后分析指令, 根据指令共能从内存中取出数据, 然后将运算结果保存到内存中. 然后PC指向下一条指令, 直至遇到停机指令</p>
-<h2 id="2-3-CPU架构"><a href="#2-3-CPU架构" class="headerlink" title="2.3 CPU架构"></a>2.3 CPU架构</h2><p><img src="https://CoderUtil.github.io/images/TIM截图20180326091534.png" alt="计算机组成"></p>
+<h2 id="程序控制"><a href="#程序控制" class="headerlink" title="程序控制"></a>程序控制</h2><p>​    将一大段指令和数据保存在内存中, 并将指令段首地址保存到程序计数器PC中. CPU根据PC中的地址, 从内存中读取指令并放在指令寄存器IR中. 然后分析指令, 根据指令共能从内存中取出数据, 然后将运算结果保存到内存中. 然后PC指向下一条指令, 直至遇到停机指令</p>
+<h2 id="CPU架构"><a href="#CPU架构" class="headerlink" title="CPU架构"></a>CPU架构</h2><p><img src="https://CoderUtil.github.io/images/TIM截图20180326091534.png" alt="计算机组成"></p>
 
       
     </div>
@@ -572,7 +574,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-硬件入门"><span class="nav-number">1.</span> <span class="nav-text">1 硬件入门</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-计算机组成"><span class="nav-number">1.1.</span> <span class="nav-text">1.1  计算机组成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-CPU组成"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 CPU组成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-总线分类"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 总线分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-存储器分类"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 存储器分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-状态寄存器"><span class="nav-number">1.5.</span> <span class="nav-text">1.5  状态寄存器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-显示器"><span class="nav-number">1.6.</span> <span class="nav-text">1.6 显示器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-指令体系"><span class="nav-number">2.</span> <span class="nav-text">2 指令体系</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-冯诺依曼体系"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 冯诺依曼体系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-程序控制"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 程序控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-CPU架构"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 CPU架构</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#硬件入门"><span class="nav-number">1.</span> <span class="nav-text">硬件入门</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#计算机组成"><span class="nav-number">1.1.</span> <span class="nav-text">计算机组成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CPU组成"><span class="nav-number">1.2.</span> <span class="nav-text">CPU组成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总线分类"><span class="nav-number">1.3.</span> <span class="nav-text">总线分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储器分类"><span class="nav-number">1.4.</span> <span class="nav-text">存储器分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状态寄存器"><span class="nav-number">1.5.</span> <span class="nav-text">状态寄存器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#显示器"><span class="nav-number">1.6.</span> <span class="nav-text">显示器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#指令体系"><span class="nav-number">2.</span> <span class="nav-text">指令体系</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#冯诺依曼体系"><span class="nav-number">2.1.</span> <span class="nav-text">冯诺依曼体系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#程序控制"><span class="nav-number">2.2.</span> <span class="nav-text">程序控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CPU架构"><span class="nav-number">2.3.</span> <span class="nav-text">CPU架构</span></a></li></ol></li></ol></div>
             
 
           </div>
