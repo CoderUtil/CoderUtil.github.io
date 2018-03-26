@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="内存单元DS和[address]   汇编指令 操作 描述     mov al, [0] 将ds:0这个内存单元的值赋给al AL = DS:0   mov [0], al 将al的值赋给ds:0这个内存单元 DS:0 = AL   mov ax, [0] 将ds:0这个内存单元的值赋给al, 将ds:1这个内存单元的值赋给ah AL = DS:0, AH = DS:1    段地址不能直接赋值">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Code">
+<meta property="og:url" content="http://utilcoder.com/汇编/汇编/第二章 内存访问/index.html">
+<meta property="og:site_name" content="Code">
+<meta property="og:description" content="内存单元DS和[address]   汇编指令 操作 描述     mov al, [0] 将ds:0这个内存单元的值赋给al AL = DS:0   mov [0], al 将al的值赋给ds:0这个内存单元 DS:0 = AL   mov ax, [0] 将ds:0这个内存单元的值赋给al, 将ds:1这个内存单元的值赋给ah AL = DS:0, AH = DS:1    段地址不能直接赋值">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://CoderUtil.github.io/images/TIM截图20180326172947.png">
+<meta property="og:updated_time" content="2018-03-26T13:11:26.373Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Code">
+<meta name="twitter:description" content="内存单元DS和[address]   汇编指令 操作 描述     mov al, [0] 将ds:0这个内存单元的值赋给al AL = DS:0   mov [0], al 将al的值赋给ds:0这个内存单元 DS:0 = AL   mov ax, [0] 将ds:0这个内存单元的值赋给al, 将ds:1这个内存单元的值赋给ah AL = DS:0, AH = DS:1    段地址不能直接赋值">
+<meta name="twitter:image" content="https://CoderUtil.github.io/images/TIM截图20180326172947.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://utilcoder.com/汇编/汇编/第二章 内存访问/"/>
+
+
+
+
+
+  <title> | Code</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Code</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/汇编/汇编/第二章 内存访问/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Util">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-26T16:33:22+08:00">
+                2018-03-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/汇编/" itemprop="url" rel="index">
+                    <span itemprop="name">汇编</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="内存单元"><a href="#内存单元" class="headerlink" title="内存单元"></a>内存单元</h1><h2 id="DS和-address"><a href="#DS和-address" class="headerlink" title="DS和[address]"></a>DS和[address]</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">汇编指令</th>
+<th style="text-align:center">操作</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">mov al, [0]</td>
+<td style="text-align:center">将ds:0这个内存单元的值赋给al</td>
+<td style="text-align:center">AL = DS:0</td>
+</tr>
+<tr>
+<td style="text-align:center">mov [0], al</td>
+<td style="text-align:center">将al的值赋给ds:0这个内存单元</td>
+<td style="text-align:center">DS:0 = AL</td>
+</tr>
+<tr>
+<td style="text-align:center">mov ax, [0]</td>
+<td style="text-align:center">将ds:0这个内存单元的值赋给al, 将ds:1这个内存单元的值赋给ah</td>
+<td style="text-align:center">AL = DS:0, AH = DS:1</td>
+</tr>
+</tbody>
+</table>
+<h2 id="段地址不能直接赋值"><a href="#段地址不能直接赋值" class="headerlink" title="段地址不能直接赋值"></a>段地址不能直接赋值</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mov ds, 1000H		//	错误</span><br><span class="line"></span><br><span class="line">mov bx, 1000H		//	正确</span><br><span class="line">mov ds, bx</span><br></pre></td></tr></table></figure>
+<h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h1><ul>
+<li><p>栈: 一块内存空间, SS:SP指向栈顶元素. 栈空时, SS:SP指向内存空间的最大地址 + 1; 栈满时, SS:SP指向最小地址 - 1</p>
+<p>​</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">汇编指令</th>
+<th style="text-align:center">操作</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">push ax</td>
+<td style="text-align:center">将ax的值放入位于栈顶的两个内存单元中, sp指向新栈顶</td>
+<td style="text-align:center">SP = SP - 2, SS : SP = AX</td>
+</tr>
+<tr>
+<td style="text-align:center">pop ax</td>
+<td style="text-align:center">将位于栈顶的两个内存单元的值ax放入中, sp指向新栈顶</td>
+<td style="text-align:center">AX = SS : SP, SP = SP + 2</td>
+</tr>
+</tbody>
+</table>
+<p><img src="https://CoderUtil.github.io/images/TIM截图20180326172947.png" alt="汇编"></p>
+<h1 id="汇编程序"><a href="#汇编程序" class="headerlink" title="汇编程序"></a>汇编程序</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">assume cs:code,	ds:data, ss:stack	//	将段寄存器与段名相关联</span><br><span class="line">	data segment			//	定义一个名为data的数据段, segment标志着段开始, ends标志着段结束</span><br><span class="line">		</span><br><span class="line">	data ends</span><br><span class="line">	</span><br><span class="line">	stack segment			//	定义一个名为stack的栈段</span><br><span class="line">	</span><br><span class="line">	stack ends</span><br><span class="line">	</span><br><span class="line">	code segment			//	定义一个名为code的代码段</span><br><span class="line">    start:  mov ax, data	 //	 start指明了程序的入口</span><br><span class="line">            mov ds, ax</span><br><span class="line"></span><br><span class="line">            mov ax, stack	 //  data与stack的段名等价于数据段和代码段的段地址值, 因此不能直接赋值</span><br><span class="line">            mov ss, ax</span><br><span class="line">            </span><br><span class="line">            ...</span><br><span class="line">            </span><br><span class="line">           	mov ax, 4C00H	 //	程序返回 </span><br><span class="line">           	int 21H			</span><br><span class="line">	code ends			</span><br><span class="line">end						   //	说明汇编程序结束</span><br></pre></td></tr></table></figure>
+<ul>
+<li>编辑: 在DOSBOX文件夹下编辑1.asm文件</li>
+<li>编译: 输入masm, 在第一行填写1, 其他行回车</li>
+<li>链接: 输入link, 在第一行填写1, 其他行回车</li>
+<li>执行: 输入1</li>
+</ul>
+<h2 id="程序的注意事项"><a href="#程序的注意事项" class="headerlink" title="程序的注意事项:"></a>程序的注意事项:</h2><ul>
+<li>程序中数据不能以字母开头, Debug下可以</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mov ax A000H	//	错误</span><br><span class="line"></span><br><span class="line">mov ax 0A000H	//	正确</span><br></pre></td></tr></table></figure>
+<ul>
+<li>内存单元不能直接用常量表示, Debug下可以</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mov ax, [0]		//	被认为是mov ax, 0</span><br><span class="line"></span><br><span class="line">解决办法:</span><br><span class="line">	mov bx, 0</span><br><span class="line">	mov ax, [bx]</span><br><span class="line">	或</span><br><span class="line">	mov ax, ds:[0]	//	显示添加段前缀</span><br></pre></td></tr></table></figure>
+<h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mov ax, 1	</span><br><span class="line">mov cx, 11</span><br><span class="line">s: inc ax		//	inc ax 等价于 ax = ax + 1</span><br><span class="line">loop s			//	执行到loop语句, 先cx = cx - 1, 若cx = 0则向下执行, 否则跳转至标号处</span><br></pre></td></tr></table></figure>
+<h2 id="数据段、栈段"><a href="#数据段、栈段" class="headerlink" title="数据段、栈段"></a>数据段、栈段</h2><p>​    因为不可能把所有数据都放在寄存器中, 所以一部分数据要放在内存中, 栈段和数据段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">assume cs:code,	ds:data, ss:stack</span><br><span class="line">data segment</span><br><span class="line">	db &apos;a&apos;, &apos;b&apos;, &apos;c&apos;		//	定义3个字节型数据</span><br><span class="line">	db &apos;def&apos;			   	//	定义3个字节型数据</span><br><span class="line">	</span><br><span class="line">	dw 0, 0123H, 0456H		//	定义3个字型数据</span><br><span class="line">data ends</span><br><span class="line"></span><br><span class="line">stack segment</span><br><span class="line">	</span><br><span class="line">stack ends</span><br><span class="line"></span><br><span class="line">code segment</span><br><span class="line">	mov ax, data</span><br><span class="line">	mov ds, ax</span><br><span class="line">	</span><br><span class="line">	mov ax, stack</span><br><span class="line">	mov ss, ax</span><br><span class="line">code ends</span><br></pre></td></tr></table></figure>
+<h2 id="and与or指令"><a href="#and与or指令" class="headerlink" title="and与or指令"></a>and与or指令</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">汇编指令</th>
+<th style="text-align:center">操作</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">and al, 0011,1111B</td>
+<td style="text-align:center">按位与</td>
+<td style="text-align:center">al &amp;= 0011,1111B</td>
+</tr>
+<tr>
+<td style="text-align:center">or al, 0011,1111B</td>
+<td style="text-align:center">按位或</td>
+<td style="text-align:center">al \</td>
+<td>= 0011,1111B</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/汇编/汇编/第一章 基础知识/" rel="next" title="第一章 基础知识">
+                <i class="fa fa-chevron-left"></i> 第一章 基础知识
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Util" />
+            
+              <p class="site-author-name" itemprop="name">Util</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Util" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:853130236@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://icytown.com/" title="Mega Show's Blog" target="_blank">Mega Show's Blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#内存单元"><span class="nav-number">1.</span> <span class="nav-text">内存单元</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DS和-address"><span class="nav-number">1.1.</span> <span class="nav-text">DS和[address]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#段地址不能直接赋值"><span class="nav-number">1.2.</span> <span class="nav-text">段地址不能直接赋值</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#栈"><span class="nav-number">2.</span> <span class="nav-text">栈</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#汇编程序"><span class="nav-number">3.</span> <span class="nav-text">汇编程序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#程序的注意事项"><span class="nav-number">3.1.</span> <span class="nav-text">程序的注意事项:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环"><span class="nav-number">3.2.</span> <span class="nav-text">循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据段、栈段"><span class="nav-number">3.3.</span> <span class="nav-text">数据段、栈段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#and与or指令"><span class="nav-number">3.4.</span> <span class="nav-text">and与or指令</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Util</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
