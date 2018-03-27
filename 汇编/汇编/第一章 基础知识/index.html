@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="CPU8086/8088CPU组成 8086/8088CPU共同点​    都是16位CPU. 运算器一次最多可以处理16位数据, 寄存器最大宽度为16位, CPU内部数据总线为16位 8086/8088CPU区别   CPU 指令队列容量 每次从内存中读取放入指令队列 外部数据总线宽带     8086 6个字节 2个字节 16位   8088 4个字节 1个字节 8位    字word​">
+<meta name="description" content="CPU8086/8088CPU组成 8086/8088CPU共同点​    都是16位CPU. 运算器一次最多可以处理16位数据, 寄存器最大宽度为16位, CPU内部数据总线为16位 8086/8088CPU区别   CPU 指令队列容量 每个总线周期从内存中读取放入指令队列 外部数据总线宽带     8086 6个字节 2个字节 16位   8088 4个字节 1个字节 8位     总线周期">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第一章 基础知识">
 <meta property="og:url" content="http://utilcoder.com/汇编/汇编/第一章 基础知识/index.html">
 <meta property="og:site_name" content="Code">
-<meta property="og:description" content="CPU8086/8088CPU组成 8086/8088CPU共同点​    都是16位CPU. 运算器一次最多可以处理16位数据, 寄存器最大宽度为16位, CPU内部数据总线为16位 8086/8088CPU区别   CPU 指令队列容量 每次从内存中读取放入指令队列 外部数据总线宽带     8086 6个字节 2个字节 16位   8088 4个字节 1个字节 8位    字word​">
+<meta property="og:description" content="CPU8086/8088CPU组成 8086/8088CPU共同点​    都是16位CPU. 运算器一次最多可以处理16位数据, 寄存器最大宽度为16位, CPU内部数据总线为16位 8086/8088CPU区别   CPU 指令队列容量 每个总线周期从内存中读取放入指令队列 外部数据总线宽带     8086 6个字节 2个字节 16位   8088 4个字节 1个字节 8位     总线周期">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://CoderUtil.github.io/images/TIM截图20180326085329.png">
 <meta property="og:image" content="https://CoderUtil.github.io/images/TIM截图20180326092541.png">
@@ -94,10 +94,10 @@
 <meta property="og:image" content="https://CoderUtil.github.io/images/TIM截图20180326162047.png">
 <meta property="og:image" content="https://CoderUtil.github.io/images/TIM截图20180326162351.png">
 <meta property="og:image" content="https://CoderUtil.github.io/images/TIM截图20180326162639.png">
-<meta property="og:updated_time" content="2018-03-26T08:53:15.002Z">
+<meta property="og:updated_time" content="2018-03-27T04:50:22.464Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第一章 基础知识">
-<meta name="twitter:description" content="CPU8086/8088CPU组成 8086/8088CPU共同点​    都是16位CPU. 运算器一次最多可以处理16位数据, 寄存器最大宽度为16位, CPU内部数据总线为16位 8086/8088CPU区别   CPU 指令队列容量 每次从内存中读取放入指令队列 外部数据总线宽带     8086 6个字节 2个字节 16位   8088 4个字节 1个字节 8位    字word​">
+<meta name="twitter:description" content="CPU8086/8088CPU组成 8086/8088CPU共同点​    都是16位CPU. 运算器一次最多可以处理16位数据, 寄存器最大宽度为16位, CPU内部数据总线为16位 8086/8088CPU区别   CPU 指令队列容量 每个总线周期从内存中读取放入指令队列 外部数据总线宽带     8086 6个字节 2个字节 16位   8088 4个字节 1个字节 8位     总线周期">
 <meta name="twitter:image" content="https://CoderUtil.github.io/images/TIM截图20180326085329.png">
 
 
@@ -367,7 +367,7 @@
 <tr>
 <th style="text-align:center">CPU</th>
 <th style="text-align:center">指令队列容量</th>
-<th style="text-align:center">每次从内存中读取放入指令队列</th>
+<th style="text-align:center">每个总线周期从内存中读取放入指令队列</th>
 <th style="text-align:center">外部数据总线宽带</th>
 </tr>
 </thead>
@@ -386,6 +386,9 @@
 </tr>
 </tbody>
 </table>
+<ul>
+<li>总线周期:  BIU完成一次访问存储器或端口所需要的时间</li>
+</ul>
 <h1 id="字word"><a href="#字word" class="headerlink" title="字word"></a>字word</h1><p>​    计算机内部一次可以处理的二进制位数. 8086CPU中寄存器位16位, 所以字为16位</p>
 <h2 id="内存中字的存储"><a href="#内存中字的存储" class="headerlink" title="内存中字的存储"></a>内存中字的存储</h2><p>​    高地址存放高位字节, 低地址存放低位字节</p>
 <table>
@@ -693,7 +696,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
