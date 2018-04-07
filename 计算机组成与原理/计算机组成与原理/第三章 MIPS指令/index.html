@@ -79,20 +79,22 @@
 
 
 
-<meta name="description" content="字MIPS中寄存器和内存单元的大小位4个字节, 所以字的大小为4个字节 寄存器   名称 寄存器号 用途 调用时是否保存(调用前入栈, 调用后出栈)     \$zero 0 常数0 否   \$v0 ~ \$v1 2 ~ 3 计算结果和表达式求值 否   \$a0 ~ \$a3 4 ~ 7 参数 否   \$t0 ~ \$t7 8 ~ 15 临时寄存器 否   \$s0 ~ \$s7 16 ~">
+<meta name="description" content="小端法与大端法 小端法: 低地址放低字节, 高地址放高字节(因此在内存中看上去是把数的低位放在高位前面)  字MIPS中寄存器和内存单元的大小位4个字节, 所以字的大小为4个字节 寄存器   名称 寄存器号 用途 调用时是否保存(调用前入栈, 调用后出栈)     \$zero 0 常数0 否   \$v0 ~ \$v1 2 ~ 3 计算结果和表达式求值 否   \$a0 ~ \$a3 4 ~ 7">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第三章 MIPS指令">
 <meta property="og:url" content="http://utilcoder.com/计算机组成与原理/计算机组成与原理/第三章 MIPS指令/index.html">
 <meta property="og:site_name" content="Code">
-<meta property="og:description" content="字MIPS中寄存器和内存单元的大小位4个字节, 所以字的大小为4个字节 寄存器   名称 寄存器号 用途 调用时是否保存(调用前入栈, 调用后出栈)     \$zero 0 常数0 否   \$v0 ~ \$v1 2 ~ 3 计算结果和表达式求值 否   \$a0 ~ \$a3 4 ~ 7 参数 否   \$t0 ~ \$t7 8 ~ 15 临时寄存器 否   \$s0 ~ \$s7 16 ~">
+<meta property="og:description" content="小端法与大端法 小端法: 低地址放低字节, 高地址放高字节(因此在内存中看上去是把数的低位放在高位前面)  字MIPS中寄存器和内存单元的大小位4个字节, 所以字的大小为4个字节 寄存器   名称 寄存器号 用途 调用时是否保存(调用前入栈, 调用后出栈)     \$zero 0 常数0 否   \$v0 ~ \$v1 2 ~ 3 计算结果和表达式求值 否   \$a0 ~ \$a3 4 ~ 7">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://CoderUtil.github.io/images/TIM截图20180331140121.png">
 <meta property="og:image" content="https://CoderUtil.github.io/images/TIM截图20180331140908.png">
+<meta property="og:image" content="https://CoderUtil.github.io/images/TIM截图20180406210731.png">
+<meta property="og:image" content="https://CoderUtil.github.io/images/TIM截图20180406214153.png">
 <meta property="og:image" content="https://CoderUtil.github.io/images/TIM截图20180331143718.png">
-<meta property="og:updated_time" content="2018-03-31T16:22:52.613Z">
+<meta property="og:updated_time" content="2018-04-06T13:45:56.852Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第三章 MIPS指令">
-<meta name="twitter:description" content="字MIPS中寄存器和内存单元的大小位4个字节, 所以字的大小为4个字节 寄存器   名称 寄存器号 用途 调用时是否保存(调用前入栈, 调用后出栈)     \$zero 0 常数0 否   \$v0 ~ \$v1 2 ~ 3 计算结果和表达式求值 否   \$a0 ~ \$a3 4 ~ 7 参数 否   \$t0 ~ \$t7 8 ~ 15 临时寄存器 否   \$s0 ~ \$s7 16 ~">
+<meta name="twitter:description" content="小端法与大端法 小端法: 低地址放低字节, 高地址放高字节(因此在内存中看上去是把数的低位放在高位前面)  字MIPS中寄存器和内存单元的大小位4个字节, 所以字的大小为4个字节 寄存器   名称 寄存器号 用途 调用时是否保存(调用前入栈, 调用后出栈)     \$zero 0 常数0 否   \$v0 ~ \$v1 2 ~ 3 计算结果和表达式求值 否   \$a0 ~ \$a3 4 ~ 7">
 <meta name="twitter:image" content="https://CoderUtil.github.io/images/TIM截图20180331140121.png">
 
 
@@ -355,7 +357,10 @@
       
 
       
-        <h1 id="字"><a href="#字" class="headerlink" title="字"></a>字</h1><p>MIPS中寄存器和内存单元的大小位4个字节, 所以字的大小为4个字节</p>
+        <h1 id="小端法与大端法"><a href="#小端法与大端法" class="headerlink" title="小端法与大端法"></a>小端法与大端法</h1><ul>
+<li>小端法: 低地址放低字节, 高地址放高字节(因此在内存中看上去是把数的低位放在高位前面)</li>
+</ul>
+<h1 id="字"><a href="#字" class="headerlink" title="字"></a>字</h1><p>MIPS中寄存器和内存单元的大小位4个字节, 所以字的大小为4个字节</p>
 <h1 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h1><table>
 <thead>
 <tr>
@@ -760,6 +765,8 @@
 </tr>
 </tbody>
 </table>
+<h2 id="J型"><a href="#J型" class="headerlink" title="J型"></a>J型</h2><p><img src="https://CoderUtil.github.io/images/TIM截图20180406210731.png" alt="计算机组成"></p>
+<p><img src="https://CoderUtil.github.io/images/TIM截图20180406214153.png" alt="计算机组成"></p>
 <h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h1><ul>
 <li>MIPS中栈的增长从高地址到低地址</li>
 <li>帧指针\$fp: 不同的函数使用不同的栈, 帧指针用于迅速找到函数对应的栈. 而且相对于栈指针, 帧指针是不变的, 这样可以用帧指针作为栈中数据的基址值</li>
@@ -882,7 +889,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -893,7 +900,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -958,7 +965,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#字"><span class="nav-number">1.</span> <span class="nav-text">字</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#寄存器"><span class="nav-number">2.</span> <span class="nav-text">寄存器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#汇编指令"><span class="nav-number">3.</span> <span class="nav-text">汇编指令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二进制表示MIPS指令"><span class="nav-number">4.</span> <span class="nav-text">二进制表示MIPS指令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#字段格式"><span class="nav-number">4.1.</span> <span class="nav-text">字段格式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#栈"><span class="nav-number">5.</span> <span class="nav-text">栈</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#小端法与大端法"><span class="nav-number">1.</span> <span class="nav-text">小端法与大端法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字"><span class="nav-number">2.</span> <span class="nav-text">字</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#寄存器"><span class="nav-number">3.</span> <span class="nav-text">寄存器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#汇编指令"><span class="nav-number">4.</span> <span class="nav-text">汇编指令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二进制表示MIPS指令"><span class="nav-number">5.</span> <span class="nav-text">二进制表示MIPS指令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#字段格式"><span class="nav-number">5.1.</span> <span class="nav-text">字段格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#J型"><span class="nav-number">5.2.</span> <span class="nav-text">J型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#栈"><span class="nav-number">6.</span> <span class="nav-text">栈</span></a></li></ol></div>
             
 
           </div>

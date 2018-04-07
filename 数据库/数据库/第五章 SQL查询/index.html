@@ -79,19 +79,17 @@
 
 
 
-<meta name="description" content="操作系统提供的五大服务 用户界面 分为命令行界面CLI和图形用户界面GUI  命令行界面CLI 通过解释程序shell来获取并执行用户的指令  CLI解释指令的方式 CLI包含执行命令的程序, 接收到指令后, 向对应程序传参使其执行   CLI不包含执行命令的程序,但是操作系统中有包含程序的系统文件中, CLI根据指令找到对应的文件, 交由文件执行  12rm file.txt会搜索名为rm的文件">
+<meta name="description" content="SELECT的格式123SELECT [DISTINCT] select-list		//	默认结果包含重复的记录, DISTINCT指搜索的记录不能重复FROM from-listWHERE qualifications  选出拥有103号船的水手的名字  123SELECT S.snameFROM Sailors S, Reserve RWHERE S.sid = R.sid AND R.bi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第二章 操作系统结构">
-<meta property="og:url" content="http://utilcoder.com/操作系统/操作系统/第二章 操作系统结构/index.html">
+<meta property="og:title" content="第五章 SQL查询">
+<meta property="og:url" content="http://utilcoder.com/数据库/数据库/第五章 SQL查询/index.html">
 <meta property="og:site_name" content="Code">
-<meta property="og:description" content="操作系统提供的五大服务 用户界面 分为命令行界面CLI和图形用户界面GUI  命令行界面CLI 通过解释程序shell来获取并执行用户的指令  CLI解释指令的方式 CLI包含执行命令的程序, 接收到指令后, 向对应程序传参使其执行   CLI不包含执行命令的程序,但是操作系统中有包含程序的系统文件中, CLI根据指令找到对应的文件, 交由文件执行  12rm file.txt会搜索名为rm的文件">
+<meta property="og:description" content="SELECT的格式123SELECT [DISTINCT] select-list		//	默认结果包含重复的记录, DISTINCT指搜索的记录不能重复FROM from-listWHERE qualifications  选出拥有103号船的水手的名字  123SELECT S.snameFROM Sailors S, Reserve RWHERE S.sid = R.sid AND R.bi">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://CoderUtil.github.io/images/TIM截图20180331122959.png">
-<meta property="og:updated_time" content="2018-03-31T05:01:40.498Z">
+<meta property="og:updated_time" content="2018-04-07T13:15:56.289Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第二章 操作系统结构">
-<meta name="twitter:description" content="操作系统提供的五大服务 用户界面 分为命令行界面CLI和图形用户界面GUI  命令行界面CLI 通过解释程序shell来获取并执行用户的指令  CLI解释指令的方式 CLI包含执行命令的程序, 接收到指令后, 向对应程序传参使其执行   CLI不包含执行命令的程序,但是操作系统中有包含程序的系统文件中, CLI根据指令找到对应的文件, 交由文件执行  12rm file.txt会搜索名为rm的文件">
-<meta name="twitter:image" content="https://CoderUtil.github.io/images/TIM截图20180331122959.png">
+<meta name="twitter:title" content="第五章 SQL查询">
+<meta name="twitter:description" content="SELECT的格式123SELECT [DISTINCT] select-list		//	默认结果包含重复的记录, DISTINCT指搜索的记录不能重复FROM from-listWHERE qualifications  选出拥有103号船的水手的名字  123SELECT S.snameFROM Sailors S, Reserve RWHERE S.sid = R.sid AND R.bi">
 
 
 
@@ -121,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://utilcoder.com/操作系统/操作系统/第二章 操作系统结构/"/>
+  <link rel="canonical" href="http://utilcoder.com/数据库/数据库/第五章 SQL查询/"/>
 
 
 
 
 
-  <title>第二章 操作系统结构 | Code</title>
+  <title>第五章 SQL查询 | Code</title>
   
 
 
@@ -264,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/操作系统/操作系统/第二章 操作系统结构/">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/数据库/数据库/第五章 SQL查询/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Util">
@@ -281,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">第二章 操作系统结构</h1>
+          <h1 class="post-title" itemprop="name headline">第五章 SQL查询</h1>
         
 
         <div class="post-meta">
@@ -293,8 +291,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-27T11:42:41+08:00">
-                2018-03-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-07T20:28:45+08:00">
+                2018-04-07
               </time>
             
 
@@ -316,8 +314,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/操作系统/" itemprop="url" rel="index">
-                    <span itemprop="name">操作系统</span>
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
                   </a>
                 </span>
 
@@ -353,29 +351,41 @@
       
 
       
-        <h1 id="操作系统提供的五大服务"><a href="#操作系统提供的五大服务" class="headerlink" title="操作系统提供的五大服务"></a>操作系统提供的五大服务</h1><p><img src="https://CoderUtil.github.io/images/TIM截图20180331122959.png" alt="操作系统"></p>
-<h1 id="用户界面"><a href="#用户界面" class="headerlink" title="用户界面"></a>用户界面</h1><ul>
-<li>分为命令行界面CLI和图形用户界面GUI</li>
+        <h2 id="SELECT的格式"><a href="#SELECT的格式" class="headerlink" title="SELECT的格式"></a>SELECT的格式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT [DISTINCT] select-list		//	默认结果包含重复的记录, DISTINCT指搜索的记录不能重复</span><br><span class="line">FROM from-list</span><br><span class="line">WHERE qualifications</span><br></pre></td></tr></table></figure>
+<ul>
+<li>选出拥有103号船的水手的名字</li>
 </ul>
-<h2 id="命令行界面CLI"><a href="#命令行界面CLI" class="headerlink" title="命令行界面CLI"></a>命令行界面CLI</h2><ul>
-<li>通过解释程序shell来获取并执行用户的指令</li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT S.sname</span><br><span class="line">FROM Sailors S, Reserve R</span><br><span class="line">WHERE S.sid = R.sid AND R.bid = 103		//	相当于叉积</span><br></pre></td></tr></table></figure>
+<h2 id="UNION-INTERSECT-EXCEPT"><a href="#UNION-INTERSECT-EXCEPT" class="headerlink" title="UNION, INTERSECT, EXCEPT"></a>UNION, INTERSECT, EXCEPT</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT S.sname</span><br><span class="line">FROM Sailors S, Reserve R, Boats B</span><br><span class="line">WHERE S.sid = R.sid AND R.bid = B.bid AND B.color = &apos;red&apos;</span><br><span class="line">(UNION / INTERSECT / EXCEPT)		//	并/交/差集</span><br><span class="line">SELECT S.sname</span><br><span class="line">FROM Sailors S, Reserve R, Boats B</span><br><span class="line">WHERE S.sid = R.sid AND R.bid = B.bid AND B.color = &apos;green&apos;</span><br></pre></td></tr></table></figure>
+<h2 id="Like"><a href="#Like" class="headerlink" title="Like, %, _"></a>Like, %, _</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">用于字符的匹配:</span><br><span class="line">	%匹配任意个字符</span><br><span class="line">	_匹配一个字符</span><br><span class="line"></span><br><span class="line">SELECT S.age</span><br><span class="line">FROM Sailors S</span><br><span class="line">WHERE S.sname LIKE &apos;B_%B&apos;		//	名字以B开头和结尾, 且中间至少有一个字母</span><br></pre></td></tr></table></figure>
+<h2 id="嵌套查询"><a href="#嵌套查询" class="headerlink" title="嵌套查询"></a>嵌套查询</h2><ul>
+<li>选出拥有103号船的水手的名字</li>
 </ul>
-<h2 id="CLI解释指令的方式"><a href="#CLI解释指令的方式" class="headerlink" title="CLI解释指令的方式"></a>CLI解释指令的方式</h2><ul>
-<li>CLI包含执行命令的程序, 接收到指令后, 向对应程序传参使其执行</li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">SELECT S.sname</span><br><span class="line">FROM Sailors S</span><br><span class="line">WHERE S.sid IN (SELECT R.sid		//	IN用于检测一个值是否在给定的集合中</span><br><span class="line">				FROM Reserve R</span><br><span class="line">				WHERE R.bid = 103)</span><br><span class="line">				</span><br><span class="line">或</span><br><span class="line">SELECT S.sname</span><br><span class="line">FROM Sailors S</span><br><span class="line">WHERE EXISTS (SELECT *</span><br><span class="line">			FROM Reserve R</span><br><span class="line">			WHERE R.bid = 103 AND R.sid = S.sid)</span><br></pre></td></tr></table></figure>
+<h2 id="嵌套查询的集合比较"><a href="#嵌套查询的集合比较" class="headerlink" title="嵌套查询的集合比较"></a>嵌套查询的集合比较</h2><ul>
+<li>选出等级最高的水手的id</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT S.sid</span><br><span class="line">FROM Sailors S</span><br><span class="line">WHERE S.rating &gt;= ALL (SELECT S2.rating		//	ANY表示比集合中的任意一个元素大, ALL表示比集合中的所有元素都大</span><br><span class="line">					FROM Sailors S2)</span><br></pre></td></tr></table></figure>
+<h2 id="聚集操作符"><a href="#聚集操作符" class="headerlink" title="聚集操作符"></a>聚集操作符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1. COUNT([DISTINCT] select-list)</span><br><span class="line"></span><br><span class="line">2. SUM([DISTINCT] select-list)</span><br><span class="line"></span><br><span class="line">3. AVG([DISTINCT] select-list)</span><br><span class="line"></span><br><span class="line">4. MAX(select-list)</span><br><span class="line"></span><br><span class="line">5. MIN(select-list)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>选出最年长的水手的名字和年龄</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT S.sname, S.age</span><br><span class="line">FROM Sailors S</span><br><span class="line">WHERE S.age = (SELECT MAX(S2.age) FROM Sailors S2)</span><br><span class="line"></span><br><span class="line">注意: 聚集操作符和普通字段不能同时获取</span><br><span class="line">SELECT S.sname, MAX(S.age)		//	错误</span><br><span class="line">FROM Sailors S</span><br></pre></td></tr></table></figure>
+<h2 id="从一个SELECT的结果中SELECT信息"><a href="#从一个SELECT的结果中SELECT信息" class="headerlink" title="从一个SELECT的结果中SELECT信息"></a>从一个SELECT的结果中SELECT信息</h2><ul>
+<li>选出平均年龄在所有等级中最低的那些等级</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT Temp.rating, Temp.avgage</span><br><span class="line">FROM (SELECT S.rating, AVG(S.age) AS avgage,</span><br><span class="line">		FROM Sailors S</span><br><span class="line">		GROUP BY S.rating) AS Temp</span><br><span class="line">WHERE Temp.avagage = (SELECT MIN (Temp.avgage) FROM Temp)</span><br></pre></td></tr></table></figure>
+<h2 id="GROUP-BY和HAVING"><a href="#GROUP-BY和HAVING" class="headerlink" title="GROUP BY和HAVING"></a>GROUP BY和HAVING</h2><ul>
+<li>GROUP BY用于分组</li>
 </ul>
 <ul>
-<li>CLI不包含执行命令的程序,但是操作系统中有包含程序的系统文件中, CLI根据指令找到对应的文件, 交由文件执行</li>
+<li>HAVING用于指定分组的条件</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rm file.txt</span><br><span class="line">会搜索名为rm的文件, 将该文件装入内存中, 然后调用参数file.txt执行</span><br></pre></td></tr></table></figure>
-<h1 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h1><h2 id="向操作系统传参的方式"><a href="#向操作系统传参的方式" class="headerlink" title="向操作系统传参的方式"></a>向操作系统传参的方式</h2><ul>
-<li>通过寄存器传递参数</li>
-</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT [DISTINCT] select-list</span><br><span class="line">FROM from-list</span><br><span class="line">WHERE qualification</span><br><span class="line">GROUP BY grouping-list</span><br><span class="line">HAVING group-qualication</span><br><span class="line"></span><br><span class="line">顺序是先通过WHERE获取满足条件的记录, 然后通过GROUP BY分组, 再通过HAVING去掉不符合条件的分组, 最后选出select-list</span><br></pre></td></tr></table></figure>
 <ul>
-<li>将参数放入内存中, 将内存地址传递给操作系统</li>
+<li>对于每个等级, 若至少有两个水手成年, 找出成年水手中的最小年龄</li>
 </ul>
-<ul>
-<li>将参数放入栈中, 通过操作系统弹出参数</li>
-</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT MIN(S.age)</span><br><span class="line">FROM Sailors S</span><br><span class="line">WHERE S.age &gt;= 18</span><br><span class="line">GROUP BY S.rating</span><br><span class="line">HAVING COUNT(*) &gt; 1</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -400,8 +410,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/汇编/汇编/第二章 内存访问/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/数据库/数据库/存储与索引概述/" rel="next" title="第八章 存储与索引概述">
+                <i class="fa fa-chevron-left"></i> 第八章 存储与索引概述
               </a>
             
           </div>
@@ -409,10 +419,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/计算机组成与原理/计算机组成与原理/第二章 算术运算/" rel="prev" title="第二章 算术运算">
-                第二章 算术运算 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -569,7 +575,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#操作系统提供的五大服务"><span class="nav-number">1.</span> <span class="nav-text">操作系统提供的五大服务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用户界面"><span class="nav-number">2.</span> <span class="nav-text">用户界面</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#命令行界面CLI"><span class="nav-number">2.1.</span> <span class="nav-text">命令行界面CLI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CLI解释指令的方式"><span class="nav-number">2.2.</span> <span class="nav-text">CLI解释指令的方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#系统调用"><span class="nav-number">3.</span> <span class="nav-text">系统调用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#向操作系统传参的方式"><span class="nav-number">3.1.</span> <span class="nav-text">向操作系统传参的方式</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SELECT的格式"><span class="nav-number">1.</span> <span class="nav-text">SELECT的格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UNION-INTERSECT-EXCEPT"><span class="nav-number">2.</span> <span class="nav-text">UNION, INTERSECT, EXCEPT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Like"><span class="nav-number">3.</span> <span class="nav-text">Like, %, _</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#嵌套查询"><span class="nav-number">4.</span> <span class="nav-text">嵌套查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#嵌套查询的集合比较"><span class="nav-number">5.</span> <span class="nav-text">嵌套查询的集合比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#聚集操作符"><span class="nav-number">6.</span> <span class="nav-text">聚集操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从一个SELECT的结果中SELECT信息"><span class="nav-number">7.</span> <span class="nav-text">从一个SELECT的结果中SELECT信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GROUP-BY和HAVING"><span class="nav-number">8.</span> <span class="nav-text">GROUP BY和HAVING</span></a></li></ol></div>
             
 
           </div>
