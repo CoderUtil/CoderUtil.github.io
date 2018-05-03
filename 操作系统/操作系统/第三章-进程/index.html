@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="进程 进程: 又称为作业, 即执行中的程序  调度 调度: 进程在各种队列之间进行迁移  12345长期调度: 从磁盘的缓存池中选择进程, 并装入内存中以准备执行(CPU调度不频繁)短期调度: 从准备执行的进程中选择进程(CPU频繁调度)中期调度: 可以执行交换, 即进程能够从内存中移出再移进内存中 上下文切换 中断发生时, 通过状态保存保存旧进程的状态. 当中断发生完后, 执行状态恢复重新运行旧">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第三章 进程">
+<meta property="og:url" content="http://utilcoder.com/操作系统/操作系统/第三章-进程/index.html">
+<meta property="og:site_name" content="Code">
+<meta property="og:description" content="进程 进程: 又称为作业, 即执行中的程序  调度 调度: 进程在各种队列之间进行迁移  12345长期调度: 从磁盘的缓存池中选择进程, 并装入内存中以准备执行(CPU调度不频繁)短期调度: 从准备执行的进程中选择进程(CPU频繁调度)中期调度: 可以执行交换, 即进程能够从内存中移出再移进内存中 上下文切换 中断发生时, 通过状态保存保存旧进程的状态. 当中断发生完后, 执行状态恢复重新运行旧">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-19T08:37:29.084Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第三章 进程">
+<meta name="twitter:description" content="进程 进程: 又称为作业, 即执行中的程序  调度 调度: 进程在各种队列之间进行迁移  12345长期调度: 从磁盘的缓存池中选择进程, 并装入内存中以准备执行(CPU调度不频繁)短期调度: 从准备执行的进程中选择进程(CPU频繁调度)中期调度: 可以执行交换, 即进程能够从内存中移出再移进内存中 上下文切换 中断发生时, 通过状态保存保存旧进程的状态. 当中断发生完后, 执行状态恢复重新运行旧">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://utilcoder.com/操作系统/操作系统/第三章-进程/"/>
+
+
+
+
+
+  <title>第三章 进程 | Code</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Code</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/操作系统/操作系统/第三章-进程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Util">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">第三章 进程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-16T21:29:28+08:00">
+                2018-04-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/操作系统/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h1><ul>
+<li>进程: 又称为作业, 即执行中的程序</li>
+</ul>
+<h1 id="调度"><a href="#调度" class="headerlink" title="调度"></a>调度</h1><ul>
+<li>调度: 进程在各种队列之间进行迁移</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">长期调度: 从磁盘的缓存池中选择进程, 并装入内存中以准备执行(CPU调度不频繁)</span><br><span class="line"></span><br><span class="line">短期调度: 从准备执行的进程中选择进程(CPU频繁调度)</span><br><span class="line"></span><br><span class="line">中期调度: 可以执行交换, 即进程能够从内存中移出再移进内存中</span><br></pre></td></tr></table></figure>
+<h1 id="上下文切换"><a href="#上下文切换" class="headerlink" title="上下文切换"></a>上下文切换</h1><ul>
+<li>中断发生时, 通过状态保存保存旧进程的状态. 当中断发生完后, 执行状态恢复重新运行旧进程</li>
+</ul>
+<h1 id="创建进程"><a href="#创建进程" class="headerlink" title="创建进程"></a>创建进程</h1><h2 id="fork"><a href="#fork" class="headerlink" title="fork"></a>fork</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. fork()会创建一个子进程, 并将当前进程(主进程)的内容(特指从fork()语句以后的内容)拷贝到子进程中. 只是拷贝, 并不是引用, 两个进程中变量的值不共享</span><br><span class="line"></span><br><span class="line">2. fork()会产生两次返回值, 在主进程中, fork()的返回值是子进程的进程id值; 在子进程中, fork()返回0 </span><br><span class="line"></span><br><span class="line">3. 主进程先执行, 它执行完后才轮到子进程执行</span><br></pre></td></tr></table></figure>
+<h2 id="wait"><a href="#wait" class="headerlink" title="wait"></a>wait</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">执行了wait()后, 父进程等待子进程执行, 子进程执行完后, 父进程才继续执行</span><br></pre></td></tr></table></figure>
+<h1 id="进程间通信"><a href="#进程间通信" class="headerlink" title="进程间通信"></a>进程间通信</h1><h2 id="通信方式"><a href="#通信方式" class="headerlink" title="通信方式"></a>通信方式</h2><ul>
+<li>共享内存: 通过在共享区读写数据进行信息传递</li>
+<li>消息传递: 通过通信进行信息传递</li>
+</ul>
+<h2 id="直接通信与间接通"><a href="#直接通信与间接通" class="headerlink" title="直接通信与间接通"></a>直接通信与间接通</h2><ul>
+<li>直接通信: 通信的进程必须明确通信的接收者或发送者</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">对称寻址: 发送者需要命名接收者, 接收者需要命名发送者</span><br><span class="line"></span><br><span class="line">	send(P, message)		发送信息给进程P</span><br><span class="line">	receive(Q, message)		接收来自进程Q的信息</span><br><span class="line">	</span><br><span class="line">非对称寻址: 发送者命名接收者, 而接收者不需要命名发送者</span><br><span class="line"></span><br><span class="line">	sned(P, message)		发送信息给进程P</span><br><span class="line">	receive(id, message)	接收来自任何进程的信息, 将id设为与其通信的进程的名称</span><br></pre></td></tr></table></figure>
+<ul>
+<li>间接通信: 信息的发送和接收都通过一个中间者</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">send(A, message)			发送信息到邮箱A</span><br><span class="line">receive(A, message)			接收来自邮箱A的信息</span><br></pre></td></tr></table></figure>
+<h2 id="同步通信与异步通信"><a href="#同步通信与异步通信" class="headerlink" title="同步通信与异步通信"></a>同步通信与异步通信</h2><ul>
+<li>同步与异步又称为阻塞与非阻塞</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">阻塞: </span><br><span class="line">	send 发送信息后, 可以执行其他操作. </span><br><span class="line">	receive 接收到信息前, 可以执行其他操作</span><br><span class="line">	</span><br><span class="line">非阻塞:</span><br><span class="line">	send 发送信息后, 不可以执行其他操作, 直到消息被接收. </span><br><span class="line">	receive 接收到信息前, 不可以执行其他操作, 直到接收了信息</span><br></pre></td></tr></table></figure>
+<h1 id="Socket"><a href="#Socket" class="headerlink" title="Socket"></a>Socket</h1><ul>
+<li>通过网络进行通信的两个进程, 都含有作为通信端点的socket. </li>
+</ul>
+<h1 id="POSIX共享内存"><a href="#POSIX共享内存" class="headerlink" title="POSIX共享内存"></a>POSIX共享内存</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">1. segment_id = shmget(IPC_PRIVATE, size, S_IRUSR | S_IWUSR): 创建新的存储区或打开现有存储区</span><br><span class="line">	</span><br><span class="line">	segment_id: 返回共享存储区的ID</span><br><span class="line">	IPC_PRIVATE: 表明创建新的共享存储区</span><br><span class="line">	size: 存储区大小</span><br><span class="line">	S_IRUSR | S_IWUSR: 对共享存储区的操作(读/写/读写), S_IRUSR中有字母R表示读, S_IWUSR中有W表示写</span><br><span class="line">	</span><br><span class="line">2. shared_memory = (char*)shmat(segment_id, NULL, 0): 连接到共享存储区. 子进程能访问父进程连接的共享存储区</span><br><span class="line"></span><br><span class="line">	shared_memory: 返回指向共享存储区的指针</span><br><span class="line">	segment_id: 表明要连接的共享存储区的ID</span><br><span class="line">	NULL: 第二个参数是一个指针, 表明其要加入到共享存储区. 一般用NULL</span><br><span class="line">	0: 第三个参数用于设置对对共享存储区的操作(读/写/读写). 0表示可读写</span><br><span class="line">	</span><br><span class="line">3. shmdt(shard_memory): 断开与共享存储区的连接</span><br><span class="line"></span><br><span class="line">4. shmctl(segment_id, IPC_RMID, NULL): 删除共享存储区</span><br><span class="line"></span><br><span class="line">	segment_id: 共享存储区的ID</span><br><span class="line">	IPC_RMID, NULL: 默认参数</span><br></pre></td></tr></table></figure>
+<ul>
+<li>内存共享的基本操作</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;sys/shm.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;errno.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#define SIZE 1024</span><br><span class="line">extern int errno;</span><br><span class="line">int main()</span><br><span class="line">&#123;   </span><br><span class="line">    int shmid;   		//	共享存储区ID</span><br><span class="line">    char *shmptr;		//	指向共享内存的指针</span><br><span class="line"></span><br><span class="line">    //  创建共享内存</span><br><span class="line">    if((shmid = shmget(IPC_PRIVATE, SIZE, S_IRUSR | S_IWUSR)) &lt; 0)</span><br><span class="line">    &#123;       </span><br><span class="line">        printf(&quot;shmget error:%s\n&quot;, strerror(errno));</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //  将共享内存连接到可用地址上</span><br><span class="line">    if((shmptr = (char*)shmat(shmid, NULL, 0)) == (void*)-1) </span><br><span class="line">    &#123;        </span><br><span class="line">        printf(&quot;shmat error:%s\n&quot;, strerror(errno));        </span><br><span class="line">        return -1;    </span><br><span class="line">    &#125;   </span><br><span class="line"></span><br><span class="line">    //  向共享内存中传输数据</span><br><span class="line">    memcpy(shmptr, &quot;hello world&quot;, sizeof(&quot;hello world&quot;));</span><br><span class="line">    printf(&quot;share memory from %lx to %lx, content:%s\n&quot;,(unsigned long)shmptr, (unsigned long)(shmptr + SIZE), shmptr);</span><br><span class="line">    </span><br><span class="line">    //	断开共享内存和地址的连接</span><br><span class="line">    if (shmdt(shmptr) == -1) </span><br><span class="line">    &#123;</span><br><span class="line">      fprintf(stderr, &quot;Unable to detach\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //  删除共享内存</span><br><span class="line">    /*</span><br><span class="line">        shmctl(): 对共享存储区进行控制。如：共享存储区的删除</span><br><span class="line">    */</span><br><span class="line">    if((shmctl(shmid, IPC_RMID, NULL) &lt; 0)) </span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;shmctl error:%s\n&quot;, strerror(errno));</span><br><span class="line">        return -1;  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>多进程间内存共享(子进程获取斐波那契数列, 父进程打印)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">#include &lt;errno.h&gt;</span><br><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line">#include &lt;sys/stat.h&gt;</span><br><span class="line">#include &lt;sys/types.h&gt;</span><br><span class="line">#include &lt;sys/ipc.h&gt;</span><br><span class="line">#include &lt;sys/shm.h&gt;</span><br><span class="line">#include &lt;sys/wait.h&gt;</span><br><span class="line"></span><br><span class="line">#define MAX_SEQUENCE 10</span><br><span class="line"></span><br><span class="line">typedef struct &#123;</span><br><span class="line">    long fib_sequence [MAX_SEQUENCE];</span><br><span class="line">    int sequence_size;</span><br><span class="line">&#125; shared_data;</span><br><span class="line"></span><br><span class="line">long fibonacci(shared_data* result, int num) &#123;</span><br><span class="line">    if (num == 0)</span><br><span class="line">        return 0;</span><br><span class="line">    if (num == 1) </span><br><span class="line">        result-&gt;fib_sequence[num - 1] = 0;</span><br><span class="line">    else if (num == 2)</span><br><span class="line">        result-&gt;fib_sequence[num - 1] = 1;</span><br><span class="line">    else </span><br><span class="line">        result-&gt;fib_sequence[num - 1] = fibonacci(result, num - 1) + fibonacci(result, num - 2);</span><br><span class="line">    result-&gt;sequence_size++;</span><br><span class="line">    return result-&gt;fib_sequence[num - 1];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char **argv) &#123;</span><br><span class="line">    key_t shmid;</span><br><span class="line">    char *p_addr, *c_addr;  //  分别指向子共享控件和父共享空间</span><br><span class="line">    shared_data result;</span><br><span class="line"></span><br><span class="line">    if(argc != 2) &#123;     </span><br><span class="line">        fprintf(stderr, &quot;You should input a parameter as the number of fibonacci\n&quot;);</span><br><span class="line">        exit(1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    int num = atoi(argv[1]);</span><br><span class="line"></span><br><span class="line">    if (atoi(argv[1]) &gt; MAX_SEQUENCE) &#123;</span><br><span class="line">        fprintf(stderr, &quot;The input is bigger than : %d\n&quot;, num);</span><br><span class="line">        exit(1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if( (shmid = shmget(IPC_PRIVATE, sizeof(shared_data), S_IRUSR|S_IWUSR)) == -1 ) &#123; </span><br><span class="line">        fprintf(stderr, &quot;Create Share Memory Error:%s\n&quot;, strerror(errno));</span><br><span class="line">        exit(1);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    pid_t pid = fork();</span><br><span class="line">    if(pid &gt; 0) &#123;</span><br><span class="line">        p_addr = (char*)shmat(shmid, NULL, 0);</span><br><span class="line">        memset(p_addr, &apos;\0&apos;, sizeof(shared_data));</span><br><span class="line">        wait(NULL);</span><br><span class="line"></span><br><span class="line">        shared_data result;</span><br><span class="line">        memcpy(&amp;result, p_addr, sizeof(result));</span><br><span class="line">        for (int i = 0; i &lt; num; i++) &#123;</span><br><span class="line">            printf(&quot;%ld &quot;, result.fib_sequence[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (shmdt(p_addr) == -1) </span><br><span class="line">            fprintf(stderr, &quot;Main process unable to detach\n&quot;);</span><br><span class="line">        if((shmctl(shmid, IPC_RMID, 0) &lt; 0)) &#123;</span><br><span class="line">            printf(&quot;shmctl error:%s\n&quot;, strerror(errno));</span><br><span class="line">            exit(-1);</span><br><span class="line">        &#125;</span><br><span class="line">        exit(0);</span><br><span class="line">    &#125;</span><br><span class="line">    else if (pid == 0) &#123;</span><br><span class="line">        c_addr = (char*)shmat(shmid, NULL, 0);</span><br><span class="line"></span><br><span class="line">        for (int i = 0; i &lt; MAX_SEQUENCE; i++) </span><br><span class="line">            result.fib_sequence[i] = 0;</span><br><span class="line">        fibonacci(&amp;result, num);</span><br><span class="line"></span><br><span class="line">        memcpy(c_addr, &amp;result, sizeof(result));</span><br><span class="line">        if (shmdt(c_addr) == -1) </span><br><span class="line">            fprintf(stderr, &quot;Sub process unable to detach\n&quot;);</span><br><span class="line">        exit(0);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/软件工程实训/软件工程实训/studyreport-JUNIT/" rel="next" title="JUNIT学习报告">
+                <i class="fa fa-chevron-left"></i> JUNIT学习报告
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/计算机组成与原理/计算机组成与原理/第四章 处理器/" rel="prev" title="第四章 处理器">
+                第四章 处理器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Util" />
+            
+              <p class="site-author-name" itemprop="name">Util</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Util" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:853130236@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://icytown.com/" title="Mega Show's Blog" target="_blank">Mega Show's Blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#进程"><span class="nav-number">1.</span> <span class="nav-text">进程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#调度"><span class="nav-number">2.</span> <span class="nav-text">调度</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#上下文切换"><span class="nav-number">3.</span> <span class="nav-text">上下文切换</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建进程"><span class="nav-number">4.</span> <span class="nav-text">创建进程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#fork"><span class="nav-number">4.1.</span> <span class="nav-text">fork</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wait"><span class="nav-number">4.2.</span> <span class="nav-text">wait</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#进程间通信"><span class="nav-number">5.</span> <span class="nav-text">进程间通信</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#通信方式"><span class="nav-number">5.1.</span> <span class="nav-text">通信方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#直接通信与间接通"><span class="nav-number">5.2.</span> <span class="nav-text">直接通信与间接通</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同步通信与异步通信"><span class="nav-number">5.3.</span> <span class="nav-text">同步通信与异步通信</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Socket"><span class="nav-number">6.</span> <span class="nav-text">Socket</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#POSIX共享内存"><span class="nav-number">7.</span> <span class="nav-text">POSIX共享内存</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Util</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

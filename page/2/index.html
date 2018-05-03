@@ -259,6 +259,1247 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/计算机组成与原理/计算机组成与原理/编写MIPS指令的笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Util">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/计算机组成与原理/计算机组成与原理/编写MIPS指令的笔记/" itemprop="url">编写MIPS指令的笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-09T10:52:55+08:00">
+                2018-04-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机组成与原理/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机组成与原理</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">MIPS程序结构:</span><br><span class="line">    .text               # 代码段</span><br><span class="line">    .globl  main        # 声明主程序入口为main</span><br><span class="line">    main:</span><br><span class="line">        ....</span><br><span class="line">        li  $v0, 10     # 退出</span><br><span class="line">        syscall</span><br><span class="line"></span><br><span class="line">    .data               # 数据段</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">(1) 初始化:     将$s0初始化为n</span><br><span class="line">    mov     $s0,    $zero   </span><br><span class="line">    addi    $s0,    $s0,    n   </span><br><span class="line">    # 不支持mov $s0, n的写法</span><br><span class="line"></span><br><span class="line">(2) 乘法:       将$v0乘4</span><br><span class="line">    sll     $v0,    $v0,    2</span><br><span class="line"></span><br><span class="line">(3) 从数组中取元素: 假设$s0保存了元素的索引, arr为数组名</span><br><span class="line">    la      $v0,    arr         #   $v0 = 数组arr的首地址</span><br><span class="line">    sll     $s0,    $s0,    2   #   $s0 *= 4, 每个数组元素占4个字节</span><br><span class="line">    add     $s0,    $s0,    $t0 #   $s0保存元素的地址</span><br><span class="line">    sw      $v1,    0($s0)      #   $v1 = 元素的值  </span><br><span class="line">    # 不支持sll $s0, $s0, 2加上sw  $v1,  $s0($t0)的写法</span><br><span class="line"></span><br><span class="line">(4) if语句:     如果$s0 &lt; $s1, 则执行L0, 反之执行L1 (思考不含等于号的条件)</span><br><span class="line">    slt     $s2,    $s0,    $s1 #   如果$s0 &lt; $s1, $s2 = 1; 反之$s2 = 0. $s2的值不用初始化</span><br><span class="line">    beq     $s2,    1,      L0 </span><br><span class="line">    L1:</span><br><span class="line">        ...</span><br><span class="line">        j   L2</span><br><span class="line">    L0:</span><br><span class="line">        ...</span><br><span class="line">    L2:</span><br><span class="line">        ...</span><br><span class="line"></span><br><span class="line">            如果$s0 &lt;= $s1, 则执行L0, 反之执行L1</span><br><span class="line">    slt     $s2,    $s1,    $s0 #   如果$s1 &lt; $s0, $s2 = 1</span><br><span class="line">    beq     $s2,    1,      L1 </span><br><span class="line">    L0:</span><br><span class="line">        ...</span><br><span class="line">        j   L2:</span><br><span class="line">    L1:</span><br><span class="line">        ...</span><br><span class="line">    L2:</span><br><span class="line">        ...</span><br><span class="line"></span><br><span class="line">(5) 循环语句:    如果$s0 &lt; 10, 则循环继续 (思考使循环继续的条件)</span><br><span class="line">Loop:</span><br><span class="line">    ...</span><br><span class="line">    slti    $s2,    $s0,    10</span><br><span class="line">    beq     $s2,    0,      Loop</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/数据库/数据库/第五章 SQL查询/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Util">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/数据库/数据库/第五章 SQL查询/" itemprop="url">第五章 SQL查询</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-07T20:28:45+08:00">
+                2018-04-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="SELECT的格式"><a href="#SELECT的格式" class="headerlink" title="SELECT的格式"></a>SELECT的格式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT [DISTINCT] select-list		//	默认结果包含重复的记录, DISTINCT指搜索的记录不能重复</span><br><span class="line">FROM from-list</span><br><span class="line">WHERE qualifications</span><br></pre></td></tr></table></figure>
+<ul>
+<li>选出拥有103号船的水手的名字</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT S.sname</span><br><span class="line">FROM Sailors S, Reserve R</span><br><span class="line">WHERE S.sid = R.sid AND R.bid = 103		//	相当于叉积</span><br></pre></td></tr></table></figure>
+<h2 id="UNION-INTERSECT-EXCEPT"><a href="#UNION-INTERSECT-EXCEPT" class="headerlink" title="UNION, INTERSECT, EXCEPT"></a>UNION, INTERSECT, EXCEPT</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT S.sname</span><br><span class="line">FROM Sailors S, Reserve R, Boats B</span><br><span class="line">WHERE S.sid = R.sid AND R.bid = B.bid AND B.color = &apos;red&apos;</span><br><span class="line">(UNION / INTERSECT / EXCEPT)		//	并/交/差集</span><br><span class="line">SELECT S.sname</span><br><span class="line">FROM Sailors S, Reserve R, Boats B</span><br><span class="line">WHERE S.sid = R.sid AND R.bid = B.bid AND B.color = &apos;green&apos;</span><br></pre></td></tr></table></figure>
+<h2 id="Like"><a href="#Like" class="headerlink" title="Like, %, _"></a>Like, %, _</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">用于字符的匹配:</span><br><span class="line">	%匹配任意个字符</span><br><span class="line">	_匹配一个字符</span><br><span class="line"></span><br><span class="line">SELECT S.age</span><br><span class="line">FROM Sailors S</span><br><span class="line">WHERE S.sname LIKE &apos;B_%B&apos;		//	名字以B开头和结尾, 且中间至少有一个字母</span><br></pre></td></tr></table></figure>
+<h2 id="嵌套查询"><a href="#嵌套查询" class="headerlink" title="嵌套查询"></a>嵌套查询</h2><ul>
+<li>选出拥有103号船的水手的名字</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">SELECT S.sname</span><br><span class="line">FROM Sailors S</span><br><span class="line">WHERE S.sid IN (SELECT R.sid		//	IN用于检测一个值是否在给定的集合中</span><br><span class="line">				FROM Reserve R</span><br><span class="line">				WHERE R.bid = 103)</span><br><span class="line">				</span><br><span class="line">或</span><br><span class="line">SELECT S.sname</span><br><span class="line">FROM Sailors S</span><br><span class="line">WHERE EXISTS (SELECT *</span><br><span class="line">			FROM Reserve R</span><br><span class="line">			WHERE R.bid = 103 AND R.sid = S.sid)</span><br></pre></td></tr></table></figure>
+<h2 id="嵌套查询的集合比较"><a href="#嵌套查询的集合比较" class="headerlink" title="嵌套查询的集合比较"></a>嵌套查询的集合比较</h2><ul>
+<li>选出等级最高的水手的id</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT S.sid</span><br><span class="line">FROM Sailors S</span><br><span class="line">WHERE S.rating &gt;= ALL (SELECT S2.rating		//	ANY表示比集合中的任意一个元素大, ALL表示比集合中的所有元素都大</span><br><span class="line">					FROM Sailors S2)</span><br></pre></td></tr></table></figure>
+<h2 id="聚集操作符"><a href="#聚集操作符" class="headerlink" title="聚集操作符"></a>聚集操作符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1. COUNT([DISTINCT] select-list)</span><br><span class="line"></span><br><span class="line">2. SUM([DISTINCT] select-list)</span><br><span class="line"></span><br><span class="line">3. AVG([DISTINCT] select-list)</span><br><span class="line"></span><br><span class="line">4. MAX(select-list)</span><br><span class="line"></span><br><span class="line">5. MIN(select-list)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>选出最年长的水手的名字和年龄</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT S.sname, S.age</span><br><span class="line">FROM Sailors S</span><br><span class="line">WHERE S.age = (SELECT MAX(S2.age) FROM Sailors S2)</span><br><span class="line"></span><br><span class="line">注意: 聚集操作符和普通字段不能同时获取</span><br><span class="line">SELECT S.sname, MAX(S.age)		//	错误</span><br><span class="line">FROM Sailors S</span><br></pre></td></tr></table></figure>
+<h2 id="从一个SELECT的结果中SELECT信息"><a href="#从一个SELECT的结果中SELECT信息" class="headerlink" title="从一个SELECT的结果中SELECT信息"></a>从一个SELECT的结果中SELECT信息</h2><ul>
+<li>选出平均年龄在所有等级中最低的那些等级</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT Temp.rating, Temp.avgage</span><br><span class="line">FROM (SELECT S.rating, AVG(S.age) AS avgage,</span><br><span class="line">		FROM Sailors S</span><br><span class="line">		GROUP BY S.rating) AS Temp</span><br><span class="line">WHERE Temp.avagage = (SELECT MIN (Temp.avgage) FROM Temp)</span><br></pre></td></tr></table></figure>
+<h2 id="GROUP-BY和HAVING"><a href="#GROUP-BY和HAVING" class="headerlink" title="GROUP BY和HAVING"></a>GROUP BY和HAVING</h2><ul>
+<li>GROUP BY用于分组</li>
+</ul>
+<ul>
+<li>HAVING用于指定分组的条件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT [DISTINCT] select-list</span><br><span class="line">FROM from-list</span><br><span class="line">WHERE qualification</span><br><span class="line">GROUP BY grouping-list</span><br><span class="line">HAVING group-qualication</span><br><span class="line"></span><br><span class="line">顺序是先通过WHERE获取满足条件的记录, 然后通过GROUP BY分组, 再通过HAVING去掉不符合条件的分组, 最后选出select-list</span><br></pre></td></tr></table></figure>
+<ul>
+<li>对于每个等级, 若至少有两个水手成年, 找出成年水手中的最小年龄</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT MIN(S.age)</span><br><span class="line">FROM Sailors S</span><br><span class="line">WHERE S.age &gt;= 18</span><br><span class="line">GROUP BY S.rating</span><br><span class="line">HAVING COUNT(*) &gt; 1</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/数据库/数据库/存储与索引概述/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Util">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/数据库/数据库/存储与索引概述/" itemprop="url">第八章 存储与索引概述</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-07T19:32:54+08:00">
+                2018-04-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="页"><a href="#页" class="headerlink" title="页"></a>页</h2><ul>
+<li>数据库中信息读写的单位</li>
+</ul>
+<h2 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h2><ul>
+<li>数据库在物理逻辑上由多个文件组成. 文件中存有很多记录</li>
+</ul>
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><ul>
+<li>对表中一列或多列的值进行排序的一种数据结构, 有助于加快检索信息. </li>
+</ul>
+<ul>
+<li>索引是一种数据结构, 比如哈希索引和B+树索引</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">对于 SELECT * FROM TABLE t WHERE t.id = 100</span><br><span class="line"></span><br><span class="line">若不使用索引, 需要对整张表进行检索</span><br><span class="line">而使用索引, 可以快速进行定位</span><br></pre></td></tr></table></figure>
+<h2 id="搜索码"><a href="#搜索码" class="headerlink" title="搜索码"></a>搜索码</h2><ul>
+<li>索引对应的字段或字段集合的名称</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">比如对字段age进行索引, 则搜索码为age. 按&lt;time, age&gt;进行索引, 则搜索码为&lt;time, age&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="数据项"><a href="#数据项" class="headerlink" title="数据项"></a>数据项</h2><ul>
+<li>存储在索引文件中的记录</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">比如记录在表中为:</span><br><span class="line">| id | name |</span><br><span class="line">| 1  | Tom  |</span><br><span class="line">| 2  | Marry|</span><br><span class="line">| 3  | Jim  |</span><br><span class="line"></span><br><span class="line">以结构为B+树的id索引的第一种形式为例:</span><br><span class="line">	[2]</span><br><span class="line">    /  \</span><br><span class="line">  [1]  [3]</span><br><span class="line">  </span><br><span class="line">这个称为数据项</span><br></pre></td></tr></table></figure>
+<ul>
+<li>数据项有三种形式: </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">搜索码为k的数据项记作k*</span><br><span class="line"></span><br><span class="line">1. 数据项为k*</span><br><span class="line"></span><br><span class="line">2. 数据项为&lt;k, rid&gt;对, rid是搜索码为k的记录的id</span><br><span class="line"></span><br><span class="line">3. 数据项为&lt;k, rid-list&gt;对, rid-list是搜索码为k的所有记录的id的链表</span><br></pre></td></tr></table></figure>
+<h2 id="唯一索引"><a href="#唯一索引" class="headerlink" title="唯一索引"></a>唯一索引</h2><p>​    索引字段没有重复的字段值</p>
+<h2 id="主索引与次级索引"><a href="#主索引与次级索引" class="headerlink" title="主索引与次级索引"></a>主索引与次级索引</h2><p>​    主索引: 主键字段的索引. 比如字段id为主键, 它的索引为主索引</p>
+<p>​    次级索引: 不包含主键字段的索引</p>
+<h2 id="聚簇索引与非聚簇索引"><a href="#聚簇索引与非聚簇索引" class="headerlink" title="聚簇索引与非聚簇索引"></a>聚簇索引与非聚簇索引</h2><ul>
+<li>聚簇索引: 索引的数据项顺序与记录的顺序相同</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">比如记录在表中为:</span><br><span class="line">| id | name |</span><br><span class="line">| 2  | Marry|</span><br><span class="line">| 1  | Tom  |</span><br><span class="line">| 3  | Jim  |</span><br><span class="line"></span><br><span class="line">以结构为B+树的id索引的第一种形式为例:</span><br><span class="line">	[2]</span><br><span class="line">    /  \</span><br><span class="line">  [1]  [3]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>非聚簇索引: 索引的数据项顺序与记录的顺序不同</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/汇编/汇编/第五章 中断与端口/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Util">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/汇编/汇编/第五章 中断与端口/" itemprop="url">第五章 中断与端口</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-03T20:30:30+08:00">
+                2018-04-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/汇编/" itemprop="url" rel="index">
+                    <span itemprop="name">汇编</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="中断"><a href="#中断" class="headerlink" title="中断"></a>中断</h1><h2 id="CPU常见的内部中断"><a href="#CPU常见的内部中断" class="headerlink" title="CPU常见的内部中断"></a>CPU常见的内部中断</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">中断类型</th>
+<th style="text-align:center">中断码(表示中断类型)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">除法错误</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">单步执行</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">执行into指令</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td style="text-align:center">执行int n指令</td>
+<td style="text-align:center">n</td>
+</tr>
+</tbody>
+</table>
+<h2 id="中断向量"><a href="#中断向量" class="headerlink" title="中断向量"></a>中断向量</h2><ul>
+<li>中断向量: 中断处理程序的入口</li>
+</ul>
+<ul>
+<li><p>中断向量表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">将中断向量保存在表中, 用中断码作为表序号. 将表保存在内存的低地址, 表的每个项大小为2个字, 高地址的字保存段地址, 低地址的字保存低地址</span><br><span class="line"></span><br><span class="line">当中断发生, 根据中断向量表找到对应的中断向量, 根据中断向量跳转到对应的中断处理程序</span><br></pre></td></tr></table></figure>
+<p>​</p>
+<p>​</p>
+</li>
+</ul>
+<h2 id="中断过程"><a href="#中断过程" class="headerlink" title="中断过程"></a>中断过程</h2><ul>
+<li>中断过程: 中断发生到进入中断处理程序的过程</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1. 从中断信息中获取中断码N</span><br><span class="line"></span><br><span class="line">2. 标志寄存器的值入栈(中断过程可能改变PSW的值)						 pushf</span><br><span class="line"></span><br><span class="line">3. 设置PSW的TF与IF位为0						 				  TF = 0, IF = 0</span><br><span class="line"></span><br><span class="line">4. CS, IP入栈													push CS, push IP</span><br><span class="line"></span><br><span class="line">5. 从内存地址为N * 4的地址读取中断向量的IP, 4 * N + 2读取CS		   IP = 4 * N, CS = 4 * N + 2</span><br></pre></td></tr></table></figure>
+<h2 id="中断处理程序"><a href="#中断处理程序" class="headerlink" title="中断处理程序"></a>中断处理程序</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. 保存用到的寄存器</span><br><span class="line"></span><br><span class="line">2. 处理中断的程序</span><br><span class="line"></span><br><span class="line">3. 恢复用到的寄存器</span><br><span class="line"></span><br><span class="line">4. iret返回(即pop IP, pop CS, popf)</span><br></pre></td></tr></table></figure>
+<h3 id="除法错误时显示overflow的中断处理程序"><a href="#除法错误时显示overflow的中断处理程序" class="headerlink" title="除法错误时显示overflow的中断处理程序"></a>除法错误时显示overflow的中断处理程序</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">assume cs:code</span><br><span class="line"></span><br><span class="line">code segment</span><br><span class="line"></span><br><span class="line">		/*</span><br><span class="line">			将中断处理程序安装到内存地址为0000:02000</span><br><span class="line">		*/</span><br><span class="line">start:	mov ax, cs			//	设置ds:si指向源地址</span><br><span class="line">		mov ds, ax			</span><br><span class="line">		mov si, offset do0</span><br><span class="line">		mov ax, 0</span><br><span class="line">		mov es, ax</span><br><span class="line">		mov di, 200h		//	设置es:di指向目的地址</span><br><span class="line">		mov cx, offset do0end - offset do0		//	设置cx为传输长度</span><br><span class="line">		cld				   //	设置传输方向为正</span><br><span class="line">		rep movsb		    	</span><br><span class="line">		</span><br><span class="line">		/*</span><br><span class="line">			在中断向量表中设置中断向量, 中断向量的值为0000:0200</span><br><span class="line">		*/</span><br><span class="line">		mov ax, 0</span><br><span class="line">		mov es, ax</span><br><span class="line">		mov word ptr es:[0 * 4], 200h</span><br><span class="line">		mov word ptr es:[0 * 4 + 2], 0</span><br><span class="line">		</span><br><span class="line">		mov ax, 4c00h</span><br><span class="line">		int 21h</span><br><span class="line">		</span><br><span class="line">		/*</span><br><span class="line">			中断处理程序, 用于显示&apos;overflow&apos;</span><br><span class="line">		*/</span><br><span class="line">do0:	jmp short do0start</span><br><span class="line">		db &apos;overflow&apos;		//	将&apos;overflow&apos;一起传输保存起来</span><br><span class="line">		</span><br><span class="line">do0start:</span><br><span class="line">		mov ax, cs</span><br><span class="line">		mov ds, ax</span><br><span class="line">		mov si, 202h			  	//	设置ds:si指向字符串, 因为do0保存在0000:0200, 而jmp shor do0start栈两个字节, 所以db &apos;overflow&apos;的地址为0000:0202</span><br><span class="line">		</span><br><span class="line">		mov ax, 0b800h</span><br><span class="line">		mov es, ax</span><br><span class="line">		mov di, 12 * 160 + 36 * 2	//	设置es:di指向显存</span><br><span class="line">		</span><br><span class="line">		mov cx, 9					//	设置cx为字符串长度</span><br><span class="line">	s:	mov al, [si]</span><br><span class="line">    	mov es:[di], al</span><br><span class="line">    	inc si</span><br><span class="line">    	add di, 2</span><br><span class="line">    	loop s						//	将字符串拷贝到缓存</span><br><span class="line">    	</span><br><span class="line">		iret</span><br><span class="line">		</span><br><span class="line">code ends</span><br><span class="line">end1</span><br></pre></td></tr></table></figure>
+<h3 id="int指令"><a href="#int指令" class="headerlink" title="int指令"></a>int指令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">assume cs:code</span><br><span class="line"></span><br><span class="line">code segment</span><br><span class="line">	start:	int 0	//	执行中断码为0的中断处理程序, 即处理除法错误的中断处理程序</span><br><span class="line">code ends</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h1 id="端口"><a href="#端口" class="headerlink" title="端口"></a>端口</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用ax或al保存从端口读入的数据或保存到端口的数据. 8位用al, 16位用ax</span><br></pre></td></tr></table></figure>
+<h2 id="直接端口寻址"><a href="#直接端口寻址" class="headerlink" title="直接端口寻址"></a>直接端口寻址</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">端口地址保存在操作数中, 端口地址为8位:</span><br><span class="line"></span><br><span class="line">    in al, 60h	//	从端口号为60h的端口读入一个字节</span><br><span class="line"></span><br><span class="line">    out 20h, al	//	向端口号为20h的端口写入一个字节</span><br></pre></td></tr></table></figure>
+<h2 id="间接端口寻址"><a href="#间接端口寻址" class="headerlink" title="间接端口寻址"></a>间接端口寻址</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">端口地址保存在寄存器中, 端口地址为16位: </span><br><span class="line"></span><br><span class="line">    mov dx, 3f8h</span><br><span class="line">    in al, dx	//	当端口号大于8位, 将端口号放入dx中</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/汇编/汇编/第四章 标志寄存器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Util">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/汇编/汇编/第四章 标志寄存器/" itemprop="url">第四章 标志寄存器</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-30T12:20:00+08:00">
+                2018-03-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/汇编/" itemprop="url" rel="index">
+                    <span itemprop="name">汇编</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="标志寄存器"><a href="#标志寄存器" class="headerlink" title="标志寄存器"></a>标志寄存器</h1><p><img src="https://CoderUtil.github.io/images/TIM截图20180327124456.png" alt="汇编"></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">标志位</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">ZF</td>
+<td style="text-align:center">执行指令后, 若结果为0, ZF = 1; 结果为1, ZF = 0</td>
+</tr>
+<tr>
+<td style="text-align:center">PF</td>
+<td style="text-align:center">执行指令后, 若结果中1的个数为偶数, PF = 1; 1的个数为奇数, PF = 0</td>
+</tr>
+<tr>
+<td style="text-align:center">SF</td>
+<td style="text-align:center">执行指令后, 若结果为负, SF = 1; 结果为正, SF = 0</td>
+</tr>
+<tr>
+<td style="text-align:center">CF</td>
+<td style="text-align:center">执行指令后, 若进行的是无符号运算, 且最高位向更高位进位或借位(二进制运算), CF = 1</td>
+</tr>
+<tr>
+<td style="text-align:center">OF</td>
+<td style="text-align:center">执行指令后, 若进行的是有符号运算, 且溢出, 则OF = 1, 反之OF = 0</td>
+</tr>
+<tr>
+<td style="text-align:center">DF</td>
+<td style="text-align:center">串处理指令中, 控制si, di的增减. DF = 1, si、di递增; DF = 0, si、di递减</td>
+</tr>
+</tbody>
+</table>
+<h2 id="adc与sbb"><a href="#adc与sbb" class="headerlink" title="adc与sbb"></a>adc与sbb</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">汇编指令</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">adc ax, bx</td>
+<td style="text-align:center">ax = ax + bx + CF</td>
+</tr>
+<tr>
+<td style="text-align:center">sbb ax, bx</td>
+<td style="text-align:center">ax = ax - bx- CF</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cmp"><a href="#cmp" class="headerlink" title="cmp"></a>cmp</h2><p>cmp ax, bx    &lt;=&gt;    执行ax - bx, 不改变ax与bx的值, 目的是改变标志位</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">比较结果</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">SF = 1， OF = 0</td>
+<td style="text-align:center">没有溢出(逻辑上的正负 = 实际结果的正负), ax &lt; bx</td>
+</tr>
+<tr>
+<td style="text-align:center">SF = 1,    OF = 1</td>
+<td style="text-align:center">溢出逻辑上的正负 != 实际结果的正负), ax &gt; bx</td>
+</tr>
+<tr>
+<td style="text-align:center">SF = 0,    OF = 1</td>
+<td style="text-align:center">…</td>
+</tr>
+<tr>
+<td style="text-align:center">SF = 0,    OF = 0</td>
+<td style="text-align:center">…</td>
+</tr>
+</tbody>
+</table>
+<h2 id="借助标志位的条件转移指令"><a href="#借助标志位的条件转移指令" class="headerlink" title="借助标志位的条件转移指令"></a>借助标志位的条件转移指令</h2><p>​    搭配cmp使用</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">汇编指令</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">je 标号</td>
+<td style="text-align:center">执行cmp ax, bx后, 若ax = bx, 跳转至标号处</td>
+</tr>
+<tr>
+<td style="text-align:center">jne 标号</td>
+<td style="text-align:center">执行cmp ax, bx后, 若ax != bx, 跳转至标号处</td>
+</tr>
+<tr>
+<td style="text-align:center">jb 标号(b表示below)</td>
+<td style="text-align:center">执行cmp ax, bx后, 若ax &lt; bx, 跳转至标号处</td>
+</tr>
+<tr>
+<td style="text-align:center">jnb 标号</td>
+<td style="text-align:center">执行cmp ax, bx后, 若ax &gt;= bx, 跳转至标号处</td>
+</tr>
+<tr>
+<td style="text-align:center">ja 标号(a表示above)</td>
+<td style="text-align:center">执行cmp ax, bx后, 若ax &gt; bx, 跳转至标号处</td>
+</tr>
+<tr>
+<td style="text-align:center">jna 标号</td>
+<td style="text-align:center">执行cmp ax, bx后, 若ax &lt;= bx, 跳转至标号处</td>
+</tr>
+</tbody>
+</table>
+<h3 id="奇跳转"><a href="#奇跳转" class="headerlink" title="奇跳转"></a>奇跳转</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">        test ax, 11111111B		//	将两个操作数进行与运算, 但是不改变操作数. 通常用于改变标志寄存器</span><br><span class="line">        jp isEven			   //	jp: PF = 1时(结果有偶数个1)跳转; jnp: PF = 0时跳转	</span><br><span class="line"></span><br><span class="line">isEven:</span><br></pre></td></tr></table></figure>
+<h2 id="movsb"><a href="#movsb" class="headerlink" title="movsb"></a>movsb</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">movsb等价于:</span><br><span class="line">	1. mov es:[di], byte ptr ds:[si]</span><br><span class="line">	2. 若DF = 0, </span><br><span class="line">		add si, 1</span><br><span class="line">		add di, 1</span><br><span class="line">	   </span><br><span class="line">	   若DF = 1</span><br><span class="line">	     sub si, 1</span><br><span class="line">	     sub di, 1</span><br></pre></td></tr></table></figure>
+<h1 id="movsw"><a href="#movsw" class="headerlink" title="movsw"></a>movsw</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">movsw等价于:</span><br><span class="line">	1. mov es:[di], word ptr ds:[si]</span><br><span class="line">	2. 若DF = 0, </span><br><span class="line">		add si, 2</span><br><span class="line">		add di, 2</span><br><span class="line">	   </span><br><span class="line">	   若DF = 1</span><br><span class="line">	     sub si, 2</span><br><span class="line">	     sub di, 2</span><br></pre></td></tr></table></figure>
+<h2 id="rep"><a href="#rep" class="headerlink" title="rep"></a>rep</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rep movsb等价于:</span><br><span class="line">	s: movsb</span><br><span class="line">	   loop s</span><br></pre></td></tr></table></figure>
+<h2 id="cld-std"><a href="#cld-std" class="headerlink" title="cld, std"></a>cld, std</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">汇编指令</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">cld</td>
+<td style="text-align:center">DF = 0</td>
+</tr>
+<tr>
+<td style="text-align:center">std</td>
+<td style="text-align:center">DF = 1</td>
+</tr>
+</tbody>
+</table>
+<h2 id="内存单元的传送"><a href="#内存单元的传送" class="headerlink" title="内存单元的传送"></a>内存单元的传送</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">assume cs:code, ds:data</span><br><span class="line"></span><br><span class="line">//	将string1, stirng2的传送到string3, string4, 然后输出</span><br><span class="line">data segment </span><br><span class="line">    string1 db &apos;chenxingyu&apos;, 13, 10, &apos;$&apos;	</span><br><span class="line">    string2 db &apos;16340039&apos;, &apos;$&apos;</span><br><span class="line">    string3 db 16 dup (0)</span><br><span class="line">    string4 db 16 dup (0)</span><br><span class="line">data ends</span><br><span class="line"></span><br><span class="line">code segment </span><br><span class="line">start:  mov ax, data </span><br><span class="line">        mov ds, ax </span><br><span class="line">        mov es, ax </span><br><span class="line"></span><br><span class="line">        mov si, offset string1 						//  设置ds, si</span><br><span class="line">        mov di, offset string3						//	设置es, di</span><br><span class="line">        mov cx, offset string2 - offset string1		//	设置cx</span><br><span class="line">        cld											//	设置DF</span><br><span class="line">        rep movsb									//	循环传送</span><br><span class="line"></span><br><span class="line">        mov dx, offset string3		</span><br><span class="line">        mov ah, 9h				 </span><br><span class="line">        int 21h</span><br><span class="line"></span><br><span class="line">        mov si, offset string2 </span><br><span class="line">        mov di, offset string4</span><br><span class="line">        mov cx, offset string3 - offset string2</span><br><span class="line">        cld</span><br><span class="line">        rep movsb</span><br><span class="line"></span><br><span class="line">        mov dx, offset string4		</span><br><span class="line">        mov ah, 9h				 </span><br><span class="line">        int 21h</span><br><span class="line"></span><br><span class="line">        mov ah, 4ch</span><br><span class="line">        int 21h</span><br><span class="line">code ends </span><br><span class="line">end start</span><br></pre></td></tr></table></figure>
+<h2 id="pushf与popf"><a href="#pushf与popf" class="headerlink" title="pushf与popf"></a>pushf与popf</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">汇编指令</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">pushf</td>
+<td style="text-align:center">将16位的标志寄存器入栈</td>
+</tr>
+<tr>
+<td style="text-align:center">popf</td>
+<td style="text-align:center">出栈并将值赋给标志寄存器</td>
+</tr>
+</tbody>
+</table>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/汇编/汇编/第三章 转移指令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Util">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/汇编/汇编/第三章 转移指令/" itemprop="url">第三章 转移指令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-30T10:46:31+08:00">
+                2018-03-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/汇编/" itemprop="url" rel="index">
+                    <span itemprop="name">汇编</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="转移指令"><a href="#转移指令" class="headerlink" title="转移指令"></a>转移指令</h1><p><img src="https://CoderUtil.github.io/images/TIM截图20180330105100.png" alt="汇编"></p>
+<h2 id="offset"><a href="#offset" class="headerlink" title="offset"></a>offset</h2><p>​    取得标号的偏移地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">assume cs:code</span><br><span class="line"></span><br><span class="line">code segment</span><br><span class="line">	start: mov ax, offset start		//	相当于mov ax, 0</span><br><span class="line">	s:     mov ax, offset s			//	相当于mov ax, 3</span><br><span class="line">code ends</span><br><span class="line">end start</span><br></pre></td></tr></table></figure>
+<h2 id="jmp"><a href="#jmp" class="headerlink" title="jmp"></a>jmp</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">汇编指令</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">jmp short 标号   (短转移)</td>
+<td style="text-align:center">跳转到标号处(即IP = offset 标号)</td>
+</tr>
+<tr>
+<td style="text-align:center">jmp, near ptr 标号   (近转移)</td>
+<td style="text-align:center">跳转到标号处</td>
+</tr>
+<tr>
+<td style="text-align:center">jmp far ptr 标号    (段间转移)</td>
+<td style="text-align:center">跳转到标号处</td>
+</tr>
+<tr>
+<td style="text-align:center">jmp 16位寄存器</td>
+<td style="text-align:center">IP = 16位寄存器的值</td>
+</tr>
+<tr>
+<td style="text-align:center">jmp word ptr 内存单元</td>
+<td style="text-align:center">内存单元存放一个字长度的单元, IP = 16位内存单元的值</td>
+</tr>
+<tr>
+<td style="text-align:center">jmp dword ptr 内存单元</td>
+<td style="text-align:center">内存单元存放两个字长度的单元, IP = 低地址16位内存单元的值,                                       CS = 高地址16位内存单元的值</td>
+</tr>
+</tbody>
+</table>
+<h2 id="jcxz"><a href="#jcxz" class="headerlink" title="jcxz"></a>jcxz</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">汇编指令</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">jcxz 标号</td>
+<td style="text-align:center">如果cx = 0, 跳转到标号处</td>
+</tr>
+</tbody>
+</table>
+<h2 id="loop"><a href="#loop" class="headerlink" title="loop"></a>loop</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">汇编指令</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">loop 标号</td>
+<td style="text-align:center">cx = cx - 1, 如果cx != 0, 跳转到标号处</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ret与retf"><a href="#ret与retf" class="headerlink" title="ret与retf"></a>ret与retf</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">汇编指令</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">ret</td>
+<td style="text-align:center">pop IP</td>
+</tr>
+<tr>
+<td style="text-align:center">retf</td>
+<td style="text-align:center">pop IP,  pop CS</td>
+</tr>
+</tbody>
+</table>
+<h2 id="call"><a href="#call" class="headerlink" title="call"></a>call</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">汇编指令</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">call 标号</td>
+<td style="text-align:center">push IP, jmp near ptr 标号</td>
+</tr>
+<tr>
+<td style="text-align:center">call for ptr 标号</td>
+<td style="text-align:center">push CS,   push IP,    jmp far ptr 标号</td>
+</tr>
+<tr>
+<td style="text-align:center">call 16 位 寄存器</td>
+<td style="text-align:center">push IP,   jmp 16位寄存器</td>
+</tr>
+<tr>
+<td style="text-align:center">call word ptr 内存单元</td>
+<td style="text-align:center">push CS,  push IP,   jmp dword ptr 内存单元</td>
+</tr>
+<tr>
+<td style="text-align:center">call dword ptr 内存单元</td>
+<td style="text-align:center">push CS,   push IP,  jmp dword ptr 内存单元</td>
+</tr>
+</tbody>
+</table>
+<h1 id="子程序-函数"><a href="#子程序-函数" class="headerlink" title="子程序(函数)"></a>子程序(函数)</h1><p>​    通过call 保存主程序的位置并跳转到函数, 在函数的结尾通过ret返回到主程序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">assume cs:code</span><br><span class="line">code segment</span><br><span class="line"></span><br><span class="line">	main: :</span><br><span class="line">		  :</span><br><span class="line">		  call sub1</span><br><span class="line">		  :</span><br><span class="line">		  :</span><br><span class="line">		  mov ax, 4c00h</span><br><span class="line">		  int 21h</span><br><span class="line">		  </span><br><span class="line">    sub1:  :</span><br><span class="line">    	   :</span><br><span class="line">    	   ret</span><br><span class="line">		 </span><br><span class="line"></span><br><span class="line">code ends</span><br><span class="line">end main</span><br></pre></td></tr></table></figure>
+<h2 id="函数传参和返回值"><a href="#函数传参和返回值" class="headerlink" title="函数传参和返回值"></a>函数传参和返回值</h2><ul>
+<li>主程序和子程序使用相同的寄存器</li>
+</ul>
+<ul>
+<li>将数据放在内存中, 传递数据在内存中的地址</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">assume cs:code</span><br><span class="line">data segment</span><br><span class="line">	db &apos;word&apos;, 0	//	将以0结尾的字符串转换为大写</span><br><span class="line">	db &apos;unix&apos;, 0</span><br><span class="line">data ends</span><br><span class="line">code segment</span><br><span class="line">	start: mov ax, data</span><br><span class="line">		   mov ds, ax</span><br><span class="line">		   mov bx, 0</span><br><span class="line">		   </span><br><span class="line">		   mov cx, 4</span><br><span class="line">		s: mov si, bx</span><br><span class="line">            call capital</span><br><span class="line">            add bx, 5</span><br><span class="line">            loop s</span><br><span class="line">            </span><br><span class="line">            mov ax, 4c00h</span><br><span class="line">            int 21h</span><br><span class="line">            </span><br><span class="line">   capital: push cx			//	将主程序和子程序使用的相同的寄存器入栈, 防止冲突</span><br><span class="line">   			push si</span><br><span class="line">   			</span><br><span class="line">   	change:	mov cl, [si]</span><br><span class="line">   			mov ch, 0</span><br><span class="line">   			jcxz ok</span><br><span class="line">   			and byte ptr [si], 11011111b</span><br><span class="line">   			inc si</span><br><span class="line">   			jmp short change</span><br><span class="line">   	 	</span><br><span class="line">   	 	ok:	pop si			//	子程序完成后, 将栈中寄存器的值出栈</span><br><span class="line">   	 		pop cx</span><br><span class="line">   	 		ret</span><br><span class="line">code ends</span><br><span class="line">end start</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/计算机组成与原理/计算机组成与原理/第三章 MIPS指令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -760,13 +2001,18 @@
 </tr>
 </tbody>
 </table>
-<h2 id="J型"><a href="#J型" class="headerlink" title="J型"></a>J型</h2><p><img src="https://CoderUtil.github.io/images/TIM截图20180406210731.png" alt="计算机组成"></p>
+<h2 id="J型-跳转指令的机器码都是字地址"><a href="#J型-跳转指令的机器码都是字地址" class="headerlink" title="J型(跳转指令的机器码都是字地址)"></a>J型(跳转指令的机器码都是字地址)</h2><p><img src="https://CoderUtil.github.io/images/TIM截图20180406210731.png" alt="计算机组成"></p>
 <p><img src="https://CoderUtil.github.io/images/TIM截图20180406214153.png" alt="计算机组成"></p>
 <h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h1><ul>
 <li>MIPS中栈的增长从高地址到低地址</li>
 <li>帧指针\$fp: 不同的函数使用不同的栈, 帧指针用于迅速找到函数对应的栈. 而且相对于栈指针, 帧指针是不变的, 这样可以用帧指针作为栈中数据的基址值</li>
 </ul>
 <p><img src="https://CoderUtil.github.io/images/TIM截图20180331143718.png" alt="计算机组成"></p>
+<h1 id="并行与指令"><a href="#并行与指令" class="headerlink" title="并行与指令"></a>并行与指令</h1><ul>
+<li>数据冲突: 若两个线程同时访问一个地址, 且至少一个线程执行写操作, 则可能导致数据冲突</li>
+</ul>
+<p><img src="https://CoderUtil.github.io/images/TIM截图20180416225515.png" alt="计算机组成"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ll $t1, 0($s1)		//	链接取数指令, 从[$s1 + 0]中取出数据</span><br><span class="line">sc $t0, 0($s1)		//	条件存数指令, 向[$s1 + 0]存数据</span><br><span class="line"></span><br><span class="line">ll和sc一起使用, 起到锁的作用. 若ll执行后, sc执行前. [$s1 + 0]中的值被改变了, 则sc不会执行</span><br></pre></td></tr></table></figure>
 
           
         
@@ -1508,733 +2754,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/汇编/汇编/第一章 基础知识/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Util">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/汇编/汇编/第一章 基础知识/" itemprop="url">第一章 基础知识</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-26T09:03:50+08:00">
-                2018-03-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/汇编/" itemprop="url" rel="index">
-                    <span itemprop="name">汇编</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h1><h2 id="8086-8088CPU组成"><a href="#8086-8088CPU组成" class="headerlink" title="8086/8088CPU组成"></a>8086/8088CPU组成</h2><p><img src="https://CoderUtil.github.io/images/TIM截图20180326085329.png" alt="汇编"></p>
-<h2 id="8086-8088CPU共同点"><a href="#8086-8088CPU共同点" class="headerlink" title="8086/8088CPU共同点"></a>8086/8088CPU共同点</h2><p>​    都是16位CPU. 运算器一次最多可以处理16位数据, 寄存器最大宽度为16位, CPU内部数据总线为16位</p>
-<h2 id="8086-8088CPU区别"><a href="#8086-8088CPU区别" class="headerlink" title="8086/8088CPU区别"></a>8086/8088CPU区别</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">CPU</th>
-<th style="text-align:center">指令队列容量</th>
-<th style="text-align:center">每个总线周期从内存中读取放入指令队列</th>
-<th style="text-align:center">外部数据总线宽带</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">8086</td>
-<td style="text-align:center">6个字节</td>
-<td style="text-align:center">2个字节</td>
-<td style="text-align:center">16位</td>
-</tr>
-<tr>
-<td style="text-align:center">8088</td>
-<td style="text-align:center">4个字节</td>
-<td style="text-align:center">1个字节</td>
-<td style="text-align:center">8位</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>总线周期:  BIU完成一次访问存储器或端口所需要的时间</li>
-</ul>
-<h1 id="字word"><a href="#字word" class="headerlink" title="字word"></a>字word</h1><p>​    计算机内部一次可以处理的二进制位数. 8086CPU中寄存器位16位, 所以字为16位</p>
-<h2 id="内存中字的存储"><a href="#内存中字的存储" class="headerlink" title="内存中字的存储"></a>内存中字的存储</h2><p>​    高地址存放高位字节, 低地址存放低位字节</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">0</th>
-<th style="text-align:center">1</th>
-<th style="text-align:center">2</th>
-<th style="text-align:center">3</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">20H</td>
-<td style="text-align:center">4EH</td>
-<td style="text-align:center">12H</td>
-<td style="text-align:center">00H</td>
-</tr>
-</tbody>
-</table>
-<p>从地址为1的内存单元中取出1个字的数据, 为124EH</p>
-<h1 id="寄存器-14个16位寄存器"><a href="#寄存器-14个16位寄存器" class="headerlink" title="寄存器(14个16位寄存器)"></a>寄存器(14个16位寄存器)</h1><p><img src="https://CoderUtil.github.io/images/TIM截图20180326092541.png" alt="汇编"></p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">段寄存器</th>
-<th style="text-align:center">作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">代码段寄存器CS</td>
-<td style="text-align:center">指向代码段</td>
-</tr>
-<tr>
-<td style="text-align:center">数据段寄存器DS</td>
-<td style="text-align:center">指向数据段</td>
-</tr>
-<tr>
-<td style="text-align:center">堆栈段寄存器SS</td>
-<td style="text-align:center">指向堆栈段</td>
-</tr>
-<tr>
-<td style="text-align:center">附加段寄存器ES</td>
-<td style="text-align:center">指向附加段</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>标志寄存器FR: 又称为状态寄存器PSW</li>
-</ul>
-<h2 id="数据寄存器"><a href="#数据寄存器" class="headerlink" title="数据寄存器"></a>数据寄存器</h2><p>​    为了兼容上一代的8位CPU, 数据寄存器可分为高位寄存器和低位寄存器</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">低位寄存器</th>
-<th style="text-align:center">高位寄存器</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">AX</td>
-<td style="text-align:center">AL</td>
-<td style="text-align:center">AH</td>
-</tr>
-<tr>
-<td style="text-align:center">BX</td>
-<td style="text-align:center">BL</td>
-<td style="text-align:center">BH</td>
-</tr>
-<tr>
-<td style="text-align:center">CX</td>
-<td style="text-align:center">CL</td>
-<td style="text-align:center">CH</td>
-</tr>
-<tr>
-<td style="text-align:center">DX</td>
-<td style="text-align:center">DL</td>
-<td style="text-align:center">DH</td>
-</tr>
-</tbody>
-</table>
-<h1 id="简单汇编指令"><a href="#简单汇编指令" class="headerlink" title="简单汇编指令"></a>简单汇编指令</h1><table>
-<thead>
-<tr>
-<th style="text-align:center">汇编指令</th>
-<th style="text-align:center">操作</th>
-<th style="text-align:center">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">mov ax, 18</td>
-<td style="text-align:center">将18送入AX</td>
-<td style="text-align:center">AX = 18</td>
-</tr>
-<tr>
-<td style="text-align:center">mov ah, 78</td>
-<td style="text-align:center">将78送入AH</td>
-<td style="text-align:center">AH = 78</td>
-</tr>
-<tr>
-<td style="text-align:center">add/sub ax, 18</td>
-<td style="text-align:center">AX中的数据加/减上18</td>
-<td style="text-align:center">AX = AX +/- 18</td>
-</tr>
-<tr>
-<td style="text-align:center">add/sub ah, 18</td>
-<td style="text-align:center">AH中的数据加/减上18</td>
-<td style="text-align:center">AH = AH +/- 18</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li><p>汇编指令不区分大小写: mov ax, 18   &lt;=&gt;    MOV AX, 18</p>
-<p>​</p>
-</li>
-<li><p>汇编指令中操作数的位数应该一致:  mov ah, bx是错误的, ah是8位寄存器, bx是16位寄存器</p>
-</li>
-</ul>
-<h1 id="物理地址"><a href="#物理地址" class="headerlink" title="物理地址"></a>物理地址</h1><p>​    8086CPU中地址总线是20位的, 但存储地址的寄存器是16位的. 所以将两个16位地址合成一个20位地址</p>
-<ul>
-<li>物理地址 = 段地址 <em> 16 + 偏移地址 = 段地址 </em> 10H + 偏移地址</li>
-<li>逻辑地址 = 段地址 : 偏移地址</li>
-</ul>
-<h1 id="寄存器CS和IP"><a href="#寄存器CS和IP" class="headerlink" title="寄存器CS和IP"></a>寄存器CS和IP</h1><p>​    CS * 16 + IP指向当前要读取的指令的地址</p>
-<h2 id="程序执行"><a href="#程序执行" class="headerlink" title="程序执行"></a>程序执行</h2><pre><code>1. 从CS : IP指向的内存单元读取指令并放入指令缓存器
- 2. IP = IP + 所读指令的长度, 从而指向下一条指令(IP永远指向指令, 因此冯诺依曼体系中主要根据IP指向内容判断是内存中的内容是指令还是数据)
-  3. 执行指令
-</code></pre><h1 id="DeBug程序"><a href="#DeBug程序" class="headerlink" title="DeBug程序"></a>DeBug程序</h1><h2 id="打开debug"><a href="#打开debug" class="headerlink" title="打开debug"></a>打开debug</h2><ol>
-<li><p>打开DOSBOX</p>
-<p>​</p>
-</li>
-<li><p>输入下列指令</p>
-</li>
-</ol>
-<p><img src="https://CoderUtil.github.io/images/TIM图片20180326160139.png" alt="汇编"></p>
-<h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><h3 id="R"><a href="#R" class="headerlink" title="R"></a>R</h3><ul>
-<li>r,  查看所有寄存器的内容</li>
-<li>r + 寄存器名, 在提示的: 后输入值, 修改指定寄存器的值</li>
-</ul>
-<p><img src="https://CoderUtil.github.io/images/TIM截图20180326160448.png" alt="汇编"></p>
-<h3 id="D"><a href="#D" class="headerlink" title="D"></a>D</h3><ul>
-<li><p>d 段地址 : 偏移地址, 查看此物理地址开始的128个内存单元的内容</p>
-</li>
-<li><p>d 段地址 : 起始偏移地址  结束偏移地址, 查看指定范围的内存单元</p>
-</li>
-</ul>
-<p><img src="https://CoderUtil.github.io/images/TIM截图20180326160918.png" alt="汇编"></p>
-<ul>
-<li>右边的值表示每个内存单元的值对应的ASCII字符, 若ASCII字符不能显示就用’.’代替</li>
-</ul>
-<h3 id="E"><a href="#E" class="headerlink" title="E"></a>E</h3><ul>
-<li>e 段地址 : 偏移地址  数据  数据  数据  …., 来修改从指定内存开始的内存单元</li>
-<li>e 段地址 : 偏移地址  回车。 然后在.后面输入打算替换的数据, 改完后按空格修改下一个, 按回车结束</li>
-</ul>
-<p><img src="https://CoderUtil.github.io/images/TIM截图20180326162047.png" alt="汇编"></p>
-<h3 id="U"><a href="#U" class="headerlink" title="U"></a>U</h3><ul>
-<li>u 段地址 : 偏移地址, 产看指定地址开始的汇编指令</li>
-</ul>
-<p><img src="https://CoderUtil.github.io/images/TIM截图20180326162351.png" alt="汇编"></p>
-<h3 id="T"><a href="#T" class="headerlink" title="T"></a>T</h3><ul>
-<li>t , 执行CS : IP的指令</li>
-</ul>
-<h3 id="A"><a href="#A" class="headerlink" title="A"></a>A</h3><ul>
-<li>a 段地址 : 偏移地址, 向指定内存地址写入汇编码</li>
-</ul>
-<p><img src="https://CoderUtil.github.io/images/TIM截图20180326162639.png" alt="汇编"></p>
-<h1 id="汇编指令转为机器码"><a href="#汇编指令转为机器码" class="headerlink" title="汇编指令转为机器码"></a>汇编指令转为机器码</h1><p><img src="https://CoderUtil.github.io/images/TIM截图20180327153953.png" alt="汇编"></p>
-<ul>
-<li>当机器码表示为针对第一个操作数时, d = 1; 若针对第二个操作数, d = 0</li>
-</ul>
-<ul>
-<li>字操作, w = 1; 字节操作, w = 0</li>
-</ul>
-<ul>
-<li>disp表示位移量, 比如mov ax, [si] + 18, 则disp为18</li>
-</ul>
-<ul>
-<li>reg表</li>
-</ul>
-<p><img src="https://CoderUtil.github.io/images/TIM截图20180327154418.png" alt="汇编"></p>
-<ul>
-<li>r/m, mod表</li>
-</ul>
-<p>!TIM图片20180326205518.png)</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/计算机组成与原理/计算机组成与原理/第一章 计算机概要/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Util">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/计算机组成与原理/计算机组成与原理/第一章 计算机概要/" itemprop="url">第一章 计算机概要与技术</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-25T20:20:07+08:00">
-                2018-03-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机组成与原理/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机组成与原理</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="硬件入门"><a href="#硬件入门" class="headerlink" title="硬件入门"></a>硬件入门</h1><h2 id="计算机组成"><a href="#计算机组成" class="headerlink" title="计算机组成"></a>计算机组成</h2><p><img src="https://CoderUtil.github.io/images/计算机组成.png" alt="计算机组成"></p>
-<h2 id="CPU组成"><a href="#CPU组成" class="headerlink" title="CPU组成"></a>CPU组成</h2><p><img src="https://CoderUtil.github.io/images/TIM截图20180326081639.png" alt="计算机组成"></p>
-<h2 id="总线分类"><a href="#总线分类" class="headerlink" title="总线分类"></a>总线分类</h2><p><img src="https://CoderUtil.github.io/images/TIM截图20180326082028.png" alt="计算机组成"></p>
-<h2 id="存储器分类"><a href="#存储器分类" class="headerlink" title="存储器分类"></a>存储器分类</h2><p>​    按用途分类</p>
-<p><img src="https://CoderUtil.github.io/images/TIM截图20180326082628.png" alt="计算机组成"></p>
-<p>​    按读写功能分类</p>
-<p><img src="https://CoderUtil.github.io/images/TIM截图20180326082929.png" alt="计算机组成"></p>
-<h2 id="状态寄存器-标志寄存器FR"><a href="#状态寄存器-标志寄存器FR" class="headerlink" title="状态寄存器(标志寄存器FR)"></a>状态寄存器(标志寄存器FR)</h2><p><img src="https://CoderUtil.github.io/images/TIM截图20180326084420.png" alt="计算机组成"></p>
-<p><img src="https://CoderUtil.github.io/images/TIM截图20180327124456.png" alt="计算机组成"></p>
-<h2 id="显示器"><a href="#显示器" class="headerlink" title="显示器"></a>显示器</h2><ul>
-<li>分辨率: 位图中像素的数目. 若位图中有1024行, 768列, 则分辨率为1024 * 768</li>
-</ul>
-<ul>
-<li>位图: 由像素组成的二进制矩阵, 每个像素的值用RGB的形式编码</li>
-<li>像素: 图像中最小的完整取样</li>
-</ul>
-<h1 id="指令体系"><a href="#指令体系" class="headerlink" title="指令体系"></a>指令体系</h1><h2 id="冯诺依曼体系"><a href="#冯诺依曼体系" class="headerlink" title="冯诺依曼体系"></a>冯诺依曼体系</h2><ul>
-<li><p>特点: 把程序当作数据看待, 程序和数据用同样的方式存储</p>
-<p>​</p>
-</li>
-</ul>
-<h2 id="程序控制"><a href="#程序控制" class="headerlink" title="程序控制"></a>程序控制</h2><p>​    将一大段指令和数据保存在内存中, 并将指令段首地址保存到程序计数器PC中. CPU根据PC中的地址, 从内存中读取指令并放在指令寄存器IR中. 然后分析指令, 根据指令共能从内存中取出数据, 然后将运算结果保存到内存中. 然后PC指向下一条指令, 直至遇到停机指令</p>
-<h2 id="CPU架构"><a href="#CPU架构" class="headerlink" title="CPU架构"></a>CPU架构</h2><p><img src="https://CoderUtil.github.io/images/TIM截图20180326091534.png" alt="计算机组成"></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/操作系统/操作系统/第一章 计算机系统组织/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Util">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/操作系统/操作系统/第一章 计算机系统组织/" itemprop="url">第一章 计算机系统组织</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-25T20:05:01+08:00">
-                2018-03-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/操作系统/" itemprop="url" rel="index">
-                    <span itemprop="name">操作系统</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="计算机系统操作"><a href="#计算机系统操作" class="headerlink" title="计算机系统操作"></a>计算机系统操作</h1><h2 id="启动计算机"><a href="#启动计算机" class="headerlink" title="启动计算机"></a>启动计算机</h2><p>   当打开电源或重启时, 计算机运行BIOS, 它将定位操作系统的内核并将其装入内存中, 然后操作系统执行第一个进程如init, 并等待事件的发生</p>
-<ul>
-<li><p>BIOS: 固化在ROM中的引导程序, 保存着基本的输入输出程序</p>
-</li>
-<li><p>内核core: 操作系统最核心的部分, 它提供了程序对计算机硬件的安全访问</p>
-</li>
-<li><p>外壳shell: 用于控制操作系统的程序, 它提供了与用户交互的界面 </p>
-<p>​</p>
-</li>
-</ul>
-<h2 id="中断"><a href="#中断" class="headerlink" title="中断"></a>中断</h2><p>   指停止当前程序, 并开始处理新程序, 直至完成后继续被暂停的程序. 通过中断产生了新的事件, 位模式的切换也依赖于中断</p>
-<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><p>   通过软件、硬件的中断产生</p>
-<ul>
-<li><p>软中断: 软件通过执行特定的操作产生, 比如通过trap产生系统调用</p>
-</li>
-<li><p>硬中断: 硬件通过总线发送中断信号产生</p>
-<p>​</p>
-</li>
-</ul>
-<h2 id="中断向量表"><a href="#中断向量表" class="headerlink" title="中断向量表"></a>中断向量表</h2><p>   用一个表保存所有程序的地址和状态, 然后将表保存到内存中从0开始的地址. 产生中断时, 根据中断向量根据中断码在中断向量表中找到对应的中断处理程序的入口地址, 然后跳转到对应的中断处理程序处理中断</p>
-<h1 id="I-O结构"><a href="#I-O结构" class="headerlink" title="I/O结构"></a>I/O结构</h1><h2 id="I-O操作"><a href="#I-O操作" class="headerlink" title="I/O操作"></a>I/O操作</h2><p>   控制器先检查指令寄存器的内容决定要采取的操作, 然后将数据寄存器中的内容传输到本地缓冲区. 传输完成后, 控制器会产生一个中断信号通知驱动程序传输完成</p>
-<ul>
-<li>驱动程序: 存在于设备控制器上, 它提供了硬件与软件系统的接口, 充当两者的桥梁</li>
-<li>缺点: 因为数据寄存器只能保存一个字节, 所以只适用于少量数据的传输</li>
-</ul>
-<h2 id="DMA直接内存访问"><a href="#DMA直接内存访问" class="headerlink" title="DMA直接内存访问"></a>DMA直接内存访问</h2><p>   一大块数据的传输, 只产生一个中断来告知驱动程序已经完成</p>
-<ul>
-<li><p>原因: 对于大块数据的传输, 若采用多次I/O中断驱动的方法传输, 会产生超载问题</p>
-<p>​</p>
-</li>
-</ul>
-<h1 id="处理器"><a href="#处理器" class="headerlink" title="处理器"></a>处理器</h1><p>   <img src="https://CoderUtil.github.io/images/cpu.png" alt="操作系统"></p>
-<ul>
-<li><p>多核处理器: 将多个计算机计算机引擎设计到单个芯片上</p>
-<p>​</p>
-</li>
-</ul>
-<h1 id="操作系统结构"><a href="#操作系统结构" class="headerlink" title="操作系统结构"></a>操作系统结构</h1><h2 id="多道程序设计"><a href="#多道程序设计" class="headerlink" title="多道程序设计"></a>多道程序设计</h2><p>   操作系统同时将多个任务保存在内存中, 当一个任务执行完后立即执行另一个任务</p>
-<h2 id="分时系统"><a href="#分时系统" class="headerlink" title="分时系统"></a>分时系统</h2><p>   多用户共享计算机, 通过在作业之间快速进行切换让用户感到系统只为自己所用</p>
-<h1 id="操作系统操作"><a href="#操作系统操作" class="headerlink" title="操作系统操作"></a>操作系统操作</h1><h2 id="CPU操作模式"><a href="#CPU操作模式" class="headerlink" title="CPU操作模式"></a>CPU操作模式</h2><p>  <img src="https://CoderUtil.github.io/TIM截图20180330093215.png" alt="操作系统"></p>
-<p>实模式和保护模式:</p>
-<p>​    80286CPU及以前的CPU, 内存地址只有16位, 随着可访问内存增多. 为了兼容, 将旧的部分设为实模式, 新增部分设为保护模式</p>
-<ul>
-<li>实模式: 所有内存都是可读写的</li>
-<li>保护模式: 一. 提供保护机制, 不是所有段都是可读写的; 二. 可以访问的内存空间变大</li>
-</ul>
-<p> 用户模式和系统模式: </p>
-<p>​    通过在硬件中添加一个称为模式为的位, 来区分用户定义的代码和操作系统代码</p>
-<ul>
-<li><p>用户模式: 只能执行非特权指令. 若执行特权指令, 会通过陷阱的形式中断 </p>
-</li>
-<li><p>系统模式/特权模式/内核模式: 能够执行全部指令, 包括特权指令 </p>
-<p>​</p>
-</li>
-</ul>
-<h2 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h2><p>  设置在给定时间后中断计算机</p>
-<ul>
-<li>原因: 为了防止用户程序陷入死循环或不进行系统调用, 导致不将控制权返回到操作系统</li>
-</ul>
-<h1 id="存储管理"><a href="#存储管理" class="headerlink" title="存储管理"></a>存储管理</h1><h2 id="高速缓存的一致性"><a href="#高速缓存的一致性" class="headerlink" title="高速缓存的一致性"></a>高速缓存的一致性</h2><p>   对于存储在某个高速缓存中的值A, 当它的值改变. 所有保存了A的副本的高速缓存都要改变它们存储的A值</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2284,7 +2808,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2295,7 +2819,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
