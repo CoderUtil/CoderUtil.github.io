@@ -259,6 +259,629 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Cocos2d/Cocos2d/Cocos2d学习(一)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Util">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Cocos2d/Cocos2d/Cocos2d学习(一)/" itemprop="url">Cocos2d学习(一)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-17T15:21:50+08:00">
+                2018-05-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Cocos2d/" itemprop="url" rel="index">
+                    <span itemprop="name">Cocos2d</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="官方文档"><a href="#官方文档" class="headerlink" title="官方文档"></a>官方文档</h1><p><a href="http://www.cocos.com/?v=CN" target="_blank" rel="noopener">http://www.cocos.com/?v=CN</a></p>
+<h1 id="创建Cocos项目"><a href="#创建Cocos项目" class="headerlink" title="创建Cocos项目"></a>创建Cocos项目</h1><h2 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1. 找到存放项目的文件夹</span><br><span class="line"></span><br><span class="line">2. 在powershell下输入</span><br><span class="line">	cocos new helloCocos -p com.sysu.cocos -l cpp</span><br><span class="line">	</span><br><span class="line">	new 后面跟项目名</span><br><span class="line">	-p  后面跟包名</span><br><span class="line">	-l  后面跟开发语言</span><br></pre></td></tr></table></figure>
+<h2 id="打开项目"><a href="#打开项目" class="headerlink" title="打开项目"></a>打开项目</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">进入proj.win32文件夹&gt;打开helloCocos.sln</span><br></pre></td></tr></table></figure>
+<h3 id="图片、xml文件、字体目录"><a href="#图片、xml文件、字体目录" class="headerlink" title="图片、xml文件、字体目录"></a>图片、xml文件、字体目录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">图片、xml文件目录  proj.win32&gt;Degub.win32</span><br><span class="line">字体目录  		  proj.win32&gt;Degub.win32&gt;fonts</span><br></pre></td></tr></table></figure>
+<h1 id="Director、Scene、Sprite"><a href="#Director、Scene、Sprite" class="headerlink" title="Director、Scene、Sprite"></a>Director、Scene、Sprite</h1><ul>
+<li>Director: 导演, 用于控制场景的切换, 一个游戏只有一个导演(单例模式)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">获取导演对象</span><br><span class="line">Director::getInstance();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Scene: 场景, 包含了精灵和其他UI组件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">创建场景</span><br><span class="line">auto myScene = Scene::create();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Sprite: 精灵, 可以控制的图片, 比如角色</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">创建精灵</span><br><span class="line">auto mySprite = Sprite::create();</span><br></pre></td></tr></table></figure>
+<h1 id="背景图片"><a href="#背景图片" class="headerlink" title="背景图片"></a>背景图片</h1><ul>
+<li>背景图片本质是精灵</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">cocos2d::Rect visibleRect = Director::getInstance()-&gt;getOpenGLView()-&gt;getVisibleRect();</span><br><span class="line">Size visibleSize = Director::getInstance()-&gt;getVisibleSize();	//	获取可见屏幕的大小</span><br><span class="line">Vec2 origin = Director::getInstance()-&gt;getVisibleOrigin();		//	获取可见屏幕的方向</span><br><span class="line"></span><br><span class="line">//	创建场景</span><br><span class="line">auto myScene = Scene::create();</span><br><span class="line"></span><br><span class="line">//  创建背景</span><br><span class="line">auto mySprite = Sprite::create(&quot;background.jpg&quot;);</span><br><span class="line"></span><br><span class="line">// 设置背景的位置为屏幕中心</span><br><span class="line">mySprite-&gt;setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));</span><br><span class="line"></span><br><span class="line">// 添加背景</span><br><span class="line">myScene-&gt;addChild(mySprite, 0);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>addChild</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">第一个参数: 要添加的节点</span><br><span class="line"></span><br><span class="line">第二个参数: z-index值. 一般背景放在最下面, 填0. 背景上的组件z-index为1. 再往上z-index继续增大</span><br></pre></td></tr></table></figure>
+<h1 id="UI组件"><a href="#UI组件" class="headerlink" title="UI组件"></a>UI组件</h1><h2 id="Label"><a href="#Label" class="headerlink" title="Label"></a>Label</h2><p>​    用于显示一段文本</p>
+<h3 id="创建Label"><a href="#创建Label" class="headerlink" title="创建Label"></a>创建Label</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">一般使用TTF格式</span><br><span class="line">	auto myLabel = Label::createWithTTF(&quot;Your Text&quot;, &quot;Marker Felt.ttf&quot;, 24);</span><br><span class="line">	</span><br><span class="line">	第一个参数: Label的内容</span><br><span class="line">	第二个参数: 放在fonts文件夹下的字体</span><br><span class="line">	第三个参数: 字体大小</span><br></pre></td></tr></table></figure>
+<h3 id="Label效果"><a href="#Label效果" class="headerlink" title="Label效果"></a>Label效果</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">阴影效果:</span><br><span class="line">	myLabel-&gt;enableShadow();</span><br><span class="line">	</span><br><span class="line">描边效果:</span><br><span class="line">	myLabel-&gt;enableOutline(Color4B::WHITE, 1));</span><br><span class="line">	</span><br><span class="line">发光效果:</span><br><span class="line">	myLabel-&gt;enableGlow(Color4B::YELLOW);</span><br></pre></td></tr></table></figure>
+<h3 id="Label中使用中文"><a href="#Label中使用中文" class="headerlink" title="Label中使用中文"></a>Label中使用中文</h3><p>​    直接用中文会乱码, 一般保存在xml文件中, 然后解析</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">1. 在proj.win32&gt;Debug.win32下创建xml文件, 注意保存为utf-8格式</span><br><span class="line">      &lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">      &lt;dict&gt;</span><br><span class="line">        &lt;key&gt;name&lt;/key&gt;</span><br><span class="line">        &lt;string&gt;陈星宇&lt;/string&gt;</span><br><span class="line">        &lt;key&gt;id&lt;/key&gt;</span><br><span class="line">        &lt;string&gt;16340039&lt;/string&gt;</span><br><span class="line">      &lt;/dict&gt;</span><br><span class="line"></span><br><span class="line">2. </span><br><span class="line">      //创建词典类实例，将xml文件加载到词典中</span><br><span class="line">      auto *chnStrings = Dictionary::createWithContentsOfFile(&quot;Information.xml&quot;);</span><br><span class="line">      //通过xml文件中的key获取value</span><br><span class="line">      const char* name = ((CCString*)chnStrings-&gt;objectForKey(&quot;name&quot;))-&gt;getCString();</span><br><span class="line">      const char* id = ((CCString*)chnStrings-&gt;objectForKey(&quot;id&quot;))-&gt;getCString();</span><br><span class="line">      </span><br><span class="line">3. 创建Label</span><br><span class="line">	auto nameLabel = Label::createWithTTF(name, &quot;fonts/simhei.ttf&quot;, 32);</span><br><span class="line">	auto idLabel = Label::createWithTTF(id, &quot;fonts/simhei.ttf&quot;, 32);</span><br><span class="line">	</span><br><span class="line">4. 若Label内容为框框, 表明字体库中没有该字, 应该更换字体库</span><br></pre></td></tr></table></figure>
+<h2 id="Menu"><a href="#Menu" class="headerlink" title="Menu"></a>Menu</h2><p>​    游戏中的菜单</p>
+<h3 id="创建菜单"><a href="#创建菜单" class="headerlink" title="创建菜单"></a>创建菜单</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//	(1) 创建菜单</span><br><span class="line">auto myMenu = Menu::create();</span><br><span class="line"></span><br><span class="line">//	(2) 将菜单插入scene</span><br><span class="line">myScene-&gt;addChild(myMenu, 1);</span><br><span class="line"></span><br><span class="line">//	(3) 设置菜单的位置</span><br><span class="line">menu-&gt;setPosition(Vec2::ZERO);	//	放在左下角, 一般这样写</span><br></pre></td></tr></table></figure>
+<h3 id="添加菜单项"><a href="#添加菜单项" class="headerlink" title="添加菜单项"></a>添加菜单项</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">1. 创建菜单项</span><br><span class="line">	</span><br><span class="line">	//	(1) 创建Label菜单项</span><br><span class="line">  	auto firstLabel = LabelTTF::create(&quot;First&quot;, &quot;Marker Felt.ttf&quot;, 32);</span><br><span class="line">  	auto secondLabel = LabelTTF::create(&quot;Second&quot;, &quot;Marker Felt.ttf&quot;, 32);</span><br><span class="line">  	</span><br><span class="line">  	auto firstItem = MenuItemLabel::create(firstLabel);</span><br><span class="line">  	auto secondItem = MenuItemLabel::create(secondLabel);</span><br><span class="line">  	</span><br><span class="line"></span><br><span class="line">	// (2) 创建图片菜单项</span><br><span class="line">	auto imageItem = MenuItemImage::create(&quot;CloseNormal.png&quot;, &quot;CloseSelected.png&quot;);		//	两个参数分别是选中前, 选中时的图片</span><br><span class="line"></span><br><span class="line">2. 设置菜单项的触发事件</span><br><span class="line"></span><br><span class="line">  	firstItem-&gt;setCallback([&amp;](cocos2d::Ref *sender) &#123;</span><br><span class="line">		Director::getInstance()-&gt;replaceScene(FirstScene::createScene());	//	调用FirstScene.cpp中的createScene, 创建新的Scene</span><br><span class="line">	&#125;);</span><br><span class="line">	</span><br><span class="line">	secondItem-&gt;setCallback([&amp;](cocos2d::Ref *sender) &#123;</span><br><span class="line">		Director::getInstance()-&gt;replaceScene(SecondScene::createScene());</span><br><span class="line">	&#125;);</span><br><span class="line">	</span><br><span class="line">3. 将菜单项插入菜单</span><br><span class="line">	myMenu-&gt;addChild(firstItem, 2);		//	背景的z-index为0, menu的z-index为1, menuItem的z-index为2</span><br><span class="line">	myMenu-&gt;addChild(secondItem, 2);</span><br><span class="line">	</span><br><span class="line">4. 设置菜单项的位置</span><br><span class="line">	int index = 2;</span><br><span class="line">	auto visibleSize = Director::getInstance()-&gt;getVisibleSize();</span><br><span class="line">    Vec2 origin = Director::getInstance()-&gt;getVisibleOrigin();</span><br><span class="line">    firstItem-&gt;setPosition(Vec2(origin.x + visibleSize.width / 2, origin.y + visibleSize.height / 2).x, (Vec2(origin.x + visibleSize.width / 2, origin.y + visibleSize.height).y - (++index) * 40));</span><br><span class="line">    secondItem-&gt;setPosition(Vec2(origin.x + visibleSize.width / 2, origin.y + visibleSize.height / 2).x, (Vec2(origin.x + visibleSize.width / 2, origin.y + visibleSize.height).y - (++index) * 40));</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Matlab/Matlab/Matlab学习(一)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Util">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Matlab/Matlab/Matlab学习(一)/" itemprop="url">Matlab学习(一)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-16T12:43:19+08:00">
+                2018-05-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Matlab/" itemprop="url" rel="index">
+                    <span itemprop="name">Matlab</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="分号"><a href="#分号" class="headerlink" title="分号"></a>分号</h1><p>​    语句结束时不使用分号, 将会在命令行中输出当前变量的值(利于调试)</p>
+<h1 id="工作区"><a href="#工作区" class="headerlink" title="工作区"></a>工作区</h1><p>​    所有在同一命令窗口中执行的命令和脚本文件处于同一个工作区间中.</p>
+<ul>
+<li>同一工作区间的变量能相互访问.</li>
+<li>不同函数文件拥有不同的工作区间</li>
+</ul>
+<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">列与列之间通过空格分隔, 行与行之间通过分号或换行分隔</span><br><span class="line"></span><br><span class="line">数组A: </span><br><span class="line">	[1 2; 3 4; 5 6]</span><br><span class="line">	或</span><br><span class="line">	[1 2</span><br><span class="line">	 3 4</span><br><span class="line">	 5 6]</span><br><span class="line">	</span><br><span class="line">数组B: [1 2 3 4]</span><br><span class="line">	</span><br><span class="line">数组C: [1; 2; 3; 4]</span><br></pre></td></tr></table></figure>
+<h2 id="数组访问"><a href="#数组访问" class="headerlink" title="数组访问"></a>数组访问</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">A(2 1) 	得到3, 下标从1开始计算</span><br><span class="line">B(2)	得到2, 行向量或列向量只需要一个下标</span><br><span class="line">C(3)	得到3</span><br></pre></td></tr></table></figure>
+<h2 id="克隆运算符"><a href="#克隆运算符" class="headerlink" title="克隆运算符"></a>克隆运算符</h2><p>​    快速创建一维数组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">语法:</span><br><span class="line">	first:incr:last</span><br><span class="line">	</span><br><span class="line">	first: 数组第一个元素的值</span><br><span class="line">	incr: 数组元素之间的递增量</span><br><span class="line">	last: 数组最后一个元素不能超过这个值</span><br><span class="line">	</span><br><span class="line">例子:</span><br><span class="line">	x=1:2:10	=&gt;	x=[1 3 5 7 9]</span><br></pre></td></tr></table></figure>
+<h2 id="初始化数组的函数"><a href="#初始化数组的函数" class="headerlink" title="初始化数组的函数"></a>初始化数组的函数</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">函数</th>
+<th style="text-align:center">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">zeros(n), zeros(n, m)</td>
+<td style="text-align:center">创建n*n, n*m的元素全为0的矩阵</td>
+</tr>
+<tr>
+<td style="text-align:center">ones(n), ones(n, m)</td>
+<td style="text-align:center">创建n*n, n*m的元素全为1的矩阵</td>
+</tr>
+<tr>
+<td style="text-align:center">eye(n), eye(n, m)</td>
+<td style="text-align:center">创建n*n, n*m的单位矩阵</td>
+</tr>
+<tr>
+<td style="text-align:center">length(arr)</td>
+<td style="text-align:center">返回一维数组长度或二维数组较长的维度</td>
+</tr>
+<tr>
+<td style="text-align:center">size(arr)</td>
+<td style="text-align:center">返回数组的行数和列数, 用数组保存</td>
+</tr>
+</tbody>
+</table>
+<h1 id="三维数组"><a href="#三维数组" class="headerlink" title="三维数组"></a>三维数组</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">第一个逗号表示二维数组的行, 第二格逗号表示二维数组的列, 第三个逗号表示第几个二维数组</span><br><span class="line"></span><br><span class="line">c(:,:,1)=[1 2 3; 4 5 6]</span><br><span class="line"></span><br><span class="line">c(:,:,2)=[7 8 9; 10 11 12]</span><br></pre></td></tr></table></figure>
+<h1 id="input"><a href="#input" class="headerlink" title="input"></a>input</h1><p>​    接收一个输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">val = input(&apos;Input a value&apos;);</span><br></pre></td></tr></table></figure>
+<h1 id="特殊变量"><a href="#特殊变量" class="headerlink" title="特殊变量"></a>特殊变量</h1><table>
+<thead>
+<tr>
+<th style="text-align:center">变量</th>
+<th style="text-align:center">用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">pi</td>
+<td style="text-align:center">π</td>
+</tr>
+<tr>
+<td style="text-align:center">i</td>
+<td style="text-align:center">虚数, 比如1 + 4 * i</td>
+</tr>
+<tr>
+<td style="text-align:center">Inf</td>
+<td style="text-align:center">无穷大</td>
+</tr>
+<tr>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">没有这个数</td>
+</tr>
+</tbody>
+</table>
+<h1 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. disp(), 需要字符串数组作为参数</span><br><span class="line">	str=[&apos;The value of pi=&apos; num2str(pi)]</span><br><span class="line">	disp(str)</span><br><span class="line"></span><br><span class="line">2. fprintf(), 类似C语言</span><br><span class="line">	fprintf(&apos;The value of pi=%d&apos;, pi)</span><br></pre></td></tr></table></figure>
+<h1 id="数组运算和矩阵运算"><a href="#数组运算和矩阵运算" class="headerlink" title="数组运算和矩阵运算"></a>数组运算和矩阵运算</h1><ul>
+<li>数组运算: 矩阵对应位置的元素进行运算</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> A     		 B</span><br><span class="line">1 2	  		5 6 	</span><br><span class="line">3 4   		7 8</span><br><span class="line"></span><br><span class="line">   A*B	</span><br><span class="line"> 1*5 2*6</span><br><span class="line"> 3*7 4*8</span><br></pre></td></tr></table></figure>
+<ul>
+<li>矩阵运算: 参照线性代数中矩阵的运算</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> A     		 B</span><br><span class="line">1 2	  		5 6 	</span><br><span class="line">3 4   		7 8</span><br><span class="line"></span><br><span class="line">   A.*B	</span><br><span class="line"> 1*5+2*7 1*6+2*8</span><br><span class="line"> 3*5+4*7 3*6+4*8</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">运算</th>
+<th style="text-align:center">数组运算</th>
+<th style="text-align:center">矩阵运算</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">加</td>
+<td style="text-align:center">A+B</td>
+<td style="text-align:center">A+B</td>
+</tr>
+<tr>
+<td style="text-align:center">减</td>
+<td style="text-align:center">A-B</td>
+<td style="text-align:center">A-B</td>
+</tr>
+<tr>
+<td style="text-align:center">乘</td>
+<td style="text-align:center">A.*B</td>
+<td style="text-align:center">A*B</td>
+</tr>
+<tr>
+<td style="text-align:center">除</td>
+<td style="text-align:center">A./B</td>
+<td style="text-align:center">A/B</td>
+</tr>
+<tr>
+<td style="text-align:center">指数运算</td>
+<td style="text-align:center">A.^B</td>
+</tr>
+</tbody>
+</table>
+<h1 id="数组与标量的运算"><a href="#数组与标量的运算" class="headerlink" title="数组与标量的运算"></a>数组与标量的运算</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"> A</span><br><span class="line"> 1 2</span><br><span class="line"> 3 4</span><br><span class="line"></span><br><span class="line"> A + 3</span><br><span class="line">1+3 2+3</span><br><span class="line">3+3 4+3</span><br><span class="line"></span><br><span class="line"> A - 3</span><br><span class="line">1-3 2-3</span><br><span class="line">3-3 4-3</span><br><span class="line"></span><br><span class="line"> A .* 3</span><br><span class="line">1*3 2*3</span><br><span class="line">3*3 4*4</span><br><span class="line"></span><br><span class="line"> A ./ 3</span><br><span class="line">1/3 2/3</span><br><span class="line">3/3 4/5</span><br><span class="line"></span><br><span class="line"> A .^ 3</span><br><span class="line">1^3 2^3</span><br><span class="line">3^3 4^3</span><br></pre></td></tr></table></figure>
+<h1 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h1><p><img src="https://CoderUtil.github.io/images/TIM截图20180517213917.png" alt="Matlab"></p>
+<h1 id="画图"><a href="#画图" class="headerlink" title="画图"></a>画图</h1><h2 id="基本画图"><a href="#基本画图" class="headerlink" title="基本画图"></a>基本画图</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">x=0:1:10;</span><br><span class="line">y=x.^2-10.*x+15;					//	注意是数组运算而不是矩阵运算</span><br><span class="line">plot(x,y);							//	画出函数</span><br><span class="line">title (&apos;Plot of y=x.^2-10*x+15&apos;);	  //  设置图像标题</span><br><span class="line">xlabel (&apos;x&apos;); 						//	设置横轴和纵轴</span><br><span class="line">ylabel (&apos;y&apos;); </span><br><span class="line">grid on; 							//	图像中出现网格线. grid off去除网格线</span><br></pre></td></tr></table></figure>
+<h2 id="联合画图"><a href="#联合画图" class="headerlink" title="联合画图"></a>联合画图</h2><p>​    在同一坐标内做出多个图像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">x = 0:pi/100:2*pi;</span><br><span class="line">y1=sin(2.*x);</span><br><span class="line">y2=2*cos(2.*x);</span><br><span class="line">plot(x, y1, x, y2);</span><br><span class="line">title (&apos;Plot of y=x.^2-10*x+15&apos;);	 </span><br><span class="line">xlabel (&apos;x&apos;); 						</span><br><span class="line">ylabel (&apos;y&apos;); </span><br><span class="line">grid on; </span><br><span class="line">legend(&apos;f(x)&apos;, &apos;g(x)&apos;);		//	轨迹的标签名, 第一个轨迹叫f(x), 第二个叫g(x)</span><br></pre></td></tr></table></figure>
+<h1 id="关系运算"><a href="#关系运算" class="headerlink" title="关系运算"></a>关系运算</h1><ul>
+<li>同C语言一样, 使用0和1代替布尔变量</li>
+<li>不等号为~=</li>
+</ul>
+<h1 id="逻辑运算"><a href="#逻辑运算" class="headerlink" title="逻辑运算"></a>逻辑运算</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">与 	&amp;</span><br><span class="line">或	|</span><br><span class="line">非	~</span><br><span class="line">异或  xor</span><br></pre></td></tr></table></figure>
+<h1 id="逻辑函数"><a href="#逻辑函数" class="headerlink" title="逻辑函数"></a>逻辑函数</h1><p><img src="https://CoderUtil.github.io/images/TIM截图20180517232320.png" alt="Matlab"></p>
+<h1 id="if"><a href="#if" class="headerlink" title="if"></a>if</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">if 条件</span><br><span class="line">	...</span><br><span class="line">elseif 条件</span><br><span class="line">	...</span><br><span class="line">else</span><br><span class="line">	...</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h1 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">switch (switch_expr)</span><br><span class="line">case &#123;case_expr_1, case_expr_2, case_expr_3&#125;, </span><br><span class="line">	...</span><br><span class="line">case &#123;case_expr_4, case_expr_5, case_expr_6&#125;, </span><br><span class="line">	...</span><br><span class="line">otherwise, </span><br><span class="line">	...</span><br><span class="line">end </span><br><span class="line"></span><br><span class="line">例子:</span><br><span class="line">switch (i)</span><br><span class="line">case &#123;1, 2, 3&#125;,</span><br><span class="line">	...</span><br><span class="line">case &#123;4, 5, 6&#125;,</span><br><span class="line">	...</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h1 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">while 条件</span><br><span class="line">	...</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h1 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">for index = ...</span><br><span class="line">	...</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">例1: </span><br><span class="line">    for i = 1:10	将[1 2 ... 10]列的值依次赋给i</span><br><span class="line">        ...</span><br><span class="line">    end</span><br><span class="line">    </span><br><span class="line">例2:</span><br><span class="line">	for i = [1 2 3; 4 5 6]	将1, 2, 3依次赋给i</span><br><span class="line">		...					4  5  6</span><br><span class="line">		...</span><br><span class="line">	end</span><br></pre></td></tr></table></figure>
+<h1 id="break和continue"><a href="#break和continue" class="headerlink" title="break和continue"></a>break和continue</h1><p>​    和C语言中的一样</p>
+<h1 id="自定义函数"><a href="#自定义函数" class="headerlink" title="自定义函数"></a>自定义函数</h1><ul>
+<li>保存在一个单独的脚本文件中</li>
+<li>按值传递</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function [输出1, 输出2, ...] = 函数名(形参1, 形参2, ...)</span><br><span class="line">	...</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">例子: </span><br><span class="line">	//	dist.m文件</span><br><span class="line">	function distance = dist(x1, y1, x2, y2)</span><br><span class="line">		distance = sqrt((x2 - x1).^2 + (y2 - y1).^2);</span><br><span class="line">		</span><br><span class="line">	//	test_dist.m文件</span><br><span class="line">	x1 = input(&apos;Input x1&apos;);</span><br><span class="line">	y1 = input(&apos;Input y1&apos;);</span><br><span class="line">	x2 = input(&apos;Input x2&apos;);</span><br><span class="line">	y2 = input(&apos;Input y2&apos;);</span><br><span class="line">	result = dist(x1, y1, x2, y2);</span><br><span class="line">	fprintf(&apos;%d&apos;, result);</span><br><span class="line">	</span><br><span class="line">	运行, 在命令行输入test_dist</span><br></pre></td></tr></table></figure>
+<h1 id="子函数"><a href="#子函数" class="headerlink" title="子函数"></a>子函数</h1><p>​    在一个文件中, 可以定义多个函数. 最上面的那个为普通函数, 其余为子函数. 子函数只能被当前文件中的其他函数调用</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/操作系统/操作系统/第六章-进程同步/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Util">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/操作系统/操作系统/第六章-进程同步/" itemprop="url">第六章 进程同步</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-12T09:28:14+08:00">
+                2018-05-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/操作系统/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="互斥"><a href="#互斥" class="headerlink" title="互斥"></a>互斥</h1><p>​    对于共享数据的进程, 必须提供互斥, 防止读写操作同时进行</p>
+<h1 id="进程结构"><a href="#进程结构" class="headerlink" title="进程结构"></a>进程结构</h1><p><img src="https://CoderUtil.github.io/images/TIM截图20180512093311.png" alt="操作系统"></p>
+<h2 id="进入区"><a href="#进入区" class="headerlink" title="进入区"></a>进入区</h2><p>​    发出进入临界区请求的代码</p>
+<h2 id="临界区"><a href="#临界区" class="headerlink" title="临界区"></a>临界区</h2><p>​    若多个进程含有共享变量, 则访问共享变量的的代码称为临界区(不允许多个进程同时进入临界区)</p>
+<h2 id="退出区"><a href="#退出区" class="headerlink" title="退出区"></a>退出区</h2><p>​    退出临界区的代码</p>
+<h2 id="剩余区"><a href="#剩余区" class="headerlink" title="剩余区"></a>剩余区</h2><p>​    进程中的剩余代码</p>
+<h2 id="硬件方法"><a href="#硬件方法" class="headerlink" title="硬件方法"></a>硬件方法</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">boolean waiting[n] = <span class="literal">false</span>;     <span class="comment">//  waiting[i]表示进程i是否在等待</span></span><br><span class="line">boolean lock = <span class="literal">false</span>;           <span class="comment">//  lock表示是否上锁</span></span><br><span class="line"></span><br><span class="line"><span class="function">boolean <span class="title">TestAndSet</span><span class="params">(boolean* target)</span> </span>&#123;</span><br><span class="line">    boolean rv = *target;</span><br><span class="line">    *taget = TRUE;</span><br><span class="line">    <span class="keyword">return</span> rv;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//  进程i</span></span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    <span class="comment">//  进入区</span></span><br><span class="line">    waiting[i] = TRUE;          <span class="comment">//  进程i开始等待</span></span><br><span class="line">    boolean key = TRUE;</span><br><span class="line">      <span class="keyword">while</span>(waiting[i] &amp;&amp; key)    <span class="comment">//  1. 如果进程i在等待, 当上一个进程执行完, 它会被设为FALSE(见退出区代码), 此时向下运行; 2. 如果lock被锁上, 阻塞等待直到lock解锁 </span></span><br><span class="line">        key = TestAndSet(lock);</span><br><span class="line">    waiting[i] = FALSE;         <span class="comment">//  进程i结束等待, 开始运行</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//  临界区</span></span><br><span class="line">    ....</span><br><span class="line"></span><br><span class="line">    <span class="comment">//  退出区</span></span><br><span class="line">    <span class="keyword">int</span> j = (i + <span class="number">1</span>) % n;        <span class="comment">//  进程i结束, 找到下一个处于等待状态的进程, 准备运行它</span></span><br><span class="line">    <span class="keyword">while</span> (j != i &amp;&amp; !waiting[j])</span><br><span class="line">        j = (j + <span class="number">1</span>) % n;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (j == i)                 <span class="comment">//  若所有进程都不处于等待状态, 锁可以打开</span></span><br><span class="line">        lock = FALSE;</span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">        waiting[j] = FALSE;     </span><br><span class="line">&#125; <span class="keyword">while</span> (TRUE)</span><br></pre></td></tr></table></figure>
+<h2 id="信号量"><a href="#信号量" class="headerlink" title="信号量"></a>信号量</h2><p>​    信号量S的取值为0和1, 且wait和signal是原子的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">void wait(S) &#123;</span><br><span class="line">  while (S &lt;= 0)</span><br><span class="line">  	;</span><br><span class="line">  S--;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void signal(S) &#123;</span><br><span class="line">  S++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">do &#123;</span><br><span class="line">	//	进入区</span><br><span class="line">  	wait(S);</span><br><span class="line">  </span><br><span class="line">  	//	管理区</span><br><span class="line">  	...</span><br><span class="line">  </span><br><span class="line">  	//	退出区</span><br><span class="line">  	signal(S);</span><br><span class="line">  </span><br><span class="line">  	//	剩余区</span><br><span class="line">  	...</span><br><span class="line">&#125; while (TRUE);</span><br></pre></td></tr></table></figure>
+<h2 id="忙等待"><a href="#忙等待" class="headerlink" title="忙等待"></a>忙等待</h2><p>​    当一个进程位于临界区时, 其他试图进入临界区的进程都必须在代码中循环</p>
+<h2 id="含有等待队列的信号量"><a href="#含有等待队列的信号量" class="headerlink" title="含有等待队列的信号量"></a>含有等待队列的信号量</h2><p>​    信号量S是一个数据结构. 用于解决忙等待问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">typedef struct &#123;</span><br><span class="line">    int value;                  //  可用的资源数目</span><br><span class="line">    struct process *list;       //  等待队列</span><br><span class="line">&#125; semaphore;</span><br><span class="line"></span><br><span class="line">void wait(semaphore* S) &#123;       //  当进程需要使用资源时, 调用wait</span><br><span class="line">    S-&gt;value--;                 //  value的绝对值表示等待该信号量的进程个数</span><br><span class="line">    if (S-&gt;value &lt; 0) &#123;</span><br><span class="line">        1. 将进程添加进S-&gt;list</span><br><span class="line">        2. 调用block()将进程挂起</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void signal(semaphore* S) &#123;     //  当进程需要释放资源时, 调用signal</span><br><span class="line">    S-&gt;vallue++;</span><br><span class="line">    if (S-&gt;value &lt;= 0) &#123;</span><br><span class="line">        1. 将进程从S-&gt;list移除</span><br><span class="line">        2. 调用wakeup()将进程唤醒</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">do &#123;</span><br><span class="line">    //  进入区</span><br><span class="line">    wait(S);</span><br><span class="line"></span><br><span class="line">    //  临界区</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    //  退出区</span><br><span class="line">    signal(S);</span><br><span class="line"></span><br><span class="line">    //  剩余区</span><br><span class="line">    ...</span><br><span class="line">&#125; while (TRUE);</span><br></pre></td></tr></table></figure>
+<h3 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h3><p>​    具有等待队列的信号量可能产生死锁</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">    P0              P1</span><br><span class="line">wait(S);         wait(Q);</span><br><span class="line">wait(Q);		wait(S);</span><br><span class="line">...				...</span><br><span class="line">signal(S);		signal(Q);</span><br><span class="line">signal(Q);		signal(S);</span><br><span class="line"></span><br><span class="line">假设进程P0和P1只有两个共享信号量S和Q, 当P0执行wait(S), P1执行wait(Q)时, 进程P0和P1都沉睡, 无法执行下面的唤醒程序</span><br></pre></td></tr></table></figure>
+<h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><p>​    执行单个逻辑功能的一组操作</p>
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><ul>
+<li>提交commit: 事务已成功执行后提交事务</li>
+<li>回退roll back: 事务停止时后回退事务</li>
+</ul>
+<h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><p>​    在事务执行前先记日志</p>
+<h2 id="检测点"><a href="#检测点" class="headerlink" title="检测点"></a>检测点</h2><p>​    系统定期将日志及易失性数据保存到非易失性数据中</p>
+<h2 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h2><p>​    事务具有原子性, 即事务中的一组指令不可分割, 必须同时执行或同时不执行</p>
+<p>通过一下两种方式保证事务的原子性: </p>
+<ul>
+<li>串行化: 事务串行执行, 即事务之间的指令不会出现重叠(A事务执行几条指令, B事务执行几条)</li>
+</ul>
+<ul>
+<li>加锁协议: 在事务执行前给它加锁(如果已加了锁, 则等待直到能加锁), 事务执行完后解锁</li>
+</ul>
+<ul>
+<li>时间戳: 给每个事务一个时间戳, 按时间戳顺序来执行事务</li>
+</ul>
+<p>​    </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/操作系统/操作系统/第五章 CPU调度/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1520,539 +2143,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/操作系统/操作系统/第三章-进程/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Util">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/操作系统/操作系统/第三章-进程/" itemprop="url">第三章 进程</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-16T21:29:28+08:00">
-                2018-04-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/操作系统/" itemprop="url" rel="index">
-                    <span itemprop="name">操作系统</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h1><ul>
-<li>进程: 又称为作业, 即执行中的程序</li>
-</ul>
-<h1 id="调度"><a href="#调度" class="headerlink" title="调度"></a>调度</h1><ul>
-<li>调度: 进程在各种队列之间进行迁移</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">长期调度: 从磁盘的缓存池中选择进程, 并装入内存中以准备执行(CPU调度不频繁)</span><br><span class="line"></span><br><span class="line">短期调度: 从准备执行的进程中选择进程(CPU频繁调度)</span><br><span class="line"></span><br><span class="line">中期调度: 可以执行交换, 即进程能够从内存中移出再移进内存中</span><br></pre></td></tr></table></figure>
-<h1 id="上下文切换"><a href="#上下文切换" class="headerlink" title="上下文切换"></a>上下文切换</h1><ul>
-<li>中断发生时, 通过状态保存保存旧进程的状态. 当中断发生完后, 执行状态恢复重新运行旧进程</li>
-</ul>
-<h1 id="创建进程"><a href="#创建进程" class="headerlink" title="创建进程"></a>创建进程</h1><h2 id="fork"><a href="#fork" class="headerlink" title="fork"></a>fork</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. fork()会创建一个子进程, 并将当前进程(主进程)的内容(特指从fork()语句以后的内容)拷贝到子进程中. 只是拷贝, 并不是引用, 两个进程中变量的值不共享</span><br><span class="line"></span><br><span class="line">2. fork()会产生两次返回值, 在主进程中, fork()的返回值是子进程的进程id值; 在子进程中, fork()返回0 </span><br><span class="line"></span><br><span class="line">3. 主进程先执行, 它执行完后才轮到子进程执行</span><br></pre></td></tr></table></figure>
-<h2 id="wait"><a href="#wait" class="headerlink" title="wait"></a>wait</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">执行了wait()后, 父进程等待子进程执行, 子进程执行完后, 父进程才继续执行</span><br></pre></td></tr></table></figure>
-<h1 id="进程间通信"><a href="#进程间通信" class="headerlink" title="进程间通信"></a>进程间通信</h1><h2 id="通信方式"><a href="#通信方式" class="headerlink" title="通信方式"></a>通信方式</h2><ul>
-<li>共享内存: 通过在共享区读写数据进行信息传递</li>
-<li>消息传递: 通过通信进行信息传递</li>
-</ul>
-<h2 id="直接通信与间接通"><a href="#直接通信与间接通" class="headerlink" title="直接通信与间接通"></a>直接通信与间接通</h2><ul>
-<li>直接通信: 通信的进程必须明确通信的接收者或发送者</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">对称寻址: 发送者需要命名接收者, 接收者需要命名发送者</span><br><span class="line"></span><br><span class="line">	send(P, message)		发送信息给进程P</span><br><span class="line">	receive(Q, message)		接收来自进程Q的信息</span><br><span class="line">	</span><br><span class="line">非对称寻址: 发送者命名接收者, 而接收者不需要命名发送者</span><br><span class="line"></span><br><span class="line">	sned(P, message)		发送信息给进程P</span><br><span class="line">	receive(id, message)	接收来自任何进程的信息, 将id设为与其通信的进程的名称</span><br></pre></td></tr></table></figure>
-<ul>
-<li>间接通信: 信息的发送和接收都通过一个中间者</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">send(A, message)			发送信息到邮箱A</span><br><span class="line">receive(A, message)			接收来自邮箱A的信息</span><br></pre></td></tr></table></figure>
-<h2 id="同步通信与异步通信"><a href="#同步通信与异步通信" class="headerlink" title="同步通信与异步通信"></a>同步通信与异步通信</h2><ul>
-<li>同步与异步又称为阻塞与非阻塞</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">阻塞: </span><br><span class="line">	send 发送信息后, 可以执行其他操作. </span><br><span class="line">	receive 接收到信息前, 可以执行其他操作</span><br><span class="line">	</span><br><span class="line">非阻塞:</span><br><span class="line">	send 发送信息后, 不可以执行其他操作, 直到消息被接收. </span><br><span class="line">	receive 接收到信息前, 不可以执行其他操作, 直到接收了信息</span><br></pre></td></tr></table></figure>
-<h1 id="Socket"><a href="#Socket" class="headerlink" title="Socket"></a>Socket</h1><ul>
-<li>通过网络进行通信的两个进程, 都含有作为通信端点的socket. </li>
-</ul>
-<h1 id="POSIX共享内存"><a href="#POSIX共享内存" class="headerlink" title="POSIX共享内存"></a>POSIX共享内存</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">1. segment_id = shmget(IPC_PRIVATE, size, S_IRUSR | S_IWUSR): 创建新的存储区或打开现有存储区</span><br><span class="line">	</span><br><span class="line">	segment_id: 返回共享存储区的ID</span><br><span class="line">	IPC_PRIVATE: 表明创建新的共享存储区</span><br><span class="line">	size: 存储区大小</span><br><span class="line">	S_IRUSR | S_IWUSR: 对共享存储区的操作(读/写/读写), S_IRUSR中有字母R表示读, S_IWUSR中有W表示写</span><br><span class="line">	</span><br><span class="line">2. shared_memory = (char*)shmat(segment_id, NULL, 0): 连接到共享存储区. 子进程能访问父进程连接的共享存储区</span><br><span class="line"></span><br><span class="line">	shared_memory: 返回指向共享存储区的指针</span><br><span class="line">	segment_id: 表明要连接的共享存储区的ID</span><br><span class="line">	NULL: 第二个参数是一个指针, 表明其要加入到共享存储区. 一般用NULL</span><br><span class="line">	0: 第三个参数用于设置对对共享存储区的操作(读/写/读写). 0表示可读写</span><br><span class="line">	</span><br><span class="line">3. shmdt(shard_memory): 断开与共享存储区的连接</span><br><span class="line"></span><br><span class="line">4. shmctl(segment_id, IPC_RMID, NULL): 删除共享存储区</span><br><span class="line"></span><br><span class="line">	segment_id: 共享存储区的ID</span><br><span class="line">	IPC_RMID, NULL: 默认参数</span><br></pre></td></tr></table></figure>
-<ul>
-<li>内存共享的基本操作</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;sys/shm.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;errno.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#define SIZE 1024</span><br><span class="line">extern int errno;</span><br><span class="line">int main()</span><br><span class="line">&#123;   </span><br><span class="line">    int shmid;   		//	共享存储区ID</span><br><span class="line">    char *shmptr;		//	指向共享内存的指针</span><br><span class="line"></span><br><span class="line">    //  创建共享内存</span><br><span class="line">    if((shmid = shmget(IPC_PRIVATE, SIZE, S_IRUSR | S_IWUSR)) &lt; 0)</span><br><span class="line">    &#123;       </span><br><span class="line">        printf(&quot;shmget error:%s\n&quot;, strerror(errno));</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //  将共享内存连接到可用地址上</span><br><span class="line">    if((shmptr = (char*)shmat(shmid, NULL, 0)) == (void*)-1) </span><br><span class="line">    &#123;        </span><br><span class="line">        printf(&quot;shmat error:%s\n&quot;, strerror(errno));        </span><br><span class="line">        return -1;    </span><br><span class="line">    &#125;   </span><br><span class="line"></span><br><span class="line">    //  向共享内存中传输数据</span><br><span class="line">    memcpy(shmptr, &quot;hello world&quot;, sizeof(&quot;hello world&quot;));</span><br><span class="line">    printf(&quot;share memory from %lx to %lx, content:%s\n&quot;,(unsigned long)shmptr, (unsigned long)(shmptr + SIZE), shmptr);</span><br><span class="line">    </span><br><span class="line">    //	断开共享内存和地址的连接</span><br><span class="line">    if (shmdt(shmptr) == -1) </span><br><span class="line">    &#123;</span><br><span class="line">      fprintf(stderr, &quot;Unable to detach\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //  删除共享内存</span><br><span class="line">    /*</span><br><span class="line">        shmctl(): 对共享存储区进行控制。如：共享存储区的删除</span><br><span class="line">    */</span><br><span class="line">    if((shmctl(shmid, IPC_RMID, NULL) &lt; 0)) </span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;shmctl error:%s\n&quot;, strerror(errno));</span><br><span class="line">        return -1;  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>多进程间内存共享(子进程获取斐波那契数列, 父进程打印)</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">#include &lt;errno.h&gt;</span><br><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line">#include &lt;sys/stat.h&gt;</span><br><span class="line">#include &lt;sys/types.h&gt;</span><br><span class="line">#include &lt;sys/ipc.h&gt;</span><br><span class="line">#include &lt;sys/shm.h&gt;</span><br><span class="line">#include &lt;sys/wait.h&gt;</span><br><span class="line"></span><br><span class="line">#define MAX_SEQUENCE 10</span><br><span class="line"></span><br><span class="line">typedef struct &#123;</span><br><span class="line">    long fib_sequence [MAX_SEQUENCE];</span><br><span class="line">    int sequence_size;</span><br><span class="line">&#125; shared_data;</span><br><span class="line"></span><br><span class="line">long fibonacci(shared_data* result, int num) &#123;</span><br><span class="line">    if (num == 0)</span><br><span class="line">        return 0;</span><br><span class="line">    if (num == 1) </span><br><span class="line">        result-&gt;fib_sequence[num - 1] = 0;</span><br><span class="line">    else if (num == 2)</span><br><span class="line">        result-&gt;fib_sequence[num - 1] = 1;</span><br><span class="line">    else </span><br><span class="line">        result-&gt;fib_sequence[num - 1] = fibonacci(result, num - 1) + fibonacci(result, num - 2);</span><br><span class="line">    result-&gt;sequence_size++;</span><br><span class="line">    return result-&gt;fib_sequence[num - 1];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char **argv) &#123;</span><br><span class="line">    key_t shmid;</span><br><span class="line">    char *p_addr, *c_addr;  //  分别指向子共享控件和父共享空间</span><br><span class="line">    shared_data result;</span><br><span class="line"></span><br><span class="line">    if(argc != 2) &#123;     </span><br><span class="line">        fprintf(stderr, &quot;You should input a parameter as the number of fibonacci\n&quot;);</span><br><span class="line">        exit(1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    int num = atoi(argv[1]);</span><br><span class="line"></span><br><span class="line">    if (atoi(argv[1]) &gt; MAX_SEQUENCE) &#123;</span><br><span class="line">        fprintf(stderr, &quot;The input is bigger than : %d\n&quot;, num);</span><br><span class="line">        exit(1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if( (shmid = shmget(IPC_PRIVATE, sizeof(shared_data), S_IRUSR|S_IWUSR)) == -1 ) &#123; </span><br><span class="line">        fprintf(stderr, &quot;Create Share Memory Error:%s\n&quot;, strerror(errno));</span><br><span class="line">        exit(1);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    pid_t pid = fork();</span><br><span class="line">    if(pid &gt; 0) &#123;</span><br><span class="line">        p_addr = (char*)shmat(shmid, NULL, 0);</span><br><span class="line">        memset(p_addr, &apos;\0&apos;, sizeof(shared_data));</span><br><span class="line">        wait(NULL);</span><br><span class="line"></span><br><span class="line">        shared_data result;</span><br><span class="line">        memcpy(&amp;result, p_addr, sizeof(result));</span><br><span class="line">        for (int i = 0; i &lt; num; i++) &#123;</span><br><span class="line">            printf(&quot;%ld &quot;, result.fib_sequence[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (shmdt(p_addr) == -1) </span><br><span class="line">            fprintf(stderr, &quot;Main process unable to detach\n&quot;);</span><br><span class="line">        if((shmctl(shmid, IPC_RMID, 0) &lt; 0)) &#123;</span><br><span class="line">            printf(&quot;shmctl error:%s\n&quot;, strerror(errno));</span><br><span class="line">            exit(-1);</span><br><span class="line">        &#125;</span><br><span class="line">        exit(0);</span><br><span class="line">    &#125;</span><br><span class="line">    else if (pid == 0) &#123;</span><br><span class="line">        c_addr = (char*)shmat(shmid, NULL, 0);</span><br><span class="line"></span><br><span class="line">        for (int i = 0; i &lt; MAX_SEQUENCE; i++) </span><br><span class="line">            result.fib_sequence[i] = 0;</span><br><span class="line">        fibonacci(&amp;result, num);</span><br><span class="line"></span><br><span class="line">        memcpy(c_addr, &amp;result, sizeof(result));</span><br><span class="line">        if (shmdt(c_addr) == -1) </span><br><span class="line">            fprintf(stderr, &quot;Sub process unable to detach\n&quot;);</span><br><span class="line">        exit(0);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/软件工程实训/软件工程实训/studyreport-JUNIT/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Util">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/软件工程实训/软件工程实训/studyreport-JUNIT/" itemprop="url">JUNIT学习报告</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-14T19:08:07+08:00">
-                2018-04-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/软件工程实训/" itemprop="url" rel="index">
-                    <span itemprop="name">软件工程实训</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Junit的作用"><a href="#Junit的作用" class="headerlink" title="Junit的作用"></a>Junit的作用</h1><p>​    测试函数是否能正确运行</p>
-<h1 id="Junit在命令行下的使用"><a href="#Junit在命令行下的使用" class="headerlink" title="Junit在命令行下的使用"></a>Junit在命令行下的使用</h1><p>编写一个类和测试类</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//	HelloWorld.java</span><br><span class="line">import java.util.*;</span><br><span class="line"></span><br><span class="line">public class HelloWorld &#123;</span><br><span class="line">  String str;</span><br><span class="line">  public void hello()&#123;</span><br><span class="line">    str = &quot;Hello World!&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">  public String getStr() &#123;</span><br><span class="line">    return str;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//	HelloWorldTest.java</span><br><span class="line">import static org.junit.Assert.*;</span><br><span class="line">import org.junit.Test;</span><br><span class="line"></span><br><span class="line">public class HelloWorldTest &#123;</span><br><span class="line">  public HelloWorld helloworld = new HelloWorld();</span><br><span class="line">  @Test</span><br><span class="line">  public void testHello() &#123;</span><br><span class="line">    helloworld.hello();</span><br><span class="line">    assertEquals(&quot;Hello World!&quot;, helloworld.getStr());		//	如果helloworld.getStr()的没问题, 应该返回Hello World!, 两者应该相等. 这样就能判断hello()函数是否正确</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="运行Junit"><a href="#运行Junit" class="headerlink" title="运行Junit"></a>运行Junit</h1><p>注意: junit的包应该与文件放在同一目录下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ javac -classpath .:junit-4.9.jar HelloWorldTest.java</span><br><span class="line">$ java -classpath .:junit-4.9.jar -ea org.junit.runner.JUnitCore HelloWorldTest</span><br></pre></td></tr></table></figure>
-<p>正确运行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Time 0.007</span><br><span class="line">OK(1 test)</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/软件工程实训/软件工程实训/studyreport-ANT/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Util">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/软件工程实训/软件工程实训/studyreport-ANT/" itemprop="url">ANT学习报告</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-14T12:14:18+08:00">
-                2018-04-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/软件工程实训/" itemprop="url" rel="index">
-                    <span itemprop="name">软件工程实训</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Ant的作用"><a href="#Ant的作用" class="headerlink" title="Ant的作用"></a>Ant的作用</h1><p>​    通过编写build.xml文件, 快速生成JAVA项目(类似于C++的Makefile)</p>
-<h1 id="Ant的安装"><a href="#Ant的安装" class="headerlink" title="Ant的安装"></a>Ant的安装</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Ubuntu下在终端执行:</span><br><span class="line">    $sudo apt install ant</span><br></pre></td></tr></table></figure>
-<h1 id="Ant的介绍"><a href="#Ant的介绍" class="headerlink" title="Ant的介绍"></a>Ant的介绍</h1><ul>
-<li>project元素: Ant的根元素</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1. name属性: 指定project的名称</span><br><span class="line"></span><br><span class="line">2. default属性: 指定了project默认执行的target. 指向最后一步</span><br><span class="line"></span><br><span class="line">	&lt;project default=&quot;package&quot;&gt;</span><br><span class="line">      &lt;target name=&quot;init&quot;/&gt;</span><br><span class="line">      &lt;target name=&quot;preprocess&quot; depends=&quot;init&quot;/&gt;</span><br><span class="line">      &lt;target name=&quot;compile&quot; depends=&quot;init, preprocess&quot;/&gt;</span><br><span class="line">      &lt;target name=&quot;package&quot; depends=&quot;compile&quot;/&gt;</span><br><span class="line">    &lt;/project&gt;</span><br><span class="line">    </span><br><span class="line">3. basedir属性: 指定基路径的位置. 默认与build.xml文件在同一文件夹下</span><br></pre></td></tr></table></figure>
-<ul>
-<li>target元素: Ant中的执行单元</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. depends属性: 描述多个target之间的依赖关系. 被依赖的元素先执行</span><br><span class="line"></span><br><span class="line">2. if属性: 用于验证属性是否存在. 若不存在则target不会被执行</span><br><span class="line"></span><br><span class="line">3. unless属性: 与if属性相反</span><br><span class="line"></span><br><span class="line">4. description属性: 描述target的说明</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">常用target:</span><br><span class="line">	1. copy</span><br><span class="line">		复制单个文件：&lt;copy file=&quot;file.txt&quot; tofile=&quot;copy.txt&quot;/&gt; </span><br><span class="line">		复制文件夹:   &lt;copy todir=&quot;../newdir/dest_dir&quot;&gt; </span><br><span class="line">            			&lt;fileset dir=&quot;src_dir&quot;/&gt; </span><br><span class="line">					&lt;/copy&gt;</span><br><span class="line">         将文件复制到另外的目录: &lt;copy file=&quot;file.txt&quot; todir=&quot;../other/dir&quot;/&gt; </span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	2. delete</span><br><span class="line">		删除单个文件: &lt;delete file=&quot;photo/amigo.jpg&quot;/&gt; </span><br><span class="line">		删除文件夹:   &lt;delete dir=&quot;photo&quot;/&gt; </span><br><span class="line">		删除所有备份目录和空目录:  &lt;delete includeEmptyDirs=&quot;true&quot;&gt; </span><br><span class="line">                       				&lt;fileset dir=&quot;.&quot; includes=&quot;**/*.bak&quot;/&gt; </span><br><span class="line">                			  	&lt;/delete&gt;</span><br><span class="line">                			  	</span><br><span class="line">    3. mkdir</span><br><span class="line">    	创建文件夹: &lt;mkdir dir=&quot;build&quot;/&gt; </span><br><span class="line">    	</span><br><span class="line">    4. move</span><br><span class="line">    	与copy一样由三种形式, 将copy改为move</span><br><span class="line">    	</span><br><span class="line">    5. echo</span><br></pre></td></tr></table></figure>
-<ul>
-<li>property元素: 对于参数的定义</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">语法:</span><br><span class="line">	&lt;property name=&quot;xxx&quot; value=&quot;xxx&quot;/&gt;</span><br><span class="line"></span><br><span class="line">例子:</span><br><span class="line">    &lt;property name=&quot;srcDir&quot; location=&quot;src&quot;/&gt;		&lt;!-- location: 描述了文件所在路径. 是value的语义化 --&gt;</span><br><span class="line">    &lt;property name=&quot;buildDir&quot; location=&quot;build&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;javac srcdir=&quot;$&#123;srcDir&#125;&quot; destdir=&quot;$&#123;buildDir&#125;&quot;/&gt;	&lt;!-- 通过$&#123;&#125;获取其他元素的属性 --&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Ant的内置属性</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ant.file: build.xml的绝对路径</span><br><span class="line"></span><br><span class="line">ant.version: Ant的版本</span><br><span class="line"></span><br><span class="line">ant.project.name: 获取project.name</span><br><span class="line"></span><br><span class="line">ant.java.version: 获取java的version</span><br></pre></td></tr></table></figure>
-<h1 id="Ant的编写"><a href="#Ant的编写" class="headerlink" title="Ant的编写"></a>Ant的编写</h1><ul>
-<li>编译</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//	对src目录中的java文件进行编译</span><br><span class="line"></span><br><span class="line">&lt;javac srcdir=&quot;src&quot;/&gt;		</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">其他有用属性: </span><br><span class="line">    classpath:	说明引用的其他类的路径</span><br><span class="line">    debug=&quot;true&quot;: 说明编译器要带调试信息编译源文件</span><br></pre></td></tr></table></figure>
-<ul>
-<li>创建JAR文件: 将.class文件打包到JAR文件中</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//	创建一个名为package.jar文件夹, 并将classes目录下的所有文件(不仅仅是.class文件)放进去</span><br><span class="line"></span><br><span class="line">&lt;jar destfile=&quot;package.jar&quot; basedir=&quot;classes&quot;/&gt;		</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//	&lt;manifest&gt;指定放入jar文件夹中的文件</span><br><span class="line">&lt;jar destfile=&quot;package.jar&quot; basedir=&quot;classes&gt;</span><br><span class="line">	&lt;manifest&gt;</span><br><span class="line">		&lt;attribute name=&quot;Built-By&quot; value=&quot;$&#123;user.name&#125;&quot;/&gt;</span><br><span class="line">		&lt;attribute name=&quot;Main-class&quot; value=&quot;package.Main&quot;/&gt;</span><br><span class="line">	&lt;/manifest&gt;</span><br><span class="line">&lt;/jar&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>时间戳生成: 用于记录文件的生成时间</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">属性</th>
-<th style="text-align:center">说明</th>
-<th style="text-align:center">例子</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">DSTAMP</td>
-<td style="text-align:center">设置当前日期, 默认格式yyyymmdd</td>
-<td style="text-align:center">20180414</td>
-</tr>
-<tr>
-<td style="text-align:center">TSTAMP</td>
-<td style="text-align:center">设置当前时间, 默认格式hhmm</td>
-<td style="text-align:center">1313</td>
-</tr>
-<tr>
-<td style="text-align:center">TODAY</td>
-<td style="text-align:center">设置当前日期</td>
-<td style="text-align:center">2018年4月14日</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;tstamp/&gt;		//	获取当前的时间</span><br><span class="line">	&lt;format property=&quot;OFFSET_TIME&quot;</span><br><span class="line">			pattern=&quot;HH:mm:ss&quot;</span><br><span class="line">			offset=&quot;10&quot;</span><br><span class="line">			unit=&quot;minute&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;jar destfile=&quot;package-$&#123;DSTAMP&#125;.jar&quot; basedir=&quot;classes&quot;/&gt;		//	用生成日期命名该jar文件</span><br></pre></td></tr></table></figure>
-<ul>
-<li>完整的ANT</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">文件结构树:</span><br><span class="line">  --build.xml: 因为没有给Ant配置环境变量</span><br><span class="line">  --src: 存放.java文件		</span><br><span class="line">  --build: 存放.class文件</span><br><span class="line">  --lib: 存放要导入的.jar包和压缩后的.jar包</span><br><span class="line"></span><br><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;project default=&quot;jar&quot; name=&quot;Hello World Project&quot;&gt;		</span><br><span class="line">  &lt;property name=&quot;srcDir&quot; location=&quot;src&quot;/&gt;</span><br><span class="line">  &lt;property name=&quot;buildDir&quot; location=&quot;build&quot;/&gt;</span><br><span class="line">  &lt;property name=&quot;libDir&quot; location=&quot;lib&quot;/&gt;</span><br><span class="line">	</span><br><span class="line">  &lt;target name=&quot;init&quot;&gt;</span><br><span class="line">    &lt;tstamp/&gt;</span><br><span class="line">    &lt;mkdir dir=&quot;$&#123;buildDir&#125;&quot;/&gt;</span><br><span class="line">    &lt;mkdir dir=&quot;$&#123;libDir&#125;&quot;/&gt;</span><br><span class="line">  &lt;/target&gt;</span><br><span class="line">	</span><br><span class="line">  &lt;target name=&quot;compile&quot; depends=&quot;init&quot;&gt;</span><br><span class="line">    &lt;javac srcdir=&quot;$&#123;srcDir&#125;&quot; destdir=&quot;$&#123;buildDir&#125;&quot; includeantruntime=&quot;false&quot;&gt;</span><br><span class="line">    	&lt;classpath&gt;</span><br><span class="line">    		&lt;fileset dir=&quot;$&#123;libDir&#125;&quot; includes=&quot;**/*.jar&quot;/&gt;		&lt;!-- fileset将dir文件夹中的includes格式的文件导入 --&gt;</span><br><span class="line">    	&lt;/classpath&gt;</span><br><span class="line">    &lt;/javac&gt;</span><br><span class="line">  &lt;/target&gt;</span><br><span class="line"></span><br><span class="line">  &lt;target name=&quot;run&quot; depends=&quot;compile&quot;&gt;</span><br><span class="line">  	&lt;java classname=&quot;test&quot; fork=&quot;true&quot;&gt;		&lt;!-- 默认使用的是Ant的JVM, 添加fork=&quot;true&quot;后能够使用外部的JVM. 对于javafx程序来说, 要设置这个属性 --&gt;</span><br><span class="line">  		&lt;classpath&gt;</span><br><span class="line">  			&lt;pathelement path=&quot;$&#123;buildDir&#125;&quot;/&gt;</span><br><span class="line">  		&lt;/classpath&gt;</span><br><span class="line">  	&lt;/java&gt;</span><br><span class="line">  &lt;/target&gt;</span><br><span class="line"></span><br><span class="line">  &lt;target name=&quot;jar&quot; depends=&quot;run&quot;&gt;</span><br><span class="line">    &lt;jar destfile=&quot;$&#123;distDir&#125;/package-$&#123;DSTAMP&#125;.jar&quot; basedir=&quot;$&#123;buildDir&#125;&quot;&gt;</span><br><span class="line">      &lt;manifest&gt;</span><br><span class="line">        &lt;attribute name=&quot;Built-By&quot; value=&quot;$&#123;user.name&#125;&quot;/&gt;</span><br><span class="line">        &lt;attribute name=&quot;Main-Class&quot; value=&quot;package.Main&quot;/&gt;</span><br><span class="line">      &lt;/manifest&gt;</span><br><span class="line">    &lt;/jar&gt;</span><br><span class="line">  &lt;/target&gt;</span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure>
-<h1 id="命令行运行Ant"><a href="#命令行运行Ant" class="headerlink" title="命令行运行Ant"></a>命令行运行Ant</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">终端中输入:</span><br><span class="line">	ant</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2107,7 +2197,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2118,7 +2208,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
