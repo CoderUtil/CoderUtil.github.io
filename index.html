@@ -355,8 +355,11 @@
             <h1 id="官方文档"><a href="#官方文档" class="headerlink" title="官方文档"></a>官方文档</h1><p><a href="http://www.cocos.com/?v=CN" target="_blank" rel="noopener">http://www.cocos.com/?v=CN</a></p>
 <h1 id="创建Cocos项目"><a href="#创建Cocos项目" class="headerlink" title="创建Cocos项目"></a>创建Cocos项目</h1><h2 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1. 找到存放项目的文件夹</span><br><span class="line"></span><br><span class="line">2. 在powershell下输入</span><br><span class="line">	cocos new helloCocos -p com.sysu.cocos -l cpp</span><br><span class="line">	</span><br><span class="line">	new 后面跟项目名</span><br><span class="line">	-p  后面跟包名</span><br><span class="line">	-l  后面跟开发语言</span><br></pre></td></tr></table></figure>
 <h2 id="打开项目"><a href="#打开项目" class="headerlink" title="打开项目"></a>打开项目</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">进入proj.win32文件夹&gt;打开helloCocos.sln</span><br></pre></td></tr></table></figure>
+<h2 id="更改项目SDK"><a href="#更改项目SDK" class="headerlink" title="更改项目SDK"></a>更改项目SDK</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">在解决方案资源管理器中, 将helloCocos、libbox2d、libcocos2d、librecast、libSpine的SDK从8.1改成10.0.16</span><br><span class="line"></span><br><span class="line">	右键每个项目&gt;属性&gt;常规&gt;Windows SDK版本&gt;10.0.16</span><br></pre></td></tr></table></figure>
 <h3 id="图片、xml文件、字体目录"><a href="#图片、xml文件、字体目录" class="headerlink" title="图片、xml文件、字体目录"></a>图片、xml文件、字体目录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">图片、xml文件目录  proj.win32&gt;Degub.win32</span><br><span class="line">字体目录  		  proj.win32&gt;Degub.win32&gt;fonts</span><br></pre></td></tr></table></figure>
-<h1 id="Director、Scene、Sprite"><a href="#Director、Scene、Sprite" class="headerlink" title="Director、Scene、Sprite"></a>Director、Scene、Sprite</h1><ul>
+<h1 id="运行流程"><a href="#运行流程" class="headerlink" title="运行流程"></a>运行流程</h1><h2 id="入口文件AppDelegate-cpp"><a href="#入口文件AppDelegate-cpp" class="headerlink" title="入口文件AppDelegate.cpp"></a>入口文件AppDelegate.cpp</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">bool applicationDidFinishLauching();		//	完成各种初始化操作</span><br><span class="line"></span><br><span class="line">void applicationDidEnterBackground();		//	程序进入后台时调用</span><br><span class="line"></span><br><span class="line">void applicationWillEnterForeground();		//	程序进入前台时调用</span><br></pre></td></tr></table></figure>
+<h1 id="Director、Scene、Sprite"><a href="#Director、Scene、Sprite" class="headerlink" title="Director、Scene、Sprite"></a>Director、Scene、Sprite</h1><p><img src="https://CoderUtil.github.io/images/TIM截图20180520115847.png" alt="Cocos2d"></p>
+<ul>
 <li>Director: 导演, 用于控制场景的切换, 一个游戏只有一个导演(单例模式)</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">获取导演对象</span><br><span class="line">Director::getInstance();</span><br></pre></td></tr></table></figure>
@@ -369,10 +372,11 @@
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">第一个参数: 要添加进容器的节点</span><br><span class="line">	</span><br><span class="line">第二个参数: z-index值(默认为0). Scene会自动将所有添加进容器的节点进行排序, 节点的z-index &lt; 0意味着节点在容器的左子树, 越小越靠左; z-index &gt;= 0意味着节点在容器的右子树, 越大越靠右.</span><br></pre></td></tr></table></figure>
 <ol>
-<li>渲染顺序</li>
+<li><p>渲染顺序</p>
+<p>Scene的渲染顺序是in-order</p>
+</li>
 </ol>
-<p>​    Scene的渲染顺序是in-order</p>
-<p><img src="https://CoderUtil.github.io/imagesTIM截图20180520113725.png" alt="Cocos2d"></p>
+<p><img src="https://CoderUtil.github.io/images/TIM截图20180520113725.png" alt="Cocos2d"></p>
 <ul>
 <li>Sprite: 精灵, 可以控制的图片. 不能控制的算是Scene中的Node</li>
 </ul>
