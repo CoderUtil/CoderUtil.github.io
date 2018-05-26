@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Lambda函数12345678//	通过Lambda的形式创建函数funcauto func = [] () &amp;#123;cout &amp;lt;&amp;lt; &amp;quot;Hello World!&amp;quot;;&amp;#125;;	[]: 里面为=表示按值传递参数, 里面为&amp;amp;表示按引用传递参数	(): 传递参数//	调用func(); Button按钮​    一般来说Label按钮用Menu来创建 1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cocos2d学习(三)">
+<meta property="og:url" content="http://utilcoder.com/Cocos2d/Cocos2d/Cocos2d学习(三)/index.html">
+<meta property="og:site_name" content="Code">
+<meta property="og:description" content="Lambda函数12345678//	通过Lambda的形式创建函数funcauto func = [] () &amp;#123;cout &amp;lt;&amp;lt; &amp;quot;Hello World!&amp;quot;;&amp;#125;;	[]: 里面为=表示按值传递参数, 里面为&amp;amp;表示按引用传递参数	(): 传递参数//	调用func(); Button按钮​    一般来说Label按钮用Menu来创建 1">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-26T01:42:08.408Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cocos2d学习(三)">
+<meta name="twitter:description" content="Lambda函数12345678//	通过Lambda的形式创建函数funcauto func = [] () &amp;#123;cout &amp;lt;&amp;lt; &amp;quot;Hello World!&amp;quot;;&amp;#125;;	[]: 里面为=表示按值传递参数, 里面为&amp;amp;表示按引用传递参数	(): 传递参数//	调用func(); Button按钮​    一般来说Label按钮用Menu来创建 1">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://utilcoder.com/Cocos2d/Cocos2d/Cocos2d学习(三)/"/>
+
+
+
+
+
+  <title>Cocos2d学习(三) | Code</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Code</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Cocos2d/Cocos2d/Cocos2d学习(三)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Util">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Cocos2d学习(三)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-24T20:40:27+08:00">
+                2018-05-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Cocos2d/" itemprop="url" rel="index">
+                    <span itemprop="name">Cocos2d</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Lambda函数"><a href="#Lambda函数" class="headerlink" title="Lambda函数"></a>Lambda函数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//	通过Lambda的形式创建函数func</span><br><span class="line">auto func = [] () &#123;cout &lt;&lt; &quot;Hello World!&quot;;&#125;;</span><br><span class="line"></span><br><span class="line">	[]: 里面为=表示按值传递参数, 里面为&amp;表示按引用传递参数</span><br><span class="line">	(): 传递参数</span><br><span class="line"></span><br><span class="line">//	调用</span><br><span class="line">func();</span><br></pre></td></tr></table></figure>
+<h1 id="Button按钮"><a href="#Button按钮" class="headerlink" title="Button按钮"></a>Button按钮</h1><p>​    一般来说Label按钮用Menu来创建</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//	创建图形Button. </span><br><span class="line"></span><br><span class="line">#include &quot;ui/CocosGUI.h&quot;</span><br><span class="line"></span><br><span class="line">auto myButton = Button::create(&quot;normal_image.png&quot;, &quot;selected_image.png&quot;, &quot;disabled_image.png&quot;);</span><br><span class="line"></span><br><span class="line">myButton-&gt;setTitleText(&quot;This is a button&quot;);</span><br><span class="line"></span><br><span class="line">myButton-&gt;addTouchEventList([&amp;] (Ref* sender, Widget::TouchEventType type) &#123;</span><br><span class="line">  switch(type) &#123;</span><br><span class="line">    case ui::Widget::TouchEventType::BEGAN:			//	按钮点击</span><br><span class="line">    	break;</span><br><span class="line">    case ui::Widget::TouchEventType::ENDED:			//	按钮释放点击</span><br><span class="line">    	std::cout &lt;&lt; &quot;Button clicked&quot; &lt;&lt; std::endl;</span><br><span class="line">    default:</span><br><span class="line">    	break;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">this-&gt;addChild(myButton);</span><br></pre></td></tr></table></figure>
+<h1 id="CheckBox复选框"><a href="#CheckBox复选框" class="headerlink" title="CheckBox复选框"></a>CheckBox复选框</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//	创建CheckBox</span><br><span class="line"></span><br><span class="line">#include &quot;ui/CocosGUI.h&quot;</span><br><span class="line"></span><br><span class="line">auto myCheckbox = CheckBox::create(&quot;check_box_normal.png&quot;,</span><br><span class="line">							   &quot;check_box_normal_press.png&quot;</span><br><span class="line">							   &quot;check_box_active.png&quot;</span><br><span class="line">							   &quot;check_box_normal_disable.png&quot;</span><br><span class="line">							   &quot;check_box_active_disable.png&quot;);</span><br><span class="line">							   </span><br><span class="line">myCheckbox-&gt;addTouchEventListener([&amp;](Ref* sender, Widget::TouchEventType type) &#123;</span><br><span class="line">  switch (type) &#123;</span><br><span class="line">    case ui::Widget::TouchEventType::BEGAN:</span><br><span class="line">    	break;</span><br><span class="line">    case ui::Widget::TouchEventType::ENDED:</span><br><span class="line">    	std::cout &lt;&lt; &quot;CheckBox clicked&quot; &lt;&lt; std::endl;</span><br><span class="line">    default:</span><br><span class="line">    	break;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">this-&gt;addChile(myCheckbox);</span><br></pre></td></tr></table></figure>
+<h1 id="LoadingBar进度条"><a href="#LoadingBar进度条" class="headerlink" title="LoadingBar进度条"></a>LoadingBar进度条</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//	创建LoadingBar</span><br><span class="line"></span><br><span class="line">include &quot;ui/CocosGUI.h&quot;</span><br><span class="line"></span><br><span class="line">auto loadingBar = LoadingBar::create(&quot;LoadingBarFile.png&quot;);</span><br><span class="line"></span><br><span class="line">loadingBar-&gt;setDirection(LoadingBar::Direction::RIGHT);		//	设置进度条的进度显示方向向右</span><br><span class="line"></span><br><span class="line">loadingBar-&gt;setPercent(20);		//	设置进度条进度</span><br><span class="line"></span><br><span class="line">this-&gt;addChild(loadingBar);</span><br></pre></td></tr></table></figure>
+<h1 id="Slider滑动条"><a href="#Slider滑动条" class="headerlink" title="Slider滑动条"></a>Slider滑动条</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">//	创建Slider</span><br><span class="line"></span><br><span class="line">#include &quot;ui/CocosGUI.h&quot;</span><br><span class="line"></span><br><span class="line">auto slider = Slider::create();</span><br><span class="line">slider-&gt;loadBarTexture(&quot;Slider_Background.png&quot;);		//	设置slider背景图片</span><br><span class="line">slider-&gt;loadProgressBarTexture(&quot;Slider_PressBar.png&quot;);	//	设置slider进度图片</span><br><span class="line">slider-&gt;loadSlidBallTextures(&quot;Slider_Normal.png&quot;,&quot;Slider_Pressed.png&quot;,&quot;Slider_Disabled.png&quot;);	//	设置Slider正常情况下, 选中情况下, 禁用情况下的图片</span><br><span class="line"></span><br><span class="line">slider-&gt;addTouchEventListener([&amp;](Ref* sender, Widget::TouchEventType type) &#123;</span><br><span class="line">  switch (type) &#123;</span><br><span class="line">    case ui::Widget::TouchEventType::BEGAN:</span><br><span class="line">    	break;</span><br><span class="line">    case ui::Widget::TouchEventType::ENDED:</span><br><span class="line">    	std::cout &lt;&lt; &quot;Slider clicked&quot; &lt;&lt; std::endl;</span><br><span class="line">    default:</span><br><span class="line">    	break;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">this-&gt;addChild(slider);</span><br></pre></td></tr></table></figure>
+<h1 id="TextField文本框"><a href="#TextField文本框" class="headerlink" title="TextField文本框"></a>TextField文本框</h1><p>​    给用户提供输入框</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//	创建TextField</span><br><span class="line"></span><br><span class="line">#include &quot;ui/CocosGUI.h&quot;</span><br><span class="line"></span><br><span class="line">auto textField = TextField::create(&quot;This is a TextField&quot;, &quot;Arial&quot;, 30);		//	内容, 字体类型, 字体大小</span><br><span class="line"></span><br><span class="line">textField-&gt;addTouchEventListener([&amp;](Ref* sender, Widget::TouchEventType type) &#123;</span><br><span class="line">	std::cout &lt;&lt; &quot;Editing...&quot; &lt;&lt; std::endl;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="调度器"><a href="#调度器" class="headerlink" title="调度器"></a>调度器</h1><p>​    提供定时事件. 当调度对象不可见或被移出时, 调度器停止</p>
+<h2 id="默认调度器"><a href="#默认调度器" class="headerlink" title="默认调度器"></a>默认调度器</h2><p>​    每一帧绘制前都调用一次update(), 可重写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//	开启默认调度器</span><br><span class="line">scheduleUpdate();</span><br><span class="line"></span><br><span class="line">//	关闭默认调度器</span><br><span class="line">unscheduleUpdate();</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">例子:</span><br><span class="line">	//	HelloWorldScene.h</span><br><span class="line">	void update(float dt) override;</span><br><span class="line">	</span><br><span class="line">	//	HelloWorldScene.cpp</span><br><span class="line">	bool HelloWorld::init() &#123;</span><br><span class="line">      ...</span><br><span class="line">      scheduleUpdate();		//	开启默认调度器</span><br><span class="line">      return true;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	void HelloWorld::update(float dt) &#123;</span><br><span class="line">      lob (&quot;update&quot;);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="自定义调度器"><a href="#自定义调度器" class="headerlink" title="自定义调度器"></a>自定义调度器</h2><p>​    自定义调度器触发的时间间隔</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//	开启自定义调度器</span><br><span class="line">schedule(要触发的事件函数, 调度触发的时间间隔, 触发一次后剩余触发次数, 第一次触发前的延迟);</span><br><span class="line"></span><br><span class="line">//	关闭自定义调度器</span><br><span class="line">unschedule(选择自定义调度器, 第一次触发前的延迟);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">例子:</span><br><span class="line">	//	HelloWorldScene.h</span><br><span class="line">	void updateCustom(float dt);</span><br><span class="line">	</span><br><span class="line">	//	HelloWorldScene.cpp</span><br><span class="line">	bool HelloWorld::init() &#123;</span><br><span class="line">      ...</span><br><span class="line">      schedule(schedule_selector(HelloWorld::updateCustom), 1.0f, kRepeatForever, 0);		//	开启默认调度器, kRepeatForever表示无限循环</span><br><span class="line">      return true;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	void HelloWorld::updateCustom(float dt) &#123;</span><br><span class="line">      lob (&quot;Custom&quot;);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="单次调度器"><a href="#单次调度器" class="headerlink" title="单次调度器"></a>单次调度器</h2><p>​    只触发一次</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//	开启自定义调度器</span><br><span class="line">scheduleOnce(要触发的事件函数, 第一次触发前的延迟);</span><br><span class="line"></span><br><span class="line">//	关闭自定义调度器</span><br><span class="line">unschedule(选择自定义调度器, 第一次触发前的延迟);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">例子:</span><br><span class="line">	//	HelloWorldScene.h</span><br><span class="line">	void updateOnce(float dt);</span><br><span class="line">	</span><br><span class="line">	//	HelloWorldScene.cpp</span><br><span class="line">	bool HelloWorld::init() &#123;</span><br><span class="line">      ...</span><br><span class="line">      scheduleOnce(schedule_selector(HelloWorld::updateOnce), 0.1f);		//	开启默认调度器, kRepeatForever表示无限循环</span><br><span class="line">      return true;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	void HelloWorld::updateOnce(float dt) &#123;</span><br><span class="line">      lob (&quot;Once&quot;);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Cocos2d/Cocos2d/Cocos2d学习(二)/" rel="next" title="Cocos2d学习(二)">
+                <i class="fa fa-chevron-left"></i> Cocos2d学习(二)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/操作系统/操作系统/第七章-死锁/" rel="prev" title="第七章 死锁">
+                第七章 死锁 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Util" />
+            
+              <p class="site-author-name" itemprop="name">Util</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Util" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:853130236@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://icytown.com/" title="Mega Show's Blog" target="_blank">Mega Show's Blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Lambda函数"><span class="nav-number">1.</span> <span class="nav-text">Lambda函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Button按钮"><span class="nav-number">2.</span> <span class="nav-text">Button按钮</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CheckBox复选框"><span class="nav-number">3.</span> <span class="nav-text">CheckBox复选框</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LoadingBar进度条"><span class="nav-number">4.</span> <span class="nav-text">LoadingBar进度条</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Slider滑动条"><span class="nav-number">5.</span> <span class="nav-text">Slider滑动条</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TextField文本框"><span class="nav-number">6.</span> <span class="nav-text">TextField文本框</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#调度器"><span class="nav-number">7.</span> <span class="nav-text">调度器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#默认调度器"><span class="nav-number">7.1.</span> <span class="nav-text">默认调度器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义调度器"><span class="nav-number">7.2.</span> <span class="nav-text">自定义调度器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单次调度器"><span class="nav-number">7.3.</span> <span class="nav-text">单次调度器</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Util</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
