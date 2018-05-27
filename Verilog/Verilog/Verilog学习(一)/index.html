@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="模板 12345678910111213141516`timescale 1ns/1ns`include  可综合模块.v    .  .  .  .`include  外围电路.v       .  .  .  .`include  激励信号.v       .  .  .  .module top;	wire   连线定义  .  .  .  . 	reg    初试化块中寄存器定义  .">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Verilog学习(一)">
+<meta property="og:url" content="http://utilcoder.com/Verilog/Verilog/Verilog学习(一)/index.html">
+<meta property="og:site_name" content="Code">
+<meta property="og:description" content="模板 12345678910111213141516`timescale 1ns/1ns`include  可综合模块.v    .  .  .  .`include  外围电路.v       .  .  .  .`include  激励信号.v       .  .  .  .module top;	wire   连线定义  .  .  .  . 	reg    初试化块中寄存器定义  .">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://CoderUtil.github.io/images/TIM截图20180527102913.png">
+<meta property="og:image" content="https://CoderUtil.github.io/images/TIM截图20180527122008.png">
+<meta property="og:image" content="https://CoderUtil.github.io/images/TIM截图20180527122317.png">
+<meta property="og:updated_time" content="2018-05-27T05:38:48.775Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Verilog学习(一)">
+<meta name="twitter:description" content="模板 12345678910111213141516`timescale 1ns/1ns`include  可综合模块.v    .  .  .  .`include  外围电路.v       .  .  .  .`include  激励信号.v       .  .  .  .module top;	wire   连线定义  .  .  .  . 	reg    初试化块中寄存器定义  .">
+<meta name="twitter:image" content="https://CoderUtil.github.io/images/TIM截图20180527102913.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://utilcoder.com/Verilog/Verilog/Verilog学习(一)/"/>
+
+
+
+
+
+  <title>Verilog学习(一) | Code</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Code</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Verilog/Verilog/Verilog学习(一)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Util">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Verilog学习(一)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-27T10:28:15+08:00">
+                2018-05-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Verilog/" itemprop="url" rel="index">
+                    <span itemprop="name">Verilog</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h1><p><img src="https://CoderUtil.github.io/images/TIM截图20180527102913.png" alt="Verilog学习"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">`timescale 1ns/1ns</span><br><span class="line">`include  可综合模块.v    .  .  .  .</span><br><span class="line">`include  外围电路.v       .  .  .  .</span><br><span class="line">`include  激励信号.v       .  .  .  .</span><br><span class="line">module top;</span><br><span class="line">	wire   连线定义  .  .  .  . </span><br><span class="line">	reg    初试化块中寄存器定义  .  .  .  . </span><br><span class="line">	initial</span><br><span class="line">		begin   </span><br><span class="line">			定义波形记录、输入数据文件、记录输出文件 、</span><br><span class="line">			监视重要信号、记录重要时刻、设置仿真时间等。               </span><br><span class="line">		end</span><br><span class="line">	信号模块   xh1( .clock( clk), .reset(rst), .ack(ackn) ……); ……</span><br><span class="line">	可综合模块  mysj1(. clock(clk), reset(rst),.ack(ackn) ……); ……</span><br><span class="line">	外围模块      ram1(.read(rd), .write(wrt), .data(databus) ……); ……</span><br><span class="line">endmodule</span><br></pre></td></tr></table></figure>
+<h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//和/**/</span><br></pre></td></tr></table></figure>
+<h2 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">以数字, 字母, 下划线构成. 以下划线或字母开头</span><br></pre></td></tr></table></figure>
+<h2 id="整数"><a href="#整数" class="headerlink" title="整数"></a>整数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+/-&lt;位宽&gt;&apos;&lt;进制&gt;&lt;数字&gt;</span><br><span class="line"></span><br><span class="line">位宽: 数字对应的二进制数的宽度</span><br><span class="line">进制: 二进制(b, B)、八进制(o, O), 十进制(d, D)、十六进制(h, H)</span><br><span class="line"></span><br><span class="line">8&apos;b1100_0101	(下划线单纯用于分隔数字, 没有实际意义)</span><br><span class="line">5&apos;O27			(八进制27, 对应二进制宽为5位)</span><br></pre></td></tr></table></figure>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用双引号包括, 不能分成多行书写</span><br></pre></td></tr></table></figure>
+<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><h2 id="wire-reg"><a href="#wire-reg" class="headerlink" title="wire, reg"></a>wire, reg</h2><ul>
+<li>wire: 线, 没有存储功能</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">在assign中赋值的变量, 用wire</span><br><span class="line"></span><br><span class="line">wire a;				//	1位宽	</span><br><span class="line">wire[7:0] databus;	//	8位宽, 从0~7</span><br></pre></td></tr></table></figure>
+<ul>
+<li>reg: 寄存器, 有存储功能</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">在initial, always中赋值的, 用reg</span><br><span class="line"></span><br><span class="line">reg b;				//	1位宽	</span><br><span class="line">reg[7:0] myOut;		//	8位宽, 从0~7</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">因为Verilog没有多维数组, 通过扩展reg来实现多维数组</span><br><span class="line"></span><br><span class="line">reg [7:0] mema [255:0]	//	mema有8个256位reg</span><br><span class="line">mema[3] = 0;</span><br></pre></td></tr></table></figure>
+<h1 id="过程赋值-reg变量"><a href="#过程赋值-reg变量" class="headerlink" title="过程赋值(reg变量)"></a>过程赋值(reg变量)</h1><ul>
+<li>initial: 块中的语句在开始时执行一次</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">reg A,B,C;                                       </span><br><span class="line">initial begin               </span><br><span class="line">	A = 0;                  </span><br><span class="line">	B = 0;               </span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<ul>
+<li>always: 块中的语句能不断重复执行</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">always @(a)	当a的值发生改变时, 执行</span><br><span class="line">begin</span><br><span class="line">	...</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">1. @(a)					信号a的值发生改变</span><br><span class="line">2. @(a or b)			信号a或b的值发生改变</span><br><span class="line">3. @(posedge clock)		 clock上升沿到来</span><br><span class="line">4. @(negedge clock)		 clock下降沿到来</span><br><span class="line">5. @(posedge clk or negedge reset)</span><br><span class="line"></span><br><span class="line">信号和时钟不能混用</span><br></pre></td></tr></table></figure>
+<ul>
+<li>过程赋值分为阻塞和非阻塞</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//	阻塞赋值, 在该语句结束时立即完成赋值</span><br><span class="line">b = a;	</span><br><span class="line"></span><br><span class="line">//	非阻塞赋值, 在整个块结束后才完成赋值</span><br><span class="line">b &lt;= a;  </span><br><span class="line"></span><br><span class="line">在同一个always中, 阻塞和非阻塞不要混用</span><br></pre></td></tr></table></figure>
+<h1 id="持续赋值-wire变量"><a href="#持续赋值-wire变量" class="headerlink" title="持续赋值(wire变量)"></a>持续赋值(wire变量)</h1><ul>
+<li>assign</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">assign c = a &amp; b		</span><br><span class="line"></span><br><span class="line">其中a, b, c都为wire</span><br></pre></td></tr></table></figure>
+<h2 id="param"><a href="#param" class="headerlink" title="param"></a>param</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用于定义一个参数</span><br></pre></td></tr></table></figure>
+<h1 id="向量"><a href="#向量" class="headerlink" title="向量"></a>向量</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">宽度为1的变量称为标量:</span><br><span class="line">	reg a;</span><br><span class="line">	wire b;</span><br><span class="line">	</span><br><span class="line">宽度大于1的, 用[msb:lsb]表示的称为向量:</span><br><span class="line">	wire[7:0] databus;</span><br></pre></td></tr></table></figure>
+<h2 id="位选择、域选择"><a href="#位选择、域选择" class="headerlink" title="位选择、域选择"></a>位选择、域选择</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">位选择: 选择向量中的一位</span><br><span class="line">	A = databus[6];</span><br><span class="line">	c = a[7] &amp; b[5];</span><br><span class="line">	</span><br><span class="line">域选择: 选择向量中的几位:</span><br><span class="line">	B = databus[5:2];</span><br><span class="line">	c = a[7:4] + b[3:0];</span><br></pre></td></tr></table></figure>
+<h1 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h1><h2 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">模 %</span><br></pre></td></tr></table></figure>
+<h2 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">与	&amp;&amp;</span><br><span class="line">或	||</span><br><span class="line">非	!</span><br></pre></td></tr></table></figure>
+<h2 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">按位取反	~</span><br><span class="line">按位与		&amp;</span><br><span class="line">按位或		|</span><br><span class="line">按位异或	^</span><br><span class="line">按位同或	^~</span><br></pre></td></tr></table></figure>
+<h2 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">等于		==</span><br><span class="line">不等于	    !=</span><br></pre></td></tr></table></figure>
+<h2 id="三目运算符"><a href="#三目运算符" class="headerlink" title="三目运算符"></a>三目运算符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?:</span><br></pre></td></tr></table></figure>
+<h2 id="位拼接运算符"><a href="#位拼接运算符" class="headerlink" title="位拼接运算符"></a>位拼接运算符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#125;, 将多个位拼接起来</span><br><span class="line"></span><br><span class="line">&#123;信号1的某几位, 信号2的某几位, ..., 信号n的某几位&#125;</span><br><span class="line">&#123;a, b[3:0], c[2], 1&apos;b1&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="if"><a href="#if" class="headerlink" title="if"></a>if</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">if (表达式1) </span><br><span class="line">	语句1;</span><br><span class="line">else if (表达式2) </span><br><span class="line">	语句2;</span><br><span class="line">else </span><br><span class="line">	语句3;</span><br><span class="line">	</span><br><span class="line">if(a&gt;b)</span><br><span class="line">     begin</span><br><span class="line">       out1 &lt;= int1;</span><br><span class="line">       out2 &lt;= int2;</span><br><span class="line">     end</span><br><span class="line">else</span><br><span class="line">    begin</span><br><span class="line">       out1 &lt;= int2;</span><br><span class="line">       out2 &lt;= int1;</span><br><span class="line">    end</span><br></pre></td></tr></table></figure>
+<h1 id="case"><a href="#case" class="headerlink" title="case"></a>case</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">case (表达式)</span><br><span class="line">	值1: 语句1;</span><br><span class="line">	值2: 语句2;</span><br><span class="line">	default: 语句3;</span><br><span class="line">endcase</span><br></pre></td></tr></table></figure>
+<p><img src="https://CoderUtil.github.io/images/TIM截图20180527122008.png" alt="Verilog学习"></p>
+<h1 id="if和case防止锁存器产生"><a href="#if和case防止锁存器产生" class="headerlink" title="if和case防止锁存器产生"></a>if和case防止锁存器产生</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">如果用到if语句，最好写上else项。</span><br><span class="line">如果用case语句，最好写上default项</span><br></pre></td></tr></table></figure>
+<h1 id="for"><a href="#for" class="headerlink" title="for"></a>for</h1><p><img src="https://CoderUtil.github.io/images/TIM截图20180527122317.png" alt="Verilog学习"></p>
+<h1 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h1><p>​    以`开头</p>
+<h2 id="宏"><a href="#宏" class="headerlink" title="宏"></a>宏</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`define sum ina+inb+inc</span><br></pre></td></tr></table></figure>
+<h2 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`include &quot;文件名&quot;</span><br></pre></td></tr></table></figure>
+<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><p>​    只能调用当前module内的函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function &lt;返回值位宽&gt; 函数名;</span><br><span class="line">端口声明;</span><br><span class="line">局部变量定义;</span><br><span class="line">其他语句;</span><br><span class="line">endfunctino</span><br></pre></td></tr></table></figure>
+<h1 id="模块化设计"><a href="#模块化设计" class="headerlink" title="模块化设计"></a>模块化设计</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">定义:</span><br><span class="line">	顶层模块top, 底层模块bottom1, bottom2分别位于top.v, bottom1.v, bottom2.v</span><br><span class="line"></span><br><span class="line">引用底层模块:</span><br><span class="line">	`include 引入底层模块文件</span><br><span class="line"></span><br><span class="line">调用底层模块:</span><br><span class="line">	底层模块名 你给底层模块起的名(.底层模块形参名(顶层模块实参名), ……)</span><br><span class="line">	</span><br><span class="line">`include &quot;bottom1.v&quot;</span><br><span class="line">`include &quot;bottom2.v&quot;</span><br><span class="line"></span><br><span class="line">module  top(clk, reset, rec, send, data); // 顶层模块    </span><br><span class="line">input  clk, reset, rec;    </span><br><span class="line">output  send;    </span><br><span class="line">output [15:0]  data;</span><br><span class="line"></span><br><span class="line">    bottom1  my_bottom1(        // 底层模块1    </span><br><span class="line">    .rec(rec), .clk(clk), .reset(reset), .data(data)    </span><br><span class="line">    );    </span><br><span class="line">    bottom2  my_bottom2(        // 底层模块2    </span><br><span class="line">    .data(data), .clk(clk), .reset(reset), .send(send)    </span><br><span class="line">    ); </span><br><span class="line">endmodule</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/操作系统/操作系统/第八章-内存管理/" rel="next" title="第八章 内存管理">
+                <i class="fa fa-chevron-left"></i> 第八章 内存管理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Util" />
+            
+              <p class="site-author-name" itemprop="name">Util</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Util" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:853130236@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://icytown.com/" title="Mega Show's Blog" target="_blank">Mega Show's Blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#模板"><span class="nav-number">1.</span> <span class="nav-text">模板</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#语法"><span class="nav-number">2.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#注释"><span class="nav-number">2.1.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标识符"><span class="nav-number">2.2.</span> <span class="nav-text">标识符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整数"><span class="nav-number">2.3.</span> <span class="nav-text">整数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">2.4.</span> <span class="nav-text">字符串</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据类型"><span class="nav-number">3.</span> <span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#wire-reg"><span class="nav-number">3.1.</span> <span class="nav-text">wire, reg</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#过程赋值-reg变量"><span class="nav-number">4.</span> <span class="nav-text">过程赋值(reg变量)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#持续赋值-wire变量"><span class="nav-number">5.</span> <span class="nav-text">持续赋值(wire变量)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#param"><span class="nav-number">5.1.</span> <span class="nav-text">param</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#向量"><span class="nav-number">6.</span> <span class="nav-text">向量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#位选择、域选择"><span class="nav-number">6.1.</span> <span class="nav-text">位选择、域选择</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#运算符"><span class="nav-number">7.</span> <span class="nav-text">运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#算术运算符"><span class="nav-number">7.1.</span> <span class="nav-text">算术运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑运算符"><span class="nav-number">7.2.</span> <span class="nav-text">逻辑运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#位运算符"><span class="nav-number">7.3.</span> <span class="nav-text">位运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关系运算符"><span class="nav-number">7.4.</span> <span class="nav-text">关系运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三目运算符"><span class="nav-number">7.5.</span> <span class="nav-text">三目运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#位拼接运算符"><span class="nav-number">7.6.</span> <span class="nav-text">位拼接运算符</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#if"><span class="nav-number">8.</span> <span class="nav-text">if</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#case"><span class="nav-number">9.</span> <span class="nav-text">case</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#if和case防止锁存器产生"><span class="nav-number">10.</span> <span class="nav-text">if和case防止锁存器产生</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#for"><span class="nav-number">11.</span> <span class="nav-text">for</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#预处理"><span class="nav-number">12.</span> <span class="nav-text">预处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#宏"><span class="nav-number">12.1.</span> <span class="nav-text">宏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件包含"><span class="nav-number">12.2.</span> <span class="nav-text">文件包含</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数"><span class="nav-number">13.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模块化设计"><span class="nav-number">14.</span> <span class="nav-text">模块化设计</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Util</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
