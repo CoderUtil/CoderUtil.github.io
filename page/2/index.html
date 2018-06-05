@@ -259,10 +259,193 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/操作系统/操作系统/第四章 线程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/操作系统/操作系统/第四章 线程/" itemprop="url">第四章 线程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-10T16:17:26+08:00">
+                2018-05-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/操作系统/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><ul>
+<li>共享堆内存和全局变量</li>
+</ul>
+<h2 id="线程模型"><a href="#线程模型" class="headerlink" title="线程模型"></a>线程模型</h2><ul>
+<li>根据是否受到内核的干预分为: 用户线程和内核线程</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">线程模型</th>
+<th style="text-align:center">含义</th>
+<th style="text-align:center">优点</th>
+<th style="text-align:center">缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">多对一</td>
+<td style="text-align:center">多个用户线程映射一个内核线程</td>
+<td style="text-align:center">内核线程少, 减少开销</td>
+<td style="text-align:center">只有一个内核线程, 所以用户线程不能并发执行</td>
+</tr>
+<tr>
+<td style="text-align:center">一对一</td>
+<td style="text-align:center">一个用户线程映射一个内核线程</td>
+<td style="text-align:center">多个用户线程能并发执行</td>
+<td style="text-align:center">内核线程多, 开销大</td>
+</tr>
+<tr>
+<td style="text-align:center">多对多</td>
+<td style="text-align:center">多个用户线程映射多个内核线程</td>
+<td style="text-align:center">多个用户线程能并发执行. 且内核线程数量相对固定, 开销不大</td>
+</tr>
+</tbody>
+</table>
+<h2 id="线程取消"><a href="#线程取消" class="headerlink" title="线程取消"></a>线程取消</h2><p>​    在线程完成前终止线程</p>
+<ul>
+<li>异步取消: 立即终止目标线程</li>
+<li>延迟取消: 不断检查目标线程是否应该取消 </li>
+</ul>
+<h2 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h2><p>​    在进程开始时创建一定数量的线程, 并放入到池中等待工作. 当服务器收到请求时, 唤醒池中的一个线程并传递给要请求. 当请求完成, 将线程放回线程池</p>
+<h1 id="POSIX线程库"><a href="#POSIX线程库" class="headerlink" title="POSIX线程库"></a>POSIX线程库</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;pthread.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line"></span><br><span class="line">#define MAX_SIZE 10</span><br><span class="line"></span><br><span class="line">int arr[MAX_SIZE] = &#123;0&#125;;        //  线程中的资源是共享的</span><br><span class="line"></span><br><span class="line">long fibonacci(int num) &#123;</span><br><span class="line">    if (num == 0)</span><br><span class="line">        return 0;</span><br><span class="line">    if (num == 1) </span><br><span class="line">        arr[num - 1] = 0;</span><br><span class="line">    else if (num == 2)</span><br><span class="line">        arr[num - 1] = 1;</span><br><span class="line">    else </span><br><span class="line">        arr[num - 1] = fibonacci(num - 1) + fibonacci(num - 2);</span><br><span class="line">    return arr[num - 1];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void* runner(void* param) &#123;     //  线程通过runner函数执行</span><br><span class="line">    int num = atoi(param);</span><br><span class="line">    fibonacci(num);</span><br><span class="line">    pthread_exit(0);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char* argv[]) &#123;</span><br><span class="line">    pthread_t tid;              //  子线程的id</span><br><span class="line">    pthread_attr_t attr;        //  子线程的属性</span><br><span class="line"></span><br><span class="line">    if (argc != 2) &#123;</span><br><span class="line">        fprintf(stderr, &quot;usage: a.out &lt;integer value&gt;\n&quot;);</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (atoi(argv[1]) &lt; 0) &#123;</span><br><span class="line">        fprintf(stderr, &quot;%d should &gt;= 0\n&quot;, atoi(argv[1]));</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (atoi(argv[1]) &gt; 10) &#123;</span><br><span class="line">        fprintf(stderr, &quot;%d shouldn&apos;t &gt; 10\n&quot;, atoi(argv[1]));</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    pthread_attr_init(&amp;attr);   //  设置线程的属性</span><br><span class="line"></span><br><span class="line">    pthread_create(&amp;tid, &amp;attr, runner, argv[1]);  //  创建线程</span><br><span class="line"></span><br><span class="line">    pthread_join(tid, NULL);    //  父线程等待子线程执行完后才执行</span><br><span class="line"></span><br><span class="line">    for (int i = 0; i &lt; atoi(argv[1]); i++) &#123;</span><br><span class="line">        printf(&quot;%d &quot;, arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;\n&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/环境配置/环境配置/Eclipse的使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Util">
+      <meta itemprop="name" content="CoderUtil">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
@@ -406,7 +589,7 @@
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/汇编/汇编/x86指令汇总/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Util">
+      <meta itemprop="name" content="CoderUtil">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
@@ -552,7 +735,7 @@
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/环境配置/环境配置/Eclipse使用junit 5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Util">
+      <meta itemprop="name" content="CoderUtil">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
@@ -696,7 +879,7 @@
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/环境配置/环境配置/安装Eclipse插件SonarLint/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Util">
+      <meta itemprop="name" content="CoderUtil">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
@@ -843,7 +1026,7 @@
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/计算机组成与原理/计算机组成与原理/第四章 处理器/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Util">
+      <meta itemprop="name" content="CoderUtil">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
@@ -1178,7 +1361,7 @@
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/操作系统/操作系统/第三章-进程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Util">
+      <meta itemprop="name" content="CoderUtil">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
@@ -1359,7 +1542,7 @@
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/软件工程实训/软件工程实训/studyreport-JUNIT/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Util">
+      <meta itemprop="name" content="CoderUtil">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
@@ -1508,7 +1691,7 @@
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/软件工程实训/软件工程实训/studyreport-ANT/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Util">
+      <meta itemprop="name" content="CoderUtil">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
@@ -1711,7 +1894,7 @@
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/软件工程实训/软件工程实训/studyreport-JAVA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Util">
+      <meta itemprop="name" content="CoderUtil">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.jpg">
     </span>
@@ -1968,209 +2151,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/软件工程实训/软件工程实训/studyreport-VI/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Util">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/软件工程实训/软件工程实训/studyreport-VI/" itemprop="url">VI学习报告</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-13T16:03:00+08:00">
-                2018-04-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/软件工程实训/" itemprop="url" rel="index">
-                    <span itemprop="name">软件工程实训</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Vi自学报告"><a href="#Vi自学报告" class="headerlink" title="Vi自学报告"></a>Vi自学报告</h1><h2 id="升级到Vi-full版本"><a href="#升级到Vi-full版本" class="headerlink" title="升级到Vi full版本"></a>升级到Vi full版本</h2><ul>
-<li>Ubuntu自带的是tiny版本. tiny版本下, 编辑模式Backspace无法删除内容, 上下左右会出现字母</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$sudo apt-get remove vim-common</span><br><span class="line"></span><br><span class="line">$sudo apt-get install vim</span><br></pre></td></tr></table></figure>
-<h2 id="Vi的模式"><a href="#Vi的模式" class="headerlink" title="Vi的模式"></a>Vi的模式</h2><p>​    粗略地将Vi分成三种模式: 命令行模式、插入模式、底行模式</p>
-<p>​        命令行模式: 支持一些特殊的命令</p>
-<p>​        插入模式: 用于编辑文本, 支持移动光标, 插入, 删除</p>
-<p>​        底行模式: 支持底行模式命令</p>
-<p>​    模式之间的切换</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">1. 命令行模式切换到插入模式:</span><br><span class="line">	按&quot;i&quot;		//	切换到插入模式, 且光标位于当前的位置</span><br><span class="line"></span><br><span class="line">    按&quot;a&quot;		//	切换到插入模式, 且光标位于当前位置的下一个位置</span><br><span class="line"></span><br><span class="line">    按&quot;o&quot;		//	切换到插入模式, 且光标位于新的一行的行首</span><br><span class="line">    </span><br><span class="line">2. 插入模式切换到命令行模式</span><br><span class="line">	按&quot;Esc&quot;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">3. 命令行模式切换到底行模式:</span><br><span class="line">	按 &quot;:&quot;</span><br><span class="line">	</span><br><span class="line">4. 底行模式切换到命令模式:</span><br><span class="line">	按&quot;Esc&quot;</span><br></pre></td></tr></table></figure>
-<h2 id="Vi的基本操作"><a href="#Vi的基本操作" class="headerlink" title="Vi的基本操作"></a>Vi的基本操作</h2><ol>
-<li><p>进入Vi: 在终端中, 输入vi + 文件名</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi Test</span><br></pre></td></tr></table></figure>
-<p>注意: 进入Vi后处于命令行模式, 需要按”i”, 先切换到插入模式才能编辑</p>
-<p>​</p>
-</li>
-</ol>
-<ol>
-<li><p>退出Vi及保存文件: 先按”:”切换到地方模式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">:wq		//	存盘并退出Vi</span><br><span class="line"></span><br><span class="line">:q!		//	不存盘直接退出Vi</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="命令行模式下的操作"><a href="#命令行模式下的操作" class="headerlink" title="命令行模式下的操作"></a>命令行模式下的操作</h2><ul>
-<li>翻页</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">按ctrl + b	向文件首翻一屏</span><br><span class="line"></span><br><span class="line">按ctrl + f	向文件尾翻一屏</span><br><span class="line"></span><br><span class="line">按ctrl + u	向文件首翻半屏</span><br><span class="line"></span><br><span class="line">按ctrl + d	向文件尾翻半屏</span><br></pre></td></tr></table></figure>
-<ul>
-<li>移动光标</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">按 G(ctrl + g)		光标移动到文章末尾</span><br><span class="line"></span><br><span class="line">按 $(ctrl + 4)		光标移动到当前行的行尾</span><br><span class="line"></span><br><span class="line">按 ^(ctrl + 6)		光标移动到当前行的行首</span><br><span class="line"></span><br><span class="line">按 #l				光标移动到当前行第#个的位置(注意, #不是真正的#, 它代表任意数字)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>删除(主要是通过在插入模式下, 使用Backspace键删除)</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">按 D(ctrl + d)		删除当前行从光标开始的所有内容</span><br><span class="line"></span><br><span class="line">按 dd				删除当前行的内容</span><br><span class="line"></span><br><span class="line">按 #dd				删除从当前行开始#行的内容</span><br></pre></td></tr></table></figure>
-<ul>
-<li>复制</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">按 yw				将当前行从光标开始的所有内容复制到缓冲区</span><br><span class="line"></span><br><span class="line">按 yy				将当前行复制到缓冲区</span><br><span class="line"></span><br><span class="line">按 #yy				将从当前行开始的#行内容复制到缓冲区</span><br></pre></td></tr></table></figure>
-<ul>
-<li>粘贴</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">按 p					将缓冲区的内容粘贴到光标处</span><br></pre></td></tr></table></figure>
-<ul>
-<li>替换</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">按 r	再输入一个字符						替换光标所在处的字符</span><br><span class="line"></span><br><span class="line">按 R(ctrl + r) 再输入一串字符				替换光标所在行的内容</span><br></pre></td></tr></table></figure>
-<ul>
-<li>撤回</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">按 u						撤回一次操作(一次指一条命令模式指令, 或命令模式切换到插入模式后更新的所有内容)</span><br></pre></td></tr></table></figure>
-<h1 id="底行模式下的操作"><a href="#底行模式下的操作" class="headerlink" title="底行模式下的操作"></a>底行模式下的操作</h1><ul>
-<li>列出行号</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">输入 set nu					在每一行的前面列出行号</span><br></pre></td></tr></table></figure>
-<ul>
-<li>跳到某行</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">输入 #						跳到第n行</span><br></pre></td></tr></table></figure>
-<ul>
-<li>保存文件</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">输入 w [文件名]					以[文件名]保存文件</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2212,9 +2192,9 @@
             
               <img class="site-author-image" itemprop="image"
                 src="/images/avatar.jpg"
-                alt="Util" />
+                alt="CoderUtil" />
             
-              <p class="site-author-name" itemprop="name">Util</p>
+              <p class="site-author-name" itemprop="name">CoderUtil</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -2225,7 +2205,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2309,7 +2289,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Util</span>
+  <span class="author" itemprop="copyrightHolder">CoderUtil</span>
 
   
 </div>
