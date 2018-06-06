@@ -259,6 +259,155 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Cocos2d/Cocos2d/Cocos2d学习(五)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Cocos2d/Cocos2d/Cocos2d学习(五)/" itemprop="url">Cocos2d学习(五)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-06T20:10:41+08:00">
+                2018-06-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Cocos2d/" itemprop="url" rel="index">
+                    <span itemprop="name">Cocos2d</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="音乐"><a href="#音乐" class="headerlink" title="音乐"></a>音乐</h1><h2 id="播放背景音乐"><a href="#播放背景音乐" class="headerlink" title="播放背景音乐"></a>播放背景音乐</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;SimpleAudioEngine.h&quot;</span><br><span class="line"></span><br><span class="line">auto audio = SimpleAudioEngine::getInstance();</span><br><span class="line"></span><br><span class="line">//	预加载资源</span><br><span class="line">audio-&gt;preloadBackgroundMusic(&quot;mymusic.mp3&quot;);</span><br><span class="line"></span><br><span class="line">//	持续播放背景音乐</span><br><span class="line">audio-&gt;playBackgroundMusic(&quot;mymusic.mp3&quot;, true);</span><br><span class="line"></span><br><span class="line">//	背景音乐只播放一次</span><br><span class="line">audio-&gt;playBackgroundMusic(&quot;mymusic.mp3&quot;, false);</span><br><span class="line"></span><br><span class="line">//	从缓冲中释放预加载资源</span><br><span class="line">audio-&gt;unloadBackgroundMusic(&quot;mymusic.mp3&quot;);</span><br></pre></td></tr></table></figure>
+<h2 id="播放音效"><a href="#播放音效" class="headerlink" title="播放音效"></a>播放音效</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;SimpleAudioEngine.h&quot;</span><br><span class="line"></span><br><span class="line">auto audio = SimpleAudioEngine::getInstance();</span><br><span class="line">audio-&gt;preloadEffect(&quot;mymusic.mp3&quot;);</span><br><span class="line"></span><br><span class="line">audio-&gt;playEffect(&quot;myEffect.mp3&quot;, false, 1.0f, 1.0f, 1.0f);</span><br><span class="line">audio-&gt;unloadEffect(&quot;mymusic.mp3&quot;);</span><br></pre></td></tr></table></figure>
+<h2 id="暂停播放"><a href="#暂停播放" class="headerlink" title="暂停播放"></a>暂停播放</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//	暂停背景音乐</span><br><span class="line">audio-&gt;pauseBackgroundMusic();</span><br><span class="line"></span><br><span class="line">//	暂停音效</span><br><span class="line">audio-&gt;pauseEffect();</span><br><span class="line">audio-&gt;pauseAllEffects();</span><br></pre></td></tr></table></figure>
+<h2 id="恢复播放"><a href="#恢复播放" class="headerlink" title="恢复播放"></a>恢复播放</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//	暂停背景音乐</span><br><span class="line">audio-&gt;resumeBackgroundMusic();</span><br><span class="line"></span><br><span class="line">//	暂停音效</span><br><span class="line">audio-&gt;resumeEffect();</span><br><span class="line">audio-&gt;resumeAllEffects();</span><br></pre></td></tr></table></figure>
+<p><img src="https://CoderUtil.github.io/images/TIM截图20180606214422.png" alt="Cocos2d"></p>
+<h2 id="判断是否在播放-包括暂停"><a href="#判断是否在播放-包括暂停" class="headerlink" title="判断是否在播放(包括暂停)"></a>判断是否在播放(包括暂停)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bool isBackgroundMusicPlaying();</span><br></pre></td></tr></table></figure>
+<h2 id="停止播放"><a href="#停止播放" class="headerlink" title="停止播放"></a>停止播放</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//	暂停背景音乐</span><br><span class="line">audio-&gt;stopBackgroundMusic();</span><br><span class="line"></span><br><span class="line">//	暂停音效</span><br><span class="line">audio-&gt;stopEffect();</span><br><span class="line">audio-&gt;stopAllEffects();</span><br></pre></td></tr></table></figure>
+<h2 id="音量控制"><a href="#音量控制" class="headerlink" title="音量控制"></a>音量控制</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">float SimpleAudioEngine::getBackgroundMusicVolume() &#123;</span><br><span class="line">  return 1.0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void SimpleAudioEngine::setBackgroundMusicVolume(float volume) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Effect同理</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Cocos2d/Cocos2d/Cocos2d学习(四)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -362,7 +511,7 @@
 <h2 id="UserDefault"><a href="#UserDefault" class="headerlink" title="UserDefault"></a>UserDefault</h2><p>​    微型数据库, 将数据保存在usedefault.xml文件中</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#define database UserDefault::getInstance()</span><br><span class="line"></span><br><span class="line">//	检测xml文件是否存在</span><br><span class="line">if	(!database-&gt;getBoolForKey(&quot;isExist&quot;))&#123;</span><br><span class="line">	database-&gt;setBoolForKey(&quot;isExist&quot;, true) ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//	简单存取</span><br><span class="line">database-&gt;setIntegerForKey(&quot;value&quot;,	10);  </span><br><span class="line">database-&gt;setStringForKey(&quot;string&quot;,	&quot;hello&quot;);</span><br><span class="line"></span><br><span class="line">//	保存</span><br><span class="line">database-&gt;flush();</span><br></pre></td></tr></table></figure>
 <h2 id="SQLite"><a href="#SQLite" class="headerlink" title="SQLite"></a>SQLite</h2><h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;sqlite3.h&quot;</span><br><span class="line"></span><br><span class="line">//	数据库指针</span><br><span class="line">sqlite3* pdb = NULL;</span><br><span class="line"></span><br><span class="line">//	数据库路径</span><br><span class="line">string path = FileUtils::getInstance()-&gt;getWritablePath() + &quot;save.db&quot;;</span><br><span class="line"></span><br><span class="line">//	根据路径path打开或创建数据库</span><br><span class="line">int	result = sqlite3_open(path.c_str(), &amp;pdb);		//	若成功result等于SQLITE_OK</span><br></pre></td></tr></table></figure>
-<h3 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//	SQLite语句 创建一个主键为ID名字为hero的表</span><br><span class="line">std::string	sql = &quot;create table	hero (ID int primary key not null, name char(10));&quot;;</span><br><span class="line"></span><br><span class="line">//	运行SQLite语句，参数分别为数据库指针，SQLite语句，回调函数，回调参数，错误信息 </span><br><span class="line">result = sqlite3_exec(pdb, sql.c_ str(), NULL, NULL, NULL);</span><br></pre></td></tr></table></figure>
+<h3 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//	SQLite语句 创建一个主键为ID, 名字为hero的表</span><br><span class="line">std::string	sql = &quot;create table	hero (ID int primary key not null, name char(10));&quot;;</span><br><span class="line"></span><br><span class="line">//	运行SQLite语句，参数分别为数据库指针，SQLite语句，回调函数，回调参数，错误信息 </span><br><span class="line">result = sqlite3_exec(pdb, sql.c_ str(), NULL, NULL, NULL);</span><br></pre></td></tr></table></figure>
 <h3 id="增删改"><a href="#增删改" class="headerlink" title="增删改"></a>增删改</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//	向表中插入一条ID为１，name为iori的数据</span><br><span class="line">sql = &quot;insert into hero values(1,&apos;iori&apos;);&quot;;</span><br><span class="line"></span><br><span class="line">//	删除表中id为1的一条数据</span><br><span class="line">sql = &quot;delete from hero where id=1;&quot;;</span><br><span class="line"></span><br><span class="line">//	把id为2的数据name改为hehe</span><br><span class="line">sql = &quot;update hero set name=&apos;hehe&apos; where id=2;&quot;;</span><br></pre></td></tr></table></figure>
 <h3 id="查"><a href="#查" class="headerlink" title="查"></a>查</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">char** re;		//查询结果</span><br><span class="line"></span><br><span class="line">int row, col;	//行、列</span><br><span class="line"></span><br><span class="line">//	根据语句获取表中数据</span><br><span class="line">sqlite3_get_table(pdb, &quot;select * from hero&quot;, &amp;re, &amp;row,  &amp;col, NULL);</span><br><span class="line"></span><br><span class="line">//	遍历存储数组打印数据 </span><br><span class="line">for (int i = 1; i &lt;= row; i++)&#123;</span><br><span class="line">	for (int j = 0; j &lt; col; j++)&#123;</span><br><span class="line">		log(&quot;%s&quot;, re[i*col + j]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//	查询后释放指针  </span><br><span class="line">sqlite3_free_table(re);</span><br></pre></td></tr></table></figure>
 <h1 id="TileMap瓦片地图"><a href="#TileMap瓦片地图" class="headerlink" title="TileMap瓦片地图"></a>TileMap瓦片地图</h1><p>​    大地图由许多小的图块(瓦片)构成</p>
@@ -1270,8 +1419,14 @@
 <h1 id="Layer"><a href="#Layer" class="headerlink" title="Layer"></a>Layer</h1><p>​    实现了触屏代理(比如触摸、点击, 则被触摸或点击的Node需要放在Layer中)</p>
 <h2 id="创建Layer"><a href="#创建Layer" class="headerlink" title="创建Layer"></a>创建Layer</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">auto myLayer = Layer::create();</span><br><span class="line">this-&gt;addChild(myLayer);</span><br><span class="line">myLayer-&gt;setPosition(Vec2::ZERO;</span><br></pre></td></tr></table></figure>
 <h1 id="事件系统"><a href="#事件系统" class="headerlink" title="事件系统"></a>事件系统</h1><p>​    主要由三部分组成: 事件分发器EventDispatcher, 事件监听器EventListener, 事件Event</p>
-<h2 id="事件Event"><a href="#事件Event" class="headerlink" title="事件Event"></a>事件Event</h2><p>​    分为触摸事件、键盘事件、加速计事件、鼠标事件、焦点事件、手柄事件和自定义事件</p>
-<h2 id="事件使用"><a href="#事件使用" class="headerlink" title="事件使用"></a>事件使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">例一: 触摸事件</span><br><span class="line"></span><br><span class="line">1. 创建事件监听器</span><br><span class="line">	EventListenerTouchOneByOne* listener = EventListenerTouchOneByOne::create();	</span><br><span class="line">	//	设置吞没事件(触摸上层时事件不会向下传递)</span><br><span class="line">	listener-&gt;setSwallowTouches(true);</span><br><span class="line"></span><br><span class="line">2. 注册事件</span><br><span class="line">	listener-&gt;onTouchBegan = CC_CALLBACK_2(GameScene::onTouchBegan, this);</span><br><span class="line">	bool GameScene::onTouchBegan(Touch *touch, Event *unused_event) &#123;</span><br><span class="line">		....</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">3. 派发事件</span><br><span class="line">	auto myDispatcher = Director::getInstance()-&gt;getEventDispatcher();</span><br><span class="line">	myDispatcher-&gt;addEventListenerWithSceneGraphPriority(listener, this);</span><br></pre></td></tr></table></figure>
+<h2 id="事件Event"><a href="#事件Event" class="headerlink" title="事件Event"></a>事件Event</h2><h3 id="触摸事件"><a href="#触摸事件" class="headerlink" title="触摸事件"></a>触摸事件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">(1) 单点触摸:</span><br><span class="line">	onTouchBegan		响应触摸初始事件</span><br><span class="line">	onTouchMoved		响应触摸移动事件</span><br><span class="line">	onTouchEnded		响应触摸结束事件</span><br><span class="line">	onTouchCancelled	响应触摸中断事件(如突然来电)</span><br><span class="line"></span><br><span class="line">(2) 多点触摸:</span><br><span class="line">	onTouchesBegan  	响应触摸初始事件</span><br><span class="line">	onTouchesMoved 		响应触摸移动事件</span><br><span class="line">	onTouchesEnded  	响应触摸结束事件</span><br><span class="line">	onTouchesCancelled 	响应触摸中断事件</span><br></pre></td></tr></table></figure>
+<h3 id="键盘事件"><a href="#键盘事件" class="headerlink" title="键盘事件"></a>键盘事件</h3><p>​    通过KeyCode判断按下哪个按钮</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">onKeyPressed 		响应键盘按下事件</span><br><span class="line">onKeyReleased 		响应键盘放开事件</span><br></pre></td></tr></table></figure>
+<p><img src="https://CoderUtil.github.io/images/TIM截图20180606204311.png" alt="Cocos2d"></p>
+<h2 id="鼠标事件"><a href="#鼠标事件" class="headerlink" title="鼠标事件"></a>鼠标事件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">onMouseDown 		响应鼠标点击按下事件</span><br><span class="line">onMouseUp 			响应鼠标点击松开事件</span><br><span class="line">onMouseMove 		响应鼠标移动事件</span><br><span class="line">onMouseScroll 		响应鼠标滚轮事件</span><br></pre></td></tr></table></figure>
+<h3 id="响应加速度计"><a href="#响应加速度计" class="headerlink" title="响应加速度计"></a>响应加速度计</h3><p>​    加速度计: 用于获取设备的方向</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1. 启用加速度计</span><br><span class="line">	Device::setAccelerometerEnabled(true);</span><br><span class="line">	</span><br><span class="line">2. 创建加速度计监听器</span><br><span class="line">	auto listener = EventListenerAcceleration::create(</span><br><span class="line">		[](Acceleration* acceleration, Event* event) &#123;</span><br><span class="line">			//	分别代表加速度计的三个方向</span><br><span class="line">          	log(&quot;X: %f, Y: %f, Z: %f&quot;, acceleration-&gt;x, acceleration-&gt;y, acceleration-&gt;z);</span><br><span class="line">		&#125;</span><br><span class="line">	);</span><br></pre></td></tr></table></figure>
+<h2 id="事件使用"><a href="#事件使用" class="headerlink" title="事件使用"></a>事件使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">例一: 单点触摸事件</span><br><span class="line"></span><br><span class="line">1. 创建事件监听器</span><br><span class="line">	EventListenerTouchOneByOne* listener = EventListenerTouchOneByOne::create();	</span><br><span class="line">	//	设置吞没事件(触摸上层时事件不会向下传递)</span><br><span class="line">	listener-&gt;setSwallowTouches(true);</span><br><span class="line"></span><br><span class="line">2. 注册事件</span><br><span class="line">	//	1. 用CC_CALLBACK_X</span><br><span class="line">	listener-&gt;onTouchBegan = CC_CALLBACK_2(GameScene::onTouchBegan, this);</span><br><span class="line">	bool GameScene::onTouchBegan(Touch *touch, Event *unused_event) &#123;</span><br><span class="line">		....</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	//	2. 用lambda函数</span><br><span class="line">	listener-&gt;onTouchBegan = [](Touch* touch, Event* unused_event) &#123;</span><br><span class="line">      Vec2 pos = touch-&gt;getLocation();</span><br><span class="line">      return true;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">3. 派发事件</span><br><span class="line">	auto myDispatcher = Director::getInstance()-&gt;getEventDispatcher();</span><br><span class="line">	myDispatcher-&gt;addEventListenerWithSceneGraphPriority(listener, mySprite);</span><br><span class="line">	</span><br><span class="line">	//	当需要向多个Sprite注册同一个事件时, 需要clone</span><br><span class="line">	myDispatcher-&gt;addEventListenerWithSceneGraphPriority(listener-&gt;clone(), otherSprite);</span><br><span class="line">	</span><br><span class="line">4. 移除监听器</span><br><span class="line">	//	移除特定监听器</span><br><span class="line">	myDispatcher-&gt;removeEventListener(listener);</span><br><span class="line">	</span><br><span class="line">	//	移除所有监听器</span><br><span class="line">	myDispatcher-&gt;removeAllEventListeners();</span><br></pre></td></tr></table></figure>
 <h2 id="CC-CALLBACK"><a href="#CC-CALLBACK" class="headerlink" title="CC_CALLBACK"></a>CC_CALLBACK</h2><p>​    用于定义回调函数, 比如菜单项的点击回调、Event的回调</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">auto shootLabel = LabelTTF::create(&quot;Shoot&quot;, &quot;Marker Felt.ttf&quot;, 50);</span><br><span class="line">auto shootItem = MenuItemLabel::create(shootLabel);</span><br><span class="line"></span><br><span class="line">shootItem-&gt;setCallback(CC_CALLBACK_1(GameScene::shootMenuCallback, this));</span><br><span class="line"></span><br><span class="line">	CC_CALLBACK_X表示第X个参数(从0开始数)及以后是回调函数的参数.</span><br><span class="line">	第一个参数: 回调函数名</span><br><span class="line">	第二个参数: 一般写this</span><br></pre></td></tr></table></figure>
 <h2 id="获取精灵A当前事件的个数"><a href="#获取精灵A当前事件的个数" class="headerlink" title="获取精灵A当前事件的个数"></a>获取精灵A当前事件的个数</h2><p>​    如果不想A同时执行多个事件, 当获取事件数不为0, 结束回调函数</p>
@@ -1995,210 +2150,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/操作系统/操作系统/第五章 CPU调度/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/操作系统/操作系统/第五章 CPU调度/" itemprop="url">第五章 CPU调度</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-10T16:46:21+08:00">
-                2018-05-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/操作系统/" itemprop="url" rel="index">
-                    <span itemprop="name">操作系统</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="CPU调度"><a href="#CPU调度" class="headerlink" title="CPU调度"></a>CPU调度</h1><h2 id="调度原因"><a href="#调度原因" class="headerlink" title="调度原因"></a>调度原因</h2><p>​    进程分为CPU周期和I/O周期. 进程在执行I/O周期时, CPU处于等待状态, 因此通过CPU调度将CPU的控制权交给另一个进程</p>
-<h2 id="抢占调度与非抢占调度"><a href="#抢占调度与非抢占调度" class="headerlink" title="抢占调度与非抢占调度"></a>抢占调度与非抢占调度</h2><ul>
-<li>抢占调度: 进程会一直占有CPU的控制权直到进程执行完</li>
-<li>非抢占调度: 进程在执行的过程中可以把CPU的控制权交给另一个进程</li>
-</ul>
-<h2 id="调度准则"><a href="#调度准则" class="headerlink" title="调度准则"></a>调度准则</h2><ul>
-<li>吞吐量: 单位时间内完成进程的数量</li>
-</ul>
-<ul>
-<li>周转时间: 进程从进入等待队列到进程提交所需要的时间</li>
-</ul>
-<ul>
-<li>等待时间: 进程进入到等待队列中, 等待被提交所需要的时间</li>
-</ul>
-<ul>
-<li>响应时间: 从提交请求到产生第一次响应的时间</li>
-</ul>
-<h2 id="调度算法"><a href="#调度算法" class="headerlink" title="调度算法"></a>调度算法</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">调度算法</th>
-<th style="text-align:center">是否抢占</th>
-<th style="text-align:center">特点</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">先到先服务调度FCFS</td>
-<td style="text-align:center">否</td>
-<td style="text-align:center">先请求CPU的进程先分配到CPU</td>
-</tr>
-<tr>
-<td style="text-align:center">最短作业调度SJF</td>
-<td style="text-align:center">不确定</td>
-<td style="text-align:center">将CPU分配给具有最短CPU区间的进程. 进程CPU区间长度相同则按FCFS. 拥有最短的平均等待时间</td>
-</tr>
-<tr>
-<td style="text-align:center">优先级调度</td>
-<td style="text-align:center">不确定</td>
-<td style="text-align:center">按照进程的优先级分配CPU</td>
-</tr>
-<tr>
-<td style="text-align:center">轮转法调度RR</td>
-<td style="text-align:center">是</td>
-<td style="text-align:center">在FCFS的基础上, 定义了时间片. 循环执行时间片长度, 若所需时间短于时间片则会提前中断. 适用于分时系统</td>
-</tr>
-<tr>
-<td style="text-align:center">多级队列调度</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">将就绪队列分为多个独立的队列, 每个队列使用不同的调度算法</td>
-</tr>
-<tr>
-<td style="text-align:center">多级反馈队列调度</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">允许进程在队列之间转移的多级队列调度</td>
-</tr>
-</tbody>
-</table>
-<h2 id="Gantt图-计算周转时间-等待时间"><a href="#Gantt图-计算周转时间-等待时间" class="headerlink" title="Gantt图, 计算周转时间, 等待时间"></a>Gantt图, 计算周转时间, 等待时间</h2><p>​    参考习题5.4</p>
-<h2 id="饥饿-无穷阻塞"><a href="#饥饿-无穷阻塞" class="headerlink" title="饥饿(无穷阻塞)"></a>饥饿(无穷阻塞)</h2><p>​    若调度是非抢占的, 通过SJF和优先级调度算法进行调度, 可能会出现后进入队列的进程CPU区间比队列中进程的CPU短, 造成部分所需时间长的进程一直无法执行</p>
-<h2 id="老化"><a href="#老化" class="headerlink" title="老化"></a>老化</h2><p>​    将等待队列中的进程优先级随着时间增加, 以解决饥饿</p>
-<h2 id="负载平衡"><a href="#负载平衡" class="headerlink" title="负载平衡"></a>负载平衡</h2><p>​    将工作负载平均分配到对称多处理器的多个处理器中</p>
-<h2 id="对称多线程-超线程"><a href="#对称多线程-超线程" class="headerlink" title="对称多线程(超线程)"></a>对称多线程(超线程)</h2><p>​    将一个物理处理器划分为多个逻辑处理器    </p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2253,7 +2204,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
