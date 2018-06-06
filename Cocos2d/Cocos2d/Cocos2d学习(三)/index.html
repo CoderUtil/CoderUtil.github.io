@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Code">
 <meta property="og:description" content="Lambda函数12345678//	通过Lambda的形式创建函数funcauto func = [] () &amp;#123;cout &amp;lt;&amp;lt; &amp;quot;Hello World!&amp;quot;;&amp;#125;;	[]: 里面为=表示按值传递参数, 里面为&amp;amp;表示按引用传递参数	(): 传递参数//	调用func(); Button按钮​    一般来说Label按钮用Menu来创建 1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-26T12:14:22.846Z">
+<meta property="og:updated_time" content="2018-06-06T03:20:07.921Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cocos2d学习(三)">
 <meta name="twitter:description" content="Lambda函数12345678//	通过Lambda的形式创建函数funcauto func = [] () &amp;#123;cout &amp;lt;&amp;lt; &amp;quot;Hello World!&amp;quot;;&amp;#125;;	[]: 里面为=表示按值传递参数, 里面为&amp;amp;表示按引用传递参数	(): 传递参数//	调用func(); Button按钮​    一般来说Label按钮用Menu来创建 1">
@@ -97,7 +97,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Pisces',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -359,7 +359,7 @@
 <h1 id="Slider滑动条"><a href="#Slider滑动条" class="headerlink" title="Slider滑动条"></a>Slider滑动条</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">//	创建Slider</span><br><span class="line"></span><br><span class="line">#include &quot;ui/CocosGUI.h&quot;</span><br><span class="line"></span><br><span class="line">auto slider = Slider::create();</span><br><span class="line">slider-&gt;loadBarTexture(&quot;Slider_Background.png&quot;);		//	设置slider背景图片</span><br><span class="line">slider-&gt;loadProgressBarTexture(&quot;Slider_PressBar.png&quot;);	//	设置slider进度图片</span><br><span class="line">slider-&gt;loadSlidBallTextures(&quot;Slider_Normal.png&quot;,&quot;Slider_Pressed.png&quot;,&quot;Slider_Disabled.png&quot;);	//	设置Slider正常情况下, 选中情况下, 禁用情况下的图片</span><br><span class="line"></span><br><span class="line">slider-&gt;addTouchEventListener([&amp;](Ref* sender, Widget::TouchEventType type) &#123;</span><br><span class="line">  switch (type) &#123;</span><br><span class="line">    case ui::Widget::TouchEventType::BEGAN:</span><br><span class="line">    	break;</span><br><span class="line">    case ui::Widget::TouchEventType::ENDED:</span><br><span class="line">    	std::cout &lt;&lt; &quot;Slider clicked&quot; &lt;&lt; std::endl;</span><br><span class="line">    default:</span><br><span class="line">    	break;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">this-&gt;addChild(slider);</span><br></pre></td></tr></table></figure>
 <h1 id="TextField文本框"><a href="#TextField文本框" class="headerlink" title="TextField文本框"></a>TextField文本框</h1><p>​    给用户提供输入框</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//	创建TextField</span><br><span class="line"></span><br><span class="line">#include &quot;ui/CocosGUI.h&quot;</span><br><span class="line"></span><br><span class="line">auto textField = TextField::create(&quot;This is a TextField&quot;, &quot;Arial&quot;, 30);		//	内容, 字体类型, 字体大小</span><br><span class="line"></span><br><span class="line">textField-&gt;addTouchEventListener([&amp;](Ref* sender, Widget::TouchEventType type) &#123;</span><br><span class="line">	std::cout &lt;&lt; &quot;Editing...&quot; &lt;&lt; std::endl;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h1 id="调度器"><a href="#调度器" class="headerlink" title="调度器"></a>调度器</h1><p>​    提供定时事件. 当调度对象不可见或被移出时, 调度器停止</p>
+<h1 id="调度器"><a href="#调度器" class="headerlink" title="调度器"></a>调度器</h1><p>​    对于事件, 除了通过回调函数获得是否被调用外, 还可以设置调度器, 不停地判断是否调用</p>
 <h2 id="默认调度器"><a href="#默认调度器" class="headerlink" title="默认调度器"></a>默认调度器</h2><p>​    每一帧绘制前都调用一次update(), 可重写</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//	开启默认调度器</span><br><span class="line">scheduleUpdate();</span><br><span class="line"></span><br><span class="line">//	关闭默认调度器</span><br><span class="line">unscheduleUpdate();</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">例子:</span><br><span class="line">	//	HelloWorldScene.h</span><br><span class="line">	void update(float dt) override;</span><br><span class="line">	</span><br><span class="line">	//	HelloWorldScene.cpp</span><br><span class="line">	bool HelloWorld::init() &#123;</span><br><span class="line">      ...</span><br><span class="line">      scheduleUpdate();		//	开启默认调度器</span><br><span class="line">      return true;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	void HelloWorld::update(float dt) &#123;</span><br><span class="line">      lob (&quot;update&quot;);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
@@ -600,7 +600,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
 
 
@@ -699,6 +699,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
