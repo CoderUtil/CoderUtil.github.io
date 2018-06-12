@@ -259,6 +259,154 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Cocos2d/Cocos2d/Cocos2d学习(六)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Cocos2d/Cocos2d/Cocos2d学习(六)/" itemprop="url">Cocos2d学习(六)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-11T10:03:27+08:00">
+                2018-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Cocos2d/" itemprop="url" rel="index">
+                    <span itemprop="name">Cocos2d</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <pre><code># 物理引擎
+</code></pre><h2 id="Body刚体"><a href="#Body刚体" class="headerlink" title="Body刚体"></a>Body刚体</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PhysicsBody保存物体的物理属性，包括质量，位置，旋转，速度，阻尼等</span><br></pre></td></tr></table></figure>
+<h2 id="Material材质"><a href="#Material材质" class="headerlink" title="Material材质"></a>Material材质</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">密度：	用于计算质量属性  </span><br><span class="line"></span><br><span class="line">恢复系数：用于计算物体的反弹情况, 取值范围一般在0到1之间.  1是完全弹性碰撞, 0是完全非弹性碰撞</span><br><span class="line"></span><br><span class="line">摩擦系数： 用于物体间相对运动的计算</span><br><span class="line"></span><br><span class="line">刚体默认材质密度为0.1, 恢复系数和摩擦系数均为0.5</span><br></pre></td></tr></table></figure>
+<h2 id="Shapes形状"><a href="#Shapes形状" class="headerlink" title="Shapes形状"></a>Shapes形状</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">type:  描述形状，如圆形，矩形，多边形等</span><br><span class="line"></span><br><span class="line">area:  描述面积，用于和密度一起计算刚体质量。</span><br><span class="line"></span><br><span class="line">mass: 描述物体质量</span><br><span class="line"></span><br><span class="line">tag:   标签, 可为不同Shape设置不同标签, 方便区分</span><br><span class="line"></span><br><span class="line">moment：力矩, 决定了获得特定角加速度所需的转矩</span><br><span class="line"></span><br><span class="line">offset: 偏移, 物体坐标系下重心所在的坐标</span><br></pre></td></tr></table></figure>
+<h3 id="Shape实现类"><a href="#Shape实现类" class="headerlink" title="Shape实现类"></a>Shape实现类</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">PhysicsShape： PhysicsShape的基类</span><br><span class="line">PhsicsShapeBox：实心矩形</span><br><span class="line">PhysicsShapeCircle：实心圆，无法用其实现圆环的效果 </span><br><span class="line">PhysicsShapePolygon：实心的凸多边形</span><br><span class="line">PhsicsShapeEdgeBox：空心矩形</span><br><span class="line">PhysicsShapeEdgePolygon：空心的凸多边形</span><br><span class="line">PhysicsShapeEdgeChain：链形形状可以有效地把许多边缘联结起来</span><br></pre></td></tr></table></figure>
+<h2 id="World世界"><a href="#World世界" class="headerlink" title="World世界"></a>World世界</h2><p>​    PhysicsBody会被添加到一个World的容器里，这也是它们被模拟的场所</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">auto scene = Scene::createWithPhysics();		//	创建包含PhysicsWorld的Scene对象</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/操作系统/操作系统/第九章-虚拟内存/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -665,7 +813,9 @@
             <h1 id="翻转"><a href="#翻转" class="headerlink" title="翻转"></a>翻转</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 将图片水平翻转</span><br><span class="line">	player-&gt;setFlipX(true);</span><br><span class="line"></span><br><span class="line">2. 取消图片翻转(用于翻转后翻转回来)</span><br><span class="line">	player-&gt;setFlipX(false);</span><br></pre></td></tr></table></figure>
 <h1 id="碰撞检测"><a href="#碰撞检测" class="headerlink" title="碰撞检测"></a>碰撞检测</h1><p>​    函数为containsPoint()</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">通过判断两个精灵的Rect是否重叠来判断</span><br><span class="line"></span><br><span class="line">Rect的构造函数有四个参数: x, y, width, height</span><br><span class="line">	x, y: 表示Rect左下角的坐标</span><br><span class="line">	width: 表示Rect宽度</span><br><span class="line">	height: 表示Rect高度</span><br></pre></td></tr></table></figure>
-<h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><h2 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector<t></t></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">1. T必须是继承自Object类型的指针</span><br><span class="line"></span><br><span class="line">2. 没有重载[]</span><br><span class="line"></span><br><span class="line">3. 使用</span><br><span class="line">    Sprite* sprite = Sprite::create(&quot;CloseNormal.png&quot;);</span><br><span class="line">    </span><br><span class="line">    //	创建Vector</span><br><span class="line">    cocos2d::Vector&lt;Sprite*&gt; container;</span><br><span class="line">    </span><br><span class="line">    //	在最后插入</span><br><span class="line">    container.pushback(sprite);</span><br><span class="line">    </span><br><span class="line">    //	在index = 2插入</span><br><span class="line">	container.insert(2, sprite);</span><br><span class="line">	</span><br><span class="line">	//	判断对象是否在容器</span><br><span class="line">	bool isHere = container.contains(sprite);</span><br><span class="line">	</span><br><span class="line">	//	获取index = 1的指针</span><br><span class="line">	Sprite* pSprite = container.at(1);</span><br><span class="line">	</span><br><span class="line">	//	c++的for_in遍历</span><br><span class="line">	for (auto sp:container) &#123;</span><br><span class="line">      </span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	//	c++的迭代器遍历</span><br><span class="line">	cocos2d::Vector&lt;Sprite*&gt;::iterator it = container.begin();</span><br><span class="line">	for (;it != container.end(); it++) &#123;</span><br><span class="line">      </span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	//	遍历中删除元素</span><br><span class="line">	cocos2d::Vector&lt;Sprite*&gt;::iterator it = container.begin();</span><br><span class="line">	for (;it != container.end();) &#123;</span><br><span class="line">      	if (*it == sprite) &#123;</span><br><span class="line">          it = container.erase(it);		//	erase()返回被删除元素的下一位</span><br><span class="line">      	&#125;</span><br><span class="line">      	else &#123;</span><br><span class="line">          it++;</span><br><span class="line">      	&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	//	删除指定元素</span><br><span class="line">	container.eraseObject(sprite);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">   Sprite* Factory::collider(Rect rect) &#123;</span><br><span class="line">       for (auto i : monster) &#123;</span><br><span class="line">           if (rect.containsPoint(i-&gt;getPosition())) &#123;</span><br><span class="line">               return i;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return NULL;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Rect playerRect = player-&gt;getBoundingBox();</span><br><span class="line">Rect attackRectLeft = Rect(playerRect.getMinX() - 30,</span><br><span class="line">						   playerRect.getMinY(),</span><br><span class="line">						   playerRect.getMaxX() - playerRect.getMinX(),</span><br><span class="line">						   playerRect.getMaxY() - playerRect.getMinY());</span><br><span class="line"></span><br><span class="line">Rect attackRectRight = Rect(playerRect.getMinX(), </span><br><span class="line">						    playerRect.getMinY(),</span><br><span class="line">							playerRect.getMaxX() - playerRect.getMinX() + 30, </span><br><span class="line">							playerRect.getMaxY() - playerRect.getMinY());</span><br><span class="line"></span><br><span class="line">Sprite* collision = fac-&gt;collider(toward == &apos;a&apos; ? attackRectLeft : attackRectRight);</span><br><span class="line">if (collision != NULL) &#123;</span><br><span class="line">	//	移除怪物</span><br><span class="line">	fac-&gt;removeMonster(collision);</span><br><span class="line">	//	加血</span><br><span class="line">	hp = (hp + 25 &gt; 100 ? 100 : hp + 25);</span><br><span class="line">	//	增加击杀数</span><br><span class="line">	killNum++;</span><br><span class="line">	//	更新数据库</span><br><span class="line">	setKillNumByDataBase();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><h2 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector<t></t></h2><p>​    是cocos2d::Vector而不是std::vector</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">1. T必须是cocos2d::Ref*类型</span><br><span class="line"></span><br><span class="line">2. 没有重载[]</span><br><span class="line"></span><br><span class="line">3. 使用</span><br><span class="line">    Sprite* sprite = Sprite::create(&quot;CloseNormal.png&quot;);</span><br><span class="line">    </span><br><span class="line">    //	创建Vector</span><br><span class="line">    cocos2d::Vector&lt;Sprite*&gt; container;</span><br><span class="line">    </span><br><span class="line">    //	在最后插入</span><br><span class="line">    container.pushBack(sprite);</span><br><span class="line">    </span><br><span class="line">    //	在index = 2插入</span><br><span class="line">	container.insert(2, sprite);</span><br><span class="line">	</span><br><span class="line">	//	判断对象是否在容器</span><br><span class="line">	bool isHere = container.contains(sprite);</span><br><span class="line">	</span><br><span class="line">	//	获取index = 1的指针</span><br><span class="line">	Sprite* pSprite = container.at(1);</span><br><span class="line">	</span><br><span class="line">	//	c++的for_in遍历</span><br><span class="line">	for (auto sp:container) &#123;</span><br><span class="line">      </span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	//	c++的迭代器遍历</span><br><span class="line">	cocos2d::Vector&lt;Sprite*&gt;::iterator it = container.begin();</span><br><span class="line">	for (;it != container.end(); it++) &#123;</span><br><span class="line">      </span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	//	遍历中删除元素</span><br><span class="line">	cocos2d::Vector&lt;Sprite*&gt;::iterator it = container.begin();</span><br><span class="line">	for (;it != container.end();) &#123;</span><br><span class="line">      	if (*it == sprite) &#123;</span><br><span class="line">          it = container.erase(it);		//	erase()返回被删除元素的下一位</span><br><span class="line">      	&#125;</span><br><span class="line">      	else &#123;</span><br><span class="line">          it++;</span><br><span class="line">      	&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	//	删除指定元素</span><br><span class="line">	container.eraseObject(sprite);</span><br></pre></td></tr></table></figure>
 <h2 id="Map-lt-K-V-gt"><a href="#Map-lt-K-V-gt" class="headerlink" title="Map&lt;K, V&gt;"></a>Map&lt;K, V&gt;</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">1. 没有重载[]</span><br><span class="line"></span><br><span class="line">2. 使用</span><br><span class="line">	Sprite* sprite = Sprite::create(&quot;CloseNormal.png&quot;);</span><br><span class="line">	</span><br><span class="line">	//	创建Map</span><br><span class="line">	cocos2d::Map&lt;string, Sprite*&gt; map;</span><br><span class="line">	</span><br><span class="line">	//	插入键值对</span><br><span class="line">	map.insert(&quot;monster&quot;, sprite);</span><br><span class="line">	</span><br><span class="line">	//	根据Key获取Value</span><br><span class="line">	map.at(&quot;monster&quot;);</span><br></pre></td></tr></table></figure>
 <h2 id="Value"><a href="#Value" class="headerlink" title="Value"></a>Value</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 它是基本类型的封装</span><br><span class="line"></span><br><span class="line">2. 使用</span><br><span class="line">	Value val(10);</span><br><span class="line">	Value val(&quot;hello&quot;);</span><br></pre></td></tr></table></figure>
 <h1 id="本地存储"><a href="#本地存储" class="headerlink" title="本地存储"></a>本地存储</h1><p>​    包括UserDefault和SQLite</p>
@@ -1584,10 +1734,11 @@
 <h2 id="事件Event"><a href="#事件Event" class="headerlink" title="事件Event"></a>事件Event</h2><h3 id="触摸事件"><a href="#触摸事件" class="headerlink" title="触摸事件"></a>触摸事件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">(1) 单点触摸:</span><br><span class="line">	onTouchBegan		响应触摸初始事件</span><br><span class="line">	onTouchMoved		响应触摸移动事件</span><br><span class="line">	onTouchEnded		响应触摸结束事件</span><br><span class="line">	onTouchCancelled	响应触摸中断事件(如突然来电)</span><br><span class="line"></span><br><span class="line">(2) 多点触摸:</span><br><span class="line">	onTouchesBegan  	响应触摸初始事件</span><br><span class="line">	onTouchesMoved 		响应触摸移动事件</span><br><span class="line">	onTouchesEnded  	响应触摸结束事件</span><br><span class="line">	onTouchesCancelled 	响应触摸中断事件</span><br></pre></td></tr></table></figure>
 <h3 id="键盘事件"><a href="#键盘事件" class="headerlink" title="键盘事件"></a>键盘事件</h3><p>​    通过KeyCode判断按下哪个按钮</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">onKeyPressed 		响应键盘按下事件</span><br><span class="line">onKeyReleased 		响应键盘放开事件</span><br></pre></td></tr></table></figure>
-<p><img src="https://CoderUtil.github.io/images/TIM截图20180606204311.png" alt="Cocos2d"></p>
-<h2 id="鼠标事件"><a href="#鼠标事件" class="headerlink" title="鼠标事件"></a>鼠标事件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">onMouseDown 		响应鼠标点击按下事件</span><br><span class="line">onMouseUp 			响应鼠标点击松开事件</span><br><span class="line">onMouseMove 		响应鼠标移动事件</span><br><span class="line">onMouseScroll 		响应鼠标滚轮事件</span><br></pre></td></tr></table></figure>
+<h3 id="实现长按功能"><a href="#实现长按功能" class="headerlink" title="实现长按功能"></a>实现长按功能</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">通过键盘事件设置状态变量，使用调度器，每隔一定时间根据 状态变量更新</span><br><span class="line"></span><br><span class="line">void Thunder::onKeyPressed(EventKeyboard::KeyCode code, Event* event) &#123;</span><br><span class="line">	switch (code) &#123;</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_LEFT_ARROW:</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_CAPITAL_A:</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_A:</span><br><span class="line">		movekey = &apos;A&apos;;</span><br><span class="line">		isMove = true;</span><br><span class="line">		break;</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_CAPITAL_D:</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_D:</span><br><span class="line">		movekey = &apos;D&apos;;</span><br><span class="line">		isMove = true;</span><br><span class="line">		break;</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_SPACE:</span><br><span class="line">		fire();</span><br><span class="line">		break;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void Thunder::onKeyReleased(EventKeyboard::KeyCode code, Event* event) &#123;</span><br><span class="line">	switch (code) &#123;</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_LEFT_ARROW:</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_A:</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_CAPITAL_A:</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_D:</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_CAPITAL_D:</span><br><span class="line">		isMove = false;</span><br><span class="line">		break;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void Thunder::update(float f) &#123;</span><br><span class="line">	// 飞船移动</span><br><span class="line">	if (isMove)</span><br><span class="line">		this-&gt;movePlane(movekey);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">schedule(schedule_selector(Thunder::update), 0.04f, kRepeatForever, 0);</span><br></pre></td></tr></table></figure>
+<h3 id="鼠标事件"><a href="#鼠标事件" class="headerlink" title="鼠标事件"></a>鼠标事件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">onMouseDown 		响应鼠标点击按下事件</span><br><span class="line">onMouseUp 			响应鼠标点击松开事件</span><br><span class="line">onMouseMove 		响应鼠标移动事件</span><br><span class="line">onMouseScroll 		响应鼠标滚轮事件</span><br></pre></td></tr></table></figure>
 <h3 id="响应加速度计"><a href="#响应加速度计" class="headerlink" title="响应加速度计"></a>响应加速度计</h3><p>​    加速度计: 用于获取设备的方向</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1. 启用加速度计</span><br><span class="line">	Device::setAccelerometerEnabled(true);</span><br><span class="line">	</span><br><span class="line">2. 创建加速度计监听器</span><br><span class="line">	auto listener = EventListenerAcceleration::create(</span><br><span class="line">		[](Acceleration* acceleration, Event* event) &#123;</span><br><span class="line">			//	分别代表加速度计的三个方向</span><br><span class="line">          	log(&quot;X: %f, Y: %f, Z: %f&quot;, acceleration-&gt;x, acceleration-&gt;y, acceleration-&gt;z);</span><br><span class="line">		&#125;</span><br><span class="line">	);</span><br></pre></td></tr></table></figure>
+<h3 id="自定义事件"><a href="#自定义事件" class="headerlink" title="自定义事件"></a>自定义事件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">1. 创建自定义事件</span><br><span class="line">	auto meetListener = EventListenerCustom::create(&quot;meet&quot;, CC_CALLBACK_1(Thunder::meet, this));	//	第一个参数是自定义事件的名字(随便起), 第二个参数是回调函数</span><br><span class="line">	_eventDispatcher-&gt;addEventListenerWithFixedPriority(meetListener, 1);		//	自定义事件使用_eventDispatcher而不是Director::getInstance()-&gt;getEventDispatcher();</span><br><span class="line">	void Thunder::meet(EventCustom* event) &#123;</span><br><span class="line">      </span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">2. 消息传递与发布</span><br><span class="line">	EventCustom e(&quot;meet&quot;);		//	自定义事件的名字</span><br><span class="line">	</span><br><span class="line">	int a = 1;</span><br><span class="line">	e-&gt;setUserData(&amp;a);</span><br><span class="line">	</span><br><span class="line">	_eventDispatcher-&gt;dispatchEvent(&amp;e);</span><br></pre></td></tr></table></figure>
 <h2 id="事件使用"><a href="#事件使用" class="headerlink" title="事件使用"></a>事件使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">例一: 单点触摸事件</span><br><span class="line"></span><br><span class="line">1. 创建事件监听器</span><br><span class="line">	EventListenerTouchOneByOne* listener = EventListenerTouchOneByOne::create();	</span><br><span class="line">	//	设置吞没事件(触摸上层时事件不会向下传递)</span><br><span class="line">	listener-&gt;setSwallowTouches(true);</span><br><span class="line"></span><br><span class="line">2. 注册事件</span><br><span class="line">	//	1. 用CC_CALLBACK_X</span><br><span class="line">	listener-&gt;onTouchBegan = CC_CALLBACK_2(GameScene::onTouchBegan, this);</span><br><span class="line">	bool GameScene::onTouchBegan(Touch *touch, Event *unused_event) &#123;</span><br><span class="line">		....</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	//	2. 用lambda函数</span><br><span class="line">	listener-&gt;onTouchBegan = [](Touch* touch, Event* unused_event) &#123;</span><br><span class="line">      Vec2 pos = touch-&gt;getLocation();</span><br><span class="line">      return true;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">3. 派发事件</span><br><span class="line">	auto myDispatcher = Director::getInstance()-&gt;getEventDispatcher();</span><br><span class="line">	myDispatcher-&gt;addEventListenerWithSceneGraphPriority(listener, mySprite);</span><br><span class="line">	</span><br><span class="line">	//	当需要向多个Sprite注册同一个事件时, 需要clone</span><br><span class="line">	myDispatcher-&gt;addEventListenerWithSceneGraphPriority(listener-&gt;clone(), otherSprite);</span><br><span class="line">	</span><br><span class="line">4. 移除监听器</span><br><span class="line">	//	移除特定监听器</span><br><span class="line">	myDispatcher-&gt;removeEventListener(listener);</span><br><span class="line">	</span><br><span class="line">	//	移除所有监听器</span><br><span class="line">	myDispatcher-&gt;removeAllEventListeners();</span><br></pre></td></tr></table></figure>
 <h2 id="CC-CALLBACK"><a href="#CC-CALLBACK" class="headerlink" title="CC_CALLBACK"></a>CC_CALLBACK</h2><p>​    用于定义回调函数, 比如菜单项的点击回调、Event的回调</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">auto shootLabel = LabelTTF::create(&quot;Shoot&quot;, &quot;Marker Felt.ttf&quot;, 50);</span><br><span class="line">auto shootItem = MenuItemLabel::create(shootLabel);</span><br><span class="line"></span><br><span class="line">shootItem-&gt;setCallback(CC_CALLBACK_1(GameScene::shootMenuCallback, this));</span><br><span class="line"></span><br><span class="line">	CC_CALLBACK_X表示第X个参数(从0开始数)及以后是回调函数的参数.</span><br><span class="line">	第一个参数: 回调函数名</span><br><span class="line">	第二个参数: 一般写this</span><br></pre></td></tr></table></figure>
@@ -1607,19 +1758,19 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. 先将B相对于父节点的左下角的坐标转换成世界坐标</span><br><span class="line">	auto location = B-&gt;getParent()-&gt;convertToWorldSpace(B-&gt;getPosition());</span><br><span class="line">	</span><br><span class="line">2. moveTo的参数是世界坐标, 再次转换</span><br><span class="line">	auto moveTo = MoveTo::create(2, A-&gt;getParent()-&gt;convertToNodeSpace(location));</span><br><span class="line">	</span><br><span class="line">不能直接将B-&gt;getPosition()放进MoveTo()中, 因为不能保证两者的父节点是同一个</span><br></pre></td></tr></table></figure>
 <h1 id="Action"><a href="#Action" class="headerlink" title="Action"></a>Action</h1><p>​    用于改变Node的属性. </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1. 移动</span><br><span class="line">	auto moveTo = MoveTo::create(2, Vec(0, 0));		//	两秒内移动到Vec(0, 0)</span><br><span class="line">	</span><br><span class="line">2. 旋转</span><br><span class="line">	auto rotateTo = RotateTo::create(2, 40.0f);	//	两秒内旋转40度</span><br><span class="line">	</span><br><span class="line">3. 缩放</span><br><span class="line">	auto scaleTo = ScaleTo::create(2, 3.0f, 3.0f);	//	两秒内X、Y方向放大3倍</span><br><span class="line">	</span><br><span class="line">4. 淡入淡出</span><br><span class="line">	auto fadeIn = FadeIn::create(2);		//	两秒内淡入</span><br><span class="line">	auto fadeOut = FadeOut::create(2);		//	两秒内淡出</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1. 移动</span><br><span class="line">	auto moveTo = MoveTo::create(2, Vec2(0, 0));		//	两秒内移动到Vec(0, 0)</span><br><span class="line">	</span><br><span class="line">2. 旋转</span><br><span class="line">	auto rotateTo = RotateTo::create(2, 40.0f);	//	两秒内旋转40度</span><br><span class="line">	</span><br><span class="line">3. 缩放</span><br><span class="line">	auto scaleTo = ScaleTo::create(2, 3.0f, 3.0f);	//	两秒内X、Y方向放大3倍</span><br><span class="line">	</span><br><span class="line">4. 淡入淡出</span><br><span class="line">	auto fadeIn = FadeIn::create(2);		//	两秒内淡入</span><br><span class="line">	auto fadeOut = FadeOut::create(2);		//	两秒内淡出</span><br></pre></td></tr></table></figure>
 <h2 id="By和To"><a href="#By和To" class="headerlink" title="By和To"></a>By和To</h2><ul>
 <li>By: 相对于节点是相对的</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">auto mySprite = Sprite::create(&quot;mySprite.png&quot;);</span><br><span class="line">mySprite-&gt;setPosition(Vec(200, 256));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">auto moveBy = MoveBy::create(2, Vec(300, mySprite-&gt;getPositionY()));</span><br><span class="line"></span><br><span class="line">	第一个参数: 移动所用的时间</span><br><span class="line">	第二个参数: 相对于当前位置的位置. 移动后节点位置是(500, 256)</span><br><span class="line">	</span><br><span class="line">mySprite-&gt;runAction(moveBy);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">auto mySprite = Sprite::create(&quot;mySprite.png&quot;);</span><br><span class="line">mySprite-&gt;setPosition(Vec2(200, 256));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">auto moveBy = MoveBy::create(2, Vec2(300, 0));</span><br><span class="line"></span><br><span class="line">	第一个参数: 移动所用的时间</span><br><span class="line">	第二个参数: 相对于当前位置的位置. 移动后节点位置是(500, 256)</span><br><span class="line">	</span><br><span class="line">mySprite-&gt;runAction(moveBy);</span><br></pre></td></tr></table></figure>
 <ul>
 <li>To: 相对于节点是绝对的</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">auto mySprite = Sprite::create(&quot;mySprite.png&quot;);</span><br><span class="line">mySprite-&gt;setPosition(Vec(200, 256));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">auto moveTo = MoveBy::create(2, Vec(300, mySprite-&gt;getPositionY()));</span><br><span class="line"></span><br><span class="line">	第一个参数: 移动所用的时间</span><br><span class="line">	第二个参数: 相对于坐标轴的位置. 移动后节点位置是(300, 256)</span><br><span class="line">	</span><br><span class="line">mySprite-&gt;runAction(moveTo);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">auto mySprite = Sprite::create(&quot;mySprite.png&quot;);</span><br><span class="line">mySprite-&gt;setPosition(Vec2(200, 256));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">auto moveTo = MoveBy::create(2, Vec2(300, mySprite-&gt;getPositionY()));</span><br><span class="line"></span><br><span class="line">	第一个参数: 移动所用的时间</span><br><span class="line">	第二个参数: 相对于坐标轴的位置. 移动后节点位置是(300, 256)</span><br><span class="line">	</span><br><span class="line">mySprite-&gt;runAction(moveTo);</span><br></pre></td></tr></table></figure>
 <h2 id="Sequence和Spawn"><a href="#Sequence和Spawn" class="headerlink" title="Sequence和Spawn"></a>Sequence和Spawn</h2><ul>
 <li>Sequence: 按顺序执行所有动作</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">auto mySprite = Sprite::create(&quot;mySprite.png&quot;);</span><br><span class="line"></span><br><span class="line">auto moveBy = MoveBy::create(2, Vec(300, mySprite-&gt;getPositionY()));</span><br><span class="line"></span><br><span class="line">auto moveTo = MoveBy::create(2, Vec(300, mySprite-&gt;getPositionY()));</span><br><span class="line"></span><br><span class="line">auto callBackMoveBy = CallFunc::create([]()&#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">auto delay = DelayTime::create(2);</span><br><span class="line"></span><br><span class="line">auto seq = Sequence::create(moveBy, delay, moveTo, nullptr);</span><br><span class="line">	以nullptr结束, Sequence里面可以加上回掉函数或者两个Action之间的延迟时间</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">auto mySprite = Sprite::create(&quot;mySprite.png&quot;);</span><br><span class="line"></span><br><span class="line">auto moveBy = MoveBy::create(2, Vec2(300, mySprite-&gt;getPositionY()));</span><br><span class="line"></span><br><span class="line">auto moveTo = MoveBy::create(2, Vec2(300, mySprite-&gt;getPositionY()));</span><br><span class="line"></span><br><span class="line">auto callBackMoveBy = CallFunc::create([]()&#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">auto delay = DelayTime::create(2);</span><br><span class="line"></span><br><span class="line">auto seq = Sequence::create(moveBy, delay, moveTo, nullptr);</span><br><span class="line">	以nullptr结束, Sequence里面可以加上回掉函数或者两个Action之间的延迟时间</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>Spawn: 同时执行所有动作</p>
 <p>​</p>
@@ -1629,8 +1780,19 @@
 <li>CallFunc::create: 允许在Action中调用一个函数</li>
 </ul>
 <h2 id="终止Action"><a href="#终止Action" class="headerlink" title="终止Action"></a>终止Action</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mySprite-&gt;stopAllActions();</span><br></pre></td></tr></table></figure>
-<h1 id="帧动画"><a href="#帧动画" class="headerlink" title="帧动画"></a>帧动画</h1><p>​    帧动画时Animate, 封装了Animation, 然后让精灵执行runAnimation(Animate执行Animation, 就如同光盘和播放器)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">一般将所有图片打包生成一个png文件和plist文件, 加载着两个文件到精灵缓冲区, 然后从中获取每一帧</span><br><span class="line"></span><br><span class="line">//	1. 创建帧动画的SpriteFrame</span><br><span class="line">SpriteFrameCache::getInstance()-&gt;addSpriteFramesWithFile(&quot;level-sheet.plist&quot;);</span><br><span class="line">char totalFrames = 3;</span><br><span class="line">char frameName[20];</span><br><span class="line"></span><br><span class="line">//	2. 创建Animation类</span><br><span class="line">auto mouseAnimation = Animation::create();</span><br><span class="line"></span><br><span class="line">//	3. 手动添加精灵帧</span><br><span class="line">for (int i = 0; i &lt; totalFrames; i++) &#123;</span><br><span class="line">  sprintf(frameName, &quot;gem-mouse-%d.png&quot;, i);</span><br><span class="line">  mouseAnimation-&gt;addSpriteFrame(SpriteFrameCache::getInstance()-&gt;getSpriteFrameByName(frameName));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//	使用第一帧创建精灵</span><br><span class="line">auto mySprite = Sprite::createWithSpriteFrameName(&quot;start-0.png&quot;);</span><br><span class="line"></span><br><span class="line">//	4. 设置每一帧的持续时间. 2.5s内执行14帧</span><br><span class="line">mouseAnimation-&gt;setDelayPerUnit(2.5 / 14.0f);</span><br><span class="line"></span><br><span class="line">//	5. 播放动画结束后不恢复到第一帧</span><br><span class="line">mouseAnimation-&gt;setRestoreOriginFrame(false);</span><br><span class="line"></span><br><span class="line">//	6. 设置动画缓存</span><br><span class="line">AnimationCache::getInstance()-&gt;addAnimation(mouseAnimation, &quot;mouseAnimation&quot;);</span><br><span class="line"></span><br><span class="line">//	7. 创建Animate</span><br><span class="line">Animate* mouseAnimate = Animate::create(AnimationCache::getInstance()-&gt;getAnimation(&quot;mouseAnimation&quot;));</span><br><span class="line"></span><br><span class="line">//	8. 执行动作</span><br><span class="line">mouse-&gt;runAction(Repeat::create(mouseAnimate, 2 / mouseAnimate-&gt;getDuration()));</span><br><span class="line"></span><br><span class="line">//	9. 清理缓存(注意清理顺序: 动画缓存-&gt;精灵缓存-&gt;纹理缓存)</span><br><span class="line">AnimationCache::destroyInstance();</span><br><span class="line">SpriteFrameCache::getInstance()-&gt;removeUnusedSpriteFrames();</span><br><span class="line">TextureCache::getInstance()-&gt;removeUnusedTextures();</span><br></pre></td></tr></table></figure>
+<h1 id="序列帧动画"><a href="#序列帧动画" class="headerlink" title="序列帧动画"></a>序列帧动画</h1><ul>
+<li>Animation: 用于显示的帧动画</li>
+<li>Animate: 执行帧动画的类, 最终由Sprite执行runAnimate</li>
+<li>AnimationCache: 创建好的帧动画可以保存在其中, 方便以后用</li>
+</ul>
+<h2 id="Animation"><a href="#Animation" class="headerlink" title="Animation"></a>Animation</h2><ul>
+<li>SpriteFrame精灵帧:  由多个精灵帧组成帧动画</li>
+<li>delayPerUnit帧间隔时间</li>
+<li>loops播放次数</li>
+</ul>
+<h2 id="通过plist文件创建帧动画"><a href="#通过plist文件创建帧动画" class="headerlink" title="通过plist文件创建帧动画"></a>通过plist文件创建帧动画</h2><p>​    plist文件记录了每一帧在png图片上的位置, 而直接创建则需要自己确定每一帧的位置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">一般将所有图片打包生成一个png文件和plist文件, 加载着两个文件到精灵缓冲区, 然后从中获取每一帧</span><br><span class="line"></span><br><span class="line">//	1. 创建帧动画的SpriteFrame</span><br><span class="line">SpriteFrameCache::getInstance()-&gt;addSpriteFramesWithFile(&quot;level-sheet.plist&quot;);</span><br><span class="line">char totalFrames = 3;</span><br><span class="line">char frameName[20];</span><br><span class="line"></span><br><span class="line">//	2. 创建Animation类</span><br><span class="line">auto mouseAnimation = Animation::create();</span><br><span class="line"></span><br><span class="line">//	3. 手动添加精灵帧</span><br><span class="line">for (int i = 0; i &lt; totalFrames; i++) &#123;</span><br><span class="line">  sprintf(frameName, &quot;gem-mouse-%d.png&quot;, i);</span><br><span class="line">  mouseAnimation-&gt;addSpriteFrame(SpriteFrameCache::getInstance()-&gt;getSpriteFrameByName(frameName));</span><br><span class="line">  </span><br><span class="line">  //	addSpriteFrame既可以通过不断添加SpriteFrame, 也可以一次性加一个Vector&lt;SpriteFrmae*&gt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//	使用第一帧创建精灵</span><br><span class="line">auto mySprite = Sprite::createWithSpriteFrameName(&quot;start-0.png&quot;);</span><br><span class="line"></span><br><span class="line">//	4. 设置每一帧的持续时间. 2.5s内执行14帧</span><br><span class="line">mouseAnimation-&gt;setDelayPerUnit(2.5 / 14.0f);</span><br><span class="line"></span><br><span class="line">//	5. 播放动画结束后不恢复到第一帧</span><br><span class="line">mouseAnimation-&gt;setRestoreOriginFrame(false);</span><br><span class="line"></span><br><span class="line">//	6. 设置动画缓存</span><br><span class="line">AnimationCache::getInstance()-&gt;addAnimation(mouseAnimation, &quot;mouseAnimation&quot;);</span><br><span class="line"></span><br><span class="line">//	7. 创建Animate</span><br><span class="line">Animate* mouseAnimate = Animate::create(AnimationCache::getInstance()-&gt;getAnimation(&quot;mouseAnimation&quot;));</span><br><span class="line"></span><br><span class="line">//	如果帧动画只使用一次, 也可以不使用缓存, 将6-7步改为下面语句</span><br><span class="line">Animate* mouseAnimate = Animate::create(mouseAnimation);</span><br><span class="line"></span><br><span class="line">//	8. 执行动作</span><br><span class="line">mouse-&gt;runAction(Repeat::create(mouseAnimate, 2 / mouseAnimate-&gt;getDuration()));</span><br><span class="line"></span><br><span class="line">//	9. 清理缓存(注意清理顺序: 动画缓存-&gt;精灵缓存-&gt;纹理缓存)</span><br><span class="line">AnimationCache::destroyInstance();</span><br><span class="line">SpriteFrameCache::getInstance()-&gt;removeUnusedSpriteFrames();</span><br><span class="line">TextureCache::getInstance()-&gt;removeUnusedTextures();</span><br></pre></td></tr></table></figure>
+<h2 id="直接创建帧动画"><a href="#直接创建帧动画" class="headerlink" title="直接创建帧动画"></a>直接创建帧动画</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 定义存储动画帧的vector</span><br><span class="line">cocos2d::Vector&lt;SpriteFrame*&gt; attack;</span><br><span class="line"></span><br><span class="line">// 创建一张贴图</span><br><span class="line">auto texture = Director::getInstance()-&gt;getTextureCache()-&gt;addImage(&quot;$lucia_2.png&quot;);</span><br><span class="line"></span><br><span class="line">// 攻击动画</span><br><span class="line">attack.reserve(17);</span><br><span class="line">for (int i = 0; i &lt; 17; i++) &#123;</span><br><span class="line">    auto frame = SpriteFrame::createWithTexture(texture, CC_RECT_PIXELS_TO_POINTS(Rect(113*i,0,113,113)));</span><br><span class="line">    attack.pushBack(frame);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">auto attack_animation = Animation::createWithSpriteFrames(attack, 0.1f);</span><br><span class="line">attack_animation-&gt;setRestoreOriginalFrame(true);</span><br><span class="line">auto attackAnimate = Animate::create(attack_animation);</span><br></pre></td></tr></table></figure>
 <h1 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h1><p>​    如果在函数a中声明了attackAnimate(指针), 想在函数b使用attackAnimate, 必须用retain</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//	retain()用于将指针加1, 因为内存采用计数管理的方式, </span><br><span class="line">//	当计数为0时, 释放. 因此需要用retain()手动加1</span><br><span class="line"></span><br><span class="line">attackAnimate = Animate::create(attackAnimation);</span><br><span class="line">attackAnimate-&gt;retain();</span><br></pre></td></tr></table></figure>
 
@@ -1847,288 +2009,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Matlab/Matlab/Matlab学习(一)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Matlab/Matlab/Matlab学习(一)/" itemprop="url">Matlab学习(一)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-16T12:43:19+08:00">
-                2018-05-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Matlab/" itemprop="url" rel="index">
-                    <span itemprop="name">Matlab</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="分号"><a href="#分号" class="headerlink" title="分号"></a>分号</h1><p>​    语句结束时不使用分号, 将会在命令行中输出当前变量的值(利于调试)</p>
-<h1 id="工作区"><a href="#工作区" class="headerlink" title="工作区"></a>工作区</h1><p>​    所有在同一命令窗口中执行的命令和脚本文件处于同一个工作区间中.</p>
-<ul>
-<li>同一工作区间的变量能相互访问.</li>
-<li>不同函数文件拥有不同的工作区间</li>
-</ul>
-<h2 id="清除工作区"><a href="#清除工作区" class="headerlink" title="清除工作区"></a>清除工作区</h2><p>​    每次修改文件后, 最好clear工作区</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">考虑数组arr大小为10, 修改代码, 使arr大小为1. 但因为arr已经存在于工作区, 所以arr大小不会变</span><br></pre></td></tr></table></figure>
-<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">列与列之间通过空格分隔, 行与行之间通过分号或换行分隔</span><br><span class="line"></span><br><span class="line">数组A: </span><br><span class="line">	[1 2; 3 4; 5 6]</span><br><span class="line">	或</span><br><span class="line">	[1 2</span><br><span class="line">	 3 4</span><br><span class="line">	 5 6]</span><br><span class="line">	</span><br><span class="line">数组B: [1 2 3 4]</span><br><span class="line">	</span><br><span class="line">数组C: [1; 2; 3; 4]</span><br></pre></td></tr></table></figure>
-<h2 id="数组访问"><a href="#数组访问" class="headerlink" title="数组访问"></a>数组访问</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">A(2,1) 	得到3, 下标从1开始计算</span><br><span class="line">B(2)	得到2, 行向量或列向量只需要一个下标</span><br><span class="line">C(3)	得到3</span><br></pre></td></tr></table></figure>
-<h2 id="克隆运算符"><a href="#克隆运算符" class="headerlink" title="克隆运算符"></a>克隆运算符</h2><p>​    快速创建一维数组</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">语法:</span><br><span class="line">	first:incr:last</span><br><span class="line">	</span><br><span class="line">	first: 数组第一个元素的值</span><br><span class="line">	incr: 数组元素之间的递增量</span><br><span class="line">	last: 数组最后一个元素不能超过这个值</span><br><span class="line">	</span><br><span class="line">例子:</span><br><span class="line">	x=1:2:10	=&gt;	x=[1 3 5 7 9]</span><br></pre></td></tr></table></figure>
-<h2 id="初始化数组的函数"><a href="#初始化数组的函数" class="headerlink" title="初始化数组的函数"></a>初始化数组的函数</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">函数</th>
-<th style="text-align:center">作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">zeros(n), zeros(n, m)</td>
-<td style="text-align:center">创建n*n, n*m的元素全为0的矩阵</td>
-</tr>
-<tr>
-<td style="text-align:center">ones(n), ones(n, m)</td>
-<td style="text-align:center">创建n*n, n*m的元素全为1的矩阵</td>
-</tr>
-<tr>
-<td style="text-align:center">eye(n), eye(n, m)</td>
-<td style="text-align:center">创建n*n, n*m的单位矩阵</td>
-</tr>
-<tr>
-<td style="text-align:center">length(arr)</td>
-<td style="text-align:center">返回一维数组长度或二维数组较长的维度</td>
-</tr>
-<tr>
-<td style="text-align:center">size(arr)</td>
-<td style="text-align:center">返回数组的行数和列数, 用数组保存</td>
-</tr>
-</tbody>
-</table>
-<h2 id="产生随机数组"><a href="#产生随机数组" class="headerlink" title="产生随机数组"></a>产生随机数组</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rand 		产生一个随机数</span><br><span class="line">rand(n)		产生n * n的随机数组, 取值在(0,1)</span><br><span class="line">rand(n,m)	产生n * m的随机数组</span><br></pre></td></tr></table></figure>
-<h1 id="三维数组"><a href="#三维数组" class="headerlink" title="三维数组"></a>三维数组</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">第一个逗号表示二维数组的行, 第二格逗号表示二维数组的列, 第三个逗号表示第几个二维数组</span><br><span class="line"></span><br><span class="line">c(:,:,1)=[1 2 3; 4 5 6]</span><br><span class="line"></span><br><span class="line">c(:,:,2)=[7 8 9; 10 11 12]</span><br></pre></td></tr></table></figure>
-<h1 id="input"><a href="#input" class="headerlink" title="input"></a>input</h1><p>​    接收一个输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">val = input(&apos;Input a value&apos;);</span><br></pre></td></tr></table></figure>
-<h1 id="特殊变量"><a href="#特殊变量" class="headerlink" title="特殊变量"></a>特殊变量</h1><table>
-<thead>
-<tr>
-<th style="text-align:center">变量</th>
-<th style="text-align:center">用途</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">pi</td>
-<td style="text-align:center">π</td>
-</tr>
-<tr>
-<td style="text-align:center">i</td>
-<td style="text-align:center">虚数, 比如1 + 4 * i</td>
-</tr>
-<tr>
-<td style="text-align:center">Inf</td>
-<td style="text-align:center">无穷大</td>
-</tr>
-<tr>
-<td style="text-align:center">NaN</td>
-<td style="text-align:center">没有这个数</td>
-</tr>
-</tbody>
-</table>
-<h1 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. disp(), 需要字符串数组作为参数</span><br><span class="line">	str=[&apos;The value of pi=&apos; num2str(pi)]</span><br><span class="line">	disp(str)</span><br><span class="line"></span><br><span class="line">2. fprintf(), 类似C语言</span><br><span class="line">	fprintf(&apos;The value of pi=%d&apos;, pi)</span><br></pre></td></tr></table></figure>
-<h1 id="数组运算和矩阵运算"><a href="#数组运算和矩阵运算" class="headerlink" title="数组运算和矩阵运算"></a>数组运算和矩阵运算</h1><ul>
-<li>数组运算: 矩阵对应位置的元素进行运算</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> A     		 B</span><br><span class="line">1 2	  		5 6 	</span><br><span class="line">3 4   		7 8</span><br><span class="line"></span><br><span class="line">   A*B	</span><br><span class="line"> 1*5 2*6</span><br><span class="line"> 3*7 4*8</span><br></pre></td></tr></table></figure>
-<ul>
-<li>矩阵运算: 参照线性代数中矩阵的运算</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> A     		 B</span><br><span class="line">1 2	  		5 6 	</span><br><span class="line">3 4   		7 8</span><br><span class="line"></span><br><span class="line">   A.*B	</span><br><span class="line"> 1*5+2*7 1*6+2*8</span><br><span class="line"> 3*5+4*7 3*6+4*8</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">运算</th>
-<th style="text-align:center">数组运算</th>
-<th style="text-align:center">矩阵运算</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">加</td>
-<td style="text-align:center">A+B</td>
-<td style="text-align:center">A+B</td>
-</tr>
-<tr>
-<td style="text-align:center">减</td>
-<td style="text-align:center">A-B</td>
-<td style="text-align:center">A-B</td>
-</tr>
-<tr>
-<td style="text-align:center">乘</td>
-<td style="text-align:center">A.*B</td>
-<td style="text-align:center">A*B</td>
-</tr>
-<tr>
-<td style="text-align:center">除</td>
-<td style="text-align:center">A./B</td>
-<td style="text-align:center">A/B</td>
-</tr>
-<tr>
-<td style="text-align:center">指数运算</td>
-<td style="text-align:center">A.^B</td>
-</tr>
-</tbody>
-</table>
-<h1 id="数组与标量的运算"><a href="#数组与标量的运算" class="headerlink" title="数组与标量的运算"></a>数组与标量的运算</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"> A</span><br><span class="line"> 1 2</span><br><span class="line"> 3 4</span><br><span class="line"></span><br><span class="line"> A + 3</span><br><span class="line">1+3 2+3</span><br><span class="line">3+3 4+3</span><br><span class="line"></span><br><span class="line"> A - 3</span><br><span class="line">1-3 2-3</span><br><span class="line">3-3 4-3</span><br><span class="line"></span><br><span class="line"> A .* 3</span><br><span class="line">1*3 2*3</span><br><span class="line">3*3 4*4</span><br><span class="line"></span><br><span class="line"> A ./ 3</span><br><span class="line">1/3 2/3</span><br><span class="line">3/3 4/5</span><br><span class="line"></span><br><span class="line"> A .^ 3</span><br><span class="line">1^3 2^3</span><br><span class="line">3^3 4^3</span><br></pre></td></tr></table></figure>
-<h1 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h1><p><img src="https://CoderUtil.github.io/images/TIM截图20180517213917.png" alt="Matlab"></p>
-<h1 id="计算运行时间"><a href="#计算运行时间" class="headerlink" title="计算运行时间"></a>计算运行时间</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tic;					//	开始计时</span><br><span class="line">	需要计算时间的代码</span><br><span class="line">fprintf(&apos;%d&apos;, toc);		 //	 toc的值为上一个tic到这一步所用的时间</span><br></pre></td></tr></table></figure>
-<h1 id="画图"><a href="#画图" class="headerlink" title="画图"></a>画图</h1><h2 id="基本画图"><a href="#基本画图" class="headerlink" title="基本画图"></a>基本画图</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">x=0:1:10;</span><br><span class="line">y=x.^2-10.*x+15;					//	注意是数组运算而不是矩阵运算</span><br><span class="line">plot(x,y);							//	画出函数</span><br><span class="line">title (&apos;Plot of y=x.^2-10*x+15&apos;);	  //  设置图像标题</span><br><span class="line">xlabel (&apos;x&apos;); 						//	设置横轴和纵轴</span><br><span class="line">ylabel (&apos;y&apos;); </span><br><span class="line">grid on; 							//	图像中出现网格线. grid off去除网格线</span><br></pre></td></tr></table></figure>
-<h2 id="联合画图"><a href="#联合画图" class="headerlink" title="联合画图"></a>联合画图</h2><p>​    在同一坐标内做出多个图像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">x = 0:pi/100:2*pi;</span><br><span class="line">y1=sin(2.*x);</span><br><span class="line">y2=2*cos(2.*x);</span><br><span class="line">plot(x, y1, x, y2);</span><br><span class="line">title (&apos;Plot of y=x.^2-10*x+15&apos;);	 </span><br><span class="line">xlabel (&apos;x&apos;); 						</span><br><span class="line">ylabel (&apos;y&apos;); </span><br><span class="line">grid on; </span><br><span class="line">legend(&apos;f(x)&apos;, &apos;g(x)&apos;);		//	轨迹的标签名, 第一个轨迹叫f(x), 第二个叫g(x)</span><br></pre></td></tr></table></figure>
-<h1 id="关系运算"><a href="#关系运算" class="headerlink" title="关系运算"></a>关系运算</h1><ul>
-<li>同C语言一样, 使用0和1代替布尔变量</li>
-<li>不等号为~=</li>
-</ul>
-<h1 id="逻辑运算"><a href="#逻辑运算" class="headerlink" title="逻辑运算"></a>逻辑运算</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">与 	&amp;</span><br><span class="line">或	|</span><br><span class="line">非	~</span><br><span class="line">异或  xor</span><br></pre></td></tr></table></figure>
-<h1 id="逻辑函数"><a href="#逻辑函数" class="headerlink" title="逻辑函数"></a>逻辑函数</h1><p><img src="https://CoderUtil.github.io/images/TIM截图20180517232320.png" alt="Matlab"></p>
-<h1 id="if"><a href="#if" class="headerlink" title="if"></a>if</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">if 条件</span><br><span class="line">	...</span><br><span class="line">elseif 条件</span><br><span class="line">	...</span><br><span class="line">else</span><br><span class="line">	...</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-<h1 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">switch (switch_expr)</span><br><span class="line">case &#123;case_expr_1, case_expr_2, case_expr_3&#125; </span><br><span class="line">	...</span><br><span class="line">case &#123;case_expr_4, case_expr_5, case_expr_6&#125; </span><br><span class="line">	...</span><br><span class="line">otherwise </span><br><span class="line">	...</span><br><span class="line">end </span><br><span class="line"></span><br><span class="line">例子:</span><br><span class="line">switch (i)</span><br><span class="line">case &#123;1, 2, 3&#125;,</span><br><span class="line">	...</span><br><span class="line">case &#123;4, 5, 6&#125;,</span><br><span class="line">	...</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-<h1 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">while 条件</span><br><span class="line">	...</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-<h1 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">for index = ...</span><br><span class="line">	...</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">例1: </span><br><span class="line">    for i = 1:10	将[1 2 ... 10]列的值依次赋给i</span><br><span class="line">        ...</span><br><span class="line">    end</span><br><span class="line">    </span><br><span class="line">例2:</span><br><span class="line">	for i = [1 2 3; 4 5 6]	将1, 2, 3依次赋给i</span><br><span class="line">		...					4  5  6</span><br><span class="line">		...</span><br><span class="line">	end</span><br></pre></td></tr></table></figure>
-<h1 id="break和continue"><a href="#break和continue" class="headerlink" title="break和continue"></a>break和continue</h1><p>​    和C语言中的一样</p>
-<h1 id="自定义函数"><a href="#自定义函数" class="headerlink" title="自定义函数"></a>自定义函数</h1><ul>
-<li>保存在一个单独的脚本文件中</li>
-<li>按值传递</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function [输出1, 输出2, ...] = 函数名(形参1, 形参2, ...)</span><br><span class="line">	...</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">例子: </span><br><span class="line">	//	dist.m文件</span><br><span class="line">	function distance = dist(x1, y1, x2, y2)</span><br><span class="line">		distance = sqrt((x2 - x1).^2 + (y2 - y1).^2);</span><br><span class="line">		</span><br><span class="line">	//	test_dist.m文件</span><br><span class="line">	x1 = input(&apos;Input x1&apos;);</span><br><span class="line">	y1 = input(&apos;Input y1&apos;);</span><br><span class="line">	x2 = input(&apos;Input x2&apos;);</span><br><span class="line">	y2 = input(&apos;Input y2&apos;);</span><br><span class="line">	result = dist(x1, y1, x2, y2);</span><br><span class="line">	fprintf(&apos;%d&apos;, result);</span><br><span class="line">	</span><br><span class="line">	运行, 在命令行输入test_dist</span><br></pre></td></tr></table></figure>
-<h1 id="子函数"><a href="#子函数" class="headerlink" title="子函数"></a>子函数</h1><p>​    在一个文件中, 可以定义多个函数. 最上面的那个为普通函数, 其余为子函数. 子函数只能被当前文件中的其他函数调用</p>
-<h1 id="矩阵函数"><a href="#矩阵函数" class="headerlink" title="矩阵函数"></a>矩阵函数</h1><h2 id="diag"><a href="#diag" class="headerlink" title="diag"></a>diag</h2><p>​    用于提取矩阵的对角元素或者创建对角矩阵</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1、当参数A是矩阵 1 2 3, 那么diag(A)用于提取对角元素</span><br><span class="line">                4 5 6</span><br><span class="line">                7 8 9</span><br><span class="line"> 	diag(A) = [1 5 9]            </span><br><span class="line">             </span><br><span class="line"></span><br><span class="line">2、当参数A是行向量[1 2 3], diag(A)用于创建对角矩阵</span><br><span class="line">	diag(A) = 1 0 0</span><br><span class="line">	          0 2 0</span><br><span class="line">	          0 0 3</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2183,7 +2063,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
