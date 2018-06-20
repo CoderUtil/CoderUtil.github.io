@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="页 数据库中信息读写的单位  文件 数据库在物理逻辑上由多个文件组成. 文件中存有很多记录  索引 对表中一列或多列的值进行排序的一种数据结构, 有助于加快检索信息.    索引是一种数据结构, 比如哈希索引和B+树索引  1234对于 SELECT * FROM TABLE t WHERE t.id = 100若不使用索引, 需要对整张表进行检索而使用索引, 可以快速进行定位 搜索码 索引对应的">
+<meta name="description" content="页​    数据库中的信息保存在磁盘上, 数据库与磁盘传输的单位就是页 堆文件​    不使用索引的文件     索引​    加快检索信息的一种数据结构, 如哈希索引和B+树索引.  搜索码​    索引值 数据项​    存储在索引文件中的记录  数据项有三种形式:   123451. 保存整条记录(所以是聚簇索引)2. 保存&amp;lt;索引值, 索引对应记录的主键&amp;gt;3. 保存&amp;lt;索引值">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第八章 存储与索引概述">
+<meta property="og:title" content="存储与索引概述">
 <meta property="og:url" content="http://utilcoder.com/数据库/数据库/存储与索引概述/index.html">
 <meta property="og:site_name" content="Code">
-<meta property="og:description" content="页 数据库中信息读写的单位  文件 数据库在物理逻辑上由多个文件组成. 文件中存有很多记录  索引 对表中一列或多列的值进行排序的一种数据结构, 有助于加快检索信息.    索引是一种数据结构, 比如哈希索引和B+树索引  1234对于 SELECT * FROM TABLE t WHERE t.id = 100若不使用索引, 需要对整张表进行检索而使用索引, 可以快速进行定位 搜索码 索引对应的">
+<meta property="og:description" content="页​    数据库中的信息保存在磁盘上, 数据库与磁盘传输的单位就是页 堆文件​    不使用索引的文件     索引​    加快检索信息的一种数据结构, 如哈希索引和B+树索引.  搜索码​    索引值 数据项​    存储在索引文件中的记录  数据项有三种形式:   123451. 保存整条记录(所以是聚簇索引)2. 保存&amp;lt;索引值, 索引对应记录的主键&amp;gt;3. 保存&amp;lt;索引值">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-07T13:18:01.009Z">
+<meta property="og:updated_time" content="2018-06-20T01:16:31.768Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第八章 存储与索引概述">
-<meta name="twitter:description" content="页 数据库中信息读写的单位  文件 数据库在物理逻辑上由多个文件组成. 文件中存有很多记录  索引 对表中一列或多列的值进行排序的一种数据结构, 有助于加快检索信息.    索引是一种数据结构, 比如哈希索引和B+树索引  1234对于 SELECT * FROM TABLE t WHERE t.id = 100若不使用索引, 需要对整张表进行检索而使用索引, 可以快速进行定位 搜索码 索引对应的">
+<meta name="twitter:title" content="存储与索引概述">
+<meta name="twitter:description" content="页​    数据库中的信息保存在磁盘上, 数据库与磁盘传输的单位就是页 堆文件​    不使用索引的文件     索引​    加快检索信息的一种数据结构, 如哈希索引和B+树索引.  搜索码​    索引值 数据项​    存储在索引文件中的记录  数据项有三种形式:   123451. 保存整条记录(所以是聚簇索引)2. 保存&amp;lt;索引值, 索引对应记录的主键&amp;gt;3. 保存&amp;lt;索引值">
 
 
 
@@ -125,7 +125,7 @@
 
 
 
-  <title>第八章 存储与索引概述 | Code</title>
+  <title>存储与索引概述 | Code</title>
   
 
 
@@ -279,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">第八章 存储与索引概述</h1>
+          <h1 class="post-title" itemprop="name headline">存储与索引概述</h1>
         
 
         <div class="post-meta">
@@ -351,41 +351,31 @@
       
 
       
-        <h2 id="页"><a href="#页" class="headerlink" title="页"></a>页</h2><ul>
-<li>数据库中信息读写的单位</li>
-</ul>
-<h2 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h2><ul>
-<li>数据库在物理逻辑上由多个文件组成. 文件中存有很多记录</li>
-</ul>
-<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><ul>
-<li>对表中一列或多列的值进行排序的一种数据结构, 有助于加快检索信息. </li>
-</ul>
-<ul>
-<li>索引是一种数据结构, 比如哈希索引和B+树索引</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">对于 SELECT * FROM TABLE t WHERE t.id = 100</span><br><span class="line"></span><br><span class="line">若不使用索引, 需要对整张表进行检索</span><br><span class="line">而使用索引, 可以快速进行定位</span><br></pre></td></tr></table></figure>
-<h2 id="搜索码"><a href="#搜索码" class="headerlink" title="搜索码"></a>搜索码</h2><ul>
-<li>索引对应的字段或字段集合的名称</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">比如对字段age进行索引, 则搜索码为age. 按&lt;time, age&gt;进行索引, 则搜索码为&lt;time, age&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="数据项"><a href="#数据项" class="headerlink" title="数据项"></a>数据项</h2><ul>
-<li>存储在索引文件中的记录</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">比如记录在表中为:</span><br><span class="line">| id | name |</span><br><span class="line">| 1  | Tom  |</span><br><span class="line">| 2  | Marry|</span><br><span class="line">| 3  | Jim  |</span><br><span class="line"></span><br><span class="line">以结构为B+树的id索引的第一种形式为例:</span><br><span class="line">	[2]</span><br><span class="line">    /  \</span><br><span class="line">  [1]  [3]</span><br><span class="line">  </span><br><span class="line">这个称为数据项</span><br></pre></td></tr></table></figure>
+        <h2 id="页"><a href="#页" class="headerlink" title="页"></a>页</h2><p>​    数据库中的信息保存在磁盘上, 数据库与磁盘传输的单位就是页</p>
+<h2 id="堆文件"><a href="#堆文件" class="headerlink" title="堆文件"></a>堆文件</h2><p>​    不使用索引的文件    </p>
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><p>​    加快检索信息的一种数据结构, 如哈希索引和B+树索引. </p>
+<h2 id="搜索码"><a href="#搜索码" class="headerlink" title="搜索码"></a>搜索码</h2><p>​    索引值</p>
+<h2 id="数据项"><a href="#数据项" class="headerlink" title="数据项"></a>数据项</h2><p>​    存储在索引文件中的记录</p>
 <ul>
 <li>数据项有三种形式: </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">搜索码为k的数据项记作k*</span><br><span class="line"></span><br><span class="line">1. 数据项为k*</span><br><span class="line"></span><br><span class="line">2. 数据项为&lt;k, rid&gt;对, rid是搜索码为k的记录的id</span><br><span class="line"></span><br><span class="line">3. 数据项为&lt;k, rid-list&gt;对, rid-list是搜索码为k的所有记录的id的链表</span><br></pre></td></tr></table></figure>
-<h2 id="唯一索引"><a href="#唯一索引" class="headerlink" title="唯一索引"></a>唯一索引</h2><p>​    索引字段没有重复的字段值</p>
-<h2 id="主索引与次级索引"><a href="#主索引与次级索引" class="headerlink" title="主索引与次级索引"></a>主索引与次级索引</h2><p>​    主索引: 主键字段的索引. 比如字段id为主键, 它的索引为主索引</p>
-<p>​    次级索引: 不包含主键字段的索引</p>
-<h2 id="聚簇索引与非聚簇索引"><a href="#聚簇索引与非聚簇索引" class="headerlink" title="聚簇索引与非聚簇索引"></a>聚簇索引与非聚簇索引</h2><ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 保存整条记录(所以是聚簇索引)</span><br><span class="line"></span><br><span class="line">2. 保存&lt;索引值, 索引对应记录的主键&gt;</span><br><span class="line"></span><br><span class="line">3. 保存&lt;索引值, 索引对应记录的主键的链表&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="聚簇索引、非聚簇索引"><a href="#聚簇索引、非聚簇索引" class="headerlink" title="聚簇索引、非聚簇索引"></a>聚簇索引、非聚簇索引</h2><ul>
 <li>聚簇索引: 索引的数据项顺序与记录的顺序相同</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">比如记录在表中为:</span><br><span class="line">| id | name |</span><br><span class="line">| 2  | Marry|</span><br><span class="line">| 1  | Tom  |</span><br><span class="line">| 3  | Jim  |</span><br><span class="line"></span><br><span class="line">以结构为B+树的id索引的第一种形式为例:</span><br><span class="line">	[2]</span><br><span class="line">    /  \</span><br><span class="line">  [1]  [3]</span><br></pre></td></tr></table></figure>
 <ul>
-<li>非聚簇索引: 索引的数据项顺序与记录的顺序不同</li>
+<li>非聚簇索引: 索引的数据项顺序与记录的顺序不同(哈希和B+树)</li>
 </ul>
+<h2 id="主索引与次级索引"><a href="#主索引与次级索引" class="headerlink" title="主索引与次级索引"></a>主索引与次级索引</h2><ul>
+<li>主索引: 使用包含主键的码作为索引(所以是唯一索引)</li>
+</ul>
+<ul>
+<li>次级索引: 索引不包含主键</li>
+</ul>
+<h2 id="唯一索引"><a href="#唯一索引" class="headerlink" title="唯一索引"></a>唯一索引</h2><p>​    所有数据项没有重复的索引值, 则该索引称为唯一索引</p>
+<h2 id="哈希索引"><a href="#哈希索引" class="headerlink" title="哈希索引"></a>哈希索引</h2><p>​    通过哈希函数, 在索引文件中快速找到索引对应的记录</p>
+<h2 id="B-树索引"><a href="#B-树索引" class="headerlink" title="B+树索引"></a>B+树索引</h2><p>​    将索引文件按B+树来排序</p>
+<h2 id="I-O代价"><a href="#I-O代价" class="headerlink" title="I/O代价"></a>I/O代价</h2><p>​    见P219 图8.4(缩写字母的含义在P214)</p>
 
       
     </div>
@@ -503,7 +493,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">41</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -579,7 +569,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#页"><span class="nav-number">1.</span> <span class="nav-text">页</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件"><span class="nav-number">2.</span> <span class="nav-text">文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引"><span class="nav-number">3.</span> <span class="nav-text">索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搜索码"><span class="nav-number">4.</span> <span class="nav-text">搜索码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据项"><span class="nav-number">5.</span> <span class="nav-text">数据项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#唯一索引"><span class="nav-number">6.</span> <span class="nav-text">唯一索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主索引与次级索引"><span class="nav-number">7.</span> <span class="nav-text">主索引与次级索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#聚簇索引与非聚簇索引"><span class="nav-number">8.</span> <span class="nav-text">聚簇索引与非聚簇索引</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#页"><span class="nav-number">1.</span> <span class="nav-text">页</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#堆文件"><span class="nav-number">2.</span> <span class="nav-text">堆文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引"><span class="nav-number">3.</span> <span class="nav-text">索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搜索码"><span class="nav-number">4.</span> <span class="nav-text">搜索码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据项"><span class="nav-number">5.</span> <span class="nav-text">数据项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#聚簇索引、非聚簇索引"><span class="nav-number">6.</span> <span class="nav-text">聚簇索引、非聚簇索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主索引与次级索引"><span class="nav-number">7.</span> <span class="nav-text">主索引与次级索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#唯一索引"><span class="nav-number">8.</span> <span class="nav-text">唯一索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#哈希索引"><span class="nav-number">9.</span> <span class="nav-text">哈希索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-树索引"><span class="nav-number">10.</span> <span class="nav-text">B+树索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#I-O代价"><span class="nav-number">11.</span> <span class="nav-text">I/O代价</span></a></li></ol></div>
             
 
           </div>
