@@ -259,6 +259,479 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/操作系统/操作系统/第四章 线程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/操作系统/操作系统/第四章 线程/" itemprop="url">第四章 线程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-10T16:17:26+08:00">
+                2018-05-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/操作系统/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><ul>
+<li>共享堆内存和全局变量</li>
+</ul>
+<h2 id="线程模型"><a href="#线程模型" class="headerlink" title="线程模型"></a>线程模型</h2><ul>
+<li>根据是否受到内核的干预分为: 用户线程和内核线程</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">线程模型</th>
+<th style="text-align:center">含义</th>
+<th style="text-align:center">优点</th>
+<th style="text-align:center">缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">多对一</td>
+<td style="text-align:center">多个用户线程映射一个内核线程</td>
+<td style="text-align:center">内核线程少, 减少开销</td>
+<td style="text-align:center">只有一个内核线程, 所以用户线程不能并发执行</td>
+</tr>
+<tr>
+<td style="text-align:center">一对一</td>
+<td style="text-align:center">一个用户线程映射一个内核线程</td>
+<td style="text-align:center">多个用户线程能并发执行</td>
+<td style="text-align:center">内核线程多, 开销大</td>
+</tr>
+<tr>
+<td style="text-align:center">多对多</td>
+<td style="text-align:center">多个用户线程映射多个内核线程</td>
+<td style="text-align:center">多个用户线程能并发执行. 且内核线程数量相对固定, 开销不大</td>
+</tr>
+</tbody>
+</table>
+<h2 id="线程取消"><a href="#线程取消" class="headerlink" title="线程取消"></a>线程取消</h2><p>​    在线程完成前终止线程</p>
+<ul>
+<li>异步取消: 立即终止目标线程</li>
+<li>延迟取消: 不断检查目标线程是否应该取消 </li>
+</ul>
+<h2 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h2><p>​    在进程开始时创建一定数量的线程, 并放入到池中等待工作. 当服务器收到请求时, 唤醒池中的一个线程并传递给要请求. 当请求完成, 将线程放回线程池</p>
+<h1 id="POSIX线程库"><a href="#POSIX线程库" class="headerlink" title="POSIX线程库"></a>POSIX线程库</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;pthread.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line"></span><br><span class="line">#define MAX_SIZE 10</span><br><span class="line"></span><br><span class="line">int arr[MAX_SIZE] = &#123;0&#125;;        //  线程中的资源是共享的</span><br><span class="line"></span><br><span class="line">long fibonacci(int num) &#123;</span><br><span class="line">    if (num == 0)</span><br><span class="line">        return 0;</span><br><span class="line">    if (num == 1) </span><br><span class="line">        arr[num - 1] = 0;</span><br><span class="line">    else if (num == 2)</span><br><span class="line">        arr[num - 1] = 1;</span><br><span class="line">    else </span><br><span class="line">        arr[num - 1] = fibonacci(num - 1) + fibonacci(num - 2);</span><br><span class="line">    return arr[num - 1];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void* runner(void* param) &#123;     //  线程通过runner函数执行</span><br><span class="line">    int num = atoi(param);</span><br><span class="line">    fibonacci(num);</span><br><span class="line">    pthread_exit(0);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char* argv[]) &#123;</span><br><span class="line">    pthread_t tid;              //  子线程的id</span><br><span class="line">    pthread_attr_t attr;        //  子线程的属性</span><br><span class="line"></span><br><span class="line">    if (argc != 2) &#123;</span><br><span class="line">        fprintf(stderr, &quot;usage: a.out &lt;integer value&gt;\n&quot;);</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (atoi(argv[1]) &lt; 0) &#123;</span><br><span class="line">        fprintf(stderr, &quot;%d should &gt;= 0\n&quot;, atoi(argv[1]));</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (atoi(argv[1]) &gt; 10) &#123;</span><br><span class="line">        fprintf(stderr, &quot;%d shouldn&apos;t &gt; 10\n&quot;, atoi(argv[1]));</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    pthread_attr_init(&amp;attr);   //  设置线程的属性</span><br><span class="line"></span><br><span class="line">    pthread_create(&amp;tid, &amp;attr, runner, argv[1]);  //  创建线程</span><br><span class="line"></span><br><span class="line">    pthread_join(tid, NULL);    //  父线程等待子线程执行完后才执行</span><br><span class="line"></span><br><span class="line">    for (int i = 0; i &lt; atoi(argv[1]); i++) &#123;</span><br><span class="line">        printf(&quot;%d &quot;, arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;\n&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/环境配置/环境配置/Eclipse的使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/环境配置/环境配置/Eclipse的使用/" itemprop="url">Eclipse的使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-03T22:36:58+08:00">
+                2018-05-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/环境配置/" itemprop="url" rel="index">
+                    <span itemprop="name">环境配置</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Eclipse的使用"><a href="#Eclipse的使用" class="headerlink" title="Eclipse的使用"></a>Eclipse的使用</h1><p>​    项目可以含多个main函数. 运行特定文件的main函数, 只需要在对应文件中点击Runner按钮</p>
+<h1 id="Eclipse中引入第三方jar包"><a href="#Eclipse中引入第三方jar包" class="headerlink" title="Eclipse中引入第三方jar包"></a>Eclipse中引入第三方jar包</h1><p>​    详情见E:/大二下/软件工程实训/第二周/eclipse使用手册</p>
+<h1 id="Eclipse配置代码补全"><a href="#Eclipse配置代码补全" class="headerlink" title="Eclipse配置代码补全"></a>Eclipse配置代码补全</h1><p>​    详情见E:/大二下/软件工程实训/第二周/eclipse使用手册</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/汇编/汇编/x86指令汇总/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/汇编/汇编/x86指令汇总/" itemprop="url">x86指令汇总</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-24T16:02:18+08:00">
+                2018-04-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/汇编/" itemprop="url" rel="index">
+                    <span itemprop="name">汇编</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="数据传送类"><a href="#数据传送类" class="headerlink" title="数据传送类"></a>数据传送类</h1><h2 id="movsx"><a href="#movsx" class="headerlink" title="movsx"></a>movsx</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">将源操作数符号扩展并传送到目的操作数中</span><br><span class="line"></span><br><span class="line">MOVSX AX，BL</span><br><span class="line">执行前(BL)=0F0H，则执行后(AX)=0FFF0H</span><br></pre></td></tr></table></figure>
+<h2 id="movzx"><a href="#movzx" class="headerlink" title="movzx"></a>movzx</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">将源操作数零扩展并传送到目的操作数中</span><br><span class="line"></span><br><span class="line">MOVZX AX，BL</span><br><span class="line">执行前(BL)=0F0H，则执行后(AX)=00F0H</span><br></pre></td></tr></table></figure>
+<h2 id="xchg"><a href="#xchg" class="headerlink" title="xchg"></a>xchg</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">交换源和目的操作数的值</span><br><span class="line"></span><br><span class="line">XCHG AX，BX</span><br><span class="line">若执行前(AX)=1000H，(BX)=2000H</span><br><span class="line">则执行后(AX)=2000H，(BX)=1000H</span><br></pre></td></tr></table></figure>
+<h2 id="xlat"><a href="#xlat" class="headerlink" title="xlat"></a>xlat</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">完成一次查表的功能，将数据段中地址为（BX）+（AL）中的一个字节传送到AL中</span><br><span class="line"></span><br><span class="line">指令用法: </span><br><span class="line">	1. 建立字节表</span><br><span class="line">	2. bx &lt;- 字节表的首地址</span><br><span class="line">	3. al &lt;- 需要传送的字节在表中的序号</span><br><span class="line">	</span><br><span class="line">例子:</span><br><span class="line">	data segments</span><br><span class="line">		SQUARE_TABLE DB 00H，01H，04H，09H，10H，19H，24H，31H，40H，51H		//	建立乘法表</span><br><span class="line">	data ends</span><br><span class="line">	</span><br><span class="line">	code segments</span><br><span class="line">		MOV BX，OFFSET SQUARE_TABLE</span><br><span class="line">		MOV AL，4		//	字节在表中的序号, 从0开始</span><br><span class="line">		xlat 			//	结果al = 10H</span><br><span class="line">	code ends</span><br></pre></td></tr></table></figure>
+<h2 id="lea"><a href="#lea" class="headerlink" title="lea"></a>lea</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">将地址偏移量传送到目的寄存器中. 相当于mov bx, offset [bx+di+0010H]</span><br><span class="line"></span><br><span class="line">LEA BX，[BX+DI+0010H]		//	执行前(BX) = 1000H，(DI) = 0100H. 执行后(BX) = 1000H + 0100H + 0100H</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/环境配置/环境配置/Eclipse使用junit 5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1678,527 +2151,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/软件工程实训/软件工程实训/studyreport-VI/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/软件工程实训/软件工程实训/studyreport-VI/" itemprop="url">VI学习报告</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-13T16:03:00+08:00">
-                2018-04-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/软件工程实训/" itemprop="url" rel="index">
-                    <span itemprop="name">软件工程实训</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Vi自学报告"><a href="#Vi自学报告" class="headerlink" title="Vi自学报告"></a>Vi自学报告</h1><h2 id="升级到Vi-full版本"><a href="#升级到Vi-full版本" class="headerlink" title="升级到Vi full版本"></a>升级到Vi full版本</h2><ul>
-<li>Ubuntu自带的是tiny版本. tiny版本下, 编辑模式Backspace无法删除内容, 上下左右会出现字母</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$sudo apt-get remove vim-common</span><br><span class="line"></span><br><span class="line">$sudo apt-get install vim</span><br></pre></td></tr></table></figure>
-<h2 id="Vi的模式"><a href="#Vi的模式" class="headerlink" title="Vi的模式"></a>Vi的模式</h2><p>​    粗略地将Vi分成三种模式: 命令行模式、插入模式、底行模式</p>
-<p>​        命令行模式: 支持一些特殊的命令</p>
-<p>​        插入模式: 用于编辑文本, 支持移动光标, 插入, 删除</p>
-<p>​        底行模式: 支持底行模式命令</p>
-<p>​    模式之间的切换</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">1. 命令行模式切换到插入模式:</span><br><span class="line">	按&quot;i&quot;		//	切换到插入模式, 且光标位于当前的位置</span><br><span class="line"></span><br><span class="line">    按&quot;a&quot;		//	切换到插入模式, 且光标位于当前位置的下一个位置</span><br><span class="line"></span><br><span class="line">    按&quot;o&quot;		//	切换到插入模式, 且光标位于新的一行的行首</span><br><span class="line">    </span><br><span class="line">2. 插入模式切换到命令行模式</span><br><span class="line">	按&quot;Esc&quot;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">3. 命令行模式切换到底行模式:</span><br><span class="line">	按 &quot;:&quot;</span><br><span class="line">	</span><br><span class="line">4. 底行模式切换到命令模式:</span><br><span class="line">	按&quot;Esc&quot;</span><br></pre></td></tr></table></figure>
-<h2 id="Vi的基本操作"><a href="#Vi的基本操作" class="headerlink" title="Vi的基本操作"></a>Vi的基本操作</h2><ol>
-<li><p>进入Vi: 在终端中, 输入vi + 文件名</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi Test</span><br></pre></td></tr></table></figure>
-<p>注意: 进入Vi后处于命令行模式, 需要按”i”, 先切换到插入模式才能编辑</p>
-<p>​</p>
-</li>
-</ol>
-<ol>
-<li><p>退出Vi及保存文件: 先按”:”切换到地方模式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">:wq		//	存盘并退出Vi</span><br><span class="line"></span><br><span class="line">:q!		//	不存盘直接退出Vi</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="命令行模式下的操作"><a href="#命令行模式下的操作" class="headerlink" title="命令行模式下的操作"></a>命令行模式下的操作</h2><ul>
-<li>翻页</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">按ctrl + b	向文件首翻一屏</span><br><span class="line"></span><br><span class="line">按ctrl + f	向文件尾翻一屏</span><br><span class="line"></span><br><span class="line">按ctrl + u	向文件首翻半屏</span><br><span class="line"></span><br><span class="line">按ctrl + d	向文件尾翻半屏</span><br></pre></td></tr></table></figure>
-<ul>
-<li>移动光标</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">按 G(ctrl + g)		光标移动到文章末尾</span><br><span class="line"></span><br><span class="line">按 $(ctrl + 4)		光标移动到当前行的行尾</span><br><span class="line"></span><br><span class="line">按 ^(ctrl + 6)		光标移动到当前行的行首</span><br><span class="line"></span><br><span class="line">按 #l				光标移动到当前行第#个的位置(注意, #不是真正的#, 它代表任意数字)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>删除(主要是通过在插入模式下, 使用Backspace键删除)</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">按 D(ctrl + d)		删除当前行从光标开始的所有内容</span><br><span class="line"></span><br><span class="line">按 dd				删除当前行的内容</span><br><span class="line"></span><br><span class="line">按 #dd				删除从当前行开始#行的内容</span><br></pre></td></tr></table></figure>
-<ul>
-<li>复制</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">按 yw				将当前行从光标开始的所有内容复制到缓冲区</span><br><span class="line"></span><br><span class="line">按 yy				将当前行复制到缓冲区</span><br><span class="line"></span><br><span class="line">按 #yy				将从当前行开始的#行内容复制到缓冲区</span><br></pre></td></tr></table></figure>
-<ul>
-<li>粘贴</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">按 p					将缓冲区的内容粘贴到光标处</span><br></pre></td></tr></table></figure>
-<ul>
-<li>替换</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">按 r	再输入一个字符						替换光标所在处的字符</span><br><span class="line"></span><br><span class="line">按 R(ctrl + r) 再输入一串字符				替换光标所在行的内容</span><br></pre></td></tr></table></figure>
-<ul>
-<li>撤回</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">按 u						撤回一次操作(一次指一条命令模式指令, 或命令模式切换到插入模式后更新的所有内容)</span><br></pre></td></tr></table></figure>
-<h1 id="底行模式下的操作"><a href="#底行模式下的操作" class="headerlink" title="底行模式下的操作"></a>底行模式下的操作</h1><ul>
-<li>列出行号</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">输入 set nu					在每一行的前面列出行号</span><br></pre></td></tr></table></figure>
-<ul>
-<li>跳到某行</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">输入 #						跳到第n行</span><br></pre></td></tr></table></figure>
-<ul>
-<li>保存文件</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">输入 w [文件名]					以[文件名]保存文件</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/计算机组成与原理/计算机组成与原理/编写MIPS指令的笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/计算机组成与原理/计算机组成与原理/编写MIPS指令的笔记/" itemprop="url">编写MIPS指令的笔记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-09T10:52:55+08:00">
-                2018-04-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机组成与原理/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机组成与原理</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">MIPS程序结构:</span><br><span class="line">    .text               # 代码段</span><br><span class="line">    .globl  main        # 声明主程序入口为main</span><br><span class="line">    main:</span><br><span class="line">        ....</span><br><span class="line">        li  $v0, 10     # 退出</span><br><span class="line">        syscall</span><br><span class="line"></span><br><span class="line">    .data               # 数据段</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">(1) 初始化:     将$s0初始化为n</span><br><span class="line">    mov     $s0,    $zero   </span><br><span class="line">    addi    $s0,    $s0,    n   </span><br><span class="line">    # 不支持mov $s0, n的写法</span><br><span class="line"></span><br><span class="line">(2) 乘法:       将$v0乘4</span><br><span class="line">    sll     $v0,    $v0,    2</span><br><span class="line"></span><br><span class="line">(3) 从数组中取元素: 假设$s0保存了元素的索引, arr为数组名</span><br><span class="line">    la      $v0,    arr         #   $v0 = 数组arr的首地址</span><br><span class="line">    sll     $s0,    $s0,    2   #   $s0 *= 4, 每个数组元素占4个字节</span><br><span class="line">    add     $s0,    $s0,    $t0 #   $s0保存元素的地址</span><br><span class="line">    sw      $v1,    0($s0)      #   $v1 = 元素的值  </span><br><span class="line">    # 不支持sll $s0, $s0, 2加上sw  $v1,  $s0($t0)的写法</span><br><span class="line"></span><br><span class="line">(4) if语句:     如果$s0 &lt; $s1, 则执行L0, 反之执行L1 (思考不含等于号的条件)</span><br><span class="line">    slt     $s2,    $s0,    $s1 #   如果$s0 &lt; $s1, $s2 = 1; 反之$s2 = 0. $s2的值不用初始化</span><br><span class="line">    beq     $s2,    1,      L0 </span><br><span class="line">    L1:</span><br><span class="line">        ...</span><br><span class="line">        j   L2</span><br><span class="line">    L0:</span><br><span class="line">        ...</span><br><span class="line">    L2:</span><br><span class="line">        ...</span><br><span class="line"></span><br><span class="line">            如果$s0 &lt;= $s1, 则执行L0, 反之执行L1</span><br><span class="line">    slt     $s2,    $s1,    $s0 #   如果$s1 &lt; $s0, $s2 = 1</span><br><span class="line">    beq     $s2,    1,      L1 </span><br><span class="line">    L0:</span><br><span class="line">        ...</span><br><span class="line">        j   L2:</span><br><span class="line">    L1:</span><br><span class="line">        ...</span><br><span class="line">    L2:</span><br><span class="line">        ...</span><br><span class="line"></span><br><span class="line">(5) 循环语句:    如果$s0 &lt; 10, 则循环继续 (思考使循环继续的条件)</span><br><span class="line">Loop:</span><br><span class="line">    ...</span><br><span class="line">    slti    $s2,    $s0,    10</span><br><span class="line">    beq     $s2,    0,      Loop</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/数据库/数据库/第五章 SQL查询/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/数据库/数据库/第五章 SQL查询/" itemprop="url">第五章 SQL查询</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-07T20:28:45+08:00">
-                2018-04-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据库/" itemprop="url" rel="index">
-                    <span itemprop="name">数据库</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="SELECT的格式"><a href="#SELECT的格式" class="headerlink" title="SELECT的格式"></a>SELECT的格式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT [DISTINCT] select-list		//	默认结果包含重复的记录, DISTINCT指搜索的记录不能重复</span><br><span class="line">FROM from-list</span><br><span class="line">WHERE qualifications</span><br></pre></td></tr></table></figure>
-<ul>
-<li>选出拥有103号船的水手的名字</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT S.sname</span><br><span class="line">FROM Sailors S, Reserve R</span><br><span class="line">WHERE S.sid = R.sid AND R.bid = 103		//	相当于叉积</span><br></pre></td></tr></table></figure>
-<h2 id="UNION-INTERSECT-EXCEPT"><a href="#UNION-INTERSECT-EXCEPT" class="headerlink" title="UNION, INTERSECT, EXCEPT"></a>UNION, INTERSECT, EXCEPT</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT S.sname</span><br><span class="line">FROM Sailors S, Reserve R, Boats B</span><br><span class="line">WHERE S.sid = R.sid AND R.bid = B.bid AND B.color = &apos;red&apos;</span><br><span class="line">(UNION / INTERSECT / EXCEPT)		//	并/交/差集</span><br><span class="line">SELECT S.sname</span><br><span class="line">FROM Sailors S, Reserve R, Boats B</span><br><span class="line">WHERE S.sid = R.sid AND R.bid = B.bid AND B.color = &apos;green&apos;</span><br></pre></td></tr></table></figure>
-<h2 id="Like"><a href="#Like" class="headerlink" title="Like, %, _"></a>Like, %, _</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">用于字符的匹配:</span><br><span class="line">	%匹配任意个字符</span><br><span class="line">	_匹配一个字符</span><br><span class="line"></span><br><span class="line">SELECT S.age</span><br><span class="line">FROM Sailors S</span><br><span class="line">WHERE S.sname LIKE &apos;B_%B&apos;		//	名字以B开头和结尾, 且中间至少有一个字母</span><br></pre></td></tr></table></figure>
-<h2 id="嵌套查询"><a href="#嵌套查询" class="headerlink" title="嵌套查询"></a>嵌套查询</h2><ul>
-<li>选出拥有103号船的水手的名字</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">SELECT S.sname</span><br><span class="line">FROM Sailors S</span><br><span class="line">WHERE S.sid IN (SELECT R.sid		//	IN用于检测一个值是否在给定的集合中</span><br><span class="line">				FROM Reserve R</span><br><span class="line">				WHERE R.bid = 103)</span><br><span class="line">				</span><br><span class="line">或</span><br><span class="line">SELECT S.sname</span><br><span class="line">FROM Sailors S</span><br><span class="line">WHERE EXISTS (SELECT *</span><br><span class="line">			FROM Reserve R</span><br><span class="line">			WHERE R.bid = 103 AND R.sid = S.sid)</span><br></pre></td></tr></table></figure>
-<h2 id="嵌套查询的集合比较"><a href="#嵌套查询的集合比较" class="headerlink" title="嵌套查询的集合比较"></a>嵌套查询的集合比较</h2><ul>
-<li>选出等级最高的水手的id</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT S.sid</span><br><span class="line">FROM Sailors S</span><br><span class="line">WHERE S.rating &gt;= ALL (SELECT S2.rating		//	ANY表示比集合中的任意一个元素大, ALL表示比集合中的所有元素都大</span><br><span class="line">					FROM Sailors S2)</span><br></pre></td></tr></table></figure>
-<h2 id="聚集操作符"><a href="#聚集操作符" class="headerlink" title="聚集操作符"></a>聚集操作符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1. COUNT([DISTINCT] select-list)</span><br><span class="line"></span><br><span class="line">2. SUM([DISTINCT] select-list)</span><br><span class="line"></span><br><span class="line">3. AVG([DISTINCT] select-list)</span><br><span class="line"></span><br><span class="line">4. MAX(select-list)</span><br><span class="line"></span><br><span class="line">5. MIN(select-list)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>选出最年长的水手的名字和年龄</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT S.sname, S.age</span><br><span class="line">FROM Sailors S</span><br><span class="line">WHERE S.age = (SELECT MAX(S2.age) FROM Sailors S2)</span><br><span class="line"></span><br><span class="line">注意: 聚集操作符和普通字段不能同时获取</span><br><span class="line">SELECT S.sname, MAX(S.age)		//	错误</span><br><span class="line">FROM Sailors S</span><br></pre></td></tr></table></figure>
-<h2 id="从一个SELECT的结果中SELECT信息"><a href="#从一个SELECT的结果中SELECT信息" class="headerlink" title="从一个SELECT的结果中SELECT信息"></a>从一个SELECT的结果中SELECT信息</h2><ul>
-<li>选出平均年龄在所有等级中最低的那些等级</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT Temp.rating, Temp.avgage</span><br><span class="line">FROM (SELECT S.rating, AVG(S.age) AS avgage,</span><br><span class="line">		FROM Sailors S</span><br><span class="line">		GROUP BY S.rating) AS Temp</span><br><span class="line">WHERE Temp.avagage = (SELECT MIN (Temp.avgage) FROM Temp)</span><br></pre></td></tr></table></figure>
-<h2 id="GROUP-BY和HAVING"><a href="#GROUP-BY和HAVING" class="headerlink" title="GROUP BY和HAVING"></a>GROUP BY和HAVING</h2><ul>
-<li>GROUP BY用于分组</li>
-</ul>
-<ul>
-<li>HAVING用于指定分组的条件</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT [DISTINCT] select-list</span><br><span class="line">FROM from-list</span><br><span class="line">WHERE qualification</span><br><span class="line">GROUP BY grouping-list</span><br><span class="line">HAVING group-qualication</span><br><span class="line"></span><br><span class="line">顺序是先通过WHERE获取满足条件的记录, 然后通过GROUP BY分组, 再通过HAVING去掉不符合条件的分组, 最后选出select-list</span><br></pre></td></tr></table></figure>
-<ul>
-<li>对于每个等级, 若至少有两个水手成年, 找出成年水手中的最小年龄</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT MIN(S.age)</span><br><span class="line">FROM Sailors S</span><br><span class="line">WHERE S.age &gt;= 18</span><br><span class="line">GROUP BY S.rating</span><br><span class="line">HAVING COUNT(*) &gt; 1</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2253,7 +2205,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -259,6 +259,473 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Cocos2d/Cocos2d/Cocos2d学习(七)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Cocos2d/Cocos2d/Cocos2d学习(七)/" itemprop="url">Cocos2d学习(七)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-21T10:14:20+08:00">
+                2018-06-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Cocos2d/" itemprop="url" rel="index">
+                    <span itemprop="name">Cocos2d</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="HttpClient"><a href="#HttpClient" class="headerlink" title="HttpClient"></a>HttpClient</h1><p>​    Http客户端的接口</p>
+<h2 id="Get"><a href="#Get" class="headerlink" title="Get"></a>Get</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">1. 引入头文件和命名空间</span><br><span class="line">	#include &quot;network/HttpClient.h&quot;</span><br><span class="line">	using namespace cocos2d::network;</span><br><span class="line">	</span><br><span class="line">2. 创建HttpRequest实例</span><br><span class="line">	HttpRequest* request = new HttpRequest();</span><br><span class="line">	</span><br><span class="line">3. 设置连接方法的类型和待连接的地址</span><br><span class="line">	request-&gt;setRequestType(HttpRequest::Type::GET);</span><br><span class="line">	request-&gt;setUrl(&quot;http://www.baidu.com&quot;);</span><br><span class="line">	</span><br><span class="line">4. 设置回调</span><br><span class="line">	request-&gt;setResponseCallback(CC_CALLBACK_2(HelloWorld::onHttpComplete, this));</span><br><span class="line">	</span><br><span class="line">5. 添加请求到HttpClient任务队列</span><br><span class="line">	cocos2d::network::HttpClient::getInstance()-&gt;send(request);</span><br><span class="line">	</span><br><span class="line">	void HelloWorld::onHttpRequestCompleted(HttpClient* sender, HttpResponse* response) &#123;</span><br><span class="line">      if (!response)</span><br><span class="line">      	return;</span><br><span class="line">      	</span><br><span class="line">      if (!response-&gt;isSucceed()) &#123;</span><br><span class="line">        log(&quot;response failed&quot;);</span><br><span class="line">        log(&quot;error buffer: %s&quot;, response-&gt;getErrorBuffer());</span><br><span class="line">        return;</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">      std::vector&lt;char&gt;* buffer = response-&gt;getResponseData();</span><br><span class="line">      printf(&quot;Http Test, dump data: &quot;);</span><br><span class="line">      for (unsigned int i = 0; i &lt; buffer-&gt;size(); i++) &#123;</span><br><span class="line">        printf(&quot;%c&quot;, (*buffer)[i]);</span><br><span class="line">      &#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">6. 释放连接</span><br><span class="line">	request-&gt;release();</span><br></pre></td></tr></table></figure>
+<h2 id="Post"><a href="#Post" class="headerlink" title="Post"></a>Post</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">HttpRequest* request = new HttpRequest();</span><br><span class="line">request-&gt;setRequestType(&quot;http://HttpRequest::Type::POST&quot;);</span><br><span class="line">request-&gt;setUrl(&quot;http://httpbin.org/post&quot;);</span><br><span class="line">request-&gt;setResponseCallback(CC_CALLBACK_2(HelloWorld::onHttpRequestCompleted, this));</span><br><span class="line"></span><br><span class="line">void HelloWorld::onHttpRequestCompleted(HttpClient *sender, HttpResponse *response) &#123; </span><br><span class="line">  if (!response)</span><br><span class="line">  	return; </span><br><span class="line">    </span><br><span class="line">  //	获取并输出状态码</span><br><span class="line">  int statusCode = response-&gt;getResponseCode(); </span><br><span class="line">  char statusString[64]; </span><br><span class="line">  sprintf(statusString, &quot;HTTP Status Code: %d, tag = %s&quot;, statusCode, response-&gt;getHttpRequest()-&gt;getTag()); </span><br><span class="line">  _labelStatusCode-&gt;setString(statusString); </span><br><span class="line">  log(&quot;response code: %d&quot;, statusCode); </span><br><span class="line">  </span><br><span class="line">  if (!response-&gt;isSucceed()) &#123; </span><br><span class="line">    log(&quot;response failed&quot;); </span><br><span class="line">    log(&quot;error buffer: %s&quot;, response-&gt;getErrorBuffer()); </span><br><span class="line">    return; </span><br><span class="line">  &#125; </span><br><span class="line"></span><br><span class="line">  //	获取并输出响应信息</span><br><span class="line">  std::vector&lt;char&gt; *buffer = response-&gt;getResponseData(); </span><br><span class="line">  printf(&quot;Http Test, dump data: &quot;); </span><br><span class="line">  for (unsigned int i = 0; i &lt; buffer-&gt;size(); i++) &#123; </span><br><span class="line">  	printf(&quot;%c&quot;, (*buffer)); </span><br><span class="line">  &#125;  </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//	设置Post的数据</span><br><span class="line">const char* postData = &quot;visitor=cocos2d&amp;TestSuite=Extensions Test/NetworkTest&quot;;</span><br><span class="line">request-&gt;setRequestData(postData, strlen(postData));</span><br><span class="line"></span><br><span class="line">//	设置cookie</span><br><span class="line">std::vector&lt;string&gt; headers;</span><br><span class="line">headers.push_back(&quot;Cookie: GAMESESSIONID=MTQwNjI1Mjg3MnxEdilCQkFFQ180SUFBUkFCRU&quot;);</span><br><span class="line">request-&gt;setHeaders(headers);</span><br><span class="line"></span><br><span class="line">cocos2d::network::HttpClient::getInstance()-&gt;send(request);</span><br><span class="line">request-&gt;release();</span><br></pre></td></tr></table></figure>
+<h2 id="使用session"><a href="#使用session" class="headerlink" title="使用session"></a>使用session</h2><ul>
+<li>若request中包含session id, 检索该session并使用</li>
+<li>若request中不包含session id, 创建一个session并返回session id(保存在cookie中)</li>
+</ul>
+<h2 id="Json"><a href="#Json" class="headerlink" title="Json"></a>Json</h2><h2 id="解析Json"><a href="#解析Json" class="headerlink" title="解析Json"></a>解析Json</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">1. 引入头文件</span><br><span class="line">	#include &quot;json/rapidjson.h&quot;</span><br><span class="line">	#include &quot;json/document.h&quot;</span><br><span class="line">	using namespace rapidjson;</span><br><span class="line"></span><br><span class="line">2. Json解释</span><br><span class="line">	std::string str = &quot;&#123;\&quot;hello\&quot;: \&quot;world\&quot;&#125;&quot;;</span><br><span class="line">	Document d;</span><br><span class="line">	d.Parse&lt;0&gt;(str.c_str());</span><br><span class="line">	</span><br><span class="line">	if (d.IsObject() &amp;&amp; d.HasMember(&quot;hello&quot;)) &#123;</span><br><span class="line">      CCLOG(&quot;%s\n&quot;, d[&quot;hello&quot;].GetString());</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="生成Json"><a href="#生成Json" class="headerlink" title="生成Json"></a>生成Json</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">1. 引入头文件</span><br><span class="line">	#include &quot;json/document.h&quot;</span><br><span class="line">	#include &quot;json/writter.h&quot;</span><br><span class="line">	#include &quot;json/stringbuffer.h&quot;</span><br><span class="line">	using namespace rapidjson;</span><br><span class="line">	</span><br><span class="line">2. 生成Json串</span><br><span class="line">	Document document;</span><br><span class="line">	documnet.SetObject();</span><br><span class="line">	Document::AllocatorType&amp; allocator = document.GetAllocator();</span><br><span class="line">	Value array(kAarrayType);</span><br><span class="line">	Value object(kObjectType);</span><br><span class="line">	object.AddMember(&quot;int&quot;, 1, allocator);		//	参数是键值对</span><br><span class="line">	object.AddMember(&quot;double&quot;, 1.0, allocator);</span><br><span class="line">	object.AddMember(&quot;bool&quot;, true, allocator);</span><br><span class="line">	object.AddMember(&quot;hello&quot;, &quot;你好&quot;, allocator);</span><br><span class="line">	array.PushBack(object, allocator);</span><br><span class="line">	</span><br><span class="line">	document.AddMember(&quot;json&quot;, &quot;json string&quot;, allocator);</span><br><span class="line">	document.AddMember(&quot;array&quot;, array, allocator);</span><br><span class="line">	StringBuffer buffer;</span><br><span class="line">	Writer&lt;StringBuffer&gt; writer(buffer);</span><br><span class="line">	document.Accept(writer);</span><br><span class="line">	</span><br><span class="line">	CCLOG(&quot;%s&quot;, buffer.GetString());	//	buffer为Json串</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/数据库/数据库/外排序/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/数据库/数据库/外排序/" itemprop="url">外排序</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-20T17:00:17+08:00">
+                2018-06-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="外排序"><a href="#外排序" class="headerlink" title="外排序"></a>外排序</h1><p>​    数据库很多时候需要对数据进行排序(比如删除重复元组, 按顺序显示结果等), 但是主存大小有限, 无法直接在数据库内进行排序, 需要先读出文件, 排序后再写回数据库</p>
+<h1 id="简单的两路归并排序"><a href="#简单的两路归并排序" class="headerlink" title="简单的两路归并排序"></a>简单的两路归并排序</h1><ul>
+<li>特性: 只使用三个主存页</li>
+</ul>
+<ul>
+<li>思路: 采用归并排序</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">文件总页数为2^k</span><br><span class="line">	第0遍, 生成2^k个长为1的有序段</span><br><span class="line">	第1遍, 生成2^k-1个长为2的有序段</span><br><span class="line">	第2遍, 生成2^k-2个长为4的有序段</span><br><span class="line">	...</span><br><span class="line">	第k遍, 生成1个长为2^k的有序段</span><br></pre></td></tr></table></figure>
+<ul>
+<li>I/O开销</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数据处理遍数k+1, 每遍将2^k个文件读取后写入, 总开销为 2 * 2^k * (k+1)</span><br></pre></td></tr></table></figure>
+<h1 id="外归并排序"><a href="#外归并排序" class="headerlink" title="外归并排序"></a>外归并排序</h1><p>​    当有B个可用的主存页时, 简单的两路归并排序没有充分利用资源</p>
+<ul>
+<li>思路</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">文件总页数为N</span><br><span class="line">	第0遍, 生成N / B个长为B的有序段</span><br><span class="line">	</span><br><span class="line">	第i遍, 用一个主存页作为输出, B-1个主存页作为输入</span><br></pre></td></tr></table></figure>
+<ul>
+<li>I/O开销</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数据处理遍数log(下标为B-1)N / B + 1, 每遍将N个文件读取后写入, 总开销为 2 * N * 遍数</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/数据库/数据库/查询/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/数据库/数据库/查询/" itemprop="url">查询</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-20T16:36:44+08:00">
+                2018-06-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="合取范式、合取体"><a href="#合取范式、合取体" class="headerlink" title="合取范式、合取体"></a>合取范式、合取体</h1><ul>
+<li>合取体: 查询的每个条件</li>
+<li>合取范式CNF: 合取体 ^ 合取体 ^ …</li>
+</ul>
+<h1 id="选择匹配"><a href="#选择匹配" class="headerlink" title="选择匹配"></a>选择匹配</h1><ul>
+<li>对于哈希索引: 当索引的每一个码都在合取范式中有一个形如attr = value的条件, 则选择匹配</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">对于索引&lt;rname, bid, sid&gt;</span><br><span class="line">	rname = &apos;Joe&apos; ^ bid = 5 ^ sid = 3选择匹配(1. 所有码 2. 等于条件)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>对于B+树索引: 当索引的某个前缀的每一个码在合取范式中有形如attr op value的条件, 则选择匹配</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">对于索引&lt;rname, bid, sid&gt;</span><br><span class="line">	name = &apos;Joe&apos; ^ bid &gt; 5选择匹配(1. 前缀&lt;rname, bid&gt;的所有码 2. op条件)</span><br><span class="line"></span><br><span class="line">	bid = 5 ^ sid = 3非选择匹配(&lt;bid, sid&gt;不属于前缀)</span><br></pre></td></tr></table></figure>
+<h1 id="主合取体"><a href="#主合取体" class="headerlink" title="主合取体"></a>主合取体</h1><p>​    索引只与合取体的某个子集匹配, 将匹配的子集称为主合取体</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">对于索引&lt;bid, sid&gt;</span><br><span class="line">	bid = 5 ^ sid = 3是条件rname = &apos;Joe&apos; ^ bid = 5 ^ sid = 3的主合取体</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/数据库/数据库/树索引/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1380,550 +1847,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Cocos2d/Cocos2d/Cocos2d学习(四)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Cocos2d/Cocos2d/Cocos2d学习(四)/" itemprop="url">Cocos2d学习(四)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-05T10:46:28+08:00">
-                2018-06-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Cocos2d/" itemprop="url" rel="index">
-                    <span itemprop="name">Cocos2d</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="翻转"><a href="#翻转" class="headerlink" title="翻转"></a>翻转</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 将图片水平翻转</span><br><span class="line">	player-&gt;setFlipX(true);</span><br><span class="line"></span><br><span class="line">2. 取消图片翻转(用于翻转后翻转回来)</span><br><span class="line">	player-&gt;setFlipX(false);</span><br></pre></td></tr></table></figure>
-<h1 id="碰撞检测"><a href="#碰撞检测" class="headerlink" title="碰撞检测"></a>碰撞检测</h1><p>​    函数为containsPoint()</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">通过判断两个精灵的Rect是否重叠来判断</span><br><span class="line"></span><br><span class="line">Rect的构造函数有四个参数: x, y, width, height</span><br><span class="line">	x, y: 表示Rect左下角的坐标</span><br><span class="line">	width: 表示Rect宽度</span><br><span class="line">	height: 表示Rect高度</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">   Sprite* Factory::collider(Rect rect) &#123;</span><br><span class="line">       for (auto i : monster) &#123;</span><br><span class="line">           if (rect.containsPoint(i-&gt;getPosition())) &#123;</span><br><span class="line">               return i;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return NULL;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Rect playerRect = player-&gt;getBoundingBox();</span><br><span class="line">Rect attackRectLeft = Rect(playerRect.getMinX() - 30,</span><br><span class="line">						   playerRect.getMinY(),</span><br><span class="line">						   playerRect.getMaxX() - playerRect.getMinX(),</span><br><span class="line">						   playerRect.getMaxY() - playerRect.getMinY());</span><br><span class="line"></span><br><span class="line">Rect attackRectRight = Rect(playerRect.getMinX(), </span><br><span class="line">						    playerRect.getMinY(),</span><br><span class="line">							playerRect.getMaxX() - playerRect.getMinX() + 30, </span><br><span class="line">							playerRect.getMaxY() - playerRect.getMinY());</span><br><span class="line"></span><br><span class="line">Sprite* collision = fac-&gt;collider(toward == &apos;a&apos; ? attackRectLeft : attackRectRight);</span><br><span class="line">if (collision != NULL) &#123;</span><br><span class="line">	//	移除怪物</span><br><span class="line">	fac-&gt;removeMonster(collision);</span><br><span class="line">	//	加血</span><br><span class="line">	hp = (hp + 25 &gt; 100 ? 100 : hp + 25);</span><br><span class="line">	//	增加击杀数</span><br><span class="line">	killNum++;</span><br><span class="line">	//	更新数据库</span><br><span class="line">	setKillNumByDataBase();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><h2 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector<t></t></h2><p>​    是cocos2d::Vector而不是std::vector</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">1. T必须是cocos2d::Ref*类型</span><br><span class="line"></span><br><span class="line">2. 没有重载[]</span><br><span class="line"></span><br><span class="line">3. 使用</span><br><span class="line">    Sprite* sprite = Sprite::create(&quot;CloseNormal.png&quot;);</span><br><span class="line">    </span><br><span class="line">    //	创建Vector</span><br><span class="line">    cocos2d::Vector&lt;Sprite*&gt; container;</span><br><span class="line">    </span><br><span class="line">    //	在最后插入</span><br><span class="line">    container.pushBack(sprite);</span><br><span class="line">    </span><br><span class="line">    //	在index = 2插入</span><br><span class="line">	container.insert(2, sprite);</span><br><span class="line">	</span><br><span class="line">	//	判断对象是否在容器</span><br><span class="line">	bool isHere = container.contains(sprite);</span><br><span class="line">	</span><br><span class="line">	//	获取index = 1的指针</span><br><span class="line">	Sprite* pSprite = container.at(1);</span><br><span class="line">	</span><br><span class="line">	//	c++的for_in遍历</span><br><span class="line">	for (auto sp:container) &#123;</span><br><span class="line">      </span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	//	c++的迭代器遍历</span><br><span class="line">	cocos2d::Vector&lt;Sprite*&gt;::iterator it = container.begin();</span><br><span class="line">	for (;it != container.end(); it++) &#123;</span><br><span class="line">      </span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	//	遍历中删除元素</span><br><span class="line">	cocos2d::Vector&lt;Sprite*&gt;::iterator it = container.begin();</span><br><span class="line">	for (;it != container.end();) &#123;</span><br><span class="line">      	if (*it == sprite) &#123;</span><br><span class="line">          it = container.erase(it);		//	erase()返回被删除元素的下一位</span><br><span class="line">      	&#125;</span><br><span class="line">      	else &#123;</span><br><span class="line">          it++;</span><br><span class="line">      	&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	//	删除指定元素</span><br><span class="line">	container.eraseObject(sprite);</span><br></pre></td></tr></table></figure>
-<h2 id="Map-lt-K-V-gt"><a href="#Map-lt-K-V-gt" class="headerlink" title="Map&lt;K, V&gt;"></a>Map&lt;K, V&gt;</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">1. 没有重载[]</span><br><span class="line"></span><br><span class="line">2. 使用</span><br><span class="line">	Sprite* sprite = Sprite::create(&quot;CloseNormal.png&quot;);</span><br><span class="line">	</span><br><span class="line">	//	创建Map</span><br><span class="line">	cocos2d::Map&lt;string, Sprite*&gt; map;</span><br><span class="line">	</span><br><span class="line">	//	插入键值对</span><br><span class="line">	map.insert(&quot;monster&quot;, sprite);</span><br><span class="line">	</span><br><span class="line">	//	根据Key获取Value</span><br><span class="line">	map.at(&quot;monster&quot;);</span><br></pre></td></tr></table></figure>
-<h2 id="Value"><a href="#Value" class="headerlink" title="Value"></a>Value</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 它是基本类型的封装</span><br><span class="line"></span><br><span class="line">2. 使用</span><br><span class="line">	Value val(10);</span><br><span class="line">	Value val(&quot;hello&quot;);</span><br></pre></td></tr></table></figure>
-<h1 id="本地存储"><a href="#本地存储" class="headerlink" title="本地存储"></a>本地存储</h1><p>​    包括UserDefault和SQLite</p>
-<h2 id="UserDefault"><a href="#UserDefault" class="headerlink" title="UserDefault"></a>UserDefault</h2><p>​    微型数据库, 将数据保存在usedefault.xml文件中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#define database UserDefault::getInstance()</span><br><span class="line"></span><br><span class="line">//	检测xml文件是否存在</span><br><span class="line">if	(!database-&gt;getBoolForKey(&quot;isExist&quot;))&#123;</span><br><span class="line">	database-&gt;setBoolForKey(&quot;isExist&quot;, true) ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//	简单存取</span><br><span class="line">database-&gt;setIntegerForKey(&quot;value&quot;,	10);  </span><br><span class="line">database-&gt;setStringForKey(&quot;string&quot;,	&quot;hello&quot;);</span><br><span class="line"></span><br><span class="line">//	保存</span><br><span class="line">database-&gt;flush();</span><br></pre></td></tr></table></figure>
-<h2 id="SQLite"><a href="#SQLite" class="headerlink" title="SQLite"></a>SQLite</h2><h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;sqlite3.h&quot;</span><br><span class="line"></span><br><span class="line">//	数据库指针</span><br><span class="line">sqlite3* pdb = NULL;</span><br><span class="line"></span><br><span class="line">//	数据库路径</span><br><span class="line">string path = FileUtils::getInstance()-&gt;getWritablePath() + &quot;save.db&quot;;</span><br><span class="line"></span><br><span class="line">//	根据路径path打开或创建数据库</span><br><span class="line">int	result = sqlite3_open(path.c_str(), &amp;pdb);		//	若成功result等于SQLITE_OK</span><br></pre></td></tr></table></figure>
-<h3 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//	SQLite语句 创建一个主键为ID, 名字为hero的表</span><br><span class="line">std::string	sql = &quot;create table	hero (ID int primary key not null, name char(10));&quot;;</span><br><span class="line"></span><br><span class="line">//	运行SQLite语句，参数分别为数据库指针，SQLite语句，回调函数，回调参数，错误信息 </span><br><span class="line">result = sqlite3_exec(pdb, sql.c_ str(), NULL, NULL, NULL);</span><br></pre></td></tr></table></figure>
-<h3 id="增删改"><a href="#增删改" class="headerlink" title="增删改"></a>增删改</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//	向表中插入一条ID为１，name为iori的数据</span><br><span class="line">sql = &quot;insert into hero values(1,&apos;iori&apos;);&quot;;</span><br><span class="line"></span><br><span class="line">//	删除表中id为1的一条数据</span><br><span class="line">sql = &quot;delete from hero where id=1;&quot;;</span><br><span class="line"></span><br><span class="line">//	把id为2的数据name改为hehe</span><br><span class="line">sql = &quot;update hero set name=&apos;hehe&apos; where id=2;&quot;;</span><br></pre></td></tr></table></figure>
-<h3 id="查"><a href="#查" class="headerlink" title="查"></a>查</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">char** re;		//查询结果</span><br><span class="line"></span><br><span class="line">int row, col;	//行、列</span><br><span class="line"></span><br><span class="line">//	根据语句获取表中数据</span><br><span class="line">sqlite3_get_table(pdb, &quot;select * from hero&quot;, &amp;re, &amp;row,  &amp;col, NULL);</span><br><span class="line"></span><br><span class="line">//	遍历存储数组打印数据 </span><br><span class="line">for (int i = 1; i &lt;= row; i++)&#123;</span><br><span class="line">	for (int j = 0; j &lt; col; j++)&#123;</span><br><span class="line">		log(&quot;%s&quot;, re[i*col + j]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//	查询后释放指针  </span><br><span class="line">sqlite3_free_table(re);</span><br></pre></td></tr></table></figure>
-<h1 id="TileMap瓦片地图"><a href="#TileMap瓦片地图" class="headerlink" title="TileMap瓦片地图"></a>TileMap瓦片地图</h1><p>​    大地图由许多小的图块(瓦片)构成</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">分为普通地图(直90°)、斜45°地图、斜45°交错地图</span><br><span class="line"></span><br><span class="line">TileMap的坐标系原点在左上角, x轴从左到右, y轴从上到下</span><br></pre></td></tr></table></figure>
-<h2 id="TileMap地图层"><a href="#TileMap地图层" class="headerlink" title="TileMap地图层"></a>TileMap地图层</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. 每个地图层都被表示为TMXLayer类</span><br><span class="line"></span><br><span class="line">2. 每个单一的瓦片都被表示为Sprite类, 且有一个全局表示GID, 父节点为TMXLayer</span><br><span class="line"></span><br><span class="line">3. 每个地图层只能用一套瓦片, 用多套瓦片需要用多个地图层</span><br><span class="line"></span><br><span class="line">4. TileMap的锚点和瓦片的锚点默认为(0, 0)</span><br></pre></td></tr></table></figure>
-<h2 id="TileMap对象层"><a href="#TileMap对象层" class="headerlink" title="TileMap对象层"></a>TileMap对象层</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">对象层中的对象在TMX文件以键值对形式存在, 可以直接在TMX文件中修改</span><br></pre></td></tr></table></figure>
-<h2 id="地图编辑器"><a href="#地图编辑器" class="headerlink" title="地图编辑器"></a>地图编辑器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 可以在地图编辑器中设置对象属性</span><br><span class="line"></span><br><span class="line">2. 地图编辑器中, 排在前面的图层zOrder较大</span><br></pre></td></tr></table></figure>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="画TileMap"><a href="#画TileMap" class="headerlink" title="画TileMap"></a>画TileMap</h3><p><img src="https://CoderUtil.github.io/images/TIM截图20180606143210.png" alt="Cocos2d"></p>
-<p><img src="https://CoderUtil.github.io/images/TIM截图20180606143241.png" alt="Cocos2d"></p>
-<p><img src="https://CoderUtil.github.io/images/TIM截图20180606144933.png" alt="Cocos2d"></p>
-<h3 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//	将tmx, png, tsx文件放入Resources文件夹中</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//	根据文件路径快速导入瓦片地图</span><br><span class="line">TMXTiledMap* tmx = TMXTiledMap::create(&quot;tileMap.tmx&quot;);</span><br><span class="line"></span><br><span class="line">//	设置位置</span><br><span class="line">tmx-&gt;setPosition(visibleSize.width / 2, visibleSize.height / 2);</span><br><span class="line"></span><br><span class="line">//	设置锚点</span><br><span class="line">tmx-&gt;setAnchorPoint(Vec2(0.5, 0.5));</span><br><span class="line"></span><br><span class="line">//	添加到游戏图层中</span><br><span class="line">this-&gt;addChild(tmx);</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Verilog/Verilog/Verilog学习(一)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Verilog/Verilog/Verilog学习(一)/" itemprop="url">Verilog学习(一)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-27T10:28:15+08:00">
-                2018-05-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Verilog/" itemprop="url" rel="index">
-                    <span itemprop="name">Verilog</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h1><p><img src="https://CoderUtil.github.io/images/TIM截图20180527102913.png" alt="Verilog学习"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">`timescale 1ns/1ns</span><br><span class="line">`include  可综合模块.v    .  .  .  .</span><br><span class="line">`include  外围电路.v       .  .  .  .</span><br><span class="line">`include  激励信号.v       .  .  .  .</span><br><span class="line">module top;</span><br><span class="line">	wire   连线定义  .  .  .  . </span><br><span class="line">	reg    初试化块中寄存器定义  .  .  .  . </span><br><span class="line">	initial</span><br><span class="line">		begin   </span><br><span class="line">			定义波形记录、输入数据文件、记录输出文件 、</span><br><span class="line">			监视重要信号、记录重要时刻、设置仿真时间等。               </span><br><span class="line">		end</span><br><span class="line">	信号模块   xh1( .clock( clk), .reset(rst), .ack(ackn) ……); ……</span><br><span class="line">	可综合模块  mysj1(. clock(clk), reset(rst),.ack(ackn) ……); ……</span><br><span class="line">	外围模块      ram1(.read(rd), .write(wrt), .data(databus) ……); ……</span><br><span class="line">endmodule</span><br></pre></td></tr></table></figure>
-<h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//和/**/</span><br></pre></td></tr></table></figure>
-<h2 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">以数字, 字母, 下划线构成. 以下划线或字母开头</span><br></pre></td></tr></table></figure>
-<h2 id="整数"><a href="#整数" class="headerlink" title="整数"></a>整数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+/-&lt;位宽&gt;&apos;&lt;进制&gt;&lt;数字&gt;</span><br><span class="line"></span><br><span class="line">位宽: 数字对应的二进制数的宽度</span><br><span class="line">进制: 二进制(b, B)、八进制(o, O), 十进制(d, D)、十六进制(h, H)</span><br><span class="line"></span><br><span class="line">8&apos;b1100_0101	(下划线单纯用于分隔数字, 没有实际意义)</span><br><span class="line">5&apos;O27			(八进制27, 对应二进制宽为5位)</span><br></pre></td></tr></table></figure>
-<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用双引号包括, 不能分成多行书写</span><br></pre></td></tr></table></figure>
-<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><h2 id="wire-reg"><a href="#wire-reg" class="headerlink" title="wire, reg"></a>wire, reg</h2><ul>
-<li>wire: 线, 没有存储功能</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">在assign中赋值的变量, 用wire</span><br><span class="line"></span><br><span class="line">wire a;				//	1位宽	</span><br><span class="line">wire[7:0] databus;	//	8位宽, 从0~7</span><br></pre></td></tr></table></figure>
-<ul>
-<li>reg: 寄存器, 有存储功能</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">在initial, always中赋值的, 用reg</span><br><span class="line"></span><br><span class="line">reg b;				//	1位宽	</span><br><span class="line">reg[7:0] myOut;		//	8位宽, 从0~7</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">因为Verilog没有多维数组, 通过扩展reg来实现多维数组</span><br><span class="line"></span><br><span class="line">reg [7:0] mema [255:0]	//	mema有8个256位reg</span><br><span class="line">mema[3] = 0;</span><br></pre></td></tr></table></figure>
-<h1 id="过程赋值-reg变量"><a href="#过程赋值-reg变量" class="headerlink" title="过程赋值(reg变量)"></a>过程赋值(reg变量)</h1><ul>
-<li>initial: 块中的语句在开始时执行一次</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">reg A,B,C;                                       </span><br><span class="line">initial begin               </span><br><span class="line">	A = 0;                  </span><br><span class="line">	B = 0;               </span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-<ul>
-<li>always: 块中的语句能不断重复执行</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">always @(a)	当a的值发生改变时, 执行</span><br><span class="line">begin</span><br><span class="line">	...</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">1. @(a)					信号a的值发生改变</span><br><span class="line">2. @(a or b)			信号a或b的值发生改变</span><br><span class="line">3. @(posedge clock)		 clock上升沿到来</span><br><span class="line">4. @(negedge clock)		 clock下降沿到来</span><br><span class="line">5. @(posedge clk or negedge reset)</span><br><span class="line"></span><br><span class="line">信号和时钟不能混用</span><br></pre></td></tr></table></figure>
-<ul>
-<li>过程赋值分为阻塞和非阻塞</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//	阻塞赋值, 在该语句结束时立即完成赋值</span><br><span class="line">b = a;	</span><br><span class="line"></span><br><span class="line">//	非阻塞赋值, 在整个块结束后才完成赋值</span><br><span class="line">b &lt;= a;  </span><br><span class="line"></span><br><span class="line">在同一个always中, 阻塞和非阻塞不要混用</span><br></pre></td></tr></table></figure>
-<h1 id="持续赋值-wire变量"><a href="#持续赋值-wire变量" class="headerlink" title="持续赋值(wire变量)"></a>持续赋值(wire变量)</h1><ul>
-<li>assign</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">assign c = a &amp; b		</span><br><span class="line"></span><br><span class="line">其中a, b, c都为wire</span><br></pre></td></tr></table></figure>
-<h2 id="param"><a href="#param" class="headerlink" title="param"></a>param</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用于定义一个参数</span><br></pre></td></tr></table></figure>
-<h1 id="向量"><a href="#向量" class="headerlink" title="向量"></a>向量</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">宽度为1的变量称为标量:</span><br><span class="line">	reg a;</span><br><span class="line">	wire b;</span><br><span class="line">	</span><br><span class="line">宽度大于1的, 用[msb:lsb]表示的称为向量:</span><br><span class="line">	wire[7:0] databus;</span><br></pre></td></tr></table></figure>
-<h2 id="位选择、域选择"><a href="#位选择、域选择" class="headerlink" title="位选择、域选择"></a>位选择、域选择</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">位选择: 选择向量中的一位</span><br><span class="line">	A = databus[6];</span><br><span class="line">	c = a[7] &amp; b[5];</span><br><span class="line">	</span><br><span class="line">域选择: 选择向量中的几位:</span><br><span class="line">	B = databus[5:2];</span><br><span class="line">	c = a[7:4] + b[3:0];</span><br></pre></td></tr></table></figure>
-<h1 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h1><h2 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">模 %</span><br></pre></td></tr></table></figure>
-<h2 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">与	&amp;&amp;</span><br><span class="line">或	||</span><br><span class="line">非	!</span><br></pre></td></tr></table></figure>
-<h2 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">按位取反	~</span><br><span class="line">按位与		&amp;</span><br><span class="line">按位或		|</span><br><span class="line">按位异或	^</span><br><span class="line">按位同或	^~</span><br></pre></td></tr></table></figure>
-<h2 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">等于		==</span><br><span class="line">不等于	    !=</span><br></pre></td></tr></table></figure>
-<h2 id="三目运算符"><a href="#三目运算符" class="headerlink" title="三目运算符"></a>三目运算符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?:</span><br></pre></td></tr></table></figure>
-<h2 id="位拼接运算符"><a href="#位拼接运算符" class="headerlink" title="位拼接运算符"></a>位拼接运算符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#125;, 将多个位拼接起来</span><br><span class="line"></span><br><span class="line">&#123;信号1的某几位, 信号2的某几位, ..., 信号n的某几位&#125;</span><br><span class="line">&#123;a, b[3:0], c[2], 1&apos;b1&#125;;</span><br></pre></td></tr></table></figure>
-<h1 id="if"><a href="#if" class="headerlink" title="if"></a>if</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">if (表达式1) </span><br><span class="line">	语句1;</span><br><span class="line">else if (表达式2) </span><br><span class="line">	语句2;</span><br><span class="line">else </span><br><span class="line">	语句3;</span><br><span class="line">	</span><br><span class="line">if(a&gt;b)</span><br><span class="line">     begin</span><br><span class="line">       out1 &lt;= int1;</span><br><span class="line">       out2 &lt;= int2;</span><br><span class="line">     end</span><br><span class="line">else</span><br><span class="line">    begin</span><br><span class="line">       out1 &lt;= int2;</span><br><span class="line">       out2 &lt;= int1;</span><br><span class="line">    end</span><br></pre></td></tr></table></figure>
-<h1 id="case"><a href="#case" class="headerlink" title="case"></a>case</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">case (表达式)</span><br><span class="line">	值1: 语句1;</span><br><span class="line">	值2: 语句2;</span><br><span class="line">	default: 语句3;</span><br><span class="line">endcase</span><br></pre></td></tr></table></figure>
-<p><img src="https://CoderUtil.github.io/images/TIM截图20180527122008.png" alt="Verilog学习"></p>
-<h1 id="if和case防止锁存器产生"><a href="#if和case防止锁存器产生" class="headerlink" title="if和case防止锁存器产生"></a>if和case防止锁存器产生</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">如果用到if语句，最好写上else项。</span><br><span class="line">如果用case语句，最好写上default项</span><br></pre></td></tr></table></figure>
-<h1 id="for"><a href="#for" class="headerlink" title="for"></a>for</h1><p><img src="https://CoderUtil.github.io/images/TIM截图20180527122317.png" alt="Verilog学习"></p>
-<h1 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h1><p>​    以`开头</p>
-<h2 id="宏"><a href="#宏" class="headerlink" title="宏"></a>宏</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`define sum ina+inb+inc</span><br></pre></td></tr></table></figure>
-<h2 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`include &quot;文件名&quot;</span><br></pre></td></tr></table></figure>
-<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><p>​    只能调用当前module内的函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function &lt;返回值位宽&gt; 函数名;</span><br><span class="line">端口声明;</span><br><span class="line">局部变量定义;</span><br><span class="line">其他语句;</span><br><span class="line">endfunctino</span><br></pre></td></tr></table></figure>
-<h1 id="模块化设计"><a href="#模块化设计" class="headerlink" title="模块化设计"></a>模块化设计</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">定义:</span><br><span class="line">	顶层模块top, 底层模块bottom1, bottom2分别位于top.v, bottom1.v, bottom2.v</span><br><span class="line"></span><br><span class="line">引用底层模块:</span><br><span class="line">	`include 引入底层模块文件</span><br><span class="line"></span><br><span class="line">调用底层模块:</span><br><span class="line">	底层模块名 你给底层模块起的名(.底层模块形参名(顶层模块实参名), ……)</span><br><span class="line">	</span><br><span class="line">`include &quot;bottom1.v&quot;</span><br><span class="line">`include &quot;bottom2.v&quot;</span><br><span class="line"></span><br><span class="line">module  top(clk, reset, rec, send, data); // 顶层模块    </span><br><span class="line">input  clk, reset, rec;    </span><br><span class="line">output  send;    </span><br><span class="line">output [15:0]  data;</span><br><span class="line"></span><br><span class="line">    bottom1  my_bottom1(        // 底层模块1    </span><br><span class="line">    .rec(rec), .clk(clk), .reset(reset), .data(data)    </span><br><span class="line">    );    </span><br><span class="line">    bottom2  my_bottom2(        // 底层模块2    </span><br><span class="line">    .data(data), .clk(clk), .reset(reset), .send(send)    </span><br><span class="line">    ); </span><br><span class="line">endmodule</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/操作系统/操作系统/第八章-内存管理/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/操作系统/操作系统/第八章-内存管理/" itemprop="url">第八章 内存管理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-25T18:16:48+08:00">
-                2018-05-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/操作系统/" itemprop="url" rel="index">
-                    <span itemprop="name">操作系统</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h1><p>​    需要确保每个进程都有自己独立的内存空间, 保证不被其他进程访问</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">基址寄存器(重定位寄存器): 确定了物理地址的起始</span><br><span class="line"></span><br><span class="line">界限址寄存器: 确定了物理地址的范围</span><br><span class="line"></span><br><span class="line">比如: 基址寄存器为300040, 界限地址寄存器为120900, 那么程序可访问的范围是30040~430940</span><br></pre></td></tr></table></figure>
-<h1 id="地址绑定"><a href="#地址绑定" class="headerlink" title="地址绑定"></a>地址绑定</h1><ul>
-<li>编译: 将程序中变量与可重新定位的地址绑定.</li>
-</ul>
-<ul>
-<li>链接, 加载: 将可重定位的地址绑定为绝对地址</li>
-</ul>
-<h1 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h1><ul>
-<li>逻辑地址(虚拟地址): CPU生成的地址, 有不同的</li>
-<li>物理地址: 内存实际的地址</li>
-</ul>
-<h1 id="进程存放在内存中的方式"><a href="#进程存放在内存中的方式" class="headerlink" title="进程存放在内存中的方式"></a>进程存放在内存中的方式</h1><h2 id="连续内存分配"><a href="#连续内存分配" class="headerlink" title="连续内存分配"></a>连续内存分配</h2><p>​    将整个进程不中断地放在内存空间</p>
-<h3 id="固定分区-可变分区"><a href="#固定分区-可变分区" class="headerlink" title="固定分区, 可变分区"></a>固定分区, 可变分区</h3><ul>
-<li>固定分区: 将内存划分为多个大小固定的分区</li>
-<li>可变分区: 分区大小不固定, 用表来管理每个分区</li>
-</ul>
-<h3 id="分配方式"><a href="#分配方式" class="headerlink" title="分配方式"></a>分配方式</h3><p>​    将内存块分配给进程, 多出来的内存块放回, 会产生外部碎片</p>
-<ul>
-<li>首次适应: 分配第一个足够大内存块(孔)给进程</li>
-<li>最佳适应: 分配最小的足够大的内存块给进程</li>
-<li>最差适应: 分配最大的足够大的内存块给进程</li>
-</ul>
-<h3 id="碎片"><a href="#碎片" class="headerlink" title="碎片"></a>碎片</h3><ul>
-<li>内部碎片: 分配给进程的内存比请求的内存要多, 则多出来的部分为内部碎片</li>
-</ul>
-<ul>
-<li>外部碎片: 当所有总的内存之和可以满足请求, 但各部分内存并不连续, 则这些内存为外部碎片</li>
-</ul>
-<h3 id="紧缩"><a href="#紧缩" class="headerlink" title="紧缩"></a>紧缩</h3><p>​    移动内存中的数据, 将空闲的空间合并, 解决外部碎片</p>
-<h2 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h2><p>​    允许进程的物理地址非连续</p>
-<h3 id="帧-页"><a href="#帧-页" class="headerlink" title="帧, 页"></a>帧, 页</h3><ul>
-<li>帧: 将物理地址分为固定大小的块</li>
-<li>页: 将备份储存器分为固定大小的块</li>
-</ul>
-<h3 id="分页原理"><a href="#分页原理" class="headerlink" title="分页原理"></a>分页原理</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">总的地址空间为2^m, 页大小为2^n, CPU生成的逻辑地址可以分为: 页号(高m-n位), 页偏移(低n位)</span><br><span class="line"></span><br><span class="line">页号: 页表中的索引, 对应的值为物理内存的基地址</span><br><span class="line"></span><br><span class="line">页偏移: 物理内存的偏移地址</span><br><span class="line"></span><br><span class="line">物理地址 = 页表[页号] + 页偏移</span><br></pre></td></tr></table></figure>
-<h3 id="共享页"><a href="#共享页" class="headerlink" title="共享页"></a>共享页</h3><p>​    两个进程可以共享同一个页, 达到共享内存的目的</p>
-<h3 id="多层页表"><a href="#多层页表" class="headerlink" title="多层页表"></a>多层页表</h3><p>​    只用一个页表, 可能会导致页表中元素过多</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CPU生成的逻辑地址: 页号1, 页号2, ..., 页号n, 页偏移</span><br><span class="line"></span><br><span class="line">物理地址 = 页表1[页号1] + 页表2[页号2] + ... + 页表n[页号n] + 页偏移</span><br></pre></td></tr></table></figure>
-<h3 id="哈希页表"><a href="#哈希页表" class="headerlink" title="哈希页表"></a>哈希页表</h3><p>​    只用一个页表, 可能会导致页表中元素过多</p>
-<h3 id="反向页表"><a href="#反向页表" class="headerlink" title="反向页表"></a>反向页表</h3><p>​    每个进程一个页表, 造成浪费.  反向页表使整个操作系统只有一个页表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CPU生成的逻辑地址: 所属进程号, 页号, 页偏移</span><br></pre></td></tr></table></figure>
-<h3 id="TLB转换表缓冲区"><a href="#TLB转换表缓冲区" class="headerlink" title="TLB转换表缓冲区"></a>TLB转换表缓冲区</h3><p>​    访问一个地址需要先访问内存中的页表, 再访问实际物理地址. 因此, 访问一个字节需要两次访问内存. </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">它由键(页码)值(页地址)对构成, 通常将页表中的常用页码放入TLB中, 当需要查找时, 先查找TLB, 若页码在TLB中, 则直接获取到页表. 若不在则需要查找页表, 同时将页码放入TLB, 这种情况称为TBL失效</span><br></pre></td></tr></table></figure>
-<h2 id="分段"><a href="#分段" class="headerlink" title="分段"></a>分段</h2><p>​    将进程分为多个段, 如栈段, 代码段</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">逻辑地址分为: 段的基址, 段偏移</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1978,7 +1901,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
