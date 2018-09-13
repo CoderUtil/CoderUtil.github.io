@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="线程 共享堆内存和全局变量  线程模型 根据是否受到内核的干预分为: 用户线程和内核线程     线程模型 含义 优点 缺点     多对一 多个用户线程映射一个内核线程 内核线程少, 减少开销 只有一个内核线程, 所以用户线程不能并发执行   一对一 一个用户线程映射一个内核线程 多个用户线程能并发执行 内核线程多, 开销大   多对多 多个用户线程映射多个内核线程 多个用户线程能并发执行. 且">
+<meta name="description" content="分组 分组: 一种信息包. 信息在传输时会被分段, 且每段会添加上首部字节, 把每一段叫做分组   通信链路: 传输分组的物理媒介  分组交换机: 包括路由器和链路层交换机, 从一条通信链路接受分组并从另一条链路送出  ISP: 因特网服务提供商  边缘路由器: 连接端系统的第一台路由器  宽带连接: 包括DSL数字用户线,  电缆, FTTH光纤 ​   传输 bps: bit/s   存储转发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第四章 线程">
-<meta property="og:url" content="http://utilcoder.com/操作系统/操作系统/第四章 线程/index.html">
+<meta property="og:title" content="第一章">
+<meta property="og:url" content="http://utilcoder.com/计算机网络/计算机网络/第一章/index.html">
 <meta property="og:site_name" content="Code">
-<meta property="og:description" content="线程 共享堆内存和全局变量  线程模型 根据是否受到内核的干预分为: 用户线程和内核线程     线程模型 含义 优点 缺点     多对一 多个用户线程映射一个内核线程 内核线程少, 减少开销 只有一个内核线程, 所以用户线程不能并发执行   一对一 一个用户线程映射一个内核线程 多个用户线程能并发执行 内核线程多, 开销大   多对多 多个用户线程映射多个内核线程 多个用户线程能并发执行. 且">
+<meta property="og:description" content="分组 分组: 一种信息包. 信息在传输时会被分段, 且每段会添加上首部字节, 把每一段叫做分组   通信链路: 传输分组的物理媒介  分组交换机: 包括路由器和链路层交换机, 从一条通信链路接受分组并从另一条链路送出  ISP: 因特网服务提供商  边缘路由器: 连接端系统的第一台路由器  宽带连接: 包括DSL数字用户线,  电缆, FTTH光纤 ​   传输 bps: bit/s   存储转发">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-20T02:48:31.980Z">
+<meta property="og:updated_time" content="2018-09-13T04:49:16.261Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第四章 线程">
-<meta name="twitter:description" content="线程 共享堆内存和全局变量  线程模型 根据是否受到内核的干预分为: 用户线程和内核线程     线程模型 含义 优点 缺点     多对一 多个用户线程映射一个内核线程 内核线程少, 减少开销 只有一个内核线程, 所以用户线程不能并发执行   一对一 一个用户线程映射一个内核线程 多个用户线程能并发执行 内核线程多, 开销大   多对多 多个用户线程映射多个内核线程 多个用户线程能并发执行. 且">
+<meta name="twitter:title" content="第一章">
+<meta name="twitter:description" content="分组 分组: 一种信息包. 信息在传输时会被分段, 且每段会添加上首部字节, 把每一段叫做分组   通信链路: 传输分组的物理媒介  分组交换机: 包括路由器和链路层交换机, 从一条通信链路接受分组并从另一条链路送出  ISP: 因特网服务提供商  边缘路由器: 连接端系统的第一台路由器  宽带连接: 包括DSL数字用户线,  电缆, FTTH光纤 ​   传输 bps: bit/s   存储转发">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://utilcoder.com/操作系统/操作系统/第四章 线程/"/>
+  <link rel="canonical" href="http://utilcoder.com/计算机网络/计算机网络/第一章/"/>
 
 
 
 
 
-  <title>第四章 线程 | Code</title>
+  <title>第一章 | Code</title>
   
 
 
@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/操作系统/操作系统/第四章 线程/">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/计算机网络/计算机网络/第一章/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CoderUtil">
@@ -279,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">第四章 线程</h1>
+          <h1 class="post-title" itemprop="name headline">第一章</h1>
         
 
         <div class="post-meta">
@@ -291,8 +291,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-10T16:17:26+08:00">
-                2018-05-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-13T10:20:32+08:00">
+                2018-09-13
               </time>
             
 
@@ -314,8 +314,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/操作系统/" itemprop="url" rel="index">
-                    <span itemprop="name">操作系统</span>
+                  <a href="/categories/计算机网络/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机网络</span>
                   </a>
                 </span>
 
@@ -351,48 +351,42 @@
       
 
       
-        <h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><ul>
-<li>共享堆内存和全局变量</li>
+        <h1 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h1><ul>
+<li>分组: 一种信息包. 信息在传输时会被分段, 且每段会添加上首部字节, 把每一段叫做分组</li>
 </ul>
-<h2 id="线程模型"><a href="#线程模型" class="headerlink" title="线程模型"></a>线程模型</h2><ul>
-<li>根据是否受到内核的干预分为: 用户线程和内核线程</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">线程模型</th>
-<th style="text-align:center">含义</th>
-<th style="text-align:center">优点</th>
-<th style="text-align:center">缺点</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">多对一</td>
-<td style="text-align:center">多个用户线程映射一个内核线程</td>
-<td style="text-align:center">内核线程少, 减少开销</td>
-<td style="text-align:center">只有一个内核线程, 所以用户线程不能并发执行</td>
-</tr>
-<tr>
-<td style="text-align:center">一对一</td>
-<td style="text-align:center">一个用户线程映射一个内核线程</td>
-<td style="text-align:center">多个用户线程能并发执行</td>
-<td style="text-align:center">内核线程多, 开销大</td>
-</tr>
-<tr>
-<td style="text-align:center">多对多</td>
-<td style="text-align:center">多个用户线程映射多个内核线程</td>
-<td style="text-align:center">多个用户线程能并发执行. 且内核线程数量相对固定, 开销不大</td>
-</tr>
-</tbody>
-</table>
-<h2 id="线程取消"><a href="#线程取消" class="headerlink" title="线程取消"></a>线程取消</h2><p>​    在线程完成前终止线程</p>
 <ul>
-<li>异步取消: 立即终止目标线程</li>
-<li>延迟取消: 不断检查目标线程是否应该取消 </li>
+<li><p>通信链路: 传输分组的物理媒介</p>
+</li>
+<li><p>分组交换机: 包括路由器和链路层交换机, 从一条通信链路接受分组并从另一条链路送出</p>
+</li>
+<li><p>ISP: 因特网服务提供商</p>
+</li>
+<li><p>边缘路由器: 连接端系统的第一台路由器</p>
+</li>
+<li><p>宽带连接: 包括DSL数字用户线,  电缆, FTTH光纤</p>
+<p>​</p>
+</li>
 </ul>
-<h2 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h2><p>​    在进程开始时创建一定数量的线程, 并放入到池中等待工作. 当服务器收到请求时, 唤醒池中的一个线程并传递给要请求. 当请求完成, 将线程放回线程池</p>
-<h1 id="POSIX线程库"><a href="#POSIX线程库" class="headerlink" title="POSIX线程库"></a>POSIX线程库</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;pthread.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line"></span><br><span class="line">#define MAX_SIZE 10</span><br><span class="line"></span><br><span class="line">int arr[MAX_SIZE] = &#123;0&#125;;        //  线程中的资源是共享的</span><br><span class="line"></span><br><span class="line">long fibonacci(int num) &#123;</span><br><span class="line">    if (num == 0)</span><br><span class="line">        return 0;</span><br><span class="line">    if (num == 1) </span><br><span class="line">        arr[num - 1] = 0;</span><br><span class="line">    else if (num == 2)</span><br><span class="line">        arr[num - 1] = 1;</span><br><span class="line">    else </span><br><span class="line">        arr[num - 1] = fibonacci(num - 1) + fibonacci(num - 2);</span><br><span class="line">    return arr[num - 1];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void* runner(void* param) &#123;     //  线程通过runner函数执行</span><br><span class="line">    int num = atoi(param);</span><br><span class="line">    fibonacci(num);</span><br><span class="line">    pthread_exit(0);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char* argv[]) &#123;</span><br><span class="line">    pthread_t tid;              //  子线程的id</span><br><span class="line">    pthread_attr_t attr;        //  子线程的属性</span><br><span class="line"></span><br><span class="line">    if (argc != 2) &#123;</span><br><span class="line">        fprintf(stderr, &quot;usage: a.out &lt;integer value&gt;\n&quot;);</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (atoi(argv[1]) &lt; 0) &#123;</span><br><span class="line">        fprintf(stderr, &quot;%d should &gt;= 0\n&quot;, atoi(argv[1]));</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (atoi(argv[1]) &gt; 10) &#123;</span><br><span class="line">        fprintf(stderr, &quot;%d shouldn&apos;t &gt; 10\n&quot;, atoi(argv[1]));</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    pthread_attr_init(&amp;attr);   //  设置线程的属性</span><br><span class="line"></span><br><span class="line">    pthread_create(&amp;tid, &amp;attr, runner, argv[1]);  //  创建线程</span><br><span class="line"></span><br><span class="line">    pthread_join(tid, NULL);    //  父线程等待子线程执行完后才执行</span><br><span class="line"></span><br><span class="line">    for (int i = 0; i &lt; atoi(argv[1]); i++) &#123;</span><br><span class="line">        printf(&quot;%d &quot;, arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;\n&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="传输"><a href="#传输" class="headerlink" title="传输"></a>传输</h1><ul>
+<li>bps: bit/s</li>
+</ul>
+<ul>
+<li>存储转发传输: 交换机向输出链路输出分组的第一个bit前, 必须接受到整个分组</li>
+<li>输出队列: 要输出的分组必须在输出队列等待</li>
+<li>丢包: 输出队列已满, 队列中的某个分组被丢弃</li>
+</ul>
+<h1 id="交换"><a href="#交换" class="headerlink" title="交换"></a>交换</h1><p>​    在通信链路和交换机上移动数据, 包括电路交换和分组交换</p>
+<ul>
+<li>电路交换: 会预留通信所需的资源. 发送信息前, 在发送方和接收方建立一条连接, 即电路.</li>
+<li>分组交换: 不预留资源, 可能需要等待</li>
+</ul>
+<h1 id="时延"><a href="#时延" class="headerlink" title="时延"></a>时延</h1><ul>
+<li>结点处理时延: 检查分组首部, 并决定将分组导向何处的时间</li>
+<li>排队时延: 在传输队列中等待传输的时间</li>
+<li>传输时延: 将分组推出路由器的时间. 传输速率R bps, 分组长度L bit, 时间 = L / R</li>
+<li>传播时延: 分组在两个路由器间传输的时间.  传输速率R bps, 两个路由器间链路长度L bit, 时间 = L / R</li>
+</ul>
+<h1 id="网络分层"><a href="#网络分层" class="headerlink" title="网络分层"></a>网络分层</h1><p>​    应用层、运输层、网络层、链路层、物理层</p>
 
       
     </div>
@@ -417,8 +411,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/环境配置/环境配置/Eclipse的使用/" rel="next" title="Eclipse的使用">
-                <i class="fa fa-chevron-left"></i> Eclipse的使用
+              <a href="/LeetCode/LeetCode/查找无重复最长字串/" rel="next" title="查找无重复最长字串">
+                <i class="fa fa-chevron-left"></i> 查找无重复最长字串
               </a>
             
           </div>
@@ -426,10 +420,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/操作系统/操作系统/第五章 CPU调度/" rel="prev" title="第五章 CPU调度">
-                第五章 CPU调度 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -586,7 +576,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#线程"><span class="nav-number">1.</span> <span class="nav-text">线程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#线程模型"><span class="nav-number">1.1.</span> <span class="nav-text">线程模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程取消"><span class="nav-number">1.2.</span> <span class="nav-text">线程取消</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程池"><span class="nav-number">1.3.</span> <span class="nav-text">线程池</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#POSIX线程库"><span class="nav-number">2.</span> <span class="nav-text">POSIX线程库</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#分组"><span class="nav-number">1.</span> <span class="nav-text">分组</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#传输"><span class="nav-number">2.</span> <span class="nav-text">传输</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#交换"><span class="nav-number">3.</span> <span class="nav-text">交换</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#时延"><span class="nav-number">4.</span> <span class="nav-text">时延</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网络分层"><span class="nav-number">5.</span> <span class="nav-text">网络分层</span></a></li></ol></div>
             
 
           </div>

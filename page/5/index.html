@@ -259,6 +259,567 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/计算机组成与原理/计算机组成与原理/第三章 MIPS指令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/计算机组成与原理/计算机组成与原理/第三章 MIPS指令/" itemprop="url">第三章 MIPS指令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-27T14:06:28+08:00">
+                2018-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机组成与原理/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机组成与原理</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="小端法与大端法"><a href="#小端法与大端法" class="headerlink" title="小端法与大端法"></a>小端法与大端法</h1><ul>
+<li>小端法: 低地址放低字节, 高地址放高字节(因此在内存中看上去是把数的低位放在高位前面)</li>
+</ul>
+<h1 id="字"><a href="#字" class="headerlink" title="字"></a>字</h1><p>MIPS中寄存器和内存单元的大小位4个字节, 所以字的大小为4个字节</p>
+<h1 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h1><table>
+<thead>
+<tr>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">寄存器号</th>
+<th style="text-align:center">用途</th>
+<th style="text-align:center">调用时是否保存(调用前入栈, 调用后出栈)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">\$zero</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">常数0</td>
+<td style="text-align:center">否</td>
+</tr>
+<tr>
+<td style="text-align:center">\$v0 ~ \$v1</td>
+<td style="text-align:center">2 ~ 3</td>
+<td style="text-align:center">计算结果和表达式求值</td>
+<td style="text-align:center">否</td>
+</tr>
+<tr>
+<td style="text-align:center">\$a0 ~ \$a3</td>
+<td style="text-align:center">4 ~ 7</td>
+<td style="text-align:center">参数</td>
+<td style="text-align:center">否</td>
+</tr>
+<tr>
+<td style="text-align:center">\$t0 ~ \$t7</td>
+<td style="text-align:center">8 ~ 15</td>
+<td style="text-align:center">临时寄存器</td>
+<td style="text-align:center">否</td>
+</tr>
+<tr>
+<td style="text-align:center">\$s0 ~ \$s7</td>
+<td style="text-align:center">16 ~ 23</td>
+<td style="text-align:center">保存寄存器</td>
+<td style="text-align:center">是</td>
+</tr>
+<tr>
+<td style="text-align:center">\$t8 ~ $t9</td>
+<td style="text-align:center">24 ~ 25</td>
+<td style="text-align:center">临时寄存器</td>
+<td style="text-align:center">否</td>
+</tr>
+<tr>
+<td style="text-align:center">\$gp</td>
+<td style="text-align:center">28</td>
+<td style="text-align:center">全局变量</td>
+<td style="text-align:center">是</td>
+</tr>
+<tr>
+<td style="text-align:center">\$sp</td>
+<td style="text-align:center">29</td>
+<td style="text-align:center">栈指针</td>
+<td style="text-align:center">是</td>
+</tr>
+<tr>
+<td style="text-align:center">\$fp</td>
+<td style="text-align:center">30</td>
+<td style="text-align:center">帧指针</td>
+<td style="text-align:center">是</td>
+</tr>
+<tr>
+<td style="text-align:center">\$ra</td>
+<td style="text-align:center">31</td>
+<td style="text-align:center">返回地址</td>
+<td style="text-align:center">是</td>
+</tr>
+</tbody>
+</table>
+<h1 id="汇编指令"><a href="#汇编指令" class="headerlink" title="汇编指令"></a>汇编指令</h1><ul>
+<li>算术</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">指令</th>
+<th style="text-align:center">实例</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">加法</td>
+<td style="text-align:center">add \$s1, \$s2, \$s3</td>
+<td style="text-align:center">\$s1 = \$s2 + \$s3</td>
+</tr>
+<tr>
+<td style="text-align:center">减法</td>
+<td style="text-align:center">sub \$s1, \$s2, \$s3</td>
+<td style="text-align:center">\$s1 = \$s2 - \$s3</td>
+</tr>
+<tr>
+<td style="text-align:center">立即数加法</td>
+<td style="text-align:center">addi \$s1, \$s2, 20</td>
+<td style="text-align:center">\$s1 = \$s2 + 20</td>
+</tr>
+<tr>
+<td style="text-align:center">立即数减法</td>
+<td style="text-align:center">addi \$s1, \$s2, -20</td>
+<td style="text-align:center">\$s1 = \$s2 + (-20)</td>
+</tr>
+<tr>
+<td style="text-align:center">初始化</td>
+<td style="text-align:center">addi \$s1, \$zero, \$zero</td>
+<td style="text-align:center">将\$s1初始化为0</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>数据传输</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">指令</th>
+<th style="text-align:center">实例</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">取字</td>
+<td style="text-align:center">lw \$s1, 20 (\$s2)</td>
+<td style="text-align:center">\$s1 = \$Memory[\$s2 + 20]</td>
+</tr>
+<tr>
+<td style="text-align:center">存字</td>
+<td style="text-align:center">sw \$s1, 20 (\$s2)</td>
+<td style="text-align:center">\$Memory[\$s2 + 20] = \$s1</td>
+</tr>
+<tr>
+<td style="text-align:center">取半字</td>
+<td style="text-align:center">lh \$s1, 20 (\$s2)</td>
+<td style="text-align:center">从内存读取半个字, 放在寄存器右边8位</td>
+</tr>
+<tr>
+<td style="text-align:center">取无符号半字</td>
+<td style="text-align:center">lhu \$s1, 20 (\$s2)</td>
+<td style="text-align:center">…</td>
+</tr>
+<tr>
+<td style="text-align:center">存半字</td>
+<td style="text-align:center">sh \$s1, 20 (\$s2)</td>
+<td style="text-align:center">把寄存器右边8位放入内存</td>
+</tr>
+<tr>
+<td style="text-align:center">取字节</td>
+<td style="text-align:center">lb \$s1, 20 (\$s2)</td>
+<td style="text-align:center">…</td>
+</tr>
+<tr>
+<td style="text-align:center">取无符号字节</td>
+<td style="text-align:center">lbu \$s1, 20 (\$s2)</td>
+<td style="text-align:center">…</td>
+</tr>
+<tr>
+<td style="text-align:center">存字节</td>
+<td style="text-align:center">sb \$s1, 20 (\$s2)</td>
+<td style="text-align:center">…</td>
+</tr>
+<tr>
+<td style="text-align:center">取链接字</td>
+<td style="text-align:center">ll \$s1, 20 (\$s2)</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">存条件字</td>
+<td style="text-align:center">sc \$s1, 20 (\$s2)</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">读取立即数的高位</td>
+<td style="text-align:center">lui \$s1, 20</td>
+<td style="text-align:center">将立即数放在寄存器的高16位</td>
+</tr>
+<tr>
+<td style="text-align:center">构造32位数</td>
+<td style="text-align:center">lui构造高16位和or构造低16位</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$Memory[$s2 + 20] &lt;==&gt; A[5]		//	$s2保存数组A的基址值, MIPS中字为4个字节, 所以有5个元素</span><br></pre></td></tr></table></figure>
+<ul>
+<li>逻辑</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">指令</th>
+<th style="text-align:center">实例</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">与</td>
+<td style="text-align:center">and \$s1, \$s2, \$s3</td>
+<td style="text-align:center">\$s1 = \$s2 &amp; \$s3</td>
+</tr>
+<tr>
+<td style="text-align:center">或</td>
+<td style="text-align:center">or \$s1, \$s2, \$s3</td>
+<td style="text-align:center">\$s1 = \$s2 \</td>
+<td>\$s3</td>
+</tr>
+<tr>
+<td style="text-align:center">或非</td>
+<td style="text-align:center">nor \$s1, \$s2, \$s3</td>
+<td style="text-align:center">\$s1 = -($s2</td>
+<td>\$s3)</td>
+</tr>
+<tr>
+<td style="text-align:center">立即数与</td>
+<td style="text-align:center">andi \$s1, \$s2, 20</td>
+<td style="text-align:center">\$s1 = \$s2 &amp; 20</td>
+</tr>
+<tr>
+<td style="text-align:center">立即数或</td>
+<td style="text-align:center">ori \$s1, \$s2, 20</td>
+<td style="text-align:center">\$s1 = \$s2 \</td>
+<td>20</td>
+</tr>
+<tr>
+<td style="text-align:center">逻辑左移(不考虑符号位)</td>
+<td style="text-align:center">sll \$s1, \$s2, 20</td>
+<td style="text-align:center">\$s1 = \$s2 &lt;&lt; 20</td>
+</tr>
+<tr>
+<td style="text-align:center">逻辑右移</td>
+<td style="text-align:center">srl \$s1, \$s2, 20</td>
+<td style="text-align:center">\$s1 = \$s2 &gt;&gt; 20</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>条件分支</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">指令</th>
+<th style="text-align:center">实例</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">相等时跳转到标号</td>
+<td style="text-align:center">beq \$s1, \$s2, L</td>
+<td style="text-align:center">若\$s1 = \$s2, 跳转到标号L处</td>
+</tr>
+<tr>
+<td style="text-align:center">不等时跳转到标号</td>
+<td style="text-align:center">bnq \$s1, \$s2, L</td>
+<td style="text-align:center">若\$s1 != \$s2, 跳转到标号L处</td>
+</tr>
+<tr>
+<td style="text-align:center">小于时置位</td>
+<td style="text-align:center">slt \$s1, \$s2, \$s3</td>
+<td style="text-align:center">若\$s2 &lt; \$s3, \$s1 = 1; 否则\$s1 = 0</td>
+</tr>
+<tr>
+<td style="text-align:center">无符号比较小于时置位</td>
+<td style="text-align:center">sltu \$s1, \$s2, \$s3</td>
+<td style="text-align:center">若\$s2 &lt; \$s3, \$s1 = 1; 否则\$s1 = 0</td>
+</tr>
+<tr>
+<td style="text-align:center">无符号比较小于立即数时置位</td>
+<td style="text-align:center">slti \$s1, \$s2, 20</td>
+<td style="text-align:center">若\$s2 &lt; 20, \$s1 = 1; 否则\$s1 = 0</td>
+</tr>
+<tr>
+<td style="text-align:center">无符号比较小于无符号立即数时置位</td>
+<td style="text-align:center">sltiu \$s1, \$s2, 20</td>
+<td style="text-align:center">若\$s2 &lt; 20, \$s1 = 1; 否则\$s1 = 0</td>
+</tr>
+<tr>
+<td style="text-align:center">小于时跳转</td>
+<td style="text-align:center">slt与beq结合</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>无条件跳转</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">指令</th>
+<th style="text-align:center">实例</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">跳转到标号L处</td>
+<td style="text-align:center">j L</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">跳转到寄存器的值所指向的位置</td>
+<td style="text-align:center">jr \$ra</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">跳转到标号L处, 并将下一条指令的地址保存在$ra</td>
+<td style="text-align:center">jal L</td>
+</tr>
+</tbody>
+</table>
+<h1 id="二进制表示MIPS指令"><a href="#二进制表示MIPS指令" class="headerlink" title="二进制表示MIPS指令"></a>二进制表示MIPS指令</h1><ul>
+<li>指令长度为32位</li>
+</ul>
+<h2 id="字段格式"><a href="#字段格式" class="headerlink" title="字段格式"></a>字段格式</h2><ul>
+<li>R型:</li>
+</ul>
+<p><img src="https://CoderUtil.github.io/images/TIM截图20180331140121.png" alt="计算机组成"></p>
+<ul>
+<li>I型: 用于立即数和数据传送指令</li>
+</ul>
+<p><img src="https://CoderUtil.github.io/images/TIM截图20180331140908.png" alt="计算机组成"></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">指令</th>
+<th style="text-align:center">op</th>
+<th style="text-align:center">rs</th>
+<th style="text-align:center">rt</th>
+<th style="text-align:center">rd</th>
+<th style="text-align:center">shamt</th>
+<th style="text-align:center">funct</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">add</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">reg</td>
+<td style="text-align:center">reg</td>
+<td style="text-align:center">reg</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">32</td>
+</tr>
+<tr>
+<td style="text-align:center">sub</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">reg</td>
+<td style="text-align:center">reg</td>
+<td style="text-align:center">reg</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">34</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">指令</th>
+<th style="text-align:center">op</th>
+<th style="text-align:center">rs</th>
+<th style="text-align:center">rt</th>
+<th style="text-align:center">constant</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">addi</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">reg</td>
+<td style="text-align:center">reg</td>
+<td style="text-align:center">常数</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">指令</th>
+<th style="text-align:center">op</th>
+<th style="text-align:center">rs</th>
+<th style="text-align:center">rt</th>
+<th style="text-align:center">address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">lw</td>
+<td style="text-align:center">35</td>
+<td style="text-align:center">reg</td>
+<td style="text-align:center">reg</td>
+<td style="text-align:center">address</td>
+</tr>
+<tr>
+<td style="text-align:center">rt</td>
+<td style="text-align:center">43</td>
+<td style="text-align:center">reg</td>
+<td style="text-align:center">reg</td>
+<td style="text-align:center">address</td>
+</tr>
+</tbody>
+</table>
+<h2 id="J型-跳转指令的机器码都是字地址"><a href="#J型-跳转指令的机器码都是字地址" class="headerlink" title="J型(跳转指令的机器码都是字地址)"></a>J型(跳转指令的机器码都是字地址)</h2><p><img src="https://CoderUtil.github.io/images/TIM截图20180406210731.png" alt="计算机组成"></p>
+<p><img src="https://CoderUtil.github.io/images/TIM截图20180406214153.png" alt="计算机组成"></p>
+<h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h1><ul>
+<li>MIPS中栈的增长从高地址到低地址</li>
+<li>帧指针\$fp: 不同的函数使用不同的栈, 帧指针用于迅速找到函数对应的栈. 而且相对于栈指针, 帧指针是不变的, 这样可以用帧指针作为栈中数据的基址值</li>
+</ul>
+<p><img src="https://CoderUtil.github.io/images/TIM截图20180331143718.png" alt="计算机组成"></p>
+<h1 id="并行与指令"><a href="#并行与指令" class="headerlink" title="并行与指令"></a>并行与指令</h1><ul>
+<li>数据冲突: 若两个线程同时访问一个地址, 且至少一个线程执行写操作, 则可能导致数据冲突</li>
+</ul>
+<p><img src="https://CoderUtil.github.io/images/TIM截图20180416225515.png" alt="计算机组成"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ll $t1, 0($s1)		//	链接取数指令, 从[$s1 + 0]中取出数据</span><br><span class="line">sc $t0, 0($s1)		//	条件存数指令, 向[$s1 + 0]存数据</span><br><span class="line"></span><br><span class="line">ll和sc一起使用, 起到锁的作用. 若ll执行后, sc执行前. [$s1 + 0]中的值被改变了, 则sc不会执行</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/计算机组成与原理/计算机组成与原理/第二章 算术运算/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1728,7 +2289,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1739,7 +2300,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
