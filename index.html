@@ -1193,6 +1193,153 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/数据库/数据库/哈希索引/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/数据库/数据库/哈希索引/" itemprop="url">哈希索引</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-20T10:07:01+08:00">
+                2018-06-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="哈希索引"><a href="#哈希索引" class="headerlink" title="哈希索引"></a>哈希索引</h1><h2 id="静态哈希"><a href="#静态哈希" class="headerlink" title="静态哈希"></a>静态哈希</h2><p>​    桶的数目固定(如果多个项对应一个桶, 会产生很长的溢出链表)</p>
+<h2 id="可扩展哈希"><a href="#可扩展哈希" class="headerlink" title="可扩展哈希"></a>可扩展哈希</h2><p>​    见书本</p>
+<h2 id="线性哈希"><a href="#线性哈希" class="headerlink" title="线性哈希"></a>线性哈希</h2><p>​    哈希函数和可扩展哈希一样, 哈希函数是将索引转换为二进制, 然后看二进制后几位</p>
+<h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><p>​    当插入数据项引起溢出时, Next指向的桶分裂(根据新的二进制位, 将项分到两个桶中), Next加一. 当Next = NLevel - 1时, 一轮循环结束, Level加一, Next复位0</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">N:		桶数</span><br><span class="line">Level:	当前的循环级, 初始化为0</span><br><span class="line">Next:	将要分裂的桶的标号, 初始化为0(指向第一个桶)</span><br><span class="line">NLevel:	等价于N * 2^Level</span><br></pre></td></tr></table></figure>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><p>​    不断移除项, 如果桶为空, 移除桶, 同时Next减一. 如果Next = 0, Level减一, Next指向 N / 2 - 1</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/数据库/数据库/树索引/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1672,178 +1819,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/操作系统/操作系统/第九章-文件系统接口/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/操作系统/操作系统/第九章-文件系统接口/" itemprop="url">第九章 文件系统接口</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-17T13:02:01+08:00">
-                2018-06-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/操作系统/" itemprop="url" rel="index">
-                    <span itemprop="name">操作系统</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h1><p>​    由一组文件和文件目录组成</p>
-<h1 id="当前文件位置指针"><a href="#当前文件位置指针" class="headerlink" title="当前文件位置指针"></a>当前文件位置指针</h1><p>​    对文件进行读/写时, 指向当前文件的访问位置</p>
-<h1 id="文件重定位-文件寻址"><a href="#文件重定位-文件寻址" class="headerlink" title="文件重定位(文件寻址)"></a>文件重定位(文件寻址)</h1><p>​    设置当前文件位置指针的值</p>
-<h1 id="打开文件表"><a href="#打开文件表" class="headerlink" title="打开文件表"></a>打开文件表</h1><ul>
-<li>当调用open()打开文件时, 将文件添加进打开文件表</li>
-</ul>
-<ul>
-<li>若多个进程同时打开这一文件, 在进程的打开文件表中添加这个文件的条目, 同时映射到整个系统的打开文件表</li>
-</ul>
-<h1 id="访问方法"><a href="#访问方法" class="headerlink" title="访问方法"></a>访问方法</h1><ul>
-<li>顺序访问: 按顺序访问文件中的记录</li>
-</ul>
-<ul>
-<li>直接访问/相对访问: 随机对任意文件块进行访问</li>
-</ul>
-<h1 id="区-卷"><a href="#区-卷" class="headerlink" title="区, 卷"></a>区, 卷</h1><ul>
-<li>区: 磁盘中可以有多个文件系统, 每个系统占一个区</li>
-<li>卷: 由多个区构成</li>
-</ul>
-<h1 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h1><ul>
-<li>单层目录: 所有文件都包含在同一个目录中</li>
-</ul>
-<ul>
-<li>双层目录: 分为用户文件目录和主文件目录. 主文件目录指向多个用户文件目录</li>
-</ul>
-<ul>
-<li>树状目录: 在双层目录的基础上, 用户文件目录中包含了许多子目录(用户能自己创建目录)</li>
-</ul>
-<ul>
-<li>无环图目录: 在树状目录的基础上, 允许多个用户共享子目录(通过链接的方式)</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1898,7 +1873,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
