@@ -259,6 +259,348 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/数据库/数据库/第五章 SQL查询/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/数据库/数据库/第五章 SQL查询/" itemprop="url">第五章 SQL查询</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-07T20:28:45+08:00">
+                2018-04-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="SELECT的格式"><a href="#SELECT的格式" class="headerlink" title="SELECT的格式"></a>SELECT的格式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT [DISTINCT] select-list		//	默认结果包含重复的记录, DISTINCT指搜索的记录不能重复</span><br><span class="line">FROM from-list</span><br><span class="line">WHERE qualifications</span><br></pre></td></tr></table></figure>
+<ul>
+<li>选出拥有103号船的水手的名字</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT S.sname</span><br><span class="line">FROM Sailors S, Reserve R</span><br><span class="line">WHERE S.sid = R.sid AND R.bid = 103		//	相当于叉积</span><br></pre></td></tr></table></figure>
+<h2 id="UNION-INTERSECT-EXCEPT"><a href="#UNION-INTERSECT-EXCEPT" class="headerlink" title="UNION, INTERSECT, EXCEPT"></a>UNION, INTERSECT, EXCEPT</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT S.sname</span><br><span class="line">FROM Sailors S, Reserve R, Boats B</span><br><span class="line">WHERE S.sid = R.sid AND R.bid = B.bid AND B.color = &apos;red&apos;</span><br><span class="line">(UNION / INTERSECT / EXCEPT)		//	并/交/差集</span><br><span class="line">SELECT S.sname</span><br><span class="line">FROM Sailors S, Reserve R, Boats B</span><br><span class="line">WHERE S.sid = R.sid AND R.bid = B.bid AND B.color = &apos;green&apos;</span><br></pre></td></tr></table></figure>
+<h2 id="Like"><a href="#Like" class="headerlink" title="Like, %, _"></a>Like, %, _</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">用于字符的匹配:</span><br><span class="line">	%匹配任意个字符</span><br><span class="line">	_匹配一个字符</span><br><span class="line"></span><br><span class="line">SELECT S.age</span><br><span class="line">FROM Sailors S</span><br><span class="line">WHERE S.sname LIKE &apos;B_%B&apos;		//	名字以B开头和结尾, 且中间至少有一个字母</span><br></pre></td></tr></table></figure>
+<h2 id="嵌套查询"><a href="#嵌套查询" class="headerlink" title="嵌套查询"></a>嵌套查询</h2><ul>
+<li>选出拥有103号船的水手的名字</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">SELECT S.sname</span><br><span class="line">FROM Sailors S</span><br><span class="line">WHERE S.sid IN (SELECT R.sid		//	IN用于检测一个值是否在给定的集合中</span><br><span class="line">				FROM Reserve R</span><br><span class="line">				WHERE R.bid = 103)</span><br><span class="line">				</span><br><span class="line">或</span><br><span class="line">SELECT S.sname</span><br><span class="line">FROM Sailors S</span><br><span class="line">WHERE EXISTS (SELECT *</span><br><span class="line">			FROM Reserve R</span><br><span class="line">			WHERE R.bid = 103 AND R.sid = S.sid)</span><br></pre></td></tr></table></figure>
+<h2 id="嵌套查询的集合比较"><a href="#嵌套查询的集合比较" class="headerlink" title="嵌套查询的集合比较"></a>嵌套查询的集合比较</h2><ul>
+<li>选出等级最高的水手的id</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT S.sid</span><br><span class="line">FROM Sailors S</span><br><span class="line">WHERE S.rating &gt;= ALL (SELECT S2.rating		//	ANY表示比集合中的任意一个元素大, ALL表示比集合中的所有元素都大</span><br><span class="line">					FROM Sailors S2)</span><br></pre></td></tr></table></figure>
+<h2 id="聚集操作符"><a href="#聚集操作符" class="headerlink" title="聚集操作符"></a>聚集操作符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1. COUNT([DISTINCT] select-list)</span><br><span class="line"></span><br><span class="line">2. SUM([DISTINCT] select-list)</span><br><span class="line"></span><br><span class="line">3. AVG([DISTINCT] select-list)</span><br><span class="line"></span><br><span class="line">4. MAX(select-list)</span><br><span class="line"></span><br><span class="line">5. MIN(select-list)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>选出最年长的水手的名字和年龄</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT S.sname, S.age</span><br><span class="line">FROM Sailors S</span><br><span class="line">WHERE S.age = (SELECT MAX(S2.age) FROM Sailors S2)</span><br><span class="line"></span><br><span class="line">注意: 聚集操作符和普通字段不能同时获取</span><br><span class="line">SELECT S.sname, MAX(S.age)		//	错误</span><br><span class="line">FROM Sailors S</span><br></pre></td></tr></table></figure>
+<h2 id="从一个SELECT的结果中SELECT信息"><a href="#从一个SELECT的结果中SELECT信息" class="headerlink" title="从一个SELECT的结果中SELECT信息"></a>从一个SELECT的结果中SELECT信息</h2><ul>
+<li>选出平均年龄在所有等级中最低的那些等级</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT Temp.rating, Temp.avgage</span><br><span class="line">FROM (SELECT S.rating, AVG(S.age) AS avgage,</span><br><span class="line">		FROM Sailors S</span><br><span class="line">		GROUP BY S.rating) AS Temp</span><br><span class="line">WHERE Temp.avagage = (SELECT MIN (Temp.avgage) FROM Temp)</span><br></pre></td></tr></table></figure>
+<h2 id="GROUP-BY和HAVING"><a href="#GROUP-BY和HAVING" class="headerlink" title="GROUP BY和HAVING"></a>GROUP BY和HAVING</h2><ul>
+<li>GROUP BY用于分组</li>
+</ul>
+<ul>
+<li>HAVING用于指定分组的条件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT [DISTINCT] select-list</span><br><span class="line">FROM from-list</span><br><span class="line">WHERE qualification</span><br><span class="line">GROUP BY grouping-list</span><br><span class="line">HAVING group-qualication</span><br><span class="line"></span><br><span class="line">顺序是先通过WHERE获取满足条件的记录, 然后通过GROUP BY分组, 再通过HAVING去掉不符合条件的分组, 最后选出select-list</span><br></pre></td></tr></table></figure>
+<ul>
+<li>对于每个等级, 若至少有两个水手成年, 找出成年水手中的最小年龄</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT MIN(S.age)</span><br><span class="line">FROM Sailors S</span><br><span class="line">WHERE S.age &gt;= 18</span><br><span class="line">GROUP BY S.rating</span><br><span class="line">HAVING COUNT(*) &gt; 1</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/数据库/数据库/存储与索引概述/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/数据库/数据库/存储与索引概述/" itemprop="url">存储与索引概述</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-07T19:32:54+08:00">
+                2018-04-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="页"><a href="#页" class="headerlink" title="页"></a>页</h2><p>​    数据库中的信息保存在磁盘上, 数据库与磁盘传输的单位就是页</p>
+<h2 id="堆文件"><a href="#堆文件" class="headerlink" title="堆文件"></a>堆文件</h2><p>​    不使用索引的文件    </p>
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><p>​    加快检索信息的一种数据结构, 如哈希索引和B+树索引. </p>
+<h2 id="搜索码"><a href="#搜索码" class="headerlink" title="搜索码"></a>搜索码</h2><p>​    索引值</p>
+<h2 id="数据项"><a href="#数据项" class="headerlink" title="数据项"></a>数据项</h2><p>​    存储在索引文件中的记录</p>
+<ul>
+<li>数据项有三种形式: </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 保存整条记录(所以是聚簇索引)</span><br><span class="line"></span><br><span class="line">2. 保存&lt;索引值, 索引对应记录的主键&gt;</span><br><span class="line"></span><br><span class="line">3. 保存&lt;索引值, 索引对应记录的主键的链表&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="聚簇索引、非聚簇索引"><a href="#聚簇索引、非聚簇索引" class="headerlink" title="聚簇索引、非聚簇索引"></a>聚簇索引、非聚簇索引</h2><ul>
+<li>聚簇索引: 索引的数据项顺序与记录的顺序相同</li>
+</ul>
+<ul>
+<li>非聚簇索引: 索引的数据项顺序与记录的顺序不同</li>
+</ul>
+<h2 id="主索引与次级索引"><a href="#主索引与次级索引" class="headerlink" title="主索引与次级索引"></a>主索引与次级索引</h2><ul>
+<li>主索引: 使用包含主键的码作为索引(所以是唯一索引)</li>
+</ul>
+<ul>
+<li>次级索引: 索引不包含主键</li>
+</ul>
+<h2 id="唯一索引"><a href="#唯一索引" class="headerlink" title="唯一索引"></a>唯一索引</h2><p>​    所有数据项没有重复的索引值, 则该索引称为唯一索引</p>
+<h2 id="哈希索引"><a href="#哈希索引" class="headerlink" title="哈希索引"></a>哈希索引</h2><p>​    通过哈希函数, 在索引文件中快速找到索引对应的记录</p>
+<h2 id="B-树索引"><a href="#B-树索引" class="headerlink" title="B+树索引"></a>B+树索引</h2><p>​    将索引文件按B+树来排序</p>
+<h2 id="I-O代价"><a href="#I-O代价" class="headerlink" title="I/O代价"></a>I/O代价</h2><p>​    见P219 图8.4(缩写字母的含义在P214)</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/汇编/汇编/第五章 中断与端口/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2617,376 +2959,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/计算机组成与原理/计算机组成与原理/第一章 计算机概要/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/计算机组成与原理/计算机组成与原理/第一章 计算机概要/" itemprop="url">第一章 计算机概要与技术</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-25T20:20:07+08:00">
-                2018-03-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机组成与原理/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机组成与原理</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="硬件入门"><a href="#硬件入门" class="headerlink" title="硬件入门"></a>硬件入门</h1><h2 id="计算机组成"><a href="#计算机组成" class="headerlink" title="计算机组成"></a>计算机组成</h2><p><img src="https://CoderUtil.github.io/images/计算机组成.png" alt="计算机组成"></p>
-<h2 id="CPU组成"><a href="#CPU组成" class="headerlink" title="CPU组成"></a>CPU组成</h2><p><img src="https://CoderUtil.github.io/images/TIM截图20180326081639.png" alt="计算机组成"></p>
-<h2 id="总线分类"><a href="#总线分类" class="headerlink" title="总线分类"></a>总线分类</h2><p><img src="https://CoderUtil.github.io/images/TIM截图20180326082028.png" alt="计算机组成"></p>
-<h2 id="存储器分类"><a href="#存储器分类" class="headerlink" title="存储器分类"></a>存储器分类</h2><p>​    按用途分类</p>
-<p><img src="https://CoderUtil.github.io/images/TIM截图20180326082628.png" alt="计算机组成"></p>
-<p>​    按读写功能分类</p>
-<p><img src="https://CoderUtil.github.io/images/TIM截图20180326082929.png" alt="计算机组成"></p>
-<h2 id="状态寄存器-标志寄存器FR"><a href="#状态寄存器-标志寄存器FR" class="headerlink" title="状态寄存器(标志寄存器FR)"></a>状态寄存器(标志寄存器FR)</h2><p><img src="https://CoderUtil.github.io/images/TIM截图20180326084420.png" alt="计算机组成"></p>
-<p><img src="https://CoderUtil.github.io/images/TIM截图20180327124456.png" alt="计算机组成"></p>
-<h2 id="显示器"><a href="#显示器" class="headerlink" title="显示器"></a>显示器</h2><ul>
-<li>分辨率: 位图中像素的数目. 若位图中有1024行, 768列, 则分辨率为1024 * 768</li>
-</ul>
-<ul>
-<li>位图: 由像素组成的二进制矩阵, 每个像素的值用RGB的形式编码</li>
-<li>像素: 图像中最小的完整取样</li>
-</ul>
-<h1 id="指令体系"><a href="#指令体系" class="headerlink" title="指令体系"></a>指令体系</h1><h2 id="冯诺依曼体系"><a href="#冯诺依曼体系" class="headerlink" title="冯诺依曼体系"></a>冯诺依曼体系</h2><ul>
-<li><p>特点: 把程序当作数据看待, 程序和数据用同样的方式存储</p>
-<p>​</p>
-</li>
-</ul>
-<h2 id="程序控制"><a href="#程序控制" class="headerlink" title="程序控制"></a>程序控制</h2><p>​    将一大段指令和数据保存在内存中, 并将指令段首地址保存到程序计数器PC中. CPU根据PC中的地址, 从内存中读取指令并放在指令寄存器IR中. 然后分析指令, 根据指令共能从内存中取出数据, 然后将运算结果保存到内存中. 然后PC指向下一条指令, 直至遇到停机指令</p>
-<h2 id="CPU架构"><a href="#CPU架构" class="headerlink" title="CPU架构"></a>CPU架构</h2><p><img src="https://CoderUtil.github.io/images/TIM截图20180326091534.png" alt="计算机组成"></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/操作系统/操作系统/第一章 计算机系统组织/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/操作系统/操作系统/第一章 计算机系统组织/" itemprop="url">第一章 计算机系统组织</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-25T20:05:01+08:00">
-                2018-03-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/操作系统/" itemprop="url" rel="index">
-                    <span itemprop="name">操作系统</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="计算机系统操作"><a href="#计算机系统操作" class="headerlink" title="计算机系统操作"></a>计算机系统操作</h1><h2 id="启动计算机"><a href="#启动计算机" class="headerlink" title="启动计算机"></a>启动计算机</h2><p>   当打开电源或重启时, 计算机运行BIOS, 它将定位操作系统的内核并将其装入内存中, 然后操作系统执行第一个进程如init, 并等待事件的发生</p>
-<ul>
-<li><p>BIOS: 固化在ROM中的引导程序, 保存着基本的输入输出程序</p>
-</li>
-<li><p>内核core: 操作系统最核心的部分, 它提供了程序对计算机硬件的安全访问</p>
-</li>
-<li><p>外壳shell: 用于控制操作系统的程序, 它提供了与用户交互的界面 </p>
-<p>​</p>
-</li>
-</ul>
-<h2 id="中断"><a href="#中断" class="headerlink" title="中断"></a>中断</h2><p>   指停止当前程序, 并开始处理新程序, 直至完成后继续被暂停的程序. 通过中断产生了新的事件, 位模式的切换也依赖于中断</p>
-<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><p>   通过软件、硬件的中断产生</p>
-<ul>
-<li><p>软中断: 软件通过执行特定的操作产生, 比如通过trap产生系统调用</p>
-</li>
-<li><p>硬中断: 硬件通过总线发送中断信号产生</p>
-<p>​</p>
-</li>
-</ul>
-<h2 id="中断向量表"><a href="#中断向量表" class="headerlink" title="中断向量表"></a>中断向量表</h2><p>   用一个表保存所有程序的地址和状态, 然后将表保存到内存中从0开始的地址. 产生中断时, 根据中断向量根据中断码在中断向量表中找到对应的中断处理程序的入口地址, 然后跳转到对应的中断处理程序处理中断</p>
-<h1 id="I-O结构"><a href="#I-O结构" class="headerlink" title="I/O结构"></a>I/O结构</h1><h2 id="I-O操作"><a href="#I-O操作" class="headerlink" title="I/O操作"></a>I/O操作</h2><p>   控制器先检查指令寄存器的内容决定要采取的操作, 然后将数据寄存器中的内容传输到本地缓冲区. 传输完成后, 控制器会产生一个中断信号通知驱动程序传输完成</p>
-<ul>
-<li>驱动程序: 存在于设备控制器上, 它提供了硬件与软件系统的接口, 充当两者的桥梁</li>
-<li>缺点: 因为数据寄存器只能保存一个字节, 所以只适用于少量数据的传输</li>
-</ul>
-<h2 id="DMA直接内存访问"><a href="#DMA直接内存访问" class="headerlink" title="DMA直接内存访问"></a>DMA直接内存访问</h2><p>   一大块数据的传输, 只产生一个中断来告知驱动程序已经完成</p>
-<ul>
-<li><p>原因: 对于大块数据的传输, 若采用多次I/O中断驱动的方法传输, 会产生超载问题</p>
-<p>​</p>
-</li>
-</ul>
-<h1 id="处理器"><a href="#处理器" class="headerlink" title="处理器"></a>处理器</h1><p>   <img src="https://CoderUtil.github.io/images/cpu.png" alt="操作系统"></p>
-<ul>
-<li><p>多核处理器: 将多个计算机计算机引擎设计到单个芯片上</p>
-<p>​</p>
-</li>
-</ul>
-<h1 id="操作系统结构"><a href="#操作系统结构" class="headerlink" title="操作系统结构"></a>操作系统结构</h1><h2 id="多道程序设计"><a href="#多道程序设计" class="headerlink" title="多道程序设计"></a>多道程序设计</h2><p>   操作系统同时将多个任务保存在内存中, 当一个任务执行完后立即执行另一个任务</p>
-<h2 id="分时系统"><a href="#分时系统" class="headerlink" title="分时系统"></a>分时系统</h2><p>   多用户共享计算机, 通过在作业之间快速进行切换让用户感到系统只为自己所用</p>
-<h1 id="操作系统操作"><a href="#操作系统操作" class="headerlink" title="操作系统操作"></a>操作系统操作</h1><h2 id="CPU操作模式"><a href="#CPU操作模式" class="headerlink" title="CPU操作模式"></a>CPU操作模式</h2><p>  <img src="https://CoderUtil.github.io/TIM截图20180330093215.png" alt="操作系统"></p>
-<p>实模式和保护模式:</p>
-<p>​    80286CPU及以前的CPU, 内存地址只有16位, 随着可访问内存增多. 为了兼容, 将旧的部分设为实模式, 新增部分设为保护模式</p>
-<ul>
-<li>实模式: 所有内存都是可读写的</li>
-<li>保护模式: 一. 提供保护机制, 不是所有段都是可读写的; 二. 可以访问的内存空间变大</li>
-</ul>
-<p> 用户模式和系统模式: </p>
-<p>​    通过在硬件中添加一个称为模式为的位, 来区分用户定义的代码和操作系统代码</p>
-<ul>
-<li><p>用户模式: 只能执行非特权指令. 若执行特权指令, 会通过陷阱的形式中断 </p>
-</li>
-<li><p>系统模式/特权模式/内核模式: 能够执行全部指令, 包括特权指令 </p>
-<p>​</p>
-</li>
-</ul>
-<h2 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h2><p>  设置在给定时间后中断计算机</p>
-<ul>
-<li>原因: 为了防止用户程序陷入死循环或不进行系统调用, 导致不将控制权返回到操作系统</li>
-</ul>
-<h1 id="存储管理"><a href="#存储管理" class="headerlink" title="存储管理"></a>存储管理</h1><h2 id="高速缓存的一致性"><a href="#高速缓存的一致性" class="headerlink" title="高速缓存的一致性"></a>高速缓存的一致性</h2><p>   对于存储在某个高速缓存中的值A, 当它的值改变. 所有保存了A的副本的高速缓存都要改变它们存储的A值</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -3036,7 +3013,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-count">52</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

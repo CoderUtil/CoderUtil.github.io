@@ -259,6 +259,296 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/汇编/汇编/x86指令汇总/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/汇编/汇编/x86指令汇总/" itemprop="url">x86指令汇总</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-24T16:02:18+08:00">
+                2018-04-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/汇编/" itemprop="url" rel="index">
+                    <span itemprop="name">汇编</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="数据传送类"><a href="#数据传送类" class="headerlink" title="数据传送类"></a>数据传送类</h1><h2 id="movsx"><a href="#movsx" class="headerlink" title="movsx"></a>movsx</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">将源操作数符号扩展并传送到目的操作数中</span><br><span class="line"></span><br><span class="line">MOVSX AX，BL</span><br><span class="line">执行前(BL)=0F0H，则执行后(AX)=0FFF0H</span><br></pre></td></tr></table></figure>
+<h2 id="movzx"><a href="#movzx" class="headerlink" title="movzx"></a>movzx</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">将源操作数零扩展并传送到目的操作数中</span><br><span class="line"></span><br><span class="line">MOVZX AX，BL</span><br><span class="line">执行前(BL)=0F0H，则执行后(AX)=00F0H</span><br></pre></td></tr></table></figure>
+<h2 id="xchg"><a href="#xchg" class="headerlink" title="xchg"></a>xchg</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">交换源和目的操作数的值</span><br><span class="line"></span><br><span class="line">XCHG AX，BX</span><br><span class="line">若执行前(AX)=1000H，(BX)=2000H</span><br><span class="line">则执行后(AX)=2000H，(BX)=1000H</span><br></pre></td></tr></table></figure>
+<h2 id="xlat"><a href="#xlat" class="headerlink" title="xlat"></a>xlat</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">完成一次查表的功能，将数据段中地址为（BX）+（AL）中的一个字节传送到AL中</span><br><span class="line"></span><br><span class="line">指令用法: </span><br><span class="line">	1. 建立字节表</span><br><span class="line">	2. bx &lt;- 字节表的首地址</span><br><span class="line">	3. al &lt;- 需要传送的字节在表中的序号</span><br><span class="line">	</span><br><span class="line">例子:</span><br><span class="line">	data segments</span><br><span class="line">		SQUARE_TABLE DB 00H，01H，04H，09H，10H，19H，24H，31H，40H，51H		//	建立乘法表</span><br><span class="line">	data ends</span><br><span class="line">	</span><br><span class="line">	code segments</span><br><span class="line">		MOV BX，OFFSET SQUARE_TABLE</span><br><span class="line">		MOV AL，4		//	字节在表中的序号, 从0开始</span><br><span class="line">		xlat 			//	结果al = 10H</span><br><span class="line">	code ends</span><br></pre></td></tr></table></figure>
+<h2 id="lea"><a href="#lea" class="headerlink" title="lea"></a>lea</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">将地址偏移量传送到目的寄存器中. 相当于mov bx, offset [bx+di+0010H]</span><br><span class="line"></span><br><span class="line">LEA BX，[BX+DI+0010H]		//	执行前(BX) = 1000H，(DI) = 0100H. 执行后(BX) = 1000H + 0100H + 0100H</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/环境配置/环境配置/Eclipse使用junit 5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/环境配置/环境配置/Eclipse使用junit 5/" itemprop="url">Eclipse使用junit 5</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-21T09:37:46+08:00">
+                2018-04-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/环境配置/" itemprop="url" rel="index">
+                    <span itemprop="name">环境配置</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="项目绑定Junit"><a href="#项目绑定Junit" class="headerlink" title="项目绑定Junit"></a>项目绑定Junit</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">右键项目-&gt;properties-&gt;Java Build Path-&gt;Libraries-&gt;Modulepath-&gt;Add Library-&gt;Junit 5</span><br></pre></td></tr></table></figure>
+<h2 id="生成Junit文件"><a href="#生成Junit文件" class="headerlink" title="生成Junit文件"></a>生成Junit文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">右键要测试的java文件-&gt;New-&gt;Junit Test Case-&gt; 单选框选Junit Juipter, 复选框选setUp()-&gt;next-&gt;勾选要测试的method-&gt;finish-&gt;将Junit中的fail(xxxx)改为测试的话</span><br></pre></td></tr></table></figure>
+<h2 id="运行Junit文件"><a href="#运行Junit文件" class="headerlink" title="运行Junit文件"></a>运行Junit文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">右键生成的Junit文件-&gt;Run AS-&gt;Junit Test</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/环境配置/环境配置/安装Eclipse插件SonarLint/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1879,353 +2169,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/数据库/数据库/第五章 SQL查询/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/数据库/数据库/第五章 SQL查询/" itemprop="url">第五章 SQL查询</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-07T20:28:45+08:00">
-                2018-04-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据库/" itemprop="url" rel="index">
-                    <span itemprop="name">数据库</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="SELECT的格式"><a href="#SELECT的格式" class="headerlink" title="SELECT的格式"></a>SELECT的格式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT [DISTINCT] select-list		//	默认结果包含重复的记录, DISTINCT指搜索的记录不能重复</span><br><span class="line">FROM from-list</span><br><span class="line">WHERE qualifications</span><br></pre></td></tr></table></figure>
-<ul>
-<li>选出拥有103号船的水手的名字</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT S.sname</span><br><span class="line">FROM Sailors S, Reserve R</span><br><span class="line">WHERE S.sid = R.sid AND R.bid = 103		//	相当于叉积</span><br></pre></td></tr></table></figure>
-<h2 id="UNION-INTERSECT-EXCEPT"><a href="#UNION-INTERSECT-EXCEPT" class="headerlink" title="UNION, INTERSECT, EXCEPT"></a>UNION, INTERSECT, EXCEPT</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT S.sname</span><br><span class="line">FROM Sailors S, Reserve R, Boats B</span><br><span class="line">WHERE S.sid = R.sid AND R.bid = B.bid AND B.color = &apos;red&apos;</span><br><span class="line">(UNION / INTERSECT / EXCEPT)		//	并/交/差集</span><br><span class="line">SELECT S.sname</span><br><span class="line">FROM Sailors S, Reserve R, Boats B</span><br><span class="line">WHERE S.sid = R.sid AND R.bid = B.bid AND B.color = &apos;green&apos;</span><br></pre></td></tr></table></figure>
-<h2 id="Like"><a href="#Like" class="headerlink" title="Like, %, _"></a>Like, %, _</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">用于字符的匹配:</span><br><span class="line">	%匹配任意个字符</span><br><span class="line">	_匹配一个字符</span><br><span class="line"></span><br><span class="line">SELECT S.age</span><br><span class="line">FROM Sailors S</span><br><span class="line">WHERE S.sname LIKE &apos;B_%B&apos;		//	名字以B开头和结尾, 且中间至少有一个字母</span><br></pre></td></tr></table></figure>
-<h2 id="嵌套查询"><a href="#嵌套查询" class="headerlink" title="嵌套查询"></a>嵌套查询</h2><ul>
-<li>选出拥有103号船的水手的名字</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">SELECT S.sname</span><br><span class="line">FROM Sailors S</span><br><span class="line">WHERE S.sid IN (SELECT R.sid		//	IN用于检测一个值是否在给定的集合中</span><br><span class="line">				FROM Reserve R</span><br><span class="line">				WHERE R.bid = 103)</span><br><span class="line">				</span><br><span class="line">或</span><br><span class="line">SELECT S.sname</span><br><span class="line">FROM Sailors S</span><br><span class="line">WHERE EXISTS (SELECT *</span><br><span class="line">			FROM Reserve R</span><br><span class="line">			WHERE R.bid = 103 AND R.sid = S.sid)</span><br></pre></td></tr></table></figure>
-<h2 id="嵌套查询的集合比较"><a href="#嵌套查询的集合比较" class="headerlink" title="嵌套查询的集合比较"></a>嵌套查询的集合比较</h2><ul>
-<li>选出等级最高的水手的id</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT S.sid</span><br><span class="line">FROM Sailors S</span><br><span class="line">WHERE S.rating &gt;= ALL (SELECT S2.rating		//	ANY表示比集合中的任意一个元素大, ALL表示比集合中的所有元素都大</span><br><span class="line">					FROM Sailors S2)</span><br></pre></td></tr></table></figure>
-<h2 id="聚集操作符"><a href="#聚集操作符" class="headerlink" title="聚集操作符"></a>聚集操作符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1. COUNT([DISTINCT] select-list)</span><br><span class="line"></span><br><span class="line">2. SUM([DISTINCT] select-list)</span><br><span class="line"></span><br><span class="line">3. AVG([DISTINCT] select-list)</span><br><span class="line"></span><br><span class="line">4. MAX(select-list)</span><br><span class="line"></span><br><span class="line">5. MIN(select-list)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>选出最年长的水手的名字和年龄</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT S.sname, S.age</span><br><span class="line">FROM Sailors S</span><br><span class="line">WHERE S.age = (SELECT MAX(S2.age) FROM Sailors S2)</span><br><span class="line"></span><br><span class="line">注意: 聚集操作符和普通字段不能同时获取</span><br><span class="line">SELECT S.sname, MAX(S.age)		//	错误</span><br><span class="line">FROM Sailors S</span><br></pre></td></tr></table></figure>
-<h2 id="从一个SELECT的结果中SELECT信息"><a href="#从一个SELECT的结果中SELECT信息" class="headerlink" title="从一个SELECT的结果中SELECT信息"></a>从一个SELECT的结果中SELECT信息</h2><ul>
-<li>选出平均年龄在所有等级中最低的那些等级</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT Temp.rating, Temp.avgage</span><br><span class="line">FROM (SELECT S.rating, AVG(S.age) AS avgage,</span><br><span class="line">		FROM Sailors S</span><br><span class="line">		GROUP BY S.rating) AS Temp</span><br><span class="line">WHERE Temp.avagage = (SELECT MIN (Temp.avgage) FROM Temp)</span><br></pre></td></tr></table></figure>
-<h2 id="GROUP-BY和HAVING"><a href="#GROUP-BY和HAVING" class="headerlink" title="GROUP BY和HAVING"></a>GROUP BY和HAVING</h2><ul>
-<li>GROUP BY用于分组</li>
-</ul>
-<ul>
-<li>HAVING用于指定分组的条件</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT [DISTINCT] select-list</span><br><span class="line">FROM from-list</span><br><span class="line">WHERE qualification</span><br><span class="line">GROUP BY grouping-list</span><br><span class="line">HAVING group-qualication</span><br><span class="line"></span><br><span class="line">顺序是先通过WHERE获取满足条件的记录, 然后通过GROUP BY分组, 再通过HAVING去掉不符合条件的分组, 最后选出select-list</span><br></pre></td></tr></table></figure>
-<ul>
-<li>对于每个等级, 若至少有两个水手成年, 找出成年水手中的最小年龄</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT MIN(S.age)</span><br><span class="line">FROM Sailors S</span><br><span class="line">WHERE S.age &gt;= 18</span><br><span class="line">GROUP BY S.rating</span><br><span class="line">HAVING COUNT(*) &gt; 1</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/数据库/数据库/存储与索引概述/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/数据库/数据库/存储与索引概述/" itemprop="url">存储与索引概述</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-07T19:32:54+08:00">
-                2018-04-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据库/" itemprop="url" rel="index">
-                    <span itemprop="name">数据库</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="页"><a href="#页" class="headerlink" title="页"></a>页</h2><p>​    数据库中的信息保存在磁盘上, 数据库与磁盘传输的单位就是页</p>
-<h2 id="堆文件"><a href="#堆文件" class="headerlink" title="堆文件"></a>堆文件</h2><p>​    不使用索引的文件    </p>
-<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><p>​    加快检索信息的一种数据结构, 如哈希索引和B+树索引. </p>
-<h2 id="搜索码"><a href="#搜索码" class="headerlink" title="搜索码"></a>搜索码</h2><p>​    索引值</p>
-<h2 id="数据项"><a href="#数据项" class="headerlink" title="数据项"></a>数据项</h2><p>​    存储在索引文件中的记录</p>
-<ul>
-<li>数据项有三种形式: </li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 保存整条记录(所以是聚簇索引)</span><br><span class="line"></span><br><span class="line">2. 保存&lt;索引值, 索引对应记录的主键&gt;</span><br><span class="line"></span><br><span class="line">3. 保存&lt;索引值, 索引对应记录的主键的链表&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="聚簇索引、非聚簇索引"><a href="#聚簇索引、非聚簇索引" class="headerlink" title="聚簇索引、非聚簇索引"></a>聚簇索引、非聚簇索引</h2><ul>
-<li>聚簇索引: 索引的数据项顺序与记录的顺序相同</li>
-</ul>
-<ul>
-<li>非聚簇索引: 索引的数据项顺序与记录的顺序不同</li>
-</ul>
-<h2 id="主索引与次级索引"><a href="#主索引与次级索引" class="headerlink" title="主索引与次级索引"></a>主索引与次级索引</h2><ul>
-<li>主索引: 使用包含主键的码作为索引(所以是唯一索引)</li>
-</ul>
-<ul>
-<li>次级索引: 索引不包含主键</li>
-</ul>
-<h2 id="唯一索引"><a href="#唯一索引" class="headerlink" title="唯一索引"></a>唯一索引</h2><p>​    所有数据项没有重复的索引值, 则该索引称为唯一索引</p>
-<h2 id="哈希索引"><a href="#哈希索引" class="headerlink" title="哈希索引"></a>哈希索引</h2><p>​    通过哈希函数, 在索引文件中快速找到索引对应的记录</p>
-<h2 id="B-树索引"><a href="#B-树索引" class="headerlink" title="B+树索引"></a>B+树索引</h2><p>​    将索引文件按B+树来排序</p>
-<h2 id="I-O代价"><a href="#I-O代价" class="headerlink" title="I/O代价"></a>I/O代价</h2><p>​    见P219 图8.4(缩写字母的含义在P214)</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2275,7 +2223,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-count">52</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
