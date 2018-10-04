@@ -259,6 +259,363 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/汇编/汇编/第一章 基础知识/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/汇编/汇编/第一章 基础知识/" itemprop="url">第一章 基础知识</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-26T09:03:50+08:00">
+                2018-03-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/汇编/" itemprop="url" rel="index">
+                    <span itemprop="name">汇编</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h1><h2 id="8086-8088CPU组成"><a href="#8086-8088CPU组成" class="headerlink" title="8086/8088CPU组成"></a>8086/8088CPU组成</h2><p><img src="https://CoderUtil.github.io/images/TIM截图20180326085329.png" alt="汇编"></p>
+<h2 id="8086-8088CPU共同点"><a href="#8086-8088CPU共同点" class="headerlink" title="8086/8088CPU共同点"></a>8086/8088CPU共同点</h2><p>​    都是16位CPU. 运算器一次最多可以处理16位数据, 寄存器最大宽度为16位, CPU内部数据总线为16位</p>
+<h2 id="8086-8088CPU区别"><a href="#8086-8088CPU区别" class="headerlink" title="8086/8088CPU区别"></a>8086/8088CPU区别</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">CPU</th>
+<th style="text-align:center">指令队列容量</th>
+<th style="text-align:center">每个总线周期从内存中读取放入指令队列</th>
+<th style="text-align:center">外部数据总线宽带</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">8086</td>
+<td style="text-align:center">6个字节</td>
+<td style="text-align:center">2个字节</td>
+<td style="text-align:center">16位</td>
+</tr>
+<tr>
+<td style="text-align:center">8088</td>
+<td style="text-align:center">4个字节</td>
+<td style="text-align:center">1个字节</td>
+<td style="text-align:center">8位</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>总线周期:  BIU完成一次访问存储器或端口所需要的时间</li>
+</ul>
+<h1 id="字word"><a href="#字word" class="headerlink" title="字word"></a>字word</h1><p>​    计算机内部一次可以处理的二进制位数. 8086CPU中寄存器位16位, 所以字为16位</p>
+<h2 id="内存中字的存储"><a href="#内存中字的存储" class="headerlink" title="内存中字的存储"></a>内存中字的存储</h2><p>​    高地址存放高位字节, 低地址存放低位字节</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">20H</td>
+<td style="text-align:center">4EH</td>
+<td style="text-align:center">12H</td>
+<td style="text-align:center">00H</td>
+</tr>
+</tbody>
+</table>
+<p>从地址为1的内存单元中取出1个字的数据, 为124EH</p>
+<h1 id="寄存器-14个16位寄存器"><a href="#寄存器-14个16位寄存器" class="headerlink" title="寄存器(14个16位寄存器)"></a>寄存器(14个16位寄存器)</h1><p><img src="https://CoderUtil.github.io/images/TIM截图20180326092541.png" alt="汇编"></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">段寄存器</th>
+<th style="text-align:center">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">代码段寄存器CS</td>
+<td style="text-align:center">指向代码段</td>
+</tr>
+<tr>
+<td style="text-align:center">数据段寄存器DS</td>
+<td style="text-align:center">指向数据段</td>
+</tr>
+<tr>
+<td style="text-align:center">堆栈段寄存器SS</td>
+<td style="text-align:center">指向堆栈段</td>
+</tr>
+<tr>
+<td style="text-align:center">附加段寄存器ES</td>
+<td style="text-align:center">指向附加段</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>标志寄存器FR: 又称为状态寄存器PSW</li>
+</ul>
+<h2 id="数据寄存器"><a href="#数据寄存器" class="headerlink" title="数据寄存器"></a>数据寄存器</h2><p>​    为了兼容上一代的8位CPU, 数据寄存器可分为高位寄存器和低位寄存器</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">低位寄存器</th>
+<th style="text-align:center">高位寄存器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">AX</td>
+<td style="text-align:center">AL</td>
+<td style="text-align:center">AH</td>
+</tr>
+<tr>
+<td style="text-align:center">BX</td>
+<td style="text-align:center">BL</td>
+<td style="text-align:center">BH</td>
+</tr>
+<tr>
+<td style="text-align:center">CX</td>
+<td style="text-align:center">CL</td>
+<td style="text-align:center">CH</td>
+</tr>
+<tr>
+<td style="text-align:center">DX</td>
+<td style="text-align:center">DL</td>
+<td style="text-align:center">DH</td>
+</tr>
+</tbody>
+</table>
+<h1 id="简单汇编指令"><a href="#简单汇编指令" class="headerlink" title="简单汇编指令"></a>简单汇编指令</h1><table>
+<thead>
+<tr>
+<th style="text-align:center">汇编指令</th>
+<th style="text-align:center">操作</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">mov ax, 18</td>
+<td style="text-align:center">将18送入AX</td>
+<td style="text-align:center">AX = 18</td>
+</tr>
+<tr>
+<td style="text-align:center">mov ah, 78</td>
+<td style="text-align:center">将78送入AH</td>
+<td style="text-align:center">AH = 78</td>
+</tr>
+<tr>
+<td style="text-align:center">add/sub ax, 18</td>
+<td style="text-align:center">AX中的数据加/减上18</td>
+<td style="text-align:center">AX = AX +/- 18</td>
+</tr>
+<tr>
+<td style="text-align:center">add/sub ah, 18</td>
+<td style="text-align:center">AH中的数据加/减上18</td>
+<td style="text-align:center">AH = AH +/- 18</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>汇编指令不区分大小写: mov ax, 18   &lt;=&gt;    MOV AX, 18</p>
+<p>​</p>
+</li>
+<li><p>汇编指令中操作数的位数应该一致:  mov ah, bx是错误的, ah是8位寄存器, bx是16位寄存器</p>
+</li>
+</ul>
+<h1 id="物理地址"><a href="#物理地址" class="headerlink" title="物理地址"></a>物理地址</h1><p>​    8086CPU中地址总线是20位的, 但存储地址的寄存器是16位的. 所以将两个16位地址合成一个20位地址</p>
+<ul>
+<li>物理地址 = 段地址 <em> 16 + 偏移地址 = 段地址 </em> 10H + 偏移地址</li>
+<li>逻辑地址 = 段地址 : 偏移地址</li>
+</ul>
+<h1 id="寄存器CS和IP"><a href="#寄存器CS和IP" class="headerlink" title="寄存器CS和IP"></a>寄存器CS和IP</h1><p>​    CS * 16 + IP指向当前要读取的指令的地址</p>
+<h2 id="程序执行"><a href="#程序执行" class="headerlink" title="程序执行"></a>程序执行</h2><pre><code>1. 从CS : IP指向的内存单元读取指令并放入指令缓存器
+ 2. IP = IP + 所读指令的长度, 从而指向下一条指令(IP永远指向指令, 因此冯诺依曼体系中主要根据IP指向内容判断是内存中的内容是指令还是数据)
+  3. 执行指令
+</code></pre><h1 id="DeBug程序"><a href="#DeBug程序" class="headerlink" title="DeBug程序"></a>DeBug程序</h1><h2 id="打开debug"><a href="#打开debug" class="headerlink" title="打开debug"></a>打开debug</h2><ol>
+<li><p>打开DOSBOX</p>
+<p>​</p>
+</li>
+<li><p>输入下列指令</p>
+</li>
+</ol>
+<p><img src="https://CoderUtil.github.io/images/TIM图片20180326160139.png" alt="汇编"></p>
+<h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><h3 id="R"><a href="#R" class="headerlink" title="R"></a>R</h3><ul>
+<li>r,  查看所有寄存器的内容</li>
+<li>r + 寄存器名, 在提示的: 后输入值, 修改指定寄存器的值</li>
+</ul>
+<p><img src="https://CoderUtil.github.io/images/TIM截图20180326160448.png" alt="汇编"></p>
+<h3 id="D"><a href="#D" class="headerlink" title="D"></a>D</h3><ul>
+<li><p>d 段地址 : 偏移地址, 查看此物理地址开始的128个内存单元的内容</p>
+</li>
+<li><p>d 段地址 : 起始偏移地址  结束偏移地址, 查看指定范围的内存单元</p>
+</li>
+</ul>
+<p><img src="https://CoderUtil.github.io/images/TIM截图20180326160918.png" alt="汇编"></p>
+<ul>
+<li>右边的值表示每个内存单元的值对应的ASCII字符, 若ASCII字符不能显示就用’.’代替</li>
+</ul>
+<h3 id="E"><a href="#E" class="headerlink" title="E"></a>E</h3><ul>
+<li>e 段地址 : 偏移地址  数据  数据  数据  …., 来修改从指定内存开始的内存单元</li>
+<li>e 段地址 : 偏移地址  回车。 然后在.后面输入打算替换的数据, 改完后按空格修改下一个, 按回车结束</li>
+</ul>
+<p><img src="https://CoderUtil.github.io/images/TIM截图20180326162047.png" alt="汇编"></p>
+<h3 id="U"><a href="#U" class="headerlink" title="U"></a>U</h3><ul>
+<li>u 段地址 : 偏移地址, 产看指定地址开始的汇编指令</li>
+</ul>
+<p><img src="https://CoderUtil.github.io/images/TIM截图20180326162351.png" alt="汇编"></p>
+<h3 id="T"><a href="#T" class="headerlink" title="T"></a>T</h3><ul>
+<li>t , 执行CS : IP的指令</li>
+</ul>
+<h3 id="A"><a href="#A" class="headerlink" title="A"></a>A</h3><ul>
+<li>a 段地址 : 偏移地址, 向指定内存地址写入汇编码</li>
+</ul>
+<p><img src="https://CoderUtil.github.io/images/TIM截图20180326162639.png" alt="汇编"></p>
+<h1 id="汇编指令转为机器码"><a href="#汇编指令转为机器码" class="headerlink" title="汇编指令转为机器码"></a>汇编指令转为机器码</h1><p><img src="https://CoderUtil.github.io/images/TIM截图20180327153953.png" alt="汇编"></p>
+<ul>
+<li>当机器码表示为针对第一个操作数时, d = 1; 若针对第二个操作数, d = 0</li>
+</ul>
+<ul>
+<li>字操作, w = 1; 字节操作, w = 0</li>
+</ul>
+<ul>
+<li>disp表示位移量, 比如mov ax, [si] + 18, 则disp为18</li>
+</ul>
+<ul>
+<li>reg表</li>
+</ul>
+<p><img src="https://CoderUtil.github.io/images/TIM截图20180327154418.png" alt="汇编"></p>
+<ul>
+<li>r/m, mod表</li>
+</ul>
+<p>!TIM图片20180326205518.png)</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/计算机组成与原理/计算机组成与原理/第一章 计算机概要/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -665,7 +1022,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
