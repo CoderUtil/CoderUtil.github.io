@@ -259,6 +259,156 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Cocos2d/Cocos2d/Cocos2d学习(五)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Cocos2d/Cocos2d/Cocos2d学习(五)/" itemprop="url">Cocos2d学习(五)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-06T20:10:41+08:00">
+                2018-06-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Cocos2d/" itemprop="url" rel="index">
+                    <span itemprop="name">Cocos2d</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="音乐"><a href="#音乐" class="headerlink" title="音乐"></a>音乐</h1><h2 id="播放背景音乐"><a href="#播放背景音乐" class="headerlink" title="播放背景音乐"></a>播放背景音乐</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;SimpleAudioEngine.h&quot;</span><br><span class="line"></span><br><span class="line">auto audio = SimpleAudioEngine::getInstance();</span><br><span class="line"></span><br><span class="line">//	预加载资源</span><br><span class="line">audio-&gt;preloadBackgroundMusic(&quot;mymusic.mp3&quot;);</span><br><span class="line"></span><br><span class="line">//	持续播放背景音乐</span><br><span class="line">audio-&gt;playBackgroundMusic(&quot;mymusic.mp3&quot;, true);</span><br><span class="line"></span><br><span class="line">//	背景音乐只播放一次</span><br><span class="line">audio-&gt;playBackgroundMusic(&quot;mymusic.mp3&quot;, false);</span><br><span class="line"></span><br><span class="line">//	从缓冲中释放预加载资源</span><br><span class="line">audio-&gt;unloadBackgroundMusic(&quot;mymusic.mp3&quot;);</span><br></pre></td></tr></table></figure>
+<h2 id="播放音效"><a href="#播放音效" class="headerlink" title="播放音效"></a>播放音效</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;SimpleAudioEngine.h&quot;</span><br><span class="line"></span><br><span class="line">auto audio = SimpleAudioEngine::getInstance();</span><br><span class="line">audio-&gt;preloadEffect(&quot;mymusic.mp3&quot;);</span><br><span class="line"></span><br><span class="line">audio-&gt;playEffect(&quot;myEffect.mp3&quot;, false, 1.0f, 1.0f, 1.0f);</span><br><span class="line">audio-&gt;unloadEffect(&quot;mymusic.mp3&quot;);</span><br></pre></td></tr></table></figure>
+<h2 id="暂停播放"><a href="#暂停播放" class="headerlink" title="暂停播放"></a>暂停播放</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//	暂停背景音乐</span><br><span class="line">audio-&gt;pauseBackgroundMusic();</span><br><span class="line"></span><br><span class="line">//	暂停音效</span><br><span class="line">audio-&gt;pauseEffect();</span><br><span class="line">audio-&gt;pauseAllEffects();</span><br></pre></td></tr></table></figure>
+<h2 id="恢复播放"><a href="#恢复播放" class="headerlink" title="恢复播放"></a>恢复播放</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//	暂停背景音乐</span><br><span class="line">audio-&gt;resumeBackgroundMusic();</span><br><span class="line"></span><br><span class="line">//	暂停音效</span><br><span class="line">audio-&gt;resumeEffect();</span><br><span class="line">audio-&gt;resumeAllEffects();</span><br></pre></td></tr></table></figure>
+<p><img src="https://CoderUtil.github.io/images/TIM截图20180606214422.png" alt="Cocos2d"></p>
+<h2 id="判断是否在播放-包括暂停"><a href="#判断是否在播放-包括暂停" class="headerlink" title="判断是否在播放(包括暂停)"></a>判断是否在播放(包括暂停)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bool isBackgroundMusicPlaying();</span><br></pre></td></tr></table></figure>
+<h2 id="停止播放"><a href="#停止播放" class="headerlink" title="停止播放"></a>停止播放</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//	暂停背景音乐</span><br><span class="line">audio-&gt;stopBackgroundMusic();</span><br><span class="line"></span><br><span class="line">//	暂停音效</span><br><span class="line">audio-&gt;stopEffect();</span><br><span class="line">audio-&gt;stopAllEffects();</span><br></pre></td></tr></table></figure>
+<h2 id="音量控制"><a href="#音量控制" class="headerlink" title="音量控制"></a>音量控制</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">float SimpleAudioEngine::getBackgroundMusicVolume() &#123;</span><br><span class="line">  return 1.0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void SimpleAudioEngine::setBackgroundMusicVolume(float volume) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Effect同理</span><br></pre></td></tr></table></figure>
+<h1 id="打包游戏"><a href="#打包游戏" class="headerlink" title="打包游戏"></a>打包游戏</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 将Debug.win32与Resources文件夹下的文件复制到一个文件夹中(只保留dll, lib, Resources文件夹中的资源文件)</span><br><span class="line"></span><br><span class="line">2. 右键文件夹&gt;添加到压缩文件</span><br><span class="line"></span><br><span class="line">3. 压缩类型选择EXE, 自解压设置中选择解压后允许Thunder.exe</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Cocos2d/Cocos2d/Cocos2d学习(四)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2017,210 +2167,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/操作系统/操作系统/第五章 CPU调度/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/操作系统/操作系统/第五章 CPU调度/" itemprop="url">第五章 CPU调度</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-10T16:46:21+08:00">
-                2018-05-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/操作系统/" itemprop="url" rel="index">
-                    <span itemprop="name">操作系统</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="CPU调度"><a href="#CPU调度" class="headerlink" title="CPU调度"></a>CPU调度</h1><h2 id="调度原因"><a href="#调度原因" class="headerlink" title="调度原因"></a>调度原因</h2><p>​    进程分为CPU周期和I/O周期. 进程在执行I/O周期时, CPU处于等待状态, 因此通过CPU调度将CPU的控制权交给另一个进程</p>
-<h2 id="抢占调度与非抢占调度"><a href="#抢占调度与非抢占调度" class="headerlink" title="抢占调度与非抢占调度"></a>抢占调度与非抢占调度</h2><ul>
-<li>抢占调度: 进程会一直占有CPU的控制权直到进程执行完</li>
-<li>非抢占调度: 进程在执行的过程中可以把CPU的控制权交给另一个进程</li>
-</ul>
-<h2 id="调度准则"><a href="#调度准则" class="headerlink" title="调度准则"></a>调度准则</h2><ul>
-<li>吞吐量: 单位时间内完成进程的数量</li>
-</ul>
-<ul>
-<li>周转时间: 进程从进入等待队列到进程提交所需要的时间</li>
-</ul>
-<ul>
-<li>等待时间: 进程进入到等待队列中, 等待被提交所需要的时间</li>
-</ul>
-<ul>
-<li>响应时间: 从提交请求到产生第一次响应的时间</li>
-</ul>
-<h2 id="调度算法"><a href="#调度算法" class="headerlink" title="调度算法"></a>调度算法</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">调度算法</th>
-<th style="text-align:center">是否抢占</th>
-<th style="text-align:center">特点</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">先到先服务调度FCFS</td>
-<td style="text-align:center">否</td>
-<td style="text-align:center">先请求CPU的进程先分配到CPU</td>
-</tr>
-<tr>
-<td style="text-align:center">最短作业调度SJF</td>
-<td style="text-align:center">不确定</td>
-<td style="text-align:center">将CPU分配给具有最短CPU区间的进程. 进程CPU区间长度相同则按FCFS. 拥有最短的平均等待时间</td>
-</tr>
-<tr>
-<td style="text-align:center">优先级调度</td>
-<td style="text-align:center">不确定</td>
-<td style="text-align:center">按照进程的优先级分配CPU</td>
-</tr>
-<tr>
-<td style="text-align:center">轮转法调度RR</td>
-<td style="text-align:center">是</td>
-<td style="text-align:center">在FCFS的基础上, 定义了时间片. 循环执行时间片长度, 若所需时间短于时间片则会提前中断. 适用于分时系统</td>
-</tr>
-<tr>
-<td style="text-align:center">多级队列调度</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">将就绪队列分为多个独立的队列, 每个队列使用不同的调度算法</td>
-</tr>
-<tr>
-<td style="text-align:center">多级反馈队列调度</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">允许进程在队列之间转移的多级队列调度</td>
-</tr>
-</tbody>
-</table>
-<h2 id="Gantt图-计算周转时间-等待时间"><a href="#Gantt图-计算周转时间-等待时间" class="headerlink" title="Gantt图, 计算周转时间, 等待时间"></a>Gantt图, 计算周转时间, 等待时间</h2><p>​    参考习题5.4</p>
-<h2 id="饥饿-无穷阻塞"><a href="#饥饿-无穷阻塞" class="headerlink" title="饥饿(无穷阻塞)"></a>饥饿(无穷阻塞)</h2><p>​    若调度是非抢占的, 通过SJF和优先级调度算法进行调度, 可能会出现后进入队列的进程CPU区间比队列中进程的CPU短, 造成部分所需时间长的进程一直无法执行</p>
-<h2 id="老化"><a href="#老化" class="headerlink" title="老化"></a>老化</h2><p>​    将等待队列中的进程优先级随着时间增加, 以解决饥饿</p>
-<h2 id="负载平衡"><a href="#负载平衡" class="headerlink" title="负载平衡"></a>负载平衡</h2><p>​    将工作负载平均分配到对称多处理器的多个处理器中</p>
-<h2 id="对称多线程-超线程"><a href="#对称多线程-超线程" class="headerlink" title="对称多线程(超线程)"></a>对称多线程(超线程)</h2><p>​    将一个物理处理器划分为多个逻辑处理器    </p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2275,7 +2221,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">55</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
