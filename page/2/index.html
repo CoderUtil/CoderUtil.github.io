@@ -259,6 +259,168 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/数据库/数据库/外排序/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/数据库/数据库/外排序/" itemprop="url">外排序</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-20T17:00:17+08:00">
+                2018-06-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="外排序"><a href="#外排序" class="headerlink" title="外排序"></a>外排序</h1><p>​    数据库很多时候需要对数据进行排序(比如删除重复元组, 按顺序显示结果等), 但是主存大小有限, 无法直接在数据库内进行排序, 需要先读出文件, 排序后再写回数据库</p>
+<h1 id="简单的两路归并排序"><a href="#简单的两路归并排序" class="headerlink" title="简单的两路归并排序"></a>简单的两路归并排序</h1><ul>
+<li>特性: 只使用三个主存页</li>
+</ul>
+<ul>
+<li>思路: 采用归并排序</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">文件总页数为2^k</span><br><span class="line">	第0遍, 生成2^k个长为1的有序段</span><br><span class="line">	第1遍, 生成2^k-1个长为2的有序段</span><br><span class="line">	第2遍, 生成2^k-2个长为4的有序段</span><br><span class="line">	...</span><br><span class="line">	第k遍, 生成1个长为2^k的有序段</span><br></pre></td></tr></table></figure>
+<ul>
+<li>I/O开销</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数据处理遍数k+1, 每遍将2^k个文件读取后写入, 总开销为 2 * 2^k * (k+1)</span><br></pre></td></tr></table></figure>
+<h1 id="外归并排序"><a href="#外归并排序" class="headerlink" title="外归并排序"></a>外归并排序</h1><p>​    当有B个可用的主存页时, 简单的两路归并排序没有充分利用资源</p>
+<ul>
+<li>思路</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">文件总页数为N</span><br><span class="line">	第0遍, 生成N / B个长为B的有序段</span><br><span class="line">	</span><br><span class="line">	第i遍, 用一个主存页作为输出, B-1个主存页作为输入</span><br></pre></td></tr></table></figure>
+<ul>
+<li>I/O开销</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数据处理遍数log(下标为B-1)N / B + 1, 每遍将N个文件读取后写入, 总开销为 2 * N * 遍数</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/数据库/数据库/查询/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1682,171 +1844,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Cocos2d/Cocos2d/Cocos2d学习(四)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Cocos2d/Cocos2d/Cocos2d学习(四)/" itemprop="url">Cocos2d学习(四)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-05T10:46:28+08:00">
-                2018-06-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Cocos2d/" itemprop="url" rel="index">
-                    <span itemprop="name">Cocos2d</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="翻转"><a href="#翻转" class="headerlink" title="翻转"></a>翻转</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 将图片水平翻转</span><br><span class="line">	player-&gt;setFlipX(true);</span><br><span class="line"></span><br><span class="line">2. 取消图片翻转(用于翻转后翻转回来)</span><br><span class="line">	player-&gt;setFlipX(false);</span><br></pre></td></tr></table></figure>
-<h1 id="碰撞检测"><a href="#碰撞检测" class="headerlink" title="碰撞检测"></a>碰撞检测</h1><p>​    函数为containsPoint()</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">通过判断两个精灵的Rect是否重叠来判断</span><br><span class="line"></span><br><span class="line">Rect的构造函数有四个参数: x, y, width, height</span><br><span class="line">	x, y: 表示Rect左下角的坐标</span><br><span class="line">	width: 表示Rect宽度</span><br><span class="line">	height: 表示Rect高度</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">   Sprite* Factory::collider(Rect rect) &#123;</span><br><span class="line">       for (auto i : monster) &#123;</span><br><span class="line">           if (rect.containsPoint(i-&gt;getPosition())) &#123;</span><br><span class="line">               return i;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return NULL;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Rect playerRect = player-&gt;getBoundingBox();</span><br><span class="line">Rect attackRectLeft = Rect(playerRect.getMinX() - 30,</span><br><span class="line">						   playerRect.getMinY(),</span><br><span class="line">						   playerRect.getMaxX() - playerRect.getMinX(),</span><br><span class="line">						   playerRect.getMaxY() - playerRect.getMinY());</span><br><span class="line"></span><br><span class="line">Rect attackRectRight = Rect(playerRect.getMinX(), </span><br><span class="line">						    playerRect.getMinY(),</span><br><span class="line">							playerRect.getMaxX() - playerRect.getMinX() + 30, </span><br><span class="line">							playerRect.getMaxY() - playerRect.getMinY());</span><br><span class="line"></span><br><span class="line">Sprite* collision = fac-&gt;collider(toward == &apos;a&apos; ? attackRectLeft : attackRectRight);</span><br><span class="line">if (collision != NULL) &#123;</span><br><span class="line">	//	移除怪物</span><br><span class="line">	fac-&gt;removeMonster(collision);</span><br><span class="line">	//	加血</span><br><span class="line">	hp = (hp + 25 &gt; 100 ? 100 : hp + 25);</span><br><span class="line">	//	增加击杀数</span><br><span class="line">	killNum++;</span><br><span class="line">	//	更新数据库</span><br><span class="line">	setKillNumByDataBase();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><h2 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector<t></t></h2><p>​    是cocos2d::Vector而不是std::vector</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">1. T必须是cocos2d::Ref*类型</span><br><span class="line"></span><br><span class="line">2. 没有重载[]</span><br><span class="line"></span><br><span class="line">3. 使用</span><br><span class="line">    Sprite* sprite = Sprite::create(&quot;CloseNormal.png&quot;);</span><br><span class="line">    </span><br><span class="line">    //	创建Vector</span><br><span class="line">    cocos2d::Vector&lt;Sprite*&gt; container;</span><br><span class="line">    </span><br><span class="line">    //	在最后插入</span><br><span class="line">    container.pushBack(sprite);</span><br><span class="line">    </span><br><span class="line">    //	在index = 2插入</span><br><span class="line">	container.insert(2, sprite);</span><br><span class="line">	</span><br><span class="line">	//	判断对象是否在容器</span><br><span class="line">	bool isHere = container.contains(sprite);</span><br><span class="line">	</span><br><span class="line">	//	获取index = 1的指针</span><br><span class="line">	Sprite* pSprite = container.at(1);</span><br><span class="line">	</span><br><span class="line">	//	c++的for_in遍历</span><br><span class="line">	for (auto sp:container) &#123;</span><br><span class="line">      </span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	//	c++的迭代器遍历</span><br><span class="line">	cocos2d::Vector&lt;Sprite*&gt;::iterator it = container.begin();</span><br><span class="line">	for (;it != container.end(); it++) &#123;</span><br><span class="line">      </span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	//	遍历中删除元素</span><br><span class="line">	cocos2d::Vector&lt;Sprite*&gt;::iterator it = container.begin();</span><br><span class="line">	for (;it != container.end();) &#123;</span><br><span class="line">      	if (*it == sprite) &#123;</span><br><span class="line">          it = container.erase(it);		//	erase()返回被删除元素的下一位</span><br><span class="line">      	&#125;</span><br><span class="line">      	else &#123;</span><br><span class="line">          it++;</span><br><span class="line">      	&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	//	删除指定元素</span><br><span class="line">	container.eraseObject(sprite);</span><br></pre></td></tr></table></figure>
-<h2 id="Map-lt-K-V-gt"><a href="#Map-lt-K-V-gt" class="headerlink" title="Map&lt;K, V&gt;"></a>Map&lt;K, V&gt;</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">1. 没有重载[]</span><br><span class="line"></span><br><span class="line">2. 使用</span><br><span class="line">	Sprite* sprite = Sprite::create(&quot;CloseNormal.png&quot;);</span><br><span class="line">	</span><br><span class="line">	//	创建Map</span><br><span class="line">	cocos2d::Map&lt;string, Sprite*&gt; map;</span><br><span class="line">	</span><br><span class="line">	//	插入键值对</span><br><span class="line">	map.insert(&quot;monster&quot;, sprite);</span><br><span class="line">	</span><br><span class="line">	//	根据Key获取Value</span><br><span class="line">	map.at(&quot;monster&quot;);</span><br></pre></td></tr></table></figure>
-<h2 id="Value"><a href="#Value" class="headerlink" title="Value"></a>Value</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 它是基本类型的封装</span><br><span class="line"></span><br><span class="line">2. 使用</span><br><span class="line">	Value val(10);</span><br><span class="line">	Value val(&quot;hello&quot;);</span><br></pre></td></tr></table></figure>
-<h1 id="本地存储"><a href="#本地存储" class="headerlink" title="本地存储"></a>本地存储</h1><p>​    包括UserDefault和SQLite</p>
-<h2 id="UserDefault"><a href="#UserDefault" class="headerlink" title="UserDefault"></a>UserDefault</h2><p>​    微型数据库, 将数据保存在usedefault.xml文件中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#define database UserDefault::getInstance()</span><br><span class="line"></span><br><span class="line">//	检测xml文件是否存在</span><br><span class="line">if	(!database-&gt;getBoolForKey(&quot;isExist&quot;))&#123;</span><br><span class="line">	database-&gt;setBoolForKey(&quot;isExist&quot;, true) ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//	简单存取</span><br><span class="line">database-&gt;setIntegerForKey(&quot;value&quot;,	10);  </span><br><span class="line">database-&gt;setStringForKey(&quot;string&quot;,	&quot;hello&quot;);</span><br><span class="line"></span><br><span class="line">//	保存</span><br><span class="line">database-&gt;flush();</span><br></pre></td></tr></table></figure>
-<h2 id="SQLite"><a href="#SQLite" class="headerlink" title="SQLite"></a>SQLite</h2><h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;sqlite3.h&quot;</span><br><span class="line"></span><br><span class="line">//	数据库指针</span><br><span class="line">sqlite3* pdb = NULL;</span><br><span class="line"></span><br><span class="line">//	数据库路径</span><br><span class="line">string path = FileUtils::getInstance()-&gt;getWritablePath() + &quot;save.db&quot;;</span><br><span class="line"></span><br><span class="line">//	根据路径path打开或创建数据库</span><br><span class="line">int	result = sqlite3_open(path.c_str(), &amp;pdb);		//	若成功result等于SQLITE_OK</span><br></pre></td></tr></table></figure>
-<h3 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//	SQLite语句 创建一个主键为ID, 名字为hero的表</span><br><span class="line">std::string	sql = &quot;create table	hero (ID int primary key not null, name char(10));&quot;;</span><br><span class="line"></span><br><span class="line">//	运行SQLite语句，参数分别为数据库指针，SQLite语句，回调函数，回调参数，错误信息 </span><br><span class="line">result = sqlite3_exec(pdb, sql.c_ str(), NULL, NULL, NULL);</span><br></pre></td></tr></table></figure>
-<h3 id="增删改"><a href="#增删改" class="headerlink" title="增删改"></a>增删改</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//	向表中插入一条ID为１，name为iori的数据</span><br><span class="line">sql = &quot;insert into hero values(1,&apos;iori&apos;);&quot;;</span><br><span class="line"></span><br><span class="line">//	删除表中id为1的一条数据</span><br><span class="line">sql = &quot;delete from hero where id=1;&quot;;</span><br><span class="line"></span><br><span class="line">//	把id为2的数据name改为hehe</span><br><span class="line">sql = &quot;update hero set name=&apos;hehe&apos; where id=2;&quot;;</span><br></pre></td></tr></table></figure>
-<h3 id="查"><a href="#查" class="headerlink" title="查"></a>查</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">char** re;		//查询结果</span><br><span class="line"></span><br><span class="line">int row, col;	//行、列</span><br><span class="line"></span><br><span class="line">//	根据语句获取表中数据</span><br><span class="line">sqlite3_get_table(pdb, &quot;select * from hero&quot;, &amp;re, &amp;row,  &amp;col, NULL);</span><br><span class="line"></span><br><span class="line">//	遍历存储数组打印数据 </span><br><span class="line">for (int i = 1; i &lt;= row; i++)&#123;</span><br><span class="line">	for (int j = 0; j &lt; col; j++)&#123;</span><br><span class="line">		log(&quot;%s&quot;, re[i*col + j]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//	查询后释放指针  </span><br><span class="line">sqlite3_free_table(re);</span><br></pre></td></tr></table></figure>
-<h1 id="TileMap瓦片地图"><a href="#TileMap瓦片地图" class="headerlink" title="TileMap瓦片地图"></a>TileMap瓦片地图</h1><p>​    大地图由许多小的图块(瓦片)构成</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">分为普通地图(直90°)、斜45°地图、斜45°交错地图</span><br><span class="line"></span><br><span class="line">TileMap的坐标系原点在左上角, x轴从左到右, y轴从上到下</span><br></pre></td></tr></table></figure>
-<h2 id="TileMap地图层"><a href="#TileMap地图层" class="headerlink" title="TileMap地图层"></a>TileMap地图层</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. 每个地图层都被表示为TMXLayer类</span><br><span class="line"></span><br><span class="line">2. 每个单一的瓦片都被表示为Sprite类, 且有一个全局表示GID, 父节点为TMXLayer</span><br><span class="line"></span><br><span class="line">3. 每个地图层只能用一套瓦片, 用多套瓦片需要用多个地图层</span><br><span class="line"></span><br><span class="line">4. TileMap的锚点和瓦片的锚点默认为(0, 0)</span><br></pre></td></tr></table></figure>
-<h2 id="TileMap对象层"><a href="#TileMap对象层" class="headerlink" title="TileMap对象层"></a>TileMap对象层</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">对象层中的对象在TMX文件以键值对形式存在, 可以直接在TMX文件中修改</span><br></pre></td></tr></table></figure>
-<h2 id="地图编辑器"><a href="#地图编辑器" class="headerlink" title="地图编辑器"></a>地图编辑器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 可以在地图编辑器中设置对象属性</span><br><span class="line"></span><br><span class="line">2. 地图编辑器中, 排在前面的图层zOrder较大</span><br></pre></td></tr></table></figure>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="画TileMap"><a href="#画TileMap" class="headerlink" title="画TileMap"></a>画TileMap</h3><p><img src="https://CoderUtil.github.io/images/TIM截图20180606143210.png" alt="Cocos2d"></p>
-<p><img src="https://CoderUtil.github.io/images/TIM截图20180606143241.png" alt="Cocos2d"></p>
-<p><img src="https://CoderUtil.github.io/images/TIM截图20180606144933.png" alt="Cocos2d"></p>
-<h3 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//	将tmx, png, tsx文件放入Resources文件夹中</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//	根据文件路径快速导入瓦片地图</span><br><span class="line">TMXTiledMap* tmx = TMXTiledMap::create(&quot;tileMap.tmx&quot;);</span><br><span class="line"></span><br><span class="line">//	设置位置</span><br><span class="line">tmx-&gt;setPosition(visibleSize.width / 2, visibleSize.height / 2);</span><br><span class="line"></span><br><span class="line">//	设置锚点</span><br><span class="line">tmx-&gt;setAnchorPoint(Vec2(0.5, 0.5));</span><br><span class="line"></span><br><span class="line">//	添加到游戏图层中</span><br><span class="line">this-&gt;addChild(tmx);</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1901,7 +1898,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1912,7 +1909,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
