@@ -259,6 +259,358 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/软件工程实训/软件工程实训/studyreport-JUNIT/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/软件工程实训/软件工程实训/studyreport-JUNIT/" itemprop="url">JUNIT学习报告</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-14T19:08:07+08:00">
+                2018-04-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/软件工程实训/" itemprop="url" rel="index">
+                    <span itemprop="name">软件工程实训</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Junit的作用"><a href="#Junit的作用" class="headerlink" title="Junit的作用"></a>Junit的作用</h1><p>​    测试函数是否能正确运行</p>
+<h1 id="Junit在命令行下的使用"><a href="#Junit在命令行下的使用" class="headerlink" title="Junit在命令行下的使用"></a>Junit在命令行下的使用</h1><p>编写一个类和测试类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//	HelloWorld.java</span><br><span class="line">import java.util.*;</span><br><span class="line"></span><br><span class="line">public class HelloWorld &#123;</span><br><span class="line">  String str;</span><br><span class="line">  public void hello()&#123;</span><br><span class="line">    str = &quot;Hello World!&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">  public String getStr() &#123;</span><br><span class="line">    return str;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//	HelloWorldTest.java</span><br><span class="line">import static org.junit.Assert.*;</span><br><span class="line">import org.junit.Test;</span><br><span class="line"></span><br><span class="line">public class HelloWorldTest &#123;</span><br><span class="line">  public HelloWorld helloworld = new HelloWorld();</span><br><span class="line">  @Test</span><br><span class="line">  public void testHello() &#123;</span><br><span class="line">    helloworld.hello();</span><br><span class="line">    assertEquals(&quot;Hello World!&quot;, helloworld.getStr());		//	如果helloworld.getStr()的没问题, 应该返回Hello World!, 两者应该相等. 这样就能判断hello()函数是否正确</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="运行Junit"><a href="#运行Junit" class="headerlink" title="运行Junit"></a>运行Junit</h1><p>注意: junit的包应该与文件放在同一目录下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ javac -classpath .:junit-4.9.jar HelloWorldTest.java</span><br><span class="line">$ java -classpath .:junit-4.9.jar -ea org.junit.runner.JUnitCore HelloWorldTest</span><br></pre></td></tr></table></figure>
+<p>正确运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Time 0.007</span><br><span class="line">OK(1 test)</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/软件工程实训/软件工程实训/studyreport-ANT/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/软件工程实训/软件工程实训/studyreport-ANT/" itemprop="url">ANT学习报告</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-14T12:14:18+08:00">
+                2018-04-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/软件工程实训/" itemprop="url" rel="index">
+                    <span itemprop="name">软件工程实训</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Ant的作用"><a href="#Ant的作用" class="headerlink" title="Ant的作用"></a>Ant的作用</h1><p>​    通过编写build.xml文件, 快速生成JAVA项目(类似于C++的Makefile)</p>
+<h1 id="Ant的安装"><a href="#Ant的安装" class="headerlink" title="Ant的安装"></a>Ant的安装</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Ubuntu下在终端执行:</span><br><span class="line">    $sudo apt install ant</span><br></pre></td></tr></table></figure>
+<h1 id="Ant的介绍"><a href="#Ant的介绍" class="headerlink" title="Ant的介绍"></a>Ant的介绍</h1><ul>
+<li>project元素: Ant的根元素</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1. name属性: 指定project的名称</span><br><span class="line"></span><br><span class="line">2. default属性: 指定了project默认执行的target. 指向最后一步</span><br><span class="line"></span><br><span class="line">	&lt;project default=&quot;package&quot;&gt;</span><br><span class="line">      &lt;target name=&quot;init&quot;/&gt;</span><br><span class="line">      &lt;target name=&quot;preprocess&quot; depends=&quot;init&quot;/&gt;</span><br><span class="line">      &lt;target name=&quot;compile&quot; depends=&quot;init, preprocess&quot;/&gt;</span><br><span class="line">      &lt;target name=&quot;package&quot; depends=&quot;compile&quot;/&gt;</span><br><span class="line">    &lt;/project&gt;</span><br><span class="line">    </span><br><span class="line">3. basedir属性: 指定基路径的位置. 默认与build.xml文件在同一文件夹下</span><br></pre></td></tr></table></figure>
+<ul>
+<li>target元素: Ant中的执行单元</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. depends属性: 描述多个target之间的依赖关系. 被依赖的元素先执行</span><br><span class="line"></span><br><span class="line">2. if属性: 用于验证属性是否存在. 若不存在则target不会被执行</span><br><span class="line"></span><br><span class="line">3. unless属性: 与if属性相反</span><br><span class="line"></span><br><span class="line">4. description属性: 描述target的说明</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">常用target:</span><br><span class="line">	1. copy</span><br><span class="line">		复制单个文件：&lt;copy file=&quot;file.txt&quot; tofile=&quot;copy.txt&quot;/&gt; </span><br><span class="line">		复制文件夹:   &lt;copy todir=&quot;../newdir/dest_dir&quot;&gt; </span><br><span class="line">            			&lt;fileset dir=&quot;src_dir&quot;/&gt; </span><br><span class="line">					&lt;/copy&gt;</span><br><span class="line">         将文件复制到另外的目录: &lt;copy file=&quot;file.txt&quot; todir=&quot;../other/dir&quot;/&gt; </span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	2. delete</span><br><span class="line">		删除单个文件: &lt;delete file=&quot;photo/amigo.jpg&quot;/&gt; </span><br><span class="line">		删除文件夹:   &lt;delete dir=&quot;photo&quot;/&gt; </span><br><span class="line">		删除所有备份目录和空目录:  &lt;delete includeEmptyDirs=&quot;true&quot;&gt; </span><br><span class="line">                       				&lt;fileset dir=&quot;.&quot; includes=&quot;**/*.bak&quot;/&gt; </span><br><span class="line">                			  	&lt;/delete&gt;</span><br><span class="line">                			  	</span><br><span class="line">    3. mkdir</span><br><span class="line">    	创建文件夹: &lt;mkdir dir=&quot;build&quot;/&gt; </span><br><span class="line">    	</span><br><span class="line">    4. move</span><br><span class="line">    	与copy一样由三种形式, 将copy改为move</span><br><span class="line">    	</span><br><span class="line">    5. echo</span><br></pre></td></tr></table></figure>
+<ul>
+<li>property元素: 对于参数的定义</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">语法:</span><br><span class="line">	&lt;property name=&quot;xxx&quot; value=&quot;xxx&quot;/&gt;</span><br><span class="line"></span><br><span class="line">例子:</span><br><span class="line">    &lt;property name=&quot;srcDir&quot; location=&quot;src&quot;/&gt;		&lt;!-- location: 描述了文件所在路径. 是value的语义化 --&gt;</span><br><span class="line">    &lt;property name=&quot;buildDir&quot; location=&quot;build&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;javac srcdir=&quot;$&#123;srcDir&#125;&quot; destdir=&quot;$&#123;buildDir&#125;&quot;/&gt;	&lt;!-- 通过$&#123;&#125;获取其他元素的属性 --&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Ant的内置属性</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ant.file: build.xml的绝对路径</span><br><span class="line"></span><br><span class="line">ant.version: Ant的版本</span><br><span class="line"></span><br><span class="line">ant.project.name: 获取project.name</span><br><span class="line"></span><br><span class="line">ant.java.version: 获取java的version</span><br></pre></td></tr></table></figure>
+<h1 id="Ant的编写"><a href="#Ant的编写" class="headerlink" title="Ant的编写"></a>Ant的编写</h1><ul>
+<li>编译</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//	对src目录中的java文件进行编译</span><br><span class="line"></span><br><span class="line">&lt;javac srcdir=&quot;src&quot;/&gt;		</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">其他有用属性: </span><br><span class="line">    classpath:	说明引用的其他类的路径</span><br><span class="line">    debug=&quot;true&quot;: 说明编译器要带调试信息编译源文件</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建JAR文件: 将.class文件打包到JAR文件中</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//	创建一个名为package.jar文件夹, 并将classes目录下的所有文件(不仅仅是.class文件)放进去</span><br><span class="line"></span><br><span class="line">&lt;jar destfile=&quot;package.jar&quot; basedir=&quot;classes&quot;/&gt;		</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//	&lt;manifest&gt;指定放入jar文件夹中的文件</span><br><span class="line">&lt;jar destfile=&quot;package.jar&quot; basedir=&quot;classes&gt;</span><br><span class="line">	&lt;manifest&gt;</span><br><span class="line">		&lt;attribute name=&quot;Built-By&quot; value=&quot;$&#123;user.name&#125;&quot;/&gt;</span><br><span class="line">		&lt;attribute name=&quot;Main-class&quot; value=&quot;package.Main&quot;/&gt;</span><br><span class="line">	&lt;/manifest&gt;</span><br><span class="line">&lt;/jar&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>时间戳生成: 用于记录文件的生成时间</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">属性</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:center">例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">DSTAMP</td>
+<td style="text-align:center">设置当前日期, 默认格式yyyymmdd</td>
+<td style="text-align:center">20180414</td>
+</tr>
+<tr>
+<td style="text-align:center">TSTAMP</td>
+<td style="text-align:center">设置当前时间, 默认格式hhmm</td>
+<td style="text-align:center">1313</td>
+</tr>
+<tr>
+<td style="text-align:center">TODAY</td>
+<td style="text-align:center">设置当前日期</td>
+<td style="text-align:center">2018年4月14日</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;tstamp/&gt;		//	获取当前的时间</span><br><span class="line">	&lt;format property=&quot;OFFSET_TIME&quot;</span><br><span class="line">			pattern=&quot;HH:mm:ss&quot;</span><br><span class="line">			offset=&quot;10&quot;</span><br><span class="line">			unit=&quot;minute&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;jar destfile=&quot;package-$&#123;DSTAMP&#125;.jar&quot; basedir=&quot;classes&quot;/&gt;		//	用生成日期命名该jar文件</span><br></pre></td></tr></table></figure>
+<ul>
+<li>完整的ANT</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">文件结构树:</span><br><span class="line">  --build.xml: 因为没有给Ant配置环境变量</span><br><span class="line">  --src: 存放.java文件		</span><br><span class="line">  --build: 存放.class文件</span><br><span class="line">  --lib: 存放要导入的.jar包和压缩后的.jar包</span><br><span class="line"></span><br><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;project default=&quot;jar&quot; name=&quot;Hello World Project&quot;&gt;		</span><br><span class="line">  &lt;property name=&quot;srcDir&quot; location=&quot;src&quot;/&gt;</span><br><span class="line">  &lt;property name=&quot;buildDir&quot; location=&quot;build&quot;/&gt;</span><br><span class="line">  &lt;property name=&quot;libDir&quot; location=&quot;lib&quot;/&gt;</span><br><span class="line">	</span><br><span class="line">  &lt;target name=&quot;init&quot;&gt;</span><br><span class="line">    &lt;tstamp/&gt;</span><br><span class="line">    &lt;mkdir dir=&quot;$&#123;buildDir&#125;&quot;/&gt;</span><br><span class="line">    &lt;mkdir dir=&quot;$&#123;libDir&#125;&quot;/&gt;</span><br><span class="line">  &lt;/target&gt;</span><br><span class="line">	</span><br><span class="line">  &lt;target name=&quot;compile&quot; depends=&quot;init&quot;&gt;</span><br><span class="line">    &lt;javac srcdir=&quot;$&#123;srcDir&#125;&quot; destdir=&quot;$&#123;buildDir&#125;&quot; includeantruntime=&quot;false&quot;&gt;</span><br><span class="line">    	&lt;classpath&gt;</span><br><span class="line">    		&lt;fileset dir=&quot;$&#123;libDir&#125;&quot; includes=&quot;**/*.jar&quot;/&gt;		&lt;!-- fileset将dir文件夹中的includes格式的文件导入 --&gt;</span><br><span class="line">    	&lt;/classpath&gt;</span><br><span class="line">    &lt;/javac&gt;</span><br><span class="line">  &lt;/target&gt;</span><br><span class="line"></span><br><span class="line">  &lt;target name=&quot;run&quot; depends=&quot;compile&quot;&gt;</span><br><span class="line">  	&lt;java classname=&quot;test&quot; fork=&quot;true&quot;&gt;		&lt;!-- 默认使用的是Ant的JVM, 添加fork=&quot;true&quot;后能够使用外部的JVM. 对于javafx程序来说, 要设置这个属性 --&gt;</span><br><span class="line">  		&lt;classpath&gt;</span><br><span class="line">  			&lt;pathelement path=&quot;$&#123;buildDir&#125;&quot;/&gt;</span><br><span class="line">  		&lt;/classpath&gt;</span><br><span class="line">  	&lt;/java&gt;</span><br><span class="line">  &lt;/target&gt;</span><br><span class="line"></span><br><span class="line">  &lt;target name=&quot;jar&quot; depends=&quot;run&quot;&gt;</span><br><span class="line">    &lt;jar destfile=&quot;$&#123;distDir&#125;/package-$&#123;DSTAMP&#125;.jar&quot; basedir=&quot;$&#123;buildDir&#125;&quot;&gt;</span><br><span class="line">      &lt;manifest&gt;</span><br><span class="line">        &lt;attribute name=&quot;Built-By&quot; value=&quot;$&#123;user.name&#125;&quot;/&gt;</span><br><span class="line">        &lt;attribute name=&quot;Main-Class&quot; value=&quot;package.Main&quot;/&gt;</span><br><span class="line">      &lt;/manifest&gt;</span><br><span class="line">    &lt;/jar&gt;</span><br><span class="line">  &lt;/target&gt;</span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="命令行运行Ant"><a href="#命令行运行Ant" class="headerlink" title="命令行运行Ant"></a>命令行运行Ant</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">终端中输入:</span><br><span class="line">	ant</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/软件工程实训/软件工程实训/studyreport-JAVA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1953,761 +2305,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/计算机组成与原理/计算机组成与原理/第三章 MIPS指令/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/计算机组成与原理/计算机组成与原理/第三章 MIPS指令/" itemprop="url">第三章 MIPS指令</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-27T14:06:28+08:00">
-                2018-03-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机组成与原理/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机组成与原理</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="小端法与大端法"><a href="#小端法与大端法" class="headerlink" title="小端法与大端法"></a>小端法与大端法</h1><ul>
-<li>小端法: 低地址放低字节, 高地址放高字节(因此在内存中看上去是把数的低位放在高位前面)</li>
-</ul>
-<h1 id="字"><a href="#字" class="headerlink" title="字"></a>字</h1><p>MIPS中寄存器和内存单元的大小位4个字节, 所以字的大小为4个字节</p>
-<h1 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h1><table>
-<thead>
-<tr>
-<th style="text-align:center">名称</th>
-<th style="text-align:center">寄存器号</th>
-<th style="text-align:center">用途</th>
-<th style="text-align:center">调用时是否保存(调用前入栈, 调用后出栈)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">\$zero</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">常数0</td>
-<td style="text-align:center">否</td>
-</tr>
-<tr>
-<td style="text-align:center">\$v0 ~ \$v1</td>
-<td style="text-align:center">2 ~ 3</td>
-<td style="text-align:center">计算结果和表达式求值</td>
-<td style="text-align:center">否</td>
-</tr>
-<tr>
-<td style="text-align:center">\$a0 ~ \$a3</td>
-<td style="text-align:center">4 ~ 7</td>
-<td style="text-align:center">参数</td>
-<td style="text-align:center">否</td>
-</tr>
-<tr>
-<td style="text-align:center">\$t0 ~ \$t7</td>
-<td style="text-align:center">8 ~ 15</td>
-<td style="text-align:center">临时寄存器</td>
-<td style="text-align:center">否</td>
-</tr>
-<tr>
-<td style="text-align:center">\$s0 ~ \$s7</td>
-<td style="text-align:center">16 ~ 23</td>
-<td style="text-align:center">保存寄存器</td>
-<td style="text-align:center">是</td>
-</tr>
-<tr>
-<td style="text-align:center">\$t8 ~ $t9</td>
-<td style="text-align:center">24 ~ 25</td>
-<td style="text-align:center">临时寄存器</td>
-<td style="text-align:center">否</td>
-</tr>
-<tr>
-<td style="text-align:center">\$gp</td>
-<td style="text-align:center">28</td>
-<td style="text-align:center">全局变量</td>
-<td style="text-align:center">是</td>
-</tr>
-<tr>
-<td style="text-align:center">\$sp</td>
-<td style="text-align:center">29</td>
-<td style="text-align:center">栈指针</td>
-<td style="text-align:center">是</td>
-</tr>
-<tr>
-<td style="text-align:center">\$fp</td>
-<td style="text-align:center">30</td>
-<td style="text-align:center">帧指针</td>
-<td style="text-align:center">是</td>
-</tr>
-<tr>
-<td style="text-align:center">\$ra</td>
-<td style="text-align:center">31</td>
-<td style="text-align:center">返回地址</td>
-<td style="text-align:center">是</td>
-</tr>
-</tbody>
-</table>
-<h1 id="汇编指令"><a href="#汇编指令" class="headerlink" title="汇编指令"></a>汇编指令</h1><ul>
-<li>算术</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">指令</th>
-<th style="text-align:center">实例</th>
-<th style="text-align:center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">加法</td>
-<td style="text-align:center">add \$s1, \$s2, \$s3</td>
-<td style="text-align:center">\$s1 = \$s2 + \$s3</td>
-</tr>
-<tr>
-<td style="text-align:center">减法</td>
-<td style="text-align:center">sub \$s1, \$s2, \$s3</td>
-<td style="text-align:center">\$s1 = \$s2 - \$s3</td>
-</tr>
-<tr>
-<td style="text-align:center">立即数加法</td>
-<td style="text-align:center">addi \$s1, \$s2, 20</td>
-<td style="text-align:center">\$s1 = \$s2 + 20</td>
-</tr>
-<tr>
-<td style="text-align:center">立即数减法</td>
-<td style="text-align:center">addi \$s1, \$s2, -20</td>
-<td style="text-align:center">\$s1 = \$s2 + (-20)</td>
-</tr>
-<tr>
-<td style="text-align:center">初始化</td>
-<td style="text-align:center">addi \$s1, \$zero, \$zero</td>
-<td style="text-align:center">将\$s1初始化为0</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>数据传输</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">指令</th>
-<th style="text-align:center">实例</th>
-<th style="text-align:center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">取字</td>
-<td style="text-align:center">lw \$s1, 20 (\$s2)</td>
-<td style="text-align:center">\$s1 = \$Memory[\$s2 + 20]</td>
-</tr>
-<tr>
-<td style="text-align:center">存字</td>
-<td style="text-align:center">sw \$s1, 20 (\$s2)</td>
-<td style="text-align:center">\$Memory[\$s2 + 20] = \$s1</td>
-</tr>
-<tr>
-<td style="text-align:center">取半字</td>
-<td style="text-align:center">lh \$s1, 20 (\$s2)</td>
-<td style="text-align:center">从内存读取半个字, 放在寄存器右边8位</td>
-</tr>
-<tr>
-<td style="text-align:center">取无符号半字</td>
-<td style="text-align:center">lhu \$s1, 20 (\$s2)</td>
-<td style="text-align:center">…</td>
-</tr>
-<tr>
-<td style="text-align:center">存半字</td>
-<td style="text-align:center">sh \$s1, 20 (\$s2)</td>
-<td style="text-align:center">把寄存器右边8位放入内存</td>
-</tr>
-<tr>
-<td style="text-align:center">取字节</td>
-<td style="text-align:center">lb \$s1, 20 (\$s2)</td>
-<td style="text-align:center">…</td>
-</tr>
-<tr>
-<td style="text-align:center">取无符号字节</td>
-<td style="text-align:center">lbu \$s1, 20 (\$s2)</td>
-<td style="text-align:center">…</td>
-</tr>
-<tr>
-<td style="text-align:center">存字节</td>
-<td style="text-align:center">sb \$s1, 20 (\$s2)</td>
-<td style="text-align:center">…</td>
-</tr>
-<tr>
-<td style="text-align:center">取链接字</td>
-<td style="text-align:center">ll \$s1, 20 (\$s2)</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">存条件字</td>
-<td style="text-align:center">sc \$s1, 20 (\$s2)</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">读取立即数的高位</td>
-<td style="text-align:center">lui \$s1, 20</td>
-<td style="text-align:center">将立即数放在寄存器的高16位</td>
-</tr>
-<tr>
-<td style="text-align:center">构造32位数</td>
-<td style="text-align:center">lui构造高16位和or构造低16位</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$Memory[$s2 + 20] &lt;==&gt; A[5]		//	$s2保存数组A的基址值, MIPS中字为4个字节, 所以有5个元素</span><br></pre></td></tr></table></figure>
-<ul>
-<li>逻辑</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">指令</th>
-<th style="text-align:center">实例</th>
-<th style="text-align:center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">与</td>
-<td style="text-align:center">and \$s1, \$s2, \$s3</td>
-<td style="text-align:center">\$s1 = \$s2 &amp; \$s3</td>
-</tr>
-<tr>
-<td style="text-align:center">或</td>
-<td style="text-align:center">or \$s1, \$s2, \$s3</td>
-<td style="text-align:center">\$s1 = \$s2 \</td>
-<td>\$s3</td>
-</tr>
-<tr>
-<td style="text-align:center">或非</td>
-<td style="text-align:center">nor \$s1, \$s2, \$s3</td>
-<td style="text-align:center">\$s1 = -($s2</td>
-<td>\$s3)</td>
-</tr>
-<tr>
-<td style="text-align:center">立即数与</td>
-<td style="text-align:center">andi \$s1, \$s2, 20</td>
-<td style="text-align:center">\$s1 = \$s2 &amp; 20</td>
-</tr>
-<tr>
-<td style="text-align:center">立即数或</td>
-<td style="text-align:center">ori \$s1, \$s2, 20</td>
-<td style="text-align:center">\$s1 = \$s2 \</td>
-<td>20</td>
-</tr>
-<tr>
-<td style="text-align:center">逻辑左移(不考虑符号位)</td>
-<td style="text-align:center">sll \$s1, \$s2, 20</td>
-<td style="text-align:center">\$s1 = \$s2 &lt;&lt; 20</td>
-</tr>
-<tr>
-<td style="text-align:center">逻辑右移</td>
-<td style="text-align:center">srl \$s1, \$s2, 20</td>
-<td style="text-align:center">\$s1 = \$s2 &gt;&gt; 20</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>条件分支</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">指令</th>
-<th style="text-align:center">实例</th>
-<th style="text-align:center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">相等时跳转到标号</td>
-<td style="text-align:center">beq \$s1, \$s2, L</td>
-<td style="text-align:center">若\$s1 = \$s2, 跳转到标号L处</td>
-</tr>
-<tr>
-<td style="text-align:center">不等时跳转到标号</td>
-<td style="text-align:center">bnq \$s1, \$s2, L</td>
-<td style="text-align:center">若\$s1 != \$s2, 跳转到标号L处</td>
-</tr>
-<tr>
-<td style="text-align:center">小于时置位</td>
-<td style="text-align:center">slt \$s1, \$s2, \$s3</td>
-<td style="text-align:center">若\$s2 &lt; \$s3, \$s1 = 1; 否则\$s1 = 0</td>
-</tr>
-<tr>
-<td style="text-align:center">无符号比较小于时置位</td>
-<td style="text-align:center">sltu \$s1, \$s2, \$s3</td>
-<td style="text-align:center">若\$s2 &lt; \$s3, \$s1 = 1; 否则\$s1 = 0</td>
-</tr>
-<tr>
-<td style="text-align:center">无符号比较小于立即数时置位</td>
-<td style="text-align:center">slti \$s1, \$s2, 20</td>
-<td style="text-align:center">若\$s2 &lt; 20, \$s1 = 1; 否则\$s1 = 0</td>
-</tr>
-<tr>
-<td style="text-align:center">无符号比较小于无符号立即数时置位</td>
-<td style="text-align:center">sltiu \$s1, \$s2, 20</td>
-<td style="text-align:center">若\$s2 &lt; 20, \$s1 = 1; 否则\$s1 = 0</td>
-</tr>
-<tr>
-<td style="text-align:center">小于时跳转</td>
-<td style="text-align:center">slt与beq结合</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>无条件跳转</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">指令</th>
-<th style="text-align:center">实例</th>
-<th style="text-align:center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">跳转到标号L处</td>
-<td style="text-align:center">j L</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">跳转到寄存器的值所指向的位置</td>
-<td style="text-align:center">jr \$ra</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">跳转到标号L处, 并将下一条指令的地址保存在$ra</td>
-<td style="text-align:center">jal L</td>
-</tr>
-</tbody>
-</table>
-<h1 id="二进制表示MIPS指令"><a href="#二进制表示MIPS指令" class="headerlink" title="二进制表示MIPS指令"></a>二进制表示MIPS指令</h1><ul>
-<li>指令长度为32位</li>
-</ul>
-<h2 id="字段格式"><a href="#字段格式" class="headerlink" title="字段格式"></a>字段格式</h2><ul>
-<li>R型:</li>
-</ul>
-<p><img src="https://CoderUtil.github.io/images/TIM截图20180331140121.png" alt="计算机组成"></p>
-<ul>
-<li>I型: 用于立即数和数据传送指令</li>
-</ul>
-<p><img src="https://CoderUtil.github.io/images/TIM截图20180331140908.png" alt="计算机组成"></p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">指令</th>
-<th style="text-align:center">op</th>
-<th style="text-align:center">rs</th>
-<th style="text-align:center">rt</th>
-<th style="text-align:center">rd</th>
-<th style="text-align:center">shamt</th>
-<th style="text-align:center">funct</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">add</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">reg</td>
-<td style="text-align:center">reg</td>
-<td style="text-align:center">reg</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">32</td>
-</tr>
-<tr>
-<td style="text-align:center">sub</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">reg</td>
-<td style="text-align:center">reg</td>
-<td style="text-align:center">reg</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">34</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">指令</th>
-<th style="text-align:center">op</th>
-<th style="text-align:center">rs</th>
-<th style="text-align:center">rt</th>
-<th style="text-align:center">constant</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">addi</td>
-<td style="text-align:center">8</td>
-<td style="text-align:center">reg</td>
-<td style="text-align:center">reg</td>
-<td style="text-align:center">常数</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">指令</th>
-<th style="text-align:center">op</th>
-<th style="text-align:center">rs</th>
-<th style="text-align:center">rt</th>
-<th style="text-align:center">address</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">lw</td>
-<td style="text-align:center">35</td>
-<td style="text-align:center">reg</td>
-<td style="text-align:center">reg</td>
-<td style="text-align:center">address</td>
-</tr>
-<tr>
-<td style="text-align:center">rt</td>
-<td style="text-align:center">43</td>
-<td style="text-align:center">reg</td>
-<td style="text-align:center">reg</td>
-<td style="text-align:center">address</td>
-</tr>
-</tbody>
-</table>
-<h2 id="J型-跳转指令的机器码都是字地址"><a href="#J型-跳转指令的机器码都是字地址" class="headerlink" title="J型(跳转指令的机器码都是字地址)"></a>J型(跳转指令的机器码都是字地址)</h2><p><img src="https://CoderUtil.github.io/images/TIM截图20180406210731.png" alt="计算机组成"></p>
-<p><img src="https://CoderUtil.github.io/images/TIM截图20180406214153.png" alt="计算机组成"></p>
-<h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h1><ul>
-<li>MIPS中栈的增长从高地址到低地址</li>
-<li>帧指针\$fp: 不同的函数使用不同的栈, 帧指针用于迅速找到函数对应的栈. 而且相对于栈指针, 帧指针是不变的, 这样可以用帧指针作为栈中数据的基址值</li>
-</ul>
-<p><img src="https://CoderUtil.github.io/images/TIM截图20180331143718.png" alt="计算机组成"></p>
-<h1 id="并行与指令"><a href="#并行与指令" class="headerlink" title="并行与指令"></a>并行与指令</h1><ul>
-<li>数据冲突: 若两个线程同时访问一个地址, 且至少一个线程执行写操作, 则可能导致数据冲突</li>
-</ul>
-<p><img src="https://CoderUtil.github.io/images/TIM截图20180416225515.png" alt="计算机组成"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ll $t1, 0($s1)		//	链接取数指令, 从[$s1 + 0]中取出数据</span><br><span class="line">sc $t0, 0($s1)		//	条件存数指令, 向[$s1 + 0]存数据</span><br><span class="line"></span><br><span class="line">ll和sc一起使用, 起到锁的作用. 若ll执行后, sc执行前. [$s1 + 0]中的值被改变了, 则sc不会执行</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/计算机组成与原理/计算机组成与原理/第二章 算术运算/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/计算机组成与原理/计算机组成与原理/第二章 算术运算/" itemprop="url">第二章 算术运算</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-27T12:15:11+08:00">
-                2018-03-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机组成与原理/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机组成与原理</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="数的表示"><a href="#数的表示" class="headerlink" title="数的表示"></a>数的表示</h1><h2 id="无符号数与带符号数"><a href="#无符号数与带符号数" class="headerlink" title="无符号数与带符号数"></a>无符号数与带符号数</h2><ul>
-<li>无符号数: 二进制数</li>
-</ul>
-<ul>
-<li>带符号数: 最高位表示为符号位的二进制数, 0代表正数, 1代表负数. 包括原码、反码、补码</li>
-</ul>
-<h2 id="原码、反码、补码"><a href="#原码、反码、补码" class="headerlink" title="原码、反码、补码"></a>原码、反码、补码</h2><table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">正数</th>
-<th style="text-align:center">负数</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">原码</td>
-<td style="text-align:center">二进制数</td>
-<td style="text-align:center">符号位为1, 其他位与它的绝对值的原码相同</td>
-</tr>
-<tr>
-<td style="text-align:center">反码</td>
-<td style="text-align:center">二进制数</td>
-<td style="text-align:center">它的绝对值的二进制数取反</td>
-</tr>
-<tr>
-<td style="text-align:center">补码</td>
-<td style="text-align:center">二进制数</td>
-<td style="text-align:center">它的绝对值的二进制数取反加一</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">求十进制负数-2的原、反、补码: </span><br><span class="line">原码:	   </span><br><span class="line">	(1) 2的二进制数为0000,0010</span><br><span class="line">	(2) -2的原码为1000,0010</span><br><span class="line"></span><br><span class="line">反码:</span><br><span class="line">	(1) 2的二进制数为0000,0010</span><br><span class="line">	(2) -2的反码为1111,1101</span><br><span class="line"></span><br><span class="line">补码:</span><br><span class="line">	(1) 2的二进制数为0000,0010</span><br><span class="line">	(2) -2的补码为1111,1110</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">求二进制负数-1101, 0011的补码:</span><br><span class="line"></span><br><span class="line">除符号位外取反加一, 符号位根据正负号设置: 1010, 1101</span><br></pre></td></tr></table></figure>
-<h2 id="计算机中操作数以补码表示"><a href="#计算机中操作数以补码表示" class="headerlink" title="计算机中操作数以补码表示"></a>计算机中操作数以补码表示</h2><ul>
-<li>减去一个数, 等于加上这个数的相反数的补码(将减号看作数字的一部分, 只保留加号. 然后操作数都用补码表示)</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">	3 - 2 = 1</span><br><span class="line">	</span><br><span class="line">3的补码: 0000,0011</span><br><span class="line"></span><br><span class="line">-2的补码: 1111,1110</span><br><span class="line"></span><br><span class="line"> 0000,0011</span><br><span class="line">+1111,1110</span><br><span class="line">------------</span><br><span class="line"> 0000,0001</span><br><span class="line"></span><br><span class="line">1的补码: 0000,0001</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   	-3 - 2 = -5</span><br><span class="line">  </span><br><span class="line">-3的补码: 1111,1101   // 	-3可以看作0-3, 0 + (-3)的补码 </span><br><span class="line">-2的补码: 1111,1110</span><br><span class="line"></span><br><span class="line"> 1111,1101</span><br><span class="line">+1111,1110</span><br><span class="line">-----------</span><br><span class="line"> 1111,1011</span><br><span class="line"> </span><br><span class="line">-5的补码: 1111,1011</span><br></pre></td></tr></table></figure>
-<h1 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h1><ul>
-<li>科学记数法: 小数点左边只有一位数的记数法</li>
-</ul>
-<ul>
-<li>规格化数: 没有前导零的浮点数</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.0 * 10^9是规格化的</span><br><span class="line"></span><br><span class="line">0.1 * 10^10是非规格化的</span><br></pre></td></tr></table></figure>
-<ul>
-<li>上溢: 正指数超过了指数域的上限</li>
-<li>下溢: 负指数超过了指数域的下限</li>
-</ul>
-<h2 id="IEE754浮点数"><a href="#IEE754浮点数" class="headerlink" title="IEE754浮点数"></a>IEE754浮点数</h2><p><img src="https://CoderUtil.github.io/images/TIM截图20180327130223.png" alt="计算机组成"></p>
-<p><img src="https://CoderUtil.github.io/images/TIM截图20180327131235.png" alt="计算机组成"></p>
-<h2 id="浮点数转换成IEE"><a href="#浮点数转换成IEE" class="headerlink" title="浮点数转换成IEE"></a>浮点数转换成IEE</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">用B, D, H表示进制</span><br><span class="line"></span><br><span class="line">-0.75D =&gt; IEE754</span><br><span class="line"></span><br><span class="line">(1) 转换为无符号二进制</span><br><span class="line">	-0.11B			//		结果为无限小数时, 直接截断</span><br><span class="line">	</span><br><span class="line">(2) 转换为规格化的科学计数法	</span><br><span class="line">	-1.1B * 2^(-1)</span><br><span class="line">	</span><br><span class="line">(3) S = 1</span><br><span class="line">    E = -1 + 127 = 0111,1110B</span><br><span class="line">    M = 100...0(为了保存更多的信息, 隐藏了规格化小数的前导1)</span><br></pre></td></tr></table></figure>
-<h2 id="浮点数加-减法"><a href="#浮点数加-减法" class="headerlink" title="浮点数加/减法"></a>浮点数加/减法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">0.5D + (-0.4375D), 保留3位尾数位</span><br><span class="line"></span><br><span class="line">(1) 转换为规格化的科学记数法表示</span><br><span class="line">  0.5D = 1.000B * 2^(-1)</span><br><span class="line">  -0.4375D = -1.110B * 2^(-2)</span><br><span class="line">  </span><br><span class="line">(2) 将指数较小的操作数向指数较大的操作数对齐</span><br><span class="line">	-1.110B * 2^(-2) = -0.111B * 2^(-1)</span><br><span class="line">	</span><br><span class="line">(3) 相加</span><br><span class="line">    1.000</span><br><span class="line">   -0.111</span><br><span class="line">  ---------</span><br><span class="line">    0.001</span><br><span class="line">    </span><br><span class="line">(4) 化为规格化且有4位有效数字的形式</span><br><span class="line">   0.001B * 2^(-1) = 1.000B * 2^(-4)</span><br></pre></td></tr></table></figure>
-<h2 id="浮点数除法-补码不恢复余数法"><a href="#浮点数除法-补码不恢复余数法" class="headerlink" title="浮点数除法(补码不恢复余数法)"></a>浮点数除法(补码不恢复余数法)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">X = 0.1011B, Y = -0.1101, 求 X补 / Y补. 保留4位尾数位</span><br><span class="line"></span><br><span class="line">(1) 求出补码</span><br><span class="line"></span><br><span class="line">	X补 = 0.1011			//	对于正数, 补码等于二进制数</span><br><span class="line">	Y补 = 1.0011			//	对于负数, 补码等于二进制数取反加一</span><br><span class="line">	</span><br><span class="line">(2) 扩展1位符号位</span><br><span class="line">	</span><br><span class="line">	X补 = 00.1011</span><br><span class="line">	Y补 = 11.0011</span><br><span class="line">	</span><br><span class="line">(3) 若X补与Y补同号, X补 - Y补; 异号则X补 + Y补</span><br><span class="line">	</span><br><span class="line">	00.1011</span><br><span class="line">   +11.0011</span><br><span class="line">  ------------</span><br><span class="line">    11.1110			=&gt;	第一步的余数</span><br><span class="line">    	</span><br><span class="line">    当余数 &gt; 0, 商 = 1</span><br><span class="line">    当余数 &lt; 0, 商 = 0</span><br><span class="line">    	</span><br><span class="line">    余数 &lt; 0, 因此第一步的商 = 0</span><br><span class="line">    </span><br><span class="line">(4) 将余数左移1位</span><br><span class="line">	余数为11.1100</span><br><span class="line">	</span><br><span class="line">(5) 根据(3), 若余数与Y补同号, 则余数 - Y补; 反之则余数 + Y补</span><br><span class="line">	</span><br><span class="line">	 11.1100</span><br><span class="line">	-11.0011</span><br><span class="line">  ------------</span><br><span class="line">     00.1001</span><br><span class="line">     </span><br><span class="line">     余数 &gt; 0, 因此第二步的商 = 1</span><br><span class="line"> </span><br><span class="line">(6) 重复(4), (5)直至算出5个商值, 分别为0, 1, 1, 0, 1(4位尾数位 + 1位整数位), 最后一步的余数为00.0111</span><br><span class="line"></span><br><span class="line">	因此X补 / Y补 = -0.1101		(异号相除，符号为负)</span><br><span class="line">	余数为0.0111</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2762,7 +2359,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

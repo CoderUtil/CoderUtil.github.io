@@ -259,6 +259,326 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Cocos2d/Cocos2d/Cocos2d学习(六)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Cocos2d/Cocos2d/Cocos2d学习(六)/" itemprop="url">Cocos2d学习(六)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-11T10:03:27+08:00">
+                2018-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Cocos2d/" itemprop="url" rel="index">
+                    <span itemprop="name">Cocos2d</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="物理引擎"><a href="#物理引擎" class="headerlink" title="物理引擎"></a>物理引擎</h1><h2 id="Body刚体"><a href="#Body刚体" class="headerlink" title="Body刚体"></a>Body刚体</h2><p>​    包含对象的物理属性</p>
+<h3 id="静态刚体"><a href="#静态刚体" class="headerlink" title="静态刚体"></a>静态刚体</h3><p>​    刚体在世界中不能移动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//	创建精灵</span><br><span class="line">auto sprite = Sprite::create(&quot;whiteSprite.png&quot;);</span><br><span class="line">sprite-&gt;setPosition(Vec2(400, 400));</span><br><span class="line">this-&gt;addChild(sprite);</span><br><span class="line"></span><br><span class="line">//	创建静态刚体</span><br><span class="line">auto physicsBody = PhysicsBody::createBox(Size(65.0f, 81.0f), PhysicsMaterial(0.1f, 1.0f, 0.0f));</span><br><span class="line">physicsBody-&gt;setDynamic(false);</span><br><span class="line"></span><br><span class="line">//	精灵使用静态刚体</span><br><span class="line">sprite-&gt;setPhysicsBody(physicsBody);</span><br><span class="line"></span><br><span class="line">//	创建监听器, 响应onContactBegin事件</span><br><span class="line">auto contactListener = EventListenerPhysicsContact::create();</span><br><span class="line">contactListener-&gt;onContactBegin = CC_CALLBACK_1(onContactBegin, this);</span><br><span class="line">Director::getInstance()-&gt;getEventDispatcher()-&gt;addEventListenerWithSceneGraphPriority(contactListener, this);</span><br></pre></td></tr></table></figure>
+<h3 id="动态刚体"><a href="#动态刚体" class="headerlink" title="动态刚体"></a>动态刚体</h3><p>​    刚体在世界中可以移动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">//	创建精灵</span><br><span class="line">auto sprite = Sprite::create(&quot;whiteSprite.png&quot;);</span><br><span class="line">sprite-&gt;setPosition(Vec2(400, 400));</span><br><span class="line">this-&gt;addChild(sprite);</span><br><span class="line"></span><br><span class="line">//	创建动态刚体</span><br><span class="line">auto physicsBody = PhysicsBody::createBox(Size(65.0f, 81.0f), PhysicsMaterial(0.1f, 1.0f, 0.0f));		//	密度0.1, 完全弹性碰撞, 摩擦系数为0</span><br><span class="line">physicsBody-&gt;setDynamic(true);</span><br><span class="line"></span><br><span class="line">//	忽略重力的影响</span><br><span class="line">physicsBody-&gt;setGravityEnable(false);</span><br><span class="line">//	随机初始化速度</span><br><span class="line">physicsBody-&gt;setVelocity(Vec2(cocos2d::random(-500, 500), cocos2d::random(-500, 500)));</span><br><span class="line"></span><br><span class="line">//	精灵使用动态刚体</span><br><span class="line">sprite-&gt;setPhysicsBody(physicsBody);</span><br><span class="line"></span><br><span class="line">//	创建监听器, 响应onContactBegin事件</span><br><span class="line">auto contactListener = EventListenerPhysicsContact::create();</span><br><span class="line">contactListener-&gt;onContactBegin = CC_CALLBACK_1(GameScene::onContactBegin, this);</span><br><span class="line">Director::getInstance()-&gt;getEventDispatcher()-&gt;addEventListenerWithSceneGraphPriority(contactListener, this);</span><br><span class="line"></span><br><span class="line">//	设置碰撞掩码, 不然不会触发碰撞事件(虽然能碰撞)</span><br><span class="line"></span><br><span class="line">bool GameScene::onContactBegin(PhysicsConact&amp; contact) &#123;</span><br><span class="line">  auto nodeA = contact.getShapeA()-&gt;getBody()-&gt;getNode();</span><br><span class="line">  auto nodeB = contact.getShapeB()-&gt;getBody()-&gt;getNode();</span><br><span class="line">  </span><br><span class="line">  if (nodeA &amp;&amp; nodeB) &#123;</span><br><span class="line">    if (nodeA-&gt;getTag() == 10)</span><br><span class="line">    	nodeB-&gt;removeFromParentAndCleanUp(true);</span><br><span class="line">    else if(nodeB-&gt;getTag() == 30)</span><br><span class="line">   	 	nodeA-&gt;removeFromParentAndCleanUp(true);</span><br><span class="line">  &#125;	</span><br><span class="line">  retun true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Material材质"><a href="#Material材质" class="headerlink" title="Material材质"></a>Material材质</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">密度：	用于计算质量  </span><br><span class="line"></span><br><span class="line">恢复系数：用于计算物体的反弹, 取值为(0, 1).  1表示完全弹性碰撞, 0表示完全非弹性碰撞</span><br><span class="line"></span><br><span class="line">摩擦系数： 用于计算物体间相对运动</span><br><span class="line"></span><br><span class="line">刚体默认材质密度为0.1, 恢复系数和摩擦系数均为0.5</span><br></pre></td></tr></table></figure>
+<h2 id="Shapes形状"><a href="#Shapes形状" class="headerlink" title="Shapes形状"></a>Shapes形状</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">type:  描述形状种类，如圆形，矩形，多边形等</span><br><span class="line"></span><br><span class="line">area:  描述面积，用于和密度一起计算刚体质量。</span><br><span class="line"></span><br><span class="line">mass: 描述物体质量</span><br><span class="line"></span><br><span class="line">tag:   标签, 可为不同Shape设置不同标签, 方便区分</span><br><span class="line"></span><br><span class="line">moment：力矩, 决定了获得特定角加速度所需的转矩</span><br><span class="line"></span><br><span class="line">offset: 偏移, 物体坐标系下重心所在的坐标</span><br></pre></td></tr></table></figure>
+<h3 id="Shape实现类"><a href="#Shape实现类" class="headerlink" title="Shape实现类"></a>Shape实现类</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">PhysicsShape： PhysicsShape的基类</span><br><span class="line">PhsicsShapeBox：实心矩形</span><br><span class="line">PhysicsShapeCircle：实心圆，无法用其实现圆环的效果 </span><br><span class="line">PhysicsShapePolygon：实心的凸多边形</span><br><span class="line">PhsicsShapeEdgeBox：空心矩形</span><br><span class="line">PhysicsShapeEdgePolygon：空心的凸多边形</span><br><span class="line">PhysicsShapeEdgeChain：链形形状可以有效地把许多边缘联结起来</span><br></pre></td></tr></table></figure>
+<h2 id="Contacts接触-Joints关节"><a href="#Contacts接触-Joints关节" class="headerlink" title="Contacts接触/Joints关节"></a>Contacts接触/Joints关节</h2><p>​    描述了刚体之间的关联方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">PhysicsJointFixed: 将两个刚体固定在一个点上</span><br><span class="line"></span><br><span class="line">PhysicsJoinLimit: 限制了两个刚体间最大距离, 就像将两个刚体用绳子相连</span><br><span class="line"></span><br><span class="line">PhysicsJointDistance: 设定两个刚体间的固定距离, 就像将两个刚体用铁棒相连</span><br><span class="line"></span><br><span class="line">PhysicsJointSping: 将两个刚体用弹簧相连</span><br><span class="line"></span><br><span class="line">PhysicsJointSping* spingJoint = PhysicsJointSpring::construct(</span><br><span class="line">	m_basketball-&gt;getPhysicsBody(), </span><br><span class="line">	m_soccer-&gt;getPhysicsBody(),</span><br><span class="line">	m_basketball-&gt;getAnchorPoint(), </span><br><span class="line">	m_socce-&gt;getAnchorPoint(),</span><br><span class="line">	200,</span><br><span class="line">	0);</span><br><span class="line"></span><br><span class="line">scene-&gt;addJoint(spingJoint);</span><br><span class="line">scene-&gt;removeAllJoints();</span><br></pre></td></tr></table></figure>
+<h2 id="World世界"><a href="#World世界" class="headerlink" title="World世界"></a>World世界</h2><p>​    进行物理模拟的常识, 所有刚体都添加到其中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">Scene* HelloWorld::createScene() &#123;</span><br><span class="line">  	//	使用物理世界创建场景, 代替Scene::create()</span><br><span class="line">  	auto scene = Scene::createWithPhysics(); </span><br><span class="line">  	auto layer = HelloWorld::create();</span><br><span class="line">  	layer-&gt;setPhysicsWorld(scene-&gt;getPhysicsWorld());</span><br><span class="line">  	scene-&gt;addChild(layer);</span><br><span class="line">  	return scene;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void HelloWorld::onEnter() &#123;</span><br><span class="line">  	Size visibleSize = Director::getInstance()-&gt;getVisibleSize();</span><br><span class="line">  	</span><br><span class="line">  	//	创建一个大小和屏幕大小相等的物理世界, 使用默认材质</span><br><span class="line">  	auto body = PhysicsBody::createEdgeBox(visibleSize, PHYSICSBODY_MATERIAL_DEFAULT, 3);</span><br><span class="line">  	auto edgeShape = Node::create();</span><br><span class="line">  	edgeShape-&gt;setPhysicsBody(body);</span><br><span class="line">  	</span><br><span class="line">  	//	设置物理世界位置</span><br><span class="line">  	edgeShape-&gt;setPosition(visibleSize.width / 2, visibleSize.height / 2);</span><br><span class="line">  	</span><br><span class="line">  	addChild(edgeShape);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void HelloWorld::init() &#123;</span><br><span class="line">    //	创建精灵</span><br><span class="line">    auto sprite = Sprite::create(&quot;whiteSprite.png&quot;);</span><br><span class="line">    sprite-&gt;setPosition(Vec2(400, 400));</span><br><span class="line">    this-&gt;addChild(sprite);</span><br><span class="line">    </span><br><span class="line">   	//	创建方形的动态刚体(默认为动态, 受重力影响)</span><br><span class="line">    sprite-&gt;setPhysicsBody(PhysicsBody::createBox(sprite-&gt;getContentSize()));</span><br><span class="line">    </span><br><span class="line">    //	创建圆形的动态刚体</span><br><span class="line">    sprite-&gt;setPhysicsBody(PhysicsBody::createCircle(sprite-&gt;getContentSize().width / 2));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">重力(gravity)：默认值为Vec2(0.0f, -98.0f), 即9.8米每二次方秒, 方向竖直向下</span><br><span class="line"></span><br><span class="line">速度(speed)：设定了物理世界的速度。默认值为1.0。</span><br><span class="line"></span><br><span class="line">刷新率(updateRate)：设定了物理世界的刷新率，这里刷新率指EngineUpdateTimes/PhysicsWorldUpdateTimes的比值。</span><br><span class="line"></span><br><span class="line">子步(substeps)：设定了物理世界中每次刷新的子步数量。</span><br></pre></td></tr></table></figure>
+<h2 id="碰撞"><a href="#碰撞" class="headerlink" title="碰撞"></a>碰撞</h2><h3 id="碰撞过滤"><a href="#碰撞过滤" class="headerlink" title="碰撞过滤"></a>碰撞过滤</h3><p>​    通过设置碰撞掩码, 过滤不必要的碰撞检测</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">_group组别: 当group为正数且相等就碰撞, 负数且相等就不碰撞</span><br><span class="line"></span><br><span class="line">_categoryBitmask类别掩码: 表明物体的类别 </span><br><span class="line"></span><br><span class="line">_collisonBitmask碰撞掩码:  </span><br><span class="line">	IF (A的categoryBitmask &amp; B的collisonBitmask ！= 0) &amp;&amp; (A的collisonBitmask &amp; B的categoryBitmask ！= 0)</span><br><span class="line">		能发生碰撞</span><br><span class="line">	ENDIF</span><br><span class="line"></span><br><span class="line">_contactTestBitmask接触测试掩码: 表明物体对和谁的碰撞检测感兴趣. </span><br><span class="line">	IF (A的categoryBitmask &amp; B的contactTestBitmask ！= 0) &amp;&amp; (A的contactTestBitmask &amp; B的categoryBitmask ！= 0)</span><br><span class="line">		能触发碰撞检测</span><br><span class="line">	ENDIF</span><br></pre></td></tr></table></figure>
+<h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><p>​    如果要在碰撞时触发碰撞检测, 那将同一刚体的3个Bitmask全设为0xFFFFFFFF</p>
+<p><img src="https://CoderUtil.github.io/images/TIM截图20180613210455.png" alt="cocos2d"></p>
+<h1 id="粒子系统"><a href="#粒子系统" class="headerlink" title="粒子系统"></a>粒子系统</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. 在Particle Editor中生成带有粒子效果的plist文件</span><br><span class="line"></span><br><span class="line">2. 使用cocos中内置的粒子系统</span><br><span class="line">	ParticleFireworks* fireworks = ParticleFireworks::create();</span><br><span class="line">	fireworks-&gt;setPosition(500, 300);</span><br><span class="line">	this-&gt;addChild(fireworks);</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/操作系统/操作系统/第九章-虚拟内存/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/操作系统/操作系统/第九章-虚拟内存/" itemprop="url">第九章 虚拟内存</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-07T18:11:16+08:00">
+                2018-06-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/操作系统/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="虚拟内存"><a href="#虚拟内存" class="headerlink" title="虚拟内存"></a>虚拟内存</h1><p>​    一种技术, 通过按需调页, 使执行中的进程不必完全处于内存中(使进程可以比内存大)</p>
+<h2 id="按需调页"><a href="#按需调页" class="headerlink" title="按需调页"></a>按需调页</h2><h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>​    页置换和帧分配. 前者用于确定将磁盘中的哪些页换进内存, 后者用于确定每个进程的最大帧数目</p>
+<h3 id="执行过程"><a href="#执行过程" class="headerlink" title="执行过程"></a>执行过程</h3><p>​    检测页表中的有效-无效位(“有效”则表示页处于内存中, “无效”则表示页处于磁盘上), 若有效则直接调用; 若无效则产生页错误陷阱, 然后找到一个空闲帧, 将所需的页调入, 最后要重新开始因陷阱而中断的指令</p>
+<h3 id="纯粹按需调页"><a href="#纯粹按需调页" class="headerlink" title="纯粹按需调页"></a>纯粹按需调页</h3><p>​    所有页都不在内存中, 会不断地出现页错误直到所有需要的页都在内存中</p>
+<h2 id="有效访问时间"><a href="#有效访问时间" class="headerlink" title="有效访问时间"></a>有效访问时间</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">有效访问时间 = 页错误率 * 页错误时间 + (1 - 页错误率) * 内存访问时间</span><br></pre></td></tr></table></figure>
+<h2 id="写时复制"><a href="#写时复制" class="headerlink" title="写时复制"></a>写时复制</h2><p>​    使用fork创建子进程后, 父进程和子进程共享同一页面. 当一个进程要对页进行写操作, 会创建一个共享页的副本(见P279)</p>
+<h2 id="过度分配"><a href="#过度分配" class="headerlink" title="过度分配"></a>过度分配</h2><p>​    当页错误陷阱出现, 却没有空闲帧</p>
+<h2 id="页置换"><a href="#页置换" class="headerlink" title="页置换"></a>页置换</h2><p>​    当没有空闲帧时, 选择一个”牺牲帧”释放, 然后提供给所需的进程. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">可以分为全局置换和局部置换</span><br><span class="line"></span><br><span class="line">全局置换: 进程能在所有帧集合中选择一个置换页</span><br><span class="line"></span><br><span class="line">局部置换: 每个进程仅从自己的分配帧中选择置换页</span><br></pre></td></tr></table></figure>
+<h3 id="FIFO页置换"><a href="#FIFO页置换" class="headerlink" title="FIFO页置换"></a>FIFO页置换</h3><p>​    记录每个页调入内存的时间, 当必须置换一页时, 选择最旧的页</p>
+<h3 id="LRU-最近最少使用-页置换"><a href="#LRU-最近最少使用-页置换" class="headerlink" title="LRU(最近最少使用)页置换"></a>LRU(最近最少使用)页置换</h3><p>​    选择最久没有使用的页</p>
+<h2 id="颠簸"><a href="#颠簸" class="headerlink" title="颠簸"></a>颠簸</h2><p>​    分配给进程的帧数少于进程所需的最小页数, 导致不断地进行页置换</p>
+<h2 id="解决颠簸"><a href="#解决颠簸" class="headerlink" title="解决颠簸"></a>解决颠簸</h2><p>​    为所期望的页错误率设置上限和下限, 若实际页错误率超过错误, 就分配更多的帧; 若实际页错误率低于下限, 则移走帧</p>
+<h2 id="帧分配"><a href="#帧分配" class="headerlink" title="帧分配"></a>帧分配</h2><p>​    给每个进程分配足够的帧, 防止颠簸</p>
+<h2 id="平均分配"><a href="#平均分配" class="headerlink" title="平均分配"></a>平均分配</h2><p>​    在n个进程之间分配m个帧, 则每个进程分到的帧 = m / n帧</p>
+<h2 id="比例分配"><a href="#比例分配" class="headerlink" title="比例分配"></a>比例分配</h2><p>​    每个进程分到的帧 = 进程i所需的帧 / 所有进程所需的帧 * 可用帧总数</p>
+<h2 id="内存映射"><a href="#内存映射" class="headerlink" title="内存映射"></a>内存映射</h2><p>​    将磁盘块映射成内存的一页, 使得文件I/O可以作为内存来访问</p>
+<p>​    </p>
+<h2 id="数据共享"><a href="#数据共享" class="headerlink" title="数据共享"></a>数据共享</h2><p>​    多个进程将同一文件映射到各自的虚拟内存中, 当一个进程修改虚拟内存的数据, 其他进程都可见</p>
+<h2 id="内存映射I-O"><a href="#内存映射I-O" class="headerlink" title="内存映射I/O"></a>内存映射I/O</h2><p>​    将内存映射到I/O设备的寄存器上</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Cocos2d/Cocos2d/Cocos2d学习(五)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1702,471 +2022,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Matlab/Matlab/Matlab学习(一)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Matlab/Matlab/Matlab学习(一)/" itemprop="url">Matlab学习(一)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-16T12:43:19+08:00">
-                2018-05-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Matlab/" itemprop="url" rel="index">
-                    <span itemprop="name">Matlab</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="分号"><a href="#分号" class="headerlink" title="分号"></a>分号</h1><p>​    语句结束时不使用分号, 将会在命令行中输出当前变量的值(利于调试)</p>
-<h1 id="工作区"><a href="#工作区" class="headerlink" title="工作区"></a>工作区</h1><p>​    所有在同一命令窗口中执行的命令和脚本文件处于同一个工作区间中.</p>
-<ul>
-<li>同一工作区间的变量能相互访问.</li>
-<li>不同函数文件拥有不同的工作区间</li>
-</ul>
-<h2 id="清除工作区"><a href="#清除工作区" class="headerlink" title="清除工作区"></a>清除工作区</h2><p>​    每次修改文件后, 最好clear工作区</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">考虑数组arr大小为10, 修改代码, 使arr大小为1. 但因为arr已经存在于工作区, 所以arr大小不会变</span><br></pre></td></tr></table></figure>
-<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">列与列之间通过空格分隔, 行与行之间通过分号或换行分隔</span><br><span class="line"></span><br><span class="line">数组A: </span><br><span class="line">	[1 2; 3 4; 5 6]</span><br><span class="line">	或</span><br><span class="line">	[1 2</span><br><span class="line">	 3 4</span><br><span class="line">	 5 6]</span><br><span class="line">	</span><br><span class="line">数组B: [1 2 3 4]</span><br><span class="line">	</span><br><span class="line">数组C: [1; 2; 3; 4]</span><br></pre></td></tr></table></figure>
-<h2 id="数组访问"><a href="#数组访问" class="headerlink" title="数组访问"></a>数组访问</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">A(2,1) 	得到3, 下标从1开始计算</span><br><span class="line">B(2)	得到2, 行向量或列向量只需要一个下标</span><br><span class="line">C(3)	得到3</span><br></pre></td></tr></table></figure>
-<h2 id="克隆运算符"><a href="#克隆运算符" class="headerlink" title="克隆运算符"></a>克隆运算符</h2><p>​    快速创建一维数组</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">语法:</span><br><span class="line">	first:incr:last</span><br><span class="line">	</span><br><span class="line">	first: 数组第一个元素的值</span><br><span class="line">	incr: 数组元素之间的递增量</span><br><span class="line">	last: 数组最后一个元素不能超过这个值</span><br><span class="line">	</span><br><span class="line">例子:</span><br><span class="line">	x=1:2:10	=&gt;	x=[1 3 5 7 9]</span><br></pre></td></tr></table></figure>
-<h2 id="初始化数组的函数"><a href="#初始化数组的函数" class="headerlink" title="初始化数组的函数"></a>初始化数组的函数</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">函数</th>
-<th style="text-align:center">作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">zeros(n), zeros(n, m)</td>
-<td style="text-align:center">创建n*n, n*m的元素全为0的矩阵</td>
-</tr>
-<tr>
-<td style="text-align:center">ones(n), ones(n, m)</td>
-<td style="text-align:center">创建n*n, n*m的元素全为1的矩阵</td>
-</tr>
-<tr>
-<td style="text-align:center">eye(n), eye(n, m)</td>
-<td style="text-align:center">创建n*n, n*m的单位矩阵</td>
-</tr>
-<tr>
-<td style="text-align:center">length(arr)</td>
-<td style="text-align:center">返回一维数组长度或二维数组较长的维度</td>
-</tr>
-<tr>
-<td style="text-align:center">size(arr)</td>
-<td style="text-align:center">返回数组的行数和列数, 用数组保存</td>
-</tr>
-</tbody>
-</table>
-<h2 id="产生随机数组"><a href="#产生随机数组" class="headerlink" title="产生随机数组"></a>产生随机数组</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rand 		产生一个随机数</span><br><span class="line">rand(n)		产生n * n的随机数组, 取值在(0,1)</span><br><span class="line">rand(n,m)	产生n * m的随机数组</span><br></pre></td></tr></table></figure>
-<h1 id="三维数组"><a href="#三维数组" class="headerlink" title="三维数组"></a>三维数组</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">第一个逗号表示二维数组的行, 第二格逗号表示二维数组的列, 第三个逗号表示第几个二维数组</span><br><span class="line"></span><br><span class="line">c(:,:,1)=[1 2 3; 4 5 6]</span><br><span class="line"></span><br><span class="line">c(:,:,2)=[7 8 9; 10 11 12]</span><br></pre></td></tr></table></figure>
-<h1 id="input"><a href="#input" class="headerlink" title="input"></a>input</h1><p>​    接收一个输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">val = input(&apos;Input a value&apos;);</span><br></pre></td></tr></table></figure>
-<h1 id="特殊变量"><a href="#特殊变量" class="headerlink" title="特殊变量"></a>特殊变量</h1><table>
-<thead>
-<tr>
-<th style="text-align:center">变量</th>
-<th style="text-align:center">用途</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">pi</td>
-<td style="text-align:center">π</td>
-</tr>
-<tr>
-<td style="text-align:center">i</td>
-<td style="text-align:center">虚数, 比如1 + 4 * i</td>
-</tr>
-<tr>
-<td style="text-align:center">Inf</td>
-<td style="text-align:center">无穷大</td>
-</tr>
-<tr>
-<td style="text-align:center">NaN</td>
-<td style="text-align:center">没有这个数</td>
-</tr>
-</tbody>
-</table>
-<h1 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. disp(), 需要字符串数组作为参数</span><br><span class="line">	str=[&apos;The value of pi=&apos; num2str(pi)]</span><br><span class="line">	disp(str)</span><br><span class="line"></span><br><span class="line">2. fprintf(), 类似C语言</span><br><span class="line">	fprintf(&apos;The value of pi=%d&apos;, pi)</span><br></pre></td></tr></table></figure>
-<h1 id="数组运算和矩阵运算"><a href="#数组运算和矩阵运算" class="headerlink" title="数组运算和矩阵运算"></a>数组运算和矩阵运算</h1><ul>
-<li>数组运算: 矩阵对应位置的元素进行运算</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> A     		 B</span><br><span class="line">1 2	  		5 6 	</span><br><span class="line">3 4   		7 8</span><br><span class="line"></span><br><span class="line">   A*B	</span><br><span class="line"> 1*5 2*6</span><br><span class="line"> 3*7 4*8</span><br></pre></td></tr></table></figure>
-<ul>
-<li>矩阵运算: 参照线性代数中矩阵的运算</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> A     		 B</span><br><span class="line">1 2	  		5 6 	</span><br><span class="line">3 4   		7 8</span><br><span class="line"></span><br><span class="line">   A.*B	</span><br><span class="line"> 1*5+2*7 1*6+2*8</span><br><span class="line"> 3*5+4*7 3*6+4*8</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">运算</th>
-<th style="text-align:center">数组运算</th>
-<th style="text-align:center">矩阵运算</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">加</td>
-<td style="text-align:center">A+B</td>
-<td style="text-align:center">A+B</td>
-</tr>
-<tr>
-<td style="text-align:center">减</td>
-<td style="text-align:center">A-B</td>
-<td style="text-align:center">A-B</td>
-</tr>
-<tr>
-<td style="text-align:center">乘</td>
-<td style="text-align:center">A.*B</td>
-<td style="text-align:center">A*B</td>
-</tr>
-<tr>
-<td style="text-align:center">除</td>
-<td style="text-align:center">A./B</td>
-<td style="text-align:center">A/B</td>
-</tr>
-<tr>
-<td style="text-align:center">指数运算</td>
-<td style="text-align:center">A.^B</td>
-</tr>
-</tbody>
-</table>
-<h1 id="数组与标量的运算"><a href="#数组与标量的运算" class="headerlink" title="数组与标量的运算"></a>数组与标量的运算</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"> A</span><br><span class="line"> 1 2</span><br><span class="line"> 3 4</span><br><span class="line"></span><br><span class="line"> A + 3</span><br><span class="line">1+3 2+3</span><br><span class="line">3+3 4+3</span><br><span class="line"></span><br><span class="line"> A - 3</span><br><span class="line">1-3 2-3</span><br><span class="line">3-3 4-3</span><br><span class="line"></span><br><span class="line"> A .* 3</span><br><span class="line">1*3 2*3</span><br><span class="line">3*3 4*4</span><br><span class="line"></span><br><span class="line"> A ./ 3</span><br><span class="line">1/3 2/3</span><br><span class="line">3/3 4/5</span><br><span class="line"></span><br><span class="line"> A .^ 3</span><br><span class="line">1^3 2^3</span><br><span class="line">3^3 4^3</span><br></pre></td></tr></table></figure>
-<h1 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h1><p><img src="https://CoderUtil.github.io/images/TIM截图20180517213917.png" alt="Matlab"></p>
-<h1 id="计算运行时间"><a href="#计算运行时间" class="headerlink" title="计算运行时间"></a>计算运行时间</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tic;					//	开始计时</span><br><span class="line">	需要计算时间的代码</span><br><span class="line">fprintf(&apos;%d&apos;, toc);		 //	 toc的值为上一个tic到这一步所用的时间</span><br></pre></td></tr></table></figure>
-<h1 id="画图"><a href="#画图" class="headerlink" title="画图"></a>画图</h1><h2 id="基本画图"><a href="#基本画图" class="headerlink" title="基本画图"></a>基本画图</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">x=0:1:10;</span><br><span class="line">y=x.^2-10.*x+15;					//	注意是数组运算而不是矩阵运算</span><br><span class="line">plot(x,y);							//	画出函数</span><br><span class="line">title (&apos;Plot of y=x.^2-10*x+15&apos;);	  //  设置图像标题</span><br><span class="line">xlabel (&apos;x&apos;); 						//	设置横轴和纵轴</span><br><span class="line">ylabel (&apos;y&apos;); </span><br><span class="line">grid on; 							//	图像中出现网格线. grid off去除网格线</span><br></pre></td></tr></table></figure>
-<h2 id="联合画图"><a href="#联合画图" class="headerlink" title="联合画图"></a>联合画图</h2><p>​    在同一坐标内做出多个图像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">x = 0:pi/100:2*pi;</span><br><span class="line">y1=sin(2.*x);</span><br><span class="line">y2=2*cos(2.*x);</span><br><span class="line">plot(x, y1, x, y2);</span><br><span class="line">title (&apos;Plot of y=x.^2-10*x+15&apos;);	 </span><br><span class="line">xlabel (&apos;x&apos;); 						</span><br><span class="line">ylabel (&apos;y&apos;); </span><br><span class="line">grid on; </span><br><span class="line">legend(&apos;f(x)&apos;, &apos;g(x)&apos;);		//	轨迹的标签名, 第一个轨迹叫f(x), 第二个叫g(x)</span><br></pre></td></tr></table></figure>
-<h1 id="关系运算"><a href="#关系运算" class="headerlink" title="关系运算"></a>关系运算</h1><ul>
-<li>同C语言一样, 使用0和1代替布尔变量</li>
-<li>不等号为~=</li>
-</ul>
-<h1 id="逻辑运算"><a href="#逻辑运算" class="headerlink" title="逻辑运算"></a>逻辑运算</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">与 	&amp;</span><br><span class="line">或	|</span><br><span class="line">非	~</span><br><span class="line">异或  xor</span><br></pre></td></tr></table></figure>
-<h1 id="逻辑函数"><a href="#逻辑函数" class="headerlink" title="逻辑函数"></a>逻辑函数</h1><p><img src="https://CoderUtil.github.io/images/TIM截图20180517232320.png" alt="Matlab"></p>
-<h1 id="if"><a href="#if" class="headerlink" title="if"></a>if</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">if 条件</span><br><span class="line">	...</span><br><span class="line">elseif 条件</span><br><span class="line">	...</span><br><span class="line">else</span><br><span class="line">	...</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-<h1 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">switch (switch_expr)</span><br><span class="line">case &#123;case_expr_1, case_expr_2, case_expr_3&#125; </span><br><span class="line">	...</span><br><span class="line">case &#123;case_expr_4, case_expr_5, case_expr_6&#125; </span><br><span class="line">	...</span><br><span class="line">otherwise </span><br><span class="line">	...</span><br><span class="line">end </span><br><span class="line"></span><br><span class="line">例子:</span><br><span class="line">switch (i)</span><br><span class="line">case &#123;1, 2, 3&#125;,</span><br><span class="line">	...</span><br><span class="line">case &#123;4, 5, 6&#125;,</span><br><span class="line">	...</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-<h1 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">while 条件</span><br><span class="line">	...</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-<h1 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">for index = ...</span><br><span class="line">	...</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">例1: </span><br><span class="line">    for i = 1:10	将[1 2 ... 10]列的值依次赋给i</span><br><span class="line">        ...</span><br><span class="line">    end</span><br><span class="line">    </span><br><span class="line">例2:</span><br><span class="line">	for i = [1 2 3; 4 5 6]	将1, 2, 3依次赋给i</span><br><span class="line">		...					4  5  6</span><br><span class="line">		...</span><br><span class="line">	end</span><br></pre></td></tr></table></figure>
-<h1 id="break和continue"><a href="#break和continue" class="headerlink" title="break和continue"></a>break和continue</h1><p>​    和C语言中的一样</p>
-<h1 id="自定义函数"><a href="#自定义函数" class="headerlink" title="自定义函数"></a>自定义函数</h1><ul>
-<li>保存在一个单独的脚本文件中</li>
-<li>按值传递</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function [输出1, 输出2, ...] = 函数名(形参1, 形参2, ...)</span><br><span class="line">	...</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">例子: </span><br><span class="line">	//	dist.m文件</span><br><span class="line">	function distance = dist(x1, y1, x2, y2)</span><br><span class="line">		distance = sqrt((x2 - x1).^2 + (y2 - y1).^2);</span><br><span class="line">		</span><br><span class="line">	//	test_dist.m文件</span><br><span class="line">	x1 = input(&apos;Input x1&apos;);</span><br><span class="line">	y1 = input(&apos;Input y1&apos;);</span><br><span class="line">	x2 = input(&apos;Input x2&apos;);</span><br><span class="line">	y2 = input(&apos;Input y2&apos;);</span><br><span class="line">	result = dist(x1, y1, x2, y2);</span><br><span class="line">	fprintf(&apos;%d&apos;, result);</span><br><span class="line">	</span><br><span class="line">	运行, 在命令行输入test_dist</span><br></pre></td></tr></table></figure>
-<h1 id="子函数"><a href="#子函数" class="headerlink" title="子函数"></a>子函数</h1><p>​    在一个文件中, 可以定义多个函数. 最上面的那个为普通函数, 其余为子函数. 子函数只能被当前文件中的其他函数调用</p>
-<h1 id="矩阵函数"><a href="#矩阵函数" class="headerlink" title="矩阵函数"></a>矩阵函数</h1><h2 id="diag"><a href="#diag" class="headerlink" title="diag"></a>diag</h2><p>​    用于提取矩阵的对角元素或者创建对角矩阵</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1、当参数A是矩阵 1 2 3, 那么diag(A)用于提取对角元素</span><br><span class="line">                4 5 6</span><br><span class="line">                7 8 9</span><br><span class="line"> 	diag(A) = [1 5 9]            </span><br><span class="line">             </span><br><span class="line"></span><br><span class="line">2、当参数A是行向量[1 2 3], diag(A)用于创建对角矩阵</span><br><span class="line">	diag(A) = 1 0 0</span><br><span class="line">	          0 2 0</span><br><span class="line">	          0 0 3</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/操作系统/操作系统/第六章-同步/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/操作系统/操作系统/第六章-同步/" itemprop="url">第六章 同步</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-12T09:28:14+08:00">
-                2018-05-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/操作系统/" itemprop="url" rel="index">
-                    <span itemprop="name">操作系统</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="互斥"><a href="#互斥" class="headerlink" title="互斥"></a>互斥</h1><p>​    对于共享数据的进程, 必须提供互斥, 防止读写操作同时进行</p>
-<h1 id="进程结构"><a href="#进程结构" class="headerlink" title="进程结构"></a>进程结构</h1><p><img src="https://CoderUtil.github.io/images/TIM截图20180512093311.png" alt="操作系统"></p>
-<h2 id="进入区"><a href="#进入区" class="headerlink" title="进入区"></a>进入区</h2><p>​    发出进入临界区请求的代码</p>
-<h2 id="临界区"><a href="#临界区" class="headerlink" title="临界区"></a>临界区</h2><p>​    若多个进程含有共享变量, 则访问共享变量的的代码称为临界区(不允许多个进程同时进入临界区)</p>
-<h2 id="退出区"><a href="#退出区" class="headerlink" title="退出区"></a>退出区</h2><p>​    退出临界区的代码</p>
-<h2 id="剩余区"><a href="#剩余区" class="headerlink" title="剩余区"></a>剩余区</h2><p>​    进程中的剩余代码</p>
-<h2 id="硬件方法"><a href="#硬件方法" class="headerlink" title="硬件方法"></a>硬件方法</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">boolean waiting[n] = <span class="literal">false</span>;     <span class="comment">//  waiting[i]表示进程i是否在等待</span></span><br><span class="line">boolean lock = <span class="literal">false</span>;           <span class="comment">//  lock表示是否上锁</span></span><br><span class="line"></span><br><span class="line"><span class="function">boolean <span class="title">TestAndSet</span><span class="params">(boolean* target)</span> </span>&#123;</span><br><span class="line">    boolean rv = *target;</span><br><span class="line">    *taget = TRUE;</span><br><span class="line">    <span class="keyword">return</span> rv;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//  进程i</span></span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    <span class="comment">//  进入区</span></span><br><span class="line">    waiting[i] = TRUE;          <span class="comment">//  进程i开始等待</span></span><br><span class="line">    boolean key = TRUE;</span><br><span class="line">      <span class="keyword">while</span>(waiting[i] &amp;&amp; key)    <span class="comment">//  1. 如果进程i在等待, 当上一个进程执行完, 它会被设为FALSE(见退出区代码), 此时向下运行; 2. 如果lock被锁上, 阻塞等待直到lock解锁 </span></span><br><span class="line">        key = TestAndSet(lock);</span><br><span class="line">    waiting[i] = FALSE;         <span class="comment">//  进程i结束等待, 开始运行</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//  临界区</span></span><br><span class="line">    ....</span><br><span class="line"></span><br><span class="line">    <span class="comment">//  退出区</span></span><br><span class="line">    <span class="keyword">int</span> j = (i + <span class="number">1</span>) % n;        <span class="comment">//  进程i结束, 找到下一个处于等待状态的进程, 准备运行它</span></span><br><span class="line">    <span class="keyword">while</span> (j != i &amp;&amp; !waiting[j])</span><br><span class="line">        j = (j + <span class="number">1</span>) % n;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (j == i)                 <span class="comment">//  若所有进程都不处于等待状态, 锁可以打开</span></span><br><span class="line">        lock = FALSE;</span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">        waiting[j] = FALSE;     </span><br><span class="line">&#125; <span class="keyword">while</span> (TRUE)</span><br></pre></td></tr></table></figure>
-<h2 id="信号量"><a href="#信号量" class="headerlink" title="信号量"></a>信号量</h2><p>​    信号量S的取值为0和1, 且wait和signal是原子的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">void wait(S) &#123;</span><br><span class="line">  while (S &lt;= 0)</span><br><span class="line">  	;</span><br><span class="line">  S--;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void signal(S) &#123;</span><br><span class="line">  S++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">do &#123;</span><br><span class="line">	//	进入区</span><br><span class="line">  	wait(S);</span><br><span class="line">  </span><br><span class="line">  	//	管理区</span><br><span class="line">  	...</span><br><span class="line">  </span><br><span class="line">  	//	退出区</span><br><span class="line">  	signal(S);</span><br><span class="line">  </span><br><span class="line">  	//	剩余区</span><br><span class="line">  	...</span><br><span class="line">&#125; while (TRUE);</span><br></pre></td></tr></table></figure>
-<h2 id="忙等待"><a href="#忙等待" class="headerlink" title="忙等待"></a>忙等待</h2><p>​    当一个进程位于临界区时, 其他试图进入临界区的进程都必须在代码中循环</p>
-<h2 id="含有等待队列的信号量"><a href="#含有等待队列的信号量" class="headerlink" title="含有等待队列的信号量"></a>含有等待队列的信号量</h2><p>​    信号量S是一个数据结构. 用于解决忙等待问题</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">typedef struct &#123;</span><br><span class="line">    int value;                  //  可用的资源数目</span><br><span class="line">    struct process *list;       //  等待队列</span><br><span class="line">&#125; semaphore;</span><br><span class="line"></span><br><span class="line">void wait(semaphore* S) &#123;       //  当进程需要使用资源时, 调用wait</span><br><span class="line">    S-&gt;value--;                 //  value的绝对值表示等待该信号量的进程个数</span><br><span class="line">    if (S-&gt;value &lt; 0) &#123;</span><br><span class="line">        1. 将进程添加进S-&gt;list</span><br><span class="line">        2. 调用block()将进程挂起</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void signal(semaphore* S) &#123;     //  当进程需要释放资源时, 调用signal</span><br><span class="line">    S-&gt;vallue++;</span><br><span class="line">    if (S-&gt;value &lt;= 0) &#123;</span><br><span class="line">        1. 将进程从S-&gt;list移除</span><br><span class="line">        2. 调用wakeup()将进程唤醒</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">do &#123;</span><br><span class="line">    //  进入区</span><br><span class="line">    wait(S);</span><br><span class="line"></span><br><span class="line">    //  临界区</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    //  退出区</span><br><span class="line">    signal(S);</span><br><span class="line"></span><br><span class="line">    //  剩余区</span><br><span class="line">    ...</span><br><span class="line">&#125; while (TRUE);</span><br></pre></td></tr></table></figure>
-<h3 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h3><p>​    具有等待队列的信号量可能产生死锁</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">    P0              P1</span><br><span class="line">wait(S);         wait(Q);</span><br><span class="line">wait(Q);		wait(S);</span><br><span class="line">...				...</span><br><span class="line">signal(S);		signal(Q);</span><br><span class="line">signal(Q);		signal(S);</span><br><span class="line"></span><br><span class="line">假设进程P0和P1只有两个共享信号量S和Q, 当P0执行wait(S), P1执行wait(Q)时, 进程P0和P1都沉睡, 无法执行下面的唤醒程序</span><br></pre></td></tr></table></figure>
-<h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><p>​    执行单个逻辑功能的一组操作</p>
-<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><ul>
-<li>提交commit: 事务已成功执行后提交事务</li>
-<li>回退roll back: 事务停止时后回退事务</li>
-</ul>
-<h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><p>​    在事务执行前先记日志</p>
-<h2 id="检测点"><a href="#检测点" class="headerlink" title="检测点"></a>检测点</h2><p>​    系统定期将日志及易失性数据保存到非易失性数据中</p>
-<h2 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h2><p>​    事务具有原子性, 即事务中的一组指令不可分割, 必须同时执行或同时不执行</p>
-<p>通过一下两种方式保证事务的原子性: </p>
-<ul>
-<li>串行化: 事务串行执行, 即事务之间的指令不会出现重叠(A事务执行几条指令, B事务执行几条)</li>
-</ul>
-<ul>
-<li>加锁协议: 在事务执行前给它加锁(如果已加了锁, 则等待直到能加锁), 事务执行完后解锁</li>
-</ul>
-<ul>
-<li><p>时间戳: 给每个事务一个时间戳, 按时间戳顺序来执行事务</p>
-<p>​</p>
-</li>
-</ul>
-<h1 id="mutex互斥量-互斥锁"><a href="#mutex互斥量-互斥锁" class="headerlink" title="mutex互斥量(互斥锁)"></a>mutex互斥量(互斥锁)</h1><p>​    每个对象都对应于一个可称为” 互斥量” 的标记，这个标记用来保证在任一时刻，只能有一个线程访问该对象</p>
-<h2 id="mutex操作"><a href="#mutex操作" class="headerlink" title="mutex操作"></a>mutex操作</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">pthread_mutex_init		初始化mutex</span><br><span class="line"></span><br><span class="line">pthread_mutex_lock		对mutex加锁, 不成等待</span><br><span class="line"></span><br><span class="line">pthread_mutex_trylock	对mutex加锁, 不成返回</span><br><span class="line"></span><br><span class="line">pthread_mutex_unlock	解锁mutex</span><br><span class="line"></span><br><span class="line">pthread_mutex_destroy	释放mutex</span><br></pre></td></tr></table></figure>
-<h2 id="mutex类型"><a href="#mutex类型" class="headerlink" title="mutex类型"></a>mutex类型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">快速mutex: 一个线程必须在未锁时获得mutex，否则必须等待。</span><br><span class="line">	pthread_mutex_t fastmutex= PTHREAD_MUTEX_INITIALIZER;</span><br><span class="line">	</span><br><span class="line">递归mutex  拥有mutex的线程可多次加锁而不必等待，但此时其他线程必须等待。</span><br><span class="line">	pthread_mutex_t recmutex= PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP;</span><br><span class="line">	</span><br><span class="line">错误检测mutex: 如果mutex已被锁，其他进程使用pthread_mutex_lock()加锁时，将返回EDEADLK</span><br><span class="line">	pthread_mutex_t errchkmutex=PTHREAD_ERRORCECK_MUTEX_INITIALIZER_NP;</span><br></pre></td></tr></table></figure>
-<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. 静态初始化</span><br><span class="line">	static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;</span><br><span class="line">	</span><br><span class="line">2. 动态初始化</span><br><span class="line">	pthread_mutex_init		//	申请</span><br><span class="line">	pthread_mutex_destroy	//	释放</span><br></pre></td></tr></table></figure>
-<h2 id="创建10个线程计算0～9的和"><a href="#创建10个线程计算0～9的和" class="headerlink" title="创建10个线程计算0～9的和"></a>创建10个线程计算0～9的和</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;pthread.h&gt;</span><br><span class="line">#include &lt;errno.h&gt;</span><br><span class="line"></span><br><span class="line">#define THREAD_NUMBER 10</span><br><span class="line"></span><br><span class="line">static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER; </span><br><span class="line"></span><br><span class="line">int sum = 0;</span><br><span class="line"></span><br><span class="line">void* inc(void *arg) // 线程执行的函数</span><br><span class="line">&#123;</span><br><span class="line">   int i =(*(int *)arg); </span><br><span class="line">   pthread_mutex_lock(&amp;mutex);</span><br><span class="line">   sum = sum + i; </span><br><span class="line">   pthread_mutex_unlock(&amp;mutex);</span><br><span class="line">   return NULL;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">   pthread_t pt[THREAD_NUMBER];</span><br><span class="line">   int arg[THREAD_NUMBER];	  </span><br><span class="line">   for(int i = 0; i &lt; THREAD_NUMBER; i++) &#123;</span><br><span class="line">       arg[i] = i;	</span><br><span class="line">       if(pthread_create(&amp;pt[i], NULL, inc, (void *)&amp;arg[i]) != 0)&#123;</span><br><span class="line">          printf(&quot;pthread_create error\n&quot;);</span><br><span class="line">          exit(1);</span><br><span class="line">       &#125;       </span><br><span class="line">   &#125;</span><br><span class="line">   for(int i = 0; i &lt; THREAD_NUMBER; i++)</span><br><span class="line">       if(pthread_join(pt[i], NULL) != 0)&#123;</span><br><span class="line">          printf(&quot;pthread_join error\n&quot;);</span><br><span class="line">          exit(1);</span><br><span class="line">       &#125;</span><br><span class="line">   printf(&quot;sum is %d\n&quot;, sum);</span><br><span class="line">   pthread_mutex_destroy(&amp;mutex);</span><br><span class="line">   return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="POSIX信号量"><a href="#POSIX信号量" class="headerlink" title="POSIX信号量"></a>POSIX信号量</h1><h2 id="操作-1"><a href="#操作-1" class="headerlink" title="操作"></a>操作</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">1. 初始化</span><br><span class="line">	int sem_init(sem_t *sem, int pshared, unsigned int value)		</span><br><span class="line">	第一个参数: 信号量</span><br><span class="line">	第二个参数: 为0则信号量在进程间共享, 否则在当前进程的线程间共享</span><br><span class="line">	第三个参数: 信号量的初值</span><br><span class="line">	</span><br><span class="line">2. signal</span><br><span class="line">	sem_post(), 释放资源. 信号量加1</span><br><span class="line">	</span><br><span class="line">3. wait</span><br><span class="line">	sem_wait(), 申请资源. 若信号量大于0则减1, 小于等于0则睡眠至大于0</span><br><span class="line"></span><br><span class="line">4. 非阻塞的wait</span><br><span class="line">	sem_trywait(), 若信号量小于等于0, 则返回错误类型EAGAIN</span><br><span class="line">	</span><br><span class="line">5. 获取信号量的值</span><br><span class="line">	sem_getvalue()</span><br><span class="line"></span><br><span class="line">6. 释放信号量</span><br><span class="line">	sem_destroy()</span><br></pre></td></tr></table></figure>
-<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;sys/types.h&gt;  </span><br><span class="line">#include &lt;pthread.h&gt;</span><br><span class="line">#include &lt;semaphore.h&gt; </span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;cstdlib&gt; </span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">#define NBUFF 3</span><br><span class="line"></span><br><span class="line">int nitems;</span><br><span class="line"></span><br><span class="line">struct sto &#123;</span><br><span class="line">  int buff[NBUFF];</span><br><span class="line">  sem_t mutex, nempty, nstored;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">struct sto shared;</span><br><span class="line"></span><br><span class="line">void* produce(void* arg)</span><br><span class="line">&#123;   </span><br><span class="line">   for (int i = 0; i &lt; nitems; i++) &#123;</span><br><span class="line">     sem_wait(&amp;shared.nempty);</span><br><span class="line">     sem_wait(&amp;shared.mutex);</span><br><span class="line">     shared.buff[i % NBUFF] = i;</span><br><span class="line">     cout &lt;&lt; &quot;Product &quot; &lt;&lt; shared.buff[i % NBUFF] &lt;&lt; endl;</span><br><span class="line">     sem_post(&amp;shared.mutex);</span><br><span class="line">     sem_post(&amp;shared.nstored);</span><br><span class="line">   &#125;</span><br><span class="line">   return(NULL);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void* consume(void* arg)</span><br><span class="line">&#123;</span><br><span class="line">   for (int i = 0; i &lt; nitems; i++) &#123;</span><br><span class="line">     sem_wait(&amp;shared.nstored);</span><br><span class="line">     sem_wait(&amp;shared.mutex);</span><br><span class="line">     if (shared.buff[i % NBUFF] == i)&#123;</span><br><span class="line">        cout &lt;&lt; &quot;buff[&quot; &lt;&lt; i  &lt;&lt;&quot;] = &quot; &lt;&lt;  shared.buff[i % NBUFF] &lt;&lt; endl;</span><br><span class="line">     cout &lt;&lt; &quot;Consumer:&quot; &lt;&lt; shared.buff[i % NBUFF] &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">     sem_post(&amp;shared.mutex);</span><br><span class="line">     sem_post(&amp;shared.nempty);</span><br><span class="line">   &#125;</span><br><span class="line">   return(NULL);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char **argv)</span><br><span class="line">&#123;</span><br><span class="line">   pthread_t tid_produce, tid_consumer;</span><br><span class="line">   if (argc != 2)&#123;</span><br><span class="line">      cout &lt;&lt; &quot;Usage: prodcons number&quot; &lt;&lt; endl;</span><br><span class="line">      exit(0);</span><br><span class="line">   &#125;</span><br><span class="line">   nitems = atoi(argv[1]);</span><br><span class="line">   sem_init(&amp;shared.mutex, 0, 1);</span><br><span class="line">   sem_init(&amp;shared.nempty, 0, NBUFF);</span><br><span class="line">   sem_init(&amp;shared.nstored, 0, 0);</span><br><span class="line">   pthread_create(&amp;tid_produce, NULL, produce, NULL);</span><br><span class="line">   pthread_create(&amp;tid_consumer, NULL, consume, NULL);</span><br><span class="line">   pthread_join(tid_produce, NULL);</span><br><span class="line">   pthread_join(tid_consumer, NULL);</span><br><span class="line">   sem_destroy(&amp;shared.mutex);</span><br><span class="line">   sem_destroy(&amp;shared.nempty);</span><br><span class="line">   sem_destroy(&amp;shared.nstored);</span><br><span class="line">   exit(0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="信号量和互斥锁的区别"><a href="#信号量和互斥锁的区别" class="headerlink" title="信号量和互斥锁的区别"></a>信号量和互斥锁的区别</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">“信号量用在多线程多任务同步的，一个线程完成了某一个动作就通过信号量告诉别的线程，别的线程再进行某些动作.而互斥锁是用在多线程多任务互斥的，一个线程占用了某一个资源，那么别的线程就无法访问，直到这个线程unlock，其他的线程才开始可以利用这 个资源。比如对全局变量的访问，有时要加锁，操作完了，在解锁。有的时候锁和信号量会同时使用的”</span><br><span class="line">也就是说，信号量不一定是锁定某一个资源，而是流程上的概念，比如：有A,B两个线程，B线程要等A线程完成某一任务以后再进行自己下面的步骤，这个任务 并不一定是锁定某一资源，还可以是进行一些计算或者数据处理之类。而线程互斥量则是“锁住某一资源”的概念，在锁定期间内，其他线程无法对被保护的数据进行操作</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2221,7 +2076,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
