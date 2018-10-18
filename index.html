@@ -259,6 +259,161 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Android/Android/Android学习--通知服务/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Android/Android/Android学习--通知服务/" itemprop="url">通知服务</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-17T14:50:30+08:00">
+                2018-10-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="更改包名"><a href="#更改包名" class="headerlink" title="更改包名"></a>更改包名</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://blog.csdn.net/qq_35270692/article/details/78336049</span><br></pre></td></tr></table></figure>
+<h1 id="Cannot-resolve-method"><a href="#Cannot-resolve-method" class="headerlink" title="Cannot resolve method"></a>Cannot resolve method</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果Alt + Enter无法导入包, 则在method前面加上getContext()或者参数是context就直接加context</span><br></pre></td></tr></table></figure>
+<h1 id="广播"><a href="#广播" class="headerlink" title="广播"></a>广播</h1><ul>
+<li>标准广播: 所有广播接收器同时收到消息</li>
+<li>有序广播: 优先级高的广播接收器先接收, 优先级低的后接收. 优先级高的还可以截断此广播, 使低的无法接收</li>
+</ul>
+<h1 id="注册广播接收器"><a href="#注册广播接收器" class="headerlink" title="注册广播接收器"></a>注册广播接收器</h1><h2 id="动态注册"><a href="#动态注册" class="headerlink" title="动态注册"></a>动态注册</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">  private IntentFilter intentFilter;</span><br><span class="line">  private MyBroadcastReceiver receiver;</span><br><span class="line">  </span><br><span class="line">  @Override</span><br><span class="line">  protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">    super.onCreate(savedInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">    </span><br><span class="line">    intentFilter = new IntentFilter();</span><br><span class="line">    intentFilter.addAciton(&quot;com.example.broadcasttest.MY_BROADCAST&quot;);		//	action指明监听的类型</span><br><span class="line">    receiver = new MyBroadcastReceiver();</span><br><span class="line">    registerReceiver(receiver, intentFilter);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  @Override</span><br><span class="line">  protected void onDestroy() &#123;</span><br><span class="line">    super.onDestroy();</span><br><span class="line">    unregisterReceiver(receiver);											//	记得取消监听</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  class MyBroadcastReceiver extends BroadcastReceiver &#123;</span><br><span class="line">    </span><br><span class="line">    @Override</span><br><span class="line">    public void onReceiver(Context context, Intent intent) &#123;</span><br><span class="line">      Toast.makeText(context, &quot;received broadcast&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="静态注册"><a href="#静态注册" class="headerlink" title="静态注册"></a>静态注册</h2><p>​    动态注册在程序启动后才能接收</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">1. 右键com.example.xxx -&gt; New -&gt; Other -&gt; Broadcast Receiver创建名为MyBroadcastReceive的广播接收器</span><br><span class="line">	Exported: 是否能接收本程序外的广播</span><br><span class="line">	Enabled: 是否启用这个广播</span><br><span class="line">	</span><br><span class="line">2. 修改Broadcast Receiver</span><br><span class="line">public class MyBroadcastReceiver extends BroadcastReceiver &#123;</span><br><span class="line">  @Override</span><br><span class="line">  public void onReceive(Context context, Intent intent) &#123;</span><br><span class="line">    Toast.makeText(context, &quot;receive broadcast&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">3. 修改AndroidManifest.xml</span><br><span class="line"></span><br><span class="line">&lt;receiver</span><br><span class="line">	android:name=&quot;.MyBroadcastReceive&quot;</span><br><span class="line">	android:enabled=&quot;true&quot;</span><br><span class="line">	android:exported=&quot;true&quot;&gt;</span><br><span class="line">	&lt;intent-filter&gt;</span><br><span class="line">		&lt;action android:name=&quot;com.example.broadcasttest.MY_BROADCAST&quot;/&gt;			//	接收值action为&quot;com.example.broadcasttest.MY_BROADCAST&quot;的广播</span><br><span class="line">	&lt;/intent-filter&gt;</span><br><span class="line">&lt;/receiver&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="发送广播"><a href="#发送广播" class="headerlink" title="发送广播"></a>发送广播</h1><h2 id="标准广播"><a href="#标准广播" class="headerlink" title="标准广播"></a>标准广播</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class MainAcitivity extends AppCompatAcitivity &#123;</span><br><span class="line">   @Override</span><br><span class="line">  protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">    super.onCreate(savedInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    Button button = (Button)findViewById(R.id.button);</span><br><span class="line">    button.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">      @Override</span><br><span class="line">      public void onClick(View v) &#123;</span><br><span class="line">        Intent intent = new Intent(&quot;com.example.broadcasttest.MY_BROADCAST&quot;);</span><br><span class="line">        sendBroadcast(intent);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="有序广播"><a href="#有序广播" class="headerlink" title="有序广播"></a>有序广播</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">1. 将发送的sendBroadcast改为sendOrderedBroadcast</span><br><span class="line"></span><br><span class="line">2. 修改AndroidManifest.xml设置优先级</span><br><span class="line">&lt;receiver</span><br><span class="line">	android:name=&quot;.MyBroadcastReceive&quot;</span><br><span class="line">	android:enabled=&quot;true&quot;</span><br><span class="line">	android:exported=&quot;true&quot;&gt;</span><br><span class="line">	&lt;intent-filter android:priority=&quot;100&quot;&gt;		设置优先级</span><br><span class="line">		&lt;action android:name=&quot;com.example.broadcasttest.MY_BROADCAST&quot;/&gt;			</span><br><span class="line">	&lt;/intent-filter&gt;</span><br><span class="line">&lt;/receiver&gt;</span><br><span class="line"></span><br><span class="line">3. 如果需要截断广播, 在onReceive中调用</span><br><span class="line">	abortBroadcast();</span><br></pre></td></tr></table></figure>
+<h1 id="本地广播"><a href="#本地广播" class="headerlink" title="本地广播"></a>本地广播</h1><p>​    本地广播, 只有程序内的接收器才能接收广播</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">  private IntentFilter intentFilter;</span><br><span class="line">  private LocalReceiver localReceiver;</span><br><span class="line">  private LocalBroadcastManager localBroadcastManager;</span><br><span class="line">  </span><br><span class="line">  @Override</span><br><span class="line">  protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">    super.onCreate(savedInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">    localBroadcastManager = LocalBroadcastManager.getInstance(this);		//	获取本地广播实例</span><br><span class="line">    </span><br><span class="line">    //	发送广播</span><br><span class="line">    Button button = (Button)findViewById(R.id.button);</span><br><span class="line">    button.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">      @Override</span><br><span class="line">      public void onClick(View v) &#123;</span><br><span class="line">        Intent intent = new Intent(&quot;com.example.broadcasttest.LOCAL_BROADCAST&quot;);</span><br><span class="line">        localBroadcastManager.sendBroadcast(intent);					//	发送本地有序广播</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    //	接收广播</span><br><span class="line">    intentFilter = new IntentFilter();</span><br><span class="line">    intentFilter.addAction(&quot;com.example.broadcasttest.MY_BROADCAST&quot;);</span><br><span class="line">    localReceiver = new LocalReceiver();</span><br><span class="line">    localBroadcastManager.registerReceiver(localReceiver, intentFilter);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  @Override</span><br><span class="line">  protected void onDestroy() &#123;</span><br><span class="line">    super.onDestroy();</span><br><span class="line">    localBroadcastManager.unregisterReceiver(localReceiver);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  class LocalReceiver extends BroadcastReceiver &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void onReceive(Context context, Intent intent) &#123;</span><br><span class="line">      Toast.makeText(context, &quot;receive broadcast&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="通知Notification"><a href="#通知Notification" class="headerlink" title="通知Notification"></a>通知Notification</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">  </span><br><span class="line">  @Override</span><br><span class="line">  protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">    super.onCreate(savedInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">    button.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">      @Override</span><br><span class="line">      public void onClick(View v) &#123;</span><br><span class="line">       	            Item item = (Item)intent.getSerializableExtra(&quot;item&quot;);</span><br><span class="line"></span><br><span class="line">            Intent targetIntent = new Intent(MainAcitivity.this, DetailPage.class);</span><br><span class="line">            targetIntent.putExtra(&quot;item&quot;, item);</span><br><span class="line">            PendingIntent pi = PendingIntent.getActivity(context, 0, targetIntent, 0);</span><br><span class="line"></span><br><span class="line">            NotificationManager manager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);</span><br><span class="line">            Notification.Builder builder = new Notification.Builder(context);</span><br><span class="line"></span><br><span class="line">            builder.setContentTitle(&quot;今日推荐&quot;)             //  设置通知栏标题：发件人</span><br><span class="line">                    .setContentText(item.getName())         //  设置通知栏显示内容：短信内容</span><br><span class="line">                    .setTicker(&quot;您有一条新消息&quot;)             //  通知首次出现在通知栏，带上升动画效果的</span><br><span class="line">                    .setSmallIcon(R.drawable.empty_star)    //  设置通知小ICON（通知栏），可以用以前的素材，例如空星</span><br><span class="line">                    .setContentIntent(pi)                   //  传递内容</span><br><span class="line">                    .setAutoCancel(true);                   //  设置这个标志当用户单击面板就可以让通知将自动取消</span><br><span class="line"></span><br><span class="line">            Notification notify = builder.build();</span><br><span class="line">            manager.notify(0,notify);                   //	第一个参数表示通知的ID, 必须唯一</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Matlab/Matlab/Matlab图像处理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -943,7 +1098,7 @@
 <h1 id="去掉标题栏"><a href="#去掉标题栏" class="headerlink" title="去掉标题栏"></a>去掉标题栏</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">在values/styles.xml文件中, 修改parent为NoActionBar</span><br><span class="line"></span><br><span class="line">&lt;style name=&quot;AppTheme&quot; parent=&quot;Theme.AppCompat.Light.NoActionBar&quot;&gt;</span><br><span class="line">  &lt;!-- Customize your theme here. --&gt;</span><br><span class="line">  &lt;item name=&quot;colorPrimary&quot;&gt;@color/colorPrimary&lt;/item&gt;</span><br><span class="line">  &lt;item name=&quot;colorPrimaryDark&quot;&gt;@color/colorPrimaryDark&lt;/item&gt;</span><br><span class="line">  &lt;item name=&quot;colorAccent&quot;&gt;@color/colorAccent&lt;/item&gt;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
 <h1 id="控件"><a href="#控件" class="headerlink" title="控件"></a>控件</h1><h2 id="显示文本TextView"><a href="#显示文本TextView" class="headerlink" title="显示文本TextView"></a>显示文本TextView</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;TextView</span><br><span class="line">	android:id=&quot;@+id/text_view&quot;</span><br><span class="line">	android:layout_width=&quot;fill_parent&quot;</span><br><span class="line">	android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">	android:textSize=&quot;24sp&quot;</span><br><span class="line">	android:textColor=&quot;#00ff00&quot;</span><br><span class="line">	android:text=&quot;Example&quot;/&gt;</span><br><span class="line">	</span><br><span class="line">/*设置文本*/</span><br><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">  @Override</span><br><span class="line">  protected void onCreate(Bundle saveInstanceState) &#123;</span><br><span class="line">    super.onCreate(saveInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">    </span><br><span class="line">    Button buton = (Button)findViewById(R.id.button);</span><br><span class="line">    TextView tv = (TextView)findViewById(R.id.tv);</span><br><span class="line">    button.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">      @Override</span><br><span class="line">      public void onClick(View v) &#123;</span><br><span class="line">        tv.setText(&quot;Hello&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="输入框EditText"><a href="#输入框EditText" class="headerlink" title="输入框EditText"></a>输入框EditText</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;EditText</span><br><span class="line">	android:id=&quot;@+id/edit_text&quot;</span><br><span class="line">	android:layout_width=&quot;fill_parent&quot;</span><br><span class="line">	android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">	android:hint=&quot;Type here&quot;</span><br><span class="line">	android:inputType=&quot;password&quot;/&gt;</span><br><span class="line"></span><br><span class="line">/*获取输入内容, 并用Toast显示*/</span><br><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">  @Override</span><br><span class="line">  protected void onCreate(Bundle saveInstanceState) &#123;</span><br><span class="line">    super.onCreate(saveInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">    </span><br><span class="line">    Button button = (Button)findViewById(R.id.button);</span><br><span class="line">    EditText editText = (EditText)findViewById(R.id.edit_text);</span><br><span class="line">    </span><br><span class="line">    button.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">      @Override</span><br><span class="line">      public void onClick(View v) &#123;</span><br><span class="line">    	String inputText = editText.getText().toString();</span><br><span class="line">       	Toast.makeText(MainActivity.this, inputText, Toast.LENGTH_SHORT).show();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="按钮Button"><a href="#按钮Button" class="headerlink" title="按钮Button"></a>按钮Button</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;Button</span><br><span class="line">	android:id=&quot;@+id/button&quot;</span><br><span class="line">	android:layout_width=&quot;fill_parent&quot;</span><br><span class="line">	android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">	android:text=&quot;Button&quot;</span><br><span class="line">	android:textAllCaps=&quot;false&quot;/&gt;		关闭自动大写转换</span><br><span class="line">	</span><br><span class="line">/*事件监听*/</span><br><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">  @Override</span><br><span class="line">  protected void onCreate(Bundle saveInstanceState) &#123;</span><br><span class="line">    super.onCreate(saveInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">    </span><br><span class="line">    Button buton = (Button)findeViewById(R.id.button);</span><br><span class="line">    button.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">      @Override</span><br><span class="line">      public void onClick(View v) &#123;		//	onClick中只能使用成员变量, 不能使用局部变量</span><br><span class="line">        </span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="按钮Button"><a href="#按钮Button" class="headerlink" title="按钮Button"></a>按钮Button</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&lt;Button</span><br><span class="line">	android:id=&quot;@+id/button&quot;</span><br><span class="line">	android:layout_width=&quot;fill_parent&quot;</span><br><span class="line">	android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">	android:text=&quot;Button&quot;</span><br><span class="line">	android:textAllCaps=&quot;false&quot;/&gt;		关闭自动大写转换</span><br><span class="line">	</span><br><span class="line">/*注册时间*/</span><br><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">  @Override</span><br><span class="line">  protected void onCreate(Bundle saveInstanceState) &#123;</span><br><span class="line">    super.onCreate(saveInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">    </span><br><span class="line">    Button button = (Button)findeViewById(R.id.button);</span><br><span class="line">    button.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">      @Override</span><br><span class="line">      public void onClick(View v) &#123;		//	onClick中只能使用成员变量, 不能使用局部变量</span><br><span class="line">        </span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">或者</span><br><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">  @Override</span><br><span class="line">  protected void onCreate(Bundle saveInstanceState) &#123;</span><br><span class="line">    super.onCreate(saveInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">    </span><br><span class="line">    Button button = (Button)findeViewById(R.id.button);</span><br><span class="line">   	button.setOnClickListener(this);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  @Override</span><br><span class="line">  public void onClick(View v) &#123;</span><br><span class="line">    switch (v.getId()) &#123;</span><br><span class="line">      case R.id.button:</span><br><span class="line">      	......</span><br><span class="line">      	break;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="图片按钮ImageButton"><a href="#图片按钮ImageButton" class="headerlink" title="图片按钮ImageButton"></a>图片按钮ImageButton</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;ImageButton</span><br><span class="line">	android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">	android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">	android:src=&quot;@mipmap/ic_launcher&quot;/&gt;</span><br></pre></td></tr></table></figure>
 <h2 id="单选按钮RadioButton"><a href="#单选按钮RadioButton" class="headerlink" title="单选按钮RadioButton"></a>单选按钮RadioButton</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;RadioGroup</span><br><span class="line">  android:id=&quot;@+id/sex&quot;</span><br><span class="line">  android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">  android:layout_height=&quot;match_parent&quot;</span><br><span class="line">  android:orientation=&quot;horizontal&quot; &gt;</span><br><span class="line"> </span><br><span class="line">  &lt;RadioButton</span><br><span class="line">    android:id=&quot;@+id/man&quot;</span><br><span class="line">    android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    android:checked=&quot;true&quot;</span><br><span class="line">    android:text=&quot;男&quot; /&gt;</span><br><span class="line"></span><br><span class="line">  &lt;RadioButton</span><br><span class="line">    android:id=&quot;@+id/woman&quot;</span><br><span class="line">    android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    android:text=&quot;女&quot; /&gt;</span><br><span class="line">&lt;/RadioGroup&gt;</span><br><span class="line"></span><br><span class="line">/*事件监听*/</span><br><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">  @Override</span><br><span class="line">  protected void onCreate(Bundle saveInstanceState) &#123;</span><br><span class="line">    super.onCreate(saveInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">    </span><br><span class="line">    RadioGroup radioGroup = (RadioGroup)findeViewById(R.id.sex);</span><br><span class="line">    radioGroup.setOnCheckedChangeListener(new View.OnClickListener() &#123;</span><br><span class="line">      @Override</span><br><span class="line">      public void onCheckedChanged(RadioGroup group, int checkedId) &#123;</span><br><span class="line">        RadioButton radbtn = (RadioButton) findViewById(checkedId);</span><br><span class="line">        Toast.makeText(getApplicationContext(), &quot;按钮组值发生改变,你选了&quot; + radbtn.getText(), Toast.LENGTH_LONG).show();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="图片ImageView"><a href="#图片ImageView" class="headerlink" title="图片ImageView"></a>图片ImageView</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;ImageView</span><br><span class="line">	android:id=&quot;@+id/image_view&quot;</span><br><span class="line">	android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">	android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">	android:src=&quot;@drawable/img_1&quot;/&gt;</span><br><span class="line">	</span><br><span class="line">/*动态改变图片*/</span><br><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">  @Override</span><br><span class="line">  protected void onCreate(Bundle saveInstanceState) &#123;</span><br><span class="line">    super.onCreate(saveInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">    </span><br><span class="line">    Button buton = (Button)findeViewById(R.id.button);</span><br><span class="line">    ImageView imageView = (ImageView)findViewById;</span><br><span class="line">    </span><br><span class="line">    button.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">      @Override</span><br><span class="line">      public void onClick(View v) &#123;</span><br><span class="line">    	imageView.setImageResoure(R.drawable.img_2);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -1580,183 +1735,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/计算机网络/计算机网络/第一章/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/计算机网络/计算机网络/第一章/" itemprop="url">第一章</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-13T10:20:32+08:00">
-                2018-09-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机网络/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机网络</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h1><ul>
-<li>分组: 一种信息包. 信息在传输时会被分段, 且每段会添加上首部字节, 把每一段叫做分组</li>
-</ul>
-<ul>
-<li><p>通信链路: 传输分组的物理媒介</p>
-</li>
-<li><p>分组交换机: 包括路由器和链路层交换机, 从一条通信链路接受分组并从另一条链路送出</p>
-</li>
-<li><p>ISP: 因特网服务提供商</p>
-</li>
-<li><p>边缘路由器: 连接端系统的第一台路由器</p>
-</li>
-<li><p>宽带连接: 包括DSL数字用户线,  电缆, FTTH光纤</p>
-<p>​</p>
-</li>
-</ul>
-<h1 id="传输"><a href="#传输" class="headerlink" title="传输"></a>传输</h1><ul>
-<li>bps: bit/s</li>
-</ul>
-<ul>
-<li>存储转发传输: 交换机向输出链路输出分组的第一个bit前, 必须接受到整个分组</li>
-<li>输出队列: 要输出的分组必须在输出队列等待</li>
-<li>丢包: 输出队列已满, 队列中的某个分组被丢弃</li>
-</ul>
-<h1 id="交换"><a href="#交换" class="headerlink" title="交换"></a>交换</h1><p>​    在通信链路和交换机上移动数据, 包括电路交换和分组交换</p>
-<ul>
-<li>电路交换: 会预留通信所需的资源. 发送信息前, 在发送方和接收方建立一条连接, 即电路.</li>
-<li>分组交换: 不预留资源, 可能需要等待</li>
-</ul>
-<h1 id="时延"><a href="#时延" class="headerlink" title="时延"></a>时延</h1><ul>
-<li>结点处理时延: 检查分组首部, 并决定将分组导向何处的时间</li>
-<li>排队时延: 在传输队列中等待传输的时间</li>
-<li>传输时延: 将分组推出路由器的时间. 传输速率R bps, 分组长度L bit, 时间 = L / R</li>
-<li>传播时延: 分组在两个路由器间传输的时间.  传输速率R bps, 两个路由器间链路长度L bit, 时间 = L / R</li>
-</ul>
-<h1 id="网络分层"><a href="#网络分层" class="headerlink" title="网络分层"></a>网络分层</h1><p>​    应用层、运输层、网络层、链路层、物理层</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1811,7 +1789,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">58</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -259,6 +259,269 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/汇编/汇编/第三章 转移指令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/汇编/汇编/第三章 转移指令/" itemprop="url">第三章 转移指令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-30T10:46:31+08:00">
+                2018-03-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/汇编/" itemprop="url" rel="index">
+                    <span itemprop="name">汇编</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="转移指令"><a href="#转移指令" class="headerlink" title="转移指令"></a>转移指令</h1><p><img src="https://CoderUtil.github.io/images/TIM截图20180330105100.png" alt="汇编"></p>
+<h2 id="offset"><a href="#offset" class="headerlink" title="offset"></a>offset</h2><p>​    取得标号的偏移地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">assume cs:code</span><br><span class="line"></span><br><span class="line">code segment</span><br><span class="line">	start: mov ax, offset start		//	相当于mov ax, 0</span><br><span class="line">	s:     mov ax, offset s			//	相当于mov ax, 3</span><br><span class="line">code ends</span><br><span class="line">end start</span><br></pre></td></tr></table></figure>
+<h2 id="jmp"><a href="#jmp" class="headerlink" title="jmp"></a>jmp</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">汇编指令</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">jmp short 标号   (短转移)</td>
+<td style="text-align:center">跳转到标号处(即IP = offset 标号)</td>
+</tr>
+<tr>
+<td style="text-align:center">jmp, near ptr 标号   (近转移)</td>
+<td style="text-align:center">跳转到标号处</td>
+</tr>
+<tr>
+<td style="text-align:center">jmp far ptr 标号    (段间转移)</td>
+<td style="text-align:center">跳转到标号处</td>
+</tr>
+<tr>
+<td style="text-align:center">jmp 16位寄存器</td>
+<td style="text-align:center">IP = 16位寄存器的值</td>
+</tr>
+<tr>
+<td style="text-align:center">jmp word ptr 内存单元</td>
+<td style="text-align:center">内存单元存放一个字长度的单元, IP = 16位内存单元的值</td>
+</tr>
+<tr>
+<td style="text-align:center">jmp dword ptr 内存单元</td>
+<td style="text-align:center">内存单元存放两个字长度的单元, IP = 低地址16位内存单元的值,                                       CS = 高地址16位内存单元的值</td>
+</tr>
+</tbody>
+</table>
+<h2 id="jcxz"><a href="#jcxz" class="headerlink" title="jcxz"></a>jcxz</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">汇编指令</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">jcxz 标号</td>
+<td style="text-align:center">如果cx = 0, 跳转到标号处</td>
+</tr>
+</tbody>
+</table>
+<h2 id="loop"><a href="#loop" class="headerlink" title="loop"></a>loop</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">汇编指令</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">loop 标号</td>
+<td style="text-align:center">cx = cx - 1, 如果cx != 0, 跳转到标号处</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ret与retf"><a href="#ret与retf" class="headerlink" title="ret与retf"></a>ret与retf</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">汇编指令</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">ret</td>
+<td style="text-align:center">pop IP</td>
+</tr>
+<tr>
+<td style="text-align:center">retf</td>
+<td style="text-align:center">pop IP,  pop CS</td>
+</tr>
+</tbody>
+</table>
+<h2 id="call"><a href="#call" class="headerlink" title="call"></a>call</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">汇编指令</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">call 标号</td>
+<td style="text-align:center">push IP, jmp near ptr 标号</td>
+</tr>
+<tr>
+<td style="text-align:center">call for ptr 标号</td>
+<td style="text-align:center">push CS,   push IP,    jmp far ptr 标号</td>
+</tr>
+<tr>
+<td style="text-align:center">call 16 位 寄存器</td>
+<td style="text-align:center">push IP,   jmp 16位寄存器</td>
+</tr>
+<tr>
+<td style="text-align:center">call word ptr 内存单元</td>
+<td style="text-align:center">push CS,  push IP,   jmp dword ptr 内存单元</td>
+</tr>
+<tr>
+<td style="text-align:center">call dword ptr 内存单元</td>
+<td style="text-align:center">push CS,   push IP,  jmp dword ptr 内存单元</td>
+</tr>
+</tbody>
+</table>
+<h1 id="子程序-函数"><a href="#子程序-函数" class="headerlink" title="子程序(函数)"></a>子程序(函数)</h1><p>​    通过call 保存主程序的位置并跳转到函数, 在函数的结尾通过ret返回到主程序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">assume cs:code</span><br><span class="line">code segment</span><br><span class="line"></span><br><span class="line">	main: :</span><br><span class="line">		  :</span><br><span class="line">		  call sub1</span><br><span class="line">		  :</span><br><span class="line">		  :</span><br><span class="line">		  mov ax, 4c00h</span><br><span class="line">		  int 21h</span><br><span class="line">		  </span><br><span class="line">    sub1:  :</span><br><span class="line">    	   :</span><br><span class="line">    	   ret</span><br><span class="line">		 </span><br><span class="line"></span><br><span class="line">code ends</span><br><span class="line">end main</span><br></pre></td></tr></table></figure>
+<h2 id="函数传参和返回值"><a href="#函数传参和返回值" class="headerlink" title="函数传参和返回值"></a>函数传参和返回值</h2><ul>
+<li>主程序和子程序使用相同的寄存器</li>
+</ul>
+<ul>
+<li>将数据放在内存中, 传递数据在内存中的地址</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">assume cs:code</span><br><span class="line">data segment</span><br><span class="line">	db &apos;word&apos;, 0	//	将以0结尾的字符串转换为大写</span><br><span class="line">	db &apos;unix&apos;, 0</span><br><span class="line">data ends</span><br><span class="line">code segment</span><br><span class="line">	start: mov ax, data</span><br><span class="line">		   mov ds, ax</span><br><span class="line">		   mov bx, 0</span><br><span class="line">		   </span><br><span class="line">		   mov cx, 4</span><br><span class="line">		s: mov si, bx</span><br><span class="line">            call capital</span><br><span class="line">            add bx, 5</span><br><span class="line">            loop s</span><br><span class="line">            </span><br><span class="line">            mov ax, 4c00h</span><br><span class="line">            int 21h</span><br><span class="line">            </span><br><span class="line">   capital: push cx			//	将主程序和子程序使用的相同的寄存器入栈, 防止冲突</span><br><span class="line">   			push si</span><br><span class="line">   			</span><br><span class="line">   	change:	mov cl, [si]</span><br><span class="line">   			mov ch, 0</span><br><span class="line">   			jcxz ok</span><br><span class="line">   			and byte ptr [si], 11011111b</span><br><span class="line">   			inc si</span><br><span class="line">   			jmp short change</span><br><span class="line">   	 	</span><br><span class="line">   	 	ok:	pop si			//	子程序完成后, 将栈中寄存器的值出栈</span><br><span class="line">   	 		pop cx</span><br><span class="line">   	 		ret</span><br><span class="line">code ends</span><br><span class="line">end start</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/计算机组成与原理/计算机组成与原理/第三章 MIPS指令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2289,7 +2552,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">58</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
