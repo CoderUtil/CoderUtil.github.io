@@ -259,6 +259,193 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/汇编/汇编/第五章 中断与端口/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/汇编/汇编/第五章 中断与端口/" itemprop="url">第五章 中断与端口</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-03T20:30:30+08:00">
+                2018-04-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/汇编/" itemprop="url" rel="index">
+                    <span itemprop="name">汇编</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="中断"><a href="#中断" class="headerlink" title="中断"></a>中断</h1><h2 id="CPU常见的内部中断"><a href="#CPU常见的内部中断" class="headerlink" title="CPU常见的内部中断"></a>CPU常见的内部中断</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">中断类型</th>
+<th style="text-align:center">中断码(表示中断类型)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">除法错误</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">单步执行</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">执行into指令</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td style="text-align:center">执行int n指令</td>
+<td style="text-align:center">n</td>
+</tr>
+</tbody>
+</table>
+<h2 id="中断向量"><a href="#中断向量" class="headerlink" title="中断向量"></a>中断向量</h2><ul>
+<li>中断向量: 中断处理程序的入口</li>
+</ul>
+<ul>
+<li><p>中断向量表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">将中断向量保存在表中, 用中断码作为表序号. 将表保存在内存的低地址, 表的每个项大小为2个字, 高地址的字保存段地址, 低地址的字保存低地址</span><br><span class="line"></span><br><span class="line">当中断发生, 根据中断向量表找到对应的中断向量, 根据中断向量跳转到对应的中断处理程序</span><br></pre></td></tr></table></figure>
+<p>​</p>
+<p>​</p>
+</li>
+</ul>
+<h2 id="中断过程"><a href="#中断过程" class="headerlink" title="中断过程"></a>中断过程</h2><ul>
+<li>中断过程: 中断发生到进入中断处理程序的过程</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1. 从中断信息中获取中断码N</span><br><span class="line"></span><br><span class="line">2. 标志寄存器的值入栈(中断过程可能改变PSW的值)						 pushf</span><br><span class="line"></span><br><span class="line">3. 设置PSW的TF与IF位为0						 				  TF = 0, IF = 0</span><br><span class="line"></span><br><span class="line">4. CS, IP入栈													push CS, push IP</span><br><span class="line"></span><br><span class="line">5. 从内存地址为N * 4的地址读取中断向量的IP, 4 * N + 2读取CS		   IP = 4 * N, CS = 4 * N + 2</span><br></pre></td></tr></table></figure>
+<h2 id="中断处理程序"><a href="#中断处理程序" class="headerlink" title="中断处理程序"></a>中断处理程序</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. 保存用到的寄存器</span><br><span class="line"></span><br><span class="line">2. 处理中断的程序</span><br><span class="line"></span><br><span class="line">3. 恢复用到的寄存器</span><br><span class="line"></span><br><span class="line">4. iret返回(即pop IP, pop CS, popf)</span><br></pre></td></tr></table></figure>
+<h3 id="除法错误时显示overflow的中断处理程序"><a href="#除法错误时显示overflow的中断处理程序" class="headerlink" title="除法错误时显示overflow的中断处理程序"></a>除法错误时显示overflow的中断处理程序</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">assume cs:code</span><br><span class="line"></span><br><span class="line">code segment</span><br><span class="line"></span><br><span class="line">		/*</span><br><span class="line">			将中断处理程序安装到内存地址为0000:02000</span><br><span class="line">		*/</span><br><span class="line">start:	mov ax, cs			//	设置ds:si指向源地址</span><br><span class="line">		mov ds, ax			</span><br><span class="line">		mov si, offset do0</span><br><span class="line">		mov ax, 0</span><br><span class="line">		mov es, ax</span><br><span class="line">		mov di, 200h		//	设置es:di指向目的地址</span><br><span class="line">		mov cx, offset do0end - offset do0		//	设置cx为传输长度</span><br><span class="line">		cld				   //	设置传输方向为正</span><br><span class="line">		rep movsb		    	</span><br><span class="line">		</span><br><span class="line">		/*</span><br><span class="line">			在中断向量表中设置中断向量, 中断向量的值为0000:0200</span><br><span class="line">		*/</span><br><span class="line">		mov ax, 0</span><br><span class="line">		mov es, ax</span><br><span class="line">		mov word ptr es:[0 * 4], 200h</span><br><span class="line">		mov word ptr es:[0 * 4 + 2], 0</span><br><span class="line">		</span><br><span class="line">		mov ax, 4c00h</span><br><span class="line">		int 21h</span><br><span class="line">		</span><br><span class="line">		/*</span><br><span class="line">			中断处理程序, 用于显示&apos;overflow&apos;</span><br><span class="line">		*/</span><br><span class="line">do0:	jmp short do0start</span><br><span class="line">		db &apos;overflow&apos;		//	将&apos;overflow&apos;一起传输保存起来</span><br><span class="line">		</span><br><span class="line">do0start:</span><br><span class="line">		mov ax, cs</span><br><span class="line">		mov ds, ax</span><br><span class="line">		mov si, 202h			  	//	设置ds:si指向字符串, 因为do0保存在0000:0200, 而jmp shor do0start栈两个字节, 所以db &apos;overflow&apos;的地址为0000:0202</span><br><span class="line">		</span><br><span class="line">		mov ax, 0b800h</span><br><span class="line">		mov es, ax</span><br><span class="line">		mov di, 12 * 160 + 36 * 2	//	设置es:di指向显存</span><br><span class="line">		</span><br><span class="line">		mov cx, 9					//	设置cx为字符串长度</span><br><span class="line">	s:	mov al, [si]</span><br><span class="line">    	mov es:[di], al</span><br><span class="line">    	inc si</span><br><span class="line">    	add di, 2</span><br><span class="line">    	loop s						//	将字符串拷贝到缓存</span><br><span class="line">    	</span><br><span class="line">		iret</span><br><span class="line">		</span><br><span class="line">code ends</span><br><span class="line">end1</span><br></pre></td></tr></table></figure>
+<h3 id="int指令"><a href="#int指令" class="headerlink" title="int指令"></a>int指令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">assume cs:code</span><br><span class="line"></span><br><span class="line">code segment</span><br><span class="line">	start:	int 0	//	执行中断码为0的中断处理程序, 即处理除法错误的中断处理程序</span><br><span class="line">code ends</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h1 id="端口"><a href="#端口" class="headerlink" title="端口"></a>端口</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用ax或al保存从端口读入的数据或保存到端口的数据. 8位用al, 16位用ax</span><br></pre></td></tr></table></figure>
+<h2 id="直接端口寻址"><a href="#直接端口寻址" class="headerlink" title="直接端口寻址"></a>直接端口寻址</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">端口地址保存在操作数中, 端口地址为8位:</span><br><span class="line"></span><br><span class="line">    in al, 60h	//	从端口号为60h的端口读入一个字节</span><br><span class="line"></span><br><span class="line">    out 20h, al	//	向端口号为20h的端口写入一个字节</span><br></pre></td></tr></table></figure>
+<h2 id="间接端口寻址"><a href="#间接端口寻址" class="headerlink" title="间接端口寻址"></a>间接端口寻址</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">端口地址保存在寄存器中, 端口地址为16位: </span><br><span class="line"></span><br><span class="line">    mov dx, 3f8h</span><br><span class="line">    in al, dx	//	当端口号大于8位, 将端口号放入dx中</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/汇编/汇编/第四章 标志寄存器/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2849,7 +3036,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-count">60</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
