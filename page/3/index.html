@@ -259,6 +259,157 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/数据库/数据库/树索引/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/数据库/数据库/树索引/" itemprop="url">树索引</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-20T08:34:25+08:00">
+                2018-06-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="树结构索引"><a href="#树结构索引" class="headerlink" title="树结构索引"></a>树结构索引</h1><p>​    包括ISAM树和B+树(只有叶子项包含数据项)</p>
+<h2 id="ISAM-索引顺序存取方法"><a href="#ISAM-索引顺序存取方法" class="headerlink" title="ISAM(索引顺序存取方法)"></a>ISAM(索引顺序存取方法)</h2><p>​    静态的树结构(叶数目是固定的, 当有多个项被插入到一个叶子页时, 会产生溢出链), 适合不频繁的插入删除</p>
+<p><img src="https://CoderUtil.github.io/images/TIM截图20180620090628.png" alt="数据库概念"></p>
+<h3 id="插入、删除"><a href="#插入、删除" class="headerlink" title="插入、删除"></a>插入、删除</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">插入:</span><br><span class="line">	可以从根节点开始搜索(搜索算法和B+树相同), 已确定合适的页. 如果当前位置已有页节点, 则产生溢出页, 并链接到叶节点</span><br><span class="line"></span><br><span class="line">删除: </span><br><span class="line">	先搜索到合适的叶节点, 从叶溢出节点链表中删除指定的节点, 如果链表为空, 则删除该叶节点</span><br></pre></td></tr></table></figure>
+<h2 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h2><p>​    动态的树结构(叶数目不固定, 插入与删除可能需要合并或分裂节点)</p>
+<h3 id="树高"><a href="#树高" class="headerlink" title="树高"></a>树高</h3><p>​    从叶到根节点的路径的边数</p>
+<h3 id="秩"><a href="#秩" class="headerlink" title="秩"></a>秩</h3><p>​    如果B+树每个节点包含m的项, 那么必需保证d &lt;= m &lt;= 2 <em> d, 其中d为秩. 如果m &gt; 2 </em> d, 需要分裂或重分布. 如果m &lt; d, 需要合并</p>
+<h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 先看要插入的节点是否是满的(是否m &gt; 2 * d)</span><br><span class="line"></span><br><span class="line">2. 如果不是满的, 直接插入, 插入结束. 如果是满的, 再看看兄弟节点是否是满的</span><br><span class="line"></span><br><span class="line">3. 如果兄弟节点不是满的, 进行重分布, 将一个项放在兄弟节点中. 如果兄弟节点是满的, 需要进行分裂, 将前d个项作为一个节点, 后d+1个项作为一个节点(注意在父节点中添加一项)</span><br></pre></td></tr></table></figure>
+<p>​    </p>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 先找到节点, 并删除项. 再看是否满足d &lt; m</span><br><span class="line"></span><br><span class="line">2. 若满足, 删除结束. 如果不满足, 再看兄弟节点分一个节点后兄弟节点是否还满足d &lt; m</span><br><span class="line"> </span><br><span class="line">3. 若能重分布, 则重分布; 若不能, 则将节点和兄弟节点合并(注意在父节点中删除一项, 如果父节点不满足d &lt; m, 则对父节点重复这三步)</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/数据库/数据库/磁盘和文件/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1773,212 +1924,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/操作系统/操作系统/第七章-死锁/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/操作系统/操作系统/第七章-死锁/" itemprop="url">第七章 死锁</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-25T12:41:14+08:00">
-                2018-05-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/操作系统/" itemprop="url" rel="index">
-                    <span itemprop="name">操作系统</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h1><p>​    一组进程中的每个进程都在等待一个事件, 而这个事件只能由一组进程的另一个进程引起</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果有3个进程, 3台DVD, 每个进程都占据一台DVD. 如果每个进程需要另一台DVD, 则形成死锁. 因为无法获取DVD, 就无法释放, 无法释放, 其他进程就无法获取DVD</span><br></pre></td></tr></table></figure>
-<h2 id="死锁条件"><a href="#死锁条件" class="headerlink" title="死锁条件"></a>死锁条件</h2><ul>
-<li>互斥: 资源一次只能让一个进程使用</li>
-<li>占有并等待: 一个进程至少占有一个资源, 并等待一个被其他进程占有的资源</li>
-<li>非抢占: 资源不能被抢占</li>
-<li>循环等待: 一组进程{P1, P2, …, Pn}, P1等待P2的资源, …, Pn等待P1的资源</li>
-</ul>
-<h2 id="解决死锁"><a href="#解决死锁" class="headerlink" title="解决死锁"></a>解决死锁</h2><h3 id="死锁预防"><a href="#死锁预防" class="headerlink" title="死锁预防"></a>死锁预防</h3><p>​    确保形成死锁的4个条件有至少一个不成立</p>
-<h3 id="死锁避免"><a href="#死锁避免" class="headerlink" title="死锁避免"></a>死锁避免</h3><p>​    在申请资源和分配资源时, 提供额外的信息, 根据是否会形成死锁来决定分不分配资源</p>
-<h1 id="系统资源分配图"><a href="#系统资源分配图" class="headerlink" title="系统资源分配图"></a>系统资源分配图</h1><p>​    如果分配图没有环, 则没有死锁. 如果有环, 且有一种资源只有一个, 则有死锁</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">进程集合P=&#123;P1, P2, ..., Pn&#125;, 资源集合=&#123;R1, R2, ..., Rn&#125;</span><br><span class="line"></span><br><span class="line">Pi-&gt;Rj: 申请边, 表示进程Pi申请资源Rj</span><br><span class="line"></span><br><span class="line">Rj-&gt;Pi: 分配边, 表示资源Rj已经分配给进程Pi</span><br></pre></td></tr></table></figure>
-<h1 id="银行家算法"><a href="#银行家算法" class="headerlink" title="银行家算法"></a>银行家算法</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">1.初始化</span><br><span class="line"></span><br><span class="line">Work = Available（动态记录当前剩余资源）</span><br><span class="line">Finish[i] = false（设定所有进程均未完成）</span><br><span class="line"></span><br><span class="line">2.查找可执行进程Pi（未完成但目前剩余资源可满足其需要，这样的进程是能够完成的）</span><br><span class="line"></span><br><span class="line">Finish[i] = false          </span><br><span class="line">Need[i] &lt;= Work </span><br><span class="line">如果没有这样的进程Pi，则跳转到第4步</span><br><span class="line"></span><br><span class="line">3.（若有则）Pi一定能完成，并归还其占用的资源，即：</span><br><span class="line"></span><br><span class="line">Finish[i] = true           </span><br><span class="line">Work = Work +Allocation[i]</span><br><span class="line">跳转到第2步，继续查找</span><br><span class="line"></span><br><span class="line">4.如果所有进程Pi都是能完成的，即Finish[i]=ture</span><br><span class="line">则系统处于安全状态，否则系统处于不安全状态</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>process</th>
-<th>Allocation</th>
-<th>Need(Max - Allocation)</th>
-<th>Available</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td>A B C</td>
-<td>A B C</td>
-<td>A B C</td>
-</tr>
-<tr>
-<td>P0</td>
-<td>0 1 0</td>
-<td>7 4 3</td>
-<td>3 3 2</td>
-</tr>
-<tr>
-<td>P1</td>
-<td>2 0 0</td>
-<td>1 2 2</td>
-<td></td>
-</tr>
-<tr>
-<td>P2</td>
-<td>3 0 2</td>
-<td>6 0 0</td>
-<td></td>
-</tr>
-<tr>
-<td>P3</td>
-<td>2 1 1</td>
-<td>0 1 1</td>
-<td></td>
-</tr>
-<tr>
-<td>P4</td>
-<td>0 0 2</td>
-<td>4 3 1</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">安全状态判断: </span><br><span class="line">1. Work = Available = [3 3 2]</span><br><span class="line"></span><br><span class="line">2. 看P0：</span><br><span class="line">	P0的Need为[7 4 3]，Work不能满足，于是跳过去</span><br><span class="line">	</span><br><span class="line">3. 看P1:</span><br><span class="line">	P1的Need为[1 2 2], Work可以满足，我们令Work = Allocation[P1] + Work = [5 3 2]</span><br><span class="line"></span><br><span class="line">4. 看P2:</span><br><span class="line">	P2的Need为[6 0 0]，Work不满足。跳过去。</span><br><span class="line"></span><br><span class="line">5. 看P3:</span><br><span class="line">	P3的Need为[2 1 1]，Work可以满足。那么令Work = Allocation[P3] + Work = [7 4 3]</span><br><span class="line"></span><br><span class="line">6. 看P4:</span><br><span class="line">	P4的Need为[0 0 2], Work可以满足。令Work = Allocation[P4] + Work = [7 4 5]</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">到此第一轮循环完毕，由于找到了可用进程，那么进入第二轮循环。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">7. 看P0:</span><br><span class="line">	P0的Need为[7 4 3], Work可以满足。令Work = Allocation[P0] + Work = [7 5 5]</span><br><span class="line"></span><br><span class="line">8. 看P2:</span><br><span class="line">	P2的Need为[6 0 0]，Work可以满足。令Work = Allocation[P2] + Work = [10 5 7]</span><br><span class="line"></span><br><span class="line">至此，算法运行完毕。找到安全序列，证明此时没有死锁危险。(安全序列未必唯一)</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2028,7 +1978,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-count">61</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
