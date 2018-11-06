@@ -259,589 +259,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/操作系统/操作系统/第七章-死锁/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/操作系统/操作系统/第七章-死锁/" itemprop="url">第七章 死锁</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-25T12:41:14+08:00">
-                2018-05-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/操作系统/" itemprop="url" rel="index">
-                    <span itemprop="name">操作系统</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h1><p>​    一组进程中的每个进程都在等待一个事件, 而这个事件只能由一组进程的另一个进程引起</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果有3个进程, 3台DVD, 每个进程都占据一台DVD. 如果每个进程需要另一台DVD, 则形成死锁. 因为无法获取DVD, 就无法释放, 无法释放, 其他进程就无法获取DVD</span><br></pre></td></tr></table></figure>
-<h2 id="死锁条件"><a href="#死锁条件" class="headerlink" title="死锁条件"></a>死锁条件</h2><ul>
-<li>互斥: 资源一次只能让一个进程使用</li>
-<li>占有并等待: 一个进程至少占有一个资源, 并等待一个被其他进程占有的资源</li>
-<li>非抢占: 资源不能被抢占</li>
-<li>循环等待: 一组进程{P1, P2, …, Pn}, P1等待P2的资源, …, Pn等待P1的资源</li>
-</ul>
-<h2 id="解决死锁"><a href="#解决死锁" class="headerlink" title="解决死锁"></a>解决死锁</h2><h3 id="死锁预防"><a href="#死锁预防" class="headerlink" title="死锁预防"></a>死锁预防</h3><p>​    确保形成死锁的4个条件有至少一个不成立</p>
-<h3 id="死锁避免"><a href="#死锁避免" class="headerlink" title="死锁避免"></a>死锁避免</h3><p>​    在申请资源和分配资源时, 提供额外的信息, 根据是否会形成死锁来决定分不分配资源</p>
-<h1 id="系统资源分配图"><a href="#系统资源分配图" class="headerlink" title="系统资源分配图"></a>系统资源分配图</h1><p>​    如果分配图没有环, 则没有死锁. 如果有环, 且有一种资源只有一个, 则有死锁</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">进程集合P=&#123;P1, P2, ..., Pn&#125;, 资源集合=&#123;R1, R2, ..., Rn&#125;</span><br><span class="line"></span><br><span class="line">Pi-&gt;Rj: 申请边, 表示进程Pi申请资源Rj</span><br><span class="line"></span><br><span class="line">Rj-&gt;Pi: 分配边, 表示资源Rj已经分配给进程Pi</span><br></pre></td></tr></table></figure>
-<h1 id="银行家算法"><a href="#银行家算法" class="headerlink" title="银行家算法"></a>银行家算法</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">1.初始化</span><br><span class="line"></span><br><span class="line">Work = Available（动态记录当前剩余资源）</span><br><span class="line">Finish[i] = false（设定所有进程均未完成）</span><br><span class="line"></span><br><span class="line">2.查找可执行进程Pi（未完成但目前剩余资源可满足其需要，这样的进程是能够完成的）</span><br><span class="line"></span><br><span class="line">Finish[i] = false          </span><br><span class="line">Need[i] &lt;= Work </span><br><span class="line">如果没有这样的进程Pi，则跳转到第4步</span><br><span class="line"></span><br><span class="line">3.（若有则）Pi一定能完成，并归还其占用的资源，即：</span><br><span class="line"></span><br><span class="line">Finish[i] = true           </span><br><span class="line">Work = Work +Allocation[i]</span><br><span class="line">跳转到第2步，继续查找</span><br><span class="line"></span><br><span class="line">4.如果所有进程Pi都是能完成的，即Finish[i]=ture</span><br><span class="line">则系统处于安全状态，否则系统处于不安全状态</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>process</th>
-<th>Allocation</th>
-<th>Need(Max - Allocation)</th>
-<th>Available</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td>A B C</td>
-<td>A B C</td>
-<td>A B C</td>
-</tr>
-<tr>
-<td>P0</td>
-<td>0 1 0</td>
-<td>7 4 3</td>
-<td>3 3 2</td>
-</tr>
-<tr>
-<td>P1</td>
-<td>2 0 0</td>
-<td>1 2 2</td>
-<td></td>
-</tr>
-<tr>
-<td>P2</td>
-<td>3 0 2</td>
-<td>6 0 0</td>
-<td></td>
-</tr>
-<tr>
-<td>P3</td>
-<td>2 1 1</td>
-<td>0 1 1</td>
-<td></td>
-</tr>
-<tr>
-<td>P4</td>
-<td>0 0 2</td>
-<td>4 3 1</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">安全状态判断: </span><br><span class="line">1. Work = Available = [3 3 2]</span><br><span class="line"></span><br><span class="line">2. 看P0：</span><br><span class="line">	P0的Need为[7 4 3]，Work不能满足，于是跳过去</span><br><span class="line">	</span><br><span class="line">3. 看P1:</span><br><span class="line">	P1的Need为[1 2 2], Work可以满足，我们令Work = Allocation[P1] + Work = [5 3 2]</span><br><span class="line"></span><br><span class="line">4. 看P2:</span><br><span class="line">	P2的Need为[6 0 0]，Work不满足。跳过去。</span><br><span class="line"></span><br><span class="line">5. 看P3:</span><br><span class="line">	P3的Need为[2 1 1]，Work可以满足。那么令Work = Allocation[P3] + Work = [7 4 3]</span><br><span class="line"></span><br><span class="line">6. 看P4:</span><br><span class="line">	P4的Need为[0 0 2], Work可以满足。令Work = Allocation[P4] + Work = [7 4 5]</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">到此第一轮循环完毕，由于找到了可用进程，那么进入第二轮循环。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">7. 看P0:</span><br><span class="line">	P0的Need为[7 4 3], Work可以满足。令Work = Allocation[P0] + Work = [7 5 5]</span><br><span class="line"></span><br><span class="line">8. 看P2:</span><br><span class="line">	P2的Need为[6 0 0]，Work可以满足。令Work = Allocation[P2] + Work = [10 5 7]</span><br><span class="line"></span><br><span class="line">至此，算法运行完毕。找到安全序列，证明此时没有死锁危险。(安全序列未必唯一)</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Cocos2d/Cocos2d/Cocos2d学习(三)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Cocos2d/Cocos2d/Cocos2d学习(三)/" itemprop="url">Cocos2d学习(三)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-24T20:40:27+08:00">
-                2018-05-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Cocos2d/" itemprop="url" rel="index">
-                    <span itemprop="name">Cocos2d</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Lambda函数"><a href="#Lambda函数" class="headerlink" title="Lambda函数"></a>Lambda函数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//	通过Lambda的形式创建函数func</span><br><span class="line">auto func = [] () &#123;cout &lt;&lt; &quot;Hello World!&quot;;&#125;;</span><br><span class="line"></span><br><span class="line">	[]: 里面为=表示按值传递参数, 里面为&amp;表示按引用传递参数</span><br><span class="line">	(): 传递参数</span><br><span class="line"></span><br><span class="line">//	调用</span><br><span class="line">func();</span><br></pre></td></tr></table></figure>
-<h1 id="Button按钮"><a href="#Button按钮" class="headerlink" title="Button按钮"></a>Button按钮</h1><p>​    一般来说Label按钮用Menu来创建</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//	创建图形Button. </span><br><span class="line"></span><br><span class="line">#include &quot;ui/CocosGUI.h&quot;</span><br><span class="line"></span><br><span class="line">auto myButton = Button::create(&quot;normal_image.png&quot;, &quot;selected_image.png&quot;, &quot;disabled_image.png&quot;);</span><br><span class="line"></span><br><span class="line">myButton-&gt;setTitleText(&quot;This is a button&quot;);</span><br><span class="line"></span><br><span class="line">myButton-&gt;addTouchEventList([&amp;] (Ref* sender, Widget::TouchEventType type) &#123;</span><br><span class="line">  switch(type) &#123;</span><br><span class="line">    case ui::Widget::TouchEventType::BEGAN:			//	按钮点击</span><br><span class="line">    	break;</span><br><span class="line">    case ui::Widget::TouchEventType::ENDED:			//	按钮释放点击</span><br><span class="line">    	std::cout &lt;&lt; &quot;Button clicked&quot; &lt;&lt; std::endl;</span><br><span class="line">    default:</span><br><span class="line">    	break;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">this-&gt;addChild(myButton);</span><br></pre></td></tr></table></figure>
-<h1 id="CheckBox复选框"><a href="#CheckBox复选框" class="headerlink" title="CheckBox复选框"></a>CheckBox复选框</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//	创建CheckBox</span><br><span class="line"></span><br><span class="line">#include &quot;ui/CocosGUI.h&quot;</span><br><span class="line"></span><br><span class="line">auto myCheckbox = CheckBox::create(&quot;check_box_normal.png&quot;,</span><br><span class="line">							   &quot;check_box_normal_press.png&quot;</span><br><span class="line">							   &quot;check_box_active.png&quot;</span><br><span class="line">							   &quot;check_box_normal_disable.png&quot;</span><br><span class="line">							   &quot;check_box_active_disable.png&quot;);</span><br><span class="line">							   </span><br><span class="line">myCheckbox-&gt;addTouchEventListener([&amp;](Ref* sender, Widget::TouchEventType type) &#123;</span><br><span class="line">  switch (type) &#123;</span><br><span class="line">    case ui::Widget::TouchEventType::BEGAN:</span><br><span class="line">    	break;</span><br><span class="line">    case ui::Widget::TouchEventType::ENDED:</span><br><span class="line">    	std::cout &lt;&lt; &quot;CheckBox clicked&quot; &lt;&lt; std::endl;</span><br><span class="line">    default:</span><br><span class="line">    	break;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">this-&gt;addChile(myCheckbox);</span><br></pre></td></tr></table></figure>
-<h1 id="LoadingBar进度条"><a href="#LoadingBar进度条" class="headerlink" title="LoadingBar进度条"></a>LoadingBar进度条</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//	创建LoadingBar</span><br><span class="line"></span><br><span class="line">include &quot;ui/CocosGUI.h&quot;</span><br><span class="line"></span><br><span class="line">auto loadingBar = LoadingBar::create(&quot;LoadingBarFile.png&quot;);</span><br><span class="line"></span><br><span class="line">loadingBar-&gt;setDirection(LoadingBar::Direction::RIGHT);		//	设置进度条的进度显示方向向右</span><br><span class="line"></span><br><span class="line">loadingBar-&gt;setPercent(20);		//	设置进度条进度</span><br><span class="line"></span><br><span class="line">this-&gt;addChild(loadingBar);</span><br></pre></td></tr></table></figure>
-<h1 id="Slider滑动条"><a href="#Slider滑动条" class="headerlink" title="Slider滑动条"></a>Slider滑动条</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">//	创建Slider</span><br><span class="line"></span><br><span class="line">#include &quot;ui/CocosGUI.h&quot;</span><br><span class="line"></span><br><span class="line">auto slider = Slider::create();</span><br><span class="line">slider-&gt;loadBarTexture(&quot;Slider_Background.png&quot;);		//	设置slider背景图片</span><br><span class="line">slider-&gt;loadProgressBarTexture(&quot;Slider_PressBar.png&quot;);	//	设置slider进度图片</span><br><span class="line">slider-&gt;loadSlidBallTextures(&quot;Slider_Normal.png&quot;,&quot;Slider_Pressed.png&quot;,&quot;Slider_Disabled.png&quot;);	//	设置Slider正常情况下, 选中情况下, 禁用情况下的图片</span><br><span class="line"></span><br><span class="line">slider-&gt;addTouchEventListener([&amp;](Ref* sender, Widget::TouchEventType type) &#123;</span><br><span class="line">  switch (type) &#123;</span><br><span class="line">    case ui::Widget::TouchEventType::BEGAN:</span><br><span class="line">    	break;</span><br><span class="line">    case ui::Widget::TouchEventType::ENDED:</span><br><span class="line">    	std::cout &lt;&lt; &quot;Slider clicked&quot; &lt;&lt; std::endl;</span><br><span class="line">    default:</span><br><span class="line">    	break;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">this-&gt;addChild(slider);</span><br></pre></td></tr></table></figure>
-<h1 id="TextField文本框"><a href="#TextField文本框" class="headerlink" title="TextField文本框"></a>TextField文本框</h1><p>​    给用户提供输入框</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//	创建TextField</span><br><span class="line"></span><br><span class="line">#include &quot;ui/CocosGUI.h&quot;</span><br><span class="line"></span><br><span class="line">auto textField = TextField::create(&quot;This is a TextField&quot;, &quot;Arial&quot;, 30);		//	内容, 字体类型, 字体大小</span><br><span class="line"></span><br><span class="line">textField-&gt;addTouchEventListener([&amp;](Ref* sender, Widget::TouchEventType type) &#123;</span><br><span class="line">	std::cout &lt;&lt; &quot;Editing...&quot; &lt;&lt; std::endl;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h1 id="调度器"><a href="#调度器" class="headerlink" title="调度器"></a>调度器</h1><p>​    对于事件, 除了通过回调函数获得是否被调用外, 还可以设置调度器, 不停地判断是否调用</p>
-<h2 id="默认调度器"><a href="#默认调度器" class="headerlink" title="默认调度器"></a>默认调度器</h2><p>​    每一帧绘制前都调用一次update(), 可重写</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//	开启默认调度器</span><br><span class="line">scheduleUpdate();</span><br><span class="line"></span><br><span class="line">//	关闭默认调度器</span><br><span class="line">unscheduleUpdate();</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">例子:</span><br><span class="line">	//	HelloWorldScene.h</span><br><span class="line">	void update(float dt) override;</span><br><span class="line">	</span><br><span class="line">	//	HelloWorldScene.cpp</span><br><span class="line">	bool HelloWorld::init() &#123;</span><br><span class="line">      ...</span><br><span class="line">      scheduleUpdate();		//	开启默认调度器</span><br><span class="line">      return true;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	void HelloWorld::update(float dt) &#123;</span><br><span class="line">      lob (&quot;update&quot;);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="自定义调度器"><a href="#自定义调度器" class="headerlink" title="自定义调度器"></a>自定义调度器</h2><p>​    自定义调度器触发的时间间隔. 特别注意: 函数的参数必须为float dt!!!</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//	开启自定义调度器</span><br><span class="line">schedule(要触发的事件函数, 调度触发的时间间隔, 触发一次后剩余触发次数, 第一次触发前的延迟);</span><br><span class="line"></span><br><span class="line">//	关闭自定义调度器</span><br><span class="line">unschedule(选择自定义调度器);</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">例子:</span><br><span class="line">	//	HelloWorldScene.h</span><br><span class="line">	void updateCustom(float dt);</span><br><span class="line">	</span><br><span class="line">	//	HelloWorldScene.cpp</span><br><span class="line">	bool HelloWorld::init() &#123;</span><br><span class="line">      ...</span><br><span class="line">      schedule(schedule_selector(HelloWorld::updateCustom), 1.0f, kRepeatForever, 0);		//	开启默认调度器, kRepeatForever表示无限循环</span><br><span class="line">      return true;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	void HelloWorld::updateCustom(float dt) &#123;</span><br><span class="line">      lob (&quot;Custom&quot;);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="单次调度器"><a href="#单次调度器" class="headerlink" title="单次调度器"></a>单次调度器</h2><p>​    只触发一次</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//	开启自定义调度器</span><br><span class="line">scheduleOnce(要触发的事件函数, 第一次触发前的延迟);</span><br><span class="line"></span><br><span class="line">//	关闭自定义调度器</span><br><span class="line">unschedule(选择自定义调度器, 第一次触发前的延迟);</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">例子:</span><br><span class="line">	//	HelloWorldScene.h</span><br><span class="line">	void updateOnce(float dt);</span><br><span class="line">	</span><br><span class="line">	//	HelloWorldScene.cpp</span><br><span class="line">	bool HelloWorld::init() &#123;</span><br><span class="line">      ...</span><br><span class="line">      scheduleOnce(schedule_selector(HelloWorld::updateOnce), 0.1f);		//	开启默认调度器, kRepeatForever表示无限循环</span><br><span class="line">      return true;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	void HelloWorld::updateOnce(float dt) &#123;</span><br><span class="line">      lob (&quot;Once&quot;);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Cocos2d/Cocos2d/Cocos2d学习(二)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Cocos2d/Cocos2d/Cocos2d学习(二)/" itemprop="url">Cocos2d学习(二)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-20T12:41:30+08:00">
-                2018-05-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Cocos2d/" itemprop="url" rel="index">
-                    <span itemprop="name">Cocos2d</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="迁移代码"><a href="#迁移代码" class="headerlink" title="迁移代码"></a>迁移代码</h1><ol>
-<li>生成新的项目</li>
-<li>VS2017&gt;解决方案资源管理器&gt;src&gt;移除所有cpp文件</li>
-<li>用新的Classes文件夹和Resources文件夹将旧的文件夹覆盖掉</li>
-<li>VS2017&gt;解决方案资源管理器&gt;src&gt;添加&gt;现有项, 将cpp文件导入</li>
-<li>重新生成解决方案</li>
-<li>编译运行</li>
-</ol>
-<h1 id="屏幕适配"><a href="#屏幕适配" class="headerlink" title="屏幕适配"></a>屏幕适配</h1><p>​    一般我们以最大边(比例 = 屏幕边的大小 / 适配图片边的大小, 比例大为最大边)为基准, 使最大边刚好充满屏幕，而另一边则可能会超出屏幕，超出的部分会被裁剪掉，裁剪的方式是以中心为起点，两边都裁剪</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">auto sprite = Sprite::create(&quot;Background.png&quot;);</span><br><span class="line">float scaleW = visibleSize.width / sprite-&gt;getContentSize().width * 0.3;		//	图像的宽度占窗体宽度的30%</span><br><span class="line">float scaleH = visibleSize.height / sprite-&gt;getContentSize().height * 0.3;		//	图像的长度占窗体长度的30%</span><br><span class="line">sprite-&gt;setScale(scaleW &gt; scaleH ? scaleW : scaleH);</span><br></pre></td></tr></table></figure>
-<h1 id="visibleSize、visibleOrigin、随机位置"><a href="#visibleSize、visibleOrigin、随机位置" class="headerlink" title="visibleSize、visibleOrigin、随机位置"></a>visibleSize、visibleOrigin、随机位置</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1. visibleSize表示屏幕的宽度</span><br><span class="line">	visibleSize = Director::getInstance()-&gt;getVisibleSize();</span><br><span class="line"></span><br><span class="line">2. visibleOrigin表示屏幕的起始坐标</span><br><span class="line">	origin = Director::getInstance()-&gt;getVisibleOrigin();</span><br><span class="line">	</span><br><span class="line">3. random</span><br><span class="line">	float x = random(origin.x, visibleSize.width);	//	表示随机产生一个在屏幕区域内的横坐标</span><br><span class="line">	float y = random(origin.y, visibleSize.height);</span><br></pre></td></tr></table></figure>
-<h1 id="锚点Anchor"><a href="#锚点Anchor" class="headerlink" title="锚点Anchor"></a>锚点Anchor</h1><h2 id="什么是锚点"><a href="#什么是锚点" class="headerlink" title="什么是锚点"></a>什么是锚点</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mySprite-&gt;setPosition(Vec2(origin.x + visibleSize.width / 2, origin.y + visibleSize.height / 2));</span><br><span class="line"></span><br><span class="line">因为Sprite是有长和宽的, 那么是它的哪个位置放在了屏幕中心呢? 这时候就要引入锚点这个概念, 它有点类似于重心.</span><br></pre></td></tr></table></figure>
-<h2 id="锚点值"><a href="#锚点值" class="headerlink" title="锚点值"></a>锚点值</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">锚点值的两个参量x、y的取值为0~1, 表示锚点相对于Node长宽的位置</span><br><span class="line"></span><br><span class="line">对于Node, 锚点为(0.5, 0.5), 即Node的中心点</span><br><span class="line">对于Layer, 锚点为(0, 0), 即Layer的左下角</span><br></pre></td></tr></table></figure>
-<h2 id="设置锚点"><a href="#设置锚点" class="headerlink" title="设置锚点"></a>设置锚点</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">myLayer-&gt;setAnchorPoint(Vec2(0.5, 0.5));</span><br></pre></td></tr></table></figure>
-<h1 id="Layer"><a href="#Layer" class="headerlink" title="Layer"></a>Layer</h1><p>​    实现了触屏代理(比如触摸、点击, 则被触摸或点击的Node需要放在Layer中)</p>
-<h2 id="创建Layer"><a href="#创建Layer" class="headerlink" title="创建Layer"></a>创建Layer</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">auto myLayer = Layer::create();</span><br><span class="line">this-&gt;addChild(myLayer);</span><br><span class="line">myLayer-&gt;setPosition(Vec2::ZERO;</span><br></pre></td></tr></table></figure>
-<h1 id="事件系统"><a href="#事件系统" class="headerlink" title="事件系统"></a>事件系统</h1><p>​    主要由三部分组成: 事件分发器EventDispatcher, 事件监听器EventListener, 事件Event</p>
-<h2 id="事件Event"><a href="#事件Event" class="headerlink" title="事件Event"></a>事件Event</h2><h3 id="触摸事件"><a href="#触摸事件" class="headerlink" title="触摸事件"></a>触摸事件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">(1) 单点触摸:</span><br><span class="line">	onTouchBegan		响应触摸初始事件</span><br><span class="line">	onTouchMoved		响应触摸移动事件</span><br><span class="line">	onTouchEnded		响应触摸结束事件</span><br><span class="line">	onTouchCancelled	响应触摸中断事件(如突然来电)</span><br><span class="line"></span><br><span class="line">(2) 多点触摸:</span><br><span class="line">	onTouchesBegan  	响应触摸初始事件</span><br><span class="line">	onTouchesMoved 		响应触摸移动事件</span><br><span class="line">	onTouchesEnded  	响应触摸结束事件</span><br><span class="line">	onTouchesCancelled 	响应触摸中断事件</span><br></pre></td></tr></table></figure>
-<h3 id="键盘事件"><a href="#键盘事件" class="headerlink" title="键盘事件"></a>键盘事件</h3><p>​    通过KeyCode判断按下哪个按钮</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">onKeyPressed 		响应键盘按下事件</span><br><span class="line">onKeyReleased 		响应键盘放开事件</span><br></pre></td></tr></table></figure>
-<h3 id="实现长按功能"><a href="#实现长按功能" class="headerlink" title="实现长按功能"></a>实现长按功能</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">通过键盘事件设置状态变量，使用调度器，每隔一定时间根据 状态变量更新</span><br><span class="line"></span><br><span class="line">void Thunder::onKeyPressed(EventKeyboard::KeyCode code, Event* event) &#123;</span><br><span class="line">	switch (code) &#123;</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_LEFT_ARROW:</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_CAPITAL_A:</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_A:</span><br><span class="line">		movekey = &apos;A&apos;;</span><br><span class="line">		isMove = true;</span><br><span class="line">		break;</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_CAPITAL_D:</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_D:</span><br><span class="line">		movekey = &apos;D&apos;;</span><br><span class="line">		isMove = true;</span><br><span class="line">		break;</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_SPACE:</span><br><span class="line">		fire();</span><br><span class="line">		break;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void Thunder::onKeyReleased(EventKeyboard::KeyCode code, Event* event) &#123;</span><br><span class="line">	switch (code) &#123;</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_LEFT_ARROW:</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_A:</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_CAPITAL_A:</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_D:</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_CAPITAL_D:</span><br><span class="line">		isMove = false;</span><br><span class="line">		break;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void Thunder::update(float f) &#123;</span><br><span class="line">	// 飞船移动</span><br><span class="line">	if (isMove)</span><br><span class="line">		this-&gt;movePlane(movekey);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">schedule(schedule_selector(Thunder::update), 0.04f, kRepeatForever, 0);</span><br></pre></td></tr></table></figure>
-<h3 id="鼠标事件"><a href="#鼠标事件" class="headerlink" title="鼠标事件"></a>鼠标事件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">onMouseDown 		响应鼠标点击按下事件</span><br><span class="line">onMouseUp 			响应鼠标点击松开事件</span><br><span class="line">onMouseMove 		响应鼠标移动事件</span><br><span class="line">onMouseScroll 		响应鼠标滚轮事件</span><br></pre></td></tr></table></figure>
-<h3 id="响应加速度计"><a href="#响应加速度计" class="headerlink" title="响应加速度计"></a>响应加速度计</h3><p>​    加速度计: 用于获取设备的方向</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1. 启用加速度计</span><br><span class="line">	Device::setAccelerometerEnabled(true);</span><br><span class="line">	</span><br><span class="line">2. 创建加速度计监听器</span><br><span class="line">	auto listener = EventListenerAcceleration::create(</span><br><span class="line">		[](Acceleration* acceleration, Event* event) &#123;</span><br><span class="line">			//	分别代表加速度计的三个方向</span><br><span class="line">          	log(&quot;X: %f, Y: %f, Z: %f&quot;, acceleration-&gt;x, acceleration-&gt;y, acceleration-&gt;z);</span><br><span class="line">		&#125;</span><br><span class="line">	);</span><br></pre></td></tr></table></figure>
-<h3 id="自定义事件"><a href="#自定义事件" class="headerlink" title="自定义事件"></a>自定义事件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">1. 创建自定义事件</span><br><span class="line">	auto meetListener = EventListenerCustom::create(&quot;meet&quot;, CC_CALLBACK_1(Thunder::meet, this));	</span><br><span class="line">	//	第一个参数是自定义事件的名字(随便起), 第二个参数是回调函数</span><br><span class="line">	</span><br><span class="line">	Director::getInstance()-&gt;getEventDispatcher()-&gt;addEventListenerWithFixedPriority(meetListener, 1);		</span><br><span class="line">	//	Director::getInstance()-&gt;getEventDispatcher()等价于_eventDispatcher</span><br><span class="line">	void Thunder::meet(EventCustom* event) &#123;</span><br><span class="line">      </span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">2. 消息传递与发布(这部分放在调度器中)</span><br><span class="line">	EventCustom e(&quot;meet&quot;);		</span><br><span class="line">	Director::getInstance()-&gt;getEventDispatcher()-&gt;dispatchEvent(&amp;e);</span><br></pre></td></tr></table></figure>
-<h2 id="事件使用"><a href="#事件使用" class="headerlink" title="事件使用"></a>事件使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">例一: 单点触摸事件</span><br><span class="line"></span><br><span class="line">1. 创建事件监听器</span><br><span class="line">	EventListenerTouchOneByOne* listener = EventListenerTouchOneByOne::create();	</span><br><span class="line">	//	设置吞没事件(触摸上层时事件不会向下传递)</span><br><span class="line">	listener-&gt;setSwallowTouches(true);</span><br><span class="line"></span><br><span class="line">2. 注册事件</span><br><span class="line">	//	1. 用CC_CALLBACK_X</span><br><span class="line">	listener-&gt;onTouchBegan = CC_CALLBACK_2(GameScene::onTouchBegan, this);</span><br><span class="line">	bool GameScene::onTouchBegan(Touch *touch, Event *unused_event) &#123;</span><br><span class="line">		....</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	//	2. 用lambda函数</span><br><span class="line">	listener-&gt;onTouchBegan = [](Touch* touch, Event* unused_event) &#123;</span><br><span class="line">      Vec2 pos = touch-&gt;getLocation();</span><br><span class="line">      return true;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">3. 派发事件</span><br><span class="line">	auto myDispatcher = Director::getInstance()-&gt;getEventDispatcher();</span><br><span class="line">	myDispatcher-&gt;addEventListenerWithSceneGraphPriority(listener, this);</span><br><span class="line">	</span><br><span class="line">	//	当需要向多个Sprite注册同一个事件时, 需要clone</span><br><span class="line">	myDispatcher-&gt;addEventListenerWithSceneGraphPriority(listener-&gt;clone(), this);</span><br><span class="line">	</span><br><span class="line">4. 移除监听器</span><br><span class="line">	//	移除特定监听器</span><br><span class="line">	myDispatcher-&gt;removeEventListener(listener);</span><br><span class="line">	</span><br><span class="line">	//	移除所有监听器</span><br><span class="line">	myDispatcher-&gt;removeAllEventListeners();</span><br></pre></td></tr></table></figure>
-<h2 id="CC-CALLBACK"><a href="#CC-CALLBACK" class="headerlink" title="CC_CALLBACK"></a>CC_CALLBACK</h2><p>​    用于定义回调函数, 比如菜单项的点击回调、Event的回调</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">auto shootLabel = LabelTTF::create(&quot;Shoot&quot;, &quot;Marker Felt.ttf&quot;, 50);</span><br><span class="line">auto shootItem = MenuItemLabel::create(shootLabel);</span><br><span class="line"></span><br><span class="line">shootItem-&gt;setCallback(CC_CALLBACK_1(GameScene::shootMenuCallback, this));</span><br><span class="line"></span><br><span class="line">	CC_CALLBACK_X表示第X个参数(从0开始数)及以后是回调函数的参数.</span><br><span class="line">	第一个参数: 回调函数名</span><br><span class="line">	第二个参数: 一般写this</span><br></pre></td></tr></table></figure>
-<h2 id="获取精灵A当前事件的个数"><a href="#获取精灵A当前事件的个数" class="headerlink" title="获取精灵A当前事件的个数"></a>获取精灵A当前事件的个数</h2><p>​    如果不想A同时执行多个事件, 当获取事件数不为0, 结束回调函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Director::getInstance()-&gt;getActionManager()-&gt;getNumberOfRunningActionsInTarget(A)</span><br></pre></td></tr></table></figure>
-<h1 id="坐标系"><a href="#坐标系" class="headerlink" title="坐标系"></a>坐标系</h1><p>​    通过点击移动Sprite时, 获取的当前坐标是绝对坐标系下的, 而setPosition的坐标是本地坐标系下的. 因此需要将世界坐标转换为本地坐标</p>
-<h2 id="世界坐标系"><a href="#世界坐标系" class="headerlink" title="世界坐标系"></a>世界坐标系</h2><p>​    位于窗体的左下角</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">auto location = touch-&gt;getLocation();	//	获取世界坐标</span><br></pre></td></tr></table></figure>
-<h2 id="本地坐标系"><a href="#本地坐标系" class="headerlink" title="本地坐标系"></a>本地坐标系</h2><p>​    位于物体的左下角</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mySprite-&gt;getPosition();				//	获取本地坐标</span><br><span class="line"></span><br><span class="line">mySprite-&gt;setPosition(...);				//	参数为本地坐标</span><br></pre></td></tr></table></figure>
-<ul>
-<li>世界坐标系和本地坐标系的转换</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">锚点在(0, 0)时使用:</span><br><span class="line">  //	将世界坐标转换为本地坐标</span><br><span class="line">  CCPoint convertToNodeSpace(const CCPoint&amp; worldPoint); </span><br><span class="line">  //	将本地坐标转换为世界坐标</span><br><span class="line">  CCPoint convertToWorldSpace(const CCPoint&amp; nodePoint);</span><br><span class="line"></span><br><span class="line">锚点不在(0, 0)时使用</span><br><span class="line">  CCPoint convertToNodeSpaceAR(const CCPoint&amp; worldPoint);  </span><br><span class="line">  CCPoint convertToWorldSpaceAR(const CCPoint&amp; nodePoint);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>将物体A移动到物体B的位置(假设它们父节点的锚点都在左下角)</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. 先将B相对于父节点的左下角的坐标转换成世界坐标</span><br><span class="line">	auto location = B-&gt;getParent()-&gt;convertToWorldSpace(B-&gt;getPosition());</span><br><span class="line">	</span><br><span class="line">2. moveTo的参数是世界坐标, 再次转换</span><br><span class="line">	auto moveTo = MoveTo::create(2, A-&gt;getParent()-&gt;convertToNodeSpace(location));</span><br><span class="line">	</span><br><span class="line">不能直接将B-&gt;getPosition()放进MoveTo()中, 因为不能保证两者的父节点是同一个</span><br></pre></td></tr></table></figure>
-<h1 id="Action"><a href="#Action" class="headerlink" title="Action"></a>Action</h1><p>​    用于改变Node的属性. </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1. 移动</span><br><span class="line">	auto moveTo = MoveTo::create(2, Vec2(0, 0));		//	两秒内移动到Vec(0, 0)</span><br><span class="line">	</span><br><span class="line">2. 旋转</span><br><span class="line">	auto rotateTo = RotateTo::create(2, 40.0f);	//	两秒内旋转40度</span><br><span class="line">	</span><br><span class="line">3. 缩放</span><br><span class="line">	auto scaleTo = ScaleTo::create(2, 3.0f, 3.0f);	//	两秒内X、Y方向放大3倍</span><br><span class="line">	</span><br><span class="line">4. 淡入淡出</span><br><span class="line">	auto fadeIn = FadeIn::create(2);		//	两秒内淡入</span><br><span class="line">	auto fadeOut = FadeOut::create(2);		//	两秒内淡出</span><br></pre></td></tr></table></figure>
-<h2 id="By和To"><a href="#By和To" class="headerlink" title="By和To"></a>By和To</h2><ul>
-<li>By: 相对于节点是相对的</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">auto mySprite = Sprite::create(&quot;mySprite.png&quot;);</span><br><span class="line">mySprite-&gt;setPosition(Vec2(200, 256));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">auto moveBy = MoveBy::create(2, Vec2(300, 0));</span><br><span class="line"></span><br><span class="line">	第一个参数: 移动所用的时间</span><br><span class="line">	第二个参数: 相对于当前位置的位置. 移动后节点位置是(500, 256)</span><br><span class="line">	</span><br><span class="line">mySprite-&gt;runAction(moveBy);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>To: 相对于节点是绝对的</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">auto mySprite = Sprite::create(&quot;mySprite.png&quot;);</span><br><span class="line">mySprite-&gt;setPosition(Vec2(200, 256));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">auto moveTo = MoveBy::create(2, Vec2(300, mySprite-&gt;getPositionY()));</span><br><span class="line"></span><br><span class="line">	第一个参数: 移动所用的时间</span><br><span class="line">	第二个参数: 相对于坐标轴的位置. 移动后节点位置是(300, 256)</span><br><span class="line">	</span><br><span class="line">mySprite-&gt;runAction(moveTo);</span><br></pre></td></tr></table></figure>
-<h2 id="Sequence和Spawn"><a href="#Sequence和Spawn" class="headerlink" title="Sequence和Spawn"></a>Sequence和Spawn</h2><ul>
-<li>Sequence: 按顺序执行所有动作</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">auto mySprite = Sprite::create(&quot;mySprite.png&quot;);</span><br><span class="line"></span><br><span class="line">auto moveBy = MoveBy::create(2, Vec2(300, mySprite-&gt;getPositionY()));</span><br><span class="line"></span><br><span class="line">auto moveTo = MoveBy::create(2, Vec2(300, mySprite-&gt;getPositionY()));</span><br><span class="line"></span><br><span class="line">auto callBackMoveBy = CallFunc::create([&amp;]()&#123;		//	如果要在lambda中改变变量的值, 加上&amp;</span><br><span class="line">  ...</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">auto delay = DelayTime::create(2);</span><br><span class="line"></span><br><span class="line">auto seq = Sequence::create(moveBy, delay, moveTo, nullptr);</span><br><span class="line">	以nullptr结束, Sequence里面可以加上回掉函数或者两个Action之间的延迟时间</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>Spawn: 同时执行所有动作</p>
-<p>​</p>
-</li>
-</ul>
-<ul>
-<li>CallFunc::create: 允许在Action中调用一个函数</li>
-</ul>
-<h2 id="终止Action"><a href="#终止Action" class="headerlink" title="终止Action"></a>终止Action</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mySprite-&gt;stopAllActions();</span><br></pre></td></tr></table></figure>
-<h1 id="序列帧动画"><a href="#序列帧动画" class="headerlink" title="序列帧动画"></a>序列帧动画</h1><ul>
-<li>Animation: 用于显示的帧动画</li>
-<li>Animate: 执行帧动画的类, 最终由Sprite执行runAnimate</li>
-<li>AnimationCache: 创建好的帧动画可以保存在其中, 方便以后用</li>
-</ul>
-<h2 id="Animation"><a href="#Animation" class="headerlink" title="Animation"></a>Animation</h2><ul>
-<li>SpriteFrame精灵帧:  由多个精灵帧组成帧动画</li>
-<li>delayPerUnit帧间隔时间</li>
-<li>loops播放次数</li>
-</ul>
-<h2 id="通过plist文件创建帧动画"><a href="#通过plist文件创建帧动画" class="headerlink" title="通过plist文件创建帧动画"></a>通过plist文件创建帧动画</h2><p>​    plist文件记录了每一帧在png图片上的位置, 而直接创建则需要自己确定每一帧的位置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">一般将所有图片打包生成一个png文件和plist文件, 加载着两个文件到精灵缓冲区, 然后从中获取每一帧</span><br><span class="line"></span><br><span class="line">//	1. 创建帧动画的SpriteFrame</span><br><span class="line">SpriteFrameCache::getInstance()-&gt;addSpriteFramesWithFile(&quot;level-sheet.plist&quot;);</span><br><span class="line">char totalFrames = 3;</span><br><span class="line">char frameName[20];</span><br><span class="line"></span><br><span class="line">//	2. 创建Animation类</span><br><span class="line">auto mouseAnimation = Animation::create();</span><br><span class="line"></span><br><span class="line">//	3. 手动添加精灵帧</span><br><span class="line">for (int i = 0; i &lt; totalFrames; i++) &#123;</span><br><span class="line">  sprintf(frameName, &quot;gem-mouse-%d.png&quot;, i);</span><br><span class="line">  mouseAnimation-&gt;addSpriteFrame(SpriteFrameCache::getInstance()-&gt;getSpriteFrameByName(frameName));</span><br><span class="line">  </span><br><span class="line">  //	addSpriteFrame既可以通过不断添加SpriteFrame, 也可以一次性加一个Vector&lt;SpriteFrmae*&gt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//	使用第一帧创建精灵</span><br><span class="line">auto mySprite = Sprite::createWithSpriteFrameName(&quot;start-0.png&quot;);</span><br><span class="line"></span><br><span class="line">//	4. 设置每一帧的持续时间. 2.5s内执行14帧</span><br><span class="line">mouseAnimation-&gt;setDelayPerUnit(2.5 / 14.0f);</span><br><span class="line"></span><br><span class="line">//	5. 播放动画结束后不恢复到第一帧</span><br><span class="line">mouseAnimation-&gt;setRestoreOriginFrame(false);</span><br><span class="line"></span><br><span class="line">//	6. 设置动画缓存</span><br><span class="line">AnimationCache::getInstance()-&gt;addAnimation(mouseAnimation, &quot;mouseAnimation&quot;);</span><br><span class="line"></span><br><span class="line">//	7. 创建Animate</span><br><span class="line">Animate* mouseAnimate = Animate::create(AnimationCache::getInstance()-&gt;getAnimation(&quot;mouseAnimation&quot;));</span><br><span class="line"></span><br><span class="line">//	如果帧动画只使用一次, 也可以不使用缓存, 将6-7步改为下面语句</span><br><span class="line">Animate* mouseAnimate = Animate::create(mouseAnimation);</span><br><span class="line"></span><br><span class="line">//	8. 执行动作</span><br><span class="line">mouse-&gt;runAction(Repeat::create(mouseAnimate, 2 / mouseAnimate-&gt;getDuration()));</span><br><span class="line"></span><br><span class="line">//	9. 清理缓存(注意清理顺序: 动画缓存-&gt;精灵缓存-&gt;纹理缓存)</span><br><span class="line">AnimationCache::destroyInstance();</span><br><span class="line">SpriteFrameCache::getInstance()-&gt;removeUnusedSpriteFrames();</span><br><span class="line">TextureCache::getInstance()-&gt;removeUnusedTextures();</span><br></pre></td></tr></table></figure>
-<h2 id="直接创建帧动画"><a href="#直接创建帧动画" class="headerlink" title="直接创建帧动画"></a>直接创建帧动画</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 定义存储动画帧的vector</span><br><span class="line">cocos2d::Vector&lt;SpriteFrame*&gt; attack;</span><br><span class="line"></span><br><span class="line">// 创建一张贴图</span><br><span class="line">auto texture = Director::getInstance()-&gt;getTextureCache()-&gt;addImage(&quot;$lucia_2.png&quot;);</span><br><span class="line"></span><br><span class="line">// 攻击动画</span><br><span class="line">attack.reserve(17);</span><br><span class="line">for (int i = 0; i &lt; 17; i++) &#123;</span><br><span class="line">    auto frame = SpriteFrame::createWithTexture(texture, CC_RECT_PIXELS_TO_POINTS(Rect(113*i,0,113,113)));	//	第一个参数是合图, 第二个参数是当前帧在合图中的Rect部分</span><br><span class="line">    attack.pushBack(frame);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">auto attack_animation = Animation::createWithSpriteFrames(attack, 0.1f);</span><br><span class="line">attack_animation-&gt;setRestoreOriginalFrame(true);</span><br><span class="line">auto attackAnimate = Animate::create(attack_animation);</span><br></pre></td></tr></table></figure>
-<h2 id="多个Sprite执行一个Animate"><a href="#多个Sprite执行一个Animate" class="headerlink" title="多个Sprite执行一个Animate"></a>多个Sprite执行一个Animate</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果有多个Sprite, 每个Sprite都执行相同的动画, 需要给每个Sprite都生成一个, 而不能使用同一个Animate. 否则, 当多个Sprite同时执行一个Animate时, 会造成每个Sprite都只执行这个Animate的部分帧</span><br></pre></td></tr></table></figure>
-<h1 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h1><p>​    如果在函数a中声明了attackAnimate(指针), 想在函数b使用attackAnimate, 必须用retain</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//	retain()用于将指针加1, 因为内存采用计数管理的方式, </span><br><span class="line">//	当计数为0时, 释放. 因此需要用retain()手动加1</span><br><span class="line"></span><br><span class="line">attackAnimate = Animate::create(attackAnimation);</span><br><span class="line">attackAnimate-&gt;retain();</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Cocos2d/Cocos2d/Cocos2d学习(一)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2150,11 +1567,483 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/环境配置/环境配置/Eclipse使用junit 5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/环境配置/环境配置/Eclipse使用junit 5/" itemprop="url">Eclipse使用junit 5</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-21T09:37:46+08:00">
+                2018-04-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/环境配置/" itemprop="url" rel="index">
+                    <span itemprop="name">环境配置</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="项目绑定Junit"><a href="#项目绑定Junit" class="headerlink" title="项目绑定Junit"></a>项目绑定Junit</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">右键项目-&gt;properties-&gt;Java Build Path-&gt;Libraries-&gt;Modulepath-&gt;Add Library-&gt;Junit 5</span><br></pre></td></tr></table></figure>
+<h2 id="生成Junit文件"><a href="#生成Junit文件" class="headerlink" title="生成Junit文件"></a>生成Junit文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">右键要测试的java文件-&gt;New-&gt;Junit Test Case-&gt; 单选框选Junit Juipter, 复选框选setUp()-&gt;next-&gt;勾选要测试的method-&gt;finish-&gt;将Junit中的fail(xxxx)改为测试的话</span><br></pre></td></tr></table></figure>
+<h2 id="运行Junit文件"><a href="#运行Junit文件" class="headerlink" title="运行Junit文件"></a>运行Junit文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">右键生成的Junit文件-&gt;Run AS-&gt;Junit Test</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/环境配置/环境配置/安装Eclipse插件SonarLint/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/环境配置/环境配置/安装Eclipse插件SonarLint/" itemprop="url">安装Eclipse插件SonarLint</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-19T22:36:23+08:00">
+                2018-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/环境配置/" itemprop="url" rel="index">
+                    <span itemprop="name">环境配置</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="安装SonarQube"><a href="#安装SonarQube" class="headerlink" title="安装SonarQube"></a>安装SonarQube</h1><h2 id="官网下载SonarQube并解压"><a href="#官网下载SonarQube并解压" class="headerlink" title="官网下载SonarQube并解压"></a>官网下载SonarQube并解压</h2><h2 id="开启SonarQube"><a href="#开启SonarQube" class="headerlink" title="开启SonarQube"></a>开启SonarQube</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin-&gt;windows-x86-64-&gt;StartSonar.bat</span><br></pre></td></tr></table></figure>
+<h2 id="打开SonarQube页面"><a href="#打开SonarQube页面" class="headerlink" title="打开SonarQube页面"></a>打开SonarQube页面</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">打开localhost:9000</span><br><span class="line"></span><br><span class="line">登陆, 默认用户名和密码都是admin</span><br></pre></td></tr></table></figure>
+<h1 id="eclipse安装SonarLint"><a href="#eclipse安装SonarLint" class="headerlink" title="eclipse安装SonarLint"></a>eclipse安装SonarLint</h1><h2 id="安装SonarLint插件"><a href="#安装SonarLint插件" class="headerlink" title="安装SonarLint插件"></a>安装SonarLint插件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Eclipse工具栏选择Help-&gt; Eclipse Markteplace, 安装sonarLint插件</span><br></pre></td></tr></table></figure>
+<h2 id="创建SonarServer"><a href="#创建SonarServer" class="headerlink" title="创建SonarServer"></a>创建SonarServer</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Eclipse工具栏选择Window-&gt;Show View-&gt;other</span><br><span class="line">弹出“Show View”界面，输入Sonar，选择“SonarQube Server”点击“OK”</span><br><span class="line">URL填localhost:9000</span><br><span class="line">选Username + Password</span><br></pre></td></tr></table></figure>
+<h2 id="绑定项目"><a href="#绑定项目" class="headerlink" title="绑定项目"></a>绑定项目</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">右键项目-&gt;SonarLint-&gt;Bind to a SonarQube project</span><br></pre></td></tr></table></figure>
+<h2 id="在Eclipse中实时显示SonarQube结果"><a href="#在Eclipse中实时显示SonarQube结果" class="headerlink" title="在Eclipse中实时显示SonarQube结果"></a>在Eclipse中实时显示SonarQube结果</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Eclipse工具栏-&gt;Window-&gt;Show View-&gt;other</span><br><span class="line">弹出“Show View”界面，输入Sonar，选择“SonarLint on the fly”点击“OK”</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/操作系统/操作系统/第三章-进程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/操作系统/操作系统/第三章-进程/" itemprop="url">第三章 进程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-16T21:29:28+08:00">
+                2018-04-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/操作系统/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h1><ul>
+<li>进程: 又称为作业, 即执行中的程序</li>
+</ul>
+<h1 id="调度"><a href="#调度" class="headerlink" title="调度"></a>调度</h1><ul>
+<li>调度: 进程在各种队列之间进行迁移</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">长期调度: 从磁盘的缓存池中选择进程, 并装入内存中以准备执行(CPU调度不频繁)</span><br><span class="line"></span><br><span class="line">短期调度: 从准备执行的进程中选择进程(CPU频繁调度)</span><br><span class="line"></span><br><span class="line">中期调度: 可以执行交换, 即进程能够从内存中移出再移进内存中</span><br></pre></td></tr></table></figure>
+<h1 id="上下文切换"><a href="#上下文切换" class="headerlink" title="上下文切换"></a>上下文切换</h1><ul>
+<li>中断发生时, 通过状态保存保存旧进程的状态. 当中断发生完后, 执行状态恢复重新运行旧进程</li>
+</ul>
+<h1 id="创建进程"><a href="#创建进程" class="headerlink" title="创建进程"></a>创建进程</h1><h2 id="fork"><a href="#fork" class="headerlink" title="fork"></a>fork</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. fork()会创建一个子进程, 并将当前进程(主进程)的内容(特指从fork()语句以后的内容)拷贝到子进程中. 只是拷贝, 并不是引用, 两个进程中变量的值不共享</span><br><span class="line"></span><br><span class="line">2. fork()会产生两次返回值, 在主进程中, fork()的返回值是子进程的进程id值; 在子进程中, fork()返回0 </span><br><span class="line"></span><br><span class="line">3. 主进程先执行, 它执行完后才轮到子进程执行</span><br></pre></td></tr></table></figure>
+<h2 id="wait"><a href="#wait" class="headerlink" title="wait"></a>wait</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">执行了wait()后, 父进程等待子进程执行, 子进程执行完后, 父进程才继续执行</span><br></pre></td></tr></table></figure>
+<h1 id="进程间通信"><a href="#进程间通信" class="headerlink" title="进程间通信"></a>进程间通信</h1><h2 id="通信方式"><a href="#通信方式" class="headerlink" title="通信方式"></a>通信方式</h2><ul>
+<li>共享内存: 通过在共享区读写数据进行信息传递</li>
+<li>消息传递: 通过通信进行信息传递</li>
+</ul>
+<h2 id="直接通信与间接通"><a href="#直接通信与间接通" class="headerlink" title="直接通信与间接通"></a>直接通信与间接通</h2><ul>
+<li>直接通信: 通信的进程必须明确通信的接收者或发送者</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">对称寻址: 发送者需要命名接收者, 接收者需要命名发送者</span><br><span class="line"></span><br><span class="line">	send(P, message)		发送信息给进程P</span><br><span class="line">	receive(Q, message)		接收来自进程Q的信息</span><br><span class="line">	</span><br><span class="line">非对称寻址: 发送者命名接收者, 而接收者不需要命名发送者</span><br><span class="line"></span><br><span class="line">	sned(P, message)		发送信息给进程P</span><br><span class="line">	receive(id, message)	接收来自任何进程的信息, 将id设为与其通信的进程的名称</span><br></pre></td></tr></table></figure>
+<ul>
+<li>间接通信: 信息的发送和接收都通过一个中间者</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">send(A, message)			发送信息到邮箱A</span><br><span class="line">receive(A, message)			接收来自邮箱A的信息</span><br></pre></td></tr></table></figure>
+<h2 id="同步通信与异步通信"><a href="#同步通信与异步通信" class="headerlink" title="同步通信与异步通信"></a>同步通信与异步通信</h2><ul>
+<li>同步与异步又称为阻塞与非阻塞</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">阻塞: </span><br><span class="line">	send 发送信息后, 可以执行其他操作. </span><br><span class="line">	receive 接收到信息前, 可以执行其他操作</span><br><span class="line">	</span><br><span class="line">非阻塞:</span><br><span class="line">	send 发送信息后, 不可以执行其他操作, 直到消息被接收. </span><br><span class="line">	receive 接收到信息前, 不可以执行其他操作, 直到接收了信息</span><br></pre></td></tr></table></figure>
+<h1 id="Socket"><a href="#Socket" class="headerlink" title="Socket"></a>Socket</h1><ul>
+<li>通过网络进行通信的两个进程, 都含有作为通信端点的socket. </li>
+</ul>
+<h1 id="POSIX共享内存"><a href="#POSIX共享内存" class="headerlink" title="POSIX共享内存"></a>POSIX共享内存</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">1. segment_id = shmget(IPC_PRIVATE, size, S_IRUSR | S_IWUSR): 创建新的存储区或打开现有存储区</span><br><span class="line">	</span><br><span class="line">	segment_id: 返回共享存储区的ID</span><br><span class="line">	IPC_PRIVATE: 表明创建新的共享存储区</span><br><span class="line">	size: 存储区大小</span><br><span class="line">	S_IRUSR | S_IWUSR: 对共享存储区的操作(读/写/读写), S_IRUSR中有字母R表示读, S_IWUSR中有W表示写</span><br><span class="line">	</span><br><span class="line">2. shared_memory = (char*)shmat(segment_id, NULL, 0): 连接到共享存储区. 子进程能访问父进程连接的共享存储区</span><br><span class="line"></span><br><span class="line">	shared_memory: 返回指向共享存储区的指针</span><br><span class="line">	segment_id: 表明要连接的共享存储区的ID</span><br><span class="line">	NULL: 第二个参数是一个指针, 表明其要加入到共享存储区. 一般用NULL</span><br><span class="line">	0: 第三个参数用于设置对对共享存储区的操作(读/写/读写). 0表示可读写</span><br><span class="line">	</span><br><span class="line">3. shmdt(shard_memory): 断开与共享存储区的连接</span><br><span class="line"></span><br><span class="line">4. shmctl(segment_id, IPC_RMID, NULL): 删除共享存储区</span><br><span class="line"></span><br><span class="line">	segment_id: 共享存储区的ID</span><br><span class="line">	IPC_RMID, NULL: 默认参数</span><br></pre></td></tr></table></figure>
+<ul>
+<li>内存共享的基本操作</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;sys/shm.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;errno.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#define SIZE 1024</span><br><span class="line">extern int errno;</span><br><span class="line">int main()</span><br><span class="line">&#123;   </span><br><span class="line">    int shmid;   		//	共享存储区ID</span><br><span class="line">    char *shmptr;		//	指向共享内存的指针</span><br><span class="line"></span><br><span class="line">    //  创建共享内存</span><br><span class="line">    if((shmid = shmget(IPC_PRIVATE, SIZE, S_IRUSR | S_IWUSR)) &lt; 0)</span><br><span class="line">    &#123;       </span><br><span class="line">        printf(&quot;shmget error:%s\n&quot;, strerror(errno));</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //  将共享内存连接到可用地址上</span><br><span class="line">    if((shmptr = (char*)shmat(shmid, NULL, 0)) == (void*)-1) </span><br><span class="line">    &#123;        </span><br><span class="line">        printf(&quot;shmat error:%s\n&quot;, strerror(errno));        </span><br><span class="line">        return -1;    </span><br><span class="line">    &#125;   </span><br><span class="line"></span><br><span class="line">    //  向共享内存中传输数据</span><br><span class="line">    memcpy(shmptr, &quot;hello world&quot;, sizeof(&quot;hello world&quot;));</span><br><span class="line">    printf(&quot;share memory from %lx to %lx, content:%s\n&quot;,(unsigned long)shmptr, (unsigned long)(shmptr + SIZE), shmptr);</span><br><span class="line">    </span><br><span class="line">    //	断开共享内存和地址的连接</span><br><span class="line">    if (shmdt(shmptr) == -1) </span><br><span class="line">    &#123;</span><br><span class="line">      fprintf(stderr, &quot;Unable to detach\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //  删除共享内存</span><br><span class="line">    /*</span><br><span class="line">        shmctl(): 对共享存储区进行控制。如：共享存储区的删除</span><br><span class="line">    */</span><br><span class="line">    if((shmctl(shmid, IPC_RMID, NULL) &lt; 0)) </span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;shmctl error:%s\n&quot;, strerror(errno));</span><br><span class="line">        return -1;  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>多进程间内存共享(子进程获取斐波那契数列, 父进程打印)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">#include &lt;errno.h&gt;</span><br><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line">#include &lt;sys/stat.h&gt;</span><br><span class="line">#include &lt;sys/types.h&gt;</span><br><span class="line">#include &lt;sys/ipc.h&gt;</span><br><span class="line">#include &lt;sys/shm.h&gt;</span><br><span class="line">#include &lt;sys/wait.h&gt;</span><br><span class="line"></span><br><span class="line">#define MAX_SEQUENCE 10</span><br><span class="line"></span><br><span class="line">typedef struct &#123;</span><br><span class="line">    long fib_sequence [MAX_SEQUENCE];</span><br><span class="line">    int sequence_size;</span><br><span class="line">&#125; shared_data;</span><br><span class="line"></span><br><span class="line">long fibonacci(shared_data* result, int num) &#123;</span><br><span class="line">    if (num == 0)</span><br><span class="line">        return 0;</span><br><span class="line">    if (num == 1) </span><br><span class="line">        result-&gt;fib_sequence[num - 1] = 0;</span><br><span class="line">    else if (num == 2)</span><br><span class="line">        result-&gt;fib_sequence[num - 1] = 1;</span><br><span class="line">    else </span><br><span class="line">        result-&gt;fib_sequence[num - 1] = fibonacci(result, num - 1) + fibonacci(result, num - 2);</span><br><span class="line">    result-&gt;sequence_size++;</span><br><span class="line">    return result-&gt;fib_sequence[num - 1];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char **argv) &#123;</span><br><span class="line">    key_t shmid;</span><br><span class="line">    char *p_addr, *c_addr;  //  分别指向子共享控件和父共享空间</span><br><span class="line">    shared_data result;</span><br><span class="line"></span><br><span class="line">    if(argc != 2) &#123;     </span><br><span class="line">        fprintf(stderr, &quot;You should input a parameter as the number of fibonacci\n&quot;);</span><br><span class="line">        exit(1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    int num = atoi(argv[1]);</span><br><span class="line"></span><br><span class="line">    if (atoi(argv[1]) &gt; MAX_SEQUENCE) &#123;</span><br><span class="line">        fprintf(stderr, &quot;The input is bigger than : %d\n&quot;, num);</span><br><span class="line">        exit(1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if( (shmid = shmget(IPC_PRIVATE, sizeof(shared_data), S_IRUSR|S_IWUSR)) == -1 ) &#123; </span><br><span class="line">        fprintf(stderr, &quot;Create Share Memory Error:%s\n&quot;, strerror(errno));</span><br><span class="line">        exit(1);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    pid_t pid = fork();</span><br><span class="line">    if(pid &gt; 0) &#123;</span><br><span class="line">        p_addr = (char*)shmat(shmid, NULL, 0);</span><br><span class="line">        memset(p_addr, &apos;\0&apos;, sizeof(shared_data));</span><br><span class="line">        wait(NULL);</span><br><span class="line"></span><br><span class="line">        shared_data result;</span><br><span class="line">        memcpy(&amp;result, p_addr, sizeof(result));</span><br><span class="line">        for (int i = 0; i &lt; num; i++) &#123;</span><br><span class="line">            printf(&quot;%ld &quot;, result.fib_sequence[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (shmdt(p_addr) == -1) </span><br><span class="line">            fprintf(stderr, &quot;Main process unable to detach\n&quot;);</span><br><span class="line">        if((shmctl(shmid, IPC_RMID, 0) &lt; 0)) &#123;</span><br><span class="line">            printf(&quot;shmctl error:%s\n&quot;, strerror(errno));</span><br><span class="line">            exit(-1);</span><br><span class="line">        &#125;</span><br><span class="line">        exit(0);</span><br><span class="line">    &#125;</span><br><span class="line">    else if (pid == 0) &#123;</span><br><span class="line">        c_addr = (char*)shmat(shmid, NULL, 0);</span><br><span class="line"></span><br><span class="line">        for (int i = 0; i &lt; MAX_SEQUENCE; i++) </span><br><span class="line">            result.fib_sequence[i] = 0;</span><br><span class="line">        fibonacci(&amp;result, num);</span><br><span class="line"></span><br><span class="line">        memcpy(c_addr, &amp;result, sizeof(result));</span><br><span class="line">        if (shmdt(c_addr) == -1) </span><br><span class="line">            fprintf(stderr, &quot;Sub process unable to detach\n&quot;);</span><br><span class="line">        exit(0);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2204,7 +2093,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-count">51</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2215,7 +2104,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
