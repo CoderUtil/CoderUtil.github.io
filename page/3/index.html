@@ -259,6 +259,305 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Android/Android/Android学习--通知服务/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Android/Android/Android学习--通知服务/" itemprop="url">通知服务</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-17T14:50:30+08:00">
+                2018-10-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="更改包名"><a href="#更改包名" class="headerlink" title="更改包名"></a>更改包名</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://blog.csdn.net/qq_35270692/article/details/78336049</span><br></pre></td></tr></table></figure>
+<h1 id="Cannot-resolve-method"><a href="#Cannot-resolve-method" class="headerlink" title="Cannot resolve method"></a>Cannot resolve method</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果Alt + Enter无法导入包, 则在method前面加上getContext()或者参数是context就直接加context</span><br></pre></td></tr></table></figure>
+<h1 id="广播"><a href="#广播" class="headerlink" title="广播"></a>广播</h1><ul>
+<li>标准广播: 所有广播接收器同时收到消息</li>
+<li>有序广播: 优先级高的广播接收器先接收, 优先级低的后接收. 优先级高的还可以截断此广播, 使低的无法接收</li>
+</ul>
+<h1 id="注册广播接收器"><a href="#注册广播接收器" class="headerlink" title="注册广播接收器"></a>注册广播接收器</h1><h2 id="动态注册"><a href="#动态注册" class="headerlink" title="动态注册"></a>动态注册</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">  private IntentFilter intentFilter;</span><br><span class="line">  private MyBroadcastReceiver receiver;</span><br><span class="line">  </span><br><span class="line">  @Override</span><br><span class="line">  protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">    super.onCreate(savedInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">    </span><br><span class="line">    intentFilter = new IntentFilter();</span><br><span class="line">    intentFilter.addAciton(&quot;com.example.broadcasttest.MY_BROADCAST&quot;);		//	action指明监听的类型</span><br><span class="line">    receiver = new MyBroadcastReceiver();</span><br><span class="line">    registerReceiver(receiver, intentFilter);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  @Override</span><br><span class="line">  protected void onDestroy() &#123;</span><br><span class="line">    super.onDestroy();</span><br><span class="line">    unregisterReceiver(receiver);											//	记得取消监听</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  class MyBroadcastReceiver extends BroadcastReceiver &#123;</span><br><span class="line">    </span><br><span class="line">    @Override</span><br><span class="line">    public void onReceiver(Context context, Intent intent) &#123;</span><br><span class="line">      Toast.makeText(context, &quot;received broadcast&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="静态注册"><a href="#静态注册" class="headerlink" title="静态注册"></a>静态注册</h2><p>​    动态注册在程序启动后才能接收</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">1. 右键com.example.xxx -&gt; New -&gt; Other -&gt; Broadcast Receiver创建名为MyBroadcastReceive的广播接收器</span><br><span class="line">	Exported: 是否能接收本程序外的广播</span><br><span class="line">	Enabled: 是否启用这个广播</span><br><span class="line">	</span><br><span class="line">2. 修改Broadcast Receiver</span><br><span class="line">public class MyBroadcastReceiver extends BroadcastReceiver &#123;</span><br><span class="line">  @Override</span><br><span class="line">  public void onReceive(Context context, Intent intent) &#123;</span><br><span class="line">    Toast.makeText(context, &quot;receive broadcast&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">3. 修改AndroidManifest.xml</span><br><span class="line"></span><br><span class="line">&lt;receiver</span><br><span class="line">	android:name=&quot;.MyBroadcastReceive&quot;</span><br><span class="line">	android:enabled=&quot;true&quot;</span><br><span class="line">	android:exported=&quot;true&quot;&gt;</span><br><span class="line">	&lt;intent-filter&gt;</span><br><span class="line">		&lt;action android:name=&quot;com.example.broadcasttest.MY_BROADCAST&quot;/&gt;			//	接收值action为&quot;com.example.broadcasttest.MY_BROADCAST&quot;的广播</span><br><span class="line">	&lt;/intent-filter&gt;</span><br><span class="line">&lt;/receiver&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="发送广播"><a href="#发送广播" class="headerlink" title="发送广播"></a>发送广播</h1><h2 id="标准广播"><a href="#标准广播" class="headerlink" title="标准广播"></a>标准广播</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class MainAcitivity extends AppCompatAcitivity &#123;</span><br><span class="line">   @Override</span><br><span class="line">  protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">    super.onCreate(savedInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    Button button = (Button)findViewById(R.id.button);</span><br><span class="line">    button.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">      @Override</span><br><span class="line">      public void onClick(View v) &#123;</span><br><span class="line">        Intent intent = new Intent(&quot;com.example.broadcasttest.MY_BROADCAST&quot;);</span><br><span class="line">        sendBroadcast(intent);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="有序广播"><a href="#有序广播" class="headerlink" title="有序广播"></a>有序广播</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">1. 将发送的sendBroadcast改为sendOrderedBroadcast</span><br><span class="line"></span><br><span class="line">2. 修改AndroidManifest.xml设置优先级</span><br><span class="line">&lt;receiver</span><br><span class="line">	android:name=&quot;.MyBroadcastReceive&quot;</span><br><span class="line">	android:enabled=&quot;true&quot;</span><br><span class="line">	android:exported=&quot;true&quot;&gt;</span><br><span class="line">	&lt;intent-filter android:priority=&quot;100&quot;&gt;		设置优先级</span><br><span class="line">		&lt;action android:name=&quot;com.example.broadcasttest.MY_BROADCAST&quot;/&gt;			</span><br><span class="line">	&lt;/intent-filter&gt;</span><br><span class="line">&lt;/receiver&gt;</span><br><span class="line"></span><br><span class="line">3. 如果需要截断广播, 在onReceive中调用</span><br><span class="line">	abortBroadcast();</span><br></pre></td></tr></table></figure>
+<h1 id="本地广播"><a href="#本地广播" class="headerlink" title="本地广播"></a>本地广播</h1><p>​    本地广播, 只有程序内的接收器才能接收广播</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">  private IntentFilter intentFilter;</span><br><span class="line">  private LocalReceiver localReceiver;</span><br><span class="line">  private LocalBroadcastManager localBroadcastManager;</span><br><span class="line">  </span><br><span class="line">  @Override</span><br><span class="line">  protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">    super.onCreate(savedInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">    localBroadcastManager = LocalBroadcastManager.getInstance(this);		//	获取本地广播实例</span><br><span class="line">    </span><br><span class="line">    //	发送广播</span><br><span class="line">    Button button = (Button)findViewById(R.id.button);</span><br><span class="line">    button.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">      @Override</span><br><span class="line">      public void onClick(View v) &#123;</span><br><span class="line">        Intent intent = new Intent(&quot;com.example.broadcasttest.LOCAL_BROADCAST&quot;);</span><br><span class="line">        localBroadcastManager.sendBroadcast(intent);					//	发送本地有序广播</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    //	接收广播</span><br><span class="line">    intentFilter = new IntentFilter();</span><br><span class="line">    intentFilter.addAction(&quot;com.example.broadcasttest.MY_BROADCAST&quot;);</span><br><span class="line">    localReceiver = new LocalReceiver();</span><br><span class="line">    localBroadcastManager.registerReceiver(localReceiver, intentFilter);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  @Override</span><br><span class="line">  protected void onDestroy() &#123;</span><br><span class="line">    super.onDestroy();</span><br><span class="line">    localBroadcastManager.unregisterReceiver(localReceiver);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  class LocalReceiver extends BroadcastReceiver &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void onReceive(Context context, Intent intent) &#123;</span><br><span class="line">      Toast.makeText(context, &quot;receive broadcast&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="通知Notification"><a href="#通知Notification" class="headerlink" title="通知Notification"></a>通知Notification</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">  </span><br><span class="line">  @Override</span><br><span class="line">  protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">    super.onCreate(savedInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">    button.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">      @Override</span><br><span class="line">      public void onClick(View v) &#123;</span><br><span class="line">       	            Item item = (Item)intent.getSerializableExtra(&quot;item&quot;);</span><br><span class="line"></span><br><span class="line">            Intent targetIntent = new Intent(MainAcitivity.this, DetailPage.class);</span><br><span class="line">            targetIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);</span><br><span class="line">            targetIntent.putExtra(&quot;item&quot;, item);</span><br><span class="line">            PendingIntent pi = PendingIntent.getActivity(context, 唯一值, targetIntent, 0);</span><br><span class="line">            //	当notification的intent需要传递数据时, intent设置FLAG并且第二个参数是一个唯一值</span><br><span class="line"></span><br><span class="line">            NotificationManager manager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);</span><br><span class="line">            Notification.Builder builder = new Notification.Builder(context);</span><br><span class="line"></span><br><span class="line">            builder.setContentTitle(&quot;今日推荐&quot;)             //  设置通知栏标题：发件人</span><br><span class="line">                    .setContentText(item.getName())         //  设置通知栏显示内容：短信内容</span><br><span class="line">                    .setTicker(&quot;您有一条新消息&quot;)             //  通知首次出现在通知栏，带上升动画效果的</span><br><span class="line">                    .setSmallIcon(R.drawable.empty_star)    //  设置通知小ICON（通知栏），可以用以前的素材，例如空星</span><br><span class="line">                    .setContentIntent(pi)                   //  传递内容</span><br><span class="line">                    .setAutoCancel(true);                   //  设置这个标志当用户单击面板就可以让通知将自动取消</span><br><span class="line"></span><br><span class="line">            Notification notify = builder.build();</span><br><span class="line">            manager.notify(0,notify);                   //	第一个参数表示通知的ID, 必须唯一</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="EventBus"><a href="#EventBus" class="headerlink" title="EventBus"></a>EventBus</h1><p>​    eventBus和广播的作用是在不改变activity的情况下传递消息, eventBus相对而言更加简单</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Matlab/Matlab/Matlab图像处理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Matlab/Matlab/Matlab图像处理/" itemprop="url">图像处理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-11T18:55:12+08:00">
+                2018-10-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Matlab/" itemprop="url" rel="index">
+                    <span itemprop="name">Matlab</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">读取图片并512*512*3的矩阵进行保存:</span><br><span class="line">	I=imread(&apos;lena.jpg&apos;);</span><br><span class="line"></span><br><span class="line">显示图片:</span><br><span class="line">	imshow(I);</span><br><span class="line">	figure(1);</span><br><span class="line"></span><br><span class="line">保存图片:</span><br><span class="line">	imwrite(I, &apos;lenaSave,jpg&apos;);</span><br><span class="line">	</span><br><span class="line">转换为灰度图:</span><br><span class="line">	I1=rgb2gray(I);</span><br></pre></td></tr></table></figure>
+<h1 id="图片切换动画"><a href="#图片切换动画" class="headerlink" title="图片切换动画"></a>图片切换动画</h1><p><a href="https://blog.csdn.net/qq_32892383/article/details/79553001?tdsourcetag=s_pctim_aiomsg" target="_blank" rel="noopener">https://blog.csdn.net/qq_32892383/article/details/79553001?tdsourcetag=s_pctim_aiomsg</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/LeetCode/LeetCode/构建最大频率栈/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1439,304 +1738,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/LeetCode/LeetCode/查找最长无重复子串/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/LeetCode/LeetCode/查找最长无重复子串/" itemprop="url">查找最长无重复子串</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-10T09:10:09+08:00">
-                2018-09-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">给定一个字符串S, 找到不含重复字符的最长子字符串s的长度. 注意, 题目要求是子串而不是子序列</span><br><span class="line"></span><br><span class="line">例如:</span><br><span class="line">  对于&quot;abcabcbb&quot;, 最长子字符串是&quot;abc&quot;, 长度为3.</span><br><span class="line"></span><br><span class="line">  对于&quot;bbbbb&quot;, 最长子字符串是&quot;b&quot;，长度为1.</span><br><span class="line"></span><br><span class="line">  对于&quot;pwwkew&quot;, 最长子字符串是&quot;wke&quot;, 长度为3.</span><br></pre></td></tr></table></figure>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">拿到题目, 第一反应是暴力求解, 用2层循环, 外层遍历整个字符串, 内层枚举出最长子字符串, 以此列出所有可能性, 然后将计算所有非重复子字符串的长度, 最后取长度的最大值, 这样一来, 时间复杂度就是O(n^2)</span><br><span class="line"></span><br><span class="line">但是, 这样的时间复杂度有些高, 是否有更简便的方法呢? </span><br><span class="line"></span><br><span class="line">于是我有了另外的一种思路, 因为最长子字符串s(索引为i, i+1, ..., i+k)没有重复字符, 所以最长子字符串必定有以下两种属性之一: </span><br><span class="line">	1. s的第一个字符s[i]和s结尾的下一个字符s[i+k+1]是相同的字符</span><br><span class="line">	2. s结尾的下一个字符s[i+k+1]不存在, 即s是S的后缀</span><br><span class="line">	</span><br><span class="line">这样一来, 我有了一个时间复杂度是O(n)的思路:</span><br><span class="line">	先遍历S中出现过的所有字符, </span><br><span class="line">	1. 若字符在S中出现了多次, 则设同一字符相邻两次出现的索引为i, i+k, 则以该字符为首的子字符串s的长度为i + k - i = k </span><br><span class="line">	2. 若字符在S中只出现了一次, 则设同一字符相邻两次出现的索引为-1, i, 则以该字符为首的子字符串s的长度为i - (-1) = i + 1 </span><br><span class="line">	最后, 最大的长度就是不含重复字符的子字符串的长度</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">但是, 细心思考, 会发现这个逻辑是不够缜密的, 上述的思路没有考虑到同一个字符间含有重复字符的情况, 比如, 对于&quot;aab&quot;或&quot;baab&quot;, 对于字符&quot;b&quot;, 长度不是2 - (-1)或3 - 0. 因此上述思路应该修改以下, 变为:</span><br><span class="line">	先遍历S中出现过的所有字符, 设任意字符上一次出现的索引为pre</span><br><span class="line">	1. 若字符在S中出现了多次, 则设同一字符相邻两次出现的索引为i, i+k, 若pre &gt; i, 则表明子串s中有重复字符, 以该字符为首的子字符串s的长度为i + k - pre; 若pre &lt;= i, 则表明子串s没有重复字符, 以该字符为首的子字符串s的长度为i + k - i = k </span><br><span class="line">	2. 若字符在S中只出现了一次, 则设同一字符相邻两次出现的索引为-1, i, 若pre &gt; -1, 则表明子串s中有重复字符, 以该字符为首的子字符串s的长度为i - pre; 若pre &lt;= i, 则表明子串s没有重复字符, 以该字符为首的子字符串s的长度为i - (-1) = i + 1</span><br><span class="line">	最后, 最大的长度就是不含重复字符的子字符串的长度</span><br></pre></td></tr></table></figure>
-<h1 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int lengthOfLongestSubstring(string s) &#123;</span><br><span class="line">        map&lt;char, int&gt; mp;</span><br><span class="line">        </span><br><span class="line">        //  初始化哈希表</span><br><span class="line">        for (int i = 0; i &lt; s.length(); i++)</span><br><span class="line">            mp[s[i]] = -1;  </span><br><span class="line">            </span><br><span class="line">        //	pre表示任意字符上一次出现的索引, Max表示最长非重复子字符串的长度    </span><br><span class="line">        int pre = -1, Max = 0;</span><br><span class="line">        for (int i = 0; i &lt; s.length(); i++)&#123;</span><br><span class="line">            pre = max(pre, mp[s[i]]);</span><br><span class="line">            Max = max(Max, i - pre);</span><br><span class="line">            mp[s[i]] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        return Max;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Git/Git/Git命令总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Git/Git/Git命令总结/" itemprop="url">Git命令总结</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-09T13:01:54+08:00">
-                2018-09-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Git/" itemprop="url" rel="index">
-                    <span itemprop="name">Git</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Git命令"><a href="#Git命令" class="headerlink" title="Git命令"></a>Git命令</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">1. 创建版本库Repository</span><br><span class="line"></span><br><span class="line">	创建一个空文件</span><br><span class="line">	-&gt;进入, 并打开Git Bash</span><br><span class="line">	-&gt;git init</span><br><span class="line"></span><br><span class="line">2. 将文件提交到版本库</span><br><span class="line"></span><br><span class="line">	git add 文件(-A)</span><br><span class="line">	-&gt;git commit -m &quot;注释&quot;</span><br><span class="line">	</span><br><span class="line">3. 比较修改后的文件与版本库中文件的差异</span><br><span class="line"></span><br><span class="line">	git diff 文件</span><br><span class="line">	</span><br><span class="line">4. 查看git commit记录以及版本号</span><br><span class="line"></span><br><span class="line">	git log</span><br><span class="line">	</span><br><span class="line">5. 版本回退</span><br><span class="line"></span><br><span class="line">	git log获取版本号</span><br><span class="line">	-&gt;git reset --hard 版本号</span><br><span class="line">	</span><br><span class="line">6. 版本回退撤销</span><br><span class="line">	</span><br><span class="line">	git reflog获取版本号</span><br><span class="line">	-&gt;git reset --hard 版本号</span><br></pre></td></tr></table></figure>
-<h1 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">1. 将GitHub版本库与本地版本库关联</span><br><span class="line">	</span><br><span class="line">	在GitHub中Create new repo, </span><br><span class="line">	-&gt;git remote add origin git@github.com:CoderUtil/GitHub中项目名.git</span><br><span class="line">	-&gt;git push -u origin master</span><br><span class="line">	</span><br><span class="line">2. 查看当前关联(若关联时出现remote origin already exists)</span><br><span class="line"></span><br><span class="line">	git remote -v</span><br><span class="line">	</span><br><span class="line">3. 删除关联(若一开始关联到GitHub, 后想变成码云)</span><br><span class="line"></span><br><span class="line">	git remote rm origin</span><br><span class="line">	</span><br><span class="line">3. 将本地修改提交到GitHub</span><br><span class="line"></span><br><span class="line">	git push origin master</span><br><span class="line">	</span><br><span class="line">4. 将GitHub上版本库克隆到当前文件夹(默认已关联)</span><br><span class="line">	</span><br><span class="line">	git clone git@github.com:CoderUtil/GitHub项目名.git</span><br></pre></td></tr></table></figure>
-<h1 id="码云"><a href="#码云" class="headerlink" title="码云"></a>码云</h1><p>​    将GitHub命令中的github改为gitee</p>
-<h1 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h1><p>​    用于多人合作</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">1. 查看分支, 当前分支前面有*</span><br><span class="line"></span><br><span class="line">	git branch</span><br><span class="line">	</span><br><span class="line">2. 创建分支</span><br><span class="line"></span><br><span class="line">	git branch 分支名</span><br><span class="line">    </span><br><span class="line">3. 切换分支</span><br><span class="line"></span><br><span class="line">	git checkout 分支名</span><br><span class="line">	</span><br><span class="line">4. 合并分支到当前分支(当分支冲突时, 需要手动合并分支)</span><br><span class="line"></span><br><span class="line">	git merge 分支名</span><br><span class="line">	</span><br><span class="line">5. 删除分支</span><br><span class="line"></span><br><span class="line">	git branch -d 分支名</span><br></pre></td></tr></table></figure>
-<h1 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h1><p>​    相比版本号易懂, 有意义</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">1. 查看所有标签</span><br><span class="line">	</span><br><span class="line">	git tag</span><br><span class="line">	</span><br><span class="line">2. 设置标签(默认为当前commit)</span><br><span class="line"></span><br><span class="line">	git tag 标签名 (版本号)</span><br><span class="line">	</span><br><span class="line">3. 删除标签</span><br><span class="line"></span><br><span class="line">	git tag -d 标签名</span><br><span class="line"></span><br><span class="line">4. 查看标签信息</span><br><span class="line"></span><br><span class="line">	git show 标签名</span><br></pre></td></tr></table></figure>
-<h1 id="Android-Studio使用Git"><a href="#Android-Studio使用Git" class="headerlink" title="Android Studio使用Git"></a>Android Studio使用Git</h1><h2 id="导入GitHub项目"><a href="#导入GitHub项目" class="headerlink" title="导入GitHub项目"></a>导入GitHub项目</h2><p>​    VCS-&gt;Checkout from Version Control-&gt;GitHub</p>
-<h2 id="上传GitHub项目"><a href="#上传GitHub项目" class="headerlink" title="上传GitHub项目"></a>上传GitHub项目</h2><p>​    VCS-&gt;Import into Version Control-&gt;Share Project on GitHub</p>
-<h2 id="Git命令-1"><a href="#Git命令-1" class="headerlink" title="Git命令"></a>Git命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">1. git add</span><br><span class="line">	VCS-&gt;Git-&gt;Add</span><br><span class="line">	</span><br><span class="line">2. git commit</span><br><span class="line">	VCS-&gt;Git-&gt;Commit File</span><br><span class="line">	</span><br><span class="line">3. git pull 将远程版本库的代码更新到本地</span><br><span class="line">	VCS-&gt;Git-&gt;Pull</span><br><span class="line"></span><br><span class="line">4. git push 将本地的代码更新到远程版本库</span><br><span class="line">	VCS-&gt;Git-&gt;Push</span><br><span class="line"></span><br><span class="line">5. git revert 回退一个版本</span><br><span class="line">	VCS-&gt;Git-&gt;Revert</span><br></pre></td></tr></table></figure>
-<h1 id="下拉Fork项目的更新"><a href="#下拉Fork项目的更新" class="headerlink" title="下拉Fork项目的更新"></a>下拉Fork项目的更新</h1><p>​    当fork的项目被原作者更新后, 更新本地的版本库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">假设原项目被关联到本地的master分支</span><br><span class="line"></span><br><span class="line">1. 将项目关联到本地版本库的新分支</span><br><span class="line">	git remote add 随便一个分支名update_stream git@gitee.com:原作者/PersonalProject1.git</span><br><span class="line"></span><br><span class="line">2. 把update_stream分支关联的远程版本库的代码拉到本地</span><br><span class="line">	git fetch update_stream</span><br><span class="line">	</span><br><span class="line">3. 将update_stream分支的代码合并到当前分支</span><br><span class="line">	git merge update_stream/master</span><br><span class="line">	</span><br><span class="line">4. 把最新代码从本地版本库推送到github</span><br><span class="line">	git push origin master</span><br></pre></td></tr></table></figure>
-<h1 id="冲突"><a href="#冲突" class="headerlink" title="冲突"></a>冲突</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">对于同一个项目, 同学A先于自己pull request并被作者接收了. 这时候再pull request会发生冲突</span><br><span class="line"></span><br><span class="line">可以按照Fork项目更新的做法, 将本地master分支和原作者的分支合并</span><br><span class="line"></span><br><span class="line">若merge的时候出现:</span><br><span class="line">  Auto-merging ...</span><br><span class="line">  CONFLICT (content): Merge conflict in ...</span><br><span class="line">  Automatic merge failed; fix conflicts and then commit the result.</span><br><span class="line">  </span><br><span class="line">这表示自动合并失败, 需要我们手动合并. 通过git status可以查看冲突的文件, 手动修改冲突文件, 然后再git add, git commit, git push</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1791,7 +1792,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">62</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
