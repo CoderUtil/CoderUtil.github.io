@@ -259,6 +259,150 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/LeetCode/LeetCode/查找最长子回文串/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/LeetCode/LeetCode/查找最长子回文串/" itemprop="url">查找最长子回文串</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-15T10:59:38+08:00">
+                2018-09-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
+                    <span itemprop="name">LeetCode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">给定一个字符串S, 找到最长的子回文字符串s</span><br><span class="line"></span><br><span class="line">例如:</span><br><span class="line">  对于&quot;a&quot;, 最长子回文字符串是&quot;a&quot;.</span><br><span class="line"></span><br><span class="line">  对于&quot;babad&quot;, 最长子回文字符串是&quot;bab&quot;或&quot;aba&quot;.</span><br><span class="line"></span><br><span class="line">  对于&quot;cbbd&quot;, 最长子回文字符串是&quot;bb&quot;.</span><br></pre></td></tr></table></figure>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">回文字符串有以下性质:</span><br><span class="line">	对于回文字符串S, 若子串s(索引为i, i+1, ..., i+k)为回文字符串, 当S[i-1] = S[i+k+1]时, 子串s&apos;(索引为i-1, i, ..., i+k+1)也是回文字符串</span><br><span class="line">	</span><br><span class="line">因此可以用枚举法, 遍历整个字符串, 对于每个字符, 尝试用它的性质扩展出最长的子串, 注意区分回文字符串的长度为奇还是偶:</span><br><span class="line">	1. 当长度为奇数, 以S[i]为起点, 从j = 0开始, 比较S[i-j]与S[i+j]</span><br><span class="line">	2. 当长度为偶数, 以S[i]为起点, 从j = 1开始, 比较S[i-j+1]与S[i+j]</span><br><span class="line"></span><br><span class="line">时间复杂度为O(n ^ 2)</span><br></pre></td></tr></table></figure>
+<h1 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">	string longestPalindrome(string s) &#123;</span><br><span class="line">		int maxLength = 0;</span><br><span class="line">		int maxLengthHead = 0;</span><br><span class="line">		for (int i = 0; i &lt; s.length(); i++) &#123;</span><br><span class="line">			int tempLength = 0;</span><br><span class="line">			int tempLengthHead = 0;</span><br><span class="line">			int j;</span><br><span class="line"></span><br><span class="line">			//	回文长度为奇数</span><br><span class="line">			for (j = 0; i + j &lt; s.length() &amp;&amp; i - j &gt;= 0; j++) &#123;</span><br><span class="line">				if (s[i + j] != s[i - j]) </span><br><span class="line">					break;</span><br><span class="line">			&#125;</span><br><span class="line">			j--;</span><br><span class="line">			tempLength = 2 * j + 1;</span><br><span class="line">			tempLengthHead = i - j;</span><br><span class="line">			if (maxLength &lt; tempLength) &#123;</span><br><span class="line">				maxLength = tempLength;</span><br><span class="line">				maxLengthHead = tempLengthHead;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			//	回文长度为偶数</span><br><span class="line">			tempLength = 0;</span><br><span class="line">			tempLengthHead = 0;</span><br><span class="line">			for (j = 1; i + j &lt; s.length() &amp;&amp; i - j + 1 &gt;= 0; j++) &#123;</span><br><span class="line">				if (s[i + j] != s[i - j + 1]) </span><br><span class="line">					break;</span><br><span class="line">			&#125;</span><br><span class="line">			j--;</span><br><span class="line">			tempLength = 2 * j;</span><br><span class="line">			tempLengthHead = i - j + 1;</span><br><span class="line">			if (maxLength &lt; tempLength) &#123;</span><br><span class="line">				maxLength = tempLength;</span><br><span class="line">				maxLengthHead = tempLengthHead;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		return s.substr(maxLengthHead, maxLength);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/LeetCode/LeetCode/查找最长无重复子串/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1691,193 +1835,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/操作系统/操作系统/第八章-内存管理/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/操作系统/操作系统/第八章-内存管理/" itemprop="url">第八章 内存管理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-25T18:16:48+08:00">
-                2018-05-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/操作系统/" itemprop="url" rel="index">
-                    <span itemprop="name">操作系统</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h1><p>​    需要确保每个进程都有自己独立的内存空间, 保证不被其他进程访问</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">基址寄存器(重定位寄存器): 确定了物理地址的起始</span><br><span class="line"></span><br><span class="line">界限址寄存器: 确定了物理地址的范围</span><br><span class="line"></span><br><span class="line">比如: 基址寄存器为300040, 界限地址寄存器为120900, 那么程序可访问的范围是30040~430940</span><br></pre></td></tr></table></figure>
-<h1 id="地址绑定"><a href="#地址绑定" class="headerlink" title="地址绑定"></a>地址绑定</h1><ul>
-<li>编译: 将程序中变量与可重新定位的地址绑定.</li>
-</ul>
-<ul>
-<li>链接, 加载: 将可重定位的地址绑定为绝对地址</li>
-</ul>
-<h1 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h1><ul>
-<li>逻辑地址(虚拟地址): CPU生成的地址, 有不同的</li>
-<li>物理地址: 内存实际的地址</li>
-</ul>
-<h1 id="进程存放在内存中的方式"><a href="#进程存放在内存中的方式" class="headerlink" title="进程存放在内存中的方式"></a>进程存放在内存中的方式</h1><h2 id="连续内存分配"><a href="#连续内存分配" class="headerlink" title="连续内存分配"></a>连续内存分配</h2><p>​    将整个进程不中断地放在内存空间</p>
-<h3 id="固定分区-可变分区"><a href="#固定分区-可变分区" class="headerlink" title="固定分区, 可变分区"></a>固定分区, 可变分区</h3><ul>
-<li>固定分区: 将内存划分为多个大小固定的分区</li>
-<li>可变分区: 分区大小不固定, 用表来管理每个分区</li>
-</ul>
-<h3 id="分配方式"><a href="#分配方式" class="headerlink" title="分配方式"></a>分配方式</h3><p>​    将内存块分配给进程, 多出来的内存块放回, 会产生外部碎片</p>
-<ul>
-<li>首次适应: 分配第一个足够大内存块(孔)给进程</li>
-<li>最佳适应: 分配最小的足够大的内存块给进程</li>
-<li>最差适应: 分配最大的足够大的内存块给进程</li>
-</ul>
-<h3 id="碎片"><a href="#碎片" class="headerlink" title="碎片"></a>碎片</h3><ul>
-<li>内部碎片: 分配给进程的内存比请求的内存要多, 则多出来的部分为内部碎片</li>
-</ul>
-<ul>
-<li>外部碎片: 当所有总的内存之和可以满足请求, 但各部分内存并不连续, 则这些内存为外部碎片</li>
-</ul>
-<h3 id="紧缩"><a href="#紧缩" class="headerlink" title="紧缩"></a>紧缩</h3><p>​    移动内存中的数据, 将空闲的空间合并, 解决外部碎片</p>
-<h2 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h2><p>​    允许进程的物理地址非连续</p>
-<h3 id="帧-页"><a href="#帧-页" class="headerlink" title="帧, 页"></a>帧, 页</h3><ul>
-<li>帧: 将物理地址分为固定大小的块</li>
-<li>页: 将备份储存器分为固定大小的块</li>
-</ul>
-<h3 id="分页原理"><a href="#分页原理" class="headerlink" title="分页原理"></a>分页原理</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">总的地址空间为2^m, 页大小为2^n, CPU生成的逻辑地址可以分为: 页号(高m-n位), 页偏移(低n位)</span><br><span class="line"></span><br><span class="line">页号: 页表中的索引, 对应的值为物理内存的基地址</span><br><span class="line"></span><br><span class="line">页偏移: 物理内存的偏移地址</span><br><span class="line"></span><br><span class="line">物理地址 = 页表[页号] + 页偏移</span><br></pre></td></tr></table></figure>
-<h3 id="共享页"><a href="#共享页" class="headerlink" title="共享页"></a>共享页</h3><p>​    两个进程可以共享同一个页, 达到共享内存的目的</p>
-<h3 id="多层页表"><a href="#多层页表" class="headerlink" title="多层页表"></a>多层页表</h3><p>​    只用一个页表, 可能会导致页表中元素过多</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CPU生成的逻辑地址: 页号1, 页号2, ..., 页号n, 页偏移</span><br><span class="line"></span><br><span class="line">物理地址 = 页表1[页号1] + 页表2[页号2] + ... + 页表n[页号n] + 页偏移</span><br></pre></td></tr></table></figure>
-<h3 id="哈希页表"><a href="#哈希页表" class="headerlink" title="哈希页表"></a>哈希页表</h3><p>​    只用一个页表, 可能会导致页表中元素过多</p>
-<h3 id="反向页表"><a href="#反向页表" class="headerlink" title="反向页表"></a>反向页表</h3><p>​    每个进程一个页表, 造成浪费.  反向页表使整个操作系统只有一个页表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CPU生成的逻辑地址: 所属进程号, 页号, 页偏移</span><br></pre></td></tr></table></figure>
-<h3 id="TLB转换表缓冲区"><a href="#TLB转换表缓冲区" class="headerlink" title="TLB转换表缓冲区"></a>TLB转换表缓冲区</h3><p>​    访问一个地址需要先访问内存中的页表, 再访问实际物理地址. 因此, 访问一个字节需要两次访问内存. </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">它由键(页码)值(页地址)对构成, 通常将页表中的常用页码放入TLB中, 当需要查找时, 先查找TLB, 若页码在TLB中, 则直接获取到页表. 若不在则需要查找页表, 同时将页码放入TLB, 这种情况称为TBL失效</span><br></pre></td></tr></table></figure>
-<h2 id="分段"><a href="#分段" class="headerlink" title="分段"></a>分段</h2><p>​    将进程分为多个段, 如栈段, 代码段</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">逻辑地址分为: 段的基址, 段偏移</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1932,7 +1889,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">64</span>
+                  <span class="site-state-item-count">65</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
