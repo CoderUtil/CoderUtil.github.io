@@ -259,6 +259,189 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/操作系统/操作系统/第六章-同步/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/操作系统/操作系统/第六章-同步/" itemprop="url">第六章 同步</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-12T09:28:14+08:00">
+                2018-05-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/操作系统/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="互斥"><a href="#互斥" class="headerlink" title="互斥"></a>互斥</h1><p>​    对于共享数据的进程, 必须提供互斥, 防止读写操作同时进行</p>
+<h1 id="进程结构"><a href="#进程结构" class="headerlink" title="进程结构"></a>进程结构</h1><p><img src="https://CoderUtil.github.io/images/TIM截图20180512093311.png" alt="操作系统"></p>
+<h2 id="进入区"><a href="#进入区" class="headerlink" title="进入区"></a>进入区</h2><p>​    发出进入临界区请求的代码</p>
+<h2 id="临界区"><a href="#临界区" class="headerlink" title="临界区"></a>临界区</h2><p>​    若多个进程含有共享变量, 则访问共享变量的的代码称为临界区(不允许多个进程同时进入临界区)</p>
+<h2 id="退出区"><a href="#退出区" class="headerlink" title="退出区"></a>退出区</h2><p>​    退出临界区的代码</p>
+<h2 id="剩余区"><a href="#剩余区" class="headerlink" title="剩余区"></a>剩余区</h2><p>​    进程中的剩余代码</p>
+<h2 id="硬件方法"><a href="#硬件方法" class="headerlink" title="硬件方法"></a>硬件方法</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">boolean waiting[n] = <span class="literal">false</span>;     <span class="comment">//  waiting[i]表示进程i是否在等待</span></span><br><span class="line">boolean lock = <span class="literal">false</span>;           <span class="comment">//  lock表示是否上锁</span></span><br><span class="line"></span><br><span class="line"><span class="function">boolean <span class="title">TestAndSet</span><span class="params">(boolean* target)</span> </span>&#123;</span><br><span class="line">    boolean rv = *target;</span><br><span class="line">    *taget = TRUE;</span><br><span class="line">    <span class="keyword">return</span> rv;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//  进程i</span></span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    <span class="comment">//  进入区</span></span><br><span class="line">    waiting[i] = TRUE;          <span class="comment">//  进程i开始等待</span></span><br><span class="line">    boolean key = TRUE;</span><br><span class="line">      <span class="keyword">while</span>(waiting[i] &amp;&amp; key)    <span class="comment">//  1. 如果进程i在等待, 当上一个进程执行完, 它会被设为FALSE(见退出区代码), 此时向下运行; 2. 如果lock被锁上, 阻塞等待直到lock解锁 </span></span><br><span class="line">        key = TestAndSet(lock);</span><br><span class="line">    waiting[i] = FALSE;         <span class="comment">//  进程i结束等待, 开始运行</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//  临界区</span></span><br><span class="line">    ....</span><br><span class="line"></span><br><span class="line">    <span class="comment">//  退出区</span></span><br><span class="line">    <span class="keyword">int</span> j = (i + <span class="number">1</span>) % n;        <span class="comment">//  进程i结束, 找到下一个处于等待状态的进程, 准备运行它</span></span><br><span class="line">    <span class="keyword">while</span> (j != i &amp;&amp; !waiting[j])</span><br><span class="line">        j = (j + <span class="number">1</span>) % n;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (j == i)                 <span class="comment">//  若所有进程都不处于等待状态, 锁可以打开</span></span><br><span class="line">        lock = FALSE;</span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">        waiting[j] = FALSE;     </span><br><span class="line">&#125; <span class="keyword">while</span> (TRUE)</span><br></pre></td></tr></table></figure>
+<h2 id="信号量"><a href="#信号量" class="headerlink" title="信号量"></a>信号量</h2><p>​    信号量S的取值为0和1, 且wait和signal是原子的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">void wait(S) &#123;</span><br><span class="line">  while (S &lt;= 0)</span><br><span class="line">  	;</span><br><span class="line">  S--;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void signal(S) &#123;</span><br><span class="line">  S++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">do &#123;</span><br><span class="line">	//	进入区</span><br><span class="line">  	wait(S);</span><br><span class="line">  </span><br><span class="line">  	//	管理区</span><br><span class="line">  	...</span><br><span class="line">  </span><br><span class="line">  	//	退出区</span><br><span class="line">  	signal(S);</span><br><span class="line">  </span><br><span class="line">  	//	剩余区</span><br><span class="line">  	...</span><br><span class="line">&#125; while (TRUE);</span><br></pre></td></tr></table></figure>
+<h2 id="忙等待"><a href="#忙等待" class="headerlink" title="忙等待"></a>忙等待</h2><p>​    当一个进程位于临界区时, 其他试图进入临界区的进程都必须在代码中循环</p>
+<h2 id="含有等待队列的信号量"><a href="#含有等待队列的信号量" class="headerlink" title="含有等待队列的信号量"></a>含有等待队列的信号量</h2><p>​    信号量S是一个数据结构. 用于解决忙等待问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">typedef struct &#123;</span><br><span class="line">    int value;                  //  可用的资源数目</span><br><span class="line">    struct process *list;       //  等待队列</span><br><span class="line">&#125; semaphore;</span><br><span class="line"></span><br><span class="line">void wait(semaphore* S) &#123;       //  当进程需要使用资源时, 调用wait</span><br><span class="line">    S-&gt;value--;                 //  value的绝对值表示等待该信号量的进程个数</span><br><span class="line">    if (S-&gt;value &lt; 0) &#123;</span><br><span class="line">        1. 将进程添加进S-&gt;list</span><br><span class="line">        2. 调用block()将进程挂起</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void signal(semaphore* S) &#123;     //  当进程需要释放资源时, 调用signal</span><br><span class="line">    S-&gt;vallue++;</span><br><span class="line">    if (S-&gt;value &lt;= 0) &#123;</span><br><span class="line">        1. 将进程从S-&gt;list移除</span><br><span class="line">        2. 调用wakeup()将进程唤醒</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">do &#123;</span><br><span class="line">    //  进入区</span><br><span class="line">    wait(S);</span><br><span class="line"></span><br><span class="line">    //  临界区</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    //  退出区</span><br><span class="line">    signal(S);</span><br><span class="line"></span><br><span class="line">    //  剩余区</span><br><span class="line">    ...</span><br><span class="line">&#125; while (TRUE);</span><br></pre></td></tr></table></figure>
+<h3 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h3><p>​    具有等待队列的信号量可能产生死锁</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">    P0              P1</span><br><span class="line">wait(S);         wait(Q);</span><br><span class="line">wait(Q);		wait(S);</span><br><span class="line">...				...</span><br><span class="line">signal(S);		signal(Q);</span><br><span class="line">signal(Q);		signal(S);</span><br><span class="line"></span><br><span class="line">假设进程P0和P1只有两个共享信号量S和Q, 当P0执行wait(S), P1执行wait(Q)时, 进程P0和P1都沉睡, 无法执行下面的唤醒程序</span><br></pre></td></tr></table></figure>
+<h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><p>​    执行单个逻辑功能的一组操作</p>
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><ul>
+<li>提交commit: 事务已成功执行后提交事务</li>
+<li>回退roll back: 事务停止时后回退事务</li>
+</ul>
+<h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><p>​    在事务执行前先记日志</p>
+<h2 id="检测点"><a href="#检测点" class="headerlink" title="检测点"></a>检测点</h2><p>​    系统定期将日志及易失性数据保存到非易失性数据中</p>
+<h2 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h2><p>​    事务具有原子性, 即事务中的一组指令不可分割, 必须同时执行或同时不执行</p>
+<p>通过一下两种方式保证事务的原子性: </p>
+<ul>
+<li>串行化: 事务串行执行, 即事务之间的指令不会出现重叠(A事务执行几条指令, B事务执行几条)</li>
+</ul>
+<ul>
+<li>加锁协议: 在事务执行前给它加锁(如果已加了锁, 则等待直到能加锁), 事务执行完后解锁</li>
+</ul>
+<ul>
+<li><p>时间戳: 给每个事务一个时间戳, 按时间戳顺序来执行事务</p>
+<p>​</p>
+</li>
+</ul>
+<h1 id="mutex互斥量-互斥锁"><a href="#mutex互斥量-互斥锁" class="headerlink" title="mutex互斥量(互斥锁)"></a>mutex互斥量(互斥锁)</h1><p>​    每个对象都对应于一个可称为” 互斥量” 的标记，这个标记用来保证在任一时刻，只能有一个线程访问该对象</p>
+<h2 id="mutex操作"><a href="#mutex操作" class="headerlink" title="mutex操作"></a>mutex操作</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">pthread_mutex_init		初始化mutex</span><br><span class="line"></span><br><span class="line">pthread_mutex_lock		对mutex加锁, 不成等待</span><br><span class="line"></span><br><span class="line">pthread_mutex_trylock	对mutex加锁, 不成返回</span><br><span class="line"></span><br><span class="line">pthread_mutex_unlock	解锁mutex</span><br><span class="line"></span><br><span class="line">pthread_mutex_destroy	释放mutex</span><br></pre></td></tr></table></figure>
+<h2 id="mutex类型"><a href="#mutex类型" class="headerlink" title="mutex类型"></a>mutex类型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">快速mutex: 一个线程必须在未锁时获得mutex，否则必须等待。</span><br><span class="line">	pthread_mutex_t fastmutex= PTHREAD_MUTEX_INITIALIZER;</span><br><span class="line">	</span><br><span class="line">递归mutex  拥有mutex的线程可多次加锁而不必等待，但此时其他线程必须等待。</span><br><span class="line">	pthread_mutex_t recmutex= PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP;</span><br><span class="line">	</span><br><span class="line">错误检测mutex: 如果mutex已被锁，其他进程使用pthread_mutex_lock()加锁时，将返回EDEADLK</span><br><span class="line">	pthread_mutex_t errchkmutex=PTHREAD_ERRORCECK_MUTEX_INITIALIZER_NP;</span><br></pre></td></tr></table></figure>
+<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. 静态初始化</span><br><span class="line">	static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;</span><br><span class="line">	</span><br><span class="line">2. 动态初始化</span><br><span class="line">	pthread_mutex_init		//	申请</span><br><span class="line">	pthread_mutex_destroy	//	释放</span><br></pre></td></tr></table></figure>
+<h2 id="创建10个线程计算0～9的和"><a href="#创建10个线程计算0～9的和" class="headerlink" title="创建10个线程计算0～9的和"></a>创建10个线程计算0～9的和</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;pthread.h&gt;</span><br><span class="line">#include &lt;errno.h&gt;</span><br><span class="line"></span><br><span class="line">#define THREAD_NUMBER 10</span><br><span class="line"></span><br><span class="line">static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER; </span><br><span class="line"></span><br><span class="line">int sum = 0;</span><br><span class="line"></span><br><span class="line">void* inc(void *arg) // 线程执行的函数</span><br><span class="line">&#123;</span><br><span class="line">   int i =(*(int *)arg); </span><br><span class="line">   pthread_mutex_lock(&amp;mutex);</span><br><span class="line">   sum = sum + i; </span><br><span class="line">   pthread_mutex_unlock(&amp;mutex);</span><br><span class="line">   return NULL;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">   pthread_t pt[THREAD_NUMBER];</span><br><span class="line">   int arg[THREAD_NUMBER];	  </span><br><span class="line">   for(int i = 0; i &lt; THREAD_NUMBER; i++) &#123;</span><br><span class="line">       arg[i] = i;	</span><br><span class="line">       if(pthread_create(&amp;pt[i], NULL, inc, (void *)&amp;arg[i]) != 0)&#123;</span><br><span class="line">          printf(&quot;pthread_create error\n&quot;);</span><br><span class="line">          exit(1);</span><br><span class="line">       &#125;       </span><br><span class="line">   &#125;</span><br><span class="line">   for(int i = 0; i &lt; THREAD_NUMBER; i++)</span><br><span class="line">       if(pthread_join(pt[i], NULL) != 0)&#123;</span><br><span class="line">          printf(&quot;pthread_join error\n&quot;);</span><br><span class="line">          exit(1);</span><br><span class="line">       &#125;</span><br><span class="line">   printf(&quot;sum is %d\n&quot;, sum);</span><br><span class="line">   pthread_mutex_destroy(&amp;mutex);</span><br><span class="line">   return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="POSIX信号量"><a href="#POSIX信号量" class="headerlink" title="POSIX信号量"></a>POSIX信号量</h1><h2 id="操作-1"><a href="#操作-1" class="headerlink" title="操作"></a>操作</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">1. 初始化</span><br><span class="line">	int sem_init(sem_t *sem, int pshared, unsigned int value)		</span><br><span class="line">	第一个参数: 信号量</span><br><span class="line">	第二个参数: 为0则信号量在进程间共享, 否则在当前进程的线程间共享</span><br><span class="line">	第三个参数: 信号量的初值</span><br><span class="line">	</span><br><span class="line">2. signal</span><br><span class="line">	sem_post(), 释放资源. 信号量加1</span><br><span class="line">	</span><br><span class="line">3. wait</span><br><span class="line">	sem_wait(), 申请资源. 若信号量大于0则减1, 小于等于0则睡眠至大于0</span><br><span class="line"></span><br><span class="line">4. 非阻塞的wait</span><br><span class="line">	sem_trywait(), 若信号量小于等于0, 则返回错误类型EAGAIN</span><br><span class="line">	</span><br><span class="line">5. 获取信号量的值</span><br><span class="line">	sem_getvalue()</span><br><span class="line"></span><br><span class="line">6. 释放信号量</span><br><span class="line">	sem_destroy()</span><br></pre></td></tr></table></figure>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;sys/types.h&gt;  </span><br><span class="line">#include &lt;pthread.h&gt;</span><br><span class="line">#include &lt;semaphore.h&gt; </span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;cstdlib&gt; </span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">#define NBUFF 3</span><br><span class="line"></span><br><span class="line">int nitems;</span><br><span class="line"></span><br><span class="line">struct sto &#123;</span><br><span class="line">  int buff[NBUFF];</span><br><span class="line">  sem_t mutex, nempty, nstored;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">struct sto shared;</span><br><span class="line"></span><br><span class="line">void* produce(void* arg)</span><br><span class="line">&#123;   </span><br><span class="line">   for (int i = 0; i &lt; nitems; i++) &#123;</span><br><span class="line">     sem_wait(&amp;shared.nempty);</span><br><span class="line">     sem_wait(&amp;shared.mutex);</span><br><span class="line">     shared.buff[i % NBUFF] = i;</span><br><span class="line">     cout &lt;&lt; &quot;Product &quot; &lt;&lt; shared.buff[i % NBUFF] &lt;&lt; endl;</span><br><span class="line">     sem_post(&amp;shared.mutex);</span><br><span class="line">     sem_post(&amp;shared.nstored);</span><br><span class="line">   &#125;</span><br><span class="line">   return(NULL);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void* consume(void* arg)</span><br><span class="line">&#123;</span><br><span class="line">   for (int i = 0; i &lt; nitems; i++) &#123;</span><br><span class="line">     sem_wait(&amp;shared.nstored);</span><br><span class="line">     sem_wait(&amp;shared.mutex);</span><br><span class="line">     if (shared.buff[i % NBUFF] == i)&#123;</span><br><span class="line">        cout &lt;&lt; &quot;buff[&quot; &lt;&lt; i  &lt;&lt;&quot;] = &quot; &lt;&lt;  shared.buff[i % NBUFF] &lt;&lt; endl;</span><br><span class="line">     cout &lt;&lt; &quot;Consumer:&quot; &lt;&lt; shared.buff[i % NBUFF] &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">     sem_post(&amp;shared.mutex);</span><br><span class="line">     sem_post(&amp;shared.nempty);</span><br><span class="line">   &#125;</span><br><span class="line">   return(NULL);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char **argv)</span><br><span class="line">&#123;</span><br><span class="line">   pthread_t tid_produce, tid_consumer;</span><br><span class="line">   if (argc != 2)&#123;</span><br><span class="line">      cout &lt;&lt; &quot;Usage: prodcons number&quot; &lt;&lt; endl;</span><br><span class="line">      exit(0);</span><br><span class="line">   &#125;</span><br><span class="line">   nitems = atoi(argv[1]);</span><br><span class="line">   sem_init(&amp;shared.mutex, 0, 1);</span><br><span class="line">   sem_init(&amp;shared.nempty, 0, NBUFF);</span><br><span class="line">   sem_init(&amp;shared.nstored, 0, 0);</span><br><span class="line">   pthread_create(&amp;tid_produce, NULL, produce, NULL);</span><br><span class="line">   pthread_create(&amp;tid_consumer, NULL, consume, NULL);</span><br><span class="line">   pthread_join(tid_produce, NULL);</span><br><span class="line">   pthread_join(tid_consumer, NULL);</span><br><span class="line">   sem_destroy(&amp;shared.mutex);</span><br><span class="line">   sem_destroy(&amp;shared.nempty);</span><br><span class="line">   sem_destroy(&amp;shared.nstored);</span><br><span class="line">   exit(0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="信号量和互斥锁的区别"><a href="#信号量和互斥锁的区别" class="headerlink" title="信号量和互斥锁的区别"></a>信号量和互斥锁的区别</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">“信号量用在多线程多任务同步的，一个线程完成了某一个动作就通过信号量告诉别的线程，别的线程再进行某些动作.而互斥锁是用在多线程多任务互斥的，一个线程占用了某一个资源，那么别的线程就无法访问，直到这个线程unlock，其他的线程才开始可以利用这 个资源。比如对全局变量的访问，有时要加锁，操作完了，在解锁。有的时候锁和信号量会同时使用的”</span><br><span class="line">也就是说，信号量不一定是锁定某一个资源，而是流程上的概念，比如：有A,B两个线程，B线程要等A线程完成某一任务以后再进行自己下面的步骤，这个任务 并不一定是锁定某一资源，还可以是进行一些计算或者数据处理之类。而线程互斥量则是“锁住某一资源”的概念，在锁定期间内，其他线程无法对被保护的数据进行操作</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/操作系统/操作系统/第五章 CPU调度/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1747,279 +1930,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/软件工程实训/软件工程实训/studyreport-JAVA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/软件工程实训/软件工程实训/studyreport-JAVA/" itemprop="url">JAVA学习报告</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-13T17:31:36+08:00">
-                2018-04-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/软件工程实训/" itemprop="url" rel="index">
-                    <span itemprop="name">软件工程实训</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Ubuntu16-04下配置JAVA环境"><a href="#Ubuntu16-04下配置JAVA环境" class="headerlink" title="Ubuntu16.04下配置JAVA环境"></a>Ubuntu16.04下配置JAVA环境</h1><p><a href="https://blog.csdn.net/williamyi96/article/details/78268595" target="_blank" rel="noopener">https://blog.csdn.net/williamyi96/article/details/78268595</a></p>
-<h1 id="编译与执行"><a href="#编译与执行" class="headerlink" title="编译与执行"></a>编译与执行</h1><ol>
-<li>编辑Java程序</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class Hello &#123;</span><br><span class="line">    public static void main(String args[]) &#123;</span><br><span class="line">        System.out.println(&quot;Hello World!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">保存为Hello.java文件. 注意, java文件中只能有一个public类, 且文件名要与public类名相同</span><br></pre></td></tr></table></figure>
-<ol>
-<li>编译Java程序(生成.class文件)</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;javac Hello.java	</span><br><span class="line"></span><br><span class="line">&gt;javac -classpath .:要导入的包相对Hello.java文件所在的位置 Hello.java</span><br></pre></td></tr></table></figure>
-<ol>
-<li>执行Java程序</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;java Hello</span><br><span class="line"></span><br><span class="line">&gt;java -classpath .:要导入的包相对Hello文件所在的位置 Hello</span><br></pre></td></tr></table></figure>
-<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><ul>
-<li>逻辑型: boolean</li>
-</ul>
-<ul>
-<li>字符型: char</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">char c = &apos;a&apos;;	//	用单引号表示</span><br></pre></td></tr></table></figure>
-<ul>
-<li>字符串类型(属于类, 不是基本类型): String, StringBuilder, StringBuffer</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">相同: </span><br><span class="line">	都表示字符串类型, 如String str = &quot;11111&quot;;		//	用双引号表示</span><br><span class="line">	</span><br><span class="line">区别:</span><br><span class="line">  String: 不能被修改</span><br><span class="line">  StringBuffer:  能被修改. 能被同步访问, 要求线程安全时使用 </span><br><span class="line">  StringBuilder: 能被修改. 速度快, 不要求线程安全时使用</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">方法:</span><br><span class="line">	int capacity()						返回容量大小</span><br><span class="line">	char charAt(int index)				返回指定索引处的字符</span><br><span class="line">	void setCharAt(int index, char ch)	 设置指定索引处的字符	</span><br><span class="line">	indexOf(String str)					返回子串str在字符串中第一次出现的位置的索引</span><br></pre></td></tr></table></figure>
-<ul>
-<li>整型: byte, short, int, long</li>
-</ul>
-<ul>
-<li>浮点型: float, double</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">float z = 3.14f</span><br><span class="line"></span><br><span class="line">double w = 3.14</span><br></pre></td></tr></table></figure>
-<h1 id="类"><a href="#类" class="headerlink" title="类"></a>类</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class MyDate &#123;</span><br><span class="line">    //  属性</span><br><span class="line">    private int day;    </span><br><span class="line">    private int month;</span><br><span class="line">    private int year;</span><br><span class="line"></span><br><span class="line">    //  构造函数</span><br><span class="line">    public MyDate (int day, int month, int year) &#123;  </span><br><span class="line">        this.day = day;</span><br><span class="line">        this.month = month;</span><br><span class="line">        this.year = year;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void pirntDate() &#123;</span><br><span class="line">        System.out.println(year + &quot;-&quot; + month + &quot;-&quot; + day);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class test &#123;</span><br><span class="line">    public static void main(String args[]) &#123;</span><br><span class="line">        MyDate myDate = new MyDate(1, 2, 2018);		//	类是引用类型, 需要指向一片空间. 因此要new</span><br><span class="line">        myDate.pirntDate();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. private: 同一类内可见</span><br><span class="line"></span><br><span class="line">2. protected: 同一包内的类和所有子类可见</span><br><span class="line"></span><br><span class="line">3. 缺省: 同一包内可见</span><br><span class="line"></span><br><span class="line">4. public: 所有类可见</span><br></pre></td></tr></table></figure>
-<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MyDate a, b;</span><br><span class="line">a = new MyDate();	//	a指向一块MyDate类型的空间</span><br><span class="line">b = a;				//	b指向a指向的空间</span><br></pre></td></tr></table></figure>
-<h1 id="跳转语句"><a href="#跳转语句" class="headerlink" title="跳转语句"></a>跳转语句</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">语法: </span><br><span class="line">  break [label], 跳出[标号所在]循环	</span><br><span class="line">  continue [label], 跳过[标号所在]循环的剩余代码</span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">public class test &#123;</span><br><span class="line">    public static void main(String args[]) &#123;</span><br><span class="line">        first: &#123;</span><br><span class="line">            second: &#123;</span><br><span class="line">                third: &#123;</span><br><span class="line">                    if (true)</span><br><span class="line">                        break second;</span><br><span class="line">                &#125;</span><br><span class="line">                System.out.println(&quot;This won&apos;t be excuted&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(&quot;This will be excuted&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="装箱与拆箱"><a href="#装箱与拆箱" class="headerlink" title="装箱与拆箱"></a>装箱与拆箱</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">每种基本类型都有对应的类类型, 比如int和Integer, long和Long, char和Character</span><br><span class="line"></span><br><span class="line">装箱: 基本类型 -&gt; 类类型</span><br><span class="line"></span><br><span class="line">拆箱: 类类型 -&gt; 基本类型</span><br><span class="line"></span><br><span class="line">JVM实现了自动的装箱与拆箱:</span><br><span class="line">	int i = 0;</span><br><span class="line">	Integer integer = i;	//	装箱</span><br><span class="line">	int j = integer;		//	拆箱</span><br><span class="line"></span><br><span class="line">类类型的比较:</span><br><span class="line">	Integer i1 = 256;</span><br><span class="line">	Integer i2 = 256;</span><br><span class="line">	Integer i3 = 100;</span><br><span class="line">	Integer i4 = 100;</span><br><span class="line">	</span><br><span class="line">	if (i1 != i2)</span><br><span class="line">		System.out.println(&quot;对于不属于-128~127的数, 类类型用实例表示, 它们指向不同的地址空间&quot;);</span><br><span class="line">	if (i3 == i4)</span><br><span class="line">		System.out.println(&quot;对于属于-128~127的数, 类类型自动拆箱, 用基本类型表示&quot;);</span><br></pre></td></tr></table></figure>
-<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">1. 数组的创建</span><br><span class="line">	int arr1[] = &#123;1, 2, 3&#125;;</span><br><span class="line">	int[] arr2 = new int[3];</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">2. 数组是一个对象类型: </span><br><span class="line">    System.out.println(arr1[0]);	//	1</span><br><span class="line">    int[] arr2 = arr1;			    //	对象之间的赋值是引用</span><br><span class="line">    arr2[0] = 2;</span><br><span class="line">    System.out.println(arr1[0]);	//	2</span><br><span class="line">    </span><br><span class="line"> </span><br><span class="line">3. 打印数组</span><br><span class="line">	一维数组: </span><br><span class="line">		int[] arr1 = &#123;1, 2, 3&#125;;</span><br><span class="line">		//	导入Arrays包, import java.util.Arrays;</span><br><span class="line">        System.out.println(Arrays.toString(arr1));		//	[1, 2, 3]</span><br><span class="line">        </span><br><span class="line">     二维数组:</span><br><span class="line">     	int[][] arr2 = &#123;&#123;1, 2&#125;, &#123;3, 4&#125;, &#123;5, 6&#125;&#125;;</span><br><span class="line">        System.out.println(Arrays.deepToString(arr2));	//	[[1, 2], [3, 4], [5, 6]]</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">4. 数组的长度可以动态设置</span><br><span class="line">	    int size = 5;</span><br><span class="line">        int[] arr = new int[size];</span><br></pre></td></tr></table></figure>
-<h1 id="集合类"><a href="#集合类" class="headerlink" title="集合类"></a>集合类</h1><ul>
-<li>使用集合需要导入对应的包java.util.*</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import java.util.Set/List/Map/Queue</span><br><span class="line">或</span><br><span class="line">import java.util.*	(导入java.util下的所有包)</span><br></pre></td></tr></table></figure>
-<ol>
-<li>set: 无序且不能有重复元素的集合</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Set set = new HashSet();	//		HashSet是Set的子类</span><br><span class="line">set.add(&quot;one&quot;);</span><br><span class="line">set.add(new Integer(1));</span><br><span class="line">set.add(new Float(0.1f));</span><br><span class="line">System.out.println(set);</span><br></pre></td></tr></table></figure>
-<ol>
-<li>list : 链表</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">List list = new ArrayList();  //	ArrayList是List的子类      	  </span><br><span class="line">list.add(&quot;one&quot;);            </span><br><span class="line">list.add(new Integer(1));          </span><br><span class="line">list.add(new Float(0.1f));          </span><br><span class="line">System.out.println(list); </span><br><span class="line"></span><br><span class="line">List&lt;String&gt; queue = new LinkList&lt;String&gt;();	//	LinkList是List的子类, 这里使用了泛型表明元素都是集合中的元素String类型</span><br></pre></td></tr></table></figure>
-<ol>
-<li>map: 映射, 由多对键值对构成</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Map map = new HashMap();	//		HashMap是map的子类</span><br></pre></td></tr></table></figure>
-<ol>
-<li>Queue: 队列</li>
-</ol>
-<h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><ul>
-<li>泛型方法: 接收不同类型的参数, 调用不同的方法</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">public class GenericMethodTest</span><br><span class="line">&#123;</span><br><span class="line">   // 泛型方法 printArray                         </span><br><span class="line">   public static &lt; E &gt; void printArray( E[] inputArray )</span><br><span class="line">   &#123;</span><br><span class="line">      // 输出数组元素            </span><br><span class="line">         for ( E element : inputArray )&#123;        </span><br><span class="line">            System.out.printf( &quot;%s &quot;, element );</span><br><span class="line">         &#125;</span><br><span class="line">         System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    public static void main( String args[] )</span><br><span class="line">    &#123;</span><br><span class="line">        // 创建不同类型数组： Integer, Double 和 Character</span><br><span class="line">        Integer[] intArray = &#123; 1, 2, 3, 4, 5 &#125;;</span><br><span class="line">        Double[] doubleArray = &#123; 1.1, 2.2, 3.3, 4.4 &#125;;</span><br><span class="line">        Character[] charArray = &#123; &apos;H&apos;, &apos;E&apos;, &apos;L&apos;, &apos;L&apos;, &apos;O&apos; &#125;;</span><br><span class="line"> </span><br><span class="line">        System.out.println( &quot;整型数组元素为:&quot; );</span><br><span class="line">        printArray( intArray  ); // 传递一个整型数组</span><br><span class="line"> </span><br><span class="line">        System.out.println( &quot;\n双精度型数组元素为:&quot; );</span><br><span class="line">        printArray( doubleArray ); // 传递一个双精度型数组</span><br><span class="line"> </span><br><span class="line">        System.out.println( &quot;\n字符型数组元素为:&quot; );</span><br><span class="line">        printArray( charArray ); // 传递一个字符型数组</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="单继承"><a href="#单继承" class="headerlink" title="单继承"></a>单继承</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">JAVA的继承属于单继承, 即一个子类只能够有一个父类</span><br><span class="line"></span><br><span class="line">class Car &#123;</span><br><span class="line">    private int wheel = 4;</span><br><span class="line">    public int getWheel() &#123;</span><br><span class="line">        return wheel;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class MobileCar extends Car &#123;</span><br><span class="line">    private String name;</span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">通过继承, 基类能够派生出多个新类型的派生类, 增强了扩展性</span><br><span class="line"></span><br><span class="line">class Shape &#123;</span><br><span class="line">    void draw() &#123;</span><br><span class="line">        System.out.println(&quot;draw&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Circle extends Shape &#123;</span><br><span class="line">    public void draw() &#123;</span><br><span class="line">        System.out.println(&quot;Circle draw&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Square extends Shape &#123;</span><br><span class="line">    public void draw() &#123;</span><br><span class="line">        System.out.println(&quot;Square draw&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class test &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Shape circle = new Circle();</span><br><span class="line">        circle.draw();</span><br><span class="line"></span><br><span class="line">        Shape square = new Square();</span><br><span class="line">        square.draw();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="垃圾回收机制"><a href="#垃圾回收机制" class="headerlink" title="垃圾回收机制"></a>垃圾回收机制</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Java使用垃圾回收机制来管理内存, 不用手动释放内存</span><br><span class="line"></span><br><span class="line">增加释放内存效率的方法:</span><br><span class="line">	1. 引用变量退出作用域后设为null</span><br><span class="line">	2. 使用System.gc(), 通知垃圾收集器运行</span><br></pre></td></tr></table></figure>
-<h1 id="重载与重写"><a href="#重载与重写" class="headerlink" title="重载与重写"></a>重载与重写</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">重载:</span><br><span class="line">	同一个类内的方法, 名字相同, 而参数不同(与返回值无关)</span><br><span class="line"></span><br><span class="line">重写:</span><br><span class="line">	子类重写父类的同名方法</span><br></pre></td></tr></table></figure>
-<h2 id="super与this"><a href="#super与this" class="headerlink" title="super与this"></a>super与this</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">this: 调用当前类中的另一种构造函数</span><br><span class="line"></span><br><span class="line">    class Test &#123;</span><br><span class="line">        private int num;</span><br><span class="line"></span><br><span class="line">        public void Test() &#123;</span><br><span class="line">            this(0);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public void Test(int num) &#123;</span><br><span class="line">          this.num = num;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">super: 调用父类的函数</span><br><span class="line"></span><br><span class="line">	class Shape &#123;</span><br><span class="line">        void draw() &#123;</span><br><span class="line">            System.out.println(&quot;draw&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    class Circle extends Shape &#123;</span><br><span class="line">        public void draw() &#123;</span><br><span class="line">            System.out.println(&quot;Circle draw&quot;);</span><br><span class="line">            super.draw();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h1 id="static"><a href="#static" class="headerlink" title="static"></a>static</h1><ul>
-<li>表明方法或属性是与类绑定的, 而不是与对象绑定的. 一个类的所有对象共享一个静态属性, 且静态属性通过类名调用</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class Shape &#123;</span><br><span class="line">    public static int counter;</span><br><span class="line"></span><br><span class="line">    public Shape() &#123;</span><br><span class="line">        counter++;</span><br><span class="line">        System.out.println(counter);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void func() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public class test &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Shape shape1 = new Shape();</span><br><span class="line">        Shape shape2 = new Shape();</span><br><span class="line">        System.out.println(Shape.counter);</span><br><span class="line">        Shape.func();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>静态方法中只能使用静态变量</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class Shape &#123;</span><br><span class="line">    private int counter;</span><br><span class="line"></span><br><span class="line">    public static int getCounter() &#123;</span><br><span class="line">        return counter;			//	错误</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="final"><a href="#final" class="headerlink" title="final"></a>final</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">1. 在类的声明中使用final，表示类不够能派生子类</span><br><span class="line"></span><br><span class="line">	final class MyClass &#123;&#125;</span><br><span class="line"></span><br><span class="line">2. 在方法的声明中使用final, 表示方法不能够被重写</span><br><span class="line"></span><br><span class="line">	public final void func() &#123;&#125; </span><br><span class="line"></span><br><span class="line">3. 在变量的声明中使用final, 表示变量是常量</span><br><span class="line"></span><br><span class="line">	final int num = 0;</span><br></pre></td></tr></table></figure>
-<h1 id="抽象类和接口"><a href="#抽象类和接口" class="headerlink" title="抽象类和接口"></a>抽象类和接口</h1><ul>
-<li>抽象类</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">抽象方法: 用abstract修饰, 没有具体的实现</span><br><span class="line"></span><br><span class="line">	public abstract void func();</span><br><span class="line">	</span><br><span class="line">抽象方法: 包含抽象方法的类, 也需要使用abstract修饰. 它没有实例, 且子类若不是抽象类, 则需要实现抽象方法</span><br><span class="line"></span><br><span class="line">	abstract class Parent &#123;</span><br><span class="line">      	public abstract void func();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	class Child extends Parent &#123;</span><br><span class="line">      	public void func() &#123;</span><br><span class="line">          </span><br><span class="line">      	&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>接口</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">类中所有的方法都是abstract, 且所有的变量都是final</span><br><span class="line"></span><br><span class="line">interface Say &#123;</span><br><span class="line">    public void sayMessage();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class SayHello implements Say &#123;</span><br><span class="line">    public void sayMessage() &#123;</span><br><span class="line">        System.out.println(&quot;hello&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class SayHi implements Say &#123;</span><br><span class="line">    public void sayMessage() &#123;</span><br><span class="line">        System.out.println(&quot;hi&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class test &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Say sayHello = new SayHello();</span><br><span class="line">        sayHello.sayMessage();</span><br><span class="line">        Say sayHi = new SayHi();</span><br><span class="line">        sayHi.sayMessage();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h1><ul>
-<li>捕获异常</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">   ...</span><br><span class="line">&#125; catch(异常类型1 异常的变量名1) &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125; catch(异常类型2 异常的变量名2) &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125; catch(异常类型3 异常的变量名3) &#123;</span><br><span class="line"> ...</span><br><span class="line">&#125; finally &#123;		//	无论异常是否发生, finally中的代码都会执行</span><br><span class="line">  ....</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">一些常用的异常类型, 可以从http://www.runoob.com/java/java-exceptions.html中找到</span><br></pre></td></tr></table></figure>
-<ul>
-<li>抛出异常: 让函数的调用者catch异常</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class className</span><br><span class="line">&#123;</span><br><span class="line">  public static void func() throws 异常类型1, 异常类型2</span><br><span class="line">  &#123;</span><br><span class="line">  	if () &#123;</span><br><span class="line">      throw new 异常类型1();</span><br><span class="line">  	&#125;</span><br><span class="line">    </span><br><span class="line">    if () &#123;</span><br><span class="line">      throw new 异常类型2();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  //Remainder of class definition</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">try &#123;</span><br><span class="line">   className.func();</span><br><span class="line">&#125; catch(异常类型1 异常的变量名1) &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125; catch(异常类型2 异常的变量名2) &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>自定义异常类</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class MyException extends Exception &#123;</span><br><span class="line">  private int detail;</span><br><span class="line">  </span><br><span class="line">  public MyException(String detail) &#123;</span><br><span class="line">    this.detail = detail;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class MyClass &#123;</span><br><span class="line">  public void func () throws MyException &#123;</span><br><span class="line">    throw new MyException(&quot;xxxxx&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="输入-输出"><a href="#输入-输出" class="headerlink" title="输入/输出"></a>输入/输出</h1><ul>
-<li>导入java.io.*包</li>
-</ul>
-<ul>
-<li>输出</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">System.out.print()</span><br><span class="line">System.out.println()</span><br></pre></td></tr></table></figure>
-<ul>
-<li>输入</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">BufferedReader br = new BufferedReader(new </span><br><span class="line">                      InputStreamReader(System.in));</span><br><span class="line"></span><br><span class="line">	读取字符: br.read()</span><br><span class="line">	读取字符串:br.readLine()</span><br></pre></td></tr></table></figure>
-<h1 id="读写文件"><a href="#读写文件" class="headerlink" title="读写文件"></a>读写文件</h1><p>有常见的几种流: </p>
-<ul>
-<li>字节流: 以8位字节为单位进行读写, 以InputStream与OutputStream为基础类</li>
-</ul>
-<ul>
-<li>字符流: 以16位字符为单位进行读写, 以Reader与Writer为基础类</li>
-</ul>
-<ul>
-<li>文件流: 对文件进行读写和传输, 使用FileOutputStream与FileInputStream. 它们是InputStream与OutputStream的子类</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">//	读</span><br><span class="line"></span><br><span class="line">    File f = new File(&quot;C:/java/hello&quot;);</span><br><span class="line"></span><br><span class="line">    InputStream fileInputStream = new FileInputStream(f);</span><br><span class="line">    //		保存每次读取到的字节个数</span><br><span class="line">    int length = 0; 	</span><br><span class="line">    //		缓冲数组, 用于存储读取到的数据    </span><br><span class="line">    byte[] buf = new byte[1024]; 	</span><br><span class="line"></span><br><span class="line">    // read方法如果读取到了文件的末尾，那么会返回-1  </span><br><span class="line">    while((length = fileInputStream.read(buf)) != -1) &#123; </span><br><span class="line">        System.out.print(new String(buf,0,length));  </span><br><span class="line">    &#125;  </span><br><span class="line"></span><br><span class="line">    fileInputStream.close();  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//	写</span><br><span class="line"></span><br><span class="line">    File file = new File(&quot;D:\\dalModule.cpp&quot;);  </span><br><span class="line"></span><br><span class="line">    FileOutStream fileOutStream = new FileOutStream(file);  </span><br><span class="line"></span><br><span class="line">	byte[] buf = &#123;1, 2, 3, 4&#125;;</span><br><span class="line">	</span><br><span class="line">	fileOutStream.write(buf);</span><br><span class="line">    </span><br><span class="line">    fileOutStream.close();</span><br></pre></td></tr></table></figure>
-<h1 id="序列化与反序列化"><a href="#序列化与反序列化" class="headerlink" title="序列化与反序列化"></a>序列化与反序列化</h1><ul>
-<li>序列化: 将对象转换成串行格式以便保存在硬盘上. 基础类是ObjectOutputStream</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">FileOutputSteam fileOut = new FileOutputStream(&quot;/tmp/employee.ser&quot;);</span><br><span class="line">ObjectOutputStream out = new ObjectOutputStream(fileOut);</span><br><span class="line"></span><br><span class="line">MyClass MyInstance = new MyClass();</span><br><span class="line"></span><br><span class="line">out.writeObject(MyInstance);</span><br><span class="line"></span><br><span class="line">out.close();</span><br><span class="line">fileOut.close();</span><br></pre></td></tr></table></figure>
-<ul>
-<li>反序列化: 将序列化的串行格式从硬盘中读取后, 恢复成对象. 基础类是ObjectInputStream</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">FileInputSteam fileInput = new FileInputStream(&quot;/tmp/employee.ser&quot;);</span><br><span class="line">ObjectInputStream input = new ObjectInputStream(fileInput);</span><br><span class="line"></span><br><span class="line">MyInstance = (MyClass)input.readObject();</span><br><span class="line"></span><br><span class="line">input.close();</span><br><span class="line">fileInput.close();</span><br></pre></td></tr></table></figure>
-<h1 id="反射-类似于事件"><a href="#反射-类似于事件" class="headerlink" title="反射(类似于事件)"></a>反射(类似于事件)</h1><ul>
-<li>导入包java.lang.reflect.*</li>
-</ul>
-<h1 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h1><ul>
-<li>并发多线程之间的代码是乱序执行的</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class Xyz implements Runnable &#123;		//	实现Runnable接口</span><br><span class="line">    int i;</span><br><span class="line">    public void run() &#123;</span><br><span class="line">        i = 0;</span><br><span class="line">        while (true) &#123;</span><br><span class="line">            System.out.println(i++);</span><br><span class="line">            if (i == 50)</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class test &#123;</span><br><span class="line">    public static void main(String args[]) &#123;</span><br><span class="line">        Xyz r1 = new Xyz();</span><br><span class="line">        Xyz r2 = new Xyz();</span><br><span class="line">        Thread t1 = new Thread(r1);		//	新建两个线程t1, t2</span><br><span class="line">        Thread t2 = new Thread(r2);</span><br><span class="line">        t1.start();			//	调用star()后线程开始进入就绪状态, 可以执行run()</span><br><span class="line">        t2.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2074,7 +1984,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-count">69</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
