@@ -259,6 +259,300 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/LeetCode/LeetCode/Merge Two Sorted Lists/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/LeetCode/LeetCode/Merge Two Sorted Lists/" itemprop="url">Merge Two Sorted Lists</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-06T13:15:40+08:00">
+                2018-12-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
+                    <span itemprop="name">LeetCode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: 1-&gt;2-&gt;4, 1-&gt;3-&gt;4</span><br><span class="line">Output: 1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4</span><br></pre></td></tr></table></figure>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">	ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) &#123;</span><br><span class="line">		ListNode* head = new ListNode(0);</span><br><span class="line">		ListNode* l3 = head;</span><br><span class="line"></span><br><span class="line">		//	对于无头链表, 可以先创建一个有头链表然后返回链表第一个元素</span><br><span class="line"></span><br><span class="line">		while (l1 != NULL || l2 != NULL) &#123;</span><br><span class="line">			if (l1 == NULL) &#123;</span><br><span class="line">				l3-&gt;next = new ListNode(l2-&gt;val);</span><br><span class="line">				l2 = l2-&gt;next;</span><br><span class="line">			&#125;</span><br><span class="line">			else if (l2 == NULL) &#123;</span><br><span class="line">				l3-&gt;next = new ListNode(l1-&gt;val);</span><br><span class="line">				l1 = l1-&gt;next;</span><br><span class="line">			&#125;</span><br><span class="line">			else if (l1-&gt;val &lt; l2-&gt;val) &#123;</span><br><span class="line">				l3-&gt;next = new ListNode(l1-&gt;val);</span><br><span class="line">				l1 = l1-&gt;next;</span><br><span class="line">			&#125;</span><br><span class="line">			else &#123;</span><br><span class="line">				l3-&gt;next = new ListNode(l2-&gt;val);</span><br><span class="line">				l2 = l2-&gt;next;</span><br><span class="line">			&#125;</span><br><span class="line">			l3 = l3-&gt;next;</span><br><span class="line">		&#125;</span><br><span class="line">		return head-&gt;next;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/LeetCode/LeetCode/Palindrome Number/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/LeetCode/LeetCode/Palindrome Number/" itemprop="url">Palindrome Number</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-06T12:23:39+08:00">
+                2018-12-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
+                    <span itemprop="name">LeetCode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: 121</span><br><span class="line">Output: true</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: -121</span><br><span class="line">Output: false</span><br><span class="line">Explanation: From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: 10</span><br><span class="line">Output: false</span><br><span class="line">Explanation: Reads 01 from right to left. Therefore it is not a palindrome.</span><br></pre></td></tr></table></figure>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">	bool isPalindrome(int x) &#123;</span><br><span class="line">		//	将数字转为字符串</span><br><span class="line">		stringstream ss;</span><br><span class="line">		ss &lt;&lt; x;</span><br><span class="line">		string str;</span><br><span class="line">		ss &gt;&gt; str;</span><br><span class="line"></span><br><span class="line">		//	调用algorithm中的reverse</span><br><span class="line">		reverse(str.begin(), str.end());</span><br><span class="line"></span><br><span class="line">		//	将字符串转数字</span><br><span class="line">		ss.clear();</span><br><span class="line">		ss &lt;&lt; str;</span><br><span class="line">		long long y;		//	特别注意int类型reverse可能溢出</span><br><span class="line">		ss &gt;&gt; y;</span><br><span class="line">		if ((long long)x != y) &#123;</span><br><span class="line">			return false;</span><br><span class="line">		&#125;</span><br><span class="line">		return true;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/LeetCode/LeetCode/Longest Palindromic Substring/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -804,149 +1098,12 @@
 <li><a href="./Longest Substring Without Repeating.md">Longest Substring Without Repeating</a></li>
 <li><a href="./Longest Palindromic Substring.md">Longest Palindromic Substring</a></li>
 </ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/UDP协议/UDP协议/JAVA实现UDP通信/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/UDP协议/UDP协议/JAVA实现UDP通信/" itemprop="url">JAVA实现UDP通信</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-29T09:12:20+08:00">
-                2018-11-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/UDP协议/" itemprop="url" rel="index">
-                    <span itemprop="name">UDP协议</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DatagramSocket 发送和接受数据</span><br><span class="line"></span><br><span class="line">DatagramPacket 将数据封装成一个包</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">客户端:</span><br><span class="line">   //	创建客户端并指定客户机端口</span><br><span class="line">   DatagramSocket client = new DatagramSocket(6666);</span><br><span class="line"></span><br><span class="line">   //	准备数据(字节数组)</span><br><span class="line">   String msg = &quot;Hello World&quot;;</span><br><span class="line">   byte[] data = msg.getBytes();</span><br><span class="line"></span><br><span class="line">   //	打包并指定服务器地址、端口)</span><br><span class="line">   DatagramPacket packet = new DatagramPacket(data, data.len, new InetSocketAddress(&quot;服务器地址&quot;, 服务器端口号));</span><br><span class="line"></span><br><span class="line">   //	发送</span><br><span class="line">   client.send(packet);</span><br><span class="line"></span><br><span class="line">   //	释放资源</span><br><span class="line">   client.close();</span><br><span class="line"> </span><br><span class="line">服务端：</span><br><span class="line">   //	创建服务器端并指定服务器端口</span><br><span class="line">   DatagramSocket server = new DatagramSocket(8888);</span><br><span class="line"></span><br><span class="line">   //	准备接收容器</span><br><span class="line">   byte[] container = new byte[1024];</span><br><span class="line"></span><br><span class="line">   //	将接收容器封装成包</span><br><span class="line">   DatagramPacket packet = new DatagramPacket(container, container.length);</span><br><span class="line"></span><br><span class="line">   //	接收数据包</span><br><span class="line">   server.receive(packet);</span><br><span class="line"></span><br><span class="line">   //	分析数据包</span><br><span class="line">   byte[] data = packet.getData();</span><br><span class="line">   int len = packet.getLength();</span><br><span class="line"></span><br><span class="line">   //	释放资源</span><br><span class="line">   server.close();</span><br></pre></td></tr></table></figure>
+<h1 id="Math"><a href="#Math" class="headerlink" title="Math"></a>Math</h1><ol>
+<li><a href="./Palindrome Number.md">Palindrome Number</a></li>
+</ol>
+<h1 id="List"><a href="#List" class="headerlink" title="List"></a>List</h1><ol>
+<li><a href="./Merge Two Sorted Lists.md">Merge Two Sorted Lists</a></li>
+</ol>
 
           
         
@@ -1587,150 +1744,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/LeetCode/LeetCode/最长公共子序列LCS/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/LeetCode/LeetCode/最长公共子序列LCS/" itemprop="url">最长公共子序列LCS</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-12T09:50:46+08:00">
-                2018-11-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">对于两个序列X=&#123;A,B,C,B,D,A,B&#125;，Y=&#123;B,D,C,A,B,A&#125;, 求它们最长公共子序列的长度</span><br><span class="line"></span><br><span class="line">例如: X和Y的LSC为&#123;B, C, A, B&#125;, 长度为4</span><br></pre></td></tr></table></figure>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">这道题是一道典型的动态规划的区间模型, 总体思路是通过d[i][j]表示区间[i, j]的最优解, 求解[i, j]的最优解可以通过递归求解[i+1, j]或[i, j-1]上的最优解. 最终求得整个区间的最优解d[1][length]. LCS的具体性质如下:</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">最长公共子序列LCS有以下性质:</span><br><span class="line">	对于子序列X[1...m], Y[1...n], 它们的LCS是Z[1...k]</span><br><span class="line">	1. 如果X[m] = Y[n], 则X[m] = Y[n] = Z[k], Z[1..k-1]是X[1...m-1]和Y[1...n-1]的LCS</span><br><span class="line">	2. 如果X[m] != Y[n], 且X[m] != Z[k], Y[n] = Z[k], 则Z[1...k-1]是X[1...m]和Y[1...n-1]的LCS</span><br><span class="line">	3. 如果X[m] != Y[n], 且X[m] = Z[k], Y[n] != Z[k], 则Z[1...k-1]是X[1...m-1]和Y[1...n]的LCS</span><br></pre></td></tr></table></figure>
-<h1 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">int c[m][n] = &#123;0&#125;;		//	c[i][j]表示以元素X[i]结尾的子序列和以元素Y[j]结尾的子序列的LCS的长度</span><br><span class="line">for (int i = 1; i &lt;= m; i++) &#123;</span><br><span class="line">  for (int j = 1; j &lt;= n; j++) &#123;</span><br><span class="line">    if (X[i] == Y[j])</span><br><span class="line">    	c[i][j] = c[i-1][j-1] + 1;</span><br><span class="line">    else if (c[i-1][j] &gt; c[i][j-1])		//	即X[m] != Y[n] &amp;&amp; X[m] = Z[k]</span><br><span class="line">    	c[i][j] = c[i-1][j];</span><br><span class="line">    else</span><br><span class="line">    	c[i][j] = c[i][j-1];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1785,7 +1798,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">69</span>
+                  <span class="site-state-item-count">70</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1796,7 +1809,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
