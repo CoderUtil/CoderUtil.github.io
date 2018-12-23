@@ -79,13 +79,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Code">
-<meta property="og:url" content="http://utilcoder.com/index.html">
+<meta name="description" content="Capacitated Facility Location Problem贪心算法思路1对于每个顾客, 选择Assignment Cost最少的工厂. 若Assign Cost相同, 则选择Opening Cost较小的工厂. 代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Capacitated Facility Location Problem">
+<meta property="og:url" content="http://utilcoder.com/LeetCode/LeetCode/Capacitated-Facility-Location-Problem/index.html">
 <meta property="og:site_name" content="Code">
+<meta property="og:description" content="Capacitated Facility Location Problem贪心算法思路1对于每个顾客, 选择Assignment Cost最少的工厂. 若Assign Cost相同, 则选择Opening Cost较小的工厂. 代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-12-23T08:07:05.786Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Code">
+<meta name="twitter:title" content="Capacitated Facility Location Problem">
+<meta name="twitter:description" content="Capacitated Facility Location Problem贪心算法思路1对于每个顾客, 选择Assignment Cost最少的工厂. 若Assign Cost相同, 则选择Opening Cost较小的工厂. 代码123456789101112131415161718192021222324252627282930313233343536373839404142434445464">
 
 
 
@@ -115,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://utilcoder.com/"/>
+  <link rel="canonical" href="http://utilcoder.com/LeetCode/LeetCode/Capacitated-Facility-Location-Problem/"/>
 
 
 
 
 
-  <title>Code</title>
+  <title>Capacitated Facility Location Problem | Code</title>
   
 
 
@@ -140,8 +144,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -244,9 +247,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -276,9 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/LeetCode/LeetCode/Capacitated-Facility-Location-Problem/" itemprop="url">Capacitated Facility Location Problem</a></h1>
+          <h1 class="post-title" itemprop="name headline">Capacitated Facility Location Problem</h1>
         
 
         <div class="post-meta">
@@ -350,9 +351,7 @@
       
 
       
-        
-          
-            <h1 id="Capacitated-Facility-Location-Problem"><a href="#Capacitated-Facility-Location-Problem" class="headerlink" title="Capacitated Facility Location Problem"></a>Capacitated Facility Location Problem</h1><h2 id="贪心算法"><a href="#贪心算法" class="headerlink" title="贪心算法"></a>贪心算法</h2><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">对于每个顾客, 选择Assignment Cost最少的工厂. 若Assign Cost相同, 则选择Opening Cost较小的工厂.</span><br></pre></td></tr></table></figure>
+        <h1 id="Capacitated-Facility-Location-Problem"><a href="#Capacitated-Facility-Location-Problem" class="headerlink" title="Capacitated Facility Location Problem"></a>Capacitated Facility Location Problem</h1><h2 id="贪心算法"><a href="#贪心算法" class="headerlink" title="贪心算法"></a>贪心算法</h2><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">对于每个顾客, 选择Assignment Cost最少的工厂. 若Assign Cost相同, 则选择Opening Cost较小的工厂.</span><br></pre></td></tr></table></figure>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;stdafx.h&quot;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;sstream&gt;</span><br><span class="line">#include &lt;fstream&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">#include &lt;ctime&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">void greedy(int facilityNumber, int customerNumber, vector&lt;int&gt; facilityCapacity, vector&lt;int&gt; facilityCost, vector&lt;int&gt; customerDemand, vector&lt;vector&lt;int&gt;&gt; demandCost) &#123;</span><br><span class="line">	int totalCount = 0;</span><br><span class="line">	vector&lt;int&gt; assignCustomer(customerNumber, false);</span><br><span class="line">	vector&lt;bool&gt; facilityBuild(facilityNumber, -1);</span><br><span class="line"></span><br><span class="line">	//	对于每个Customer, 选出demandCost最小的工厂. 如果demandCost一样选择facilityCost较小的那个</span><br><span class="line">	for (int i = 0; i &lt; customerNumber; i++) &#123;</span><br><span class="line">		int minFacilityIndex = 0;</span><br><span class="line">		for (int j = 1; j &lt; facilityNumber; j++) &#123;</span><br><span class="line">			if (facilityCapacity[j] &gt;= customerDemand[i] &amp;&amp; ((demandCost[j][i] &lt; demandCost[minFacilityIndex][i]) || (demandCost[j][i] == demandCost[minFacilityIndex][i] &amp;&amp; facilityCost[j] &lt; facilityCost[minFacilityIndex]))) &#123;</span><br><span class="line">				minFacilityIndex = j;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		facilityBuild[minFacilityIndex] = true;</span><br><span class="line">		facilityCapacity[minFacilityIndex] -= customerDemand[i];</span><br><span class="line">		assignCustomer[i] = minFacilityIndex;</span><br><span class="line">		totalCount += demandCost[minFacilityIndex][i];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	//	输出</span><br><span class="line">	for (int i = 0; i &lt; facilityBuild.size(); i++) &#123;</span><br><span class="line">		if (facilityBuild[i])</span><br><span class="line">			totalCount += facilityCost[i];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; &quot;总开销为: &quot; &lt;&lt;</span><br><span class="line">		totalCount &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; &quot;工厂建设情况: &quot; &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">	for (int i = 0; i &lt; facilityBuild.size(); i++) &#123;</span><br><span class="line">		if (facilityBuild[i])</span><br><span class="line">			cout &lt;&lt; 1 &lt;&lt; &quot; &quot;;</span><br><span class="line">		else</span><br><span class="line">			cout &lt;&lt; 0 &lt;&lt; &quot; &quot;;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; &quot;顾客分配到工厂的情况&quot; &lt;&lt; endl;</span><br><span class="line">	for (int i = 0; i &lt; assignCustomer.size(); i++) &#123;</span><br><span class="line">		cout &lt;&lt; assignCustomer[i] &lt;&lt; &quot; &quot;;</span><br><span class="line">		cout &lt;&lt; demandCost[assignCustomer[i]][i] &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">	//  读取71个例子  </span><br><span class="line">	for (int fileIndex = 0; fileIndex &lt; 71; fileIndex++) &#123;</span><br><span class="line"></span><br><span class="line">		//	开始计时</span><br><span class="line">		clock_t start = clock();</span><br><span class="line"></span><br><span class="line">		//	文件读取</span><br><span class="line">		ifstream infile;</span><br><span class="line">		stringstream ss;</span><br><span class="line">		ss.clear();</span><br><span class="line">		ss &lt;&lt; &quot;./Instances/p&quot;;</span><br><span class="line">		ss &lt;&lt; (fileIndex + 1);</span><br><span class="line">		string fileName;</span><br><span class="line">		ss &gt;&gt; fileName;</span><br><span class="line">		infile.open(fileName);</span><br><span class="line">		if (!infile.is_open()) &#123;</span><br><span class="line">			cout &lt;&lt; fileName + &quot;未能成功打开&quot; &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		int facilityNumber, customerNumber;</span><br><span class="line">		vector&lt;int&gt; facilityCapacity;</span><br><span class="line">		vector&lt;int&gt; facilityCost;</span><br><span class="line">		vector&lt;int&gt; customerDemand;</span><br><span class="line">		vector&lt;vector&lt;int&gt;&gt; demandCost;</span><br><span class="line"></span><br><span class="line">		infile &gt;&gt; facilityNumber &gt;&gt; customerNumber;</span><br><span class="line">		for (int i = 0; i &lt; facilityNumber; i++) &#123;</span><br><span class="line">			int capacity, cost;</span><br><span class="line">			infile &gt;&gt; capacity &gt;&gt; cost;</span><br><span class="line">			facilityCapacity.push_back(capacity);</span><br><span class="line">			facilityCost.push_back(cost);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		for (int i = 0; i &lt; customerNumber; i++) &#123;</span><br><span class="line">			int demand;</span><br><span class="line">			infile &gt;&gt; demand;</span><br><span class="line">			char c;</span><br><span class="line">			infile &gt;&gt; c;</span><br><span class="line">			customerDemand.push_back(demand);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		for (int i = 0; i &lt; facilityNumber; i++) &#123;</span><br><span class="line">			vector&lt;int&gt; temp1;</span><br><span class="line">			for (int j = 0; j &lt; customerNumber; j++) &#123;</span><br><span class="line">				int temp2;</span><br><span class="line">				infile &gt;&gt; temp2;</span><br><span class="line">				char c;</span><br><span class="line">				infile &gt;&gt; c;</span><br><span class="line">				temp1.push_back(temp2);</span><br><span class="line">			&#125;</span><br><span class="line">			demandCost.push_back(temp1);</span><br><span class="line">		&#125;</span><br><span class="line">		infile.close();</span><br><span class="line"></span><br><span class="line">		cout &lt;&lt; &quot;+-----------------&quot; &lt;&lt; &quot;p&quot; &lt;&lt; (fileIndex + 1) &lt;&lt; &quot;-----------------+&quot; &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">		//	贪心算法</span><br><span class="line">		greedy(facilityNumber, customerNumber, facilityCapacity, facilityCost, customerDemand, demandCost);</span><br><span class="line"></span><br><span class="line">		//	结束计时								</span><br><span class="line">		clock_t end = clock();</span><br><span class="line"></span><br><span class="line">		cout &lt;&lt; &quot;此程序的运行时间为&quot; &lt;&lt; (double)(end - start) / CLOCKS_PER_SEC &lt;&lt; &quot;秒！&quot; &lt;&lt; endl;</span><br><span class="line">		cout &lt;&lt; endl;</span><br><span class="line">		cout &lt;&lt; endl;</span><br><span class="line">		cout &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="结果表"><a href="#结果表" class="headerlink" title="结果表"></a>结果表</h3><table>
 <thead>
@@ -1091,8 +1090,6 @@
 </table>
 <h3 id="结果-1"><a href="#结果-1" class="headerlink" title="结果"></a>结果</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br><span class="line">496</span><br><span class="line">497</span><br><span class="line">498</span><br><span class="line">499</span><br><span class="line">500</span><br><span class="line">501</span><br><span class="line">502</span><br><span class="line">503</span><br><span class="line">504</span><br><span class="line">505</span><br><span class="line">506</span><br><span class="line">507</span><br><span class="line">508</span><br><span class="line">509</span><br><span class="line">510</span><br><span class="line">511</span><br><span class="line">512</span><br><span class="line">513</span><br><span class="line">514</span><br><span class="line">515</span><br><span class="line">516</span><br><span class="line">517</span><br><span class="line">518</span><br><span class="line">519</span><br><span class="line">520</span><br><span class="line">521</span><br><span class="line">522</span><br><span class="line">523</span><br><span class="line">524</span><br><span class="line">525</span><br><span class="line">526</span><br><span class="line">527</span><br><span class="line">528</span><br><span class="line">529</span><br><span class="line">530</span><br><span class="line">531</span><br><span class="line">532</span><br><span class="line">533</span><br><span class="line">534</span><br><span class="line">535</span><br><span class="line">536</span><br><span class="line">537</span><br><span class="line">538</span><br><span class="line">539</span><br><span class="line">540</span><br><span class="line">541</span><br><span class="line">542</span><br><span class="line">543</span><br><span class="line">544</span><br><span class="line">545</span><br><span class="line">546</span><br><span class="line">547</span><br><span class="line">548</span><br><span class="line">549</span><br><span class="line">550</span><br><span class="line">551</span><br><span class="line">552</span><br><span class="line">553</span><br><span class="line">554</span><br><span class="line">555</span><br><span class="line">556</span><br><span class="line">557</span><br><span class="line">558</span><br><span class="line">559</span><br><span class="line">560</span><br><span class="line">561</span><br><span class="line">562</span><br><span class="line">563</span><br><span class="line">564</span><br><span class="line">565</span><br><span class="line">566</span><br><span class="line">567</span><br><span class="line">568</span><br><span class="line">569</span><br><span class="line">570</span><br><span class="line">571</span><br><span class="line">572</span><br><span class="line">573</span><br><span class="line">574</span><br><span class="line">575</span><br><span class="line">576</span><br><span class="line">577</span><br><span class="line">578</span><br><span class="line">579</span><br><span class="line">580</span><br><span class="line">581</span><br><span class="line">582</span><br><span class="line">583</span><br><span class="line">584</span><br><span class="line">585</span><br><span class="line">586</span><br><span class="line">587</span><br><span class="line">588</span><br><span class="line">589</span><br><span class="line">590</span><br><span class="line">591</span><br><span class="line">592</span><br><span class="line">593</span><br><span class="line">594</span><br><span class="line">595</span><br><span class="line">596</span><br><span class="line">597</span><br><span class="line">598</span><br><span class="line">599</span><br><span class="line">600</span><br><span class="line">601</span><br><span class="line">602</span><br><span class="line">603</span><br><span class="line">604</span><br><span class="line">605</span><br><span class="line">606</span><br><span class="line">607</span><br><span class="line">608</span><br><span class="line">609</span><br><span class="line">610</span><br><span class="line">611</span><br><span class="line">612</span><br><span class="line">613</span><br><span class="line">614</span><br><span class="line">615</span><br><span class="line">616</span><br><span class="line">617</span><br><span class="line">618</span><br><span class="line">619</span><br><span class="line">620</span><br><span class="line">621</span><br><span class="line">622</span><br><span class="line">623</span><br><span class="line">624</span><br><span class="line">625</span><br><span class="line">626</span><br><span class="line">627</span><br><span class="line">628</span><br><span class="line">629</span><br><span class="line">630</span><br><span class="line">631</span><br><span class="line">632</span><br><span class="line">633</span><br><span class="line">634</span><br><span class="line">635</span><br><span class="line">636</span><br><span class="line">637</span><br><span class="line">638</span><br><span class="line">639</span><br><span class="line">640</span><br><span class="line">641</span><br><span class="line">642</span><br><span class="line">643</span><br><span class="line">644</span><br><span class="line">645</span><br><span class="line">646</span><br><span class="line">647</span><br><span class="line">648</span><br><span class="line">649</span><br><span class="line">650</span><br><span class="line">651</span><br><span class="line">652</span><br><span class="line">653</span><br><span class="line">654</span><br><span class="line">655</span><br><span class="line">656</span><br><span class="line">657</span><br><span class="line">658</span><br><span class="line">659</span><br><span class="line">660</span><br><span class="line">661</span><br><span class="line">662</span><br><span class="line">663</span><br><span class="line">664</span><br><span class="line">665</span><br><span class="line">666</span><br><span class="line">667</span><br><span class="line">668</span><br><span class="line">669</span><br><span class="line">670</span><br><span class="line">671</span><br><span class="line">672</span><br><span class="line">673</span><br><span class="line">674</span><br><span class="line">675</span><br><span class="line">676</span><br><span class="line">677</span><br><span class="line">678</span><br><span class="line">679</span><br><span class="line">680</span><br><span class="line">681</span><br><span class="line">682</span><br><span class="line">683</span><br><span class="line">684</span><br><span class="line">685</span><br><span class="line">686</span><br><span class="line">687</span><br><span class="line">688</span><br><span class="line">689</span><br><span class="line">690</span><br><span class="line">691</span><br><span class="line">692</span><br><span class="line">693</span><br><span class="line">694</span><br><span class="line">695</span><br><span class="line">696</span><br><span class="line">697</span><br><span class="line">698</span><br><span class="line">699</span><br><span class="line">700</span><br><span class="line">701</span><br><span class="line">702</span><br><span class="line">703</span><br><span class="line">704</span><br><span class="line">705</span><br><span class="line">706</span><br><span class="line">707</span><br><span class="line">708</span><br><span class="line">709</span><br><span class="line">710</span><br><span class="line">711</span><br><span class="line">712</span><br><span class="line">713</span><br><span class="line">714</span><br><span class="line">715</span><br><span class="line">716</span><br><span class="line">717</span><br><span class="line">718</span><br><span class="line">719</span><br><span class="line">720</span><br><span class="line">721</span><br><span class="line">722</span><br><span class="line">723</span><br><span class="line">724</span><br><span class="line">725</span><br><span class="line">726</span><br><span class="line">727</span><br><span class="line">728</span><br><span class="line">729</span><br><span class="line">730</span><br><span class="line">731</span><br><span class="line">732</span><br><span class="line">733</span><br><span class="line">734</span><br><span class="line">735</span><br><span class="line">736</span><br><span class="line">737</span><br><span class="line">738</span><br><span class="line">739</span><br><span class="line">740</span><br><span class="line">741</span><br><span class="line">742</span><br><span class="line">743</span><br><span class="line">744</span><br><span class="line">745</span><br><span class="line">746</span><br><span class="line">747</span><br><span class="line">748</span><br><span class="line">749</span><br><span class="line">750</span><br><span class="line">751</span><br><span class="line">752</span><br><span class="line">753</span><br><span class="line">754</span><br><span class="line">755</span><br><span class="line">756</span><br><span class="line">757</span><br><span class="line">758</span><br><span class="line">759</span><br><span class="line">760</span><br><span class="line">761</span><br><span class="line">762</span><br><span class="line">763</span><br><span class="line">764</span><br><span class="line">765</span><br><span class="line">766</span><br><span class="line">767</span><br><span class="line">768</span><br><span class="line">769</span><br><span class="line">770</span><br><span class="line">771</span><br><span class="line">772</span><br><span class="line">773</span><br><span class="line">774</span><br><span class="line">775</span><br><span class="line">776</span><br><span class="line">777</span><br><span class="line">778</span><br><span class="line">779</span><br><span class="line">780</span><br><span class="line">781</span><br><span class="line">782</span><br><span class="line">783</span><br><span class="line">784</span><br><span class="line">785</span><br><span class="line">786</span><br><span class="line">787</span><br><span class="line">788</span><br><span class="line">789</span><br><span class="line">790</span><br><span class="line">791</span><br><span class="line">792</span><br><span class="line">793</span><br><span class="line">794</span><br><span class="line">795</span><br><span class="line">796</span><br><span class="line">797</span><br><span class="line">798</span><br><span class="line">799</span><br><span class="line">800</span><br><span class="line">801</span><br><span class="line">802</span><br><span class="line">803</span><br><span class="line">804</span><br><span class="line">805</span><br><span class="line">806</span><br><span class="line">807</span><br><span class="line">808</span><br><span class="line">809</span><br><span class="line">810</span><br><span class="line">811</span><br><span class="line">812</span><br><span class="line">813</span><br><span class="line">814</span><br><span class="line">815</span><br><span class="line">816</span><br><span class="line">817</span><br><span class="line">818</span><br><span class="line">819</span><br><span class="line">820</span><br><span class="line">821</span><br><span class="line">822</span><br><span class="line">823</span><br><span class="line">824</span><br><span class="line">825</span><br><span class="line">826</span><br><span class="line">827</span><br><span class="line">828</span><br><span class="line">829</span><br><span class="line">830</span><br><span class="line">831</span><br><span class="line">832</span><br><span class="line">833</span><br><span class="line">834</span><br><span class="line">835</span><br><span class="line">836</span><br><span class="line">837</span><br><span class="line">838</span><br><span class="line">839</span><br><span class="line">840</span><br><span class="line">841</span><br><span class="line">842</span><br><span class="line">843</span><br><span class="line">844</span><br><span class="line">845</span><br><span class="line">846</span><br><span class="line">847</span><br><span class="line">848</span><br><span class="line">849</span><br><span class="line">850</span><br><span class="line">851</span><br><span class="line">852</span><br><span class="line">853</span><br><span class="line">854</span><br><span class="line">855</span><br><span class="line">856</span><br><span class="line">857</span><br><span class="line">858</span><br><span class="line">859</span><br><span class="line">860</span><br><span class="line">861</span><br><span class="line">862</span><br><span class="line">863</span><br><span class="line">864</span><br><span class="line">865</span><br><span class="line">866</span><br><span class="line">867</span><br><span class="line">868</span><br><span class="line">869</span><br><span class="line">870</span><br><span class="line">871</span><br><span class="line">872</span><br><span class="line">873</span><br><span class="line">874</span><br><span class="line">875</span><br><span class="line">876</span><br><span class="line">877</span><br><span class="line">878</span><br><span class="line">879</span><br><span class="line">880</span><br><span class="line">881</span><br><span class="line">882</span><br><span class="line">883</span><br><span class="line">884</span><br><span class="line">885</span><br><span class="line">886</span><br><span class="line">887</span><br><span class="line">888</span><br><span class="line">889</span><br><span class="line">890</span><br><span class="line">891</span><br><span class="line">892</span><br><span class="line">893</span><br><span class="line">894</span><br><span class="line">895</span><br><span class="line">896</span><br><span class="line">897</span><br><span class="line">898</span><br><span class="line">899</span><br><span class="line">900</span><br><span class="line">901</span><br><span class="line">902</span><br><span class="line">903</span><br><span class="line">904</span><br><span class="line">905</span><br><span class="line">906</span><br><span class="line">907</span><br><span class="line">908</span><br><span class="line">909</span><br><span class="line">910</span><br><span class="line">911</span><br><span class="line">912</span><br><span class="line">913</span><br><span class="line">914</span><br><span class="line">915</span><br><span class="line">916</span><br><span class="line">917</span><br><span class="line">918</span><br><span class="line">919</span><br><span class="line">920</span><br></pre></td><td class="code"><pre><span class="line">+-----------------p1-----------------+</span><br><span class="line">总开销为: 20526</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">2 2 1 6 3 7 9 0 2 1 2 1 0 8 9 4 0 3 2 9 1 7 5 5 0 2 3 3 8 8 4 7 8 3 4 4 5 8 7 2 5 5 0 5 5 3 2 7 4 7</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.161秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p2-----------------+</span><br><span class="line">总开销为: 18782</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">8 4 5 3 1 3 7 2 1 1 5 0 3 2 7 6 2 3 6 8 2 2 1 2 9 5 0 6 8 5 2 5 9 5 9 3 3 6 4 5 2 4 6 5 4 5 4 3 2 6</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.13秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p3-----------------+</span><br><span class="line">总开销为: 21344</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">9 2 5 8 1 7 7 5 5 5 1 0 7 0 2 3 9 1 9 4 9 3 0 4 4 1 5 5 4 1 5 8 3 3 0 7 7 3 8 4 5 6 3 0 2 0 3 0 7 6</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.108秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p4-----------------+</span><br><span class="line">总开销为: 23393</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">0 7 3 6 5 0 4 8 0 5 8 6 0 2 6 1 2 2 1 6 9 2 4 9 0 9 6 2 9 1 5 5 6 8 4 4 7 0 0 9 3 9 3 4 1 1 6 0 7 0</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.092秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p5-----------------+</span><br><span class="line">总开销为: 20007</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">9 2 3 2 1 8 6 8 8 3 5 8 1 7 9 1 7 9 5 0 6 3 6 7 6 5 5 0 8 0 2 1 0 3 5 2 7 0 5 4 0 8 6 4 4 6 9 2 3 0</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.098秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p6-----------------+</span><br><span class="line">总开销为: 18557</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 0 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">0 2 1 2 2 3 4 8 6 1 9 7 3 0 2 8 2 9 4 0 6 8 6 2 1 0 0 3 9 2 9 3 6 3 6 4 9 3 6 4 3 1 1 1 3 8 9 1 8 7</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.095秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p7-----------------+</span><br><span class="line">总开销为: 21288</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">1 6 3 6 3 0 3 4 1 6 9 8 5 8 2 6 4 3 9 5 5 8 2 8 3 8 2 6 9 1 2 9 8 2 3 4 0 2 0 0 6 2 1 0 1 0 9 7 9 7</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.106秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p8-----------------+</span><br><span class="line">总开销为: 23414</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">5 8 4 6 3 2 8 9 6 5 5 8 0 3 4 4 0 7 2 7 8 5 5 7 8 6 7 3 8 5 9 9 3 3 6 9 4 3 0 2 4 7 7 2 3 6 2 1 7 9</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.12秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p9-----------------+</span><br><span class="line">总开销为: 21219</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">9 8 3 6 8 7 0 9 5 8 2 0 0 0 9 4 0 3 3 2 8 2 7 4 5 2 2 3 8 5 6 9 5 0 5 8 1 2 7 7 9 8 5 5 6 1 7 0 4 1</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.111秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p10-----------------+</span><br><span class="line">总开销为: 18501</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">4 2 5 8 1 8 2 3 5 6 9 7 3 2 4 0 5 8 7 4 3 2 4 2 5 9 6 4 4 1 7 5 4 0 6 8 8 5 7 3 3 3 3 3 3 8 7 0 4 8</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.101秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p11-----------------+</span><br><span class="line">总开销为: 21550</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">3 1 5 6 4 8 8 7 5 6 1 9 2 8 3 0 6 5 4 4 3 7 0 9 3 6 9 1 8 5 0 3 4 3 1 6 7 3 8 6 1 2 2 9 9 0 3 1 8 2</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.096秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p12-----------------+</span><br><span class="line">总开销为: 23740</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">2 2 8 4 1 2 0 3 0 7 3 7 0 5 0 6 2 2 9 9 1 1 9 0 2 6 5 7 4 1 8 6 2 5 7 9 2 0 0 5 5 4 6 3 7 8 9 7 7 8</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.094秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p13-----------------+</span><br><span class="line">总开销为: 24652</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 0 1 1 1 1 1 1 1 0 1 1 1 0 0 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">17 6 19 6 8 19 8 0 14 8 10 0 19 18 19 18 5 14 9 13 18 13 10 7 13 4 6 2 0 18 7 7 1 12 5 17 8 19 19 9 4 0 2 0 12 2 1 12 19 9</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.108秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p14-----------------+</span><br><span class="line">总开销为: 21946</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">16 3 10 4 18 15 10 16 6 3 15 1 18 7 18 9 7 2 3 11 14 13 10 2 8 1 5 17 19 1 18 19 3 11 10 16 10 5 10 7 12 11 13 5 3 3 13 4 12 13</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.106秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p15-----------------+</span><br><span class="line">总开销为: 23919</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 0 1 1 0 0 0 1 1 1 1 1 1 1 0 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">10 6 2 0 1 10 1 0 12 12 16 2 19 10 19 5 18 14 11 18 11 1 18 1 12 12 10 15 12 3 16 0 19 18 19 3 10 0 18 0 18 13 2 10 11 11 6 16 13 6</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.105秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p16-----------------+</span><br><span class="line">总开销为: 27945</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">0 1 0 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">5 3 13 7 10 16 11 18 17 12 16 5 6 15 9 3 5 14 12 12 16 1 15 10 14 17 11 1 3 8 1 5 1 11 12 10 14 16 11 1 3 15 12 5 16 13 5 9 11 9</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.105秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p17-----------------+</span><br><span class="line">总开销为: 24313</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">14 10 3 1 19 13 0 1 0 18 7 17 17 9 18 4 9 7 5 11 7 11 7 2 19 3 0 13 18 4 13 10 4 16 8 12 1 14 14 13 6 19 10 15 6 7 3 11 8 9</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.106秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p18-----------------+</span><br><span class="line">总开销为: 20233</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 0 1 1 1 1 0 1 1 1 1 1 0 0 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">5 11 17 12 10 5 18 2 10 14 3 18 1 7 7 19 13 8 19 12 6 10 8 18 11 10 0 19 3 6 13 0 19 0 6 10 12 5 2 0 11 12 14 0 3 7 2 10 18 12</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.107秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p19-----------------+</span><br><span class="line">总开销为: 23921</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 0 1 1 1 1 1 1 0 1 1 1 1 1 0 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">0 17 7 15 9 14 4 15 15 3 3 13 2 2 16 1 11 19 19 6 13 15 17 1 10 6 3 4 11 3 16 7 2 0 10 14 8 8 19 4 11 9 9 0 6 13 15 6 19 1</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.106秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p20-----------------+</span><br><span class="line">总开销为: 28438</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">10 12 10 15 4 19 1 2 7 2 0 9 9 13 5 8 13 6 15 1 14 5 9 18 4 3 18 19 7 5 13 15 2 5 11 15 1 8 13 15 7 0 12 4 6 7 14 13 4 1</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.103秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p21-----------------+</span><br><span class="line">总开销为: 24018</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 0 1 1 1 1 1 0 0 1 1 1 1 1 0 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">19 3 18 3 7 5 8 18 8 12 0 13 12 15 15 19 0 14 19 0 13 6 15 19 1 9 18 12 2 1 3 14 14 5 16 18 14 12 3 13 13 1 8 14 3 14 0 15 15 9</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.107秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p22-----------------+</span><br><span class="line">总开销为: 22153</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 0 1 1 1 0 1 0 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">2 13 18 0 12 19 15 0 1 17 12 11 3 12 2 9 18 15 17 11 1 5 2 9 3 19 16 11 15 2 3 3 12 12 2 14 9 12 1 16 12 7 11 1 2 5 6 13 7 17</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.105秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p23-----------------+</span><br><span class="line">总开销为: 24868</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 0 0 1 1 0 1 1 1 1 0 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">11 13 16 11 0 13 3 19 5 3 19 13 19 15 5 4 5 2 6 18 3 14 10 1 10 11 15 18 15 13 13 5 6 16 16 16 10 1 2 19 18 7 5 15 14 10 0 5 1 11</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.105秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p24-----------------+</span><br><span class="line">总开销为: 28811</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 0 0 1 1 1 1 1 0 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">12 6 3 16 18 19 2 13 9 8 12 2 3 3 13 7 15 7 18 15 12 7 6 3 17 8 0 12 15 1 17 12 16 17 13 16 9 8 15 2 10 18 0 14 17 0 10 17 16 13</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.109秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p25-----------------+</span><br><span class="line">总开销为: 89960</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">4 19 0 14 20 7 26 22 20 9 24 23 7 23 2 6 19 4 26 11 17 19 9 3 20 20 2 6 0 21 16 1 27 29 16 28 26 22 11 17 25 12 27 24 16 16 14 12 18 17 28 4 0 12 22 13 19 28 19 29 7 14 4 23 28 6 4 17 14 0 11 8 17 18 21 28 15 28 23 5 27 11 18 6 24 28 18 17 0 29 7 21 27 9 18 1 21 25 9 1 1 22 28 26 28 6 5 0 3 11 14 21 3 19 15 11 27 8 27 2 22 28 28 2 13 25 14 2 23 22 3 27 1 18 5 4 14 28 7 13 20 11 5 19 11 27 0 27 2 28</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.266秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p26-----------------+</span><br><span class="line">总开销为: 87375</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">28 1 0 1 12 7 2 14 7 7 5 9 29 5 10 11 2 21 9 17 12 1 2 17 22 26 26 7 10 15 17 10 10 0 5 6 7 5 6 14 29 25 21 25 2 22 6 8 5 23 5 25 28 0 1 7 17 11 29 2 5 0 6 8 17 0 28 25 5 19 0 11 24 13 12 22 5 13 12 5 0 25 17 4 20 12 26 9 7 28 9 13 3 24 7 27 28 14 11 19 13 23 11 27 8 1 17 3 20 4 2 21 13 1 5 6 2 29 28 29 20 27 5 14 11 14 7 5 19 8 14 1 15 18 20 27 6 1 8 22 28 3 21 18 2 27 20 6 23 29</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.281秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p27-----------------+</span><br><span class="line">总开销为: 87820</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">4 11 20 20 11 27 16 25 27 22 9 6 5 24 11 0 14 13 25 22 27 25 27 13 22 4 0 24 15 28 28 5 11 20 25 20 11 3 5 29 1 5 15 13 3 8 27 4 5 0 0 17 19 11 2 27 12 20 13 19 28 8 10 17 9 11 4 5 16 17 5 13 4 0 8 20 7 25 14 23 14 1 4 24 6 17 25 21 8 27 28 13 0 11 2 26 7 17 13 1 25 1 4 13 4 2 12 1 28 3 25 15 7 11 5 27 24 2 26 0 18 13 21 16 26 29 25 4 24 23 0 6 15 9 1 24 28 9 21 24 23 23 7 21 9 7 3 22 26 27</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.266秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p28-----------------+</span><br><span class="line">总开销为: 99150</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">16 0 26 27 25 11 5 9 28 17 28 27 25 16 17 28 13 7 17 15 0 16 26 25 15 11 11 15 28 9 24 14 2 15 26 0 29 5 8 3 29 27 4 25 10 7 18 29 25 8 12 15 0 10 2 4 25 17 17 1 29 27 26 16 11 1 7 22 23 18 14 2 21 22 17 13 17 14 25 7 12 17 19 24 1 17 23 7 0 0 8 16 7 22 20 14 11 29 25 23 2 0 18 12 15 11 2 8 27 7 25 18 20 14 8 12 22 26 7 22 26 21 13 0 22 11 13 23 9 6 7 28 0 5 3 5 15 24 4 27 15 5 25 23 13 1 28 9 23 0</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.266秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p29-----------------+</span><br><span class="line">总开销为: 88694</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">14 27 13 12 18 28 15 10 7 17 17 27 13 12 2 20 20 14 9 14 29 23 10 0 20 28 17 19 1 28 7 23 27 7 0 16 28 6 23 1 16 29 2 6 18 20 21 18 15 8 29 28 22 8 12 27 14 13 28 19 3 11 14 21 19 16 19 25 9 20 17 28 15 28 22 24 12 26 20 29 29 20 22 7 2 14 20 6 11 11 28 22 5 5 25 1 14 23 21 12 27 9 21 22 11 10 10 11 1 20 8 29 14 20 27 28 24 4 16 0 14 5 29 29 27 2 5 15 22 29 0 9 15 8 26 8 14 16 13 11 16 4 1 21 28 27 17 4 20 5</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.275秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p30-----------------+</span><br><span class="line">总开销为: 83019</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">13 0 25 7 29 20 21 14 20 22 27 18 16 21 0 8 7 8 15 10 21 13 8 21 24 2 5 17 4 12 29 17 4 23 5 27 22 9 22 10 21 8 25 11 28 2 24 3 7 21 13 18 17 17 20 14 1 20 6 15 13 5 10 27 25 19 15 1 10 25 26 4 0 17 8 0 16 7 1 14 29 20 1 17 5 21 10 24 2 3 27 23 7 14 21 2 14 11 28 27 4 4 3 24 17 4 7 17 11 20 19 5 19 29 19 21 2 15 2 14 7 4 0 25 0 18 25 1 5 26 25 22 20 10 2 15 13 27 3 21 0 15 7 21 17 18 3 0 27 17</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.272秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p31-----------------+</span><br><span class="line">总开销为: 89514</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">21 19 15 12 12 5 28 27 1 14 28 22 13 6 15 1 17 17 11 16 9 3 14 23 27 12 4 29 0 7 11 23 22 21 1 19 13 11 27 11 18 14 8 24 21 13 0 18 27 0 11 26 20 24 17 17 4 3 14 28 11 14 25 9 10 0 0 4 7 1 22 26 22 17 10 17 29 2 8 28 28 28 17 5 4 25 14 24 8 15 7 29 2 28 16 25 2 27 27 24 21 17 17 2 14 10 6 5 29 5 0 19 7 5 11 26 4 2 19 9 1 17 3 15 16 13 19 19 16 1 8 21 9 19 27 11 14 3 19 29 16 16 18 24 29 3 16 17 21 19</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.272秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p32-----------------+</span><br><span class="line">总开销为: 97844</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">27 21 20 6 18 14 4 2 29 16 7 19 7 8 23 19 0 24 16 5 20 1 21 17 21 0 4 15 7 23 23 13 23 23 6 1 9 25 4 18 9 21 6 10 11 17 22 13 3 9 19 11 16 24 14 15 8 5 20 27 22 1 3 2 17 12 25 17 14 4 7 25 7 17 1 8 29 5 25 21 17 2 3 19 15 13 24 20 19 25 7 25 7 4 20 6 9 4 0 4 6 19 1 16 4 19 0 11 19 25 24 8 17 4 22 24 12 25 9 24 6 7 17 17 17 9 8 9 1 13 12 18 13 26 13 27 17 5 26 25 9 2 1 29 2 6 29 16 19 24</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.265秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p33-----------------+</span><br><span class="line">总开销为: 90328</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">20 15 16 13 20 10 7 7 12 17 3 2 20 21 3 19 17 27 4 8 28 8 21 3 3 16 1 0 4 29 14 23 26 14 6 2 25 26 14 16 2 27 12 7 26 0 8 22 14 23 24 3 13 29 2 22 29 7 23 2 0 17 28 11 6 4 3 22 7 20 2 14 28 2 25 16 6 23 11 28 22 20 1 11 28 1 17 29 29 7 19 25 16 3 4 12 17 17 29 12 13 22 13 2 25 29 4 12 24 28 8 5 24 10 7 11 19 6 0 28 25 27 21 6 11 25 25 15 21 3 23 3 29 8 20 11 2 20 5 15 1 3 19 19 7 11 16 8 6 16</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.268秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p34-----------------+</span><br><span class="line">总开销为: 86361</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">12 5 6 18 1 10 3 22 1 20 18 8 5 26 27 4 2 13 18 15 14 13 10 6 12 2 1 18 1 18 28 7 24 6 7 2 24 13 17 21 14 20 14 3 25 4 27 3 3 9 14 11 25 1 16 21 7 27 27 23 27 9 21 0 14 10 17 29 11 28 4 8 0 2 27 0 12 21 14 13 26 11 16 5 19 14 24 20 17 18 15 23 17 25 0 0 11 9 5 2 3 12 2 25 20 2 12 13 17 5 20 21 4 11 7 3 11 5 28 29 10 29 7 0 19 23 22 15 20 21 7 9 16 26 0 29 8 16 6 0 9 0 4 20 11 14 27 15 2 11</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.273秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p35-----------------+</span><br><span class="line">总开销为: 89303</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">19 5 16 22 16 23 4 15 13 24 2 0 11 23 14 12 0 19 17 27 28 24 7 14 29 14 28 23 8 0 21 4 29 13 29 4 6 28 14 25 29 24 19 25 4 14 25 1 5 11 22 0 4 16 15 9 18 19 21 14 7 11 11 4 0 17 8 0 29 11 1 5 14 0 5 8 10 19 1 3 0 7 14 13 1 1 0 4 18 24 0 28 25 24 20 13 16 6 8 2 29 7 17 2 25 14 15 14 19 22 2 19 18 11 18 2 22 21 20 21 23 6 21 3 13 14 0 13 12 19 21 28 5 28 19 22 24 27 8 29 15 24 26 27 25 15 29 17 29 27</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.268秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p36-----------------+</span><br><span class="line">总开销为: 100398</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">15 19 13 29 8 16 12 21 12 15 11 6 0 14 13 7 21 11 18 13 13 4 9 26 22 27 10 21 25 6 5 28 28 25 14 14 16 14 10 8 2 24 19 0 25 28 3 11 5 18 4 11 24 9 28 20 22 14 20 6 14 20 19 27 7 24 22 22 20 25 19 15 29 27 6 17 20 14 10 23 7 24 26 29 11 4 27 14 9 23 24 15 5 13 17 19 15 19 15 1 14 1 13 0 25 15 22 19 27 8 28 2 23 5 16 1 3 19 8 20 12 12 24 12 11 28 29 15 24 4 25 27 25 18 29 9 19 11 2 22 7 7 16 0 8 25 11 25 11 11</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.277秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p37-----------------+</span><br><span class="line">总开销为: 92186</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">26 19 19 0 0 16 10 15 8 0 18 20 21 13 2 6 27 17 9 26 3 6 16 0 22 8 8 8 25 0 22 4 13 20 1 15 27 2 9 14 17 6 17 18 11 29 15 2 7 1 26 18 17 28 19 2 21 27 23 12 26 12 11 28 10 9 27 7 0 27 7 7 22 27 29 20 27 11 19 4 11 27 20 29 9 26 24 1 1 27 24 17 26 0 7 2 9 6 13 29 3 7 9 2 2 4 24 27 26 16 16 8 22 28 6 6 3 19 7 3 28 11 9 20 16 4 4 3 24 22 0 25 24 18 23 25 8 1 18 24 0 14 9 22 24 22 25 19 9 15</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.307秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p38-----------------+</span><br><span class="line">总开销为: 88980</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">0 29 0 2 19 21 23 13 29 21 7 18 27 11 13 29 24 17 9 2 8 6 23 19 19 28 28 11 29 24 11 13 12 20 9 9 25 26 14 11 1 21 22 5 8 24 27 13 7 21 8 18 29 13 19 12 28 15 19 10 0 25 21 25 11 14 0 25 29 21 20 7 17 3 16 28 10 19 19 20 10 4 0 2 24 15 5 12 22 17 7 22 12 25 26 24 27 5 8 16 12 5 11 28 26 25 23 19 29 9 9 13 28 11 20 3 11 22 18 18 11 20 16 3 13 18 4 20 5 27 27 26 3 27 17 28 29 23 29 20 15 27 8 20 23 13 27 2 11 5</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.273秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p39-----------------+</span><br><span class="line">总开销为: 88356</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1 0 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">6 23 7 6 26 9 0 21 8 2 14 15 19 14 18 11 5 16 23 7 28 21 23 25 16 6 2 3 17 24 22 0 9 9 3 0 15 24 26 23 19 7 8 5 13 1 11 27 16 9 2 29 19 28 5 23 2 25 17 0 9 14 15 3 28 3 9 11 21 16 4 24 26 17 11 13 9 0 23 14 11 0 2 6 27 13 19 4 8 26 4 21 13 7 7 7 27 5 28 2 6 5 2 5 1 14 0 3 21 22 18 11 14 22 22 17 17 4 20 5 8 25 24 20 4 15 20 7 9 29 20 23 18 6 11 2 4 14 1 17 27 17 14 14 28 13 20 15 8 5</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.277秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p40-----------------+</span><br><span class="line">总开销为: 100089</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">18 29 14 2 27 15 5 17 6 18 0 5 8 6 1 29 12 25 4 9 23 2 11 28 21 8 16 26 23 19 29 23 19 11 7 18 16 19 27 18 8 14 4 15 17 21 14 19 29 9 14 0 24 13 11 10 7 17 0 28 6 6 20 7 29 10 20 4 4 16 29 16 5 7 22 20 14 6 18 5 8 26 17 27 5 0 8 29 2 6 8 21 20 0 25 14 11 5 25 20 26 2 6 28 6 17 2 16 2 25 13 2 14 0 25 18 11 28 0 3 2 7 23 15 26 6 19 7 19 5 24 20 1 9 25 14 24 0 12 28 6 4 18 20 5 6 7 27 11 15</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.391秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p41-----------------+</span><br><span class="line">总开销为: 14369</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">7 2 2 0 7 4 2 6 4 7 5 0 4 1 7 9 6 8 2 8 6 6 9 4 3 6 9 4 0 0 4 3 1 1 9 0 6 6 1 1 2 3 9 6 5 7 8 0 7 0 5 9 2 5 6 8 4 3 0 3 8 4 1 3 9 6 4 8 0 0 5 1 4 0 3 3 3 6 4 4 7 9 8 2 5 4 4 9 9 3</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.204秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p42-----------------+</span><br><span class="line">总开销为: 16842</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">0 15 14 14 5 14 16 18 12 6 3 19 11 5 14 9 7 19 19 2 11 14 14 18 16 8 19 13 18 4 11 0 1 12 9 12 4 0 16 19 18 3 17 8 9 6 11 1 19 5 19 15 7 18 1 17 13 11 14 13 18 12 0 8 14 4 15 16 18 0 9 7 12 6 0 6 0 14 18 19</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.192秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p43-----------------+</span><br><span class="line">总开销为: 18428</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">0 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 0 1 1 1 1 1 0 0 1 0 1 1 1 0</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">9 1 27 3 13 10 27 9 18 24 4 10 7 9 6 21 28 17 19 21 7 13 7 8 21 14 17 20 4 9 3 12 9 6 10 27 24 5 13 1 3 28 7 17 26 19 17 2 14 21 21 6 10 19 9 6 13 6 21 20 13 1 15 6 18 9 27 4 8 5</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.198秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p44-----------------+</span><br><span class="line">总开销为: 17493</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">9 3 0 4 7 1 6 3 3 7 5 7 5 4 9 8 1 7 9 4 0 6 7 7 8 2 2 6 1 1 8 5 3 3 1 9 5 9 0 7 4 1 7 8 2 2 4 6 7 2 2 4 7 4 7 3 1 2 4 4 8 9 3 4 0 2 6 0 0 5 5 3 6 7 5 7 4 5 4 3 3 6 3 2 3 2 6 4 7 5</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.165秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p45-----------------+</span><br><span class="line">总开销为: 19429</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">7 7 16 0 10 15 2 12 7 1 7 1 17 7 7 7 2 3 13 11 7 18 8 17 17 19 7 1 18 8 18 17 14 5 18 11 18 3 16 11 12 15 17 8 12 14 4 7 14 7 12 15 10 19 19 7 17 16 19 1 4 5 17 5 2 1 12 18 9 3 3 2 13 1 13 15 4 19 3 16</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.187秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p46-----------------+</span><br><span class="line">总开销为: 19979</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 0 1 1 1 1 0 1 1 0 1 1 1 0 0 1 1 0 1 1 1 0 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">16 29 13 0 21 2 28 22 4 26 11 1 10 4 11 28 21 25 21 9 18 6 3 2 6 5 9 18 22 6 25 5 29 5 0 17 11 8 4 14 10 22 16 6 17 25 0 10 4 28 1 21 10 22 24 18 8 25 18 22 28 24 6 22 21 13 14 6 22 21</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.183秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p47-----------------+</span><br><span class="line">总开销为: 15974</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">1 0 0 2 0 2 2 2 9 8 6 3 4 2 1 4 0 4 1 5 8 2 2 8 2 6 1 1 1 7 0 8 0 8 4 4 5 5 6 4 5 5 5 5 5 5 3 8 9 7 7 7 5 6 3 6 9 4 8 2 4 2 7 3 8 2 6 6 5 4 5 4 2 0 9 5 7 2 7 9 4 5 0 2 0 0 9 2 4 2</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.155秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p48-----------------+</span><br><span class="line">总开销为: 18280</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">16 3 2 0 0 10 1 2 8 4 9 17 1 19 8 3 10 5 14 12 7 8 12 5 11 9 9 7 8 2 5 3 9 3 0 17 7 5 0 10 4 2 2 11 4 8 15 11 12 14 5 12 17 11 7 1 16 9 17 17 19 9 15 2 13 11 5 15 14 18 3 15 3 19 10 11 1 18 16 12</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.154秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p49-----------------+</span><br><span class="line">总开销为: 19485</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">0 0 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 0 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">10 18 13 25 24 9 6 27 3 11 11 21 13 14 27 16 12 13 13 5 23 10 15 10 14 9 7 10 17 6 16 21 2 10 2 6 15 15 12 27 17 13 7 14 28 27 16 13 3 14 22 16 29 12 20 4 21 21 10 24 7 17 18 6 28 29 10 28 15 2</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.153秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p50-----------------+</span><br><span class="line">总开销为: 18062</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">4 1 4 9 2 4 5 6 3 2 5 0 3 0 0 7 7 4 8 5 5 4 3 4 4 1 0 6 3 5 8 3 1 9 4 2 8 0 6 0 6 0 1 9 9 2 3 9 8 8 4 6 4 2 4 3 6 8 3 4 5 1 0 5 5 1 6 6 9 4 0 6 6 0 4 0 3 4 6 4 5 2 2 2 5 6 6 2 4 5 7 2 2 7 3 6 7 4 2 6</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.176秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p51-----------------+</span><br><span class="line">总开销为: 21898</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">8 0 6 0 4 12 5 12 2 3 12 4 13 18 14 1 1 14 0 4 6 17 10 14 3 15 9 17 7 5 0 13 10 15 11 6 6 13 19 8 7 9 18 4 12 14 6 7 10 8 2 5 11 10 4 0 8 12 1 8 7 15 5 1 12 1 10 19 8 9 12 1 18 15 14 2 18 12 7 3 3 16 18 1 18 16 2 18 15 2 18 18 10 18 8 16 14 18 8 16</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.185秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p52-----------------+</span><br><span class="line">总开销为: 23079</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">4 7 4 9 2 4 3 7 4 3 8 7 5 9 7 4 6 0 1 8 8 3 8 8 5 3 7 3 4 8 7 0 9 1 1 2 7 7 9 5 9 3 0 6 7 6 7 5 7 0 9 3 2 6 2 6 4 5 2 4 6 6 3 1 5 5 0 7 3 7 5 7 9 6 5 7 1 7 4 0 4 3 7 2 1 5 0 2 5 0 2 7 4 2 2 3 0 7 4 9</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.179秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p53-----------------+</span><br><span class="line">总开销为: 26463</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">5 9 14 17 2 5 18 10 2 19 3 13 15 7 12 1 13 9 16 4 15 15 3 0 7 7 13 6 15 9 1 14 9 18 11 15 5 5 17 4 18 18 6 11 18 18 15 17 15 3 3 2 18 17 2 11 13 16 14 1 7 14 9 3 14 3 13 7 10 7 1 17 0 3 3 13 5 12 3 6 16 13 7 10 2 0 14 12 9 19 6 0 6 10 9 6 15 15 4 17</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.188秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p54-----------------+</span><br><span class="line">总开销为: 20258</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">4 2 5 1 2 3 9 8 2 5 2 1 8 2 8 3 3 3 2 1 1 3 5 2 5 2 3 7 4 1 5 6 6 7 0 6 6 4 0 5 8 3 7 3 8 5 3 1 3 1 4 1 6 5 1 2 6 6 6 3 4 5 2 0 0 5 3 2 4 5 5 0 4 7 7 3 2 4 0 7 7 4 2 9 7 7 6 6 4 0 7 7 3 0 4 9 4 4 7 7</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.176秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p55-----------------+</span><br><span class="line">总开销为: 25084</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">0 4 11 16 16 2 6 6 13 16 4 12 14 17 3 6 12 6 16 12 17 5 17 0 7 5 7 15 10 0 7 5 16 9 4 6 4 19 1 12 5 13 3 11 0 12 1 1 0 6 10 18 10 13 10 0 7 1 14 13 2 16 18 10 7 2 14 3 6 6 9 13 2 17 14 19 15 3 19 15 3 13 5 6 18 5 11 10 15 9 10 6 5 8 7 5 4 0 18 5</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.187秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p56-----------------+</span><br><span class="line">总开销为: 23185</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">18 21 27 23 6 14 19 10 3 10 13 3 22 14 15 17 11 6 28 24 13 19 17 23 4 17 0 8 28 7 20 12 20 19 20 15 4 5 24 17 23 17 19 15 10 14 26 27 16 24 20 17 21 18 5 14 9 12 24 11 12 11 21 27 16 10 28 16 5 13 8 18 12 20 25 7 3 1 28 9 5 10 13 28 25 11 22 17 14 16 3 23 1 14 22 18 15 3 0 28 23 5 12 13 24 17 24 26 25 25 19 20 6 3 22 26 22 4 6 3 3 18 2 4 7 5 15 14 23 20 22 12 28 13 21 11 1 17 23 26 27 4 18 22 8 18 27 13 12 1 22 23 11 17 29 23 21 22 16 27 24 19 11 19 24 26 2 17 0 29 1 9 21 5 0 27 16 16 24 18 27 18 25 1 23 27 13 15 13 17 20 12 28 14 26 23 15 28 0 0</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.348秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p57-----------------+</span><br><span class="line">总开销为: 31604</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">19 27 13 27 23 16 19 10 3 17 18 16 10 5 8 26 21 14 5 20 17 29 4 13 22 0 12 20 18 11 9 0 24 15 12 25 3 5 5 6 4 18 24 9 5 18 29 2 27 26 27 2 8 1 14 26 15 13 1 0 24 5 14 29 2 10 4 8 16 15 18 25 19 7 22 13 15 19 17 5 11 7 28 25 1 24 0 25 29 29 16 16 18 17 2 23 4 24 25 9 8 21 8 9 17 15 1 12 24 24 1 22 28 17 8 22 3 25 24 21 17 26 2 19 16 11 11 29 6 19 7 9 27 13 23 3 15 2 18 27 6 18 29 15 1 16 15 17 24 12 16 15 0 29 18 4 11 12 4 12 14 7 11 13 27 16 1 17 25 25 8 13 7 8 19 23 7 25 22 0 2 23 17 27 12 17 7 28 23 2 1 5 12 15 3 10 25 6 29 26</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.352秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p58-----------------+</span><br><span class="line">总开销为: 52148</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">4 26 18 28 3 2 15 9 25 7 1 4 4 7 18 20 5 14 25 19 2 22 12 2 27 16 27 13 0 6 1 6 17 2 23 23 29 15 23 7 29 27 23 2 21 4 19 29 23 3 29 12 11 4 1 18 2 10 23 14 18 26 21 17 3 10 22 22 15 7 9 13 1 19 11 4 13 1 27 1 22 24 26 6 16 12 28 11 24 20 16 10 23 2 11 5 25 28 7 25 1 11 7 6 7 22 15 29 11 1 27 2 11 0 21 29 25 29 19 16 5 3 22 25 21 12 18 28 11 11 28 28 0 24 26 12 25 5 15 1 12 19 0 2 4 21 18 4 5 29 28 3 21 10 5 0 2 22 24 17 27 10 29 24 23 24 4 19 4 28 21 16 4 11 14 25 15 9 27 23 2 11 15 22 6 4 7 22 15 20 13 10 28 15 20 6 1 15 22 29</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.347秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p59-----------------+</span><br><span class="line">总开销为: 37176</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">23 8 6 3 19 3 4 21 6 24 22 19 27 21 20 25 29 19 8 10 4 22 14 22 25 18 16 17 27 25 3 22 2 14 19 22 1 10 16 22 21 17 5 22 28 3 13 4 15 2 9 18 0 29 19 0 6 6 24 26 17 10 26 20 29 13 1 23 10 17 10 9 6 25 27 8 8 7 13 27 5 0 18 9 18 14 4 21 19 4 6 21 1 8 3 0 3 8 5 0 26 12 25 21 28 26 4 4 18 28 22 20 20 1 10 0 14 10 9 0 9 9 16 9 10 28 4 0 9 26 4 14 23 0 16 2 5 17 8 6 24 26 24 5 13 16 19 7 24 18 6 22 6 8 17 22 7 14 2 10 9 18 4 1 13 13 27 26 21 28 18 16 18 29 6 16 0 27 5 29 13 19 21 17 10 28 13 20 12 19 3 12 7 27 22 13 1 6 28 19</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.352秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p60-----------------+</span><br><span class="line">总开销为: 22782</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">6 11 7 1 22 21 24 18 29 29 6 20 12 7 12 12 15 11 29 28 26 27 24 5 6 16 11 0 17 7 16 16 6 2 11 11 4 13 1 29 19 16 16 24 17 13 24 13 2 13 18 2 14 26 0 14 0 11 2 11 2 5 6 13 5 17 5 11 20 27 11 1 15 9 12 10 5 12 10 23 24 16 2 19 29 19 28 27 4 4 23 2 21 0 16 7 7 15 19 0 24 4 3 9 21 25 10 12 2 17 19 5 18 23 17 15 5 20 6 27 26 10 2 20 14 28 13 2 26 9 21 11 6 6 4 24 11 6 22 5 22 27 16 12 10 25 24 27 6 25 29 5 4 29 13 18 23 21 1 29 19 0 25 4 6 12 1 6 1 22 17 28 5 28 20 26 1 23 7 26 23 5 19 4 26 11 25 10 14 16 3 7 2 29 24 20 10 27 29 9</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.353秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p61-----------------+</span><br><span class="line">总开销为: 31822</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">1 28 13 9 12 25 18 13 28 14 25 16 29 1 19 23 5 22 26 21 7 28 5 26 20 24 22 13 13 21 17 24 16 11 18 9 14 27 12 11 21 2 9 1 8 12 22 21 3 26 25 8 5 7 23 5 7 14 11 6 8 2 1 10 12 8 2 2 28 16 3 10 20 15 3 6 26 14 17 13 15 6 11 24 9 1 14 28 7 12 3 28 12 14 22 25 11 29 8 13 3 8 23 9 24 2 1 4 0 9 25 4 5 2 14 18 9 10 0 2 0 22 2 4 28 15 25 22 9 19 2 26 14 15 28 2 21 9 9 4 25 6 29 3 18 9 27 1 11 0 4 28 0 9 12 18 14 12 27 2 0 9 14 28 8 28 7 9 1 28 14 26 15 22 24 7 14 23 18 4 7 14 0 29 2 25 16 9 27 0 15 8 26 15 19 26 5 21 18 13</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.363秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p62-----------------+</span><br><span class="line">总开销为: 51713</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">1 0 19 21 23 0 17 24 1 15 2 13 11 13 21 27 25 23 15 24 11 26 23 22 4 3 11 3 25 20 12 7 29 26 8 6 9 4 8 27 1 8 8 19 7 8 10 20 25 2 4 24 25 18 1 18 14 10 26 27 3 12 2 6 0 7 7 0 27 24 22 26 6 15 23 14 25 23 20 25 19 0 14 15 5 2 7 1 24 1 2 17 6 18 5 18 25 14 27 11 9 25 3 1 12 6 24 11 21 14 6 1 2 25 24 7 7 24 10 27 3 25 26 0 17 18 21 16 2 8 27 22 29 20 25 15 23 23 5 8 1 17 13 17 14 27 0 20 17 0 9 6 13 24 7 1 4 27 19 16 24 17 4 8 16 16 13 29 10 25 1 18 15 19 26 0 0 15 9 11 27 16 11 1 27 26 18 23 9 7 29 13 21 19 22 18 24 14 27 8</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.373秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p63-----------------+</span><br><span class="line">总开销为: 37368</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">16 23 5 16 5 29 9 28 14 4 14 16 19 11 9 20 4 15 7 2 12 8 7 28 29 11 0 13 23 27 14 20 27 11 16 7 26 16 28 22 17 25 18 28 10 10 6 10 16 16 29 9 14 20 4 17 16 12 11 19 29 7 14 2 18 19 2 10 7 4 27 12 4 0 6 29 4 23 11 9 26 7 7 23 15 3 7 7 13 18 20 19 21 27 28 7 21 8 7 7 7 14 23 17 25 22 6 21 4 2 4 11 7 17 21 22 10 5 16 7 23 26 13 3 12 14 22 9 11 29 19 29 20 2 9 7 22 17 14 0 2 14 13 27 28 8 10 14 29 8 8 17 4 19 21 27 16 13 0 22 29 7 0 27 16 9 16 21 2 2 13 10 26 28 18 9 13 23 15 3 22 19 18 21 20 19 5 10 16 12 28 3 9 15 6 28 28 0 4 10</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.366秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p64-----------------+</span><br><span class="line">总开销为: 22871</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">11 14 29 25 7 12 4 9 11 5 19 8 19 3 16 7 3 11 29 18 21 4 9 29 19 7 5 28 24 21 23 12 29 17 1 16 4 15 3 5 21 3 28 9 24 23 21 9 24 2 13 7 26 29 15 2 14 20 1 29 22 20 17 3 1 8 2 27 5 28 21 15 16 25 22 20 3 1 10 2 5 19 12 25 28 26 26 0 24 23 15 17 4 5 11 15 3 9 1 18 21 3 2 22 5 5 7 10 10 28 10 21 10 2 4 3 15 5 24 8 2 25 24 19 16 17 25 27 10 23 21 25 12 15 23 23 12 23 8 5 17 16 16 5 26 23 17 15 14 25 27 4 24 26 12 6 6 22 8 18 10 16 17 8 9 26 6 6 6 7 17 25 8 27 11 24 4 2 27 8 12 2 23 10 3 27 13 4 2 2 26 10 21 7 29 6 1 0 20 6</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.354秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p65-----------------+</span><br><span class="line">总开销为: 31950</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">7 17 26 26 11 24 23 24 16 25 28 25 9 15 5 10 14 5 17 0 21 26 1 25 16 26 21 8 13 6 13 6 27 29 28 5 3 0 24 26 2 24 23 9 2 2 27 22 26 18 14 8 27 21 12 16 18 26 23 14 13 29 23 25 24 10 18 14 21 13 8 14 14 14 21 17 3 11 14 5 17 1 11 19 21 9 19 6 0 28 23 10 20 0 8 27 7 24 28 4 21 16 28 28 15 11 10 11 20 28 19 20 11 10 22 0 24 1 8 26 7 5 11 5 17 28 5 29 17 25 18 16 5 5 5 14 17 5 2 16 18 7 24 25 24 2 13 25 8 23 1 6 0 7 21 20 2 23 18 13 24 0 4 18 5 28 3 18 6 2 2 11 2 20 9 2 28 28 29 24 23 17 17 17 29 25 1 27 3 2 3 15 1 3 29 11 0 3 4 22</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.361秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p66-----------------+</span><br><span class="line">总开销为: 52164</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">14 22 28 10 0 13 11 12 10 28 0 22 7 0 20 22 29 12 18 24 4 21 24 17 18 7 29 3 10 20 19 24 11 14 21 27 13 27 1 29 26 3 16 15 3 18 22 13 6 6 11 12 19 22 13 9 20 10 0 10 19 16 21 12 16 17 27 9 1 2 0 28 5 16 21 28 28 6 18 7 4 0 4 7 3 21 18 23 17 11 1 1 22 11 23 21 16 26 19 16 18 26 4 5 5 11 29 2 24 6 28 1 20 24 16 24 4 26 17 19 22 15 6 8 8 18 11 29 6 14 19 4 3 1 12 6 11 15 10 26 0 23 2 19 17 1 17 28 29 16 2 22 13 23 27 23 10 5 27 6 19 4 18 29 10 0 16 12 8 29 13 22 20 0 16 21 22 26 8 15 7 4 9 20 5 15 13 28 4 15 24 18 13 4 8 18 22 28 28 7</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.352秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p67-----------------+</span><br><span class="line">总开销为: 38222</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 1 1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">12 16 28 10 20 25 7 0 25 19 19 2 2 0 16 8 27 29 20 16 7 6 13 0 21 29 6 25 29 20 22 3 24 27 25 10 2 8 11 15 29 20 6 4 16 20 19 28 13 11 2 28 11 10 4 14 5 23 15 28 29 7 19 19 21 3 22 11 1 26 20 1 4 29 16 29 28 13 2 4 14 0 14 16 28 11 8 23 13 27 27 8 7 11 7 29 19 26 21 16 2 7 28 26 24 16 14 11 13 13 16 3 16 3 13 14 9 8 6 25 20 3 25 21 8 27 2 19 23 2 22 19 6 24 21 23 19 26 29 12 26 6 22 25 5 19 27 26 12 1 14 4 20 3 26 12 9 27 14 9 13 12 10 2 6 10 27 5 0 11 5 13 11 28 5 26 25 1 3 14 10 27 2 28 23 5 6 11 11 19 19 10 22 5 25 12 27 29 22 6</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.362秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p68-----------------+</span><br><span class="line">总开销为: 22868</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">29 10 19 25 12 10 14 8 24 23 25 14 6 3 14 8 21 14 19 24 8 10 5 16 20 21 1 12 23 13 4 20 2 14 29 28 11 13 23 13 12 6 17 28 18 13 13 23 6 3 23 27 18 24 26 18 17 14 13 16 2 11 2 3 8 19 21 19 27 22 22 13 22 21 14 3 9 19 26 13 24 5 11 19 26 28 12 13 13 26 0 29 20 10 11 27 2 16 4 10 28 23 19 6 12 9 21 3 14 20 17 16 1 21 25 4 4 27 13 20 12 26 0 17 1 28 11 21 1 4 18 16 3 3 6 20 3 18 19 26 18 5 2 12 11 28 23 19 0 1 27 2 24 14 8 14 18 19 28 14 28 26 1 22 26 13 3 17 5 26 6 26 12 8 3 25 23 18 29 23 29 23 24 11 13 21 26 1 4 9 0 28 11 27 1 17 6 21 6 20</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.348秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p69-----------------+</span><br><span class="line">总开销为: 31485</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">2 25 25 16 4 19 19 15 23 14 26 19 18 24 10 25 7 17 0 4 13 15 0 29 22 7 7 16 9 15 28 11 28 24 15 0 10 23 9 25 11 11 27 6 17 3 27 17 12 9 19 18 12 6 12 1 13 17 9 17 16 16 24 25 28 16 12 28 11 6 2 20 5 10 23 18 5 29 4 14 0 2 21 4 13 7 3 1 4 29 20 20 4 3 27 18 10 26 21 25 17 14 27 27 13 10 13 28 12 28 22 12 20 2 28 29 26 27 4 20 17 16 10 22 10 13 21 25 24 24 12 1 11 27 4 22 11 5 28 22 27 2 4 15 20 7 15 22 22 2 4 15 12 10 0 17 10 14 20 21 0 29 11 9 13 10 20 18 19 17 29 10 22 20 17 10 22 1 5 9 5 4 11 19 9 15 7 19 1 28 19 25 23 7 7 19 18 7 25 18</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.366秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p70-----------------+</span><br><span class="line">总开销为: 51926</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">8 10 20 7 23 11 15 6 26 11 8 23 6 1 15 17 4 12 0 7 24 27 26 19 12 21 13 18 0 16 18 2 0 23 16 19 11 5 26 19 20 26 12 10 10 4 4 17 29 21 29 9 20 12 1 9 26 12 5 1 2 7 11 28 12 22 27 29 0 0 23 2 8 0 26 18 4 0 19 19 0 6 13 15 11 29 29 11 4 10 2 16 8 16 0 0 29 14 11 6 28 16 3 20 20 23 20 13 19 29 24 23 15 5 10 6 15 0 9 12 11 26 15 22 11 3 9 9 11 7 10 23 27 0 24 8 22 2 20 12 29 27 1 24 0 2 11 0 24 24 0 21 27 18 5 23 24 3 22 24 3 20 12 27 16 26 2 24 0 13 5 20 28 17 2 23 9 17 18 6 26 3 16 11 4 26 16 14 15 0 6 16 0 15 13 10 29 1 26 9</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.37秒！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">+-----------------p71-----------------+</span><br><span class="line">总开销为: 37886</span><br><span class="line"></span><br><span class="line">工厂建设情况:</span><br><span class="line">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1</span><br><span class="line"></span><br><span class="line">顾客分配到工厂的情况</span><br><span class="line">5 6 2 10 2 27 25 15 27 6 9 13 23 8 21 1 24 13 15 0 12 20 5 29 23 22 17 7 12 1 11 16 6 6 29 28 28 9 20 5 7 6 2 22 8 2 14 20 16 0 15 13 15 15 10 26 7 0 14 17 9 0 14 14 25 16 14 11 23 25 19 17 19 27 7 12 13 7 9 17 28 2 29 21 15 5 7 24 6 8 23 22 23 4 21 12 25 10 15 6 7 19 28 16 0 28 3 24 27 14 3 4 7 19 25 15 24 15 23 28 13 19 11 20 7 0 6 23 29 21 28 19 21 17 23 28 11 13 8 5 15 29 2 13 11 24 19 10 24 4 22 17 16 19 22 26 8 12 9 20 2 27 9 17 17 29 0 10 20 24 14 10 20 4 23 13 28 6 22 22 25 3 15 22 6 19 20 19 25 27 8 3 19 9 5 2 17 20 22 0</span><br><span class="line"></span><br><span class="line">此程序的运行时间为0.401秒！</span><br></pre></td></tr></table></figure>
 
-          
-        
       
     </div>
     
@@ -1109,162 +1106,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Android/Android/Android学习--网络访问/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Android/Android/Android学习--网络访问/" itemprop="url">网络访问</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-10T20:08:10+08:00">
-                2018-12-10
-              </time>
+              <a href="/Android/Android/Android学习--网络访问/" rel="next" title="网络访问">
+                <i class="fa fa-chevron-left"></i> 网络访问
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <h1 id="HttpURLConnection"><a href="#HttpURLConnection" class="headerlink" title="HttpURLConnection"></a>HttpURLConnection</h1><h2 id="添加权限"><a href="#添加权限" class="headerlink" title="添加权限"></a>添加权限</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">在AndroidManifest.xml中加上</span><br><span class="line">	&lt;manifest xmlns:...&gt;</span><br><span class="line">		&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot;/&gt;</span><br><span class="line">    	&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot;/&gt;</span><br><span class="line">	&lt;/manifest&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line"> 	//	建立连接</span><br><span class="line">  	URL url = new URL(&quot;http://www.baidu.com&quot;);</span><br><span class="line">  	HttpURLConnection connection = (HttpURLConnection)url.openConnection();</span><br><span class="line"></span><br><span class="line">  	//	设置GET方法</span><br><span class="line">  	connection.setRequestMethod(&quot;GET&quot;);</span><br><span class="line"></span><br><span class="line">  	//	读取响应流</span><br><span class="line">  	InputStream in = connection.getInputStream();</span><br><span class="line">  	BufferedReader reader = new BufferedReader(new InputStreamReader(in));</span><br><span class="line">  	StringBuilder response = new StringBuilder();</span><br><span class="line">  	String line;</span><br><span class="line">  	while ((line = reader.readLine()) != null) &#123;</span><br><span class="line">    	response.append(line);</span><br><span class="line">  	&#125; </span><br><span class="line">  	</span><br><span class="line">  	//	对response.toString()进行解析</span><br><span class="line">  	</span><br><span class="line">&#125; catch (Exception e) &#123;</span><br><span class="line">  e.printStackTrace();</span><br><span class="line">&#125; finally &#123;</span><br><span class="line">  if (reader != null) &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">      reader.close();</span><br><span class="line">    &#125; catch (Exception e) &#123;</span><br><span class="line">      e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  if (connection != null) &#123;</span><br><span class="line">  	//	断开连接</span><br><span class="line">    connection.disconnect();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line"> 	//	建立连接</span><br><span class="line">  	URL url = new URL(&quot;http://www.baidu.com&quot;);</span><br><span class="line">  	HttpURLConnection connection = (HttpURLConnection)url.openConnection();</span><br><span class="line"></span><br><span class="line">  	//	设置POST方法</span><br><span class="line">  	connection.setRequestMethod(&quot;POST&quot;);</span><br><span class="line">  	</span><br><span class="line">  	//	传递POST数据</span><br><span class="line">  	DataOutputStream out = new DataOutputStream(connection.getOutputStream());</span><br><span class="line">  	out.writeBytes(&quot;username=admin&amp;password=123456&quot;);</span><br><span class="line"></span><br><span class="line">  	//	读取响应流</span><br><span class="line">  	InputStream in = connection.getInputStream();</span><br><span class="line">  	BufferedReader reader = new BufferedReader(new InputStreamReader(in));</span><br><span class="line">  	StringBuilder response = new StringBuilder();</span><br><span class="line">  	String line;</span><br><span class="line">  	while ((line = reader.readLine()) != null) &#123;</span><br><span class="line">    	response.append(line);</span><br><span class="line">  	&#125; </span><br><span class="line">  	</span><br><span class="line">  	//	对response.toString()进行解析</span><br><span class="line">  	</span><br><span class="line">&#125; catch (Exception e) &#123;</span><br><span class="line">  e.printStackTrace();</span><br><span class="line">&#125; finally &#123;</span><br><span class="line">  if (reader != null) &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">      reader.close();</span><br><span class="line">    &#125; catch (Exception e) &#123;</span><br><span class="line">      e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  if (connection != null) &#123;</span><br><span class="line">  	//	断开连接</span><br><span class="line">    connection.disconnect();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="GSON解析JSON数据"><a href="#GSON解析JSON数据" class="headerlink" title="GSON解析JSON数据"></a>GSON解析JSON数据</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">1. 添加依赖</span><br><span class="line">	implementation &apos;com.google.code.gson:gson:2.7&apos;</span><br><span class="line">	</span><br><span class="line">2. 添加权限</span><br><span class="line">    在AndroidManifest.xml中加上</span><br><span class="line">    	&lt;manifest xmlns:...&gt;</span><br><span class="line">    		&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot;/&gt;</span><br><span class="line">        	&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot;/&gt;</span><br><span class="line">    	&lt;/manifest&gt;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">3. 定义解析对象的类</span><br><span class="line">	public class App &#123;</span><br><span class="line">      private String id;</span><br><span class="line">      public void getId() &#123;</span><br><span class="line">        return id;</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">      public void setId(String id) &#123;</span><br><span class="line">        this.id = id</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">	&#125;</span><br><span class="line">4.	解析成数组</span><br><span class="line">	String jsonData;</span><br><span class="line">	Gson gson = new Gson();</span><br><span class="line">	</span><br><span class="line">	具体解析参考下面博客</span><br><span class="line">	https://www.cnblogs.com/lr393993507/p/5772721.html</span><br></pre></td></tr></table></figure>
-<h1 id="OkHttp"><a href="#OkHttp" class="headerlink" title="OkHttp"></a>OkHttp</h1><p>​    代替HttpUrlConnection进行网络访问的库,</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">1. 添加依赖</span><br><span class="line">	implementation &apos;com.squareup.okhttp3:okhttp:3.4.1&apos;</span><br><span class="line">	</span><br><span class="line">2. get</span><br><span class="line">try &#123;</span><br><span class="line">  OkHttpClient client = new OkHttpClient();</span><br><span class="line">  Request request = new Request.Builder().url(&apos;www.baidu.com&apos;).build();</span><br><span class="line">  Response response = client.newCall(request).execute();</span><br><span class="line">  String responseData = response.body().string();</span><br><span class="line">&#125; catch (Exception e) &#123;</span><br><span class="line">  e.printStackTrace();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">3. post</span><br><span class="line">try &#123;</span><br><span class="line">  OkHttpClient client = new OkHttpClient();</span><br><span class="line">  RequestBody requestBody = new FormBody.Builder()</span><br><span class="line">  									 .add(&apos;username&apos;, &apos;admin&apos;)</span><br><span class="line">  									 .add(&apos;password&apos;, &apos;123456&apos;)</span><br><span class="line">  									 .build();</span><br><span class="line">  Request request = new Request.Builder().url(&apos;www.baidu.com&apos;).post(requestBody).build();</span><br><span class="line">  Response response = client.newCall(request).execute();</span><br><span class="line">  String responseData = response.body().string();</span><br><span class="line">&#125; catch (Exception e) &#123;</span><br><span class="line">  e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="Retrofit2"><a href="#Retrofit2" class="headerlink" title="Retrofit2"></a>Retrofit2</h1><p>​    基于OkHttp实现的网络访问的库,  在网络库中性能最好, 支持RxJava2</p>
-<h2 id="GET-1"><a href="#GET-1" class="headerlink" title="GET"></a>GET</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">1. 添加依赖</span><br><span class="line">	implementation &apos;com.squareup.retrofit2:retrofit:2.0.2&apos;</span><br><span class="line">	implementation &apos;com.squareup.retrofit2:converter-gson:2.0.2&apos;</span><br><span class="line">	implementation &apos;com.squareup.retrofit2:adapter-rxjava:2.1.0&apos;</span><br><span class="line">	</span><br><span class="line">2. 添加权限</span><br><span class="line">    在AndroidManifest.xml中加上</span><br><span class="line">    	&lt;manifest xmlns:...&gt;</span><br><span class="line">    		&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot;/&gt;</span><br><span class="line">        	&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot;/&gt;</span><br><span class="line">    	&lt;/manifest&gt;</span><br><span class="line">    	</span><br><span class="line">3. 创建接收响应数据的GSON类</span><br><span class="line"></span><br><span class="line">	/*</span><br><span class="line">		json示例</span><br><span class="line">		&#123;</span><br><span class="line">          &quot;status&quot;: ...,</span><br><span class="line">          &quot;content&quot;: [</span><br><span class="line">            &#123;</span><br><span class="line">              &quot;data&quot;: ...</span><br><span class="line">            &#125;</span><br><span class="line">          ] </span><br><span class="line">		&#125;</span><br><span class="line">	*/	</span><br><span class="line">	</span><br><span class="line">	public class GetData &#123;</span><br><span class="line">      private int status;</span><br><span class="line">      private List&lt;contentBean&gt; content;</span><br><span class="line">      </span><br><span class="line">      private static class contentBean &#123;</span><br><span class="line">        private String data;</span><br><span class="line">        创建Getter和Setter</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">      创建Getter和Setter</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">4. 创建描述网络请求的接口</span><br><span class="line">//	GetInterface.java</span><br><span class="line">public interface GetInterface &#123;		</span><br><span class="line">	// 	通过配置注解的方式设置参数, 包括用get方法, 相对路径path(不需要则为空), 返回数据是GetData类型</span><br><span class="line"> 	@GET(&quot;/path&quot;)</span><br><span class="line">	Call&lt;GetData&gt;  getCall(@Query(&quot;username&quot;) String username,@Query(&quot;password&quot;) String password);</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//	MainActivity.java</span><br><span class="line">@Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">		5. 创建Retrofit对象</span><br><span class="line">        Retrofit retrofit = new Retrofit.Builder()</span><br><span class="line">                .baseUrl(&quot;http://www.baidu.com/&quot;) 		//	基地址, 完整URL=www.baidu.com/path?username=Tom&amp;password=123456</span><br><span class="line">                .addConverterFactory(GsonConverterFactory.create()) 		// 设置数据解析器</span><br><span class="line">                .addCallAdapterFactory(RxJavaCallAdapterFactory.create()) 	// 支持RxJava平台</span><br><span class="line">                .build();</span><br><span class="line"></span><br><span class="line">		6. 创建网络请求接口实例</span><br><span class="line">		GetInterface request = retrofit.create(GetInterface.class);</span><br><span class="line">		</span><br><span class="line">		7. 对请求进行封装</span><br><span class="line">		Call&lt;GetData&gt; call = request.getCall(&quot;Tom&quot;, &quot;123456&quot;);</span><br><span class="line">		</span><br><span class="line">		8. 发送异步网络请求</span><br><span class="line">		call.enqueue(new Callback&lt;GetData&gt;() &#123;</span><br><span class="line">            //	请求成功时回调</span><br><span class="line">            @Override</span><br><span class="line">            public void onResponse(Call&lt;GetData&gt; call, Response&lt;GetData&gt; response) &#123;</span><br><span class="line">                9. 处理返回的数据结果</span><br><span class="line">                GetData data = response.body();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            //	请求失败时回调</span><br><span class="line">            @Override</span><br><span class="line">            public void onFailure(Call&lt;GetData&gt; call, Throwable throwable) &#123;</span><br><span class="line">                System.out.println(&quot;连接失败&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="POST-1"><a href="#POST-1" class="headerlink" title="POST"></a>POST</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public interface PostInterface &#123;</span><br><span class="line">  @FormUrlEncoded</span><br><span class="line">  @POST(&quot;path&quot;)</span><br><span class="line">  Call&lt;PostData&gt; getCall(@Field(&quot;username&quot;, encoded=true) String username, @Field(&quot;password&quot;, encoded=true) String password);		//	encoded用于中文字符的编码</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">参数过多可以使用FileMap</span><br><span class="line">Call&lt;PostData&gt; getCall(@FieldMap Map&lt;String, String&gt; params);</span><br><span class="line"> </span><br><span class="line">Map&lt;String, String&gt; params = new HashMap&lt;&gt;();</span><br><span class="line">params.put(&quot;username&quot;, &quot;TOM&quot;);</span><br><span class="line">params.put(&quot;password&quot;, &quot;123456&quot;);</span><br><span class="line">Call&lt;PostData&gt; call = request.getCall(params);</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -1274,1204 +1137,11 @@
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/LeetCode/LeetCode/Single Number/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/LeetCode/LeetCode/Single Number/" itemprop="url">Single Number</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-10T11:07:32+08:00">
-                2018-12-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>Given a <strong>non-empty</strong> array of integers, every element appears <em>twice</em> except for one. Find that single one.</p>
-<p><strong>Note:</strong></p>
-<p>Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [2,2,1]</span><br><span class="line">Output: 1</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [4,1,2,1,2]</span><br><span class="line">Output: 4</span><br></pre></td></tr></table></figure>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">将数组中所有的元素进行异或运算, 因为a ^ a = 0, 0 ^ b = b, 所以最终结果就是只出现一次的元素</span><br></pre></td></tr></table></figure>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">	int singleNumber(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">		int result = 0;</span><br><span class="line">		for (int i = 0; i &lt; nums.size(); i++) &#123;</span><br><span class="line">			result = result ^ nums[i];</span><br><span class="line">		&#125;</span><br><span class="line">		return result;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-          
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/LeetCode/LeetCode/算法常用语法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/LeetCode/LeetCode/算法常用语法/" itemprop="url">算法常用语法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-10T10:01:51+08:00">
-                2018-12-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="vector"><a href="#vector" class="headerlink" title="vector"></a>vector</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">1. 初始化</span><br><span class="line">	vector&lt;int&gt; v = &#123;1, 2, 3&#125;;</span><br><span class="line">	</span><br><span class="line">2. 插入与弹出</span><br><span class="line">	v.push_back(4);</span><br><span class="line">	v.pop_back();</span><br><span class="line">	</span><br><span class="line">3. 使用下标</span><br><span class="line">	for (int i = 0; i &lt; v.size(); i++) &#123;</span><br><span class="line">      v[i];</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="stack"><a href="#stack" class="headerlink" title="stack"></a>stack</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. 插入与弹出</span><br><span class="line">	s.push();</span><br><span class="line">	s.pop();		//	不返回栈顶元素</span><br><span class="line">	</span><br><span class="line">2. 获取栈顶元素</span><br><span class="line">	s.top();</span><br></pre></td></tr></table></figure>
-<h1 id="algorithm"><a href="#algorithm" class="headerlink" title="algorithm"></a>algorithm</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">1. 升序排序STL</span><br><span class="line">	sort(v.begin(), v.end());</span><br><span class="line">	</span><br><span class="line">2. 降序排序STL</span><br><span class="line">	sort(v.begin(), v.end(), compare);</span><br><span class="line">	bool compare(int a, int b) &#123;</span><br><span class="line">      return a &gt; b;					//	当第一个元素比第二个元素大, 返回true, 不用进行交换</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">3. 反转STL</span><br><span class="line">	reverse(v.begin(), v.end());</span><br></pre></td></tr></table></figure>
-<h1 id="sstream"><a href="#sstream" class="headerlink" title="sstream"></a>sstream</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">1. 将string转换为int</span><br><span class="line">	string s = &quot;10&quot;;</span><br><span class="line">	int value;</span><br><span class="line">	stringstream ss;</span><br><span class="line">	ss &lt;&lt; s;</span><br><span class="line">	ss &gt;&gt; value;</span><br><span class="line">	</span><br><span class="line">2. 将int转为string</span><br><span class="line">	int value = 10;</span><br><span class="line">	string s;</span><br><span class="line">	stringstream ss;</span><br><span class="line">	ss &lt;&lt; value;</span><br><span class="line">	ss &gt;&gt; s;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/LeetCode/LeetCode/Min-Stack/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/LeetCode/LeetCode/Min-Stack/" itemprop="url">Min Stack</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-10T09:19:19+08:00">
-                2018-12-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.</p>
-<ul>
-<li>push(x) – Push element x onto stack.</li>
-<li>pop() – Removes the element on top of the stack.</li>
-<li>top() – Get the top element.</li>
-<li>getMin() – Retrieve the minimum element in the stack.</li>
-</ul>
-<p><strong>Example:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">MinStack minStack = new MinStack();</span><br><span class="line">minStack.push(-2);</span><br><span class="line">minStack.push(0);</span><br><span class="line">minStack.push(-3);</span><br><span class="line">minStack.getMin();   --&gt; Returns -3.</span><br><span class="line">minStack.pop();</span><br><span class="line">minStack.top();      --&gt; Returns 0.</span><br><span class="line">minStack.getMin();   --&gt; Returns -2.</span><br></pre></td></tr></table></figure>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">栈中每个元素保存两个值, 一个是元素的值, 另一个是以当前元素为栈顶时栈的最小值</span><br></pre></td></tr></table></figure>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">class MinStack &#123;</span><br><span class="line">public:</span><br><span class="line">	/** initialize your data structure here. */</span><br><span class="line">	MinStack() &#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	void push(int x) &#123;</span><br><span class="line">		if (MyStack.empty()) &#123;</span><br><span class="line">			MyStack.push_back(make_pair(x, x));</span><br><span class="line">		&#125;</span><br><span class="line">		else &#123;</span><br><span class="line">			if (MyStack.back().second &gt; x) &#123;</span><br><span class="line">				MyStack.push_back(make_pair(x, x));</span><br><span class="line">			&#125;</span><br><span class="line">			else &#123;</span><br><span class="line">				MyStack.push_back(make_pair(x, MyStack.back().second));</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	void pop() &#123;</span><br><span class="line">		MyStack.pop_back();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	int top() &#123;</span><br><span class="line">		return MyStack.back().first;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	int getMin() &#123;</span><br><span class="line">		return MyStack.back().second;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">private:</span><br><span class="line">	vector&lt;pair&lt;int, int&gt;&gt; MyStack;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Android/Android/Android学习--RxJava/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Android/Android/Android学习--RxJava/" itemprop="url">RxJava</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-09T21:48:41+08:00">
-                2018-12-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="RxJava"><a href="#RxJava" class="headerlink" title="RxJava"></a>RxJava</h1><p>​    实现异步的一种方式</p>
-<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
-<li>链式:  对于嵌套的异步(即异步A执行完后才执行异步B), 不像Thread那样写成嵌套的形式</li>
-<li>观察者模式: 当被观察者Observable改变时, 观察者Observer才会采取行动(OnClickListener就是典型的观察者模式)</li>
-</ul>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p><a href="https://blog.csdn.net/qq_38228254/article/details/79722067" target="_blank" rel="noopener">https://blog.csdn.net/qq_38228254/article/details/79722067</a></p>
-<p><a href="https://www.jianshu.com/p/c935d0860186" target="_blank" rel="noopener">https://www.jianshu.com/p/c935d0860186</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">1. 在build.gradle中添加依赖</span><br><span class="line">    implementation &apos;io.reactivex.rxjava2:rxandroid:2.0.1&apos;</span><br><span class="line">    implementation &apos;io.reactivex.rxjava2:rxjava:2.1.8&apos;</span><br><span class="line"></span><br><span class="line">2. import io.reactivex.xxx的包</span><br><span class="line"></span><br><span class="line">3. 创建观察者Observer</span><br><span class="line">       myObserver = new Observer() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onSubscribe(Disposable d) &#123;</span><br><span class="line">                disposable = d;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            @Override</span><br><span class="line">            public void onNext(Object o) &#123;</span><br><span class="line">                System.out.println((String)o);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            @Override</span><br><span class="line">            public void onError(Throwable e) &#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            @Override</span><br><span class="line">            public void onComplete() &#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        </span><br><span class="line">4. 创建被观察者Observable</span><br><span class="line">        myObservable = Observable.create(new ObservableOnSubscribe() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void subscribe(ObservableEmitter emitter) throws Exception &#123;</span><br><span class="line">                while (true) &#123;</span><br><span class="line">                    try &#123;</span><br><span class="line">                        emitter.onNext(&quot;Hello World&quot;);		//	每1s触发1次myObserver的onNext</span><br><span class="line">                        Thread.sleep(100);</span><br><span class="line">                    &#125; catch (Exception e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">5. 订阅</span><br><span class="line">        myObservable.observeOn(AndroidSchedulers.mainThread())  //  Observer在主线程中执行</span><br><span class="line">                    .subscribeOn(Schedulers.io())               //  Observable在io线程中执行</span><br><span class="line">                    .subscribe(myObserver);</span><br><span class="line">                </span><br><span class="line">6. 通过Disposable.dispose取消订阅, 防止内存泄漏</span><br><span class="line">		disposable.dispose();</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/LeetCode/LeetCode/Merge Two Sorted Lists/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/LeetCode/LeetCode/Merge Two Sorted Lists/" itemprop="url">Merge Two Sorted Lists</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-06T13:15:40+08:00">
-                2018-12-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.</p>
-<p><strong>Example:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: 1-&gt;2-&gt;4, 1-&gt;3-&gt;4</span><br><span class="line">Output: 1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4</span><br></pre></td></tr></table></figure>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">	ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) &#123;</span><br><span class="line">		ListNode* head = new ListNode(0);</span><br><span class="line">		ListNode* l3 = head;</span><br><span class="line"></span><br><span class="line">		//	对于无头链表, 可以先创建一个有头链表然后返回链表第一个元素</span><br><span class="line"></span><br><span class="line">		while (l1 != NULL || l2 != NULL) &#123;</span><br><span class="line">			if (l1 == NULL) &#123;</span><br><span class="line">				l3-&gt;next = new ListNode(l2-&gt;val);</span><br><span class="line">				l2 = l2-&gt;next;</span><br><span class="line">			&#125;</span><br><span class="line">			else if (l2 == NULL) &#123;</span><br><span class="line">				l3-&gt;next = new ListNode(l1-&gt;val);</span><br><span class="line">				l1 = l1-&gt;next;</span><br><span class="line">			&#125;</span><br><span class="line">			else if (l1-&gt;val &lt; l2-&gt;val) &#123;</span><br><span class="line">				l3-&gt;next = new ListNode(l1-&gt;val);</span><br><span class="line">				l1 = l1-&gt;next;</span><br><span class="line">			&#125;</span><br><span class="line">			else &#123;</span><br><span class="line">				l3-&gt;next = new ListNode(l2-&gt;val);</span><br><span class="line">				l2 = l2-&gt;next;</span><br><span class="line">			&#125;</span><br><span class="line">			l3 = l3-&gt;next;</span><br><span class="line">		&#125;</span><br><span class="line">		return head-&gt;next;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/LeetCode/LeetCode/Palindrome Number/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/LeetCode/LeetCode/Palindrome Number/" itemprop="url">Palindrome Number</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-06T12:23:39+08:00">
-                2018-12-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: 121</span><br><span class="line">Output: true</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: -121</span><br><span class="line">Output: false</span><br><span class="line">Explanation: From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 3:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: 10</span><br><span class="line">Output: false</span><br><span class="line">Explanation: Reads 01 from right to left. Therefore it is not a palindrome.</span><br></pre></td></tr></table></figure>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">	bool isPalindrome(int x) &#123;</span><br><span class="line">		//	将数字转为字符串</span><br><span class="line">		stringstream ss;</span><br><span class="line">		ss &lt;&lt; x;</span><br><span class="line">		string str;</span><br><span class="line">		ss &gt;&gt; str;</span><br><span class="line"></span><br><span class="line">		//	调用algorithm中的reverse</span><br><span class="line">		reverse(str.begin(), str.end());</span><br><span class="line"></span><br><span class="line">		//	将字符串转数字</span><br><span class="line">		ss.clear();</span><br><span class="line">		ss &lt;&lt; str;</span><br><span class="line">		long long y;		//	特别注意int类型reverse可能溢出</span><br><span class="line">		ss &gt;&gt; y;</span><br><span class="line">		if ((long long)x != y) &#123;</span><br><span class="line">			return false;</span><br><span class="line">		&#125;</span><br><span class="line">		return true;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/LeetCode/LeetCode/Longest Palindromic Substring/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/LeetCode/LeetCode/Longest Palindromic Substring/" itemprop="url">Longest Palindromic Substring</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-01T16:45:06+08:00">
-                2018-12-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>Given a string <strong>s</strong>, find the longest palindromic substring in <strong>s</strong>. You may assume that the maximum length of <strong>s</strong> is 1000.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;babad&quot;</span><br><span class="line">Output: &quot;bab&quot;</span><br><span class="line">Note: &quot;aba&quot; is also a valid answer.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;cbbd&quot;</span><br><span class="line">Output: &quot;bb&quot;</span><br></pre></td></tr></table></figure>
-<h1 id="思路一-动态规划"><a href="#思路一-动态规划" class="headerlink" title="思路一: 动态规划"></a>思路一: 动态规划</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1. 设置二维数组length[i][j]</span><br><span class="line">	length[i][j] = 0 	=&gt; 		s[i...j]不是回文串</span><br><span class="line">	length[i][j] = n	=&gt;		回文串s[i...j]的长度为n</span><br><span class="line">	</span><br><span class="line">2. 根据递归式</span><br><span class="line">	如果s[i] = s[j]且s[i+1...j-1]是回文串, length[i][j]=length[i+1][j-1]+2</span><br><span class="line">	如果s[i] = s[j]且s[i+1...j-1]不是回文串, length[i][j]=0</span><br><span class="line">	如果s[i] != s[j], length[i][j]=0</span><br><span class="line">	</span><br><span class="line">时间复杂度为O(n^2)</span><br></pre></td></tr></table></figure>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">	string longestPalindrome(string s) &#123;</span><br><span class="line">		//	动态创建二维数组</span><br><span class="line">		int** length = new int*[s.size()];</span><br><span class="line">		for (int i = 0; i &lt; s.size(); i++) &#123;</span><br><span class="line">			length[i] = new int[s.size()];</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		//	初始化</span><br><span class="line">		for (int i = 0; i &lt; s.size(); i++) &#123;</span><br><span class="line">			for (int j = 0; j &lt; s.size(); j++) &#123;</span><br><span class="line">				length[i][j] = i == j ? 1 : 0;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		//	DP</span><br><span class="line">		for (int i = 0; i &lt; s.size(); i++) &#123;</span><br><span class="line">			for (int j = i + 1; j &lt; s.size(); j++) &#123;</span><br><span class="line">				if (s[i] == s[j]) &#123;</span><br><span class="line">					if (i == j - 1) &#123;</span><br><span class="line">						length[i][j] = 2;</span><br><span class="line">					&#125;</span><br><span class="line">					else if (i + 1 == j - 1) &#123;</span><br><span class="line">						length[i][j] = length[i + 1][j - 1] + 2;</span><br><span class="line">					&#125;</span><br><span class="line">					else &#123;</span><br><span class="line">						length[i][j] = length[i + 1][j - 1] == 0 ? 0 : length[i + 1][j - 1] + 2;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				else</span><br><span class="line">					length[i][j] = 0;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		//	Find max Length</span><br><span class="line">		int maxLength = 0;</span><br><span class="line">		int firstIndex = -1;</span><br><span class="line">		for (int i = 0; i &lt; s.size(); i++) &#123;</span><br><span class="line">			for (int j = 0; j &lt; s.size(); j++) &#123;</span><br><span class="line">				if (maxLength &lt; length[i][j]) &#123;</span><br><span class="line">					maxLength = length[i][j];</span><br><span class="line">					firstIndex = i;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		return s.substr(firstIndex, maxLength);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h1 id="思路二"><a href="#思路二" class="headerlink" title="思路二"></a>思路二</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">					步骤									时间复杂度</span><br><span class="line">1. 在字符串S中选定一个位置作为回文串的中点O						O(n)</span><br><span class="line">2. 选择回文串一半的长度L								  		  O(n)</span><br><span class="line">3. 根据中点O和回文串一半长度L构建回文串并判断是否是回文串, 记录长度	 O(1)</span><br><span class="line"></span><br><span class="line">总的时间复杂度=O(n)*O(n)=O(n^2)</span><br></pre></td></tr></table></figure>
-<h1 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">	string longestPalindrome(string s) &#123;</span><br><span class="line">		int maxLength = 0;</span><br><span class="line">		int maxLengthHead = 0;</span><br><span class="line">		for (int i = 0; i &lt; s.length(); i++) &#123;</span><br><span class="line">			int tempLength = 0;</span><br><span class="line">			int tempLengthHead = 0;</span><br><span class="line">			int j;</span><br><span class="line"></span><br><span class="line">			//	回文长度为奇数</span><br><span class="line">			for (j = 0; i + j &lt; s.length() &amp;&amp; i - j &gt;= 0; j++) &#123;</span><br><span class="line">				if (s[i + j] != s[i - j]) </span><br><span class="line">					break;</span><br><span class="line">			&#125;</span><br><span class="line">			j--;</span><br><span class="line">			tempLength = 2 * j + 1;</span><br><span class="line">			tempLengthHead = i - j;</span><br><span class="line">			if (maxLength &lt; tempLength) &#123;</span><br><span class="line">				maxLength = tempLength;</span><br><span class="line">				maxLengthHead = tempLengthHead;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			//	回文长度为偶数</span><br><span class="line">			tempLength = 0;</span><br><span class="line">			tempLengthHead = 0;</span><br><span class="line">			for (j = 1; i + j &lt; s.length() &amp;&amp; i - j + 1 &gt;= 0; j++) &#123;</span><br><span class="line">				if (s[i + j] != s[i - j + 1]) </span><br><span class="line">					break;</span><br><span class="line">			&#125;</span><br><span class="line">			j--;</span><br><span class="line">			tempLength = 2 * j;</span><br><span class="line">			tempLengthHead = i - j + 1;</span><br><span class="line">			if (maxLength &lt; tempLength) &#123;</span><br><span class="line">				maxLength = tempLength;</span><br><span class="line">				maxLengthHead = tempLengthHead;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		return s.substr(maxLengthHead, maxLength);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/LeetCode/LeetCode/Longest Substring Without Repeating/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/LeetCode/LeetCode/Longest Substring Without Repeating/" itemprop="url">Longest Substring Without Repeating</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-01T14:55:57+08:00">
-                2018-12-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>Given a string, find the length of the <strong>longest substring</strong> without repeating characters.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;abcabcbb&quot;</span><br><span class="line">Output: 3 </span><br><span class="line">Explanation: The answer is &quot;abc&quot;, with the length of 3.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;bbbbb&quot;</span><br><span class="line">Output: 1</span><br><span class="line">Explanation: The answer is &quot;b&quot;, with the length of 1.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 3:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;pwwkew&quot;</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: The answer is &quot;wke&quot;, with the length of 3. </span><br><span class="line">             Note that the answer must be a substring, &quot;pwke&quot; is a subsequence and not a substring.</span><br></pre></td></tr></table></figure>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">		步骤															时间复杂度</span><br><span class="line">1. 扫描字符串S, 当前字符为C, 已扫描字符构成的Map&lt;字符, 字符的下标&gt;		 		O(n)</span><br><span class="line">2. 如果C不在Map中, 则将C放入Map, 并将C加入到最长子串S&apos;后面		 		 		O(1)</span><br><span class="line">3. 如果C在Map中, 下一次扫描从Map[C]+1开始, 更新子串[start, end]的区间			  O(1)</span><br><span class="line"></span><br><span class="line">总的时间复杂度为O(n)*O(1)=O(1)</span><br></pre></td></tr></table></figure>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">	int lengthOfLongestSubstring(string s) &#123;</span><br><span class="line">		int maxCount = 0;</span><br><span class="line">		int start = 0;				//	子字符串的区间为[start, end], 长度为end - start + 1</span><br><span class="line">		int end = 0;</span><br><span class="line">		map&lt;char, int&gt; m;</span><br><span class="line"></span><br><span class="line">		for (int i = 0; i &lt; s.size(); i++) &#123;</span><br><span class="line">			end = i;</span><br><span class="line">			//	m[s[i]] != i &amp;&amp; m[s[i]] &gt;= start, 防止没有清空map导致的问题</span><br><span class="line">			if (m.find(s[i]) != m.end() &amp;&amp; m[s[i]] != i &amp;&amp; m[s[i]] &gt;= start) &#123;</span><br><span class="line">				swap(i, m[s[i]]);			//	下一次搜索从m[s[i]]+1开始, 更新m[s[i]]的位置</span><br><span class="line">				start = i + 1;</span><br><span class="line">			&#125;</span><br><span class="line">			else </span><br><span class="line">				m[s[i]] = i;</span><br><span class="line">			maxCount = maxCount &lt; end - start + 1 ? end - start + 1 : maxCount;</span><br><span class="line">		&#125;</span><br><span class="line">		return maxCount;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
 
 
           </div>
@@ -2479,6 +1149,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -2499,8 +1173,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -2585,6 +1268,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Capacitated-Facility-Location-Problem"><span class="nav-number">1.</span> <span class="nav-text">Capacitated Facility Location Problem</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#贪心算法"><span class="nav-number">1.1.</span> <span class="nav-text">贪心算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">1.1.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">1.1.2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结果表"><span class="nav-number">1.1.3.</span> <span class="nav-text">结果表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结果"><span class="nav-number">1.1.4.</span> <span class="nav-text">结果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模拟退火法"><span class="nav-number">1.2.</span> <span class="nav-text">模拟退火法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结果表-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">结果表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结果-1"><span class="nav-number">1.2.4.</span> <span class="nav-text">结果</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -2725,6 +1424,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
