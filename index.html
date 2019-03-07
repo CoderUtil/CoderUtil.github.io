@@ -259,6 +259,510 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/系统分析与设计/系统分析与设计/第一章/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/系统分析与设计/系统分析与设计/第一章/" itemprop="url">第一章</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-07T09:11:12+08:00">
+                2019-03-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/系统分析与设计/" itemprop="url" rel="index">
+                    <span itemprop="name">系统分析与设计</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="软件工程的定义"><a href="#软件工程的定义" class="headerlink" title="软件工程的定义"></a>软件工程的定义</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">软件工程是通过系统的、规范的、可量化的方法, 对软件进行开发、操作和维护, 并研究这些方法的学科</span><br></pre></td></tr></table></figure>
+<h3 id="解释导致software-crisis本质原因、表现-述说克服软件危机的方法"><a href="#解释导致software-crisis本质原因、表现-述说克服软件危机的方法" class="headerlink" title="解释导致software crisis本质原因、表现, 述说克服软件危机的方法"></a>解释导致software crisis本质原因、表现, 述说克服软件危机的方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">本质原因: </span><br><span class="line">	落后的软件生产方式无法满足迅速增长的计算机软件需求, 从而导致软件开发与维护过程中出现一系列严重问题的现象</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">表现: </span><br><span class="line">	1. 软件开发进度难以预测</span><br><span class="line">	2. 软件开发成本难以控制</span><br><span class="line">	3. 用户对产品功能难以满足</span><br><span class="line">	4. 软件产品质量无法保证</span><br><span class="line">	5. 软件产品难以维护</span><br><span class="line">	6. 软件缺少适当的文档资料</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">克服软件危机的方法:</span><br><span class="line">	1. 研究软件生产的客观规律</span><br><span class="line">	2. 建立于系统化软件有关的概念、原则、方法、技术和工具, 用于指导和支持软件系统的生产</span><br><span class="line">	3. 提出软件生命周期的模型, 发展软件开发与维护阶段适用的方法</span><br></pre></td></tr></table></figure>
+<h3 id="软件生命周期"><a href="#软件生命周期" class="headerlink" title="软件生命周期"></a>软件生命周期</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在时间维度, 对软件项目任务进行划分, 又称为软件开发过程. 常见有瀑布模型、螺旋模型、敏捷的模型等</span><br></pre></td></tr></table></figure>
+<h3 id="SWEBoK-的-15-个知识域（请中文翻译其名称与简短说明）"><a href="#SWEBoK-的-15-个知识域（请中文翻译其名称与简短说明）" class="headerlink" title="SWEBoK 的 15 个知识域（请中文翻译其名称与简短说明）"></a>SWEBoK 的 15 个知识域（请中文翻译其名称与简短说明）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">1. Software Requirements</span><br><span class="line">	软件需求表示对软件产品的需求、约束、协商、分析、确认, 这些需求有利于解决一些实际问题</span><br><span class="line"></span><br><span class="line">2. Software Design</span><br><span class="line">	软件设计表示定义系统或组件的架构、接口等特性的过程</span><br><span class="line"></span><br><span class="line">3. Software construction</span><br><span class="line">	软件构建表示通过详细的设计、编码、测试、验证等手段, 来创建软件</span><br><span class="line"></span><br><span class="line">4. Software Testing</span><br><span class="line">	软件测试表示通过评估产品质量并识别缺陷来改进产品质量</span><br><span class="line">	</span><br><span class="line">5. Software Maintenance</span><br><span class="line">	软件维护表示增强软件现有的功能, 使软件纠正缺陷并适应新的环境</span><br><span class="line"></span><br><span class="line">6. Software Configuration Management</span><br><span class="line">	软件配置管理表示在不同的时间点识别系统配置, 以系统地控制配置的更改</span><br><span class="line">	</span><br><span class="line">7. Software Engineering Management</span><br><span class="line">	软件工程管理表示计划、协调、控制项目工程, 以确保软件开发和维护是系统的、有纪律的、可量化的</span><br><span class="line">	</span><br><span class="line">8. Software Engineering Process</span><br><span class="line">	软件工程过程表示对软件生命周期的定义、实现、评估、测量和管理</span><br><span class="line">	</span><br><span class="line">9. Software Engineering Models and Methods</span><br><span class="line">	软件工程模型和方法表示软件的多个生命周期以及特定于生命周期的方法</span><br><span class="line">	</span><br><span class="line">10. Software Quality</span><br><span class="line">	软件质量表示软件的实际生命周期以及对软件质量的改进、评估、管理</span><br><span class="line"></span><br><span class="line">11. Software Engineering Professional </span><br><span class="line">	软件工程专业实践表示让软件工程师以专业、负责的方式实践软件工程所必备的知识技能</span><br><span class="line"></span><br><span class="line">12. Software Engineering Economics</span><br><span class="line">	软件工程经济表示在业务环境中做出决策, 以使技术决策和组织的业务目标保持一致</span><br><span class="line">	</span><br><span class="line">13. Computing Foundations</span><br><span class="line">	计算基础涵盖了为软件工程实践提供必要计算机背景的基本主题, 包括算法、编程基础、并行和分布式计算基础、计算机组织、操作系统和网络通信</span><br><span class="line">	</span><br><span class="line">14. Mathematical Foundations</span><br><span class="line">	数学基础涵盖了为软件工程实践提供必要数学背景的基本主题, 包括集合、函数、基本命题和谓词逻辑、证明技术、图和树、离散概率、语法和有限状态机。</span><br><span class="line"></span><br><span class="line">15.Engineering Foundations</span><br><span class="line">	工程基础涵盖了为软件工程实践提供必要工程背景的基本主题, 包括统计分析、测量、建模</span><br></pre></td></tr></table></figure>
+<h3 id="简单解释-CMMI-的五个级别。例如：Level-1-Initial：无序，自发生产模式。"><a href="#简单解释-CMMI-的五个级别。例如：Level-1-Initial：无序，自发生产模式。" class="headerlink" title="简单解释 CMMI 的五个级别。例如：Level 1 - Initial：无序，自发生产模式。"></a>简单解释 CMMI 的五个级别。例如：Level 1 - Initial：无序，自发生产模式。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">1. 初始级</span><br><span class="line">	软件过程是无序的，有时甚至是混乱的，对过程几乎没有定义，成功取决于个人努力。管理是反应式的</span><br><span class="line"></span><br><span class="line">2. 可管理级</span><br><span class="line">	软件过程是无序的，有时甚至是混乱的，对过程几乎没有定义，成功取决于个人努力。管理是反应式的</span><br><span class="line"></span><br><span class="line">3. 已定义级</span><br><span class="line">	已将软件管理和工程两方面的过程文档化、标准化，并综合成该组织的标准软件过程。所有项目均使用经批准、剪裁的标准软件过程来开发和维护软件，软件产品的生产在整个软件过程是可见的。</span><br><span class="line"></span><br><span class="line">4. 量化管理级</span><br><span class="line">	分析对软件过程和产品质量的详细度量数据，对软件过程和产品都有定量的理解与控制。管理有一个作出结论的客观依据，管理能够在定量的范围内预测性能。</span><br><span class="line"></span><br><span class="line">5. 优化管理级</span><br><span class="line">	过程的量化反馈和先进的新思想、新技术促使过程持续不断改进</span><br></pre></td></tr></table></figure>
+<h3 id="用自己语言简述-SWEBok-或-CMMI-（约200字）"><a href="#用自己语言简述-SWEBok-或-CMMI-（约200字）" class="headerlink" title="用自己语言简述 SWEBok 或 CMMI （约200字）"></a>用自己语言简述 SWEBok 或 CMMI （约200字）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">CMMI英文全称是Capability Maturity Model Integration，直接翻译就是能力成熟度模型. CMMI可以看作是成功企业如何做好软件的一些习惯、做法、准则等的集合，是如何做好软件的最佳实践的集合。</span><br><span class="line">CMMI有两种表述方式：连续式与阶段式，两种方式只是从不同的角度来阐述CMMI，其实质上表达的内容是一致的. 连续式其实更加能反应过程改进的本质，并且能更好地引导企业把过程改进做到实处，但连续式比较难以理解。阶段式是直接继承CMM的，大家都比较容易理解，而且阶段式有一个级别，在商业上更好宣传，但很容易导致企业为了过级而过级。连续式和阶段式同时也是评估的两个不同角度，用连续式评估，企业会得到很多个PA的Level，用阶段式评估，企业会得到一个整体的Level。</span><br><span class="line">CMMI按照软件组织的软件能力成熟度划分为5个等级——第1到第5级。数字越大，成熟度越高，高成熟度等级代表比较强的综合软件能力。</span><br><span class="line">5个成熟度等级分别是：</span><br><span class="line">       第1级：初始级</span><br><span class="line">       第2级：受管理级</span><br><span class="line">       第3级：已定义级</span><br><span class="line">       第4级：定量管理级</span><br><span class="line">       第5级：持续优化级</span><br><span class="line">   CMMI每个级别都包含几个到十几个PA，PA简单地说就是要做好软件开发的某一个方面。一个PA包含几个Goal，每个Goal又包含几个到十几个Practice. 只有满足所有Goal, 才算完成一个Practice; 满足所有Practice才算完成一个PA。</span><br><span class="line">   再来谈谈CMMI的现实意义, CMMI提高了软件的质量，加快软件的开发进度, 最关键的是, 它能够促进软件公司之间的良性竞争, 提高了企业是生产力</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/环境配置/环境配置/服务器配置Node和Mongo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/环境配置/环境配置/服务器配置Node和Mongo/" itemprop="url">服务器配置Node和Mongo</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-29T20:30:31+08:00">
+                2018-12-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/环境配置/" itemprop="url" rel="index">
+                    <span itemprop="name">环境配置</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h1><ol>
+<li>去官网下载二进制包(注意是.xz结尾的二进制包, 不是以.gz结尾的源码包)</li>
+<li>通过FileZilla上传到云服务器的/usr/local/tools文件夹下</li>
+<li>tar -xvf node-v10.15.0-linux.xz 以解压</li>
+<li>mv node-10.15.0/   ../node/ 将解压后的文件夹移入到node文件夹</li>
+<li>通过vi修改/etc/profile文件, 在结尾添加</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PATH=$PATH:/usr/local/node/node-v10.15.0-linux-x64/bin</span><br></pre></td></tr></table></figure>
+<ol>
+<li>运行source /etc/profile</li>
+<li>在根目录下运行node -v以查看结果</li>
+</ol>
+<h1 id="MongoDb"><a href="#MongoDb" class="headerlink" title="MongoDb"></a>MongoDb</h1><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>​    <a href="https://www.cnblogs.com/xiaohuochai/p/7636245.html" target="_blank" rel="noopener">https://www.cnblogs.com/xiaohuochai/p/7636245.html</a></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol>
+<li>官网下载Mongodb的二进制包(.gz后缀)</li>
+<li>通过FileZilla上传到云服务器/usr/local/tools下</li>
+<li>在tools文件夹下解压</li>
+<li>创建/usr/local/mongodb, 然后运行mv命令将解压后的文件夹放入其中</li>
+<li>mongodb文件夹下创建conf和logs文件夹</li>
+<li>在logs文件夹下, 通过命令touch mongodb.log生成日志文件</li>
+<li>在conf文件夹下, 通过命令vi mongodb.conf配置</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">dbpath=/data/db</span><br><span class="line">fork=true		//	保证控制台关闭后Mongo仍然开启</span><br><span class="line">port=27017</span><br><span class="line">logappend=true</span><br><span class="line">journal=true</span><br><span class="line">quiet=true</span><br><span class="line">logpath=/usr/local/mongodb/logs/mongodb.log</span><br></pre></td></tr></table></figure>
+<ol>
+<li>在根目录下创建/data/db文件夹</li>
+<li>执行export PATH=/usr/local/mongodb/bin:$PATH 添加路径</li>
+<li>创建软链接</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ln -s /usr/local/mongodb/mongodb-linux-x86_64-4.0.5/bin/mongod /usr/local/bin/mongod</span><br><span class="line">ln -s /usr/local/mongodb/mongodb-linux-x86_64-4.0.5/bin/mongo /usr/local/bin/mongo</span><br><span class="line">ln -s /usr/local/mongodb/mongodb-linux-x86_64-4.0.5/bin/mongodump /usr/local/bin/mongodump</span><br></pre></td></tr></table></figure>
+<ol>
+<li>运行mongod -f /usr/local/mongodb/conf/mongodb.conf开启mongodb数据库</li>
+<li>创建一个新的终端, 输入mongo以验证结果</li>
+</ol>
+<h1 id="Pm2"><a href="#Pm2" class="headerlink" title="Pm2"></a>Pm2</h1><p>​    通过npm start启动的项目在遇到bug自动退出后不会重新启动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1. 安装</span><br><span class="line">	npm install -g pm2</span><br><span class="line">	</span><br><span class="line">2. 查看安装结果</span><br><span class="line">	pm2 list</span><br><span class="line">	</span><br><span class="line">3. 通过pm2启动app.js文件</span><br><span class="line">	pm2 start app.js</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/环境配置/环境配置/服务器配置JDK和Tomcat/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/环境配置/环境配置/服务器配置JDK和Tomcat/" itemprop="url">服务器配置JDK和Tomcat</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-29T13:12:44+08:00">
+                2018-12-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/环境配置/" itemprop="url" rel="index">
+                    <span itemprop="name">环境配置</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>​    <a href="https://www.cnblogs.com/yangxiansen/p/7860001.html" target="_blank" rel="noopener">https://www.cnblogs.com/yangxiansen/p/7860001.html</a></p>
+<h1 id="安装JDK"><a href="#安装JDK" class="headerlink" title="安装JDK"></a>安装JDK</h1><p>​    为了使用JAVA语言, 并且Tomcat需要JDK支持</p>
+<ol>
+<li>官网下载JDK的tar.gz安装包</li>
+<li>在云服务器的/usr/local下创建文件夹tools和jdk</li>
+<li>将安装包通过Filezilla放入tools文件夹中</li>
+<li>在tools文件夹下,  运行tar -zxvf  jdk-11.0.1.tar.gz解压</li>
+<li>在tools文件夹下,  运行mv      jdk-11.0.1/     …/jdk/以将jdk-11.0.1移动到jdk目录中</li>
+<li>通过vi profile打开/etc/目录下的profile文件</li>
+<li>按i进入编辑模式, 拷贝下面的代码, 然后按esc, 输入:wq保存并退出</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># idea - jdk8 settings start</span><br><span class="line"></span><br><span class="line">JAVA_HOME=/usr/local/jdk/jdk-11.0.1</span><br><span class="line"></span><br><span class="line">JRE_HOME=$JAVA_HOME/</span><br><span class="line"></span><br><span class="line">PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin</span><br><span class="line"></span><br><span class="line">CLASSPATH=:$JAVA_HOME/lib</span><br><span class="line"></span><br><span class="line">export JAVA_HOME JRE_HOME PATH CLASSPATH</span><br><span class="line"></span><br><span class="line"># idea - jdk8 settings end</span><br></pre></td></tr></table></figure>
+<ol>
+<li>输入source /etc/profile</li>
+<li>运行java -version查看结果</li>
+</ol>
+<h1 id="安装Tomcat"><a href="#安装Tomcat" class="headerlink" title="安装Tomcat"></a>安装Tomcat</h1><p>​    Tomcat是Java Web服务器, 安装前需要安装Java JDK</p>
+<ol>
+<li>去官网下载Tomcat的tar.gz安装包</li>
+<li>在云服务器的/usr/local下创建文件夹tomcat</li>
+<li>将安装包通过Filezilla放入tools文件夹中</li>
+<li>在tools文件夹下,  运行tar -zxvf  tomcat…..tar.gz解压</li>
+<li>在tools文件夹下,  运行mv   apache-tomcat-9.14.0/      …/tomcat/以将 apache-tomcat-9.14.0移动到tomcat目录中</li>
+<li>通过vi profile打开/etc/目录下的profile文件</li>
+<li>按i进入编辑模式, 拷贝下面的代码, 然后按esc, 输入:wq保存并退出</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># idea - tomcat9 config start </span><br><span class="line"></span><br><span class="line">CATALINA_HOME=/usr/local/tomcat/apache-tomcat-9.14.0</span><br><span class="line"></span><br><span class="line">CATALINA_BASE=/usr/local/tomcat/apache-tomcat-9.14.0</span><br><span class="line"></span><br><span class="line">PATH=$PATH:$CATALINA_BASE/bin</span><br><span class="line"></span><br><span class="line">export PATH CATALINA_BASE</span><br><span class="line"></span><br><span class="line"># idea - tomcat9 config end</span><br></pre></td></tr></table></figure>
+<ol>
+<li>进入/usr/local/tomcat/apache-tomcat-9.14.0/conf</li>
+<li>通过vi命令打开server.xml, 找到如下代码, 以查看端口号</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot; connectionTimeout=&quot;20000&quot; redirectPort=&quot;8443&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>进入进入/usr/local/tomcat/apache-tomcat-9.14.0/bin, 打开catalina.sh</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">JAVA_HOME=/usr/local/jdk/jdk-11.0.1</span><br><span class="line"></span><br><span class="line">JRE_HOME=$JAVA_HOME</span><br></pre></td></tr></table></figure>
+<ol>
+<li>在bin下输入./startup.sh以启动tomcat</li>
+<li>浏览器访问ip:8080以查看结果</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/LeetCode/LeetCode/Capacitated-Facility-Location-Problem/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2016,455 +2520,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/LeetCode/LeetCode/Palindrome Number/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/LeetCode/LeetCode/Palindrome Number/" itemprop="url">Palindrome Number</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-06T12:23:39+08:00">
-                2018-12-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: 121</span><br><span class="line">Output: true</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: -121</span><br><span class="line">Output: false</span><br><span class="line">Explanation: From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 3:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: 10</span><br><span class="line">Output: false</span><br><span class="line">Explanation: Reads 01 from right to left. Therefore it is not a palindrome.</span><br></pre></td></tr></table></figure>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">	bool isPalindrome(int x) &#123;</span><br><span class="line">		//	将数字转为字符串</span><br><span class="line">		stringstream ss;</span><br><span class="line">		ss &lt;&lt; x;</span><br><span class="line">		string str;</span><br><span class="line">		ss &gt;&gt; str;</span><br><span class="line"></span><br><span class="line">		//	调用algorithm中的reverse</span><br><span class="line">		reverse(str.begin(), str.end());</span><br><span class="line"></span><br><span class="line">		//	将字符串转数字</span><br><span class="line">		ss.clear();</span><br><span class="line">		ss &lt;&lt; str;</span><br><span class="line">		long long y;		//	特别注意int类型reverse可能溢出</span><br><span class="line">		ss &gt;&gt; y;</span><br><span class="line">		if ((long long)x != y) &#123;</span><br><span class="line">			return false;</span><br><span class="line">		&#125;</span><br><span class="line">		return true;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/LeetCode/LeetCode/Longest Palindromic Substring/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/LeetCode/LeetCode/Longest Palindromic Substring/" itemprop="url">Longest Palindromic Substring</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-01T16:45:06+08:00">
-                2018-12-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>Given a string <strong>s</strong>, find the longest palindromic substring in <strong>s</strong>. You may assume that the maximum length of <strong>s</strong> is 1000.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;babad&quot;</span><br><span class="line">Output: &quot;bab&quot;</span><br><span class="line">Note: &quot;aba&quot; is also a valid answer.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;cbbd&quot;</span><br><span class="line">Output: &quot;bb&quot;</span><br></pre></td></tr></table></figure>
-<h1 id="思路一-动态规划"><a href="#思路一-动态规划" class="headerlink" title="思路一: 动态规划"></a>思路一: 动态规划</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1. 设置二维数组length[i][j]</span><br><span class="line">	length[i][j] = 0 	=&gt; 		s[i...j]不是回文串</span><br><span class="line">	length[i][j] = n	=&gt;		回文串s[i...j]的长度为n</span><br><span class="line">	</span><br><span class="line">2. 根据递归式</span><br><span class="line">	如果s[i] = s[j]且s[i+1...j-1]是回文串, length[i][j]=length[i+1][j-1]+2</span><br><span class="line">	如果s[i] = s[j]且s[i+1...j-1]不是回文串, length[i][j]=0</span><br><span class="line">	如果s[i] != s[j], length[i][j]=0</span><br><span class="line">	</span><br><span class="line">时间复杂度为O(n^2)</span><br></pre></td></tr></table></figure>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">	string longestPalindrome(string s) &#123;</span><br><span class="line">		//	动态创建二维数组</span><br><span class="line">		int** length = new int*[s.size()];</span><br><span class="line">		for (int i = 0; i &lt; s.size(); i++) &#123;</span><br><span class="line">			length[i] = new int[s.size()];</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		//	初始化</span><br><span class="line">		for (int i = 0; i &lt; s.size(); i++) &#123;</span><br><span class="line">			for (int j = 0; j &lt; s.size(); j++) &#123;</span><br><span class="line">				length[i][j] = i == j ? 1 : 0;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		//	DP</span><br><span class="line">		for (int i = 0; i &lt; s.size(); i++) &#123;</span><br><span class="line">			for (int j = i + 1; j &lt; s.size(); j++) &#123;</span><br><span class="line">				if (s[i] == s[j]) &#123;</span><br><span class="line">					if (i == j - 1) &#123;</span><br><span class="line">						length[i][j] = 2;</span><br><span class="line">					&#125;</span><br><span class="line">					else if (i + 1 == j - 1) &#123;</span><br><span class="line">						length[i][j] = length[i + 1][j - 1] + 2;</span><br><span class="line">					&#125;</span><br><span class="line">					else &#123;</span><br><span class="line">						length[i][j] = length[i + 1][j - 1] == 0 ? 0 : length[i + 1][j - 1] + 2;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				else</span><br><span class="line">					length[i][j] = 0;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		//	Find max Length</span><br><span class="line">		int maxLength = 0;</span><br><span class="line">		int firstIndex = -1;</span><br><span class="line">		for (int i = 0; i &lt; s.size(); i++) &#123;</span><br><span class="line">			for (int j = 0; j &lt; s.size(); j++) &#123;</span><br><span class="line">				if (maxLength &lt; length[i][j]) &#123;</span><br><span class="line">					maxLength = length[i][j];</span><br><span class="line">					firstIndex = i;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		return s.substr(firstIndex, maxLength);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h1 id="思路二"><a href="#思路二" class="headerlink" title="思路二"></a>思路二</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">					步骤									时间复杂度</span><br><span class="line">1. 在字符串S中选定一个位置作为回文串的中点O						O(n)</span><br><span class="line">2. 选择回文串一半的长度L								  		  O(n)</span><br><span class="line">3. 根据中点O和回文串一半长度L构建回文串并判断是否是回文串, 记录长度	 O(1)</span><br><span class="line"></span><br><span class="line">总的时间复杂度=O(n)*O(n)=O(n^2)</span><br></pre></td></tr></table></figure>
-<h1 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">	string longestPalindrome(string s) &#123;</span><br><span class="line">		int maxLength = 0;</span><br><span class="line">		int maxLengthHead = 0;</span><br><span class="line">		for (int i = 0; i &lt; s.length(); i++) &#123;</span><br><span class="line">			int tempLength = 0;</span><br><span class="line">			int tempLengthHead = 0;</span><br><span class="line">			int j;</span><br><span class="line"></span><br><span class="line">			//	回文长度为奇数</span><br><span class="line">			for (j = 0; i + j &lt; s.length() &amp;&amp; i - j &gt;= 0; j++) &#123;</span><br><span class="line">				if (s[i + j] != s[i - j]) </span><br><span class="line">					break;</span><br><span class="line">			&#125;</span><br><span class="line">			j--;</span><br><span class="line">			tempLength = 2 * j + 1;</span><br><span class="line">			tempLengthHead = i - j;</span><br><span class="line">			if (maxLength &lt; tempLength) &#123;</span><br><span class="line">				maxLength = tempLength;</span><br><span class="line">				maxLengthHead = tempLengthHead;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			//	回文长度为偶数</span><br><span class="line">			tempLength = 0;</span><br><span class="line">			tempLengthHead = 0;</span><br><span class="line">			for (j = 1; i + j &lt; s.length() &amp;&amp; i - j + 1 &gt;= 0; j++) &#123;</span><br><span class="line">				if (s[i + j] != s[i - j + 1]) </span><br><span class="line">					break;</span><br><span class="line">			&#125;</span><br><span class="line">			j--;</span><br><span class="line">			tempLength = 2 * j;</span><br><span class="line">			tempLengthHead = i - j + 1;</span><br><span class="line">			if (maxLength &lt; tempLength) &#123;</span><br><span class="line">				maxLength = tempLength;</span><br><span class="line">				maxLengthHead = tempLengthHead;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		return s.substr(maxLengthHead, maxLength);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/LeetCode/LeetCode/Longest Substring Without Repeating/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/LeetCode/LeetCode/Longest Substring Without Repeating/" itemprop="url">Longest Substring Without Repeating</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-01T14:55:57+08:00">
-                2018-12-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>Given a string, find the length of the <strong>longest substring</strong> without repeating characters.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;abcabcbb&quot;</span><br><span class="line">Output: 3 </span><br><span class="line">Explanation: The answer is &quot;abc&quot;, with the length of 3.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;bbbbb&quot;</span><br><span class="line">Output: 1</span><br><span class="line">Explanation: The answer is &quot;b&quot;, with the length of 1.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 3:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;pwwkew&quot;</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: The answer is &quot;wke&quot;, with the length of 3. </span><br><span class="line">             Note that the answer must be a substring, &quot;pwke&quot; is a subsequence and not a substring.</span><br></pre></td></tr></table></figure>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">		步骤															时间复杂度</span><br><span class="line">1. 扫描字符串S, 当前字符为C, 已扫描字符构成的Map&lt;字符, 字符的下标&gt;		 		O(n)</span><br><span class="line">2. 如果C不在Map中, 则将C放入Map, 并将C加入到最长子串S&apos;后面		 		 		O(1)</span><br><span class="line">3. 如果C在Map中, 下一次扫描从Map[C]+1开始, 更新子串[start, end]的区间			  O(1)</span><br><span class="line"></span><br><span class="line">总的时间复杂度为O(n)*O(1)=O(1)</span><br></pre></td></tr></table></figure>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">	int lengthOfLongestSubstring(string s) &#123;</span><br><span class="line">		int maxCount = 0;</span><br><span class="line">		int start = 0;				//	子字符串的区间为[start, end], 长度为end - start + 1</span><br><span class="line">		int end = 0;</span><br><span class="line">		map&lt;char, int&gt; m;</span><br><span class="line"></span><br><span class="line">		for (int i = 0; i &lt; s.size(); i++) &#123;</span><br><span class="line">			end = i;</span><br><span class="line">			//	m[s[i]] != i &amp;&amp; m[s[i]] &gt;= start, 防止没有清空map导致的问题</span><br><span class="line">			if (m.find(s[i]) != m.end() &amp;&amp; m[s[i]] != i &amp;&amp; m[s[i]] &gt;= start) &#123;</span><br><span class="line">				swap(i, m[s[i]]);			//	下一次搜索从m[s[i]]+1开始, 更新m[s[i]]的位置</span><br><span class="line">				start = i + 1;</span><br><span class="line">			&#125;</span><br><span class="line">			else </span><br><span class="line">				m[s[i]] = i;</span><br><span class="line">			maxCount = maxCount &lt; end - start + 1 ? end - start + 1 : maxCount;</span><br><span class="line">		&#125;</span><br><span class="line">		return maxCount;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2519,7 +2574,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-count">79</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2530,7 +2585,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2599,7 +2654,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

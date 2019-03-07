@@ -259,6 +259,435 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/算法/算法/合并排序/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/算法/算法/合并排序/" itemprop="url">合并排序</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-01T15:24:46+08:00">
+                2018-11-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="合并排序"><a href="#合并排序" class="headerlink" title="合并排序"></a>合并排序</h1><h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">这是一个典型的分治算法</span><br><span class="line"></span><br><span class="line">第1轮: 将规模为n的数组分解为n / 2个规模为2的子数组, 然后在O(n)的时间内将子数组合并</span><br><span class="line">第2轮: 将规模为n的数组分解为n / 4个规模为4的子数组, 然后在O(n)的时间内将子数组合并</span><br><span class="line">...</span><br><span class="line">第n轮: 将规模为n的数组分解为2个规模为n / 2的子数组, 然后在O(n)的时间内将子数组合并</span><br><span class="line"></span><br><span class="line">由第n轮可得, T(n) =  2T(n / 2) + O(n)</span><br><span class="line"></span><br><span class="line">a = 2, b = 2, d = 1, 由主定理得T(n) = O((n ^ d) * log(n)) = O(nlog(n))</span><br></pre></td></tr></table></figure>
+<h2 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function mergesort(a[1...n])</span><br><span class="line">	if n &gt; 1 : return merge(mergesort(a[1...n/2]), mergesort(a[n/2+1...n]))</span><br><span class="line">	else : return a	</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">function merge(x[1...h], y[1...k])</span><br><span class="line">    while t != h + k</span><br><span class="line">    	if i = h : a[t++] = y[j++]</span><br><span class="line">    	if j = k : a[t++] = x[i++]</span><br><span class="line">    	if x[i] &lt;= y[j] : a[t++] = x[i++]</span><br><span class="line">    	else : a[t++] = y[j++]</span><br><span class="line">    end</span><br><span class="line">    return a</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/算法/算法/分治算法的时间复杂度/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/算法/算法/分治算法的时间复杂度/" itemprop="url">分治算法的时间复杂度</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-01T15:14:55+08:00">
+                2018-11-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="主定理"><a href="#主定理" class="headerlink" title="主定理"></a>主定理</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">将规模为n的问题分解a个规模为n/b的子问题, 然后在O(n ^ d)时间内将子问题的解合并起来, 有:</span><br><span class="line">	T(n) = aT(n/b) + O(n ^ d)</span><br><span class="line">	</span><br><span class="line">if d &gt; logb(a), T(n) = O(n ^ d)</span><br><span class="line">if d = logb(a), T(n) = O((n ^ d) * log(n))</span><br><span class="line">if d &lt; logb(a), T(n) = O(n ^ (logb(a)))</span><br></pre></td></tr></table></figure>
+<h1 id="二分搜索的时间复杂度"><a href="#二分搜索的时间复杂度" class="headerlink" title="二分搜索的时间复杂度"></a>二分搜索的时间复杂度</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">第1轮: 将规模为n的数组分解为1个规模为n / 2的子数组, 然后在O(1)的时间内将子数组合并(不合并)</span><br><span class="line">第2轮: 将规模为n的数组分解为1个规模为n / 4的子数组, 然后在O(1)的时间内将子数组合并</span><br><span class="line">...</span><br><span class="line">第n轮: 将规模为n的数组分解为1个规模为n / 2 ^ n的子数组, 然后在O(1)的时间内将子数组合并</span><br><span class="line"></span><br><span class="line">T(n) = T(n / 2) + O(1)</span><br><span class="line"></span><br><span class="line">a = 1, b = 2, d = 0, 由主定理可得, d = logb(a), 因此T(n) = O((n ^ d) * log(n)) = O(log(n))</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/算法/算法/最大公因数GCD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/算法/算法/最大公因数GCD/" itemprop="url">最大公因数GCD</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-01T14:59:49+08:00">
+                2018-11-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="最大公因数GCD"><a href="#最大公因数GCD" class="headerlink" title="最大公因数GCD"></a>最大公因数GCD</h1><h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">欧几里得规则: </span><br><span class="line"> (1) if x &gt;= y &gt; 0, gcd(x, y) = gcd(y, x mod y)</span><br><span class="line"> (2) if y == 0, gcd(x, y) = x</span><br></pre></td></tr></table></figure>
+<h2 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function Euclid(x, y)</span><br><span class="line">  if b = 0 : return a</span><br><span class="line">  return Euclid(y, x mod y)</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Android/Android/Android学习--数据存储/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1275,479 +1704,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Android/Android/Android学习--活动Activity/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Android/Android/Android学习--活动Activity/" itemprop="url">活动Activity</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-09T20:15:22+08:00">
-                2018-10-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Toast"><a href="#Toast" class="headerlink" title="Toast"></a>Toast</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Toast.makeText(MainActivity.this, &quot;A Toast&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line"></span><br><span class="line">第一个参数: 当前类名加上.this </span><br><span class="line">第二个参数: 要显示的信息</span><br><span class="line">第三个参数: 显示的时间长度</span><br></pre></td></tr></table></figure>
-<h1 id="一键关闭所有Activity"><a href="#一键关闭所有Activity" class="headerlink" title="一键关闭所有Activity"></a>一键关闭所有Activity</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">1. 创建ActivityCollector</span><br><span class="line">public class ActivityCollector &#123;</span><br><span class="line">    public static List&lt;Activity&gt; activities = new ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    public static void addActivity(Activity activity) &#123;</span><br><span class="line">        activities.add(activity);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void removeActivity(Activity activity) &#123;</span><br><span class="line">        activities.remove(activity);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void finishAll() &#123;</span><br><span class="line">        for (Activity activity : activities) &#123;</span><br><span class="line">            if (!activity.isFinishing())</span><br><span class="line">                activity.finish();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">2. 在onCreate和onDestroy中实现add和remove</span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_second);</span><br><span class="line">        ActivityCollector.addActivity(this);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    @Override</span><br><span class="line">    protected void onDestroy () &#123;</span><br><span class="line">        super.onDestroy();</span><br><span class="line">        ActivityCollector.removeActivity(this);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">3. 重写后退事件onBackPressed</span><br><span class="line">    @Override</span><br><span class="line">    public void onBackPressed() &#123;</span><br><span class="line">        ActivityCollector.finishAll();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h1 id="菜单"><a href="#菜单" class="headerlink" title="菜单"></a>菜单</h1><p>​    标题栏右上角的竖向三个点</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">1. 在res目录下新建menu文件夹</span><br><span class="line">2. 创建main.xml</span><br><span class="line">&lt;menu xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;</span><br><span class="line">	&lt;item</span><br><span class="line">		android:id=&quot;@+id/add_item&quot;</span><br><span class="line">		android:title=&quot;Add&quot;/&gt;</span><br><span class="line">	&lt;item</span><br><span class="line">		android:id=&quot;@+id/remove_item&quot;</span><br><span class="line">		android:title=&quot;Remove&quot;/&gt;</span><br><span class="line">		</span><br><span class="line">3. 在activity_main.xml中重写onCreateOptionsMenu并定义响应事件</span><br><span class="line">public boolean onCreateOptionsMenu(Menu menu) &#123;</span><br><span class="line">  getMenuInflater().inflate(R.menu.main, menu);</span><br><span class="line">  return true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public boolean onOptionsItemSelected(MenuItem item) &#123;</span><br><span class="line">  switch (item.getItemId()) &#123;</span><br><span class="line">    case R.id.add_item:</span><br><span class="line">    	Toast.makeText(this, &quot;click Add&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">    	break;</span><br><span class="line">    case R.id.remove_item:</span><br><span class="line">    	Toast.makeText(this, &quot;click Remove&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">    	break;</span><br><span class="line">  &#125;</span><br><span class="line">  return true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="Intent"><a href="#Intent" class="headerlink" title="Intent"></a>Intent</h1><p>​    用于切换Activity</p>
-<h2 id="显示Intent"><a href="#显示Intent" class="headerlink" title="显示Intent"></a>显示Intent</h2><p>​    明确启动哪个Activity</p>
-<h3 id="向下一个Activity传递数据"><a href="#向下一个Activity传递数据" class="headerlink" title="向下一个Activity传递数据"></a>向下一个Activity传递数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">##FirstActivity.java##</span><br><span class="line">public class FirstActivity extends AppCompatActivity &#123;</span><br><span class="line">	@Override</span><br><span class="line">	protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">		super.onCreate(savedInstanceState);</span><br><span class="line">		setContentView(R.layout.second_layout);</span><br><span class="line">     	</span><br><span class="line">     	button.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">			@Override</span><br><span class="line">			public void onClick(View v) &#123;</span><br><span class="line">				Intent intent = new Intent(FirstActivity.this, SecondActivity.class);</span><br><span class="line">				intent.putExtra(&quot;extra_data&quot;, data);	//	启动SecondActivity并传递数据</span><br><span class="line">				startActivity(intent);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);  </span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">##SecondActivity.java##</span><br><span class="line">public class SecondActivity extends AppCompatActivity &#123;</span><br><span class="line">	@Override</span><br><span class="line">	protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">		super.onCreate(savedInstanceState);</span><br><span class="line">		setContentView(R.layout.second_layout);</span><br><span class="line"></span><br><span class="line">		Intent intent = getIntent();</span><br><span class="line">		String data = intent.getStringExtra(&quot;extra_data&quot;);	//	从FirstActivity中接收数据</span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="向上一个Activity传递数据"><a href="#向上一个Activity传递数据" class="headerlink" title="向上一个Activity传递数据"></a>向上一个Activity传递数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">##FirstActivity.java##</span><br><span class="line">public class FirstActivity extends AppCompatActivity &#123;</span><br><span class="line">	@Override</span><br><span class="line">	protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">		super.onCreate(savedInstanceState);</span><br><span class="line">		setContentView(R.layout.second_layout);</span><br><span class="line">     	</span><br><span class="line">     	button.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">			@Override</span><br><span class="line">			public void onClick(View v) &#123;</span><br><span class="line">				Intent intent = new Intent(FirstActivity.this, SecondActivity.class);</span><br><span class="line">				startActivityForResult(intent, 1);		//	启动SecondActivity并当SecondActivity被销毁时调用FirstActivity的onActivityResult</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);  </span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">    @Override</span><br><span class="line">    protected void onActivityResult(int requestCode, int resultCode, Intent data) &#123;</span><br><span class="line">      switch (requestCode) &#123;</span><br><span class="line">        case 1:</span><br><span class="line">        	if (resultCode == RESULT_OK) &#123;</span><br><span class="line">              String returnedData = data.getStringExtra(&quot;data_return&quot;);		//	注意这里用的intent是参数data而getIntent只能获取上一个activity的intent</span><br><span class="line">        	&#125;</span><br><span class="line">        	break;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">##SecondActivity.java##</span><br><span class="line">public class SecondActivity extends AppCompatActivity &#123;</span><br><span class="line">	@Override</span><br><span class="line">	protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">		super.onCreate(savedInstanceState);</span><br><span class="line">		setContentView(R.layout.second_layout);</span><br><span class="line">	&#125; </span><br><span class="line">	</span><br><span class="line">	@Override</span><br><span class="line">	public void onBackPressed() &#123;				//	重写按Back键的方法</span><br><span class="line">    	Intent inent = new Intent();</span><br><span class="line">    	String data = &quot;Hello FirstActivity&quot;;</span><br><span class="line">        intent.putExtra(&quot;data_return&quot;, data);	//	通过键名data_return设置数据</span><br><span class="line">    	setResult(RESULT_OK, intent);</span><br><span class="line">      	, finish();								//	销毁当前Activity, 返回上一个activity</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Intent传递Obj-list-lt-Obj"><a href="#Intent传递Obj-list-lt-Obj" class="headerlink" title="Intent传递Obj, list\&lt;Obj>"></a>Intent传递Obj, list\&lt;Obj></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">1. Obj类实现Serialized接口</span><br><span class="line">class Obj implements Serializable &#123;  </span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">2. 传输Obj</span><br><span class="line">Intent intent = new Intent(当前类.this, 目标activity关联的类.class); </span><br><span class="line">intent.putExtra(&quot;obj&quot;, obj);</span><br><span class="line">startActivity(intent);</span><br><span class="line"></span><br><span class="line">3. 接受Obj</span><br><span class="line">obj = (Item)getIntent().getSerializableExtra(&quot;obj&quot;);</span><br><span class="line"></span><br><span class="line">4. 传输list&lt;Obj&gt;</span><br><span class="line">Intent intent = new Intent(当前类.this, 目标activity关联的类.class);</span><br><span class="line">intent.putExtra(&quot;objList&quot;, (Serializable) objList);</span><br><span class="line"></span><br><span class="line">5. 接收list&lt;Obj&gt;</span><br><span class="line">objList = (List&lt;Obj&gt;) data.getSerializableExtra(&quot;objList&quot;);</span><br></pre></td></tr></table></figure>
-<h2 id="隐式Intent"><a href="#隐式Intent" class="headerlink" title="隐式Intent"></a>隐式Intent</h2><p>​    不指定启动哪个Activity, 所有满足条件的Activity会被启动</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">1. 在&lt;activity&gt;中配置&lt;intent-filter&gt;, 通过&lt;action&gt;和&lt;category&gt;指明Activity能响应哪种Intent</span><br><span class="line">	&lt;activity android:name=&quot;.SecondActivity&quot;&gt;</span><br><span class="line">		&lt;intent-filter&gt;</span><br><span class="line">			&lt;action android:name=&quot;com.example.activitytest.ACTION_START&quot;/&gt;</span><br><span class="line">			&lt;category android:name=&quot;android.intent.category.DEFAULT&quot;/&gt;</span><br><span class="line">			&lt;category android:name=&quot;com.example.activitytest.MY_CATEGORY&quot;/&gt;</span><br><span class="line">		&lt;/intent-filter&gt;</span><br><span class="line">	&lt;/activity&gt;</span><br><span class="line"></span><br><span class="line">2. FirstAcitivity.java</span><br><span class="line">button.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">  @Override</span><br><span class="line">  public void onClick(View v) &#123;</span><br><span class="line">    Intent intent = new Intent(&quot;com.example.activitytest.ACTION_START&quot;);</span><br><span class="line">    intent.addCategory(&quot;com.example.activitytest.MY_CATEORY&quot;);</span><br><span class="line">    startActivity(intent);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h3 id="打开其他网页"><a href="#打开其他网页" class="headerlink" title="打开其他网页"></a>打开其他网页</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">button.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">  @Override</span><br><span class="line">  public void onClick(View v) &#123;</span><br><span class="line">    Intent intent = new Intent(Intent.ACTION_VIEW);</span><br><span class="line">    intent.setData(Uri.parse(&quot;http://www.baidu.com&quot;));</span><br><span class="line">    startActivity(intent);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h3 id="拨号"><a href="#拨号" class="headerlink" title="拨号"></a>拨号</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">button.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">  @Override</span><br><span class="line">  public void onClick(View v) &#123;</span><br><span class="line">    Intent intent = new Intent(Intent.ACTION_VIEW);</span><br><span class="line">    intent.setData(Uri.parse(&quot;tel:10086&quot;));</span><br><span class="line">    startActivity(intent);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h1 id="保存临时数据"><a href="#保存临时数据" class="headerlink" title="保存临时数据"></a>保存临时数据</h1><p>​    使用Bundle保存临时数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">protected void onSaveInstanceState(Bundle outState) &#123;</span><br><span class="line">  super.onSaveInstanceState(outState);</span><br><span class="line">  String tempData = &quot;save something&quot;;</span><br><span class="line">  outState.putString(&quot;data_key&quot;, tempData);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">  super.onCreate(savedInstanceState);</span><br><span class="line">  setContentView(R.layout.activity_main);</span><br><span class="line">  if (savedInstanceState != null) &#123;</span><br><span class="line">    String tempData = savedInstanceState.getString(&quot;data_key&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Android/Android/Android学习--UI界面/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Android/Android/Android学习--UI界面/" itemprop="url">UI界面</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-04T09:37:24+08:00">
-                2018-10-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">res</span><br><span class="line">  --drawable 存放图片</span><br><span class="line">  --layout	存放布局</span><br><span class="line">  --mipmap	存放图标</span><br><span class="line">  --values	存放字符串、样式、颜色等配置</span><br><span class="line">  </span><br><span class="line">引用res</span><br><span class="line">	Java代码: R.drawable.名称</span><br><span class="line">	XML代码: 	@drawable/名称</span><br></pre></td></tr></table></figure>
-<h1 id="添加新activity"><a href="#添加新activity" class="headerlink" title="添加新activity"></a>添加新activity</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app/java -&gt; 右键com.example.xxx -&gt; New Activity -&gt; Empty Acitvity</span><br></pre></td></tr></table></figure>
-<h1 id="去掉标题栏"><a href="#去掉标题栏" class="headerlink" title="去掉标题栏"></a>去掉标题栏</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">在values/styles.xml文件中, 修改parent为NoActionBar</span><br><span class="line"></span><br><span class="line">&lt;style name=&quot;AppTheme&quot; parent=&quot;Theme.AppCompat.Light.NoActionBar&quot;&gt;</span><br><span class="line">  &lt;!-- Customize your theme here. --&gt;</span><br><span class="line">  &lt;item name=&quot;colorPrimary&quot;&gt;@color/colorPrimary&lt;/item&gt;</span><br><span class="line">  &lt;item name=&quot;colorPrimaryDark&quot;&gt;@color/colorPrimaryDark&lt;/item&gt;</span><br><span class="line">  &lt;item name=&quot;colorAccent&quot;&gt;@color/colorAccent&lt;/item&gt;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
-<h1 id="控件"><a href="#控件" class="headerlink" title="控件"></a>控件</h1><h2 id="显示文本TextView"><a href="#显示文本TextView" class="headerlink" title="显示文本TextView"></a>显示文本TextView</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;TextView</span><br><span class="line">	android:id=&quot;@+id/text_view&quot;</span><br><span class="line">	android:layout_width=&quot;fill_parent&quot;</span><br><span class="line">	android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">	android:textSize=&quot;24sp&quot;</span><br><span class="line">	android:textColor=&quot;#00ff00&quot;</span><br><span class="line">	android:text=&quot;Example&quot;/&gt;</span><br><span class="line">	</span><br><span class="line">/*设置文本*/</span><br><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">  @Override</span><br><span class="line">  protected void onCreate(Bundle saveInstanceState) &#123;</span><br><span class="line">    super.onCreate(saveInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">    </span><br><span class="line">    Button buton = (Button)findViewById(R.id.button);</span><br><span class="line">    TextView tv = (TextView)findViewById(R.id.tv);</span><br><span class="line">    button.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">      @Override</span><br><span class="line">      public void onClick(View v) &#123;</span><br><span class="line">        tv.setText(&quot;Hello&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="输入框EditText"><a href="#输入框EditText" class="headerlink" title="输入框EditText"></a>输入框EditText</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;EditText</span><br><span class="line">	android:id=&quot;@+id/edit_text&quot;</span><br><span class="line">	android:layout_width=&quot;fill_parent&quot;</span><br><span class="line">	android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">	android:hint=&quot;Type here&quot;</span><br><span class="line">	android:inputType=&quot;password&quot;/&gt;</span><br><span class="line"></span><br><span class="line">/*获取输入内容, 并用Toast显示*/</span><br><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">  @Override</span><br><span class="line">  protected void onCreate(Bundle saveInstanceState) &#123;</span><br><span class="line">    super.onCreate(saveInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">    </span><br><span class="line">    Button button = (Button)findViewById(R.id.button);</span><br><span class="line">    EditText editText = (EditText)findViewById(R.id.edit_text);</span><br><span class="line">    </span><br><span class="line">    button.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">      @Override</span><br><span class="line">      public void onClick(View v) &#123;</span><br><span class="line">    	String inputText = editText.getText().toString();</span><br><span class="line">       	Toast.makeText(MainActivity.this, inputText, Toast.LENGTH_SHORT).show();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="按钮Button"><a href="#按钮Button" class="headerlink" title="按钮Button"></a>按钮Button</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&lt;Button</span><br><span class="line">	android:id=&quot;@+id/button&quot;</span><br><span class="line">	android:layout_width=&quot;fill_parent&quot;</span><br><span class="line">	android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">	android:text=&quot;Button&quot;</span><br><span class="line">	android:textAllCaps=&quot;false&quot;/&gt;		关闭自动大写转换</span><br><span class="line">	</span><br><span class="line">/*注册时间*/</span><br><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">  @Override</span><br><span class="line">  protected void onCreate(Bundle saveInstanceState) &#123;</span><br><span class="line">    super.onCreate(saveInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">    </span><br><span class="line">    Button button = (Button)findeViewById(R.id.button);</span><br><span class="line">    button.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">      @Override</span><br><span class="line">      public void onClick(View v) &#123;		//	onClick中只能使用成员变量, 不能使用局部变量</span><br><span class="line">        </span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">或者</span><br><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">  @Override</span><br><span class="line">  protected void onCreate(Bundle saveInstanceState) &#123;</span><br><span class="line">    super.onCreate(saveInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">    </span><br><span class="line">    Button button = (Button)findeViewById(R.id.button);</span><br><span class="line">   	button.setOnClickListener(this);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  @Override</span><br><span class="line">  public void onClick(View v) &#123;</span><br><span class="line">    switch (v.getId()) &#123;</span><br><span class="line">      case R.id.button:</span><br><span class="line">      	......</span><br><span class="line">      	break;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="图片按钮ImageButton"><a href="#图片按钮ImageButton" class="headerlink" title="图片按钮ImageButton"></a>图片按钮ImageButton</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;ImageButton</span><br><span class="line">	android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">	android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">	android:src=&quot;@mipmap/ic_launcher&quot;/&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="单选按钮RadioButton"><a href="#单选按钮RadioButton" class="headerlink" title="单选按钮RadioButton"></a>单选按钮RadioButton</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;RadioGroup</span><br><span class="line">  android:id=&quot;@+id/sex&quot;</span><br><span class="line">  android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">  android:layout_height=&quot;match_parent&quot;</span><br><span class="line">  android:orientation=&quot;horizontal&quot; &gt;</span><br><span class="line"> </span><br><span class="line">  &lt;RadioButton</span><br><span class="line">    android:id=&quot;@+id/man&quot;</span><br><span class="line">    android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    android:checked=&quot;true&quot;</span><br><span class="line">    android:text=&quot;男&quot; /&gt;</span><br><span class="line"></span><br><span class="line">  &lt;RadioButton</span><br><span class="line">    android:id=&quot;@+id/woman&quot;</span><br><span class="line">    android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    android:text=&quot;女&quot; /&gt;</span><br><span class="line">&lt;/RadioGroup&gt;</span><br><span class="line"></span><br><span class="line">/*事件监听*/</span><br><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">  @Override</span><br><span class="line">  protected void onCreate(Bundle saveInstanceState) &#123;</span><br><span class="line">    super.onCreate(saveInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">    </span><br><span class="line">    RadioGroup radioGroup = (RadioGroup)findeViewById(R.id.sex);</span><br><span class="line">    radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()  &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onCheckedChanged(RadioGroup group, int checkedId) &#123;</span><br><span class="line">                RadioButton radbtn = (RadioButton) findViewById(checkedId);</span><br><span class="line">                Toast.makeText(getApplicationContext(), &quot;按钮组值发生改变,你选了&quot; + radbtn.getText(), Toast.LENGTH_LONG).show();</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="图片ImageView"><a href="#图片ImageView" class="headerlink" title="图片ImageView"></a>图片ImageView</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;ImageView</span><br><span class="line">	android:id=&quot;@+id/image_view&quot;</span><br><span class="line">	android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">	android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">	android:src=&quot;@drawable/img_1&quot;/&gt;</span><br><span class="line">	</span><br><span class="line">/*动态改变图片*/</span><br><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">  @Override</span><br><span class="line">  protected void onCreate(Bundle saveInstanceState) &#123;</span><br><span class="line">    super.onCreate(saveInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">    </span><br><span class="line">    Button buton = (Button)findeViewById(R.id.button);</span><br><span class="line">    ImageView imageView = (ImageView)findViewById;</span><br><span class="line">    </span><br><span class="line">    button.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">      @Override</span><br><span class="line">      public void onClick(View v) &#123;</span><br><span class="line">    	imageView.setImageResoure(R.drawable.img_2);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="悬浮按钮FloatingActionBar"><a href="#悬浮按钮FloatingActionBar" class="headerlink" title="悬浮按钮FloatingActionBar"></a>悬浮按钮FloatingActionBar</h2><h3 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">打开Project/app/build.gradle文件, 在dependencies中添加以下语句</span><br><span class="line"></span><br><span class="line">implementation &apos;com.android.support:design:26.+&apos;</span><br></pre></td></tr></table></figure>
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;android.support.design.widget.FloatingActionButton</span><br><span class="line">  android:id=&quot;@+id/btn&quot;</span><br><span class="line">  android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">  android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">  android:src=&quot;@mipmap/colletions&quot;</span><br><span class="line">  android:backgroundTint=&quot;@color/colorWhite&quot;</span><br><span class="line">  android:backgroundTintMode=&quot;src_atop&quot;</span><br><span class="line">  app:layout_constraintBottom_toBottomOf=&quot;parent&quot;</span><br><span class="line">  app:layout_constraintRight_toRightOf=&quot;parent&quot;</span><br><span class="line">  android:layout_margin=&quot;25dp&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="进度条ProgressBar"><a href="#进度条ProgressBar" class="headerlink" title="进度条ProgressBar"></a>进度条ProgressBar</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;ProgressBar</span><br><span class="line">	android:id=&quot;@+id/progress_bar&quot;</span><br><span class="line">	android:layout_width=&quot;match_parent&quot;</span><br><span class="line">	android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">	style=&quot;?android:attr/progressBarStyleHorizontal&quot;		进度条样式为水平, 默认为圆形</span><br><span class="line">	android:progress=&quot;30&quot;								当前进度</span><br><span class="line">	android:max=&quot;100&quot;/&gt;									进度条最大值</span><br><span class="line">	</span><br><span class="line">/*用按钮控制进度条*/</span><br><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">  @Override</span><br><span class="line">  protected void onCreate(Bundle saveInstanceState) &#123;</span><br><span class="line">    super.onCreate(saveInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">    </span><br><span class="line">    Button buton = (Button)findeViewById(R.id.button);</span><br><span class="line">    ProgressBar progressBar = (ProgressBar)findViewById(R.id.progress_bar);</span><br><span class="line">    </span><br><span class="line">    button.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">      @Override</span><br><span class="line">      public void onClick(View v) &#123;</span><br><span class="line">      /*	点一次进度+10</span><br><span class="line">      	int progress = progressBar.getProgress();</span><br><span class="line">      	progress = progress + 10;</span><br><span class="line">      	progress.setProgress(progress);</span><br><span class="line">      */</span><br><span class="line">      /*	点一下进度消失, 再点出现</span><br><span class="line">    	if (progressBar.getVisibility() == View.GONE)</span><br><span class="line">    		progressBar.setVisibility(View.VISIBLE);</span><br><span class="line">    	else </span><br><span class="line">    		progressBar.setVisibility(View.GONE);</span><br><span class="line">      */</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="拖动进度条SeekBar"><a href="#拖动进度条SeekBar" class="headerlink" title="拖动进度条SeekBar"></a>拖动进度条SeekBar</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;SeekBar</span><br><span class="line">	android:layout_width=&quot;fill_parent&quot;</span><br><span class="line">	android:layout_height=&quot;50dp&quot;</span><br><span class="line">	android:id=&quot;@+id/seek_bar&quot;</span><br><span class="line">	android:progress=&quot;30&quot;</span><br><span class="line">	android:max=&quot;100&quot;/&gt;</span><br><span class="line">	</span><br><span class="line">seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() &#123;</span><br><span class="line">  @Override</span><br><span class="line">  public void onProgressChanged(SeekBar seekBar, int i, boolean b) &#123;</span><br><span class="line">  	//	进度发生变化</span><br><span class="line">    textView.setText(&quot;当前进度&quot; + Integer.toString(i));</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  @Override</span><br><span class="line">  public void onStartTrackingTouch(SeekBar seekBar) &#123;</span><br><span class="line">    //	开始拖动</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  @Override</span><br><span class="line">  public void onStopTrackingTouch(SeekBar seekBar) &#123;</span><br><span class="line">    //	结束拖动</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h2 id="弹出窗口AlertDialog"><a href="#弹出窗口AlertDialog" class="headerlink" title="弹出窗口AlertDialog"></a>弹出窗口AlertDialog</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">  @Override</span><br><span class="line">  protected void onCreate(Bundle saveInstanceState) &#123;</span><br><span class="line">    super.onCreate(saveInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">    </span><br><span class="line">    Button buton = (Button)findeViewById(R.id.button);</span><br><span class="line">    AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);</span><br><span class="line">    </span><br><span class="line">    button.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">      @Override</span><br><span class="line">      public void onClick(View v) &#123;</span><br><span class="line">		dialog.setTitle(&quot;This is Dialog&quot;);</span><br><span class="line">		dialog.setMessage(&quot;This is Message&quot;);</span><br><span class="line">		dialog.setCancelable(false);</span><br><span class="line">		dialog.setPositiveButton(&quot;OK&quot;, new DialogInterface.OnClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(DialogInterface dialog, int which) &#123;</span><br><span class="line">              </span><br><span class="line">            &#125;</span><br><span class="line">		&#125;);</span><br><span class="line">		dialog.setNegativeButton(&quot;Cancel&quot;, new DialogInterface.OnClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(DialogInterface dialog, int which) &#123;</span><br><span class="line">              </span><br><span class="line">            &#125;</span><br><span class="line">		&#125;);</span><br><span class="line">		dialog.show();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="自定义AlertDialog"><a href="#自定义AlertDialog" class="headerlink" title="自定义AlertDialog"></a>自定义AlertDialog</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">LayoutInflater inflater = getLayoutInflater();</span><br><span class="line">View layout = inflater.inflate(R.layout.login_dialog, (ViewGroup)findViewById(R.id.dialog));	获取自定义layout</span><br><span class="line"></span><br><span class="line">AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);</span><br><span class="line">    button.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">      @Override</span><br><span class="line">      public void onClick(View v) &#123;</span><br><span class="line">		dialog.setTitle(&quot;This is Dialog&quot;);</span><br><span class="line">		dialog.setMessage(&quot;This is Message&quot;);</span><br><span class="line">		dialog.setView(layout);</span><br><span class="line">		dialog.setCancelable(false);</span><br><span class="line">		dialog.setPositiveButton(&quot;OK&quot;, new DialogInterface.OnClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(DialogInterface dialog, int which) &#123;</span><br><span class="line">              </span><br><span class="line">            &#125;</span><br><span class="line">		&#125;);</span><br><span class="line">		dialog.setNegativeButton(&quot;Cancel&quot;, new DialogInterface.OnClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(DialogInterface dialog, int which) &#123;</span><br><span class="line">              </span><br><span class="line">            &#125;</span><br><span class="line">		&#125;);</span><br><span class="line">		dialog.show();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
-<h2 id="竖向滚动控件ListView"><a href="#竖向滚动控件ListView" class="headerlink" title="竖向滚动控件ListView"></a>竖向滚动控件ListView</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line">##activity_main.xml##</span><br><span class="line">&lt;ListView </span><br><span class="line">	android:id=&quot;@+id/list_view&quot;</span><br><span class="line">	android:layout_width=&quot;fill_parent&quot;</span><br><span class="line">	android:layout_height=&quot;fill_parent&quot;&gt;</span><br><span class="line">&lt;/ListView&gt;</span><br><span class="line"></span><br><span class="line">##department_item.xml##</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">	android:layout_width=&quot;fill_parent&quot;</span><br><span class="line">	android:layout_height=&quot;wrap_content&quot;&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;TextView</span><br><span class="line">		android:id=&quot;@+id/department_name&quot;</span><br><span class="line">		android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">		android:layout_height=&quot;wrap_content&quot;/&gt;	</span><br><span class="line">&lt;/LinearLayout&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">##Department.java##</span><br><span class="line">public class Department &#123;		定义Department类</span><br><span class="line">  private String name;</span><br><span class="line">  </span><br><span class="line">  public Department(String name) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  public String getName() &#123;</span><br><span class="line">    return name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">##DepartmentAdapter.java##</span><br><span class="line">public class DepartmentAdapter extends ArrayAdapter&lt;Department&gt; &#123;		定义Adapter类</span><br><span class="line">  private int resourceId;</span><br><span class="line">  </span><br><span class="line">  public DepartmentAdapter(Context context, int textViewResourceId, List&lt;Department&gt; objects) &#123;</span><br><span class="line">    super(context, textViewResourceId, objects);</span><br><span class="line">    resourceId = textViewResourceId;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  class ViewHolder &#123;</span><br><span class="line">    TextView departmentName;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  @Override</span><br><span class="line">  public View getView(int position, View convertView, ViewGroup parent) &#123;</span><br><span class="line">  	/*Item被滚动到屏幕内调用*/</span><br><span class="line">    Department department = getItem(position);	获取当前实例</span><br><span class="line">    View view;</span><br><span class="line">    ViewHolder viewHolder;</span><br><span class="line">    if (convertView == null) &#123;</span><br><span class="line">      view = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);</span><br><span class="line">      viewHolder = new ViewHolder();</span><br><span class="line">      viewHolder.departmentName = (TextView)view.findViewById(R.id.department_name);</span><br><span class="line">      view.setTag(viewHolder);</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">      view = convertView;</span><br><span class="line">      viewHolder = (ViewHolder)view.getTag();</span><br><span class="line">    &#125;</span><br><span class="line">    viewHolder.departmentName.setText(department.getName());</span><br><span class="line">    return view;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">##MainActivity.java##</span><br><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">  private List&lt;Department&gt; departmentList = new ArrayList&lt;&gt;();</span><br><span class="line">  </span><br><span class="line">  @Override</span><br><span class="line">  protected void onCreate(Bundle saveInstanceState) &#123;</span><br><span class="line">    super.onCreate(savedInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">    </span><br><span class="line">    Department example1 = new Department(&quot;计应&quot;);</span><br><span class="line">    departmentList.add(example1);</span><br><span class="line">    Department example2 = new Department(&quot;数媒&quot;);</span><br><span class="line">    departmentList.add(example2);</span><br><span class="line">    Department example3 = new Department(&quot;嵌软&quot;);</span><br><span class="line">    departmentList.add(example3);</span><br><span class="line">    </span><br><span class="line">    ListView listView = (ListView)findViewById(R.id.list_view);</span><br><span class="line">    DepartmentAdapter adapter = new DeapartmentAdapter(MainActivity.this, R.layout.department_item, departmentList);</span><br><span class="line">    listView.setAdapter(adapter);</span><br><span class="line">    </span><br><span class="line">    //	Item点击事件</span><br><span class="line">    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() &#123;</span><br><span class="line">    	@Override</span><br><span class="line">      	public void onItemClick(AdapterView&lt;?&gt; parent, View view, int position, long id) &#123;</span><br><span class="line">          Deparment department = departmentList.get(position);</span><br><span class="line">          Toast.makeText(MainActivity.this, department.getName(), Toast.LENGTH_SHORT).show();</span><br><span class="line">      	&#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    //  Item长按事件</span><br><span class="line">    listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public boolean onItemLongClick(AdapterView&lt;?&gt; parent, View view, int position, long id)&#123;</span><br><span class="line">                </span><br><span class="line">           return true;		//	返回true表示长按时不会出发点击</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="ListView中子控件的点击事件"><a href="#ListView中子控件的点击事件" class="headerlink" title="ListView中子控件的点击事件"></a>ListView中子控件的点击事件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">//	CommentAdapter.java</span><br><span class="line">public class CommentAdapter extends ArrayAdapter&lt;Comment&gt; &#123;</span><br><span class="line">    private int resourceId;</span><br><span class="line">    private ViewHolder viewHolder;</span><br><span class="line"></span><br><span class="line">    public CommentAdapter(Context context, int textViewResourceId, List&lt;Comment&gt; objects) &#123;</span><br><span class="line">        super(context, textViewResourceId, objects);</span><br><span class="line">        resourceId = textViewResourceId;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    class ViewHolder &#123;</span><br><span class="line">        ImageView praiseColor;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	public View getView(final int position, View convertView, ViewGroup parent) &#123;</span><br><span class="line">        Comment comment = getItem(position);</span><br><span class="line">        View view;</span><br><span class="line">        if (convertView == null) &#123;</span><br><span class="line">            view = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);</span><br><span class="line">            viewHolder = new ViewHolder();</span><br><span class="line">            viewHolder.praiseColor = (ImageView)view.findViewById(R.id.praiseColor);</span><br><span class="line">            view.setTag(viewHolder);</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            view = convertView;</span><br><span class="line">            viewHolder = (ViewHolder)view.getTag();</span><br><span class="line">        &#125;</span><br><span class="line">        viewHolder.praiseColor.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View v) &#123;</span><br><span class="line">                mOnItemDeleteListener.onDeleteClick(position);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        return view;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	//	通过接口返回Item position</span><br><span class="line">    public interface onItemDeleteListener &#123;</span><br><span class="line">        void onDeleteClick(int i);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private onItemDeleteListener mOnItemDeleteListener;</span><br><span class="line"></span><br><span class="line">    public void setOnItemDeleteClickListener(onItemDeleteListener mOnItemDeleteListener) &#123;</span><br><span class="line">        this.mOnItemDeleteListener = mOnItemDeleteListener;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//	MainActivity.java</span><br><span class="line">@Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_comment);</span><br><span class="line"></span><br><span class="line">        ListView listView = (ListView)findViewById(R.id.list_view);</span><br><span class="line">        adapter = new CommentAdapter(CommentActivity.this, R.layout.comment_item, commentList);</span><br><span class="line">        listView.setAdapter(adapter);</span><br><span class="line"></span><br><span class="line">        //  ListView中子控件的点击事件</span><br><span class="line">        adapter.setOnItemDeleteClickListener(new CommentAdapter.onItemDeleteListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onDeleteClick(int i) &#123;</span><br><span class="line">                ....</span><br><span class="line">                adapter.notifyDataSetChanged();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="横向滚动控件RecyclerView"><a href="#横向滚动控件RecyclerView" class="headerlink" title="横向滚动控件RecyclerView"></a>横向滚动控件RecyclerView</h2><p>​    在ListView的基础上, 增加了横向滚动的功能</p>
-<h3 id="添加依赖-1"><a href="#添加依赖-1" class="headerlink" title="添加依赖"></a>添加依赖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">打开app/build.gradle文件, 在dependencies添加以下语句</span><br><span class="line"></span><br><span class="line">implementation &apos;com.android.support:recyclerview-v7:26.+&apos;</span><br></pre></td></tr></table></figure>
-<h3 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line">##activity_main.xml##</span><br><span class="line">&lt;android.support.v7.widget.RecyclerView</span><br><span class="line">	android:id=&quot;@+id/recycler_view&quot;</span><br><span class="line">	android:layout_width=&quot;fill_parent&quot;</span><br><span class="line">	android:layout_height=&quot;fill_parent&quot;/&gt;</span><br><span class="line">	</span><br><span class="line">##department_item.xml##</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">	android:orientation=&quot;vertical&quot;</span><br><span class="line">	android:layout_width=&quot;fill_parent&quot;</span><br><span class="line">	android:layout_height=&quot;wrap_content&quot;&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;TextView</span><br><span class="line">		android:id=&quot;@+id/department_name&quot;</span><br><span class="line">		android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">		android:layout_height=&quot;wrap_content&quot;/&gt;	</span><br><span class="line">&lt;/LinearLayout&gt;</span><br><span class="line"></span><br><span class="line">##Department.java##</span><br><span class="line">public class Department &#123;		定义Department类</span><br><span class="line">  private String name;</span><br><span class="line">  </span><br><span class="line">  public Department(String name) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  public String getName() &#123;</span><br><span class="line">    return name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">##DepartmentAdapter.java##</span><br><span class="line">public class DepartmentAdapter extends RecyclerView.Adapter&lt;DepartmentAdapter.ViewHolder&gt; &#123;</span><br><span class="line">  private List&lt;Department&gt; departmentList;</span><br><span class="line">  </span><br><span class="line">  static class ViewHolder extends RecyclerView.ViewHolder &#123;			//	创建内部类ViewHolder</span><br><span class="line">    TextView departmentName;</span><br><span class="line">    View departmentView;</span><br><span class="line">    </span><br><span class="line">    public ViewHolder(View view) &#123;</span><br><span class="line">      super(view);</span><br><span class="line">      departmentView = view;</span><br><span class="line">      departmentName = (TextView)view.findViewById(R.id.department_name);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  public DepartmentAdapter(List&lt;Department&gt; departmentList) &#123;		//	DepartmentAdapter的构造函数</span><br><span class="line">    this.departmentList = departmentList;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  @Override</span><br><span class="line">  public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) &#123;</span><br><span class="line">    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.department_item, parent, false);</span><br><span class="line">    final ViewHolder holder = new ViewHolder(view);</span><br><span class="line">    </span><br><span class="line">    holder.departmentView.setOnClickListener(new View.OnClickListener() &#123;	//	给View注册点击事件</span><br><span class="line">      @Override</span><br><span class="line">      public void onClick(View v) &#123;</span><br><span class="line">      	int position = holder.getAdapterPosition();</span><br><span class="line">        Department department = departmentList.get(position);</span><br><span class="line">        departmentList.remove(department);					//	删除department</span><br><span class="line">        notifyDataSetChanged();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    /*</span><br><span class="line">    holder.departmentImage.setOnClickListener(....);		//	给子项的图片设置点击事件</span><br><span class="line">    */</span><br><span class="line">    </span><br><span class="line">    //	RecyclerView没有OnItemClickListener, 对于Item的事件需要在Adapter中定义</span><br><span class="line">    holder.departmentView.setOnClickListener(new View.OnClickListener() &#123;	        //	给View注册点击事件</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View v) &#123;</span><br><span class="line">                int position = holder.getAdapterPosition();</span><br><span class="line">                Item item = itemList.get(position);</span><br><span class="line">                Intent intent = new Intent(v.getContext(), Detail.class);		//	跳转</span><br><span class="line">                intent.putExtra(&quot;name&quot;, item.getName());</span><br><span class="line">                v.getContext().startActivity(intent);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    return holder;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  @Override </span><br><span class="line">  public void onBindViewHolder(ViewHolder holder, int position) &#123;	//	当Item的数据滚动到屏幕内时执行, 将数据显示出来</span><br><span class="line">    Department department = departmentList.get(position);</span><br><span class="line">    holder.departmentName.setText(department.getName());</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  @Override</span><br><span class="line">  public int getItemCount() &#123;			//	获取DepartmentList的大小</span><br><span class="line">    return departmentList.size();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">##MainActivity.java##</span><br><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">  private List&lt;Department&gt; departmentList = new ArrayList&lt;&gt;();</span><br><span class="line">  </span><br><span class="line">  @Override</span><br><span class="line">  protected void onCreate(Bundle saveInstanceState) &#123;</span><br><span class="line">    super.onCreate(savedInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">    </span><br><span class="line">    Department example1 = new Department(&quot;计应&quot;);</span><br><span class="line">    departmentList.add(example1);</span><br><span class="line">    Department example2 = new Department(&quot;数媒&quot;);</span><br><span class="line">    departmentList.add(example2);</span><br><span class="line">    Department example3 = new Department(&quot;嵌软&quot;);</span><br><span class="line">    departmentList.add(example3);</span><br><span class="line">    </span><br><span class="line">    RecyclerView recyclerView = (RecyclerView)findViewById(R.id.recycler_view);</span><br><span class="line">    LinearLayoutManager layoutManager = new LinearLayoutManager(this);</span><br><span class="line">    layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);	//	设为水平滑动</span><br><span class="line">    recyclerView.setLayoutManager(layoutManager);</span><br><span class="line">    DepartmentAdapter adapter = new DepartmentAdapter(departmentList);</span><br><span class="line">    recyclerView.setAdapter(adapter);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="下拉列表Spinner"><a href="#下拉列表Spinner" class="headerlink" title="下拉列表Spinner"></a>下拉列表Spinner</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Spinner spinner = (Spinner)findViewById(R.id.spinner);</span><br><span class="line">String[] data = &#123;&quot;计应&quot;, &quot;数媒&quot;, &quot;嵌软&quot;&#125;;</span><br><span class="line">spinner.setAdapter(new ArrayAdapter&lt;String&gt;(this, android.R.layout.simple_spinner_dropdown_item, data));</span><br></pre></td></tr></table></figure>
-<h1 id="常见属性"><a href="#常见属性" class="headerlink" title="常见属性"></a>常见属性</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">layout_width, layout_height: </span><br><span class="line">	控件的宽度和高度, 指定match_parent表示和父控件一致, wrap_content表示刚好可以包住子控件</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">layout_gravity, gravity:</span><br><span class="line">	layout_gravity指定控件相对于父控件的位置, gravity指定控件内容或子控件相对于控件的位置</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">layout_margin, padding:</span><br><span class="line">	表示组件的外边距和内边距</span><br></pre></td></tr></table></figure>
-<h1 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h1><h2 id="线性布局LinearLayout"><a href="#线性布局LinearLayout" class="headerlink" title="线性布局LinearLayout"></a>线性布局LinearLayout</h2><p>​    控件按水平或垂直方向排列</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">layout_weight: 		控件所占的比例, 如果设置宽/高, 则对应的layout_width/layout_height设为0dp</span><br></pre></td></tr></table></figure>
-<h2 id="相对布局RelativeLayout"><a href="#相对布局RelativeLayout" class="headerlink" title="相对布局RelativeLayout"></a>相对布局RelativeLayout</h2><p>​    控件可以相对于其他控件或布局设定位置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">layout_alignParentTop/Bottom/Right/Left=&quot;true&quot;		当前控件的上/下/右/左边和布局的上/下/右/左边相贴</span><br><span class="line">layout_centerInParent=&quot;true&quot;						当前控件的上/下/右/左边位于布局的中间</span><br><span class="line">layout_above/below/toRightOf/toLeftOf=&quot;@id/other&quot;	当前控件在other控件的上/下/右/左方</span><br><span class="line">layout_alginTop/Bottom/Right/Left=&quot;@id/other&quot;		当前控件的上/下/右/左边与other控件的上/下/右/左边相贴</span><br></pre></td></tr></table></figure>
-<h2 id="约束布局ConstraintLayout"><a href="#约束布局ConstraintLayout" class="headerlink" title="约束布局ConstraintLayout"></a>约束布局ConstraintLayout</h2><p>​    根据其他控件, 父控件, 基准线共同确定控件位置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">语法: layout_constraint当前控件A_to目标控件BOf=&quot;目标控件名&quot;, 表示当前控件的A与目标控件的B对齐</span><br><span class="line"></span><br><span class="line">app:layout_constraintBottom_toBottomOf=&quot;parent&quot;			当前控件的底部与布局的底部对齐</span><br><span class="line">app:layout_constrainTop_toBottomOf=&quot;parent&quot;				当前控件的顶部与布局的底部对齐</span><br><span class="line">app:layout_constrainLeft_toRightOf=&quot;@id/other&quot;			当前控件的左边与other控件的右边对齐</span><br><span class="line"></span><br><span class="line">app:layout_constraintTop_toTopOf=&quot;parent&quot;				居中</span><br><span class="line">app:layout_constraintBottom_toBottomOf=&quot;parent&quot;</span><br><span class="line">app:layout_constraintLeft_toLeftOf=&quot;parent&quot;</span><br><span class="line">app:layout_constraintRight_toRightOf=&quot;parent&quot;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">/*链(类似于LinearLayout的layout_weight)*/</span><br><span class="line">https://blog.csdn.net/zxt0601/article/details/72683379/</span><br></pre></td></tr></table></figure>
-<h2 id="表格布局TableLayout"><a href="#表格布局TableLayout" class="headerlink" title="表格布局TableLayout"></a>表格布局TableLayout</h2><p>​    配合TableRow使用, 用于提交表单</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;TableLayout</span><br><span class="line">	android:layout_width=&quot;match_parent&quot;</span><br><span class="line">	android:layout_height=&quot;match_parent&quot;&gt;</span><br><span class="line">	&lt;TableRow&gt;</span><br><span class="line">		&lt;ImageView</span><br><span class="line">			android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">			android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">			android:src=&quot;@drawable/ic_accout&quot;</span><br><span class="line">			android:layout_gravity=&quot;center_vertical&quot;</span><br><span class="line">			android:layout_marginRight=&quot;5dp&quot;/&gt;</span><br><span class="line">		&lt;EditText</span><br><span class="line">			android:hint=&quot;@string/login_name&quot;/&gt;		</span><br><span class="line">	&lt;/TableRow&gt;</span><br><span class="line">	&lt;TableRow&gt;</span><br><span class="line">		...</span><br><span class="line">	&lt;/TableRow&gt;</span><br><span class="line">&lt;TableLayout/&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="卡片式布局CardView"><a href="#卡片式布局CardView" class="headerlink" title="卡片式布局CardView"></a>卡片式布局CardView</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. 引入CardView依赖</span><br><span class="line">	implementation &apos;com.android.support:cardview-v7:26.+&apos;</span><br><span class="line">	</span><br><span class="line">2. </span><br><span class="line">&lt;android.support.v7.widget.CardView&gt;</span><br><span class="line">&lt;/android.support.v7.widget.CardView&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="网格布局GridLayout"><a href="#网格布局GridLayout" class="headerlink" title="网格布局GridLayout"></a>网格布局GridLayout</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;GridLayout</span><br><span class="line">	android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">	android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">	android:orientation=&quot;horizontal&quot;</span><br><span class="line">	android:columnCount=&quot;4&quot;		列数</span><br><span class="line">	android:rowCount=&quot;5&quot;		行数</span><br><span class="line">	</span><br><span class="line">	&lt;Button </span><br><span class="line">		android:text=&quot;1&quot;/&gt;</span><br><span class="line">	&lt;Button </span><br><span class="line">		android:text=&quot;2&quot;/&gt;</span><br><span class="line">	&lt;Button </span><br><span class="line">		android:text=&quot;3&quot;/&gt;</span><br><span class="line">	&lt;Button </span><br><span class="line">		android:text=&quot;4&quot;</span><br><span class="line">		android:layout_rowSpan=&quot;2&quot;/&gt;</span><br><span class="line">/&gt;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/LeetCode/LeetCode/查找两个字符串的最少转换次数/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/LeetCode/LeetCode/查找两个字符串的最少转换次数/" itemprop="url">查找两个字符串的最少转换次数</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-03T22:54:18+08:00">
-                2018-10-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">给定起始字符串, 终点字符串和字典. 是否能根据字典, 每次改变一个字符, 最终使起始字符串变为终点字符串, 给出最少的转换次数</span><br><span class="line"></span><br><span class="line">例如:</span><br><span class="line">	beginWord = &quot;hit&quot;,</span><br><span class="line">    endWord = &quot;cog&quot;,</span><br><span class="line">    wordList = [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;,&quot;cog&quot;]</span><br><span class="line">    </span><br><span class="line">    输出5, 转换路径是&quot;hit&quot; -&gt; &quot;hot&quot; -&gt; &quot;dot&quot; -&gt; &quot;dog&quot; -&gt; &quot;cog&quot;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    beginWord = &quot;hit&quot;</span><br><span class="line">    endWord = &quot;cog&quot;</span><br><span class="line">    wordList = [&quot;hot&quot;,&quot;dot&quot;,&quot;dog&quot;,&quot;lot&quot;,&quot;log&quot;]</span><br><span class="line">    </span><br><span class="line">    输出0, 不存在转换路径</span><br></pre></td></tr></table></figure>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">用BFS, 每次变换一个位置的字符, 如下</span><br><span class="line"></span><br><span class="line">        hit</span><br><span class="line">        /</span><br><span class="line">       hot</span><br><span class="line">      / \</span><br><span class="line">    dot  lot</span><br><span class="line">    /    / </span><br><span class="line">  dog  log</span><br><span class="line">  /    /</span><br><span class="line">cog   cog</span><br></pre></td></tr></table></figure>
-<h1 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">public boolean canTransform(String word1, String word2)&#123;</span><br><span class="line">     for(int i = 0, count=0 ; i&lt;word1.length() ; i++)&#123;</span><br><span class="line">         if(word1.charAt(i)!=word2.charAt(i) &amp;&amp; ++count&gt;1) return false;</span><br><span class="line">     &#125;</span><br><span class="line">     return true;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> public int ladderLength(String beginWord, String endWord, List&lt;String&gt; wordList)&#123;</span><br><span class="line">     Queue&lt;String&gt; q = new LinkedList&lt;String&gt;();</span><br><span class="line">     q.add(beginWord);</span><br><span class="line">     int steps = 0;</span><br><span class="line">     while(!q.isEmpty())&#123;</span><br><span class="line">         int size = q.size();</span><br><span class="line">         for(int i = 0 ;i&lt;size ; i++)&#123;</span><br><span class="line">             String temp = q.poll();</span><br><span class="line">             if(temp.equals(endWord))&#123;return steps+1;&#125;</span><br><span class="line">             for(Iterator&lt;String&gt; iterator = wordList.iterator() ; iterator.hasNext();)&#123;</span><br><span class="line">                 String current = iterator.next();</span><br><span class="line">                 if(canTransform(current, temp))&#123;</span><br><span class="line">                     iterator.remove();</span><br><span class="line">                     q.offer(current);</span><br><span class="line">                 &#125;</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;</span><br><span class="line">        steps++;</span><br><span class="line"></span><br><span class="line">     &#125;</span><br><span class="line">     return 0;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1802,7 +1758,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-count">79</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1813,7 +1769,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1882,7 +1838,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
