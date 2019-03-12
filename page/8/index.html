@@ -259,6 +259,209 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/软件工程实训/软件工程实训/studyreport-ANT/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/软件工程实训/软件工程实训/studyreport-ANT/" itemprop="url">ANT学习报告</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-14T12:14:18+08:00">
+                2018-04-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/软件工程实训/" itemprop="url" rel="index">
+                    <span itemprop="name">软件工程实训</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Ant的作用"><a href="#Ant的作用" class="headerlink" title="Ant的作用"></a>Ant的作用</h1><p>​    通过编写build.xml文件, 快速生成JAVA项目(类似于C++的Makefile)</p>
+<h1 id="Ant的安装"><a href="#Ant的安装" class="headerlink" title="Ant的安装"></a>Ant的安装</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Ubuntu下在终端执行:</span><br><span class="line">    $sudo apt install ant</span><br></pre></td></tr></table></figure>
+<h1 id="Ant的介绍"><a href="#Ant的介绍" class="headerlink" title="Ant的介绍"></a>Ant的介绍</h1><ul>
+<li>project元素: Ant的根元素</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1. name属性: 指定project的名称</span><br><span class="line"></span><br><span class="line">2. default属性: 指定了project默认执行的target. 指向最后一步</span><br><span class="line"></span><br><span class="line">	&lt;project default=&quot;package&quot;&gt;</span><br><span class="line">      &lt;target name=&quot;init&quot;/&gt;</span><br><span class="line">      &lt;target name=&quot;preprocess&quot; depends=&quot;init&quot;/&gt;</span><br><span class="line">      &lt;target name=&quot;compile&quot; depends=&quot;init, preprocess&quot;/&gt;</span><br><span class="line">      &lt;target name=&quot;package&quot; depends=&quot;compile&quot;/&gt;</span><br><span class="line">    &lt;/project&gt;</span><br><span class="line">    </span><br><span class="line">3. basedir属性: 指定基路径的位置. 默认与build.xml文件在同一文件夹下</span><br></pre></td></tr></table></figure>
+<ul>
+<li>target元素: Ant中的执行单元</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. depends属性: 描述多个target之间的依赖关系. 被依赖的元素先执行</span><br><span class="line"></span><br><span class="line">2. if属性: 用于验证属性是否存在. 若不存在则target不会被执行</span><br><span class="line"></span><br><span class="line">3. unless属性: 与if属性相反</span><br><span class="line"></span><br><span class="line">4. description属性: 描述target的说明</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">常用target:</span><br><span class="line">	1. copy</span><br><span class="line">		复制单个文件：&lt;copy file=&quot;file.txt&quot; tofile=&quot;copy.txt&quot;/&gt; </span><br><span class="line">		复制文件夹:   &lt;copy todir=&quot;../newdir/dest_dir&quot;&gt; </span><br><span class="line">            			&lt;fileset dir=&quot;src_dir&quot;/&gt; </span><br><span class="line">					&lt;/copy&gt;</span><br><span class="line">         将文件复制到另外的目录: &lt;copy file=&quot;file.txt&quot; todir=&quot;../other/dir&quot;/&gt; </span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	2. delete</span><br><span class="line">		删除单个文件: &lt;delete file=&quot;photo/amigo.jpg&quot;/&gt; </span><br><span class="line">		删除文件夹:   &lt;delete dir=&quot;photo&quot;/&gt; </span><br><span class="line">		删除所有备份目录和空目录:  &lt;delete includeEmptyDirs=&quot;true&quot;&gt; </span><br><span class="line">                       				&lt;fileset dir=&quot;.&quot; includes=&quot;**/*.bak&quot;/&gt; </span><br><span class="line">                			  	&lt;/delete&gt;</span><br><span class="line">                			  	</span><br><span class="line">    3. mkdir</span><br><span class="line">    	创建文件夹: &lt;mkdir dir=&quot;build&quot;/&gt; </span><br><span class="line">    	</span><br><span class="line">    4. move</span><br><span class="line">    	与copy一样由三种形式, 将copy改为move</span><br><span class="line">    	</span><br><span class="line">    5. echo</span><br></pre></td></tr></table></figure>
+<ul>
+<li>property元素: 对于参数的定义</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">语法:</span><br><span class="line">	&lt;property name=&quot;xxx&quot; value=&quot;xxx&quot;/&gt;</span><br><span class="line"></span><br><span class="line">例子:</span><br><span class="line">    &lt;property name=&quot;srcDir&quot; location=&quot;src&quot;/&gt;		&lt;!-- location: 描述了文件所在路径. 是value的语义化 --&gt;</span><br><span class="line">    &lt;property name=&quot;buildDir&quot; location=&quot;build&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;javac srcdir=&quot;$&#123;srcDir&#125;&quot; destdir=&quot;$&#123;buildDir&#125;&quot;/&gt;	&lt;!-- 通过$&#123;&#125;获取其他元素的属性 --&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Ant的内置属性</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ant.file: build.xml的绝对路径</span><br><span class="line"></span><br><span class="line">ant.version: Ant的版本</span><br><span class="line"></span><br><span class="line">ant.project.name: 获取project.name</span><br><span class="line"></span><br><span class="line">ant.java.version: 获取java的version</span><br></pre></td></tr></table></figure>
+<h1 id="Ant的编写"><a href="#Ant的编写" class="headerlink" title="Ant的编写"></a>Ant的编写</h1><ul>
+<li>编译</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//	对src目录中的java文件进行编译</span><br><span class="line"></span><br><span class="line">&lt;javac srcdir=&quot;src&quot;/&gt;		</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">其他有用属性: </span><br><span class="line">    classpath:	说明引用的其他类的路径</span><br><span class="line">    debug=&quot;true&quot;: 说明编译器要带调试信息编译源文件</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建JAR文件: 将.class文件打包到JAR文件中</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//	创建一个名为package.jar文件夹, 并将classes目录下的所有文件(不仅仅是.class文件)放进去</span><br><span class="line"></span><br><span class="line">&lt;jar destfile=&quot;package.jar&quot; basedir=&quot;classes&quot;/&gt;		</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//	&lt;manifest&gt;指定放入jar文件夹中的文件</span><br><span class="line">&lt;jar destfile=&quot;package.jar&quot; basedir=&quot;classes&gt;</span><br><span class="line">	&lt;manifest&gt;</span><br><span class="line">		&lt;attribute name=&quot;Built-By&quot; value=&quot;$&#123;user.name&#125;&quot;/&gt;</span><br><span class="line">		&lt;attribute name=&quot;Main-class&quot; value=&quot;package.Main&quot;/&gt;</span><br><span class="line">	&lt;/manifest&gt;</span><br><span class="line">&lt;/jar&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>时间戳生成: 用于记录文件的生成时间</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">属性</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:center">例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">DSTAMP</td>
+<td style="text-align:center">设置当前日期, 默认格式yyyymmdd</td>
+<td style="text-align:center">20180414</td>
+</tr>
+<tr>
+<td style="text-align:center">TSTAMP</td>
+<td style="text-align:center">设置当前时间, 默认格式hhmm</td>
+<td style="text-align:center">1313</td>
+</tr>
+<tr>
+<td style="text-align:center">TODAY</td>
+<td style="text-align:center">设置当前日期</td>
+<td style="text-align:center">2018年4月14日</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;tstamp/&gt;		//	获取当前的时间</span><br><span class="line">	&lt;format property=&quot;OFFSET_TIME&quot;</span><br><span class="line">			pattern=&quot;HH:mm:ss&quot;</span><br><span class="line">			offset=&quot;10&quot;</span><br><span class="line">			unit=&quot;minute&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;jar destfile=&quot;package-$&#123;DSTAMP&#125;.jar&quot; basedir=&quot;classes&quot;/&gt;		//	用生成日期命名该jar文件</span><br></pre></td></tr></table></figure>
+<ul>
+<li>完整的ANT</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">文件结构树:</span><br><span class="line">  --build.xml: 因为没有给Ant配置环境变量</span><br><span class="line">  --src: 存放.java文件		</span><br><span class="line">  --build: 存放.class文件</span><br><span class="line">  --lib: 存放要导入的.jar包和压缩后的.jar包</span><br><span class="line"></span><br><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;project default=&quot;jar&quot; name=&quot;Hello World Project&quot;&gt;		</span><br><span class="line">  &lt;property name=&quot;srcDir&quot; location=&quot;src&quot;/&gt;</span><br><span class="line">  &lt;property name=&quot;buildDir&quot; location=&quot;build&quot;/&gt;</span><br><span class="line">  &lt;property name=&quot;libDir&quot; location=&quot;lib&quot;/&gt;</span><br><span class="line">	</span><br><span class="line">  &lt;target name=&quot;init&quot;&gt;</span><br><span class="line">    &lt;tstamp/&gt;</span><br><span class="line">    &lt;mkdir dir=&quot;$&#123;buildDir&#125;&quot;/&gt;</span><br><span class="line">    &lt;mkdir dir=&quot;$&#123;libDir&#125;&quot;/&gt;</span><br><span class="line">  &lt;/target&gt;</span><br><span class="line">	</span><br><span class="line">  &lt;target name=&quot;compile&quot; depends=&quot;init&quot;&gt;</span><br><span class="line">    &lt;javac srcdir=&quot;$&#123;srcDir&#125;&quot; destdir=&quot;$&#123;buildDir&#125;&quot; includeantruntime=&quot;false&quot;&gt;</span><br><span class="line">    	&lt;classpath&gt;</span><br><span class="line">    		&lt;fileset dir=&quot;$&#123;libDir&#125;&quot; includes=&quot;**/*.jar&quot;/&gt;		&lt;!-- fileset将dir文件夹中的includes格式的文件导入 --&gt;</span><br><span class="line">    	&lt;/classpath&gt;</span><br><span class="line">    &lt;/javac&gt;</span><br><span class="line">  &lt;/target&gt;</span><br><span class="line"></span><br><span class="line">  &lt;target name=&quot;run&quot; depends=&quot;compile&quot;&gt;</span><br><span class="line">  	&lt;java classname=&quot;test&quot; fork=&quot;true&quot;&gt;		&lt;!-- 默认使用的是Ant的JVM, 添加fork=&quot;true&quot;后能够使用外部的JVM. 对于javafx程序来说, 要设置这个属性 --&gt;</span><br><span class="line">  		&lt;classpath&gt;</span><br><span class="line">  			&lt;pathelement path=&quot;$&#123;buildDir&#125;&quot;/&gt;</span><br><span class="line">  		&lt;/classpath&gt;</span><br><span class="line">  	&lt;/java&gt;</span><br><span class="line">  &lt;/target&gt;</span><br><span class="line"></span><br><span class="line">  &lt;target name=&quot;jar&quot; depends=&quot;run&quot;&gt;</span><br><span class="line">    &lt;jar destfile=&quot;$&#123;distDir&#125;/package-$&#123;DSTAMP&#125;.jar&quot; basedir=&quot;$&#123;buildDir&#125;&quot;&gt;</span><br><span class="line">      &lt;manifest&gt;</span><br><span class="line">        &lt;attribute name=&quot;Built-By&quot; value=&quot;$&#123;user.name&#125;&quot;/&gt;</span><br><span class="line">        &lt;attribute name=&quot;Main-Class&quot; value=&quot;package.Main&quot;/&gt;</span><br><span class="line">      &lt;/manifest&gt;</span><br><span class="line">    &lt;/jar&gt;</span><br><span class="line">  &lt;/target&gt;</span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="命令行运行Ant"><a href="#命令行运行Ant" class="headerlink" title="命令行运行Ant"></a>命令行运行Ant</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">终端中输入:</span><br><span class="line">	ant</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/软件工程实训/软件工程实训/studyreport-JAVA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2593,7 +2796,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">79</span>
+                  <span class="site-state-item-count">80</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2604,7 +2807,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
