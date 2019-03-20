@@ -259,6 +259,153 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/算法/算法/深度优先搜索DFS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/算法/算法/深度优先搜索DFS/" itemprop="url">深度优先搜索DFS</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-07T15:58:49+08:00">
+                2018-11-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="深度优先搜索"><a href="#深度优先搜索" class="headerlink" title="深度优先搜索"></a>深度优先搜索</h1><h2 id="判断两个节点u-v是否连通"><a href="#判断两个节点u-v是否连通" class="headerlink" title="判断两个节点u, v是否连通"></a>判断两个节点u, v是否连通</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function DFS(G(V, E))</span><br><span class="line">	for all v ∈ V:</span><br><span class="line">		visited(v) = false		//	visited存储节点是否访问过</span><br><span class="line">	end</span><br><span class="line">	</span><br><span class="line">	explore(u)</span><br><span class="line">	</span><br><span class="line">	return visited(v)</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">function explore(u)</span><br><span class="line">	visited(u) = true</span><br><span class="line">	</span><br><span class="line">	for each neighbor node v of u</span><br><span class="line">    	if not visited(v) : explore(v)</span><br><span class="line">    end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h2 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h2><p>​    将顶点按照post值降序排列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">function DFS(G)</span><br><span class="line">	for all v ∈ V:</span><br><span class="line">		visited(v) = false		</span><br><span class="line">	end</span><br><span class="line">	</span><br><span class="line">	for all v ∈ V:</span><br><span class="line">		if not visited(v) : </span><br><span class="line">			explore(v)</span><br><span class="line">		end</span><br><span class="line">	end</span><br><span class="line">	</span><br><span class="line">	sort post[v] with descend</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function postvisit(v)</span><br><span class="line">	post[v] = clock</span><br><span class="line">	clock + 1</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function explore(u)</span><br><span class="line">	visited(u) = true</span><br><span class="line">	</span><br><span class="line">	for each neighbor node v of u</span><br><span class="line">    	if not visited(v) : explore(v)</span><br><span class="line">    end</span><br><span class="line">    </span><br><span class="line">    postvisit(u)</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h2 id="无向图划分连通部件"><a href="#无向图划分连通部件" class="headerlink" title="无向图划分连通部件"></a>无向图划分连通部件</h2><p>​    连通部件中的任意两点是连通的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">function DFS(G(V, E))</span><br><span class="line">	for all v ∈ V:</span><br><span class="line">		visited(v) = false</span><br><span class="line">	end</span><br><span class="line">	</span><br><span class="line">	index = 0		//	连通部件编号</span><br><span class="line">	</span><br><span class="line">	for all v ∈ V:</span><br><span class="line">		if not visited(v) : </span><br><span class="line">			explore(v)</span><br><span class="line">			index++</span><br><span class="line">		end</span><br><span class="line">	end</span><br><span class="line">	</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">function explore(v)</span><br><span class="line">	visited(v) = true</span><br><span class="line">	num(v) = index			//	num存储节点的连通部件编号</span><br><span class="line">	</span><br><span class="line">	for each neighbor node u of v</span><br><span class="line">    	if not visited(u) : explore(u)</span><br><span class="line">    end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h2 id="有向图划分连通部件–Kosaraju算法"><a href="#有向图划分连通部件–Kosaraju算法" class="headerlink" title="有向图划分连通部件–Kosaraju算法"></a>有向图划分连通部件–Kosaraju算法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">1. 对图G的逆图G^T运行DFS, 计算出各顶点v完成搜索的时间post(v), 即离开节点v的时间</span><br><span class="line"></span><br><span class="line">function DFS(G^T)</span><br><span class="line">	for all v ∈ V:</span><br><span class="line">		visited(v) = false		//	visited存储节点是否访问过</span><br><span class="line">	end</span><br><span class="line">	</span><br><span class="line">	for all v ∈ V:</span><br><span class="line">		if not visited(v) : </span><br><span class="line">			explore(v)</span><br><span class="line">		end</span><br><span class="line">	end</span><br><span class="line">	</span><br><span class="line">	return visited(v)</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function postvisit(v)</span><br><span class="line">	post[v] = clock</span><br><span class="line">	clock + 1</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function explore(u)</span><br><span class="line">	visited(u) = true</span><br><span class="line">	</span><br><span class="line">	for each neighbor node v of u</span><br><span class="line">    	if not visited(v) : explore(v)</span><br><span class="line">    end</span><br><span class="line">    </span><br><span class="line">    postvisit(u)</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">2. 对图G使用无向图获取连通部件的算法, 但是这次DFS的顺序不是节点的编号, 而是图G的post(v). post(v)大的先explore</span><br><span class="line"></span><br><span class="line">function DFS(G(V, E))</span><br><span class="line">	for all v ∈ V:</span><br><span class="line">		visited(v) = false</span><br><span class="line">	end</span><br><span class="line">	</span><br><span class="line">	index = 0		//	连通部件编号</span><br><span class="line">	</span><br><span class="line">	for all v  ∈ V sort by post(v) :</span><br><span class="line">		if not visited(v) : </span><br><span class="line">			explore(v)</span><br><span class="line">			index++</span><br><span class="line">		end</span><br><span class="line">	end</span><br><span class="line">	</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">function explore(v)</span><br><span class="line">	visited(v) = true</span><br><span class="line">	num(v) = index			//	num存储节点的连通部件编号</span><br><span class="line">	</span><br><span class="line">	for each neighbor node u of v</span><br><span class="line">    	if not visited(u) : explore(u)</span><br><span class="line">    end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/算法/算法/快速排序/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1560,154 +1707,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/LeetCode/LeetCode/构建最大频率栈/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/LeetCode/LeetCode/构建最大频率栈/" itemprop="url">构建最大频率栈</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-11T13:23:05+08:00">
-                2018-10-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">实现一个最大频率栈, 每次出栈时弹出一个出现频率最大的元素, 若有多个元素则弹出最靠近栈顶的元素</span><br></pre></td></tr></table></figure>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">最开始的想法是:</span><br><span class="line">	用一个vector模拟栈, 再用一个map记录频率, 每次pop的时候遍历map算出要出栈的元素, 然后从后往前遍历vector, 找个这个元素弹出, 并将他后面的元素往前移一格, 然后TLE了. </span><br><span class="line">	</span><br><span class="line">然后考虑:</span><br><span class="line">	vector中重复的元素只保存一次, 且它们的排序是频率. 但是问题是当pop后, 无法重新排序</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1757,7 +1761,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">80</span>
+                  <span class="site-state-item-count">81</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -259,6 +259,178 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/操作系统/操作系统/第九章-文件系统接口/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/操作系统/操作系统/第九章-文件系统接口/" itemprop="url">第九章 文件系统接口</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-17T13:02:01+08:00">
+                2018-06-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/操作系统/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h1><p>​    由一组文件和文件目录组成</p>
+<h1 id="当前文件位置指针"><a href="#当前文件位置指针" class="headerlink" title="当前文件位置指针"></a>当前文件位置指针</h1><p>​    对文件进行读/写时, 指向当前文件的访问位置</p>
+<h1 id="文件重定位-文件寻址"><a href="#文件重定位-文件寻址" class="headerlink" title="文件重定位(文件寻址)"></a>文件重定位(文件寻址)</h1><p>​    设置当前文件位置指针的值</p>
+<h1 id="打开文件表"><a href="#打开文件表" class="headerlink" title="打开文件表"></a>打开文件表</h1><ul>
+<li>当调用open()打开文件时, 将文件添加进打开文件表</li>
+</ul>
+<ul>
+<li>若多个进程同时打开这一文件, 在进程的打开文件表中添加这个文件的条目, 同时映射到整个系统的打开文件表</li>
+</ul>
+<h1 id="访问方法"><a href="#访问方法" class="headerlink" title="访问方法"></a>访问方法</h1><ul>
+<li>顺序访问: 按顺序访问文件中的记录</li>
+</ul>
+<ul>
+<li>直接访问/相对访问: 随机对任意文件块进行访问</li>
+</ul>
+<h1 id="区-卷"><a href="#区-卷" class="headerlink" title="区, 卷"></a>区, 卷</h1><ul>
+<li>区: 磁盘中可以有多个文件系统, 每个系统占一个区</li>
+<li>卷: 由多个区构成</li>
+</ul>
+<h1 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h1><ul>
+<li>单层目录: 所有文件都包含在同一个目录中</li>
+</ul>
+<ul>
+<li>双层目录: 分为用户文件目录和主文件目录. 主文件目录指向多个用户文件目录</li>
+</ul>
+<ul>
+<li>树状目录: 在双层目录的基础上, 用户文件目录中包含了许多子目录(用户能自己创建目录)</li>
+</ul>
+<ul>
+<li>无环图目录: 在树状目录的基础上, 允许多个用户共享子目录(通过链接的方式)</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Cocos2d/Cocos2d/Cocos2d学习(六)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1843,190 +2015,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Cocos2d/Cocos2d/Cocos2d学习(一)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Cocos2d/Cocos2d/Cocos2d学习(一)/" itemprop="url">Cocos2d学习(一)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-17T15:21:50+08:00">
-                2018-05-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Cocos2d/" itemprop="url" rel="index">
-                    <span itemprop="name">Cocos2d</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="官方文档"><a href="#官方文档" class="headerlink" title="官方文档"></a>官方文档</h1><p><a href="http://www.cocos.com/?v=CN" target="_blank" rel="noopener">http://www.cocos.com/?v=CN</a></p>
-<h1 id="创建Cocos项目"><a href="#创建Cocos项目" class="headerlink" title="创建Cocos项目"></a>创建Cocos项目</h1><h2 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1. 找到存放项目的文件夹</span><br><span class="line"></span><br><span class="line">2. 在powershell下输入</span><br><span class="line">	cocos new helloCocos -p com.sysu.cocos -l cpp</span><br><span class="line">	</span><br><span class="line">	new 后面跟项目名</span><br><span class="line">	-p  后面跟包名</span><br><span class="line">	-l  后面跟开发语言</span><br></pre></td></tr></table></figure>
-<h2 id="打开项目"><a href="#打开项目" class="headerlink" title="打开项目"></a>打开项目</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">进入proj.win32文件夹&gt;打开helloCocos.sln</span><br></pre></td></tr></table></figure>
-<h2 id="更改项目SDK"><a href="#更改项目SDK" class="headerlink" title="更改项目SDK"></a>更改项目SDK</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">在解决方案资源管理器中, 将helloCocos、libbox2d、libcocos2d、librecast、libSpine的SDK从8.1改成10.0.16</span><br><span class="line"></span><br><span class="line">	右键每个项目&gt;属性&gt;常规&gt;Windows SDK版本&gt;10.0.16</span><br></pre></td></tr></table></figure>
-<h3 id="图片、xml文件、字体目录"><a href="#图片、xml文件、字体目录" class="headerlink" title="图片、xml文件、字体目录"></a>图片、xml文件、字体目录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">图片、xml文件目录  proj.win32&gt;Degub.win32</span><br><span class="line">字体目录  		  proj.win32&gt;Degub.win32&gt;fonts</span><br></pre></td></tr></table></figure>
-<h1 id="运行流程"><a href="#运行流程" class="headerlink" title="运行流程"></a>运行流程</h1><h2 id="入口文件AppDelegate-cpp"><a href="#入口文件AppDelegate-cpp" class="headerlink" title="入口文件AppDelegate.cpp"></a>入口文件AppDelegate.cpp</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">bool applicationDidFinishLauching();		//	完成各种初始化操作</span><br><span class="line"></span><br><span class="line">void applicationDidEnterBackground();		//	程序进入后台时调用</span><br><span class="line"></span><br><span class="line">void applicationWillEnterForeground();		//	程序进入前台时调用</span><br></pre></td></tr></table></figure>
-<h1 id="Director、Scene、Sprite"><a href="#Director、Scene、Sprite" class="headerlink" title="Director、Scene、Sprite"></a>Director、Scene、Sprite</h1><p><img src="https://CoderUtil.github.io/images/TIM截图20180520115847.png" alt="Cocos2d"></p>
-<h1 id="Director-导演"><a href="#Director-导演" class="headerlink" title="Director: 导演"></a>Director: 导演</h1><p>​    用于控制场景的切换, 一个游戏只有一个导演(单例模式)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">获取导演对象</span><br><span class="line">Director::getInstance();</span><br></pre></td></tr></table></figure>
-<h1 id="Scene-场景"><a href="#Scene-场景" class="headerlink" title="Scene: 场景"></a>Scene: 场景</h1><p>​    包含了精灵和其他UI组件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">创建场景</span><br><span class="line">auto myScene = Scene::create();</span><br><span class="line"></span><br><span class="line">启动第一个场景</span><br><span class="line">Director::getInstance()-&gt;runWithScene(myScene);</span><br><span class="line"></span><br><span class="line">场景切换</span><br><span class="line">Director::getInstance()-&gt;replaceScene(myScene);</span><br></pre></td></tr></table></figure>
-<h2 id="场景切换方式"><a href="#场景切换方式" class="headerlink" title="场景切换方式"></a>场景切换方式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pushScene: 暂停当前场景并入栈</span><br><span class="line">	Director::getInstance()-&gt;pushScene(myScene);</span><br><span class="line">	</span><br><span class="line">popScene，推出栈中场景并运行</span><br><span class="line">	Director::getInstance()-&gt;popScene(myScene);</span><br></pre></td></tr></table></figure>
-<h2 id="场景切换特效"><a href="#场景切换特效" class="headerlink" title="场景切换特效"></a>场景切换特效</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1. 渐隐</span><br><span class="line">	Director::getInstance()-&gt;replaceScene(TransitionFade::create(0.5, myScene, Color3B(0, 255, 255)));</span><br><span class="line">	</span><br><span class="line">2. 以X轴为中心旋转</span><br><span class="line">	Director::getInstance()-&gt;replaceScene(TransitionFlipX::create(2, myScene));</span><br><span class="line">	</span><br><span class="line">3. 上下切换</span><br><span class="line">	Director::getInstance()-&gt;replaceScene(TransitionSlideInT::create(1, myScene));</span><br></pre></td></tr></table></figure>
-<h2 id="addChild-Node-child-int-z-index"><a href="#addChild-Node-child-int-z-index" class="headerlink" title="addChild(Node* child, int z-index)"></a>addChild(Node* child, int z-index)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">第一个参数: 要添加进容器的节点</span><br><span class="line">	</span><br><span class="line">第二个参数: z-index值(不写默认为0).</span><br><span class="line"></span><br><span class="line">z-index的作用: 对同一个父节点下的子节点进行排序. z-index大的后渲染. z-index相同时, 前面的代码先渲染</span><br></pre></td></tr></table></figure>
-<h1 id="Sprite-精灵"><a href="#Sprite-精灵" class="headerlink" title="Sprite: 精灵"></a>Sprite: 精灵</h1><p>​    可以控制的图片. 不能控制的算是Scene中的Node</p>
-<h2 id="创建精灵"><a href="#创建精灵" class="headerlink" title="创建精灵"></a>创建精灵</h2><h3 id="用单张图片创建精灵"><a href="#用单张图片创建精灵" class="headerlink" title="用单张图片创建精灵"></a>用单张图片创建精灵</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1. 先创建精灵, 再设置贴图</span><br><span class="line">	auto mySprite = Sprite::create();</span><br><span class="line">	mySprite-&gt;setTexture(&quot;girl.png&quot;);</span><br><span class="line">	</span><br><span class="line">2. 用贴图创建精灵</span><br><span class="line">	auto mySprite = Sprite::create(&quot;girl.png&quot;);</span><br><span class="line">	</span><br><span class="line">3. 指定用图片的一部分创建精灵</span><br><span class="line">	auto mySprite = Sprite::create(&quot;girl.png&quot;, Rect(0, 0, 100, 100));	矩形表示裁剪区间</span><br></pre></td></tr></table></figure>
-<h3 id="使用精灵帧Sprite-Frame创建精灵"><a href="#使用精灵帧Sprite-Frame创建精灵" class="headerlink" title="使用精灵帧Sprite Frame创建精灵"></a>使用精灵帧Sprite Frame创建精灵</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">1. 直接创建精灵帧</span><br><span class="line">	auto myFrame = SpriteFrame::create(&quot;girl.png&quot;,Rect(0,0,150,200));</span><br><span class="line">    auto mySprite = Sprite::createWithSpriteFrame(myFrame);</span><br><span class="line"></span><br><span class="line">2. 先将图片加载到精灵缓冲区, 再读取到精灵帧</span><br><span class="line">	SpriteFrameCache::getInstance()-&gt;addSpriteFramesWithFile(&quot;level-sheet.plist&quot;);</span><br><span class="line">	auto mySprite = Sprite::createWithSpriteFrameName(&quot;start.png&quot;);</span><br><span class="line">	</span><br><span class="line">3. 	先将图片加载到精灵缓冲区, 再读取到精灵帧</span><br><span class="line">	SpriteFrameCache::getInstance()-&gt;addSpriteFramesWithFile(&quot;level-sheet.plist&quot;);</span><br><span class="line">	int totalFrames = 3;</span><br><span class="line">	char frameName[20];</span><br><span class="line">	for (int i = 0; i &lt; totalFrames; i++)</span><br><span class="line">		sprintf(frameName, &quot;start-%d.png&quot;, i);</span><br><span class="line">		</span><br><span class="line">	auto mySprite = Sprite::createWithSpriteFrameName(&quot;start-0.png&quot;);</span><br></pre></td></tr></table></figure>
-<h3 id="使用贴图创建精灵"><a href="#使用贴图创建精灵" class="headerlink" title="使用贴图创建精灵"></a>使用贴图创建精灵</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//	获取贴图</span><br><span class="line">auto texture = Director::getInstance()-&gt;getTextureCache()-&gt;addImage(&quot;girl.png&quot;);</span><br><span class="line"></span><br><span class="line">//	1. 直接用贴图创建精灵</span><br><span class="line">auto mySprite = Sprite::createWithTexture(texture,Rect(0,0,150,200), true);</span><br><span class="line"></span><br><span class="line">//	2. 先创建精灵帧, 再创建精灵</span><br><span class="line">auto firstFrame = SpriteFrame::createWithTexture(texture, CC_RECT_PIXELS_TO_POINTS(Rect(0, 0, 113, 113)));</span><br><span class="line">auto mySprite = Sprite::createWithSpriteFrame(firstFrame);</span><br></pre></td></tr></table></figure>
-<h1 id="背景图片"><a href="#背景图片" class="headerlink" title="背景图片"></a>背景图片</h1><ul>
-<li>背景图片本质是精灵</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">cocos2d::Rect visibleRect = Director::getInstance()-&gt;getOpenGLView()-&gt;getVisibleRect();</span><br><span class="line"></span><br><span class="line">Size visibleSize = Director::getInstance()-&gt;getVisibleSize();	//	获取可见屏幕的大小</span><br><span class="line">Vec2 origin = Director::getInstance()-&gt;getVisibleOrigin();		//	获取坐标系的位置</span><br><span class="line"></span><br><span class="line">//	创建场景</span><br><span class="line">auto myScene = Scene::create();</span><br><span class="line"></span><br><span class="line">//  创建背景</span><br><span class="line">auto mySprite = Sprite::create(&quot;background.jpg&quot;);</span><br><span class="line"></span><br><span class="line">// 设置背景的位置为屏幕中心</span><br><span class="line">mySprite-&gt;setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));</span><br><span class="line"></span><br><span class="line">// 添加背景</span><br><span class="line">myScene-&gt;addChild(mySprite, 0);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>窗体大小</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">auto visibleSize = Director::getInstance()-&gt;getVisibleSize();		//	获得窗体的大小</span><br></pre></td></tr></table></figure>
-<ul>
-<li>坐标系位置: Cocos的坐标系原点位于窗体的左下角</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Vec2 origin = Director::getInstance()-&gt;getVisibleOrigin();			//	获得坐标系的位置</span><br></pre></td></tr></table></figure>
-<h1 id="UI组件"><a href="#UI组件" class="headerlink" title="UI组件"></a>UI组件</h1><h2 id="Label"><a href="#Label" class="headerlink" title="Label"></a>Label</h2><p>​    用于显示一段文本</p>
-<h3 id="创建Label"><a href="#创建Label" class="headerlink" title="创建Label"></a>创建Label</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">一般使用TTF格式</span><br><span class="line">	auto myLabel = Label::createWithTTF(&quot;Your Text&quot;, &quot;Marker Felt.ttf&quot;, 24);</span><br><span class="line">	</span><br><span class="line">	第一个参数: Label的内容</span><br><span class="line">	第二个参数: 放在fonts文件夹下的字体</span><br><span class="line">	第三个参数: 字体大小</span><br></pre></td></tr></table></figure>
-<h3 id="Label效果"><a href="#Label效果" class="headerlink" title="Label效果"></a>Label效果</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">阴影效果:</span><br><span class="line">	myLabel-&gt;enableShadow();</span><br><span class="line">	</span><br><span class="line">描边效果:</span><br><span class="line">	myLabel-&gt;enableOutline(Color4B::WHITE, 1));</span><br><span class="line">	</span><br><span class="line">发光效果:</span><br><span class="line">	myLabel-&gt;enableGlow(Color4B::YELLOW);</span><br></pre></td></tr></table></figure>
-<h3 id="Label中使用中文"><a href="#Label中使用中文" class="headerlink" title="Label中使用中文"></a>Label中使用中文</h3><p>​    直接用中文会乱码, 一般保存在xml文件中, 然后解析</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">1. 在proj.win32&gt;Debug.win32下创建xml文件, 注意保存为utf-8格式</span><br><span class="line">      &lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">      &lt;dict&gt;</span><br><span class="line">        &lt;key&gt;name&lt;/key&gt;</span><br><span class="line">        &lt;string&gt;陈星宇&lt;/string&gt;</span><br><span class="line">        &lt;key&gt;id&lt;/key&gt;</span><br><span class="line">        &lt;string&gt;16340039&lt;/string&gt;</span><br><span class="line">      &lt;/dict&gt;</span><br><span class="line"></span><br><span class="line">2. </span><br><span class="line">      //创建词典类实例，将xml文件加载到词典中</span><br><span class="line">      auto *chnStrings = Dictionary::createWithContentsOfFile(&quot;Information.xml&quot;);</span><br><span class="line">      //通过xml文件中的key获取value</span><br><span class="line">      const char* name = ((CCString*)chnStrings-&gt;objectForKey(&quot;name&quot;))-&gt;getCString();</span><br><span class="line">      const char* id = ((CCString*)chnStrings-&gt;objectForKey(&quot;id&quot;))-&gt;getCString();</span><br><span class="line">      </span><br><span class="line">3. 创建Label</span><br><span class="line">	auto nameLabel = Label::createWithTTF(name, &quot;fonts/simhei.ttf&quot;, 32);</span><br><span class="line">	auto idLabel = Label::createWithTTF(id, &quot;fonts/simhei.ttf&quot;, 32);</span><br><span class="line">	</span><br><span class="line">4. 若Label内容为框框, 表明字体库中没有该字, 应该更换字体库</span><br></pre></td></tr></table></figure>
-<h2 id="Menu"><a href="#Menu" class="headerlink" title="Menu"></a>Menu</h2><p>​    游戏中的菜单</p>
-<h3 id="创建菜单"><a href="#创建菜单" class="headerlink" title="创建菜单"></a>创建菜单</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//	(1) 创建菜单</span><br><span class="line">auto myMenu = Menu::create();</span><br><span class="line"></span><br><span class="line">//	(2) 将菜单插入scene</span><br><span class="line">myScene-&gt;addChild(myMenu);</span><br><span class="line"></span><br><span class="line">//	(3) 设置菜单的位置</span><br><span class="line">myMenu-&gt;setPosition(Vec2::ZERO);	//	菜单的位置固定设为左下角. 主要还是设置菜单项的位置</span><br></pre></td></tr></table></figure>
-<h3 id="添加菜单项"><a href="#添加菜单项" class="headerlink" title="添加菜单项"></a>添加菜单项</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">1. 创建菜单项</span><br><span class="line">	</span><br><span class="line">	//	(1) 创建Label菜单项</span><br><span class="line">  	auto firstLabel = LabelTTF::create(&quot;First&quot;, &quot;Marker Felt.ttf&quot;, 32);</span><br><span class="line">  	auto secondLabel = LabelTTF::create(&quot;Second&quot;, &quot;Marker Felt.ttf&quot;, 32);</span><br><span class="line">  	</span><br><span class="line">  	auto firstItem = MenuItemLabel::create(firstLabel);</span><br><span class="line">  	auto secondItem = MenuItemLabel::create(secondLabel);</span><br><span class="line">  	</span><br><span class="line"></span><br><span class="line">	// (2) 创建图片菜单项</span><br><span class="line">	auto imageItem = MenuItemImage::create(&quot;CloseNormal.png&quot;, &quot;CloseSelected.png&quot;);		//	两个参数分别是选中前, 选中时的图片</span><br><span class="line"></span><br><span class="line">2. 设置菜单项的触发事件</span><br><span class="line"></span><br><span class="line">  	firstItem-&gt;setCallback([&amp;](cocos2d::Ref *sender) &#123;</span><br><span class="line">		Director::getInstance()-&gt;replaceScene(FirstScene::createScene());	//	调用FirstScene.cpp中的createScene, 创建新的Scene</span><br><span class="line">	&#125;);</span><br><span class="line">	</span><br><span class="line">	secondItem-&gt;setCallback([&amp;](cocos2d::Ref *sender) &#123;</span><br><span class="line">		Director::getInstance()-&gt;replaceScene(SecondScene::createScene());</span><br><span class="line">	&#125;);</span><br><span class="line">	</span><br><span class="line">3. 将菜单项插入菜单</span><br><span class="line">	myMenu-&gt;addChild(firstItem);		//	背景的z-index为0, menu的z-index为1, menuItem的z-index为2</span><br><span class="line">	myMenu-&gt;addChild(secondItem);</span><br><span class="line">	</span><br><span class="line">4. 设置菜单项的位置</span><br><span class="line">	int index = 2;</span><br><span class="line">	auto visibleSize = Director::getInstance()-&gt;getVisibleSize();</span><br><span class="line">    Vec2 origin = Director::getInstance()-&gt;getVisibleOrigin();</span><br><span class="line">    	firstItem-&gt;setPosition(Vec2(origin.x + visibleSize.width / 2, origin.y + visibleSize.height / 2).x, Vec2(origin.x + visibleSize.width / 2, origin.y + visibleSize.height).y - (++index) * 40);</span><br><span class="line">    	secondItem-&gt;setPosition(Vec2(origin.x + visibleSize.width / 2, origin.y + visibleSize.height / 2).x, Vec2(origin.x + visibleSize.width / 2, origin.y + visibleSize.height).y - (++index) * 40);</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2076,7 +2069,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">80</span>
+                  <span class="site-state-item-count">81</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
