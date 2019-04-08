@@ -259,6 +259,303 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/LeetCode/LeetCode/算法常用语法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/LeetCode/LeetCode/算法常用语法/" itemprop="url">算法常用语法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-10T10:01:51+08:00">
+                2018-12-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
+                    <span itemprop="name">LeetCode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="vector"><a href="#vector" class="headerlink" title="vector"></a>vector</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">1. 初始化</span><br><span class="line">	vector&lt;int&gt; v = &#123;1, 2, 3&#125;;</span><br><span class="line">	</span><br><span class="line">2. 插入与弹出</span><br><span class="line">	v.push_back(4);</span><br><span class="line">	v.pop_back();</span><br><span class="line">	</span><br><span class="line">3. 使用下标</span><br><span class="line">	for (int i = 0; i &lt; v.size(); i++) &#123;</span><br><span class="line">      v[i];</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="stack"><a href="#stack" class="headerlink" title="stack"></a>stack</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. 插入与弹出</span><br><span class="line">	s.push();</span><br><span class="line">	s.pop();		//	不返回栈顶元素</span><br><span class="line">	</span><br><span class="line">2. 获取栈顶元素</span><br><span class="line">	s.top();</span><br></pre></td></tr></table></figure>
+<h1 id="algorithm"><a href="#algorithm" class="headerlink" title="algorithm"></a>algorithm</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">1. 升序排序STL</span><br><span class="line">	sort(v.begin(), v.end());</span><br><span class="line">	</span><br><span class="line">2. 降序排序STL</span><br><span class="line">	sort(v.begin(), v.end(), compare);</span><br><span class="line">	bool compare(int a, int b) &#123;</span><br><span class="line">      return a &gt; b;					//	当第一个元素比第二个元素大, 返回true, 不用进行交换</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">3. 反转STL</span><br><span class="line">	reverse(v.begin(), v.end());</span><br></pre></td></tr></table></figure>
+<h1 id="sstream"><a href="#sstream" class="headerlink" title="sstream"></a>sstream</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">1. 将string转换为int</span><br><span class="line">	string s = &quot;10&quot;;</span><br><span class="line">	int value;</span><br><span class="line">	stringstream ss;</span><br><span class="line">	ss &lt;&lt; s;</span><br><span class="line">	ss &gt;&gt; value;</span><br><span class="line">	</span><br><span class="line">2. 将int转为string</span><br><span class="line">	int value = 10;</span><br><span class="line">	string s;</span><br><span class="line">	stringstream ss;</span><br><span class="line">	ss &lt;&lt; value;</span><br><span class="line">	ss &gt;&gt; s;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/LeetCode/LeetCode/Min-Stack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/LeetCode/LeetCode/Min-Stack/" itemprop="url">Min Stack</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-10T09:19:19+08:00">
+                2018-12-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
+                    <span itemprop="name">LeetCode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.</p>
+<ul>
+<li>push(x) – Push element x onto stack.</li>
+<li>pop() – Removes the element on top of the stack.</li>
+<li>top() – Get the top element.</li>
+<li>getMin() – Retrieve the minimum element in the stack.</li>
+</ul>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">MinStack minStack = new MinStack();</span><br><span class="line">minStack.push(-2);</span><br><span class="line">minStack.push(0);</span><br><span class="line">minStack.push(-3);</span><br><span class="line">minStack.getMin();   --&gt; Returns -3.</span><br><span class="line">minStack.pop();</span><br><span class="line">minStack.top();      --&gt; Returns 0.</span><br><span class="line">minStack.getMin();   --&gt; Returns -2.</span><br></pre></td></tr></table></figure>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">栈中每个元素保存两个值, 一个是元素的值, 另一个是以当前元素为栈顶时栈的最小值</span><br></pre></td></tr></table></figure>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">class MinStack &#123;</span><br><span class="line">public:</span><br><span class="line">	/** initialize your data structure here. */</span><br><span class="line">	MinStack() &#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	void push(int x) &#123;</span><br><span class="line">		if (MyStack.empty()) &#123;</span><br><span class="line">			MyStack.push_back(make_pair(x, x));</span><br><span class="line">		&#125;</span><br><span class="line">		else &#123;</span><br><span class="line">			if (MyStack.back().second &gt; x) &#123;</span><br><span class="line">				MyStack.push_back(make_pair(x, x));</span><br><span class="line">			&#125;</span><br><span class="line">			else &#123;</span><br><span class="line">				MyStack.push_back(make_pair(x, MyStack.back().second));</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	void pop() &#123;</span><br><span class="line">		MyStack.pop_back();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	int top() &#123;</span><br><span class="line">		return MyStack.back().first;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	int getMin() &#123;</span><br><span class="line">		return MyStack.back().second;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">private:</span><br><span class="line">	vector&lt;pair&lt;int, int&gt;&gt; MyStack;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Android/Android/Android学习--RxJava/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1440,309 +1737,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Android/Android/Android学习--服务/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Android/Android/Android学习--服务/" itemprop="url">服务</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-20T15:42:59+08:00">
-                2018-11-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="服务Service"><a href="#服务Service" class="headerlink" title="服务Service"></a>服务Service</h1><p>​    能在后台长时间执行而没有用于界面的组件. 比如后台播放器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">New-&gt;Service-&gt;Service, enable要勾选, 会自动在AndroidManifest中注册</span><br></pre></td></tr></table></figure>
-<h2 id="使用Service"><a href="#使用Service" class="headerlink" title="使用Service"></a>使用Service</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">https://www.cnblogs.com/yanglh6-jyx/p/Android_Service_MediaPlayer.html</span><br><span class="line"></span><br><span class="line">https://blog.csdn.net/qyl10241024/article/details/44802967</span><br></pre></td></tr></table></figure>
-<h1 id="前台服务"><a href="#前台服务" class="headerlink" title="前台服务"></a>前台服务</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public class MyService extends Service &#123;</span><br><span class="line">  @Override</span><br><span class="line">  public void onCreate() &#123;</span><br><span class="line">    super.onCreate();</span><br><span class="line">    Intent intent = new Intent(this, MainActivity.this);</span><br><span class="line">    PendingIntent pi = PendingIntent.getActivity(this, 0, intent, 0);</span><br><span class="line">    Notification notification = new NotificationCompat.Builder(this)</span><br><span class="line">    					.setContentTitle(&quot;This is content title&quot;)</span><br><span class="line">    					.setContentText(&quot;This is content text&quot;)</span><br><span class="line">    					.setWhen(System.currentTimeMilles())</span><br><span class="line">    					.setSmallIcon(R.mipmap.ic_launcher)</span><br><span class="line">    					.setContentIntent(pi)</span><br><span class="line">    					.build();</span><br><span class="line">    </span><br><span class="line">    startForeground(1, notification);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="IntentService"><a href="#IntentService" class="headerlink" title="IntentService"></a>IntentService</h1><p>​    对于耗时的服务, 不能在onStartCommand中执行, 否则会出现ANR问题.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">//	方法一: 在onStartCommand中使用子线程</span><br><span class="line">  @Override</span><br><span class="line">  public int onStartCommand(Intent intent, int flags, int startId) &#123;	//	执行startService时被调用</span><br><span class="line">  	new Thread(new Runnable() &#123;</span><br><span class="line">      @Override</span><br><span class="line">      public void run() &#123;</span><br><span class="line">        stopSelf();</span><br><span class="line">      &#125;</span><br><span class="line">  	&#125;).start();</span><br><span class="line">    return super.onStartCommand(intent, flags, startId);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">//	方法二: 使用IntentService</span><br><span class="line">public class MyIntentService extends IntentService &#123;</span><br><span class="line">  public MyIntentService() &#123;</span><br><span class="line">    super(&quot;MyInstentService&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  @Override</span><br><span class="line">  protected void onHandleIntent(Intent intent) &#123;</span><br><span class="line">    // 执行子线程的程序</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  @Override</span><br><span class="line">  public </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Intent intentService = new Intent(this, MyIntentService.class);</span><br><span class="line">startService(intentService);</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Android/Android/Android学习--线程/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Android/Android/Android学习--线程/" itemprop="url">线程</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-20T14:03:01+08:00">
-                2018-11-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><p>​    将耗时长的部分放进子线程执行, 执行后返回给主线程</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class MyThread extends Thread &#123;</span><br><span class="line">  @Override</span><br><span class="line">  public void run() &#123;		//	编写耗时逻辑</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">MyThread myThread = new MyThread();</span><br><span class="line">myThread.start();			//	启动线程</span><br></pre></td></tr></table></figure>
-<h2 id="匿名类定义线程"><a href="#匿名类定义线程" class="headerlink" title="匿名类定义线程"></a>匿名类定义线程</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">new Thread(new Runnable() &#123;</span><br><span class="line">  @Override</span><br><span class="line">  public void run() &#123;</span><br><span class="line">	</span><br><span class="line">  &#125;</span><br><span class="line">&#125;).start();</span><br></pre></td></tr></table></figure>
-<h1 id="子线程中修改UI"><a href="#子线程中修改UI" class="headerlink" title="子线程中修改UI"></a>子线程中修改UI</h1><p>​    通过Android异步消息处理机制实现在子线程中修改UI, 不能直接在子线程中修改UI</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">  </span><br><span class="line">  public static final int UPDATE_TEXT = 1;</span><br><span class="line">  </span><br><span class="line">  private Handler handler = new Handler() &#123;</span><br><span class="line">    public void handleMessage(Message msg) &#123;</span><br><span class="line">      switch (msg.what) &#123;</span><br><span class="line">        case UPDATE_TEXT:</span><br><span class="line">        	text.setText(&quot;change text&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  button.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">      @Override</span><br><span class="line">      public void onClick(View v) &#123;</span><br><span class="line">        new Thread(new Runnable() &#123;</span><br><span class="line">          @Override</span><br><span class="line">          public void run() &#123;</span><br><span class="line">            Message message = new Message();</span><br><span class="line">            message.what = UPDATE_TEXT;</span><br><span class="line">            handler.sendMessage(message);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;).start();</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="异步消息处理机制"><a href="#异步消息处理机制" class="headerlink" title="异步消息处理机制"></a>异步消息处理机制</h1><ul>
-<li>Message:  线程之间传递消息的载体</li>
-<li>Handler: 用于发送和处理Message</li>
-</ul>
-<ul>
-<li>MessageQueue消息队列: 存放了通过Handler发送的Message. 每个线程只有一个MessageQueue</li>
-<li>Looper: 调用Looper的loop()方法后会不断从MessageQueue队列中取出Message并放到Handler的handleMessage()中</li>
-</ul>
-<h1 id="AsyncTask"><a href="#AsyncTask" class="headerlink" title="AsyncTask"></a>AsyncTask</h1><p>​    基于异步消息处理机制的封装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">使用Async更新进度条</span><br><span class="line"></span><br><span class="line">class DownloadTask extends AsyncTask&lt;Void, Integer, Boolean&gt; &#123;</span><br><span class="line">  /*</span><br><span class="line">  	第一个参数: 表示doInBackground()的参数类型</span><br><span class="line">  	第二个参数: 表示onProgressUpdate()的参数类型</span><br><span class="line">  	第三个参数: 表示onPostExecute()的参数类型</span><br><span class="line">  */</span><br><span class="line">  @Override</span><br><span class="line">  protected void onPreExecute() &#123;			//	在后台任务执行前调用, 一般用于显示加载进度</span><br><span class="line">    progressDialog.show();</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  @Override</span><br><span class="line">  protected Boolean doInBackground(Void... params) &#123;		//	onPreExecute()执行后调用, 一般执行耗时多的程序</span><br><span class="line">      for (int i = 0; i &lt;= 100; i++) &#123;</span><br><span class="line">        publishProgress(i);			//	当需要修改UI时, 调用publishProgress()从而调用onProgressUpdate()</span><br><span class="line">        try &#123;</span><br><span class="line">          Thread.sleep(100);		//	100ms更新一次</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">          return false;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    return true;					//	结果返回到onPostExecute()</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  @Override</span><br><span class="line">  protected void onProgressUpdate(Integer... values) &#123;		//	当publishProgress(Progress...)调用后调用, 参数就是publishProgress传递的参数</span><br><span class="line">    super.onProgressUpdate(values);</span><br><span class="line">    progressBar.setProgress(values[0]);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  @Override</span><br><span class="line">  protected void onPostExecute(Boolean result) &#123;		//	当后台任务执行完后调用</span><br><span class="line">    progressDialog.dismiss();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">new DownloadTask().execute();</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1797,7 +1791,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">81</span>
+                  <span class="site-state-item-count">83</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

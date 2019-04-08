@@ -259,6 +259,309 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Git/Git/Git命令总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Git/Git/Git命令总结/" itemprop="url">Git命令总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-09T13:01:54+08:00">
+                2018-09-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Git/" itemprop="url" rel="index">
+                    <span itemprop="name">Git</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Git命令"><a href="#Git命令" class="headerlink" title="Git命令"></a>Git命令</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">1. 创建版本库Repository</span><br><span class="line"></span><br><span class="line">	创建一个空文件</span><br><span class="line">	-&gt;进入, 并打开Git Bash</span><br><span class="line">	-&gt;git init</span><br><span class="line"></span><br><span class="line">2. 将文件提交到版本库</span><br><span class="line"></span><br><span class="line">	git add 文件(-A)</span><br><span class="line">	-&gt;git commit -m &quot;注释&quot;</span><br><span class="line">	</span><br><span class="line">3. 比较修改后的文件与版本库中文件的差异</span><br><span class="line"></span><br><span class="line">	git diff 文件</span><br><span class="line">	</span><br><span class="line">4. 查看git commit记录以及版本号</span><br><span class="line"></span><br><span class="line">	git log</span><br><span class="line">	</span><br><span class="line">5. 版本回退</span><br><span class="line"></span><br><span class="line">	git log获取版本号</span><br><span class="line">	-&gt;git reset --hard 版本号</span><br><span class="line">	</span><br><span class="line">6. 版本回退撤销</span><br><span class="line">	</span><br><span class="line">	git reflog获取版本号</span><br><span class="line">	-&gt;git reset --hard 版本号</span><br></pre></td></tr></table></figure>
+<h1 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">1. 将GitHub版本库与本地版本库关联</span><br><span class="line">	</span><br><span class="line">	在GitHub中Create new repo, </span><br><span class="line">	-&gt;git remote add origin git@github.com:CoderUtil/GitHub中项目名.git</span><br><span class="line">	-&gt;git push -u origin master</span><br><span class="line">	</span><br><span class="line">2. 查看当前关联(若关联时出现remote origin already exists)</span><br><span class="line"></span><br><span class="line">	git remote -v</span><br><span class="line">	</span><br><span class="line">3. 删除关联(若一开始关联到GitHub, 后想变成码云)</span><br><span class="line"></span><br><span class="line">	git remote rm origin</span><br><span class="line">	</span><br><span class="line">3. 将本地修改提交到GitHub</span><br><span class="line"></span><br><span class="line">	git push origin master</span><br><span class="line">	</span><br><span class="line">4. 将GitHub上版本库克隆到当前文件夹(默认已关联)</span><br><span class="line">	</span><br><span class="line">	git clone git@github.com:CoderUtil/GitHub项目名.git</span><br></pre></td></tr></table></figure>
+<h1 id="码云"><a href="#码云" class="headerlink" title="码云"></a>码云</h1><p>​    将GitHub命令中的github改为gitee</p>
+<h1 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h1><p>​    用于多人合作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">1. 查看分支, 当前分支前面有*</span><br><span class="line"></span><br><span class="line">	git branch</span><br><span class="line">	</span><br><span class="line">2. 创建分支</span><br><span class="line"></span><br><span class="line">	git branch 分支名</span><br><span class="line">    </span><br><span class="line">3. 切换分支</span><br><span class="line"></span><br><span class="line">	git checkout 分支名</span><br><span class="line">	</span><br><span class="line">4. 合并分支到当前分支(当分支冲突时, 需要手动合并分支)</span><br><span class="line"></span><br><span class="line">	git merge 分支名</span><br><span class="line">	</span><br><span class="line">5. 删除分支</span><br><span class="line"></span><br><span class="line">	git branch -d 分支名</span><br></pre></td></tr></table></figure>
+<h1 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h1><p>​    相比版本号易懂, 有意义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">1. 查看所有标签</span><br><span class="line">	</span><br><span class="line">	git tag</span><br><span class="line">	</span><br><span class="line">2. 设置标签(默认为当前commit)</span><br><span class="line"></span><br><span class="line">	git tag 标签名 (版本号)</span><br><span class="line">	</span><br><span class="line">3. 删除标签</span><br><span class="line"></span><br><span class="line">	git tag -d 标签名</span><br><span class="line"></span><br><span class="line">4. 查看标签信息</span><br><span class="line"></span><br><span class="line">	git show 标签名</span><br></pre></td></tr></table></figure>
+<h1 id="Android-Studio使用Git"><a href="#Android-Studio使用Git" class="headerlink" title="Android Studio使用Git"></a>Android Studio使用Git</h1><h2 id="导入GitHub项目"><a href="#导入GitHub项目" class="headerlink" title="导入GitHub项目"></a>导入GitHub项目</h2><p>​    VCS-&gt;Checkout from Version Control-&gt;GitHub</p>
+<h2 id="上传GitHub项目"><a href="#上传GitHub项目" class="headerlink" title="上传GitHub项目"></a>上传GitHub项目</h2><p>​    VCS-&gt;Import into Version Control-&gt;Share Project on GitHub</p>
+<h2 id="Git命令-1"><a href="#Git命令-1" class="headerlink" title="Git命令"></a>Git命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">1. git add</span><br><span class="line">	VCS-&gt;Git-&gt;Add</span><br><span class="line">	</span><br><span class="line">2. git commit</span><br><span class="line">	VCS-&gt;Git-&gt;Commit File</span><br><span class="line">	</span><br><span class="line">3. git pull 将远程版本库的代码更新到本地</span><br><span class="line">	VCS-&gt;Git-&gt;Pull</span><br><span class="line"></span><br><span class="line">4. git push 将本地的代码更新到远程版本库</span><br><span class="line">	VCS-&gt;Git-&gt;Push</span><br><span class="line"></span><br><span class="line">5. git revert 回退一个版本</span><br><span class="line">	VCS-&gt;Git-&gt;Revert</span><br></pre></td></tr></table></figure>
+<h1 id="下拉Fork项目的更新"><a href="#下拉Fork项目的更新" class="headerlink" title="下拉Fork项目的更新"></a>下拉Fork项目的更新</h1><p>​    当fork的项目被原作者更新后, 更新本地的版本库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">假设原项目被关联到本地的master分支</span><br><span class="line"></span><br><span class="line">1. 将项目关联到本地版本库的新分支</span><br><span class="line">	git remote add 随便一个分支名update_stream git@gitee.com:原作者/PersonalProject1.git</span><br><span class="line"></span><br><span class="line">2. 把update_stream分支关联的远程版本库的代码拉到本地</span><br><span class="line">	git fetch update_stream</span><br><span class="line">	</span><br><span class="line">3. 将update_stream分支的代码合并到当前分支</span><br><span class="line">	git merge update_stream/master</span><br><span class="line">	</span><br><span class="line">4. 把最新代码从本地版本库推送到github</span><br><span class="line">	git push origin master</span><br></pre></td></tr></table></figure>
+<h1 id="冲突"><a href="#冲突" class="headerlink" title="冲突"></a>冲突</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">对于同一个项目, 同学A先于自己pull request并被作者接收了. 这时候再pull request会发生冲突</span><br><span class="line"></span><br><span class="line">可以按照Fork项目更新的做法, 将本地master分支和原作者的分支合并</span><br><span class="line"></span><br><span class="line">若merge的时候出现:</span><br><span class="line">  Auto-merging ...</span><br><span class="line">  CONFLICT (content): Merge conflict in ...</span><br><span class="line">  Automatic merge failed; fix conflicts and then commit the result.</span><br><span class="line">  </span><br><span class="line">这表示自动合并失败, 需要我们手动合并. 通过git status可以查看冲突的文件, 手动修改冲突文件, 然后再git add, git commit, git push</span><br></pre></td></tr></table></figure>
+<h1 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. git checkout . </span><br><span class="line">	清空git add添加到工作区的内容, 同时代码返回到git add前的状态(适用于git add但没有git commit)</span><br><span class="line">	</span><br><span class="line">2. git reset -- hard 版本号</span><br><span class="line">	返回到某次git commit后(适用于git commit后)</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Cocos2d/Cocos2d/Cocos2d学习(七)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Cocos2d/Cocos2d/Cocos2d学习(七)/" itemprop="url">Cocos2d学习(七)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-21T10:14:20+08:00">
+                2018-06-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Cocos2d/" itemprop="url" rel="index">
+                    <span itemprop="name">Cocos2d</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="HttpClient"><a href="#HttpClient" class="headerlink" title="HttpClient"></a>HttpClient</h1><p>​    Http客户端的接口</p>
+<h2 id="Get"><a href="#Get" class="headerlink" title="Get"></a>Get</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">1. 引入头文件和命名空间</span><br><span class="line">	#include &quot;network\HttpClient.h&quot;</span><br><span class="line">	using namespace cocos2d::network;</span><br><span class="line">	</span><br><span class="line">2. 创建HttpRequest实例</span><br><span class="line">	HttpRequest* request = new HttpRequest();</span><br><span class="line">	</span><br><span class="line">3. 设置连接方法的类型和待连接的地址</span><br><span class="line">	request-&gt;setRequestType(HttpRequest::Type::GET);</span><br><span class="line">	request-&gt;setUrl(&quot;http://www.baidu.com&quot;);</span><br><span class="line">	</span><br><span class="line">4. 设置回调</span><br><span class="line">	request-&gt;setResponseCallback(CC_CALLBACK_2(HelloWorld::onHttpComplete, this));</span><br><span class="line">	</span><br><span class="line">5. 添加请求到HttpClient任务队列</span><br><span class="line">	cocos2d::network::HttpClient::getInstance()-&gt;send(request);</span><br><span class="line">	</span><br><span class="line">	void HelloWorld::onHttpRequestCompleted(HttpClient* sender, HttpResponse* response) &#123;</span><br><span class="line">      if (!response)</span><br><span class="line">      	return;</span><br><span class="line">      	</span><br><span class="line">      if (!response-&gt;isSucceed()) &#123;</span><br><span class="line">        log(&quot;response failed&quot;);</span><br><span class="line">        log(&quot;error buffer: %s&quot;, response-&gt;getErrorBuffer());</span><br><span class="line">        return;</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">      std::vector&lt;char&gt;* buffer = response-&gt;getResponseData();</span><br><span class="line">      printf(&quot;Http Test, dump data: &quot;);</span><br><span class="line">      for (unsigned int i = 0; i &lt; buffer-&gt;size(); i++) &#123;</span><br><span class="line">        printf(&quot;%c&quot;, (*buffer)[i]);</span><br><span class="line">      &#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">6. 释放连接</span><br><span class="line">	request-&gt;release();</span><br></pre></td></tr></table></figure>
+<h2 id="Post"><a href="#Post" class="headerlink" title="Post"></a>Post</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;network\HttpClient.h&quot;</span><br><span class="line">using namespace cocos2d::network;</span><br><span class="line"></span><br><span class="line">HttpRequest* request = new HttpRequest();</span><br><span class="line">request-&gt;setRequestType(/HttpRequest::Type::POST);</span><br><span class="line">request-&gt;setUrl(&quot;http://httpbin.org/post&quot;);</span><br><span class="line">request-&gt;setResponseCallback(CC_CALLBACK_2(HelloWorld::onHttpRequestCompleted, this));</span><br><span class="line"></span><br><span class="line">void HelloWorld::onHttpRequestCompleted(HttpClient *sender, HttpResponse *response) &#123; </span><br><span class="line">  if (!response)</span><br><span class="line">  	return; </span><br><span class="line">    </span><br><span class="line">  //	获取并输出状态码</span><br><span class="line">  int statusCode = response-&gt;getResponseCode(); </span><br><span class="line">  char statusString[64]; </span><br><span class="line">  sprintf(statusString, &quot;HTTP Status Code: %d, tag = %s&quot;, statusCode, response-&gt;getHttpRequest()-&gt;getTag(), _labelStatusCode-&gt;setString(statusString); </span><br><span class="line">  log(&quot;response code: %d&quot;, statusCode); </span><br><span class="line">  </span><br><span class="line">  if (!response-&gt;isSucceed()) &#123; </span><br><span class="line">    log(&quot;response failed&quot;); </span><br><span class="line">    log(&quot;error buffer: %s&quot;, response-&gt;getErrorBuffer()); </span><br><span class="line">    return; </span><br><span class="line">  &#125; </span><br><span class="line"></span><br><span class="line">  //	获取并输出响应信息</span><br><span class="line">  std::vector&lt;char&gt; *buffer = response-&gt;getResponseData(); </span><br><span class="line">  printf(&quot;Http Test, dump data: &quot;); </span><br><span class="line">  for (unsigned int i = 0; i &lt; buffer-&gt;size(); i++) &#123; </span><br><span class="line">  	printf(&quot;%c&quot;, (*buffer)); </span><br><span class="line">  &#125;  </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//	设置Post的数据</span><br><span class="line">const char* postData = &quot;visitor=cocos2d&amp;TestSuite=Extensions Test/NetworkTest&quot;;</span><br><span class="line">request-&gt;setRequestData(postData, strlen(postData));</span><br><span class="line"></span><br><span class="line">cocos2d::network::HttpClient::getInstance()-&gt;send(request);</span><br><span class="line">request-&gt;release();</span><br></pre></td></tr></table></figure>
+<h2 id="使用session"><a href="#使用session" class="headerlink" title="使用session"></a>使用session</h2><p>​    cocos2d已经封装好了session在cookie中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">在登陆时加上: cocos2d::network::HttpClient::getInstance()-&gt;enableCookies(NULL);</span><br><span class="line">	</span><br><span class="line">会自动生成cookie然后返回并保存在客户端, 当需要验证时还会自动提交cookie验证</span><br></pre></td></tr></table></figure>
+<h2 id="Json"><a href="#Json" class="headerlink" title="Json"></a>Json</h2><h2 id="解析Json"><a href="#解析Json" class="headerlink" title="解析Json"></a>解析Json</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">1. 引入头文件</span><br><span class="line">	#include &quot;json\rapidjson.h&quot;</span><br><span class="line">	#include &quot;json\document.h&quot;</span><br><span class="line">	using namespace rapidjson;</span><br><span class="line"></span><br><span class="line">2. Json解释</span><br><span class="line">	std::string str = &quot;&#123;\&quot;hello\&quot;: \&quot;world\&quot;&#125;&quot;;</span><br><span class="line">	Document d;</span><br><span class="line">	d.Parse&lt;0&gt;(str.c_str());</span><br><span class="line">	</span><br><span class="line">	if (d.IsObject() &amp;&amp; d.HasMember(&quot;hello&quot;)) &#123;</span><br><span class="line">      CCLOG(&quot;%s\n&quot;, d[&quot;hello&quot;].GetString());</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="生成Json"><a href="#生成Json" class="headerlink" title="生成Json"></a>生成Json</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">1. 引入头文件</span><br><span class="line">	#include &quot;json\document.h&quot;</span><br><span class="line">	#include &quot;json\writter.h&quot;</span><br><span class="line">	#include &quot;json\stringbuffer.h&quot;</span><br><span class="line">	using namespace rapidjson;</span><br><span class="line">	</span><br><span class="line">2. 生成Json串</span><br><span class="line">	rapidjson::Document document;</span><br><span class="line">	document.SetObject();</span><br><span class="line">	rapidjson::Document::AllocatorType&amp; allocator = document.GetAllocator();</span><br><span class="line">	rapidjson::Value array(rapidjson::kArrayType);</span><br><span class="line">	rapidjson::Value object(rapidjson::kObjectType);</span><br><span class="line">	object.AddMember(&quot;int&quot;, 1, allocator);		//	参数是键值对</span><br><span class="line">	object.AddMember(&quot;double&quot;, 1.0, allocator);</span><br><span class="line">	object.AddMember(&quot;bool&quot;, true, allocator);</span><br><span class="line">	object.AddMember(&quot;hello&quot;, &quot;你好&quot;, allocator);</span><br><span class="line">	array.PushBack(object, allocator);</span><br><span class="line">	</span><br><span class="line">	document.AddMember(&quot;json&quot;, &quot;json string&quot;, allocator);</span><br><span class="line">	document.AddMember(&quot;array&quot;, array, allocator);</span><br><span class="line">	StringBuffer buffer;</span><br><span class="line">	rapidjson::Writer&lt;StringBuffer&gt; writer(buffer);</span><br><span class="line">	document.Accept(writer);</span><br><span class="line">	</span><br><span class="line">	CCLOG(&quot;%s&quot;, buffer.GetString());	</span><br><span class="line">	//	buffer为Json串, &#123;</span><br><span class="line">						&quot;json&quot;: &quot;json string&quot;,</span><br><span class="line">						&quot;array&quot;: [</span><br><span class="line">						&#123;</span><br><span class="line">                          	&quot;int&quot;: 1,</span><br><span class="line">                          	&quot;double&quot;: 1,</span><br><span class="line">                          	&quot;bool&quot;: true,</span><br><span class="line">                          	&quot;hello&quot;: &quot;你好&quot;</span><br><span class="line">						&#125;</span><br><span class="line">						]&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/操作系统/操作系统/第九章-文件系统接口/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1633,388 +1936,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Cocos2d/Cocos2d/Cocos2d学习(三)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Cocos2d/Cocos2d/Cocos2d学习(三)/" itemprop="url">Cocos2d学习(三)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-24T20:40:27+08:00">
-                2018-05-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Cocos2d/" itemprop="url" rel="index">
-                    <span itemprop="name">Cocos2d</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Lambda函数"><a href="#Lambda函数" class="headerlink" title="Lambda函数"></a>Lambda函数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//	通过Lambda的形式创建函数func</span><br><span class="line">auto func = [] () &#123;cout &lt;&lt; &quot;Hello World!&quot;;&#125;;</span><br><span class="line"></span><br><span class="line">	[]: 里面为=表示按值传递参数, 里面为&amp;表示按引用传递参数</span><br><span class="line">	(): 传递参数</span><br><span class="line"></span><br><span class="line">//	调用</span><br><span class="line">func();</span><br></pre></td></tr></table></figure>
-<h1 id="Button按钮"><a href="#Button按钮" class="headerlink" title="Button按钮"></a>Button按钮</h1><p>​    一般来说Label按钮用Menu来创建</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//	创建图形Button. </span><br><span class="line"></span><br><span class="line">#include &quot;ui/CocosGUI.h&quot;</span><br><span class="line"></span><br><span class="line">auto myButton = Button::create(&quot;normal_image.png&quot;, &quot;selected_image.png&quot;, &quot;disabled_image.png&quot;);</span><br><span class="line"></span><br><span class="line">myButton-&gt;setTitleText(&quot;This is a button&quot;);</span><br><span class="line"></span><br><span class="line">myButton-&gt;addTouchEventList([&amp;] (Ref* sender, Widget::TouchEventType type) &#123;</span><br><span class="line">  switch(type) &#123;</span><br><span class="line">    case ui::Widget::TouchEventType::BEGAN:			//	按钮点击</span><br><span class="line">    	break;</span><br><span class="line">    case ui::Widget::TouchEventType::ENDED:			//	按钮释放点击</span><br><span class="line">    	std::cout &lt;&lt; &quot;Button clicked&quot; &lt;&lt; std::endl;</span><br><span class="line">    default:</span><br><span class="line">    	break;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">this-&gt;addChild(myButton);</span><br></pre></td></tr></table></figure>
-<h1 id="CheckBox复选框"><a href="#CheckBox复选框" class="headerlink" title="CheckBox复选框"></a>CheckBox复选框</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//	创建CheckBox</span><br><span class="line"></span><br><span class="line">#include &quot;ui/CocosGUI.h&quot;</span><br><span class="line"></span><br><span class="line">auto myCheckbox = CheckBox::create(&quot;check_box_normal.png&quot;,</span><br><span class="line">							   &quot;check_box_normal_press.png&quot;</span><br><span class="line">							   &quot;check_box_active.png&quot;</span><br><span class="line">							   &quot;check_box_normal_disable.png&quot;</span><br><span class="line">							   &quot;check_box_active_disable.png&quot;);</span><br><span class="line">							   </span><br><span class="line">myCheckbox-&gt;addTouchEventListener([&amp;](Ref* sender, Widget::TouchEventType type) &#123;</span><br><span class="line">  switch (type) &#123;</span><br><span class="line">    case ui::Widget::TouchEventType::BEGAN:</span><br><span class="line">    	break;</span><br><span class="line">    case ui::Widget::TouchEventType::ENDED:</span><br><span class="line">    	std::cout &lt;&lt; &quot;CheckBox clicked&quot; &lt;&lt; std::endl;</span><br><span class="line">    default:</span><br><span class="line">    	break;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">this-&gt;addChile(myCheckbox);</span><br></pre></td></tr></table></figure>
-<h1 id="LoadingBar进度条"><a href="#LoadingBar进度条" class="headerlink" title="LoadingBar进度条"></a>LoadingBar进度条</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//	创建LoadingBar</span><br><span class="line"></span><br><span class="line">include &quot;ui/CocosGUI.h&quot;</span><br><span class="line"></span><br><span class="line">auto loadingBar = LoadingBar::create(&quot;LoadingBarFile.png&quot;);</span><br><span class="line"></span><br><span class="line">loadingBar-&gt;setDirection(LoadingBar::Direction::RIGHT);		//	设置进度条的进度显示方向向右</span><br><span class="line"></span><br><span class="line">loadingBar-&gt;setPercent(20);		//	设置进度条进度</span><br><span class="line"></span><br><span class="line">this-&gt;addChild(loadingBar);</span><br></pre></td></tr></table></figure>
-<h1 id="Slider滑动条"><a href="#Slider滑动条" class="headerlink" title="Slider滑动条"></a>Slider滑动条</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">//	创建Slider</span><br><span class="line"></span><br><span class="line">#include &quot;ui/CocosGUI.h&quot;</span><br><span class="line"></span><br><span class="line">auto slider = Slider::create();</span><br><span class="line">slider-&gt;loadBarTexture(&quot;Slider_Background.png&quot;);		//	设置slider背景图片</span><br><span class="line">slider-&gt;loadProgressBarTexture(&quot;Slider_PressBar.png&quot;);	//	设置slider进度图片</span><br><span class="line">slider-&gt;loadSlidBallTextures(&quot;Slider_Normal.png&quot;,&quot;Slider_Pressed.png&quot;,&quot;Slider_Disabled.png&quot;);	//	设置Slider正常情况下, 选中情况下, 禁用情况下的图片</span><br><span class="line"></span><br><span class="line">slider-&gt;addTouchEventListener([&amp;](Ref* sender, Widget::TouchEventType type) &#123;</span><br><span class="line">  switch (type) &#123;</span><br><span class="line">    case ui::Widget::TouchEventType::BEGAN:</span><br><span class="line">    	break;</span><br><span class="line">    case ui::Widget::TouchEventType::ENDED:</span><br><span class="line">    	std::cout &lt;&lt; &quot;Slider clicked&quot; &lt;&lt; std::endl;</span><br><span class="line">    default:</span><br><span class="line">    	break;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">this-&gt;addChild(slider);</span><br></pre></td></tr></table></figure>
-<h1 id="TextField文本框"><a href="#TextField文本框" class="headerlink" title="TextField文本框"></a>TextField文本框</h1><p>​    给用户提供输入框</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//	创建TextField</span><br><span class="line"></span><br><span class="line">#include &quot;ui/CocosGUI.h&quot;</span><br><span class="line"></span><br><span class="line">auto textField = TextField::create(&quot;This is a TextField&quot;, &quot;Arial&quot;, 30);		//	内容, 字体类型, 字体大小</span><br><span class="line"></span><br><span class="line">textField-&gt;addTouchEventListener([&amp;](Ref* sender, Widget::TouchEventType type) &#123;</span><br><span class="line">	std::cout &lt;&lt; &quot;Editing...&quot; &lt;&lt; std::endl;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h1 id="调度器"><a href="#调度器" class="headerlink" title="调度器"></a>调度器</h1><p>​    对于事件, 除了通过回调函数获得是否被调用外, 还可以设置调度器, 不停地判断是否调用</p>
-<h2 id="默认调度器"><a href="#默认调度器" class="headerlink" title="默认调度器"></a>默认调度器</h2><p>​    每一帧绘制前都调用一次update(), 可重写</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//	开启默认调度器</span><br><span class="line">scheduleUpdate();</span><br><span class="line"></span><br><span class="line">//	关闭默认调度器</span><br><span class="line">unscheduleUpdate();</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">例子:</span><br><span class="line">	//	HelloWorldScene.h</span><br><span class="line">	void update(float dt) override;</span><br><span class="line">	</span><br><span class="line">	//	HelloWorldScene.cpp</span><br><span class="line">	bool HelloWorld::init() &#123;</span><br><span class="line">      ...</span><br><span class="line">      scheduleUpdate();		//	开启默认调度器</span><br><span class="line">      return true;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	void HelloWorld::update(float dt) &#123;</span><br><span class="line">      lob (&quot;update&quot;);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="自定义调度器"><a href="#自定义调度器" class="headerlink" title="自定义调度器"></a>自定义调度器</h2><p>​    自定义调度器触发的时间间隔. 特别注意: 函数的参数必须为float dt!!!</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//	开启自定义调度器</span><br><span class="line">schedule(要触发的事件函数, 调度触发的时间间隔, 触发一次后剩余触发次数, 第一次触发前的延迟);</span><br><span class="line"></span><br><span class="line">//	关闭自定义调度器</span><br><span class="line">unschedule(选择自定义调度器);</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">例子:</span><br><span class="line">	//	HelloWorldScene.h</span><br><span class="line">	void updateCustom(float dt);</span><br><span class="line">	</span><br><span class="line">	//	HelloWorldScene.cpp</span><br><span class="line">	bool HelloWorld::init() &#123;</span><br><span class="line">      ...</span><br><span class="line">      schedule(schedule_selector(HelloWorld::updateCustom), 1.0f, kRepeatForever, 0);		//	开启默认调度器, kRepeatForever表示无限循环</span><br><span class="line">      return true;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	void HelloWorld::updateCustom(float dt) &#123;</span><br><span class="line">      lob (&quot;Custom&quot;);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="单次调度器"><a href="#单次调度器" class="headerlink" title="单次调度器"></a>单次调度器</h2><p>​    只触发一次</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//	开启自定义调度器</span><br><span class="line">scheduleOnce(要触发的事件函数, 第一次触发前的延迟);</span><br><span class="line"></span><br><span class="line">//	关闭自定义调度器</span><br><span class="line">unschedule(选择自定义调度器, 第一次触发前的延迟);</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">例子:</span><br><span class="line">	//	HelloWorldScene.h</span><br><span class="line">	void updateOnce(float dt);</span><br><span class="line">	</span><br><span class="line">	//	HelloWorldScene.cpp</span><br><span class="line">	bool HelloWorld::init() &#123;</span><br><span class="line">      ...</span><br><span class="line">      scheduleOnce(schedule_selector(HelloWorld::updateOnce), 0.1f);		//	开启默认调度器, kRepeatForever表示无限循环</span><br><span class="line">      return true;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	void HelloWorld::updateOnce(float dt) &#123;</span><br><span class="line">      lob (&quot;Once&quot;);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Cocos2d/Cocos2d/Cocos2d学习(二)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Cocos2d/Cocos2d/Cocos2d学习(二)/" itemprop="url">Cocos2d学习(二)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-20T12:41:30+08:00">
-                2018-05-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Cocos2d/" itemprop="url" rel="index">
-                    <span itemprop="name">Cocos2d</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="迁移代码"><a href="#迁移代码" class="headerlink" title="迁移代码"></a>迁移代码</h1><ol>
-<li>生成新的项目</li>
-<li>VS2017&gt;解决方案资源管理器&gt;src&gt;移除所有cpp文件</li>
-<li>用新的Classes文件夹和Resources文件夹将旧的文件夹覆盖掉</li>
-<li>VS2017&gt;解决方案资源管理器&gt;src&gt;添加&gt;现有项, 将cpp文件导入</li>
-<li>重新生成解决方案</li>
-<li>编译运行</li>
-</ol>
-<h1 id="屏幕适配"><a href="#屏幕适配" class="headerlink" title="屏幕适配"></a>屏幕适配</h1><p>​    一般我们以最大边(比例 = 屏幕边的大小 / 适配图片边的大小, 比例大为最大边)为基准, 使最大边刚好充满屏幕，而另一边则可能会超出屏幕，超出的部分会被裁剪掉，裁剪的方式是以中心为起点，两边都裁剪</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">auto sprite = Sprite::create(&quot;Background.png&quot;);</span><br><span class="line">float scaleW = visibleSize.width / sprite-&gt;getContentSize().width * 0.3;		//	图像的宽度占窗体宽度的30%</span><br><span class="line">float scaleH = visibleSize.height / sprite-&gt;getContentSize().height * 0.3;		//	图像的长度占窗体长度的30%</span><br><span class="line">sprite-&gt;setScale(scaleW &gt; scaleH ? scaleW : scaleH);</span><br></pre></td></tr></table></figure>
-<h1 id="visibleSize、visibleOrigin、随机位置"><a href="#visibleSize、visibleOrigin、随机位置" class="headerlink" title="visibleSize、visibleOrigin、随机位置"></a>visibleSize、visibleOrigin、随机位置</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1. visibleSize表示屏幕的宽度</span><br><span class="line">	visibleSize = Director::getInstance()-&gt;getVisibleSize();</span><br><span class="line"></span><br><span class="line">2. visibleOrigin表示屏幕的起始坐标</span><br><span class="line">	origin = Director::getInstance()-&gt;getVisibleOrigin();</span><br><span class="line">	</span><br><span class="line">3. random</span><br><span class="line">	float x = random(origin.x, visibleSize.width);	//	表示随机产生一个在屏幕区域内的横坐标</span><br><span class="line">	float y = random(origin.y, visibleSize.height);</span><br></pre></td></tr></table></figure>
-<h1 id="锚点Anchor"><a href="#锚点Anchor" class="headerlink" title="锚点Anchor"></a>锚点Anchor</h1><h2 id="什么是锚点"><a href="#什么是锚点" class="headerlink" title="什么是锚点"></a>什么是锚点</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mySprite-&gt;setPosition(Vec2(origin.x + visibleSize.width / 2, origin.y + visibleSize.height / 2));</span><br><span class="line"></span><br><span class="line">因为Sprite是有长和宽的, 那么是它的哪个位置放在了屏幕中心呢? 这时候就要引入锚点这个概念, 它有点类似于重心.</span><br></pre></td></tr></table></figure>
-<h2 id="锚点值"><a href="#锚点值" class="headerlink" title="锚点值"></a>锚点值</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">锚点值的两个参量x、y的取值为0~1, 表示锚点相对于Node长宽的位置</span><br><span class="line"></span><br><span class="line">对于Node, 锚点为(0.5, 0.5), 即Node的中心点</span><br><span class="line">对于Layer, 锚点为(0, 0), 即Layer的左下角</span><br></pre></td></tr></table></figure>
-<h2 id="设置锚点"><a href="#设置锚点" class="headerlink" title="设置锚点"></a>设置锚点</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">myLayer-&gt;setAnchorPoint(Vec2(0.5, 0.5));</span><br></pre></td></tr></table></figure>
-<h1 id="Layer"><a href="#Layer" class="headerlink" title="Layer"></a>Layer</h1><p>​    实现了触屏代理(比如触摸、点击, 则被触摸或点击的Node需要放在Layer中)</p>
-<h2 id="创建Layer"><a href="#创建Layer" class="headerlink" title="创建Layer"></a>创建Layer</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">auto myLayer = Layer::create();</span><br><span class="line">this-&gt;addChild(myLayer);</span><br><span class="line">myLayer-&gt;setPosition(Vec2::ZERO;</span><br></pre></td></tr></table></figure>
-<h1 id="事件系统"><a href="#事件系统" class="headerlink" title="事件系统"></a>事件系统</h1><p>​    主要由三部分组成: 事件分发器EventDispatcher, 事件监听器EventListener, 事件Event</p>
-<h2 id="事件Event"><a href="#事件Event" class="headerlink" title="事件Event"></a>事件Event</h2><h3 id="触摸事件"><a href="#触摸事件" class="headerlink" title="触摸事件"></a>触摸事件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">(1) 单点触摸:</span><br><span class="line">	onTouchBegan		响应触摸初始事件</span><br><span class="line">	onTouchMoved		响应触摸移动事件</span><br><span class="line">	onTouchEnded		响应触摸结束事件</span><br><span class="line">	onTouchCancelled	响应触摸中断事件(如突然来电)</span><br><span class="line"></span><br><span class="line">(2) 多点触摸:</span><br><span class="line">	onTouchesBegan  	响应触摸初始事件</span><br><span class="line">	onTouchesMoved 		响应触摸移动事件</span><br><span class="line">	onTouchesEnded  	响应触摸结束事件</span><br><span class="line">	onTouchesCancelled 	响应触摸中断事件</span><br></pre></td></tr></table></figure>
-<h3 id="键盘事件"><a href="#键盘事件" class="headerlink" title="键盘事件"></a>键盘事件</h3><p>​    通过KeyCode判断按下哪个按钮</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">onKeyPressed 		响应键盘按下事件</span><br><span class="line">onKeyReleased 		响应键盘放开事件</span><br></pre></td></tr></table></figure>
-<h3 id="实现长按功能"><a href="#实现长按功能" class="headerlink" title="实现长按功能"></a>实现长按功能</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">通过键盘事件设置状态变量，使用调度器，每隔一定时间根据 状态变量更新</span><br><span class="line"></span><br><span class="line">void Thunder::onKeyPressed(EventKeyboard::KeyCode code, Event* event) &#123;</span><br><span class="line">	switch (code) &#123;</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_LEFT_ARROW:</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_CAPITAL_A:</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_A:</span><br><span class="line">		movekey = &apos;A&apos;;</span><br><span class="line">		isMove = true;</span><br><span class="line">		break;</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_CAPITAL_D:</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_D:</span><br><span class="line">		movekey = &apos;D&apos;;</span><br><span class="line">		isMove = true;</span><br><span class="line">		break;</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_SPACE:</span><br><span class="line">		fire();</span><br><span class="line">		break;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void Thunder::onKeyReleased(EventKeyboard::KeyCode code, Event* event) &#123;</span><br><span class="line">	switch (code) &#123;</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_LEFT_ARROW:</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_A:</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_CAPITAL_A:</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_D:</span><br><span class="line">	case EventKeyboard::KeyCode::KEY_CAPITAL_D:</span><br><span class="line">		isMove = false;</span><br><span class="line">		break;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void Thunder::update(float f) &#123;</span><br><span class="line">	// 飞船移动</span><br><span class="line">	if (isMove)</span><br><span class="line">		this-&gt;movePlane(movekey);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">schedule(schedule_selector(Thunder::update), 0.04f, kRepeatForever, 0);</span><br></pre></td></tr></table></figure>
-<h3 id="鼠标事件"><a href="#鼠标事件" class="headerlink" title="鼠标事件"></a>鼠标事件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">onMouseDown 		响应鼠标点击按下事件</span><br><span class="line">onMouseUp 			响应鼠标点击松开事件</span><br><span class="line">onMouseMove 		响应鼠标移动事件</span><br><span class="line">onMouseScroll 		响应鼠标滚轮事件</span><br></pre></td></tr></table></figure>
-<h3 id="响应加速度计"><a href="#响应加速度计" class="headerlink" title="响应加速度计"></a>响应加速度计</h3><p>​    加速度计: 用于获取设备的方向</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1. 启用加速度计</span><br><span class="line">	Device::setAccelerometerEnabled(true);</span><br><span class="line">	</span><br><span class="line">2. 创建加速度计监听器</span><br><span class="line">	auto listener = EventListenerAcceleration::create(</span><br><span class="line">		[](Acceleration* acceleration, Event* event) &#123;</span><br><span class="line">			//	分别代表加速度计的三个方向</span><br><span class="line">          	log(&quot;X: %f, Y: %f, Z: %f&quot;, acceleration-&gt;x, acceleration-&gt;y, acceleration-&gt;z);</span><br><span class="line">		&#125;</span><br><span class="line">	);</span><br></pre></td></tr></table></figure>
-<h3 id="自定义事件"><a href="#自定义事件" class="headerlink" title="自定义事件"></a>自定义事件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">1. 创建自定义事件</span><br><span class="line">	auto meetListener = EventListenerCustom::create(&quot;meet&quot;, CC_CALLBACK_1(Thunder::meet, this));	</span><br><span class="line">	//	第一个参数是自定义事件的名字(随便起), 第二个参数是回调函数</span><br><span class="line">	</span><br><span class="line">	Director::getInstance()-&gt;getEventDispatcher()-&gt;addEventListenerWithFixedPriority(meetListener, 1);		</span><br><span class="line">	//	Director::getInstance()-&gt;getEventDispatcher()等价于_eventDispatcher</span><br><span class="line">	void Thunder::meet(EventCustom* event) &#123;</span><br><span class="line">      </span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">2. 消息传递与发布(这部分放在调度器中)</span><br><span class="line">	EventCustom e(&quot;meet&quot;);		</span><br><span class="line">	Director::getInstance()-&gt;getEventDispatcher()-&gt;dispatchEvent(&amp;e);</span><br></pre></td></tr></table></figure>
-<h2 id="事件使用"><a href="#事件使用" class="headerlink" title="事件使用"></a>事件使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">例一: 单点触摸事件</span><br><span class="line"></span><br><span class="line">1. 创建事件监听器</span><br><span class="line">	EventListenerTouchOneByOne* listener = EventListenerTouchOneByOne::create();	</span><br><span class="line">	//	设置吞没事件(触摸上层时事件不会向下传递)</span><br><span class="line">	listener-&gt;setSwallowTouches(true);</span><br><span class="line"></span><br><span class="line">2. 注册事件</span><br><span class="line">	//	1. 用CC_CALLBACK_X</span><br><span class="line">	listener-&gt;onTouchBegan = CC_CALLBACK_2(GameScene::onTouchBegan, this);</span><br><span class="line">	bool GameScene::onTouchBegan(Touch *touch, Event *unused_event) &#123;</span><br><span class="line">		....</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	//	2. 用lambda函数</span><br><span class="line">	listener-&gt;onTouchBegan = [](Touch* touch, Event* unused_event) &#123;</span><br><span class="line">      Vec2 pos = touch-&gt;getLocation();</span><br><span class="line">      return true;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">3. 派发事件</span><br><span class="line">	auto myDispatcher = Director::getInstance()-&gt;getEventDispatcher();</span><br><span class="line">	myDispatcher-&gt;addEventListenerWithSceneGraphPriority(listener, this);</span><br><span class="line">	</span><br><span class="line">	//	当需要向多个Sprite注册同一个事件时, 需要clone</span><br><span class="line">	myDispatcher-&gt;addEventListenerWithSceneGraphPriority(listener-&gt;clone(), this);</span><br><span class="line">	</span><br><span class="line">4. 移除监听器</span><br><span class="line">	//	移除特定监听器</span><br><span class="line">	myDispatcher-&gt;removeEventListener(listener);</span><br><span class="line">	</span><br><span class="line">	//	移除所有监听器</span><br><span class="line">	myDispatcher-&gt;removeAllEventListeners();</span><br></pre></td></tr></table></figure>
-<h2 id="CC-CALLBACK"><a href="#CC-CALLBACK" class="headerlink" title="CC_CALLBACK"></a>CC_CALLBACK</h2><p>​    用于定义回调函数, 比如菜单项的点击回调、Event的回调</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">auto shootLabel = LabelTTF::create(&quot;Shoot&quot;, &quot;Marker Felt.ttf&quot;, 50);</span><br><span class="line">auto shootItem = MenuItemLabel::create(shootLabel);</span><br><span class="line"></span><br><span class="line">shootItem-&gt;setCallback(CC_CALLBACK_1(GameScene::shootMenuCallback, this));</span><br><span class="line"></span><br><span class="line">	CC_CALLBACK_X表示第X个参数(从0开始数)及以后是回调函数的参数.</span><br><span class="line">	第一个参数: 回调函数名</span><br><span class="line">	第二个参数: 一般写this</span><br></pre></td></tr></table></figure>
-<h2 id="获取精灵A当前事件的个数"><a href="#获取精灵A当前事件的个数" class="headerlink" title="获取精灵A当前事件的个数"></a>获取精灵A当前事件的个数</h2><p>​    如果不想A同时执行多个事件, 当获取事件数不为0, 结束回调函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Director::getInstance()-&gt;getActionManager()-&gt;getNumberOfRunningActionsInTarget(A)</span><br></pre></td></tr></table></figure>
-<h1 id="坐标系"><a href="#坐标系" class="headerlink" title="坐标系"></a>坐标系</h1><p>​    通过点击移动Sprite时, 获取的当前坐标是绝对坐标系下的, 而setPosition的坐标是本地坐标系下的. 因此需要将世界坐标转换为本地坐标</p>
-<h2 id="世界坐标系"><a href="#世界坐标系" class="headerlink" title="世界坐标系"></a>世界坐标系</h2><p>​    位于窗体的左下角</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">auto location = touch-&gt;getLocation();	//	获取世界坐标</span><br></pre></td></tr></table></figure>
-<h2 id="本地坐标系"><a href="#本地坐标系" class="headerlink" title="本地坐标系"></a>本地坐标系</h2><p>​    位于物体的左下角</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mySprite-&gt;getPosition();				//	获取本地坐标</span><br><span class="line"></span><br><span class="line">mySprite-&gt;setPosition(...);				//	参数为本地坐标</span><br></pre></td></tr></table></figure>
-<ul>
-<li>世界坐标系和本地坐标系的转换</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">锚点在(0, 0)时使用:</span><br><span class="line">  //	将世界坐标转换为本地坐标</span><br><span class="line">  CCPoint convertToNodeSpace(const CCPoint&amp; worldPoint); </span><br><span class="line">  //	将本地坐标转换为世界坐标</span><br><span class="line">  CCPoint convertToWorldSpace(const CCPoint&amp; nodePoint);</span><br><span class="line"></span><br><span class="line">锚点不在(0, 0)时使用</span><br><span class="line">  CCPoint convertToNodeSpaceAR(const CCPoint&amp; worldPoint);  </span><br><span class="line">  CCPoint convertToWorldSpaceAR(const CCPoint&amp; nodePoint);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>将物体A移动到物体B的位置(假设它们父节点的锚点都在左下角)</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. 先将B相对于父节点的左下角的坐标转换成世界坐标</span><br><span class="line">	auto location = B-&gt;getParent()-&gt;convertToWorldSpace(B-&gt;getPosition());</span><br><span class="line">	</span><br><span class="line">2. moveTo的参数是世界坐标, 再次转换</span><br><span class="line">	auto moveTo = MoveTo::create(2, A-&gt;getParent()-&gt;convertToNodeSpace(location));</span><br><span class="line">	</span><br><span class="line">不能直接将B-&gt;getPosition()放进MoveTo()中, 因为不能保证两者的父节点是同一个</span><br></pre></td></tr></table></figure>
-<h1 id="Action"><a href="#Action" class="headerlink" title="Action"></a>Action</h1><p>​    用于改变Node的属性. </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1. 移动</span><br><span class="line">	auto moveTo = MoveTo::create(2, Vec2(0, 0));		//	两秒内移动到Vec(0, 0)</span><br><span class="line">	</span><br><span class="line">2. 旋转</span><br><span class="line">	auto rotateTo = RotateTo::create(2, 40.0f);	//	两秒内旋转40度</span><br><span class="line">	</span><br><span class="line">3. 缩放</span><br><span class="line">	auto scaleTo = ScaleTo::create(2, 3.0f, 3.0f);	//	两秒内X、Y方向放大3倍</span><br><span class="line">	</span><br><span class="line">4. 淡入淡出</span><br><span class="line">	auto fadeIn = FadeIn::create(2);		//	两秒内淡入</span><br><span class="line">	auto fadeOut = FadeOut::create(2);		//	两秒内淡出</span><br></pre></td></tr></table></figure>
-<h2 id="By和To"><a href="#By和To" class="headerlink" title="By和To"></a>By和To</h2><ul>
-<li>By: 相对于节点是相对的</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">auto mySprite = Sprite::create(&quot;mySprite.png&quot;);</span><br><span class="line">mySprite-&gt;setPosition(Vec2(200, 256));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">auto moveBy = MoveBy::create(2, Vec2(300, 0));</span><br><span class="line"></span><br><span class="line">	第一个参数: 移动所用的时间</span><br><span class="line">	第二个参数: 相对于当前位置的位置. 移动后节点位置是(500, 256)</span><br><span class="line">	</span><br><span class="line">mySprite-&gt;runAction(moveBy);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>To: 相对于节点是绝对的</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">auto mySprite = Sprite::create(&quot;mySprite.png&quot;);</span><br><span class="line">mySprite-&gt;setPosition(Vec2(200, 256));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">auto moveTo = MoveBy::create(2, Vec2(300, mySprite-&gt;getPositionY()));</span><br><span class="line"></span><br><span class="line">	第一个参数: 移动所用的时间</span><br><span class="line">	第二个参数: 相对于坐标轴的位置. 移动后节点位置是(300, 256)</span><br><span class="line">	</span><br><span class="line">mySprite-&gt;runAction(moveTo);</span><br></pre></td></tr></table></figure>
-<h2 id="Sequence和Spawn"><a href="#Sequence和Spawn" class="headerlink" title="Sequence和Spawn"></a>Sequence和Spawn</h2><ul>
-<li>Sequence: 按顺序执行所有动作</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">auto mySprite = Sprite::create(&quot;mySprite.png&quot;);</span><br><span class="line"></span><br><span class="line">auto moveBy = MoveBy::create(2, Vec2(300, mySprite-&gt;getPositionY()));</span><br><span class="line"></span><br><span class="line">auto moveTo = MoveBy::create(2, Vec2(300, mySprite-&gt;getPositionY()));</span><br><span class="line"></span><br><span class="line">auto callBackMoveBy = CallFunc::create([&amp;]()&#123;		//	如果要在lambda中改变变量的值, 加上&amp;</span><br><span class="line">  ...</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">auto delay = DelayTime::create(2);</span><br><span class="line"></span><br><span class="line">auto seq = Sequence::create(moveBy, delay, moveTo, nullptr);</span><br><span class="line">	以nullptr结束, Sequence里面可以加上回掉函数或者两个Action之间的延迟时间</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>Spawn: 同时执行所有动作</p>
-<p>​</p>
-</li>
-</ul>
-<ul>
-<li>CallFunc::create: 允许在Action中调用一个函数</li>
-</ul>
-<h2 id="终止Action"><a href="#终止Action" class="headerlink" title="终止Action"></a>终止Action</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mySprite-&gt;stopAllActions();</span><br></pre></td></tr></table></figure>
-<h1 id="序列帧动画"><a href="#序列帧动画" class="headerlink" title="序列帧动画"></a>序列帧动画</h1><ul>
-<li>Animation: 用于显示的帧动画</li>
-<li>Animate: 执行帧动画的类, 最终由Sprite执行runAnimate</li>
-<li>AnimationCache: 创建好的帧动画可以保存在其中, 方便以后用</li>
-</ul>
-<h2 id="Animation"><a href="#Animation" class="headerlink" title="Animation"></a>Animation</h2><ul>
-<li>SpriteFrame精灵帧:  由多个精灵帧组成帧动画</li>
-<li>delayPerUnit帧间隔时间</li>
-<li>loops播放次数</li>
-</ul>
-<h2 id="通过plist文件创建帧动画"><a href="#通过plist文件创建帧动画" class="headerlink" title="通过plist文件创建帧动画"></a>通过plist文件创建帧动画</h2><p>​    plist文件记录了每一帧在png图片上的位置, 而直接创建则需要自己确定每一帧的位置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">一般将所有图片打包生成一个png文件和plist文件, 加载着两个文件到精灵缓冲区, 然后从中获取每一帧</span><br><span class="line"></span><br><span class="line">//	1. 创建帧动画的SpriteFrame</span><br><span class="line">SpriteFrameCache::getInstance()-&gt;addSpriteFramesWithFile(&quot;level-sheet.plist&quot;);</span><br><span class="line">char totalFrames = 3;</span><br><span class="line">char frameName[20];</span><br><span class="line"></span><br><span class="line">//	2. 创建Animation类</span><br><span class="line">auto mouseAnimation = Animation::create();</span><br><span class="line"></span><br><span class="line">//	3. 手动添加精灵帧</span><br><span class="line">for (int i = 0; i &lt; totalFrames; i++) &#123;</span><br><span class="line">  sprintf(frameName, &quot;gem-mouse-%d.png&quot;, i);</span><br><span class="line">  mouseAnimation-&gt;addSpriteFrame(SpriteFrameCache::getInstance()-&gt;getSpriteFrameByName(frameName));</span><br><span class="line">  </span><br><span class="line">  //	addSpriteFrame既可以通过不断添加SpriteFrame, 也可以一次性加一个Vector&lt;SpriteFrmae*&gt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//	使用第一帧创建精灵</span><br><span class="line">auto mySprite = Sprite::createWithSpriteFrameName(&quot;start-0.png&quot;);</span><br><span class="line"></span><br><span class="line">//	4. 设置每一帧的持续时间. 2.5s内执行14帧</span><br><span class="line">mouseAnimation-&gt;setDelayPerUnit(2.5 / 14.0f);</span><br><span class="line"></span><br><span class="line">//	5. 播放动画结束后不恢复到第一帧</span><br><span class="line">mouseAnimation-&gt;setRestoreOriginFrame(false);</span><br><span class="line"></span><br><span class="line">//	6. 设置动画缓存</span><br><span class="line">AnimationCache::getInstance()-&gt;addAnimation(mouseAnimation, &quot;mouseAnimation&quot;);</span><br><span class="line"></span><br><span class="line">//	7. 创建Animate</span><br><span class="line">Animate* mouseAnimate = Animate::create(AnimationCache::getInstance()-&gt;getAnimation(&quot;mouseAnimation&quot;));</span><br><span class="line"></span><br><span class="line">//	如果帧动画只使用一次, 也可以不使用缓存, 将6-7步改为下面语句</span><br><span class="line">Animate* mouseAnimate = Animate::create(mouseAnimation);</span><br><span class="line"></span><br><span class="line">//	8. 执行动作</span><br><span class="line">mouse-&gt;runAction(Repeat::create(mouseAnimate, 2 / mouseAnimate-&gt;getDuration()));</span><br><span class="line"></span><br><span class="line">//	9. 清理缓存(注意清理顺序: 动画缓存-&gt;精灵缓存-&gt;纹理缓存)</span><br><span class="line">AnimationCache::destroyInstance();</span><br><span class="line">SpriteFrameCache::getInstance()-&gt;removeUnusedSpriteFrames();</span><br><span class="line">TextureCache::getInstance()-&gt;removeUnusedTextures();</span><br></pre></td></tr></table></figure>
-<h2 id="直接创建帧动画"><a href="#直接创建帧动画" class="headerlink" title="直接创建帧动画"></a>直接创建帧动画</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 定义存储动画帧的vector</span><br><span class="line">cocos2d::Vector&lt;SpriteFrame*&gt; attack;</span><br><span class="line"></span><br><span class="line">// 创建一张贴图</span><br><span class="line">auto texture = Director::getInstance()-&gt;getTextureCache()-&gt;addImage(&quot;$lucia_2.png&quot;);</span><br><span class="line"></span><br><span class="line">// 攻击动画</span><br><span class="line">attack.reserve(17);</span><br><span class="line">for (int i = 0; i &lt; 17; i++) &#123;</span><br><span class="line">    auto frame = SpriteFrame::createWithTexture(texture, CC_RECT_PIXELS_TO_POINTS(Rect(113*i,0,113,113)));	//	第一个参数是合图, 第二个参数是当前帧在合图中的Rect部分</span><br><span class="line">    attack.pushBack(frame);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">auto attack_animation = Animation::createWithSpriteFrames(attack, 0.1f);</span><br><span class="line">attack_animation-&gt;setRestoreOriginalFrame(true);</span><br><span class="line">auto attackAnimate = Animate::create(attack_animation);</span><br></pre></td></tr></table></figure>
-<h2 id="多个Sprite执行一个Animate"><a href="#多个Sprite执行一个Animate" class="headerlink" title="多个Sprite执行一个Animate"></a>多个Sprite执行一个Animate</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果有多个Sprite, 每个Sprite都执行相同的动画, 需要给每个Sprite都生成一个, 而不能使用同一个Animate. 否则, 当多个Sprite同时执行一个Animate时, 会造成每个Sprite都只执行这个Animate的部分帧</span><br></pre></td></tr></table></figure>
-<h1 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h1><p>​    如果在函数a中声明了attackAnimate(指针), 想在函数b使用attackAnimate, 必须用retain</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//	retain()用于将指针加1, 因为内存采用计数管理的方式, </span><br><span class="line">//	当计数为0时, 释放. 因此需要用retain()手动加1</span><br><span class="line"></span><br><span class="line">attackAnimate = Animate::create(attackAnimation);</span><br><span class="line">attackAnimate-&gt;retain();</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2069,7 +1990,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">81</span>
+                  <span class="site-state-item-count">83</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
