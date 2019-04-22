@@ -79,17 +79,19 @@
 
 
 
-<meta name="description" content="动态规划的核心12345678910111213A * &amp;quot;1+1+1+1+1+1+1+1 =？&amp;quot; *A : &amp;quot;上面等式的值是多少&amp;quot;B : *计算* &amp;quot;8!&amp;quot;A *在上面等式的左边写上 &amp;quot;1+&amp;quot; *A : &amp;quot;此时等式的值为多少&amp;quot;B : *quickly* &amp;quot;9!&amp;quot;A : &amp;quot">
+<meta name="description" content="动态规划 将问题分为具有重叠子结构的问题  避免重复计算重叠子结构   1234567891011A * &amp;quot;1+1+1+1+1+1+1+1 =？&amp;quot; *A : &amp;quot;上面等式的值是多少&amp;quot;B : *计算* &amp;quot;8!&amp;quot;A *在上面等式的左边写上 &amp;quot;1+&amp;quot; *A : &amp;quot;此时等式的值为多少&amp;quot;B : *quickly">
 <meta property="og:type" content="article">
 <meta property="og:title" content="动态规划DP--简述动态规划">
 <meta property="og:url" content="http://utilcoder.com/算法/算法/动态规划DP--简述动态规划/index.html">
 <meta property="og:site_name" content="Code">
-<meta property="og:description" content="动态规划的核心12345678910111213A * &amp;quot;1+1+1+1+1+1+1+1 =？&amp;quot; *A : &amp;quot;上面等式的值是多少&amp;quot;B : *计算* &amp;quot;8!&amp;quot;A *在上面等式的左边写上 &amp;quot;1+&amp;quot; *A : &amp;quot;此时等式的值为多少&amp;quot;B : *quickly* &amp;quot;9!&amp;quot;A : &amp;quot">
+<meta property="og:description" content="动态规划 将问题分为具有重叠子结构的问题  避免重复计算重叠子结构   1234567891011A * &amp;quot;1+1+1+1+1+1+1+1 =？&amp;quot; *A : &amp;quot;上面等式的值是多少&amp;quot;B : *计算* &amp;quot;8!&amp;quot;A *在上面等式的左边写上 &amp;quot;1+&amp;quot; *A : &amp;quot;此时等式的值为多少&amp;quot;B : *quickly">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-15T00:57:06.465Z">
+<meta property="og:image" content="http://utilcoder.com/算法/images/TIM截图20190419124507.png">
+<meta property="og:updated_time" content="2019-04-19T04:46:46.052Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="动态规划DP--简述动态规划">
-<meta name="twitter:description" content="动态规划的核心12345678910111213A * &amp;quot;1+1+1+1+1+1+1+1 =？&amp;quot; *A : &amp;quot;上面等式的值是多少&amp;quot;B : *计算* &amp;quot;8!&amp;quot;A *在上面等式的左边写上 &amp;quot;1+&amp;quot; *A : &amp;quot;此时等式的值为多少&amp;quot;B : *quickly* &amp;quot;9!&amp;quot;A : &amp;quot">
+<meta name="twitter:description" content="动态规划 将问题分为具有重叠子结构的问题  避免重复计算重叠子结构   1234567891011A * &amp;quot;1+1+1+1+1+1+1+1 =？&amp;quot; *A : &amp;quot;上面等式的值是多少&amp;quot;B : *计算* &amp;quot;8!&amp;quot;A *在上面等式的左边写上 &amp;quot;1+&amp;quot; *A : &amp;quot;此时等式的值为多少&amp;quot;B : *quickly">
+<meta name="twitter:image" content="http://utilcoder.com/算法/images/TIM截图20190419124507.png">
 
 
 
@@ -351,11 +353,20 @@
       
 
       
-        <h1 id="动态规划的核心"><a href="#动态规划的核心" class="headerlink" title="动态规划的核心"></a>动态规划的核心</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">A * &quot;1+1+1+1+1+1+1+1 =？&quot; *</span><br><span class="line"></span><br><span class="line">A : &quot;上面等式的值是多少&quot;</span><br><span class="line">B : *计算* &quot;8!&quot;</span><br><span class="line"></span><br><span class="line">A *在上面等式的左边写上 &quot;1+&quot; *</span><br><span class="line">A : &quot;此时等式的值为多少&quot;</span><br><span class="line">B : *quickly* &quot;9!&quot;</span><br><span class="line">A : &quot;你怎么这么快就知道答案了&quot;</span><br><span class="line">A : &quot;只要在8的基础上加1就行了&quot;</span><br><span class="line">A : &quot;所以你不用重新计算因为你记住了第一个等式的值为8!动态规划算法也可以说是 &apos;记住求过的解来节省时间&apos;&quot;</span><br><span class="line"></span><br><span class="line">##拿到题时, 考虑数组的索引代表什么, 元素代表什么##</span><br></pre></td></tr></table></figure>
-<h1 id="动态规划的两种形式"><a href="#动态规划的两种形式" class="headerlink" title="动态规划的两种形式"></a>动态规划的两种形式</h1><p>① <strong>自顶向下的备忘录法</strong>(递归计算Fibonacci(n)) </p>
+        <h1 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h1><ul>
+<li><p>将问题分为具有重叠子结构的问题</p>
+</li>
+<li><p>避免重复计算重叠子结构</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">A * &quot;1+1+1+1+1+1+1+1 =？&quot; *</span><br><span class="line"></span><br><span class="line">A : &quot;上面等式的值是多少&quot;</span><br><span class="line">B : *计算* &quot;8!&quot;</span><br><span class="line"></span><br><span class="line">A *在上面等式的左边写上 &quot;1+&quot; *</span><br><span class="line">A : &quot;此时等式的值为多少&quot;</span><br><span class="line">B : *quickly* &quot;9!&quot;</span><br><span class="line">A : &quot;你怎么这么快就知道答案了&quot;</span><br><span class="line">A : &quot;只要在8的基础上加1就行了&quot;</span><br><span class="line">A : &quot;所以你不用重新计算因为你记住了第一个等式的值为8!动态规划算法也可以说是 &apos;记住求过的解来节省时间&apos;&quot;</span><br></pre></td></tr></table></figure>
+<h1 id="动态规划的两种形式"><a href="#动态规划的两种形式" class="headerlink" title="动态规划的两种形式"></a>动态规划的两种形式</h1><p>① 递归(记忆化搜索)</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">斐波那契数列:</span><br><span class="line">  Fibonacci (0) = 1; </span><br><span class="line">  Fibonacci (1) = 1;  </span><br><span class="line">  Fibonacci (n) = Fibonacci(n-1) + Fibonacci(n-2);	n &gt; 1</span><br><span class="line">  </span><br><span class="line">int memory[n] = &#123;0&#125;;  </span><br><span class="line"> </span><br><span class="line">int  Fibonacci(int n) &#123;</span><br><span class="line">  if (memory[n] != 0)</span><br><span class="line">  	return memory[n];</span><br><span class="line">  if (n == 0 || n == 1)</span><br><span class="line">  	memory[n] = 1;</span><br><span class="line">  else </span><br><span class="line">  	memory[n] = Fibonacci(n - 1) + Fibonacci(n - 2);</span><br><span class="line">  </span><br><span class="line">  return memory[n];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>② <strong>自底向上</strong>(迭代计算Fibonacci(0)~Fibonacci(n))</p>
+<p>② 迭代</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">int Fibonacci(int n) &#123;</span><br><span class="line">  if (n &lt; 2)</span><br><span class="line">  	return 1;</span><br><span class="line">  int memory_result;</span><br><span class="line">  int memory_sum1 = 1;</span><br><span class="line">  int memeory_sum2 = 1;	</span><br><span class="line">  for (int i = 2; i &lt;= n; i++) &#123;</span><br><span class="line">    memory_result = memory_sum1 + memory_sum2;</span><br><span class="line">    memory_sum1 = memory_sum2;</span><br><span class="line">    memory_sum2 = memory_result;</span><br><span class="line">  &#125;</span><br><span class="line">  return memory_result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="分治与动态规划"><a href="#分治与动态规划" class="headerlink" title="分治与动态规划"></a>分治与动态规划</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">相同: 都是将问题分成子问题来解决</span><br><span class="line"></span><br><span class="line">不同: </span><br><span class="line">    分治: 解决不具有重叠子结构的问题(如二分查找, 分出来的子区间不重叠)</span><br><span class="line">    动态规划: 解决具有重叠子结构的问题</span><br></pre></td></tr></table></figure>
+<h1 id="回溯与动态规划"><a href="#回溯与动态规划" class="headerlink" title="回溯与动态规划"></a>回溯与动态规划</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">回溯: 一种采用DFS的搜索方法, 比如八皇后问题</span><br><span class="line"></span><br><span class="line">动态规划: 将问题分成子问题, 且会记录重复子问题的解</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">例如, 问将n分解成1和2, 问有多少种组合?</span><br><span class="line"></span><br><span class="line">    (1) 采用回溯的思想, 就是从0开始, 每一轮+1或+2, 直至为n. 即一棵以问题起点为根, 问题终点为其中一个叶子的树</span><br><span class="line"></span><br><span class="line">    (2) 采用动态规划的思想, 得到状态转移方程F(n) = F(n - 1) + F(n - 2), 直至n=0. 即一棵以问题终点为根, 问题起点为其中一个叶子的树</span><br></pre></td></tr></table></figure>
+<p><img src="../../images\TIM截图20190419124507.png" alt="TIM截图20190419124507"></p>
 
       
     </div>
@@ -473,7 +484,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">83</span>
+                  <span class="site-state-item-count">99</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -549,7 +560,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#动态规划的核心"><span class="nav-number">1.</span> <span class="nav-text">动态规划的核心</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动态规划的两种形式"><span class="nav-number">2.</span> <span class="nav-text">动态规划的两种形式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#动态规划"><span class="nav-number">1.</span> <span class="nav-text">动态规划</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动态规划的两种形式"><span class="nav-number">2.</span> <span class="nav-text">动态规划的两种形式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分治与动态规划"><span class="nav-number">3.</span> <span class="nav-text">分治与动态规划</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#回溯与动态规划"><span class="nav-number">4.</span> <span class="nav-text">回溯与动态规划</span></a></li></ol></div>
             
 
           </div>

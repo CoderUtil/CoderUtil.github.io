@@ -259,7 +259,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/汇编/汇编/第二章 内存访问/">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/操作系统/操作系统/第六章-同步/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CoderUtil">
@@ -278,7 +278,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/汇编/汇编/第二章 内存访问/" itemprop="url">第二章 内存访问</a></h1>
+                <a class="post-title-link" href="/操作系统/操作系统/第六章-同步/" itemprop="url">第六章 同步</a></h1>
         
 
         <div class="post-meta">
@@ -290,713 +290,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-26T16:33:22+08:00">
-                2018-03-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/汇编/" itemprop="url" rel="index">
-                    <span itemprop="name">汇编</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="内存单元"><a href="#内存单元" class="headerlink" title="内存单元"></a>内存单元</h1><h2 id="DS和-address"><a href="#DS和-address" class="headerlink" title="DS和[address]"></a>DS和[address]</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">汇编指令</th>
-<th style="text-align:center">操作</th>
-<th style="text-align:center">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">mov al, [0]</td>
-<td style="text-align:center">将ds:0这个内存单元的值赋给al</td>
-<td style="text-align:center">AL = DS:0</td>
-</tr>
-<tr>
-<td style="text-align:center">mov [0], al</td>
-<td style="text-align:center">将al的值赋给ds:0这个内存单元</td>
-<td style="text-align:center">DS:0 = AL</td>
-</tr>
-<tr>
-<td style="text-align:center">mov ax, [0]</td>
-<td style="text-align:center">将ds:0这个内存单元的值赋给al, 将ds:1这个内存单元的值赋给ah</td>
-<td style="text-align:center">AL = DS:0, AH = DS:1</td>
-</tr>
-</tbody>
-</table>
-<h2 id="address的表示方法"><a href="#address的表示方法" class="headerlink" title="address的表示方法"></a>address的表示方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">mov ax, [200 + bx + si]</span><br><span class="line"></span><br><span class="line">等价于</span><br><span class="line"></span><br><span class="line">mov ax, 200[bx + si]</span><br><span class="line"></span><br><span class="line">等价于</span><br><span class="line"></span><br><span class="line">mov ax, 200.[bx + si]</span><br><span class="line"></span><br><span class="line">等价于</span><br><span class="line"></span><br><span class="line">mov ax, 200[bx][si]</span><br><span class="line"></span><br><span class="line">等价于</span><br><span class="line"></span><br><span class="line">mov ax, 200.bx.[si]</span><br></pre></td></tr></table></figure>
-<h2 id="寄存器bp-si-di"><a href="#寄存器bp-si-di" class="headerlink" title="寄存器bp, si, di"></a>寄存器bp, si, di</h2><ul>
-<li>与bx一样, 都用作address. 且它们的默认段寄存器都是ds</li>
-</ul>
-<ul>
-<li>address只支持[bx + si], [bx + di], [bp + si], [bp + di]</li>
-</ul>
-<h2 id="段地址不能直接赋值"><a href="#段地址不能直接赋值" class="headerlink" title="段地址不能直接赋值"></a>段地址不能直接赋值</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mov ds, 1000H		//	错误</span><br><span class="line"></span><br><span class="line">mov bx, 1000H		//	正确</span><br><span class="line">mov ds, bx</span><br></pre></td></tr></table></figure>
-<h2 id="内存单元之间不能直接赋值"><a href="#内存单元之间不能直接赋值" class="headerlink" title="内存单元之间不能直接赋值"></a>内存单元之间不能直接赋值</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mov word ptr cs:[di], cs:[si]	//	错误</span><br></pre></td></tr></table></figure>
-<h2 id="X-ptr"><a href="#X-ptr" class="headerlink" title="X ptr"></a>X ptr</h2><ul>
-<li>没有寄存器作为操作数时, 需要显示指明内存单元的长度</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">汇编指令</th>
-<th style="text-align:center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">byte ptr</td>
-<td style="text-align:center">指明内存单元是一个字节单元</td>
-</tr>
-<tr>
-<td style="text-align:center">word ptr</td>
-<td style="text-align:center">指明内存单元是一个字单元</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mov word ptr ds:[0], 1		</span><br><span class="line"></span><br><span class="line">inc byte ptr es:[0]</span><br></pre></td></tr></table></figure>
-<h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h1><ul>
-<li><p>栈: 一块内存空间, SS:SP指向栈顶元素. 栈空时, SS:SP指向内存空间的最大地址 + 1; 栈满时, SS:SP指向最小地址 - 1</p>
-<p>​</p>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">(ax)</th>
-<th style="text-align:center">表示寄存器ax中的内容</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">(20000H)</td>
-<td style="text-align:center">表示物理地址为20000H的内存单元的内容</td>
-</tr>
-<tr>
-<td style="text-align:center">((ds) * 16 + bx)</td>
-<td style="text-align:center">表示段地址为ds, 偏移地址为bx的内存单元的内容</td>
-</tr>
-</tbody>
-</table>
-<p><img src="https://CoderUtil.github.io/images/TIM截图20180326172947.png" alt="汇编"></p>
-<h2 id="表示寄存器-内存单元的内容"><a href="#表示寄存器-内存单元的内容" class="headerlink" title="()表示寄存器/内存单元的内容"></a>()表示寄存器/内存单元的内容</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">汇编指令</th>
-<th style="text-align:center">操作</th>
-<th style="text-align:center">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">push ax</td>
-<td style="text-align:center">将ax的值放入位于栈顶的两个内存单元中, sp指向新栈顶</td>
-<td style="text-align:center">SP = SP - 2, SS : SP = AX</td>
-</tr>
-<tr>
-<td style="text-align:center">pop ax</td>
-<td style="text-align:center">将位于栈顶的两个内存单元的值ax放入中, sp指向新栈顶</td>
-<td style="text-align:center">AX = SS : SP, SP = SP + 2</td>
-</tr>
-</tbody>
-</table>
-<h1 id="汇编程序"><a href="#汇编程序" class="headerlink" title="汇编程序"></a>汇编程序</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">assume cs:code,	ds:data, ss:stack	//	将段寄存器与段名相关联</span><br><span class="line">	data segment			//	定义一个名为data的数据段, segment标志着段开始, ends标志着段结束</span><br><span class="line">		</span><br><span class="line">	data ends</span><br><span class="line">	</span><br><span class="line">	stack segment			//	定义一个名为stack的栈段</span><br><span class="line">		dw 0, 0 ,0</span><br><span class="line">	stack ends</span><br><span class="line">	</span><br><span class="line">	code segment			//	定义一个名为code的代码段</span><br><span class="line">    start:  mov ax, data	 //	 end start指明了start标号是程序的入口</span><br><span class="line">            mov ds, ax</span><br><span class="line"></span><br><span class="line">            mov ax, stack	 //  data与stack的段名等价于数据段和代码段的段地址值, 因此不能直接赋值</span><br><span class="line">            mov ss, ax</span><br><span class="line">            mov sp, 6		//	SP指向栈底</span><br><span class="line">            </span><br><span class="line">            ...</span><br><span class="line">            </span><br><span class="line">           	mov ax, 4CH	 //	程序返回 </span><br><span class="line">           	int 21H			</span><br><span class="line">	code ends			</span><br><span class="line">end	start					//	说明汇编程序结束</span><br></pre></td></tr></table></figure>
-<ul>
-<li>跳转到当前目录下: mount c d:\WorkEnvironment\DosBox<br>   ​                 c:</li>
-</ul>
-<ul>
-<li>编辑: 在DOSBOX文件夹下编辑1.asm文件</li>
-</ul>
-<ul>
-<li>编译: 输入masm, 在第一行填写1, 其他行回车</li>
-</ul>
-<ul>
-<li>链接: 输入link, 在第一行填写1, 其他行回车</li>
-</ul>
-<ul>
-<li>执行: 输入1</li>
-</ul>
-<h3 id="打印Hello程序"><a href="#打印Hello程序" class="headerlink" title="打印Hello程序"></a>打印Hello程序</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">assume cs:code, ds:data</span><br><span class="line"></span><br><span class="line">data segment </span><br><span class="line">    string1 db &apos;Hello World!&apos;, 13, 10, &apos;$&apos; 	//	13, 10表示换行符. &apos;$&apos;表示声明一个以$结尾的字符串</span><br><span class="line">    string2 db &apos;chenxingyu&apos;, 13, 10, &apos;$&apos;</span><br><span class="line">    string3 db &apos;16340039&apos;, &apos;$&apos;</span><br><span class="line">data ends</span><br><span class="line"></span><br><span class="line">code segment </span><br><span class="line">start:  mov ax, data </span><br><span class="line">        mov ds, ax </span><br><span class="line"></span><br><span class="line">        mov dx, offset string1		//	string1, 2, 3是标号</span><br><span class="line">        mov ah, 9h				   //	mov ah, 9h	int 21h执行打印	</span><br><span class="line">        int 21h</span><br><span class="line"></span><br><span class="line">        mov dx, offset string2 </span><br><span class="line">        mov ah, 9h</span><br><span class="line">        int 21h</span><br><span class="line"></span><br><span class="line">        mov dx, offset string3 </span><br><span class="line">        mov ah, 9h</span><br><span class="line">        int 21h</span><br><span class="line"></span><br><span class="line">        mov ah, 4ch</span><br><span class="line">        int 21h</span><br><span class="line">code ends </span><br><span class="line">end start</span><br></pre></td></tr></table></figure>
-<h2 id="程序的注意事项"><a href="#程序的注意事项" class="headerlink" title="程序的注意事项:"></a>程序的注意事项:</h2><ul>
-<li>程序中数据不能以字母开头, Debug下可以</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mov ax A000H	//	错误</span><br><span class="line"></span><br><span class="line">mov ax 0A000H	//	正确</span><br></pre></td></tr></table></figure>
-<ul>
-<li>内存单元不能直接用常量表示, Debug下可以</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mov ax, [0]		//	被认为是mov ax, 0</span><br><span class="line"></span><br><span class="line">解决办法:</span><br><span class="line">	mov bx, 0</span><br><span class="line">	mov ax, [bx]</span><br><span class="line">	或</span><br><span class="line">	mov ax, ds:[0]	//	显示添加段前缀</span><br></pre></td></tr></table></figure>
-<h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mov ax, 1	</span><br><span class="line">mov cx, 11</span><br><span class="line">s: inc ax		//	inc ax 等价于 ax = ax + 1</span><br><span class="line">loop s			//	执行到loop语句, 先cx = cx - 1, 若cx = 0则向下执行, 否则跳转至标号处</span><br></pre></td></tr></table></figure>
-<h2 id="inc与dec"><a href="#inc与dec" class="headerlink" title="inc与dec"></a>inc与dec</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">汇编指令</th>
-<th style="text-align:center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">inc</td>
-<td style="text-align:center">inc cx    &lt;=&gt;    cx = cx + 1</td>
-</tr>
-<tr>
-<td style="text-align:center">dec</td>
-<td style="text-align:center">dec cx   &lt;=&gt;     cx = cx - 1</td>
-</tr>
-</tbody>
-</table>
-<h2 id="多层循环"><a href="#多层循环" class="headerlink" title="多层循环"></a>多层循环</h2><p>​    内层循环和外层循环共用一个cx, 因此一进入内存循环, 需要先把cx的值入栈保存. 出内循环之前, 将cx的值出栈</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">stack segment</span><br><span class="line">	dw 0, 0, 0, 0</span><br><span class="line">stack ends</span><br><span class="line"></span><br><span class="line">code segment</span><br><span class="line">	start:  mov ax, data	 </span><br><span class="line">            mov ds, ax</span><br><span class="line"></span><br><span class="line">            mov ax, stack	</span><br><span class="line">            mov ss, ax</span><br><span class="line">            mov sp, 6		</span><br><span class="line">            </span><br><span class="line">            mov cx, 4</span><br><span class="line">            </span><br><span class="line">        s0: push cx </span><br><span class="line">        </span><br><span class="line">        s1: mov cx, 5</span><br><span class="line">            loop s1</span><br><span class="line">            </span><br><span class="line">            pop cx</span><br><span class="line">            loop s0</span><br><span class="line">            </span><br><span class="line">           	mov ax, 4C00H	</span><br><span class="line">           	int 21H</span><br><span class="line">code ends</span><br></pre></td></tr></table></figure>
-<h2 id="数据段、栈段"><a href="#数据段、栈段" class="headerlink" title="数据段、栈段"></a>数据段、栈段</h2><p>​    因为不可能把所有数据都放在寄存器中, 所以一部分数据要放在内存中, 栈段和数据段</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">assume cs:code,	ds:data, ss:stack</span><br><span class="line">data segment</span><br><span class="line"></span><br><span class="line">data ends</span><br><span class="line"></span><br><span class="line">stack segment</span><br><span class="line">	</span><br><span class="line">stack ends</span><br><span class="line"></span><br><span class="line">code segment</span><br><span class="line">	mov ax, data</span><br><span class="line">	mov ds, ax</span><br><span class="line">	</span><br><span class="line">	mov ax, stack</span><br><span class="line">	mov ss, ax</span><br><span class="line">code ends</span><br></pre></td></tr></table></figure>
-<h2 id="定义内存单元中的数据"><a href="#定义内存单元中的数据" class="headerlink" title="定义内存单元中的数据"></a>定义内存单元中的数据</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">汇编指令</th>
-<th style="text-align:center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">db</td>
-<td style="text-align:center">define byte 定义字节型数据</td>
-</tr>
-<tr>
-<td style="text-align:center">dw</td>
-<td style="text-align:center">define word 定义字型数据</td>
-</tr>
-<tr>
-<td style="text-align:center">dd</td>
-<td style="text-align:center">define double word 定义两个字型数据</td>
-</tr>
-<tr>
-<td style="text-align:center">dup</td>
-<td style="text-align:center">搭配db、dw、dd使用, 用来进行数据的重复</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">db &apos;a&apos;, &apos;b&apos;, &apos;c&apos;		//	定义3个字节型数据</span><br><span class="line">db &apos;def&apos;			   	//	定义3个字节型数据</span><br><span class="line"></span><br><span class="line">dw 0, 0123H, 0456H		//	定义3个字型数据</span><br><span class="line"></span><br><span class="line">dd 0, 1, 2			    //   定义3个字型数据</span><br><span class="line"></span><br><span class="line">db 3 dup (0)		    //  定义3个字节型数据, 它们的值都是0</span><br><span class="line">db 3 dw (0, 1, 2)		//	定义9个字型数据, 0, 1, 2, 0, 1, 2, 0, 1, 2</span><br></pre></td></tr></table></figure>
-<h1 id="and与or指令"><a href="#and与or指令" class="headerlink" title="and与or指令"></a>and与or指令</h1><table>
-<thead>
-<tr>
-<th style="text-align:center">汇编指令</th>
-<th style="text-align:center">操作</th>
-<th style="text-align:center">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">and al, 0011,1111B</td>
-<td style="text-align:center">按位与</td>
-<td style="text-align:center">al &amp;= 0011,1111B</td>
-</tr>
-<tr>
-<td style="text-align:center">or al, 0011,1111B</td>
-<td style="text-align:center">按位或</td>
-<td style="text-align:center">al \</td>
-<td>= 0011,1111B</td>
-</tr>
-</tbody>
-</table>
-<h1 id="mul与div指令"><a href="#mul与div指令" class="headerlink" title="mul与div指令"></a>mul与div指令</h1><ul>
-<li>mul</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">格式: </span><br><span class="line">      mul reg</span><br><span class="line">      mul 内存单元</span><br><span class="line">      </span><br><span class="line">注意:</span><br><span class="line">      两个乘数位数要相同. </span><br><span class="line">      若位数都是8位, 一个默认放在AL, 另一个放在8位reg或内存单元, 默认结果放在AX</span><br><span class="line">      若位数都是16位, 一个默认放在AX, 另一个放在16位reg或内存单元, 默认结果高位放在DX, 低位放在AX</span><br><span class="line">      </span><br><span class="line">8位乘法:</span><br><span class="line">    mov al, 100</span><br><span class="line">    mov bl, 100</span><br><span class="line">    mul bl</span><br><span class="line">    </span><br><span class="line">16位乘法:</span><br><span class="line">    mov ax, 1000</span><br><span class="line">    mov bx, 10000</span><br><span class="line">    mul bx</span><br></pre></td></tr></table></figure>
-<ul>
-<li>div</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">格式: </span><br><span class="line">      div reg</span><br><span class="line">      div 内存单元</span><br><span class="line">      </span><br><span class="line">注意:</span><br><span class="line">      若除数位数是8位, 被除数则为16位. 被除数默认放在AX, 默认AL存放商, AH存放余数</span><br><span class="line">      若除数位数是16位, 被除数则为32位. AX放被除数的低16位, DX放被除数高16位, 默认AX存放商, DX存放余数</span><br><span class="line">      </span><br><span class="line">除数为8位:</span><br><span class="line">    mov ax, 100</span><br><span class="line">    mov bl, 100</span><br><span class="line">    div bl</span><br><span class="line">    </span><br><span class="line">除数为16位::</span><br><span class="line">    mov dx, 1000</span><br><span class="line">    mov ax, 0 </span><br><span class="line">    mov bx, 100</span><br><span class="line">    mul bx</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/汇编/汇编/第一章 基础知识/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/汇编/汇编/第一章 基础知识/" itemprop="url">第一章 基础知识</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-26T09:03:50+08:00">
-                2018-03-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/汇编/" itemprop="url" rel="index">
-                    <span itemprop="name">汇编</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h1><h2 id="8086-8088CPU组成"><a href="#8086-8088CPU组成" class="headerlink" title="8086/8088CPU组成"></a>8086/8088CPU组成</h2><p><img src="https://CoderUtil.github.io/images/TIM截图20180326085329.png" alt="汇编"></p>
-<h2 id="8086-8088CPU共同点"><a href="#8086-8088CPU共同点" class="headerlink" title="8086/8088CPU共同点"></a>8086/8088CPU共同点</h2><p>​    都是16位CPU. 运算器一次最多可以处理16位数据, 寄存器最大宽度为16位, CPU内部数据总线为16位</p>
-<h2 id="8086-8088CPU区别"><a href="#8086-8088CPU区别" class="headerlink" title="8086/8088CPU区别"></a>8086/8088CPU区别</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">CPU</th>
-<th style="text-align:center">指令队列容量</th>
-<th style="text-align:center">每个总线周期从内存中读取放入指令队列</th>
-<th style="text-align:center">外部数据总线宽带</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">8086</td>
-<td style="text-align:center">6个字节</td>
-<td style="text-align:center">2个字节</td>
-<td style="text-align:center">16位</td>
-</tr>
-<tr>
-<td style="text-align:center">8088</td>
-<td style="text-align:center">4个字节</td>
-<td style="text-align:center">1个字节</td>
-<td style="text-align:center">8位</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>总线周期:  BIU完成一次访问存储器或端口所需要的时间</li>
-</ul>
-<h1 id="字word"><a href="#字word" class="headerlink" title="字word"></a>字word</h1><p>​    计算机内部一次可以处理的二进制位数. 8086CPU中寄存器位16位, 所以字为16位</p>
-<h2 id="内存中字的存储"><a href="#内存中字的存储" class="headerlink" title="内存中字的存储"></a>内存中字的存储</h2><p>​    高地址存放高位字节, 低地址存放低位字节</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">0</th>
-<th style="text-align:center">1</th>
-<th style="text-align:center">2</th>
-<th style="text-align:center">3</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">20H</td>
-<td style="text-align:center">4EH</td>
-<td style="text-align:center">12H</td>
-<td style="text-align:center">00H</td>
-</tr>
-</tbody>
-</table>
-<p>从地址为1的内存单元中取出1个字的数据, 为124EH</p>
-<h1 id="寄存器-14个16位寄存器"><a href="#寄存器-14个16位寄存器" class="headerlink" title="寄存器(14个16位寄存器)"></a>寄存器(14个16位寄存器)</h1><p><img src="https://CoderUtil.github.io/images/TIM截图20180326092541.png" alt="汇编"></p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">段寄存器</th>
-<th style="text-align:center">作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">代码段寄存器CS</td>
-<td style="text-align:center">指向代码段</td>
-</tr>
-<tr>
-<td style="text-align:center">数据段寄存器DS</td>
-<td style="text-align:center">指向数据段</td>
-</tr>
-<tr>
-<td style="text-align:center">堆栈段寄存器SS</td>
-<td style="text-align:center">指向堆栈段</td>
-</tr>
-<tr>
-<td style="text-align:center">附加段寄存器ES</td>
-<td style="text-align:center">指向附加段</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>标志寄存器FR: 又称为状态寄存器PSW</li>
-</ul>
-<h2 id="数据寄存器"><a href="#数据寄存器" class="headerlink" title="数据寄存器"></a>数据寄存器</h2><p>​    为了兼容上一代的8位CPU, 数据寄存器可分为高位寄存器和低位寄存器</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">低位寄存器</th>
-<th style="text-align:center">高位寄存器</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">AX</td>
-<td style="text-align:center">AL</td>
-<td style="text-align:center">AH</td>
-</tr>
-<tr>
-<td style="text-align:center">BX</td>
-<td style="text-align:center">BL</td>
-<td style="text-align:center">BH</td>
-</tr>
-<tr>
-<td style="text-align:center">CX</td>
-<td style="text-align:center">CL</td>
-<td style="text-align:center">CH</td>
-</tr>
-<tr>
-<td style="text-align:center">DX</td>
-<td style="text-align:center">DL</td>
-<td style="text-align:center">DH</td>
-</tr>
-</tbody>
-</table>
-<h1 id="简单汇编指令"><a href="#简单汇编指令" class="headerlink" title="简单汇编指令"></a>简单汇编指令</h1><table>
-<thead>
-<tr>
-<th style="text-align:center">汇编指令</th>
-<th style="text-align:center">操作</th>
-<th style="text-align:center">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">mov ax, 18</td>
-<td style="text-align:center">将18送入AX</td>
-<td style="text-align:center">AX = 18</td>
-</tr>
-<tr>
-<td style="text-align:center">mov ah, 78</td>
-<td style="text-align:center">将78送入AH</td>
-<td style="text-align:center">AH = 78</td>
-</tr>
-<tr>
-<td style="text-align:center">add/sub ax, 18</td>
-<td style="text-align:center">AX中的数据加/减上18</td>
-<td style="text-align:center">AX = AX +/- 18</td>
-</tr>
-<tr>
-<td style="text-align:center">add/sub ah, 18</td>
-<td style="text-align:center">AH中的数据加/减上18</td>
-<td style="text-align:center">AH = AH +/- 18</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li><p>汇编指令不区分大小写: mov ax, 18   &lt;=&gt;    MOV AX, 18</p>
-<p>​</p>
-</li>
-<li><p>汇编指令中操作数的位数应该一致:  mov ah, bx是错误的, ah是8位寄存器, bx是16位寄存器</p>
-</li>
-</ul>
-<h1 id="物理地址"><a href="#物理地址" class="headerlink" title="物理地址"></a>物理地址</h1><p>​    8086CPU中地址总线是20位的, 但存储地址的寄存器是16位的. 所以将两个16位地址合成一个20位地址</p>
-<ul>
-<li>物理地址 = 段地址 <em> 16 + 偏移地址 = 段地址 </em> 10H + 偏移地址</li>
-<li>逻辑地址 = 段地址 : 偏移地址</li>
-</ul>
-<h1 id="寄存器CS和IP"><a href="#寄存器CS和IP" class="headerlink" title="寄存器CS和IP"></a>寄存器CS和IP</h1><p>​    CS * 16 + IP指向当前要读取的指令的地址</p>
-<h2 id="程序执行"><a href="#程序执行" class="headerlink" title="程序执行"></a>程序执行</h2><pre><code>1. 从CS : IP指向的内存单元读取指令并放入指令缓存器
- 2. IP = IP + 所读指令的长度, 从而指向下一条指令(IP永远指向指令, 因此冯诺依曼体系中主要根据IP指向内容判断是内存中的内容是指令还是数据)
-  3. 执行指令
-</code></pre><h1 id="DeBug程序"><a href="#DeBug程序" class="headerlink" title="DeBug程序"></a>DeBug程序</h1><h2 id="打开debug"><a href="#打开debug" class="headerlink" title="打开debug"></a>打开debug</h2><ol>
-<li><p>打开DOSBOX</p>
-<p>​</p>
-</li>
-<li><p>输入下列指令</p>
-</li>
-</ol>
-<p><img src="https://CoderUtil.github.io/images/TIM图片20180326160139.png" alt="汇编"></p>
-<h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><h3 id="R"><a href="#R" class="headerlink" title="R"></a>R</h3><ul>
-<li>r,  查看所有寄存器的内容</li>
-<li>r + 寄存器名, 在提示的: 后输入值, 修改指定寄存器的值</li>
-</ul>
-<p><img src="https://CoderUtil.github.io/images/TIM截图20180326160448.png" alt="汇编"></p>
-<h3 id="D"><a href="#D" class="headerlink" title="D"></a>D</h3><ul>
-<li><p>d 段地址 : 偏移地址, 查看此物理地址开始的128个内存单元的内容</p>
-</li>
-<li><p>d 段地址 : 起始偏移地址  结束偏移地址, 查看指定范围的内存单元</p>
-</li>
-</ul>
-<p><img src="https://CoderUtil.github.io/images/TIM截图20180326160918.png" alt="汇编"></p>
-<ul>
-<li>右边的值表示每个内存单元的值对应的ASCII字符, 若ASCII字符不能显示就用’.’代替</li>
-</ul>
-<h3 id="E"><a href="#E" class="headerlink" title="E"></a>E</h3><ul>
-<li>e 段地址 : 偏移地址  数据  数据  数据  …., 来修改从指定内存开始的内存单元</li>
-<li>e 段地址 : 偏移地址  回车。 然后在.后面输入打算替换的数据, 改完后按空格修改下一个, 按回车结束</li>
-</ul>
-<p><img src="https://CoderUtil.github.io/images/TIM截图20180326162047.png" alt="汇编"></p>
-<h3 id="U"><a href="#U" class="headerlink" title="U"></a>U</h3><ul>
-<li>u 段地址 : 偏移地址, 产看指定地址开始的汇编指令</li>
-</ul>
-<p><img src="https://CoderUtil.github.io/images/TIM截图20180326162351.png" alt="汇编"></p>
-<h3 id="T"><a href="#T" class="headerlink" title="T"></a>T</h3><ul>
-<li>t , 执行CS : IP的指令</li>
-</ul>
-<h3 id="A"><a href="#A" class="headerlink" title="A"></a>A</h3><ul>
-<li>a 段地址 : 偏移地址, 向指定内存地址写入汇编码</li>
-</ul>
-<p><img src="https://CoderUtil.github.io/images/TIM截图20180326162639.png" alt="汇编"></p>
-<h1 id="汇编指令转为机器码"><a href="#汇编指令转为机器码" class="headerlink" title="汇编指令转为机器码"></a>汇编指令转为机器码</h1><p><img src="https://CoderUtil.github.io/images/TIM截图20180327153953.png" alt="汇编"></p>
-<ul>
-<li>当机器码表示为针对第一个操作数时, d = 1; 若针对第二个操作数, d = 0</li>
-</ul>
-<ul>
-<li>字操作, w = 1; 字节操作, w = 0</li>
-</ul>
-<ul>
-<li>disp表示位移量, 比如mov ax, [si] + 18, 则disp为18</li>
-</ul>
-<ul>
-<li>reg表</li>
-</ul>
-<p><img src="https://CoderUtil.github.io/images/TIM截图20180327154418.png" alt="汇编"></p>
-<ul>
-<li>r/m, mod表</li>
-</ul>
-<p>!TIM图片20180326205518.png)</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/操作系统/操作系统/第一章 计算机系统组织/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/操作系统/操作系统/第一章 计算机系统组织/" itemprop="url">第一章 计算机系统组织</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-25T20:05:01+08:00">
-                2018-03-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-12T09:28:14+08:00">
+                2018-05-12
               </time>
             
 
@@ -1057,66 +352,1549 @@
       
         
           
-            <h1 id="计算机系统操作"><a href="#计算机系统操作" class="headerlink" title="计算机系统操作"></a>计算机系统操作</h1><h2 id="启动计算机"><a href="#启动计算机" class="headerlink" title="启动计算机"></a>启动计算机</h2><p>   当打开电源或重启时, 计算机运行BIOS, 它将定位操作系统的内核并将其装入内存中, 然后操作系统执行第一个进程如init, 并等待事件的发生</p>
+            <h1 id="互斥"><a href="#互斥" class="headerlink" title="互斥"></a>互斥</h1><p>​    对于共享数据的进程, 必须提供互斥, 防止读写操作同时进行</p>
+<h1 id="进程结构"><a href="#进程结构" class="headerlink" title="进程结构"></a>进程结构</h1><p><img src="https://CoderUtil.github.io/images/TIM截图20180512093311.png" alt="操作系统"></p>
+<h2 id="进入区"><a href="#进入区" class="headerlink" title="进入区"></a>进入区</h2><p>​    发出进入临界区请求的代码</p>
+<h2 id="临界区"><a href="#临界区" class="headerlink" title="临界区"></a>临界区</h2><p>​    若多个进程含有共享变量, 则访问共享变量的的代码称为临界区(不允许多个进程同时进入临界区)</p>
+<h2 id="退出区"><a href="#退出区" class="headerlink" title="退出区"></a>退出区</h2><p>​    退出临界区的代码</p>
+<h2 id="剩余区"><a href="#剩余区" class="headerlink" title="剩余区"></a>剩余区</h2><p>​    进程中的剩余代码</p>
+<h2 id="硬件方法"><a href="#硬件方法" class="headerlink" title="硬件方法"></a>硬件方法</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">boolean waiting[n] = <span class="literal">false</span>;     <span class="comment">//  waiting[i]表示进程i是否在等待</span></span><br><span class="line">boolean lock = <span class="literal">false</span>;           <span class="comment">//  lock表示是否上锁</span></span><br><span class="line"></span><br><span class="line"><span class="function">boolean <span class="title">TestAndSet</span><span class="params">(boolean* target)</span> </span>&#123;</span><br><span class="line">    boolean rv = *target;</span><br><span class="line">    *taget = TRUE;</span><br><span class="line">    <span class="keyword">return</span> rv;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//  进程i</span></span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    <span class="comment">//  进入区</span></span><br><span class="line">    waiting[i] = TRUE;          <span class="comment">//  进程i开始等待</span></span><br><span class="line">    boolean key = TRUE;</span><br><span class="line">      <span class="keyword">while</span>(waiting[i] &amp;&amp; key)    <span class="comment">//  1. 如果进程i在等待, 当上一个进程执行完, 它会被设为FALSE(见退出区代码), 此时向下运行; 2. 如果lock被锁上, 阻塞等待直到lock解锁 </span></span><br><span class="line">        key = TestAndSet(lock);</span><br><span class="line">    waiting[i] = FALSE;         <span class="comment">//  进程i结束等待, 开始运行</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//  临界区</span></span><br><span class="line">    ....</span><br><span class="line"></span><br><span class="line">    <span class="comment">//  退出区</span></span><br><span class="line">    <span class="keyword">int</span> j = (i + <span class="number">1</span>) % n;        <span class="comment">//  进程i结束, 找到下一个处于等待状态的进程, 准备运行它</span></span><br><span class="line">    <span class="keyword">while</span> (j != i &amp;&amp; !waiting[j])</span><br><span class="line">        j = (j + <span class="number">1</span>) % n;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (j == i)                 <span class="comment">//  若所有进程都不处于等待状态, 锁可以打开</span></span><br><span class="line">        lock = FALSE;</span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">        waiting[j] = FALSE;     </span><br><span class="line">&#125; <span class="keyword">while</span> (TRUE)</span><br></pre></td></tr></table></figure>
+<h2 id="信号量"><a href="#信号量" class="headerlink" title="信号量"></a>信号量</h2><p>​    信号量S的取值为0和1, 且wait和signal是原子的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">void wait(S) &#123;</span><br><span class="line">  while (S &lt;= 0)</span><br><span class="line">  	;</span><br><span class="line">  S--;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void signal(S) &#123;</span><br><span class="line">  S++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">do &#123;</span><br><span class="line">	//	进入区</span><br><span class="line">  	wait(S);</span><br><span class="line">  </span><br><span class="line">  	//	管理区</span><br><span class="line">  	...</span><br><span class="line">  </span><br><span class="line">  	//	退出区</span><br><span class="line">  	signal(S);</span><br><span class="line">  </span><br><span class="line">  	//	剩余区</span><br><span class="line">  	...</span><br><span class="line">&#125; while (TRUE);</span><br></pre></td></tr></table></figure>
+<h2 id="忙等待"><a href="#忙等待" class="headerlink" title="忙等待"></a>忙等待</h2><p>​    当一个进程位于临界区时, 其他试图进入临界区的进程都必须在代码中循环</p>
+<h2 id="含有等待队列的信号量"><a href="#含有等待队列的信号量" class="headerlink" title="含有等待队列的信号量"></a>含有等待队列的信号量</h2><p>​    信号量S是一个数据结构. 用于解决忙等待问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">typedef struct &#123;</span><br><span class="line">    int value;                  //  可用的资源数目</span><br><span class="line">    struct process *list;       //  等待队列</span><br><span class="line">&#125; semaphore;</span><br><span class="line"></span><br><span class="line">void wait(semaphore* S) &#123;       //  当进程需要使用资源时, 调用wait</span><br><span class="line">    S-&gt;value--;                 //  value的绝对值表示等待该信号量的进程个数</span><br><span class="line">    if (S-&gt;value &lt; 0) &#123;</span><br><span class="line">        1. 将进程添加进S-&gt;list</span><br><span class="line">        2. 调用block()将进程挂起</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void signal(semaphore* S) &#123;     //  当进程需要释放资源时, 调用signal</span><br><span class="line">    S-&gt;vallue++;</span><br><span class="line">    if (S-&gt;value &lt;= 0) &#123;</span><br><span class="line">        1. 将进程从S-&gt;list移除</span><br><span class="line">        2. 调用wakeup()将进程唤醒</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">do &#123;</span><br><span class="line">    //  进入区</span><br><span class="line">    wait(S);</span><br><span class="line"></span><br><span class="line">    //  临界区</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    //  退出区</span><br><span class="line">    signal(S);</span><br><span class="line"></span><br><span class="line">    //  剩余区</span><br><span class="line">    ...</span><br><span class="line">&#125; while (TRUE);</span><br></pre></td></tr></table></figure>
+<h3 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h3><p>​    具有等待队列的信号量可能产生死锁</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">    P0              P1</span><br><span class="line">wait(S);         wait(Q);</span><br><span class="line">wait(Q);		wait(S);</span><br><span class="line">...				...</span><br><span class="line">signal(S);		signal(Q);</span><br><span class="line">signal(Q);		signal(S);</span><br><span class="line"></span><br><span class="line">假设进程P0和P1只有两个共享信号量S和Q, 当P0执行wait(S), P1执行wait(Q)时, 进程P0和P1都沉睡, 无法执行下面的唤醒程序</span><br></pre></td></tr></table></figure>
+<h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><p>​    执行单个逻辑功能的一组操作</p>
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><ul>
+<li>提交commit: 事务已成功执行后提交事务</li>
+<li>回退roll back: 事务停止时后回退事务</li>
+</ul>
+<h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><p>​    在事务执行前先记日志</p>
+<h2 id="检测点"><a href="#检测点" class="headerlink" title="检测点"></a>检测点</h2><p>​    系统定期将日志及易失性数据保存到非易失性数据中</p>
+<h2 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h2><p>​    事务具有原子性, 即事务中的一组指令不可分割, 必须同时执行或同时不执行</p>
+<p>通过一下两种方式保证事务的原子性: </p>
 <ul>
-<li><p>BIOS: 固化在ROM中的引导程序, 保存着基本的输入输出程序</p>
-</li>
-<li><p>内核core: 操作系统最核心的部分, 它提供了程序对计算机硬件的安全访问</p>
-</li>
-<li><p>外壳shell: 用于控制操作系统的程序, 它提供了与用户交互的界面 </p>
+<li>串行化: 事务串行执行, 即事务之间的指令不会出现重叠(A事务执行几条指令, B事务执行几条)</li>
+</ul>
+<ul>
+<li>加锁协议: 在事务执行前给它加锁(如果已加了锁, 则等待直到能加锁), 事务执行完后解锁</li>
+</ul>
+<ul>
+<li><p>时间戳: 给每个事务一个时间戳, 按时间戳顺序来执行事务</p>
 <p>​</p>
 </li>
 </ul>
-<h2 id="中断"><a href="#中断" class="headerlink" title="中断"></a>中断</h2><p>   指停止当前程序, 并开始处理新程序, 直至完成后继续被暂停的程序. 通过中断产生了新的事件, 位模式的切换也依赖于中断</p>
-<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><p>   通过软件、硬件的中断产生</p>
-<ul>
-<li><p>软中断: 软件通过执行特定的操作产生, 比如通过trap产生系统调用</p>
-</li>
-<li><p>硬中断: 硬件通过总线发送中断信号产生</p>
-<p>​</p>
-</li>
+<h1 id="mutex互斥量-互斥锁"><a href="#mutex互斥量-互斥锁" class="headerlink" title="mutex互斥量(互斥锁)"></a>mutex互斥量(互斥锁)</h1><p>​    每个对象都对应于一个可称为” 互斥量” 的标记，这个标记用来保证在任一时刻，只能有一个线程访问该对象</p>
+<h2 id="mutex操作"><a href="#mutex操作" class="headerlink" title="mutex操作"></a>mutex操作</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">pthread_mutex_init		初始化mutex</span><br><span class="line"></span><br><span class="line">pthread_mutex_lock		对mutex加锁, 不成等待</span><br><span class="line"></span><br><span class="line">pthread_mutex_trylock	对mutex加锁, 不成返回</span><br><span class="line"></span><br><span class="line">pthread_mutex_unlock	解锁mutex</span><br><span class="line"></span><br><span class="line">pthread_mutex_destroy	释放mutex</span><br></pre></td></tr></table></figure>
+<h2 id="mutex类型"><a href="#mutex类型" class="headerlink" title="mutex类型"></a>mutex类型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">快速mutex: 一个线程必须在未锁时获得mutex，否则必须等待。</span><br><span class="line">	pthread_mutex_t fastmutex= PTHREAD_MUTEX_INITIALIZER;</span><br><span class="line">	</span><br><span class="line">递归mutex  拥有mutex的线程可多次加锁而不必等待，但此时其他线程必须等待。</span><br><span class="line">	pthread_mutex_t recmutex= PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP;</span><br><span class="line">	</span><br><span class="line">错误检测mutex: 如果mutex已被锁，其他进程使用pthread_mutex_lock()加锁时，将返回EDEADLK</span><br><span class="line">	pthread_mutex_t errchkmutex=PTHREAD_ERRORCECK_MUTEX_INITIALIZER_NP;</span><br></pre></td></tr></table></figure>
+<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. 静态初始化</span><br><span class="line">	static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;</span><br><span class="line">	</span><br><span class="line">2. 动态初始化</span><br><span class="line">	pthread_mutex_init		//	申请</span><br><span class="line">	pthread_mutex_destroy	//	释放</span><br></pre></td></tr></table></figure>
+<h2 id="创建10个线程计算0～9的和"><a href="#创建10个线程计算0～9的和" class="headerlink" title="创建10个线程计算0～9的和"></a>创建10个线程计算0～9的和</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;pthread.h&gt;</span><br><span class="line">#include &lt;errno.h&gt;</span><br><span class="line"></span><br><span class="line">#define THREAD_NUMBER 10</span><br><span class="line"></span><br><span class="line">static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER; </span><br><span class="line"></span><br><span class="line">int sum = 0;</span><br><span class="line"></span><br><span class="line">void* inc(void *arg) // 线程执行的函数</span><br><span class="line">&#123;</span><br><span class="line">   int i =(*(int *)arg); </span><br><span class="line">   pthread_mutex_lock(&amp;mutex);</span><br><span class="line">   sum = sum + i; </span><br><span class="line">   pthread_mutex_unlock(&amp;mutex);</span><br><span class="line">   return NULL;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">   pthread_t pt[THREAD_NUMBER];</span><br><span class="line">   int arg[THREAD_NUMBER];	  </span><br><span class="line">   for(int i = 0; i &lt; THREAD_NUMBER; i++) &#123;</span><br><span class="line">       arg[i] = i;	</span><br><span class="line">       if(pthread_create(&amp;pt[i], NULL, inc, (void *)&amp;arg[i]) != 0)&#123;</span><br><span class="line">          printf(&quot;pthread_create error\n&quot;);</span><br><span class="line">          exit(1);</span><br><span class="line">       &#125;       </span><br><span class="line">   &#125;</span><br><span class="line">   for(int i = 0; i &lt; THREAD_NUMBER; i++)</span><br><span class="line">       if(pthread_join(pt[i], NULL) != 0)&#123;</span><br><span class="line">          printf(&quot;pthread_join error\n&quot;);</span><br><span class="line">          exit(1);</span><br><span class="line">       &#125;</span><br><span class="line">   printf(&quot;sum is %d\n&quot;, sum);</span><br><span class="line">   pthread_mutex_destroy(&amp;mutex);</span><br><span class="line">   return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="POSIX信号量"><a href="#POSIX信号量" class="headerlink" title="POSIX信号量"></a>POSIX信号量</h1><h2 id="操作-1"><a href="#操作-1" class="headerlink" title="操作"></a>操作</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">1. 初始化</span><br><span class="line">	int sem_init(sem_t *sem, int pshared, unsigned int value)		</span><br><span class="line">	第一个参数: 信号量</span><br><span class="line">	第二个参数: 为0则信号量在进程间共享, 否则在当前进程的线程间共享</span><br><span class="line">	第三个参数: 信号量的初值</span><br><span class="line">	</span><br><span class="line">2. signal</span><br><span class="line">	sem_post(), 释放资源. 信号量加1</span><br><span class="line">	</span><br><span class="line">3. wait</span><br><span class="line">	sem_wait(), 申请资源. 若信号量大于0则减1, 小于等于0则睡眠至大于0</span><br><span class="line"></span><br><span class="line">4. 非阻塞的wait</span><br><span class="line">	sem_trywait(), 若信号量小于等于0, 则返回错误类型EAGAIN</span><br><span class="line">	</span><br><span class="line">5. 获取信号量的值</span><br><span class="line">	sem_getvalue()</span><br><span class="line"></span><br><span class="line">6. 释放信号量</span><br><span class="line">	sem_destroy()</span><br></pre></td></tr></table></figure>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;sys/types.h&gt;  </span><br><span class="line">#include &lt;pthread.h&gt;</span><br><span class="line">#include &lt;semaphore.h&gt; </span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">#include &lt;cstdlib&gt; </span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">#define NBUFF 3</span><br><span class="line"></span><br><span class="line">int nitems;</span><br><span class="line"></span><br><span class="line">struct sto &#123;</span><br><span class="line">  int buff[NBUFF];</span><br><span class="line">  sem_t mutex, nempty, nstored;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">struct sto shared;</span><br><span class="line"></span><br><span class="line">void* produce(void* arg)</span><br><span class="line">&#123;   </span><br><span class="line">   for (int i = 0; i &lt; nitems; i++) &#123;</span><br><span class="line">     sem_wait(&amp;shared.nempty);</span><br><span class="line">     sem_wait(&amp;shared.mutex);</span><br><span class="line">     shared.buff[i % NBUFF] = i;</span><br><span class="line">     cout &lt;&lt; &quot;Product &quot; &lt;&lt; shared.buff[i % NBUFF] &lt;&lt; endl;</span><br><span class="line">     sem_post(&amp;shared.mutex);</span><br><span class="line">     sem_post(&amp;shared.nstored);</span><br><span class="line">   &#125;</span><br><span class="line">   return(NULL);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void* consume(void* arg)</span><br><span class="line">&#123;</span><br><span class="line">   for (int i = 0; i &lt; nitems; i++) &#123;</span><br><span class="line">     sem_wait(&amp;shared.nstored);</span><br><span class="line">     sem_wait(&amp;shared.mutex);</span><br><span class="line">     if (shared.buff[i % NBUFF] == i)&#123;</span><br><span class="line">        cout &lt;&lt; &quot;buff[&quot; &lt;&lt; i  &lt;&lt;&quot;] = &quot; &lt;&lt;  shared.buff[i % NBUFF] &lt;&lt; endl;</span><br><span class="line">     cout &lt;&lt; &quot;Consumer:&quot; &lt;&lt; shared.buff[i % NBUFF] &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">     sem_post(&amp;shared.mutex);</span><br><span class="line">     sem_post(&amp;shared.nempty);</span><br><span class="line">   &#125;</span><br><span class="line">   return(NULL);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char **argv)</span><br><span class="line">&#123;</span><br><span class="line">   pthread_t tid_produce, tid_consumer;</span><br><span class="line">   if (argc != 2)&#123;</span><br><span class="line">      cout &lt;&lt; &quot;Usage: prodcons number&quot; &lt;&lt; endl;</span><br><span class="line">      exit(0);</span><br><span class="line">   &#125;</span><br><span class="line">   nitems = atoi(argv[1]);</span><br><span class="line">   sem_init(&amp;shared.mutex, 0, 1);</span><br><span class="line">   sem_init(&amp;shared.nempty, 0, NBUFF);</span><br><span class="line">   sem_init(&amp;shared.nstored, 0, 0);</span><br><span class="line">   pthread_create(&amp;tid_produce, NULL, produce, NULL);</span><br><span class="line">   pthread_create(&amp;tid_consumer, NULL, consume, NULL);</span><br><span class="line">   pthread_join(tid_produce, NULL);</span><br><span class="line">   pthread_join(tid_consumer, NULL);</span><br><span class="line">   sem_destroy(&amp;shared.mutex);</span><br><span class="line">   sem_destroy(&amp;shared.nempty);</span><br><span class="line">   sem_destroy(&amp;shared.nstored);</span><br><span class="line">   exit(0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="信号量和互斥锁的区别"><a href="#信号量和互斥锁的区别" class="headerlink" title="信号量和互斥锁的区别"></a>信号量和互斥锁的区别</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">“信号量用在多线程多任务同步的，一个线程完成了某一个动作就通过信号量告诉别的线程，别的线程再进行某些动作.而互斥锁是用在多线程多任务互斥的，一个线程占用了某一个资源，那么别的线程就无法访问，直到这个线程unlock，其他的线程才开始可以利用这 个资源。比如对全局变量的访问，有时要加锁，操作完了，在解锁。有的时候锁和信号量会同时使用的”</span><br><span class="line">也就是说，信号量不一定是锁定某一个资源，而是流程上的概念，比如：有A,B两个线程，B线程要等A线程完成某一任务以后再进行自己下面的步骤，这个任务 并不一定是锁定某一资源，还可以是进行一些计算或者数据处理之类。而线程互斥量则是“锁住某一资源”的概念，在锁定期间内，其他线程无法对被保护的数据进行操作</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/操作系统/操作系统/第五章 CPU调度/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/操作系统/操作系统/第五章 CPU调度/" itemprop="url">第五章 CPU调度</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-10T16:46:21+08:00">
+                2018-05-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/操作系统/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="CPU调度"><a href="#CPU调度" class="headerlink" title="CPU调度"></a>CPU调度</h1><h2 id="调度原因"><a href="#调度原因" class="headerlink" title="调度原因"></a>调度原因</h2><p>​    进程分为CPU周期和I/O周期. 进程在执行I/O周期时, CPU处于等待状态, 因此通过CPU调度将CPU的控制权交给另一个进程</p>
+<h2 id="抢占调度与非抢占调度"><a href="#抢占调度与非抢占调度" class="headerlink" title="抢占调度与非抢占调度"></a>抢占调度与非抢占调度</h2><ul>
+<li>抢占调度: 进程会一直占有CPU的控制权直到进程执行完</li>
+<li>非抢占调度: 进程在执行的过程中可以把CPU的控制权交给另一个进程</li>
 </ul>
-<h2 id="中断向量表"><a href="#中断向量表" class="headerlink" title="中断向量表"></a>中断向量表</h2><p>   用一个表保存所有程序的地址和状态, 然后将表保存到内存中从0开始的地址. 产生中断时, 根据中断向量根据中断码在中断向量表中找到对应的中断处理程序的入口地址, 然后跳转到对应的中断处理程序处理中断</p>
-<h1 id="I-O结构"><a href="#I-O结构" class="headerlink" title="I/O结构"></a>I/O结构</h1><h2 id="I-O操作"><a href="#I-O操作" class="headerlink" title="I/O操作"></a>I/O操作</h2><p>   控制器先检查指令寄存器的内容决定要采取的操作, 然后将数据寄存器中的内容传输到本地缓冲区. 传输完成后, 控制器会产生一个中断信号通知驱动程序传输完成</p>
-<ul>
-<li>驱动程序: 存在于设备控制器上, 它提供了硬件与软件系统的接口, 充当两者的桥梁</li>
-<li>缺点: 因为数据寄存器只能保存一个字节, 所以只适用于少量数据的传输</li>
+<h2 id="调度准则"><a href="#调度准则" class="headerlink" title="调度准则"></a>调度准则</h2><ul>
+<li>吞吐量: 单位时间内完成进程的数量</li>
 </ul>
-<h2 id="DMA直接内存访问"><a href="#DMA直接内存访问" class="headerlink" title="DMA直接内存访问"></a>DMA直接内存访问</h2><p>   一大块数据的传输, 只产生一个中断来告知驱动程序已经完成</p>
 <ul>
-<li><p>原因: 对于大块数据的传输, 若采用多次I/O中断驱动的方法传输, 会产生超载问题</p>
-<p>​</p>
-</li>
+<li>周转时间: 进程从进入等待队列到进程提交所需要的时间</li>
 </ul>
-<h1 id="处理器"><a href="#处理器" class="headerlink" title="处理器"></a>处理器</h1><p>   <img src="https://CoderUtil.github.io/images/cpu.png" alt="操作系统"></p>
 <ul>
-<li><p>多核处理器: 将多个计算机计算机引擎设计到单个芯片上</p>
-<p>​</p>
-</li>
+<li>等待时间: 进程进入到等待队列中, 等待被提交所需要的时间</li>
 </ul>
-<h1 id="操作系统结构"><a href="#操作系统结构" class="headerlink" title="操作系统结构"></a>操作系统结构</h1><h2 id="多道程序设计"><a href="#多道程序设计" class="headerlink" title="多道程序设计"></a>多道程序设计</h2><p>   操作系统同时将多个任务保存在内存中, 当一个任务执行完后立即执行另一个任务</p>
-<h2 id="分时系统"><a href="#分时系统" class="headerlink" title="分时系统"></a>分时系统</h2><p>   多用户共享计算机, 通过在作业之间快速进行切换让用户感到系统只为自己所用</p>
-<h1 id="操作系统操作"><a href="#操作系统操作" class="headerlink" title="操作系统操作"></a>操作系统操作</h1><h2 id="CPU操作模式"><a href="#CPU操作模式" class="headerlink" title="CPU操作模式"></a>CPU操作模式</h2><p>  <img src="https://CoderUtil.github.io/TIM截图20180330093215.png" alt="操作系统"></p>
-<p>实模式和保护模式:</p>
-<p>​    80286CPU及以前的CPU, 内存地址只有16位, 随着可访问内存增多. 为了兼容, 将旧的部分设为实模式, 新增部分设为保护模式</p>
 <ul>
-<li>实模式: 所有内存都是可读写的</li>
-<li>保护模式: 一. 提供保护机制, 不是所有段都是可读写的; 二. 可以访问的内存空间变大</li>
+<li>响应时间: 从提交请求到产生第一次响应的时间</li>
 </ul>
-<p> 用户模式和系统模式: </p>
-<p>​    通过在硬件中添加一个称为模式为的位, 来区分用户定义的代码和操作系统代码</p>
+<h2 id="调度算法"><a href="#调度算法" class="headerlink" title="调度算法"></a>调度算法</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">调度算法</th>
+<th style="text-align:center">是否抢占</th>
+<th style="text-align:center">特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">先到先服务调度FCFS</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">先请求CPU的进程先分配到CPU</td>
+</tr>
+<tr>
+<td style="text-align:center">最短作业调度SJF</td>
+<td style="text-align:center">不确定</td>
+<td style="text-align:center">将CPU分配给具有最短CPU区间的进程. 进程CPU区间长度相同则按FCFS. 拥有最短的平均等待时间</td>
+</tr>
+<tr>
+<td style="text-align:center">优先级调度</td>
+<td style="text-align:center">不确定</td>
+<td style="text-align:center">按照进程的优先级分配CPU</td>
+</tr>
+<tr>
+<td style="text-align:center">轮转法调度RR</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">在FCFS的基础上, 定义了时间片. 循环执行时间片长度, 若所需时间短于时间片则会提前中断. 适用于分时系统</td>
+</tr>
+<tr>
+<td style="text-align:center">多级队列调度</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">将就绪队列分为多个独立的队列, 每个队列使用不同的调度算法</td>
+</tr>
+<tr>
+<td style="text-align:center">多级反馈队列调度</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">允许进程在队列之间转移的多级队列调度</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Gantt图-计算周转时间-等待时间"><a href="#Gantt图-计算周转时间-等待时间" class="headerlink" title="Gantt图, 计算周转时间, 等待时间"></a>Gantt图, 计算周转时间, 等待时间</h2><p>​    参考习题5.4</p>
+<h2 id="饥饿-无穷阻塞"><a href="#饥饿-无穷阻塞" class="headerlink" title="饥饿(无穷阻塞)"></a>饥饿(无穷阻塞)</h2><p>​    若调度是非抢占的, 通过SJF和优先级调度算法进行调度, 可能会出现后进入队列的进程CPU区间比队列中进程的CPU短, 造成部分所需时间长的进程一直无法执行</p>
+<h2 id="老化"><a href="#老化" class="headerlink" title="老化"></a>老化</h2><p>​    将等待队列中的进程优先级随着时间增加, 以解决饥饿</p>
+<h2 id="负载平衡"><a href="#负载平衡" class="headerlink" title="负载平衡"></a>负载平衡</h2><p>​    将工作负载平均分配到对称多处理器的多个处理器中</p>
+<h2 id="对称多线程-超线程"><a href="#对称多线程-超线程" class="headerlink" title="对称多线程(超线程)"></a>对称多线程(超线程)</h2><p>​    将一个物理处理器划分为多个逻辑处理器    </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/操作系统/操作系统/第四章 线程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/操作系统/操作系统/第四章 线程/" itemprop="url">第四章 线程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-10T16:17:26+08:00">
+                2018-05-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/操作系统/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><ul>
+<li>共享堆内存和全局变量</li>
+</ul>
+<h2 id="线程模型"><a href="#线程模型" class="headerlink" title="线程模型"></a>线程模型</h2><ul>
+<li>根据是否受到内核的干预分为: 用户线程和内核线程</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">线程模型</th>
+<th style="text-align:center">含义</th>
+<th style="text-align:center">优点</th>
+<th style="text-align:center">缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">多对一</td>
+<td style="text-align:center">多个用户线程映射一个内核线程</td>
+<td style="text-align:center">内核线程少, 减少开销</td>
+<td style="text-align:center">只有一个内核线程, 所以用户线程不能并发执行</td>
+</tr>
+<tr>
+<td style="text-align:center">一对一</td>
+<td style="text-align:center">一个用户线程映射一个内核线程</td>
+<td style="text-align:center">多个用户线程能并发执行</td>
+<td style="text-align:center">内核线程多, 开销大</td>
+</tr>
+<tr>
+<td style="text-align:center">多对多</td>
+<td style="text-align:center">多个用户线程映射多个内核线程</td>
+<td style="text-align:center">多个用户线程能并发执行. 且内核线程数量相对固定, 开销不大</td>
+</tr>
+</tbody>
+</table>
+<h2 id="线程取消"><a href="#线程取消" class="headerlink" title="线程取消"></a>线程取消</h2><p>​    在线程完成前终止线程</p>
 <ul>
-<li><p>用户模式: 只能执行非特权指令. 若执行特权指令, 会通过陷阱的形式中断 </p>
-</li>
-<li><p>系统模式/特权模式/内核模式: 能够执行全部指令, 包括特权指令 </p>
-<p>​</p>
-</li>
+<li>异步取消: 立即终止目标线程</li>
+<li>延迟取消: 不断检查目标线程是否应该取消 </li>
 </ul>
-<h2 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h2><p>  设置在给定时间后中断计算机</p>
+<h2 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h2><p>​    在进程开始时创建一定数量的线程, 并放入到池中等待工作. 当服务器收到请求时, 唤醒池中的一个线程并传递给要请求. 当请求完成, 将线程放回线程池</p>
+<h1 id="POSIX线程库"><a href="#POSIX线程库" class="headerlink" title="POSIX线程库"></a>POSIX线程库</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;pthread.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line"></span><br><span class="line">#define MAX_SIZE 10</span><br><span class="line"></span><br><span class="line">int arr[MAX_SIZE] = &#123;0&#125;;        //  线程中的资源是共享的</span><br><span class="line"></span><br><span class="line">long fibonacci(int num) &#123;</span><br><span class="line">    if (num == 0)</span><br><span class="line">        return 0;</span><br><span class="line">    if (num == 1) </span><br><span class="line">        arr[num - 1] = 0;</span><br><span class="line">    else if (num == 2)</span><br><span class="line">        arr[num - 1] = 1;</span><br><span class="line">    else </span><br><span class="line">        arr[num - 1] = fibonacci(num - 1) + fibonacci(num - 2);</span><br><span class="line">    return arr[num - 1];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void* runner(void* param) &#123;     //  线程通过runner函数执行</span><br><span class="line">    int num = atoi(param);</span><br><span class="line">    fibonacci(num);</span><br><span class="line">    pthread_exit(0);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char* argv[]) &#123;</span><br><span class="line">    pthread_t tid;              //  子线程的id</span><br><span class="line">    pthread_attr_t attr;        //  子线程的属性</span><br><span class="line"></span><br><span class="line">    if (argc != 2) &#123;</span><br><span class="line">        fprintf(stderr, &quot;usage: a.out &lt;integer value&gt;\n&quot;);</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (atoi(argv[1]) &lt; 0) &#123;</span><br><span class="line">        fprintf(stderr, &quot;%d should &gt;= 0\n&quot;, atoi(argv[1]));</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (atoi(argv[1]) &gt; 10) &#123;</span><br><span class="line">        fprintf(stderr, &quot;%d shouldn&apos;t &gt; 10\n&quot;, atoi(argv[1]));</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    pthread_attr_init(&amp;attr);   //  设置线程的属性</span><br><span class="line"></span><br><span class="line">    pthread_create(&amp;tid, &amp;attr, runner, argv[1]);  //  创建线程</span><br><span class="line"></span><br><span class="line">    pthread_join(tid, NULL);    //  父线程等待子线程执行完后才执行</span><br><span class="line"></span><br><span class="line">    for (int i = 0; i &lt; atoi(argv[1]); i++) &#123;</span><br><span class="line">        printf(&quot;%d &quot;, arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;\n&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/环境配置/环境配置/Eclipse的使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/环境配置/环境配置/Eclipse的使用/" itemprop="url">Eclipse的使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-03T22:36:58+08:00">
+                2018-05-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/环境配置/" itemprop="url" rel="index">
+                    <span itemprop="name">环境配置</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Eclipse的使用"><a href="#Eclipse的使用" class="headerlink" title="Eclipse的使用"></a>Eclipse的使用</h1><p>​    项目可以含多个main函数. 运行特定文件的main函数, 只需要在对应文件中点击Runner按钮</p>
+<h1 id="Eclipse中引入第三方jar包"><a href="#Eclipse中引入第三方jar包" class="headerlink" title="Eclipse中引入第三方jar包"></a>Eclipse中引入第三方jar包</h1><p>​    详情见E:/大二下/软件工程实训/第二周/eclipse使用手册</p>
+<h1 id="Eclipse配置代码补全"><a href="#Eclipse配置代码补全" class="headerlink" title="Eclipse配置代码补全"></a>Eclipse配置代码补全</h1><p>​    详情见E:/大二下/软件工程实训/第二周/eclipse使用手册</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/汇编/汇编/x86指令汇总/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/汇编/汇编/x86指令汇总/" itemprop="url">x86指令汇总</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-24T16:02:18+08:00">
+                2018-04-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/汇编/" itemprop="url" rel="index">
+                    <span itemprop="name">汇编</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="数据传送类"><a href="#数据传送类" class="headerlink" title="数据传送类"></a>数据传送类</h1><h2 id="movsx"><a href="#movsx" class="headerlink" title="movsx"></a>movsx</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">将源操作数符号扩展并传送到目的操作数中</span><br><span class="line"></span><br><span class="line">MOVSX AX，BL</span><br><span class="line">执行前(BL)=0F0H，则执行后(AX)=0FFF0H</span><br></pre></td></tr></table></figure>
+<h2 id="movzx"><a href="#movzx" class="headerlink" title="movzx"></a>movzx</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">将源操作数零扩展并传送到目的操作数中</span><br><span class="line"></span><br><span class="line">MOVZX AX，BL</span><br><span class="line">执行前(BL)=0F0H，则执行后(AX)=00F0H</span><br></pre></td></tr></table></figure>
+<h2 id="xchg"><a href="#xchg" class="headerlink" title="xchg"></a>xchg</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">交换源和目的操作数的值</span><br><span class="line"></span><br><span class="line">XCHG AX，BX</span><br><span class="line">若执行前(AX)=1000H，(BX)=2000H</span><br><span class="line">则执行后(AX)=2000H，(BX)=1000H</span><br></pre></td></tr></table></figure>
+<h2 id="xlat"><a href="#xlat" class="headerlink" title="xlat"></a>xlat</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">完成一次查表的功能，将数据段中地址为（BX）+（AL）中的一个字节传送到AL中</span><br><span class="line"></span><br><span class="line">指令用法: </span><br><span class="line">	1. 建立字节表</span><br><span class="line">	2. bx &lt;- 字节表的首地址</span><br><span class="line">	3. al &lt;- 需要传送的字节在表中的序号</span><br><span class="line">	</span><br><span class="line">例子:</span><br><span class="line">	data segments</span><br><span class="line">		SQUARE_TABLE DB 00H，01H，04H，09H，10H，19H，24H，31H，40H，51H		//	建立乘法表</span><br><span class="line">	data ends</span><br><span class="line">	</span><br><span class="line">	code segments</span><br><span class="line">		MOV BX，OFFSET SQUARE_TABLE</span><br><span class="line">		MOV AL，4		//	字节在表中的序号, 从0开始</span><br><span class="line">		xlat 			//	结果al = 10H</span><br><span class="line">	code ends</span><br></pre></td></tr></table></figure>
+<h2 id="lea"><a href="#lea" class="headerlink" title="lea"></a>lea</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">将地址偏移量传送到目的寄存器中. 相当于mov bx, offset [bx+di+0010H]</span><br><span class="line"></span><br><span class="line">LEA BX，[BX+DI+0010H]		//	执行前(BX) = 1000H，(DI) = 0100H. 执行后(BX) = 1000H + 0100H + 0100H</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/环境配置/环境配置/Eclipse使用junit 5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/环境配置/环境配置/Eclipse使用junit 5/" itemprop="url">Eclipse使用junit 5</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-21T09:37:46+08:00">
+                2018-04-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/环境配置/" itemprop="url" rel="index">
+                    <span itemprop="name">环境配置</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="项目绑定Junit"><a href="#项目绑定Junit" class="headerlink" title="项目绑定Junit"></a>项目绑定Junit</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">右键项目-&gt;properties-&gt;Java Build Path-&gt;Libraries-&gt;Modulepath-&gt;Add Library-&gt;Junit 5</span><br></pre></td></tr></table></figure>
+<h2 id="生成Junit文件"><a href="#生成Junit文件" class="headerlink" title="生成Junit文件"></a>生成Junit文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">右键要测试的java文件-&gt;New-&gt;Junit Test Case-&gt; 单选框选Junit Juipter, 复选框选setUp()-&gt;next-&gt;勾选要测试的method-&gt;finish-&gt;将Junit中的fail(xxxx)改为测试的话</span><br></pre></td></tr></table></figure>
+<h2 id="运行Junit文件"><a href="#运行Junit文件" class="headerlink" title="运行Junit文件"></a>运行Junit文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">右键生成的Junit文件-&gt;Run AS-&gt;Junit Test</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/环境配置/环境配置/安装Eclipse插件SonarLint/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/环境配置/环境配置/安装Eclipse插件SonarLint/" itemprop="url">安装Eclipse插件SonarLint</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-19T22:36:23+08:00">
+                2018-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/环境配置/" itemprop="url" rel="index">
+                    <span itemprop="name">环境配置</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="安装SonarQube"><a href="#安装SonarQube" class="headerlink" title="安装SonarQube"></a>安装SonarQube</h1><h2 id="官网下载SonarQube并解压"><a href="#官网下载SonarQube并解压" class="headerlink" title="官网下载SonarQube并解压"></a>官网下载SonarQube并解压</h2><h2 id="开启SonarQube"><a href="#开启SonarQube" class="headerlink" title="开启SonarQube"></a>开启SonarQube</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin-&gt;windows-x86-64-&gt;StartSonar.bat</span><br></pre></td></tr></table></figure>
+<h2 id="打开SonarQube页面"><a href="#打开SonarQube页面" class="headerlink" title="打开SonarQube页面"></a>打开SonarQube页面</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">打开localhost:9000</span><br><span class="line"></span><br><span class="line">登陆, 默认用户名和密码都是admin</span><br></pre></td></tr></table></figure>
+<h1 id="eclipse安装SonarLint"><a href="#eclipse安装SonarLint" class="headerlink" title="eclipse安装SonarLint"></a>eclipse安装SonarLint</h1><h2 id="安装SonarLint插件"><a href="#安装SonarLint插件" class="headerlink" title="安装SonarLint插件"></a>安装SonarLint插件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Eclipse工具栏选择Help-&gt; Eclipse Markteplace, 安装sonarLint插件</span><br></pre></td></tr></table></figure>
+<h2 id="创建SonarServer"><a href="#创建SonarServer" class="headerlink" title="创建SonarServer"></a>创建SonarServer</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Eclipse工具栏选择Window-&gt;Show View-&gt;other</span><br><span class="line">弹出“Show View”界面，输入Sonar，选择“SonarQube Server”点击“OK”</span><br><span class="line">URL填localhost:9000</span><br><span class="line">选Username + Password</span><br></pre></td></tr></table></figure>
+<h2 id="绑定项目"><a href="#绑定项目" class="headerlink" title="绑定项目"></a>绑定项目</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">右键项目-&gt;SonarLint-&gt;Bind to a SonarQube project</span><br></pre></td></tr></table></figure>
+<h2 id="在Eclipse中实时显示SonarQube结果"><a href="#在Eclipse中实时显示SonarQube结果" class="headerlink" title="在Eclipse中实时显示SonarQube结果"></a>在Eclipse中实时显示SonarQube结果</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Eclipse工具栏-&gt;Window-&gt;Show View-&gt;other</span><br><span class="line">弹出“Show View”界面，输入Sonar，选择“SonarLint on the fly”点击“OK”</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/操作系统/操作系统/第三章-进程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/操作系统/操作系统/第三章-进程/" itemprop="url">第三章 进程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-16T21:29:28+08:00">
+                2018-04-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/操作系统/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h1><ul>
+<li>进程: 又称为作业, 即执行中的程序</li>
+</ul>
+<h1 id="调度"><a href="#调度" class="headerlink" title="调度"></a>调度</h1><ul>
+<li>调度: 进程在各种队列之间进行迁移</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">长期调度: 从磁盘的缓存池中选择进程, 并装入内存中以准备执行(CPU调度不频繁)</span><br><span class="line"></span><br><span class="line">短期调度: 从准备执行的进程中选择进程(CPU频繁调度)</span><br><span class="line"></span><br><span class="line">中期调度: 可以执行交换, 即进程能够从内存中移出再移进内存中</span><br></pre></td></tr></table></figure>
+<h1 id="上下文切换"><a href="#上下文切换" class="headerlink" title="上下文切换"></a>上下文切换</h1><ul>
+<li>中断发生时, 通过状态保存保存旧进程的状态. 当中断发生完后, 执行状态恢复重新运行旧进程</li>
+</ul>
+<h1 id="创建进程"><a href="#创建进程" class="headerlink" title="创建进程"></a>创建进程</h1><h2 id="fork"><a href="#fork" class="headerlink" title="fork"></a>fork</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. fork()会创建一个子进程, 并将当前进程(主进程)的内容(特指从fork()语句以后的内容)拷贝到子进程中. 只是拷贝, 并不是引用, 两个进程中变量的值不共享</span><br><span class="line"></span><br><span class="line">2. fork()会产生两次返回值, 在主进程中, fork()的返回值是子进程的进程id值; 在子进程中, fork()返回0 </span><br><span class="line"></span><br><span class="line">3. 主进程先执行, 它执行完后才轮到子进程执行</span><br></pre></td></tr></table></figure>
+<h2 id="wait"><a href="#wait" class="headerlink" title="wait"></a>wait</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">执行了wait()后, 父进程等待子进程执行, 子进程执行完后, 父进程才继续执行</span><br></pre></td></tr></table></figure>
+<h1 id="进程间通信"><a href="#进程间通信" class="headerlink" title="进程间通信"></a>进程间通信</h1><h2 id="通信方式"><a href="#通信方式" class="headerlink" title="通信方式"></a>通信方式</h2><ul>
+<li>共享内存: 通过在共享区读写数据进行信息传递</li>
+<li>消息传递: 通过通信进行信息传递</li>
+</ul>
+<h2 id="直接通信与间接通"><a href="#直接通信与间接通" class="headerlink" title="直接通信与间接通"></a>直接通信与间接通</h2><ul>
+<li>直接通信: 通信的进程必须明确通信的接收者或发送者</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">对称寻址: 发送者需要命名接收者, 接收者需要命名发送者</span><br><span class="line"></span><br><span class="line">	send(P, message)		发送信息给进程P</span><br><span class="line">	receive(Q, message)		接收来自进程Q的信息</span><br><span class="line">	</span><br><span class="line">非对称寻址: 发送者命名接收者, 而接收者不需要命名发送者</span><br><span class="line"></span><br><span class="line">	sned(P, message)		发送信息给进程P</span><br><span class="line">	receive(id, message)	接收来自任何进程的信息, 将id设为与其通信的进程的名称</span><br></pre></td></tr></table></figure>
 <ul>
-<li>原因: 为了防止用户程序陷入死循环或不进行系统调用, 导致不将控制权返回到操作系统</li>
+<li>间接通信: 信息的发送和接收都通过一个中间者</li>
 </ul>
-<h1 id="存储管理"><a href="#存储管理" class="headerlink" title="存储管理"></a>存储管理</h1><h2 id="高速缓存的一致性"><a href="#高速缓存的一致性" class="headerlink" title="高速缓存的一致性"></a>高速缓存的一致性</h2><p>   对于存储在某个高速缓存中的值A, 当它的值改变. 所有保存了A的副本的高速缓存都要改变它们存储的A值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">send(A, message)			发送信息到邮箱A</span><br><span class="line">receive(A, message)			接收来自邮箱A的信息</span><br></pre></td></tr></table></figure>
+<h2 id="同步通信与异步通信"><a href="#同步通信与异步通信" class="headerlink" title="同步通信与异步通信"></a>同步通信与异步通信</h2><ul>
+<li>同步与异步又称为阻塞与非阻塞</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">阻塞: </span><br><span class="line">	send 发送信息后, 可以执行其他操作. </span><br><span class="line">	receive 接收到信息前, 可以执行其他操作</span><br><span class="line">	</span><br><span class="line">非阻塞:</span><br><span class="line">	send 发送信息后, 不可以执行其他操作, 直到消息被接收. </span><br><span class="line">	receive 接收到信息前, 不可以执行其他操作, 直到接收了信息</span><br></pre></td></tr></table></figure>
+<h1 id="Socket"><a href="#Socket" class="headerlink" title="Socket"></a>Socket</h1><ul>
+<li>通过网络进行通信的两个进程, 都含有作为通信端点的socket. </li>
+</ul>
+<h1 id="POSIX共享内存"><a href="#POSIX共享内存" class="headerlink" title="POSIX共享内存"></a>POSIX共享内存</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">1. segment_id = shmget(IPC_PRIVATE, size, S_IRUSR | S_IWUSR): 创建新的存储区或打开现有存储区</span><br><span class="line">	</span><br><span class="line">	segment_id: 返回共享存储区的ID</span><br><span class="line">	IPC_PRIVATE: 表明创建新的共享存储区</span><br><span class="line">	size: 存储区大小</span><br><span class="line">	S_IRUSR | S_IWUSR: 对共享存储区的操作(读/写/读写), S_IRUSR中有字母R表示读, S_IWUSR中有W表示写</span><br><span class="line">	</span><br><span class="line">2. shared_memory = (char*)shmat(segment_id, NULL, 0): 连接到共享存储区. 子进程能访问父进程连接的共享存储区</span><br><span class="line"></span><br><span class="line">	shared_memory: 返回指向共享存储区的指针</span><br><span class="line">	segment_id: 表明要连接的共享存储区的ID</span><br><span class="line">	NULL: 第二个参数是一个指针, 表明其要加入到共享存储区. 一般用NULL</span><br><span class="line">	0: 第三个参数用于设置对对共享存储区的操作(读/写/读写). 0表示可读写</span><br><span class="line">	</span><br><span class="line">3. shmdt(shard_memory): 断开与共享存储区的连接</span><br><span class="line"></span><br><span class="line">4. shmctl(segment_id, IPC_RMID, NULL): 删除共享存储区</span><br><span class="line"></span><br><span class="line">	segment_id: 共享存储区的ID</span><br><span class="line">	IPC_RMID, NULL: 默认参数</span><br></pre></td></tr></table></figure>
+<ul>
+<li>内存共享的基本操作</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;sys/shm.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;errno.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#define SIZE 1024</span><br><span class="line">extern int errno;</span><br><span class="line">int main()</span><br><span class="line">&#123;   </span><br><span class="line">    int shmid;   		//	共享存储区ID</span><br><span class="line">    char *shmptr;		//	指向共享内存的指针</span><br><span class="line"></span><br><span class="line">    //  创建共享内存</span><br><span class="line">    if((shmid = shmget(IPC_PRIVATE, SIZE, S_IRUSR | S_IWUSR)) &lt; 0)</span><br><span class="line">    &#123;       </span><br><span class="line">        printf(&quot;shmget error:%s\n&quot;, strerror(errno));</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //  将共享内存连接到可用地址上</span><br><span class="line">    if((shmptr = (char*)shmat(shmid, NULL, 0)) == (void*)-1) </span><br><span class="line">    &#123;        </span><br><span class="line">        printf(&quot;shmat error:%s\n&quot;, strerror(errno));        </span><br><span class="line">        return -1;    </span><br><span class="line">    &#125;   </span><br><span class="line"></span><br><span class="line">    //  向共享内存中传输数据</span><br><span class="line">    memcpy(shmptr, &quot;hello world&quot;, sizeof(&quot;hello world&quot;));</span><br><span class="line">    printf(&quot;share memory from %lx to %lx, content:%s\n&quot;,(unsigned long)shmptr, (unsigned long)(shmptr + SIZE), shmptr);</span><br><span class="line">    </span><br><span class="line">    //	断开共享内存和地址的连接</span><br><span class="line">    if (shmdt(shmptr) == -1) </span><br><span class="line">    &#123;</span><br><span class="line">      fprintf(stderr, &quot;Unable to detach\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //  删除共享内存</span><br><span class="line">    /*</span><br><span class="line">        shmctl(): 对共享存储区进行控制。如：共享存储区的删除</span><br><span class="line">    */</span><br><span class="line">    if((shmctl(shmid, IPC_RMID, NULL) &lt; 0)) </span><br><span class="line">    &#123;</span><br><span class="line">        printf(&quot;shmctl error:%s\n&quot;, strerror(errno));</span><br><span class="line">        return -1;  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>多进程间内存共享(子进程获取斐波那契数列, 父进程打印)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">#include &lt;errno.h&gt;</span><br><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line">#include &lt;sys/stat.h&gt;</span><br><span class="line">#include &lt;sys/types.h&gt;</span><br><span class="line">#include &lt;sys/ipc.h&gt;</span><br><span class="line">#include &lt;sys/shm.h&gt;</span><br><span class="line">#include &lt;sys/wait.h&gt;</span><br><span class="line"></span><br><span class="line">#define MAX_SEQUENCE 10</span><br><span class="line"></span><br><span class="line">typedef struct &#123;</span><br><span class="line">    long fib_sequence [MAX_SEQUENCE];</span><br><span class="line">    int sequence_size;</span><br><span class="line">&#125; shared_data;</span><br><span class="line"></span><br><span class="line">long fibonacci(shared_data* result, int num) &#123;</span><br><span class="line">    if (num == 0)</span><br><span class="line">        return 0;</span><br><span class="line">    if (num == 1) </span><br><span class="line">        result-&gt;fib_sequence[num - 1] = 0;</span><br><span class="line">    else if (num == 2)</span><br><span class="line">        result-&gt;fib_sequence[num - 1] = 1;</span><br><span class="line">    else </span><br><span class="line">        result-&gt;fib_sequence[num - 1] = fibonacci(result, num - 1) + fibonacci(result, num - 2);</span><br><span class="line">    result-&gt;sequence_size++;</span><br><span class="line">    return result-&gt;fib_sequence[num - 1];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char **argv) &#123;</span><br><span class="line">    key_t shmid;</span><br><span class="line">    char *p_addr, *c_addr;  //  分别指向子共享控件和父共享空间</span><br><span class="line">    shared_data result;</span><br><span class="line"></span><br><span class="line">    if(argc != 2) &#123;     </span><br><span class="line">        fprintf(stderr, &quot;You should input a parameter as the number of fibonacci\n&quot;);</span><br><span class="line">        exit(1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    int num = atoi(argv[1]);</span><br><span class="line"></span><br><span class="line">    if (atoi(argv[1]) &gt; MAX_SEQUENCE) &#123;</span><br><span class="line">        fprintf(stderr, &quot;The input is bigger than : %d\n&quot;, num);</span><br><span class="line">        exit(1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if( (shmid = shmget(IPC_PRIVATE, sizeof(shared_data), S_IRUSR|S_IWUSR)) == -1 ) &#123; </span><br><span class="line">        fprintf(stderr, &quot;Create Share Memory Error:%s\n&quot;, strerror(errno));</span><br><span class="line">        exit(1);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    pid_t pid = fork();</span><br><span class="line">    if(pid &gt; 0) &#123;</span><br><span class="line">        p_addr = (char*)shmat(shmid, NULL, 0);</span><br><span class="line">        memset(p_addr, &apos;\0&apos;, sizeof(shared_data));</span><br><span class="line">        wait(NULL);</span><br><span class="line"></span><br><span class="line">        shared_data result;</span><br><span class="line">        memcpy(&amp;result, p_addr, sizeof(result));</span><br><span class="line">        for (int i = 0; i &lt; num; i++) &#123;</span><br><span class="line">            printf(&quot;%ld &quot;, result.fib_sequence[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (shmdt(p_addr) == -1) </span><br><span class="line">            fprintf(stderr, &quot;Main process unable to detach\n&quot;);</span><br><span class="line">        if((shmctl(shmid, IPC_RMID, 0) &lt; 0)) &#123;</span><br><span class="line">            printf(&quot;shmctl error:%s\n&quot;, strerror(errno));</span><br><span class="line">            exit(-1);</span><br><span class="line">        &#125;</span><br><span class="line">        exit(0);</span><br><span class="line">    &#125;</span><br><span class="line">    else if (pid == 0) &#123;</span><br><span class="line">        c_addr = (char*)shmat(shmid, NULL, 0);</span><br><span class="line"></span><br><span class="line">        for (int i = 0; i &lt; MAX_SEQUENCE; i++) </span><br><span class="line">            result.fib_sequence[i] = 0;</span><br><span class="line">        fibonacci(&amp;result, num);</span><br><span class="line"></span><br><span class="line">        memcpy(c_addr, &amp;result, sizeof(result));</span><br><span class="line">        if (shmdt(c_addr) == -1) </span><br><span class="line">            fprintf(stderr, &quot;Sub process unable to detach\n&quot;);</span><br><span class="line">        exit(0);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/软件工程实训/软件工程实训/studyreport-JUNIT/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/软件工程实训/软件工程实训/studyreport-JUNIT/" itemprop="url">JUNIT学习报告</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-14T19:08:07+08:00">
+                2018-04-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/软件工程实训/" itemprop="url" rel="index">
+                    <span itemprop="name">软件工程实训</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Junit的作用"><a href="#Junit的作用" class="headerlink" title="Junit的作用"></a>Junit的作用</h1><p>​    测试函数是否能正确运行</p>
+<h1 id="Junit在命令行下的使用"><a href="#Junit在命令行下的使用" class="headerlink" title="Junit在命令行下的使用"></a>Junit在命令行下的使用</h1><p>编写一个类和测试类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//	HelloWorld.java</span><br><span class="line">import java.util.*;</span><br><span class="line"></span><br><span class="line">public class HelloWorld &#123;</span><br><span class="line">  String str;</span><br><span class="line">  public void hello()&#123;</span><br><span class="line">    str = &quot;Hello World!&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">  public String getStr() &#123;</span><br><span class="line">    return str;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//	HelloWorldTest.java</span><br><span class="line">import static org.junit.Assert.*;</span><br><span class="line">import org.junit.Test;</span><br><span class="line"></span><br><span class="line">public class HelloWorldTest &#123;</span><br><span class="line">  public HelloWorld helloworld = new HelloWorld();</span><br><span class="line">  @Test</span><br><span class="line">  public void testHello() &#123;</span><br><span class="line">    helloworld.hello();</span><br><span class="line">    assertEquals(&quot;Hello World!&quot;, helloworld.getStr());		//	如果helloworld.getStr()的没问题, 应该返回Hello World!, 两者应该相等. 这样就能判断hello()函数是否正确</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="运行Junit"><a href="#运行Junit" class="headerlink" title="运行Junit"></a>运行Junit</h1><p>注意: junit的包应该与文件放在同一目录下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ javac -classpath .:junit-4.9.jar HelloWorldTest.java</span><br><span class="line">$ java -classpath .:junit-4.9.jar -ea org.junit.runner.JUnitCore HelloWorldTest</span><br></pre></td></tr></table></figure>
+<p>正确运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Time 0.007</span><br><span class="line">OK(1 test)</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/软件工程实训/软件工程实训/studyreport-ANT/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/软件工程实训/软件工程实训/studyreport-ANT/" itemprop="url">ANT学习报告</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-14T12:14:18+08:00">
+                2018-04-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/软件工程实训/" itemprop="url" rel="index">
+                    <span itemprop="name">软件工程实训</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Ant的作用"><a href="#Ant的作用" class="headerlink" title="Ant的作用"></a>Ant的作用</h1><p>​    通过编写build.xml文件, 快速生成JAVA项目(类似于C++的Makefile)</p>
+<h1 id="Ant的安装"><a href="#Ant的安装" class="headerlink" title="Ant的安装"></a>Ant的安装</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Ubuntu下在终端执行:</span><br><span class="line">    $sudo apt install ant</span><br></pre></td></tr></table></figure>
+<h1 id="Ant的介绍"><a href="#Ant的介绍" class="headerlink" title="Ant的介绍"></a>Ant的介绍</h1><ul>
+<li>project元素: Ant的根元素</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1. name属性: 指定project的名称</span><br><span class="line"></span><br><span class="line">2. default属性: 指定了project默认执行的target. 指向最后一步</span><br><span class="line"></span><br><span class="line">	&lt;project default=&quot;package&quot;&gt;</span><br><span class="line">      &lt;target name=&quot;init&quot;/&gt;</span><br><span class="line">      &lt;target name=&quot;preprocess&quot; depends=&quot;init&quot;/&gt;</span><br><span class="line">      &lt;target name=&quot;compile&quot; depends=&quot;init, preprocess&quot;/&gt;</span><br><span class="line">      &lt;target name=&quot;package&quot; depends=&quot;compile&quot;/&gt;</span><br><span class="line">    &lt;/project&gt;</span><br><span class="line">    </span><br><span class="line">3. basedir属性: 指定基路径的位置. 默认与build.xml文件在同一文件夹下</span><br></pre></td></tr></table></figure>
+<ul>
+<li>target元素: Ant中的执行单元</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. depends属性: 描述多个target之间的依赖关系. 被依赖的元素先执行</span><br><span class="line"></span><br><span class="line">2. if属性: 用于验证属性是否存在. 若不存在则target不会被执行</span><br><span class="line"></span><br><span class="line">3. unless属性: 与if属性相反</span><br><span class="line"></span><br><span class="line">4. description属性: 描述target的说明</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">常用target:</span><br><span class="line">	1. copy</span><br><span class="line">		复制单个文件：&lt;copy file=&quot;file.txt&quot; tofile=&quot;copy.txt&quot;/&gt; </span><br><span class="line">		复制文件夹:   &lt;copy todir=&quot;../newdir/dest_dir&quot;&gt; </span><br><span class="line">            			&lt;fileset dir=&quot;src_dir&quot;/&gt; </span><br><span class="line">					&lt;/copy&gt;</span><br><span class="line">         将文件复制到另外的目录: &lt;copy file=&quot;file.txt&quot; todir=&quot;../other/dir&quot;/&gt; </span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	2. delete</span><br><span class="line">		删除单个文件: &lt;delete file=&quot;photo/amigo.jpg&quot;/&gt; </span><br><span class="line">		删除文件夹:   &lt;delete dir=&quot;photo&quot;/&gt; </span><br><span class="line">		删除所有备份目录和空目录:  &lt;delete includeEmptyDirs=&quot;true&quot;&gt; </span><br><span class="line">                       				&lt;fileset dir=&quot;.&quot; includes=&quot;**/*.bak&quot;/&gt; </span><br><span class="line">                			  	&lt;/delete&gt;</span><br><span class="line">                			  	</span><br><span class="line">    3. mkdir</span><br><span class="line">    	创建文件夹: &lt;mkdir dir=&quot;build&quot;/&gt; </span><br><span class="line">    	</span><br><span class="line">    4. move</span><br><span class="line">    	与copy一样由三种形式, 将copy改为move</span><br><span class="line">    	</span><br><span class="line">    5. echo</span><br></pre></td></tr></table></figure>
+<ul>
+<li>property元素: 对于参数的定义</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">语法:</span><br><span class="line">	&lt;property name=&quot;xxx&quot; value=&quot;xxx&quot;/&gt;</span><br><span class="line"></span><br><span class="line">例子:</span><br><span class="line">    &lt;property name=&quot;srcDir&quot; location=&quot;src&quot;/&gt;		&lt;!-- location: 描述了文件所在路径. 是value的语义化 --&gt;</span><br><span class="line">    &lt;property name=&quot;buildDir&quot; location=&quot;build&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;javac srcdir=&quot;$&#123;srcDir&#125;&quot; destdir=&quot;$&#123;buildDir&#125;&quot;/&gt;	&lt;!-- 通过$&#123;&#125;获取其他元素的属性 --&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Ant的内置属性</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ant.file: build.xml的绝对路径</span><br><span class="line"></span><br><span class="line">ant.version: Ant的版本</span><br><span class="line"></span><br><span class="line">ant.project.name: 获取project.name</span><br><span class="line"></span><br><span class="line">ant.java.version: 获取java的version</span><br></pre></td></tr></table></figure>
+<h1 id="Ant的编写"><a href="#Ant的编写" class="headerlink" title="Ant的编写"></a>Ant的编写</h1><ul>
+<li>编译</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//	对src目录中的java文件进行编译</span><br><span class="line"></span><br><span class="line">&lt;javac srcdir=&quot;src&quot;/&gt;		</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">其他有用属性: </span><br><span class="line">    classpath:	说明引用的其他类的路径</span><br><span class="line">    debug=&quot;true&quot;: 说明编译器要带调试信息编译源文件</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建JAR文件: 将.class文件打包到JAR文件中</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//	创建一个名为package.jar文件夹, 并将classes目录下的所有文件(不仅仅是.class文件)放进去</span><br><span class="line"></span><br><span class="line">&lt;jar destfile=&quot;package.jar&quot; basedir=&quot;classes&quot;/&gt;		</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//	&lt;manifest&gt;指定放入jar文件夹中的文件</span><br><span class="line">&lt;jar destfile=&quot;package.jar&quot; basedir=&quot;classes&gt;</span><br><span class="line">	&lt;manifest&gt;</span><br><span class="line">		&lt;attribute name=&quot;Built-By&quot; value=&quot;$&#123;user.name&#125;&quot;/&gt;</span><br><span class="line">		&lt;attribute name=&quot;Main-class&quot; value=&quot;package.Main&quot;/&gt;</span><br><span class="line">	&lt;/manifest&gt;</span><br><span class="line">&lt;/jar&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>时间戳生成: 用于记录文件的生成时间</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">属性</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:center">例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">DSTAMP</td>
+<td style="text-align:center">设置当前日期, 默认格式yyyymmdd</td>
+<td style="text-align:center">20180414</td>
+</tr>
+<tr>
+<td style="text-align:center">TSTAMP</td>
+<td style="text-align:center">设置当前时间, 默认格式hhmm</td>
+<td style="text-align:center">1313</td>
+</tr>
+<tr>
+<td style="text-align:center">TODAY</td>
+<td style="text-align:center">设置当前日期</td>
+<td style="text-align:center">2018年4月14日</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;tstamp/&gt;		//	获取当前的时间</span><br><span class="line">	&lt;format property=&quot;OFFSET_TIME&quot;</span><br><span class="line">			pattern=&quot;HH:mm:ss&quot;</span><br><span class="line">			offset=&quot;10&quot;</span><br><span class="line">			unit=&quot;minute&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;jar destfile=&quot;package-$&#123;DSTAMP&#125;.jar&quot; basedir=&quot;classes&quot;/&gt;		//	用生成日期命名该jar文件</span><br></pre></td></tr></table></figure>
+<ul>
+<li>完整的ANT</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">文件结构树:</span><br><span class="line">  --build.xml: 因为没有给Ant配置环境变量</span><br><span class="line">  --src: 存放.java文件		</span><br><span class="line">  --build: 存放.class文件</span><br><span class="line">  --lib: 存放要导入的.jar包和压缩后的.jar包</span><br><span class="line"></span><br><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;project default=&quot;jar&quot; name=&quot;Hello World Project&quot;&gt;		</span><br><span class="line">  &lt;property name=&quot;srcDir&quot; location=&quot;src&quot;/&gt;</span><br><span class="line">  &lt;property name=&quot;buildDir&quot; location=&quot;build&quot;/&gt;</span><br><span class="line">  &lt;property name=&quot;libDir&quot; location=&quot;lib&quot;/&gt;</span><br><span class="line">	</span><br><span class="line">  &lt;target name=&quot;init&quot;&gt;</span><br><span class="line">    &lt;tstamp/&gt;</span><br><span class="line">    &lt;mkdir dir=&quot;$&#123;buildDir&#125;&quot;/&gt;</span><br><span class="line">    &lt;mkdir dir=&quot;$&#123;libDir&#125;&quot;/&gt;</span><br><span class="line">  &lt;/target&gt;</span><br><span class="line">	</span><br><span class="line">  &lt;target name=&quot;compile&quot; depends=&quot;init&quot;&gt;</span><br><span class="line">    &lt;javac srcdir=&quot;$&#123;srcDir&#125;&quot; destdir=&quot;$&#123;buildDir&#125;&quot; includeantruntime=&quot;false&quot;&gt;</span><br><span class="line">    	&lt;classpath&gt;</span><br><span class="line">    		&lt;fileset dir=&quot;$&#123;libDir&#125;&quot; includes=&quot;**/*.jar&quot;/&gt;		&lt;!-- fileset将dir文件夹中的includes格式的文件导入 --&gt;</span><br><span class="line">    	&lt;/classpath&gt;</span><br><span class="line">    &lt;/javac&gt;</span><br><span class="line">  &lt;/target&gt;</span><br><span class="line"></span><br><span class="line">  &lt;target name=&quot;run&quot; depends=&quot;compile&quot;&gt;</span><br><span class="line">  	&lt;java classname=&quot;test&quot; fork=&quot;true&quot;&gt;		&lt;!-- 默认使用的是Ant的JVM, 添加fork=&quot;true&quot;后能够使用外部的JVM. 对于javafx程序来说, 要设置这个属性 --&gt;</span><br><span class="line">  		&lt;classpath&gt;</span><br><span class="line">  			&lt;pathelement path=&quot;$&#123;buildDir&#125;&quot;/&gt;</span><br><span class="line">  		&lt;/classpath&gt;</span><br><span class="line">  	&lt;/java&gt;</span><br><span class="line">  &lt;/target&gt;</span><br><span class="line"></span><br><span class="line">  &lt;target name=&quot;jar&quot; depends=&quot;run&quot;&gt;</span><br><span class="line">    &lt;jar destfile=&quot;$&#123;distDir&#125;/package-$&#123;DSTAMP&#125;.jar&quot; basedir=&quot;$&#123;buildDir&#125;&quot;&gt;</span><br><span class="line">      &lt;manifest&gt;</span><br><span class="line">        &lt;attribute name=&quot;Built-By&quot; value=&quot;$&#123;user.name&#125;&quot;/&gt;</span><br><span class="line">        &lt;attribute name=&quot;Main-Class&quot; value=&quot;package.Main&quot;/&gt;</span><br><span class="line">      &lt;/manifest&gt;</span><br><span class="line">    &lt;/jar&gt;</span><br><span class="line">  &lt;/target&gt;</span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="命令行运行Ant"><a href="#命令行运行Ant" class="headerlink" title="命令行运行Ant"></a>命令行运行Ant</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">终端中输入:</span><br><span class="line">	ant</span><br></pre></td></tr></table></figure>
 
           
         
@@ -1156,7 +1934,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1206,7 +1984,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">83</span>
+                  <span class="site-state-item-count">99</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="哈夫曼编码树​    用于将字符编码为唯一的二进制串, 且总体代价最小 123456789101112131415function Huffman(vector f[1...n])		//	f存储各个字符的频数	优先队列H, 存储f的下标, 按f的值排序		for i = 1 to n 		insert(H, i)	end		for k = n + 1 to 2n - 1		i = deletem">
+<meta name="description" content="哈夫曼编码树 性质: 对于任意一个叶子节点, 其编号不会是其他叶子节点编号的前缀(对于任意一个字符, 它的编号不会是其他字符编号的前缀)  123456789101112131415161718192021222324#include &amp;lt;queue&amp;gt;struct node &amp;#123;	char c;	int f;&amp;#125;;int main() &amp;#123;	vector&amp;lt;n">
 <meta property="og:type" content="article">
 <meta property="og:title" content="哈夫曼编码树Huffman">
 <meta property="og:url" content="http://utilcoder.com/算法/算法/哈夫曼编码树Huffman/index.html">
 <meta property="og:site_name" content="Code">
-<meta property="og:description" content="哈夫曼编码树​    用于将字符编码为唯一的二进制串, 且总体代价最小 123456789101112131415function Huffman(vector f[1...n])		//	f存储各个字符的频数	优先队列H, 存储f的下标, 按f的值排序		for i = 1 to n 		insert(H, i)	end		for k = n + 1 to 2n - 1		i = deletem">
+<meta property="og:description" content="哈夫曼编码树 性质: 对于任意一个叶子节点, 其编号不会是其他叶子节点编号的前缀(对于任意一个字符, 它的编号不会是其他字符编号的前缀)  123456789101112131415161718192021222324#include &amp;lt;queue&amp;gt;struct node &amp;#123;	char c;	int f;&amp;#125;;int main() &amp;#123;	vector&amp;lt;n">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-15T01:15:07.404Z">
+<meta property="og:updated_time" content="2019-04-21T02:43:48.208Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="哈夫曼编码树Huffman">
-<meta name="twitter:description" content="哈夫曼编码树​    用于将字符编码为唯一的二进制串, 且总体代价最小 123456789101112131415function Huffman(vector f[1...n])		//	f存储各个字符的频数	优先队列H, 存储f的下标, 按f的值排序		for i = 1 to n 		insert(H, i)	end		for k = n + 1 to 2n - 1		i = deletem">
+<meta name="twitter:description" content="哈夫曼编码树 性质: 对于任意一个叶子节点, 其编号不会是其他叶子节点编号的前缀(对于任意一个字符, 它的编号不会是其他字符编号的前缀)  123456789101112131415161718192021222324#include &amp;lt;queue&amp;gt;struct node &amp;#123;	char c;	int f;&amp;#125;;int main() &amp;#123;	vector&amp;lt;n">
 
 
 
@@ -351,8 +351,10 @@
       
 
       
-        <h1 id="哈夫曼编码树"><a href="#哈夫曼编码树" class="headerlink" title="哈夫曼编码树"></a>哈夫曼编码树</h1><p>​    用于将字符编码为唯一的二进制串, 且总体代价最小</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function Huffman(vector f[1...n])		//	f存储各个字符的频数</span><br><span class="line">	优先队列H, 存储f的下标, 按f的值排序</span><br><span class="line">	</span><br><span class="line">	for i = 1 to n </span><br><span class="line">		insert(H, i)</span><br><span class="line">	end</span><br><span class="line">	</span><br><span class="line">	for k = n + 1 to 2n - 1</span><br><span class="line">		i = deletemin(H)</span><br><span class="line">		j = deletemin(H)</span><br><span class="line">		create a node k</span><br><span class="line">		f[k] = f[i] + f[j]</span><br><span class="line">		insert(H, k)</span><br><span class="line">	end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+        <h1 id="哈夫曼编码树"><a href="#哈夫曼编码树" class="headerlink" title="哈夫曼编码树"></a>哈夫曼编码树</h1><ul>
+<li>性质: 对于任意一个叶子节点, 其编号不会是其他叶子节点编号的前缀(对于任意一个字符, 它的编号不会是其他字符编号的前缀)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;queue&gt;</span><br><span class="line"></span><br><span class="line">struct node &#123;</span><br><span class="line">	char c;</span><br><span class="line">	int f;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line"></span><br><span class="line">	vector&lt;node&gt;  v;</span><br><span class="line">	priority_queue&lt;node&gt; q;</span><br><span class="line"></span><br><span class="line">    for (int i = 0; i &lt; v.size(); i++) &#123;</span><br><span class="line">        q.push(v[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    while (q.size() &gt; 1) &#123;	//	至少有两个元素</span><br><span class="line">        node x = q.top();</span><br><span class="line">        q.pop();</span><br><span class="line">        node y = q.top();</span><br><span class="line">        q.pop();</span><br><span class="line">        q.push(x + y);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -470,7 +472,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">83</span>
+                  <span class="site-state-item-count">99</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

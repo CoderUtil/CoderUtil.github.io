@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="广度优先搜索123451. 队列实现	a) 将起始节点放入队列中	b) 将队首v弹出, 标记为访问过	c) 将v的相邻未访问节点放入队尾	d) 重复b、c直至队列为空 判断连通部件个数个数 DFS实现123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051#includ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="广度优先搜索BFS">
+<meta property="og:url" content="http://utilcoder.com/算法/算法/搜索--广度优先搜索BFS/index.html">
+<meta property="og:site_name" content="Code">
+<meta property="og:description" content="广度优先搜索123451. 队列实现	a) 将起始节点放入队列中	b) 将队首v弹出, 标记为访问过	c) 将v的相邻未访问节点放入队尾	d) 重复b、c直至队列为空 判断连通部件个数个数 DFS实现123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051#includ">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://utilcoder.com/算法/images/TIM截图20190416154202.png">
+<meta property="og:updated_time" content="2019-04-21T04:05:19.275Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="广度优先搜索BFS">
+<meta name="twitter:description" content="广度优先搜索123451. 队列实现	a) 将起始节点放入队列中	b) 将队首v弹出, 标记为访问过	c) 将v的相邻未访问节点放入队尾	d) 重复b、c直至队列为空 判断连通部件个数个数 DFS实现123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051#includ">
+<meta name="twitter:image" content="http://utilcoder.com/算法/images/TIM截图20190416154202.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://utilcoder.com/算法/算法/搜索--广度优先搜索BFS/"/>
+
+
+
+
+
+  <title>广度优先搜索BFS | Code</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Code</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/算法/算法/搜索--广度优先搜索BFS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">广度优先搜索BFS</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-07T17:16:57+08:00">
+                2018-11-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="广度优先搜索"><a href="#广度优先搜索" class="headerlink" title="广度优先搜索"></a>广度优先搜索</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 队列实现</span><br><span class="line">	a) 将起始节点放入队列中</span><br><span class="line">	b) 将队首v弹出, 标记为访问过</span><br><span class="line">	c) 将v的相邻未访问节点放入队尾</span><br><span class="line">	d) 重复b、c直至队列为空</span><br></pre></td></tr></table></figure>
+<h2 id="判断连通部件个数个数"><a href="#判断连通部件个数个数" class="headerlink" title="判断连通部件个数个数"></a>判断连通部件个数个数</h2><p><img src="../../images/TIM截图20190416154202.png" alt="TIM截图20190416154202"></p>
+<h3 id="DFS实现"><a href="#DFS实现" class="headerlink" title="DFS实现"></a>DFS实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">#include &lt;queue&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int row = 6;</span><br><span class="line">const int column = 7;</span><br><span class="line">int matrix[row][column] = &#123;	&#123;0,1,1,1,0,0,1&#125;,</span><br><span class="line">							&#123;0,0,1,0,0,0,0&#125;,</span><br><span class="line">							&#123;0,0,0,0,1,0,0&#125;,</span><br><span class="line">							&#123;0,0,0,1,1,1,0&#125;,</span><br><span class="line">							&#123;1,1,1,0,1,0,0&#125;,</span><br><span class="line">							&#123;1,1,1,1,0,0,0&#125;&#125;;</span><br><span class="line"></span><br><span class="line">//	1.防止走回头路</span><br><span class="line">bool isVisited[6][7] = &#123; false &#125;;	</span><br><span class="line">//	2.增量数组</span><br><span class="line">int I[4] = &#123; 0, 0, 1, -1 &#125;;</span><br><span class="line">int J[4] = &#123; 1, -1, 0, 0 &#125;;</span><br><span class="line"></span><br><span class="line">int chunkCount = 0;</span><br><span class="line"></span><br><span class="line">//	DFS</span><br><span class="line">void findElementInChunk(int i, int j) &#123;</span><br><span class="line">	isVisited[i][j] = true;</span><br><span class="line"></span><br><span class="line">	for (int k = 0; k &lt; 4; k++) &#123;</span><br><span class="line">		int newI = i + I[k];</span><br><span class="line">		int newJ = j + J[k];</span><br><span class="line">		//	3.判断坐标是否合法</span><br><span class="line">		if (0 &lt;= newI &amp;&amp; newI &lt; row &amp;&amp; 0 &lt;= newJ &amp;&amp; newJ &lt; column) &#123;</span><br><span class="line">			if (matrix[newI][newJ] == 1 &amp;&amp; !isVisited[newI][newJ]) </span><br><span class="line">				findElementInChunk(newI, newJ);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">	for (int i = 0; i &lt; row; i++) &#123;</span><br><span class="line">		for (int j = 0; j &lt; column; j++) &#123;</span><br><span class="line">			if (matrix[i][j] == 1 &amp;&amp; !isVisited[i][j]) &#123;</span><br><span class="line">				chunkCount++;</span><br><span class="line">				findElementInChunk(i, j);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; chunkCount &lt;&lt; endl;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="BFS实现"><a href="#BFS实现" class="headerlink" title="BFS实现"></a>BFS实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">#include &lt;queue&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int row = 6;</span><br><span class="line">const int column = 7;</span><br><span class="line">int matrix[row][column] = &#123;	&#123;0,1,1,1,0,0,1&#125;,</span><br><span class="line">							&#123;0,0,1,0,0,0,0&#125;,</span><br><span class="line">							&#123;0,0,0,0,1,0,0&#125;,</span><br><span class="line">							&#123;0,0,0,1,1,1,0&#125;,</span><br><span class="line">							&#123;1,1,1,0,1,0,0&#125;,</span><br><span class="line">							&#123;1,1,1,1,0,0,0&#125;&#125;;</span><br><span class="line"></span><br><span class="line">//	1.防止走回头路</span><br><span class="line">bool isVisited[6][7] = &#123; false &#125;;	</span><br><span class="line">//	2.增量数组</span><br><span class="line">int I[4] = &#123; 0, 0, 1, -1 &#125;;</span><br><span class="line">int J[4] = &#123; 1, -1, 0, 0 &#125;;</span><br><span class="line"></span><br><span class="line">int chunkCount = 0;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//	BFS</span><br><span class="line">void findElementInChunk(int i, int j) &#123;</span><br><span class="line">	queue&lt;pair&lt;int, int&gt;&gt; q;</span><br><span class="line">	q.push(make_pair(i, j));</span><br><span class="line">	isVisited[i][j] = true;</span><br><span class="line"></span><br><span class="line">	while (!q.empty()) &#123;</span><br><span class="line">		pair&lt;int, int&gt; temp = q.front();</span><br><span class="line">		q.pop();</span><br><span class="line"></span><br><span class="line">		for (int k = 0; k &lt; 4; k++) &#123;</span><br><span class="line">			int newI = temp.first + I[k];</span><br><span class="line">			int newJ = temp.second + J[k];</span><br><span class="line"></span><br><span class="line">			if (0 &lt;= newI &amp;&amp; newI &lt; row &amp;&amp; 0 &lt;= newJ &amp;&amp; newJ &lt; column) &#123;</span><br><span class="line">				if (matrix[newI][newJ] == 1 &amp;&amp; !isVisited[newI][newJ]) &#123;</span><br><span class="line">					isVisited[newI][newJ] = true;</span><br><span class="line">					q.push(make_pair(newI, newJ));</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">	for (int i = 0; i &lt; row; i++) &#123;</span><br><span class="line">		for (int j = 0; j &lt; column; j++) &#123;</span><br><span class="line">			if (matrix[i][j] == 1 &amp;&amp; !isVisited[i][j]) &#123;</span><br><span class="line">				chunkCount++;</span><br><span class="line">				findElementInChunk(i, j);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; chunkCount &lt;&lt; endl;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="最短路径"><a href="#最短路径" class="headerlink" title="最短路径"></a>最短路径</h1><h2 id="BFS"><a href="#BFS" class="headerlink" title="BFS"></a>BFS</h2><ul>
+<li>边长全为1</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">dist(v)		从源节点s到v的最低费用</span><br><span class="line">prev(v)		从源节点到v的最低费用路径的上一个节点</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">for all nodes v ∈ V :</span><br><span class="line">	dist(v) = ∞</span><br><span class="line">	prev(v) = nill</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">dist(s) = 0</span><br><span class="line">Q = [s]			//	队列Q</span><br><span class="line"></span><br><span class="line">while Q is not empty</span><br><span class="line">	t = Q.pop()</span><br><span class="line">	for each neighbor node v of t</span><br><span class="line">    	if not visited(v) :</span><br><span class="line">    		Q.push(v)</span><br><span class="line">    		dist(v) = dist(t) + 1</span><br><span class="line">    		prev(v) = t</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">//	s到u的最低费用</span><br><span class="line">cout &lt;&lt; dist(u)</span><br><span class="line"></span><br><span class="line">//	s到u的最低费用路径</span><br><span class="line">temp = u</span><br><span class="line">while temp != s</span><br><span class="line">	cout &lt;&lt; temp</span><br><span class="line">	temp = temp.prev</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h2 id="Dijkstra"><a href="#Dijkstra" class="headerlink" title="Dijkstra"></a>Dijkstra</h2><ul>
+<li>单源</li>
+<li>边长为非负</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">u			源节点</span><br><span class="line">dist(v) 	从源节点u到目的节点v的最低费用</span><br><span class="line">pre(v) 		从源节点u到目的节点v的最低费用路径的上一节点</span><br><span class="line">N&apos;			从源节点u出发最低费用路径已知的节点子集</span><br><span class="line"></span><br><span class="line">//	初始化</span><br><span class="line">N&apos; = &#123;u&#125;</span><br><span class="line">for all nodes v ∈ V :</span><br><span class="line">	if v is a neighbor of u</span><br><span class="line">		then dist(v) = c(u, v)</span><br><span class="line">	else </span><br><span class="line">		dist(v) = ∞</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">while N&apos; != V</span><br><span class="line">	find w not in N&apos; &amp; dist(w) is minimum</span><br><span class="line">	N&apos;.push(w)</span><br><span class="line">	for all neighbor nodes v of w &amp; v not in N&apos;</span><br><span class="line">		if dist(v) &gt; dist(w) + c(w, v) : </span><br><span class="line">			dist(v) = dist(w) + c(w, v)</span><br><span class="line">			prev(v) = w</span><br><span class="line">	end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h2 id="获取两个顶点s-u的距离–Bellman-Ford"><a href="#获取两个顶点s-u的距离–Bellman-Ford" class="headerlink" title="获取两个顶点s, u的距离–Bellman-Ford"></a>获取两个顶点s, u的距离–Bellman-Ford</h2><p>​    适用于边长为负的图</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">for all nodes v ∈ V :</span><br><span class="line">	dist(v) = ∞</span><br><span class="line">	prev(v) = nill</span><br><span class="line">	</span><br><span class="line">dist(s) = 0</span><br><span class="line"></span><br><span class="line">repeat |V| - 1 times : </span><br><span class="line">	for all e(t, v) ∈ E:</span><br><span class="line">		if dist(v) &gt; dist(t) + c(t, v) : </span><br><span class="line">			dist(v) = dist(t) + c(t, v)</span><br><span class="line">			prev(v) = t</span><br><span class="line">	end</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/算法/算法/搜索--深度优先搜索DFS/" rel="next" title="深度优先搜索DFS">
+                <i class="fa fa-chevron-left"></i> 深度优先搜索DFS
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/算法/算法/最小生成树MST/" rel="prev" title="最小生成树MST">
+                最小生成树MST <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="CoderUtil" />
+            
+              <p class="site-author-name" itemprop="name">CoderUtil</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">99</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CoderUtil" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:853130236@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://icytown.com/" title="Mega Show's Blog" target="_blank">Mega Show's Blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#广度优先搜索"><span class="nav-number">1.</span> <span class="nav-text">广度优先搜索</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#判断连通部件个数个数"><span class="nav-number">1.1.</span> <span class="nav-text">判断连通部件个数个数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DFS实现"><span class="nav-number">1.1.1.</span> <span class="nav-text">DFS实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BFS实现"><span class="nav-number">1.1.2.</span> <span class="nav-text">BFS实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最短路径"><span class="nav-number">2.</span> <span class="nav-text">最短路径</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#BFS"><span class="nav-number">2.1.</span> <span class="nav-text">BFS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dijkstra"><span class="nav-number">2.2.</span> <span class="nav-text">Dijkstra</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取两个顶点s-u的距离–Bellman-Ford"><span class="nav-number">2.3.</span> <span class="nav-text">获取两个顶点s, u的距离–Bellman-Ford</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CoderUtil</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
