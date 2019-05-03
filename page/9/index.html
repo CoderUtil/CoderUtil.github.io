@@ -259,6 +259,288 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Matlab/Matlab/Matlab学习(一)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Matlab/Matlab/Matlab学习(一)/" itemprop="url">Matlab学习(一)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-16T12:43:19+08:00">
+                2018-05-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Matlab/" itemprop="url" rel="index">
+                    <span itemprop="name">Matlab</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="分号"><a href="#分号" class="headerlink" title="分号"></a>分号</h1><p>​    语句结束时不使用分号, 将会在命令行中输出当前变量的值(利于调试)</p>
+<h1 id="工作区"><a href="#工作区" class="headerlink" title="工作区"></a>工作区</h1><p>​    所有在同一命令窗口中执行的命令和脚本文件处于同一个工作区间中.</p>
+<ul>
+<li>同一工作区间的变量能相互访问.</li>
+<li>不同函数文件拥有不同的工作区间</li>
+</ul>
+<h2 id="清除工作区"><a href="#清除工作区" class="headerlink" title="清除工作区"></a>清除工作区</h2><p>​    每次修改文件后, 最好clear工作区</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">考虑数组arr大小为10, 修改代码, 使arr大小为1. 但因为arr已经存在于工作区, 所以arr大小不会变</span><br></pre></td></tr></table></figure>
+<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">列与列之间通过空格分隔, 行与行之间通过分号或换行分隔</span><br><span class="line"></span><br><span class="line">数组A: </span><br><span class="line">	[1 2; 3 4; 5 6]</span><br><span class="line">	或</span><br><span class="line">	[1 2</span><br><span class="line">	 3 4</span><br><span class="line">	 5 6]</span><br><span class="line">	</span><br><span class="line">数组B: [1 2 3 4]</span><br><span class="line">	</span><br><span class="line">数组C: [1; 2; 3; 4]</span><br></pre></td></tr></table></figure>
+<h2 id="数组访问"><a href="#数组访问" class="headerlink" title="数组访问"></a>数组访问</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">A(2,1) 	得到3, 下标从1开始计算</span><br><span class="line">B(2)	得到2, 行向量或列向量只需要一个下标</span><br><span class="line">C(3)	得到3</span><br></pre></td></tr></table></figure>
+<h2 id="克隆运算符"><a href="#克隆运算符" class="headerlink" title="克隆运算符"></a>克隆运算符</h2><p>​    快速创建一维数组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">语法:</span><br><span class="line">	first:incr:last</span><br><span class="line">	</span><br><span class="line">	first: 数组第一个元素的值</span><br><span class="line">	incr: 数组元素之间的递增量</span><br><span class="line">	last: 数组最后一个元素不能超过这个值</span><br><span class="line">	</span><br><span class="line">例子:</span><br><span class="line">	x=1:2:10	=&gt;	x=[1 3 5 7 9]</span><br></pre></td></tr></table></figure>
+<h2 id="初始化数组的函数"><a href="#初始化数组的函数" class="headerlink" title="初始化数组的函数"></a>初始化数组的函数</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">函数</th>
+<th style="text-align:center">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">zeros(n), zeros(n, m)</td>
+<td style="text-align:center">创建n*n, n*m的元素全为0的矩阵</td>
+</tr>
+<tr>
+<td style="text-align:center">ones(n), ones(n, m)</td>
+<td style="text-align:center">创建n*n, n*m的元素全为1的矩阵</td>
+</tr>
+<tr>
+<td style="text-align:center">eye(n), eye(n, m)</td>
+<td style="text-align:center">创建n*n, n*m的单位矩阵</td>
+</tr>
+<tr>
+<td style="text-align:center">length(arr)</td>
+<td style="text-align:center">返回一维数组长度或二维数组较长的维度</td>
+</tr>
+<tr>
+<td style="text-align:center">size(arr)</td>
+<td style="text-align:center">返回数组的行数和列数, 用数组保存</td>
+</tr>
+</tbody>
+</table>
+<h2 id="产生随机数组"><a href="#产生随机数组" class="headerlink" title="产生随机数组"></a>产生随机数组</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rand 		产生一个随机数</span><br><span class="line">rand(n)		产生n * n的随机数组, 取值在(0,1)</span><br><span class="line">rand(n,m)	产生n * m的随机数组</span><br></pre></td></tr></table></figure>
+<h1 id="三维数组"><a href="#三维数组" class="headerlink" title="三维数组"></a>三维数组</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">第一个逗号表示二维数组的行, 第二格逗号表示二维数组的列, 第三个逗号表示第几个二维数组</span><br><span class="line"></span><br><span class="line">c(:,:,1)=[1 2 3; 4 5 6]</span><br><span class="line"></span><br><span class="line">c(:,:,2)=[7 8 9; 10 11 12]</span><br></pre></td></tr></table></figure>
+<h1 id="input"><a href="#input" class="headerlink" title="input"></a>input</h1><p>​    接收一个输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">val = input(&apos;Input a value&apos;);</span><br></pre></td></tr></table></figure>
+<h1 id="特殊变量"><a href="#特殊变量" class="headerlink" title="特殊变量"></a>特殊变量</h1><table>
+<thead>
+<tr>
+<th style="text-align:center">变量</th>
+<th style="text-align:center">用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">pi</td>
+<td style="text-align:center">π</td>
+</tr>
+<tr>
+<td style="text-align:center">i</td>
+<td style="text-align:center">虚数, 比如1 + 4 * i</td>
+</tr>
+<tr>
+<td style="text-align:center">Inf</td>
+<td style="text-align:center">无穷大</td>
+</tr>
+<tr>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">没有这个数</td>
+</tr>
+</tbody>
+</table>
+<h1 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. disp(), 需要字符串数组作为参数</span><br><span class="line">	str=[&apos;The value of pi=&apos; num2str(pi)]</span><br><span class="line">	disp(str)</span><br><span class="line"></span><br><span class="line">2. fprintf(), 类似C语言</span><br><span class="line">	fprintf(&apos;The value of pi=%d&apos;, pi)</span><br></pre></td></tr></table></figure>
+<h1 id="数组运算和矩阵运算"><a href="#数组运算和矩阵运算" class="headerlink" title="数组运算和矩阵运算"></a>数组运算和矩阵运算</h1><ul>
+<li>数组运算: 矩阵对应位置的元素进行运算</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> A     		 B</span><br><span class="line">1 2	  		5 6 	</span><br><span class="line">3 4   		7 8</span><br><span class="line"></span><br><span class="line">   A*B	</span><br><span class="line"> 1*5 2*6</span><br><span class="line"> 3*7 4*8</span><br></pre></td></tr></table></figure>
+<ul>
+<li>矩阵运算: 参照线性代数中矩阵的运算</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> A     		 B</span><br><span class="line">1 2	  		5 6 	</span><br><span class="line">3 4   		7 8</span><br><span class="line"></span><br><span class="line">   A.*B	</span><br><span class="line"> 1*5+2*7 1*6+2*8</span><br><span class="line"> 3*5+4*7 3*6+4*8</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">运算</th>
+<th style="text-align:center">数组运算</th>
+<th style="text-align:center">矩阵运算</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">加</td>
+<td style="text-align:center">A+B</td>
+<td style="text-align:center">A+B</td>
+</tr>
+<tr>
+<td style="text-align:center">减</td>
+<td style="text-align:center">A-B</td>
+<td style="text-align:center">A-B</td>
+</tr>
+<tr>
+<td style="text-align:center">乘</td>
+<td style="text-align:center">A.*B</td>
+<td style="text-align:center">A*B</td>
+</tr>
+<tr>
+<td style="text-align:center">除</td>
+<td style="text-align:center">A./B</td>
+<td style="text-align:center">A/B</td>
+</tr>
+<tr>
+<td style="text-align:center">指数运算</td>
+<td style="text-align:center">A.^B</td>
+</tr>
+</tbody>
+</table>
+<h1 id="数组与标量的运算"><a href="#数组与标量的运算" class="headerlink" title="数组与标量的运算"></a>数组与标量的运算</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"> A</span><br><span class="line"> 1 2</span><br><span class="line"> 3 4</span><br><span class="line"></span><br><span class="line"> A + 3</span><br><span class="line">1+3 2+3</span><br><span class="line">3+3 4+3</span><br><span class="line"></span><br><span class="line"> A - 3</span><br><span class="line">1-3 2-3</span><br><span class="line">3-3 4-3</span><br><span class="line"></span><br><span class="line"> A .* 3</span><br><span class="line">1*3 2*3</span><br><span class="line">3*3 4*4</span><br><span class="line"></span><br><span class="line"> A ./ 3</span><br><span class="line">1/3 2/3</span><br><span class="line">3/3 4/5</span><br><span class="line"></span><br><span class="line"> A .^ 3</span><br><span class="line">1^3 2^3</span><br><span class="line">3^3 4^3</span><br></pre></td></tr></table></figure>
+<h1 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h1><p><img src="https://CoderUtil.github.io/images/TIM截图20180517213917.png" alt="Matlab"></p>
+<h1 id="计算运行时间"><a href="#计算运行时间" class="headerlink" title="计算运行时间"></a>计算运行时间</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tic;					//	开始计时</span><br><span class="line">	需要计算时间的代码</span><br><span class="line">fprintf(&apos;%d&apos;, toc);		 //	 toc的值为上一个tic到这一步所用的时间</span><br></pre></td></tr></table></figure>
+<h1 id="画图"><a href="#画图" class="headerlink" title="画图"></a>画图</h1><h2 id="基本画图"><a href="#基本画图" class="headerlink" title="基本画图"></a>基本画图</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">x=0:1:10;</span><br><span class="line">y=x.^2-10.*x+15;					//	注意是数组运算而不是矩阵运算</span><br><span class="line">plot(x,y);							//	画出函数</span><br><span class="line">title (&apos;Plot of y=x.^2-10*x+15&apos;);	  //  设置图像标题</span><br><span class="line">xlabel (&apos;x&apos;); 						//	设置横轴和纵轴</span><br><span class="line">ylabel (&apos;y&apos;); </span><br><span class="line">grid on; 							//	图像中出现网格线. grid off去除网格线</span><br></pre></td></tr></table></figure>
+<h2 id="联合画图"><a href="#联合画图" class="headerlink" title="联合画图"></a>联合画图</h2><p>​    在同一坐标内做出多个图像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">x = 0:pi/100:2*pi;</span><br><span class="line">y1=sin(2.*x);</span><br><span class="line">y2=2*cos(2.*x);</span><br><span class="line">plot(x, y1, x, y2);</span><br><span class="line">title (&apos;Plot of y=x.^2-10*x+15&apos;);	 </span><br><span class="line">xlabel (&apos;x&apos;); 						</span><br><span class="line">ylabel (&apos;y&apos;); </span><br><span class="line">grid on; </span><br><span class="line">legend(&apos;f(x)&apos;, &apos;g(x)&apos;);		//	轨迹的标签名, 第一个轨迹叫f(x), 第二个叫g(x)</span><br></pre></td></tr></table></figure>
+<h1 id="关系运算"><a href="#关系运算" class="headerlink" title="关系运算"></a>关系运算</h1><ul>
+<li>同C语言一样, 使用0和1代替布尔变量</li>
+<li>不等号为~=</li>
+</ul>
+<h1 id="逻辑运算"><a href="#逻辑运算" class="headerlink" title="逻辑运算"></a>逻辑运算</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">与 	&amp;</span><br><span class="line">或	|</span><br><span class="line">非	~</span><br><span class="line">异或  xor</span><br></pre></td></tr></table></figure>
+<h1 id="逻辑函数"><a href="#逻辑函数" class="headerlink" title="逻辑函数"></a>逻辑函数</h1><p><img src="https://CoderUtil.github.io/images/TIM截图20180517232320.png" alt="Matlab"></p>
+<h1 id="if"><a href="#if" class="headerlink" title="if"></a>if</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">if 条件</span><br><span class="line">	...</span><br><span class="line">elseif 条件</span><br><span class="line">	...</span><br><span class="line">else</span><br><span class="line">	...</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h1 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">switch (switch_expr)</span><br><span class="line">case &#123;case_expr_1, case_expr_2, case_expr_3&#125; </span><br><span class="line">	...</span><br><span class="line">case &#123;case_expr_4, case_expr_5, case_expr_6&#125; </span><br><span class="line">	...</span><br><span class="line">otherwise </span><br><span class="line">	...</span><br><span class="line">end </span><br><span class="line"></span><br><span class="line">例子:</span><br><span class="line">switch (i)</span><br><span class="line">case &#123;1, 2, 3&#125;,</span><br><span class="line">	...</span><br><span class="line">case &#123;4, 5, 6&#125;,</span><br><span class="line">	...</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h1 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">while 条件</span><br><span class="line">	...</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h1 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">for index = ...</span><br><span class="line">	...</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">例1: </span><br><span class="line">    for i = 1:10	将[1 2 ... 10]列的值依次赋给i</span><br><span class="line">        ...</span><br><span class="line">    end</span><br><span class="line">    </span><br><span class="line">例2:</span><br><span class="line">	for i = [1 2 3; 4 5 6]	将1, 2, 3依次赋给i</span><br><span class="line">		...					4  5  6</span><br><span class="line">		...</span><br><span class="line">	end</span><br></pre></td></tr></table></figure>
+<h1 id="break和continue"><a href="#break和continue" class="headerlink" title="break和continue"></a>break和continue</h1><p>​    和C语言中的一样</p>
+<h1 id="自定义函数"><a href="#自定义函数" class="headerlink" title="自定义函数"></a>自定义函数</h1><ul>
+<li>保存在一个单独的脚本文件中</li>
+<li>按值传递</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function [输出1, 输出2, ...] = 函数名(形参1, 形参2, ...)</span><br><span class="line">	...</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">例子: </span><br><span class="line">	//	dist.m文件</span><br><span class="line">	function distance = dist(x1, y1, x2, y2)</span><br><span class="line">		distance = sqrt((x2 - x1).^2 + (y2 - y1).^2);</span><br><span class="line">		</span><br><span class="line">	//	test_dist.m文件</span><br><span class="line">	x1 = input(&apos;Input x1&apos;);</span><br><span class="line">	y1 = input(&apos;Input y1&apos;);</span><br><span class="line">	x2 = input(&apos;Input x2&apos;);</span><br><span class="line">	y2 = input(&apos;Input y2&apos;);</span><br><span class="line">	result = dist(x1, y1, x2, y2);</span><br><span class="line">	fprintf(&apos;%d&apos;, result);</span><br><span class="line">	</span><br><span class="line">	运行, 在命令行输入test_dist</span><br></pre></td></tr></table></figure>
+<h1 id="子函数"><a href="#子函数" class="headerlink" title="子函数"></a>子函数</h1><p>​    在一个文件中, 可以定义多个函数. 最上面的那个为普通函数, 其余为子函数. 子函数只能被当前文件中的其他函数调用</p>
+<h1 id="矩阵函数"><a href="#矩阵函数" class="headerlink" title="矩阵函数"></a>矩阵函数</h1><h2 id="diag"><a href="#diag" class="headerlink" title="diag"></a>diag</h2><p>​    用于提取矩阵的对角元素或者创建对角矩阵</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1、当参数A是矩阵 1 2 3, 那么diag(A)用于提取对角元素</span><br><span class="line">                4 5 6</span><br><span class="line">                7 8 9</span><br><span class="line"> 	diag(A) = [1 5 9]            </span><br><span class="line">             </span><br><span class="line"></span><br><span class="line">2、当参数A是行向量[1 2 3], diag(A)用于创建对角矩阵</span><br><span class="line">	diag(A) = 1 0 0</span><br><span class="line">	          0 2 0</span><br><span class="line">	          0 0 3</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/操作系统/操作系统/第六章-同步/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1727,209 +2009,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/软件工程实训/软件工程实训/studyreport-ANT/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/软件工程实训/软件工程实训/studyreport-ANT/" itemprop="url">ANT学习报告</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-14T12:14:18+08:00">
-                2018-04-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/软件工程实训/" itemprop="url" rel="index">
-                    <span itemprop="name">软件工程实训</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Ant的作用"><a href="#Ant的作用" class="headerlink" title="Ant的作用"></a>Ant的作用</h1><p>​    通过编写build.xml文件, 快速生成JAVA项目(类似于C++的Makefile)</p>
-<h1 id="Ant的安装"><a href="#Ant的安装" class="headerlink" title="Ant的安装"></a>Ant的安装</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Ubuntu下在终端执行:</span><br><span class="line">    $sudo apt install ant</span><br></pre></td></tr></table></figure>
-<h1 id="Ant的介绍"><a href="#Ant的介绍" class="headerlink" title="Ant的介绍"></a>Ant的介绍</h1><ul>
-<li>project元素: Ant的根元素</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1. name属性: 指定project的名称</span><br><span class="line"></span><br><span class="line">2. default属性: 指定了project默认执行的target. 指向最后一步</span><br><span class="line"></span><br><span class="line">	&lt;project default=&quot;package&quot;&gt;</span><br><span class="line">      &lt;target name=&quot;init&quot;/&gt;</span><br><span class="line">      &lt;target name=&quot;preprocess&quot; depends=&quot;init&quot;/&gt;</span><br><span class="line">      &lt;target name=&quot;compile&quot; depends=&quot;init, preprocess&quot;/&gt;</span><br><span class="line">      &lt;target name=&quot;package&quot; depends=&quot;compile&quot;/&gt;</span><br><span class="line">    &lt;/project&gt;</span><br><span class="line">    </span><br><span class="line">3. basedir属性: 指定基路径的位置. 默认与build.xml文件在同一文件夹下</span><br></pre></td></tr></table></figure>
-<ul>
-<li>target元素: Ant中的执行单元</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. depends属性: 描述多个target之间的依赖关系. 被依赖的元素先执行</span><br><span class="line"></span><br><span class="line">2. if属性: 用于验证属性是否存在. 若不存在则target不会被执行</span><br><span class="line"></span><br><span class="line">3. unless属性: 与if属性相反</span><br><span class="line"></span><br><span class="line">4. description属性: 描述target的说明</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">常用target:</span><br><span class="line">	1. copy</span><br><span class="line">		复制单个文件：&lt;copy file=&quot;file.txt&quot; tofile=&quot;copy.txt&quot;/&gt; </span><br><span class="line">		复制文件夹:   &lt;copy todir=&quot;../newdir/dest_dir&quot;&gt; </span><br><span class="line">            			&lt;fileset dir=&quot;src_dir&quot;/&gt; </span><br><span class="line">					&lt;/copy&gt;</span><br><span class="line">         将文件复制到另外的目录: &lt;copy file=&quot;file.txt&quot; todir=&quot;../other/dir&quot;/&gt; </span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	2. delete</span><br><span class="line">		删除单个文件: &lt;delete file=&quot;photo/amigo.jpg&quot;/&gt; </span><br><span class="line">		删除文件夹:   &lt;delete dir=&quot;photo&quot;/&gt; </span><br><span class="line">		删除所有备份目录和空目录:  &lt;delete includeEmptyDirs=&quot;true&quot;&gt; </span><br><span class="line">                       				&lt;fileset dir=&quot;.&quot; includes=&quot;**/*.bak&quot;/&gt; </span><br><span class="line">                			  	&lt;/delete&gt;</span><br><span class="line">                			  	</span><br><span class="line">    3. mkdir</span><br><span class="line">    	创建文件夹: &lt;mkdir dir=&quot;build&quot;/&gt; </span><br><span class="line">    	</span><br><span class="line">    4. move</span><br><span class="line">    	与copy一样由三种形式, 将copy改为move</span><br><span class="line">    	</span><br><span class="line">    5. echo</span><br></pre></td></tr></table></figure>
-<ul>
-<li>property元素: 对于参数的定义</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">语法:</span><br><span class="line">	&lt;property name=&quot;xxx&quot; value=&quot;xxx&quot;/&gt;</span><br><span class="line"></span><br><span class="line">例子:</span><br><span class="line">    &lt;property name=&quot;srcDir&quot; location=&quot;src&quot;/&gt;		&lt;!-- location: 描述了文件所在路径. 是value的语义化 --&gt;</span><br><span class="line">    &lt;property name=&quot;buildDir&quot; location=&quot;build&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;javac srcdir=&quot;$&#123;srcDir&#125;&quot; destdir=&quot;$&#123;buildDir&#125;&quot;/&gt;	&lt;!-- 通过$&#123;&#125;获取其他元素的属性 --&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Ant的内置属性</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ant.file: build.xml的绝对路径</span><br><span class="line"></span><br><span class="line">ant.version: Ant的版本</span><br><span class="line"></span><br><span class="line">ant.project.name: 获取project.name</span><br><span class="line"></span><br><span class="line">ant.java.version: 获取java的version</span><br></pre></td></tr></table></figure>
-<h1 id="Ant的编写"><a href="#Ant的编写" class="headerlink" title="Ant的编写"></a>Ant的编写</h1><ul>
-<li>编译</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//	对src目录中的java文件进行编译</span><br><span class="line"></span><br><span class="line">&lt;javac srcdir=&quot;src&quot;/&gt;		</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">其他有用属性: </span><br><span class="line">    classpath:	说明引用的其他类的路径</span><br><span class="line">    debug=&quot;true&quot;: 说明编译器要带调试信息编译源文件</span><br></pre></td></tr></table></figure>
-<ul>
-<li>创建JAR文件: 将.class文件打包到JAR文件中</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//	创建一个名为package.jar文件夹, 并将classes目录下的所有文件(不仅仅是.class文件)放进去</span><br><span class="line"></span><br><span class="line">&lt;jar destfile=&quot;package.jar&quot; basedir=&quot;classes&quot;/&gt;		</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//	&lt;manifest&gt;指定放入jar文件夹中的文件</span><br><span class="line">&lt;jar destfile=&quot;package.jar&quot; basedir=&quot;classes&gt;</span><br><span class="line">	&lt;manifest&gt;</span><br><span class="line">		&lt;attribute name=&quot;Built-By&quot; value=&quot;$&#123;user.name&#125;&quot;/&gt;</span><br><span class="line">		&lt;attribute name=&quot;Main-class&quot; value=&quot;package.Main&quot;/&gt;</span><br><span class="line">	&lt;/manifest&gt;</span><br><span class="line">&lt;/jar&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>时间戳生成: 用于记录文件的生成时间</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">属性</th>
-<th style="text-align:center">说明</th>
-<th style="text-align:center">例子</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">DSTAMP</td>
-<td style="text-align:center">设置当前日期, 默认格式yyyymmdd</td>
-<td style="text-align:center">20180414</td>
-</tr>
-<tr>
-<td style="text-align:center">TSTAMP</td>
-<td style="text-align:center">设置当前时间, 默认格式hhmm</td>
-<td style="text-align:center">1313</td>
-</tr>
-<tr>
-<td style="text-align:center">TODAY</td>
-<td style="text-align:center">设置当前日期</td>
-<td style="text-align:center">2018年4月14日</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;tstamp/&gt;		//	获取当前的时间</span><br><span class="line">	&lt;format property=&quot;OFFSET_TIME&quot;</span><br><span class="line">			pattern=&quot;HH:mm:ss&quot;</span><br><span class="line">			offset=&quot;10&quot;</span><br><span class="line">			unit=&quot;minute&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;jar destfile=&quot;package-$&#123;DSTAMP&#125;.jar&quot; basedir=&quot;classes&quot;/&gt;		//	用生成日期命名该jar文件</span><br></pre></td></tr></table></figure>
-<ul>
-<li>完整的ANT</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">文件结构树:</span><br><span class="line">  --build.xml: 因为没有给Ant配置环境变量</span><br><span class="line">  --src: 存放.java文件		</span><br><span class="line">  --build: 存放.class文件</span><br><span class="line">  --lib: 存放要导入的.jar包和压缩后的.jar包</span><br><span class="line"></span><br><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;project default=&quot;jar&quot; name=&quot;Hello World Project&quot;&gt;		</span><br><span class="line">  &lt;property name=&quot;srcDir&quot; location=&quot;src&quot;/&gt;</span><br><span class="line">  &lt;property name=&quot;buildDir&quot; location=&quot;build&quot;/&gt;</span><br><span class="line">  &lt;property name=&quot;libDir&quot; location=&quot;lib&quot;/&gt;</span><br><span class="line">	</span><br><span class="line">  &lt;target name=&quot;init&quot;&gt;</span><br><span class="line">    &lt;tstamp/&gt;</span><br><span class="line">    &lt;mkdir dir=&quot;$&#123;buildDir&#125;&quot;/&gt;</span><br><span class="line">    &lt;mkdir dir=&quot;$&#123;libDir&#125;&quot;/&gt;</span><br><span class="line">  &lt;/target&gt;</span><br><span class="line">	</span><br><span class="line">  &lt;target name=&quot;compile&quot; depends=&quot;init&quot;&gt;</span><br><span class="line">    &lt;javac srcdir=&quot;$&#123;srcDir&#125;&quot; destdir=&quot;$&#123;buildDir&#125;&quot; includeantruntime=&quot;false&quot;&gt;</span><br><span class="line">    	&lt;classpath&gt;</span><br><span class="line">    		&lt;fileset dir=&quot;$&#123;libDir&#125;&quot; includes=&quot;**/*.jar&quot;/&gt;		&lt;!-- fileset将dir文件夹中的includes格式的文件导入 --&gt;</span><br><span class="line">    	&lt;/classpath&gt;</span><br><span class="line">    &lt;/javac&gt;</span><br><span class="line">  &lt;/target&gt;</span><br><span class="line"></span><br><span class="line">  &lt;target name=&quot;run&quot; depends=&quot;compile&quot;&gt;</span><br><span class="line">  	&lt;java classname=&quot;test&quot; fork=&quot;true&quot;&gt;		&lt;!-- 默认使用的是Ant的JVM, 添加fork=&quot;true&quot;后能够使用外部的JVM. 对于javafx程序来说, 要设置这个属性 --&gt;</span><br><span class="line">  		&lt;classpath&gt;</span><br><span class="line">  			&lt;pathelement path=&quot;$&#123;buildDir&#125;&quot;/&gt;</span><br><span class="line">  		&lt;/classpath&gt;</span><br><span class="line">  	&lt;/java&gt;</span><br><span class="line">  &lt;/target&gt;</span><br><span class="line"></span><br><span class="line">  &lt;target name=&quot;jar&quot; depends=&quot;run&quot;&gt;</span><br><span class="line">    &lt;jar destfile=&quot;$&#123;distDir&#125;/package-$&#123;DSTAMP&#125;.jar&quot; basedir=&quot;$&#123;buildDir&#125;&quot;&gt;</span><br><span class="line">      &lt;manifest&gt;</span><br><span class="line">        &lt;attribute name=&quot;Built-By&quot; value=&quot;$&#123;user.name&#125;&quot;/&gt;</span><br><span class="line">        &lt;attribute name=&quot;Main-Class&quot; value=&quot;package.Main&quot;/&gt;</span><br><span class="line">      &lt;/manifest&gt;</span><br><span class="line">    &lt;/jar&gt;</span><br><span class="line">  &lt;/target&gt;</span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure>
-<h1 id="命令行运行Ant"><a href="#命令行运行Ant" class="headerlink" title="命令行运行Ant"></a>命令行运行Ant</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">终端中输入:</span><br><span class="line">	ant</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1984,7 +2063,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">99</span>
+                  <span class="site-state-item-count">100</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1995,7 +2074,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

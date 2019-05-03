@@ -259,6 +259,295 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/算法/算法/数学--组合数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/算法/算法/数学--组合数/" itemprop="url">组合数</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-14T10:27:01+08:00">
+                2019-04-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="计算n！中质因数p个数"><a href="#计算n！中质因数p个数" class="headerlink" title="计算n！中质因数p个数"></a>计算n！中质因数p个数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">int cal(int n, int p) &#123;</span><br><span class="line">    int count = 0;</span><br><span class="line">    while(n) &#123;</span><br><span class="line">        count += n / p;</span><br><span class="line">        n /= p;</span><br><span class="line">    &#125;</span><br><span class="line">    return count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="计算n-中尾数0的个数"><a href="#计算n-中尾数0的个数" class="headerlink" title="计算n!中尾数0的个数"></a>计算n!中尾数0的个数</h1><p>​    相当于计算质因数5的个数</p>
+<h1 id="计算C-n-m"><a href="#计算C-n-m" class="headerlink" title="计算C(n, m)"></a>计算C(n, m)</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">递推公式: </span><br><span class="line">	C(n, m) = C(n-1, m) + C(n-1, m-1)</span><br><span class="line">	m = 0或m = n时, C(n, m) = 1</span><br><span class="line">	</span><br><span class="line">long long combine(long long n, long long m) &#123;</span><br><span class="line">	if (arr[n][m] != 0)	return arr[n][m];</span><br><span class="line"></span><br><span class="line">    if (m == 0 || m == 1)	arr[n][m] = 1;</span><br><span class="line">    else arr[n][m] = combine(n-1, m) + combine(n-1, m-1);</span><br><span class="line">    return arr[n][m]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/算法/算法/数学--素数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/算法/算法/数学--素数/" itemprop="url">素数</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-13T22:40:02+08:00">
+                2019-04-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="素数"><a href="#素数" class="headerlink" title="素数"></a>素数</h1><h2 id="判断一个数是否是素数"><a href="#判断一个数是否是素数" class="headerlink" title="判断一个数是否是素数"></a>判断一个数是否是素数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">bool isPrime(int n) &#123;</span><br><span class="line">    if (n &lt;= 1) return false;</span><br><span class="line">    for (int i = 2; i * i &lt;= n; i++) &#123;		//	当n=4, 需要判断2</span><br><span class="line">        if (n % i == 0) return false;</span><br><span class="line">    &#125;</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//	上面的写法可能导致溢出int</span><br><span class="line">bool isPrime(int n) &#123;</span><br><span class="line">    if (n &lt;= 1) return false;</span><br><span class="line">    for (int i = 2; i &lt;= sqrt(n); i++) &#123;		//	当n=4, 需要判断2</span><br><span class="line">        if (n % i == 0) return false;</span><br><span class="line">    &#125;</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="找出1-n中的素数"><a href="#找出1-n中的素数" class="headerlink" title="找出1~n中的素数"></a>找出1~n中的素数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">1. 当 n &lt; 10^5时, 可以直接遍历n中每个元素, 判断是否是素数</span><br><span class="line"></span><br><span class="line">2. 筛法. 从小到大枚举所有的数, 对每一个素数筛去它的倍数</span><br><span class="line"></span><br><span class="line">bool notPrime[101] = &#123;false&#125;;	</span><br><span class="line">notPrime[1] = true;</span><br><span class="line">for (int i = 2; i &lt; 100; i++) &#123;</span><br><span class="line">    if (notPrime[i] == false) &#123;</span><br><span class="line">        for (int j = i; j &lt; 101; j += i) &#123;</span><br><span class="line">            notPrime[j] = true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="../../images/TIM截图20190413230151.png" alt="TIM截图20190413230151"></p>
+<h2 id="质因数分解"><a href="#质因数分解" class="headerlink" title="质因数分解"></a>质因数分解</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">题目: 给一个数n, 分解为质数乘积的形式</span><br><span class="line"></span><br><span class="line">1. 输出范围为1~10^5的素数表</span><br><span class="line"></span><br><span class="line">	vector&lt;int&gt; primes;</span><br><span class="line">	for (int i = 0; i &lt;= 100000; i++) &#123;</span><br><span class="line">		if (isPrime(i))	primes.push_back(i);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">2. 判断素数表中的元素是否是因数, 如果是, 不断除这个数则判断它的个数</span><br><span class="line"></span><br><span class="line">	for (int i = 0; i &lt; primes.size() &amp;&amp; primes[i] &lt;= sqrt(n); i++) &#123;</span><br><span class="line">		while (n % primes[i] == 0) &#123;</span><br><span class="line">			factors[primes[i]]++; </span><br><span class="line">			n /= primes[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">3. n的质因数都&lt;=sqrt(n), 或只有一个质因数&gt;sqrt(n). 因此, 如果执行完上面一系列除后, n!=1, 则剩下的那个数必为&gt;sqrt(n)的质因数</span><br><span class="line"></span><br><span class="line">	if (n != 1)</span><br><span class="line">		factors[n] = 1;</span><br><span class="line"></span><br><span class="line">4. 当n=1时, 要单独讨论</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/算法/算法/数学--分数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1392,301 +1681,10 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);</span><br><span class="line"></span><br><span class="line">第1个参数: 表示观察空间的视角</span><br><span class="line">第2个参数: 表示宽高比</span><br><span class="line">第3、4个参数: 表示近、远平面</span><br></pre></td></tr></table></figure>
 <h2 id="标准化设备坐标"><a href="#标准化设备坐标" class="headerlink" title="标准化设备坐标"></a>标准化设备坐标</h2><p>​    将位于-1.0到1.0范围的坐标, 变换到由glViewport函数所定义的坐标范围内</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">标准化设备坐标 = 投影透视矩阵 * 裁剪坐标</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"></span><br><span class="line">//	将矩阵传入着色器</span><br><span class="line">#version 330 core</span><br><span class="line">layout (location = 0) in vec3 aPos;</span><br><span class="line">...</span><br><span class="line">uniform mat4 model;</span><br><span class="line">uniform mat4 view;</span><br><span class="line">uniform mat4 projection;</span><br><span class="line"></span><br><span class="line">void main() &#123;</span><br><span class="line">    // 注意乘法要从右向左读</span><br><span class="line">    gl_Position = projection * view * model * vec4(aPos, 1.0);</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">//	在迭代渲染中</span><br><span class="line">while () &#123;</span><br><span class="line">	...</span><br><span class="line">	</span><br><span class="line">		//	创建坐标转换矩阵, 将局部坐标变换为标准设备坐标 </span><br><span class="line">		glm::mat4 model = glm::mat4(1.0f); </span><br><span class="line">		glm::mat4 view = glm::mat4(1.0f);</span><br><span class="line">		glm::mat4 projection = glm::mat4(1.0f);</span><br><span class="line">		model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(0.5f, 1.0f, 0.0f));</span><br><span class="line">		view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));</span><br><span class="line">		projection = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);</span><br><span class="line">		// 获取Uniform变量的位置</span><br><span class="line">		unsigned int modelLoc = glGetUniformLocation(shaderProgram, &quot;model&quot;);</span><br><span class="line">		unsigned int viewLoc = glGetUniformLocation(shaderProgram, &quot;view&quot;);</span><br><span class="line">		unsigned int projectionLoc = glGetUniformLocation(shaderProgram, &quot;projection&quot;);</span><br><span class="line">		// 将矩阵传入着色器</span><br><span class="line">		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));</span><br><span class="line">		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));</span><br><span class="line">		glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"></span><br><span class="line">//	将矩阵传入着色器</span><br><span class="line">#version 330 core</span><br><span class="line">layout (location = 0) in vec3 aPos;</span><br><span class="line">...</span><br><span class="line">uniform mat4 model;</span><br><span class="line">uniform mat4 view;</span><br><span class="line">uniform mat4 projection;</span><br><span class="line"></span><br><span class="line">void main() &#123;</span><br><span class="line">    // 注意乘法要从右向左读</span><br><span class="line">    gl_Position = projection * view * model * vec4(aPos, 1.0);</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">//	在迭代渲染中</span><br><span class="line">while () &#123;</span><br><span class="line">	...</span><br><span class="line">	</span><br><span class="line">		//	创建坐标转换矩阵, 将局部坐标变换为标准设备坐标 </span><br><span class="line">		glm::mat4 model = glm::mat4(1.0f); </span><br><span class="line">		glm::mat4 view = glm::mat4(1.0f);</span><br><span class="line">		glm::mat4 projection = glm::mat4(1.0f);</span><br><span class="line">		model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(0.5f, 1.0f, 0.0f));</span><br><span class="line">		view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));</span><br><span class="line">		projection = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);</span><br><span class="line">		// 获取Uniform变量的位置</span><br><span class="line">		unsigned int modelLoc = glGetUniformLocation(ourShader.ID, &quot;model&quot;);</span><br><span class="line">		unsigned int viewLoc = glGetUniformLocation(ourShader.ID, &quot;view&quot;);</span><br><span class="line">		unsigned int projectionLoc = glGetUniformLocation(ourShader.ID, &quot;projection&quot;);</span><br><span class="line">		// 将矩阵传入着色器</span><br><span class="line">		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));</span><br><span class="line">		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));</span><br><span class="line">		glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="Z缓冲"><a href="#Z缓冲" class="headerlink" title="Z缓冲"></a>Z缓冲</h1><p>​    Z缓冲存储了深度信息,  当开启深度测试时, 若Z值在Z缓冲值之后, 则会被丢弃; 否则会覆盖</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//	开启深度测试</span><br><span class="line">glEnable(GL_DEPTH_TEST);</span><br><span class="line"></span><br><span class="line">while () &#123;</span><br><span class="line">	//	清除深度缓冲</span><br><span class="line"> 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="画一个立方体"><a href="#画一个立方体" class="headerlink" title="画一个立方体"></a>画一个立方体</h1><p><a href="https://blog.csdn.net/wodownload2/article/details/78139273" target="_blank" rel="noopener">https://blog.csdn.net/wodownload2/article/details/78139273</a></p>
-<h1 id="第三次作业"><a href="#第三次作业" class="headerlink" title="第三次作业"></a>第三次作业</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;glad/glad.h&gt;</span><br><span class="line">#include &lt;GLFW/glfw3.h&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &quot;imgui.h&quot;</span><br><span class="line">#include &quot;imgui_impl_glfw.h&quot;</span><br><span class="line">#include &quot;imgui_impl_opengl3.h&quot;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;glm/glm.hpp&gt;</span><br><span class="line">#include &lt;glm/gtc/matrix_transform.hpp&gt;</span><br><span class="line">#include &lt;glm/gtc/type_ptr.hpp&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const unsigned int SCR_WIDTH = 800;</span><br><span class="line">const unsigned int SCR_HEIGHT = 600;</span><br><span class="line"></span><br><span class="line">void framebuffer_size_callback(GLFWwindow* window, int width, int height) &#123;</span><br><span class="line">	//	设置渲染窗口的尺寸. 参数分别是距左下角的x, y距离, 宽, 高</span><br><span class="line">	glViewport(0, 0, width, height);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void processInput(GLFWwindow *window) &#123;</span><br><span class="line">	//	检测用户是否按下了Esc, 按下则退出窗口</span><br><span class="line">	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)</span><br><span class="line">		glfwSetWindowShouldClose(window, true);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">	//	初始化</span><br><span class="line">	glfwInit();</span><br><span class="line">	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);</span><br><span class="line">	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);</span><br><span class="line">	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	//	创建一个窗口</span><br><span class="line">	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, &quot;LearnOpenGL&quot;, NULL, NULL);</span><br><span class="line">	if (window == NULL)</span><br><span class="line">	&#123;</span><br><span class="line">		std::cout &lt;&lt; &quot;Failed to create GLFW window&quot; &lt;&lt; std::endl;</span><br><span class="line">		glfwTerminate();</span><br><span class="line">		return -1;</span><br><span class="line">	&#125;</span><br><span class="line">	//	设置窗口上下文为当前线程的主上下文</span><br><span class="line">	glfwMakeContextCurrent(window);</span><br><span class="line">	//	当窗口大小改变时调用此函数</span><br><span class="line">	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	//	使用GLAD加载OpenGL提供的函数指针</span><br><span class="line">	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) &#123;</span><br><span class="line">		std::cout &lt;&lt; &quot;Failed to initialize GLAD&quot; &lt;&lt; std::endl;</span><br><span class="line">		return -1;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	//	顶点数组</span><br><span class="line">	float vertices[] = &#123;</span><br><span class="line">		-2.0f, -2.0f, -2.0f, 0.2f, 0.3f, 0.4f,</span><br><span class="line">		2.0f, -2.0f, -2.0f, 0.2f, 0.3f, 0.4f,</span><br><span class="line">		2.0f, 2.0f, -2.0f, 0.2f, 0.3f, 0.4f,</span><br><span class="line">		2.0f, 2.0f, -2.0f, 0.2f, 0.3f, 0.4f,</span><br><span class="line">		-2.0f, 2.0f, -2.0f, 0.2f, 0.3f, 0.4f,</span><br><span class="line">		-2.0f, -2.0f, -2.0f, 0.2f, 0.3f, 0.4f,</span><br><span class="line"></span><br><span class="line">		-2.0f, -2.0f, 2.0f, 0.3f, 0.4f, 0.5f,</span><br><span class="line">		2.0f, -2.0f, 2.0f, 0.3f, 0.4f, 0.5f,</span><br><span class="line">		2.0f, 2.0f, 2.0f, 0.3f, 0.4f, 0.5f,</span><br><span class="line">		2.0f, 2.0f, 2.0f, 0.3f, 0.4f, 0.5f,</span><br><span class="line">		-2.0f, 2.0f, 2.0f, 0.3f, 0.4f, 0.5f,</span><br><span class="line">		-2.0f, -2.0f, 2.0f, 0.3f, 0.4f, 0.5f,</span><br><span class="line"></span><br><span class="line">		-2.0f, 2.0f, 2.0f, 0.4f, 0.5f, 0.6f,</span><br><span class="line">		-2.0f, 2.0f, -2.0f, 0.4f, 0.5f, 0.6f,</span><br><span class="line">		-2.0f, -2.0f, -2.0f, 0.4f, 0.5f, 0.6f,</span><br><span class="line">		-2.0f, -2.0f, -2.0f, 0.4f, 0.5f, 0.6f,</span><br><span class="line">		-2.0f, -2.0f, 2.0f, 0.4f, 0.5f, 0.6f,</span><br><span class="line">		-2.0f, 2.0f, 2.0f, 0.4f, 0.5f, 0.6f,</span><br><span class="line"></span><br><span class="line">		2.0f, 2.0f, 2.0f, 0.5f, 0.6f, 0.7f,</span><br><span class="line">		2.0f, 2.0f, -2.0f, 0.5f, 0.6f, 0.7f,</span><br><span class="line">		2.0f, -2.0f, -2.0f, 0.5f, 0.6f, 0.7f,</span><br><span class="line">		2.0f, -2.0f, -2.0f, 0.5f, 0.6f, 0.7f,</span><br><span class="line">		2.0f, -2.0f, 2.0f, 0.5f, 0.6f, 0.7f,</span><br><span class="line">		2.0f, 2.0f, 2.0f, 0.5f, 0.6f, 0.7f,</span><br><span class="line"></span><br><span class="line">		-2.0f, -2.0f, -2.0f, 0.6f, 0.7f, 0.8f,</span><br><span class="line">		2.0f, -2.0f, -2.0f, 0.6f, 0.7f, 0.8f,</span><br><span class="line">		2.0f, -2.0f, 2.0f, 0.6f, 0.7f, 0.8f,</span><br><span class="line">		2.0f, -2.0f, 2.0f, 0.6f, 0.7f, 0.8f,</span><br><span class="line">		-2.0f, -2.0f, 2.0f, 0.6f, 0.7f, 0.8f,</span><br><span class="line">		-2.0f, -2.0f, -2.0f, 0.6f, 0.7f, 0.8f,</span><br><span class="line"></span><br><span class="line">		-2.0f, 2.0f, -2.0f, 0.7f, 0.8f, 0.9f,</span><br><span class="line">		2.0f, 2.0f, -2.0f, 0.7f, 0.8f, 0.9f,</span><br><span class="line">		2.0f, 2.0f, 2.0f, 0.7f, 0.8f, 0.9f,</span><br><span class="line">		2.0f, 2.0f, 2.0f, 0.7f, 0.8f, 0.9f,</span><br><span class="line">		-2.0f, 2.0f, 2.0f, 0.7f, 0.8f, 0.9f,</span><br><span class="line">		-2.0f, 2.0f, -2.0f, 0.7f, 0.8f, 0.9f</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	//	创建VAO对象</span><br><span class="line">	unsigned int VAO;</span><br><span class="line">	glGenVertexArrays(1, &amp;VAO);</span><br><span class="line">	//	绑定VAO</span><br><span class="line">	glBindVertexArray(VAO);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	//	生成VBO对象</span><br><span class="line">	unsigned int VBO;</span><br><span class="line">	glGenBuffers(1, &amp;VBO);</span><br><span class="line">	//	绑定VBO</span><br><span class="line">	glBindBuffer(GL_ARRAY_BUFFER, VBO);</span><br><span class="line">	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	//	使用GLSL语言编写顶点着色器</span><br><span class="line">	const char *vertexShaderSource = &quot;#version 330 core\n&quot;</span><br><span class="line">		&quot;layout (location = 0) in vec3 aPos;\n&quot;</span><br><span class="line">		&quot;layout (location = 1) in vec3 aColor;\n&quot;</span><br><span class="line">		&quot;uniform mat4 model;\n&quot;</span><br><span class="line">		&quot;uniform mat4 view;\n&quot;</span><br><span class="line">		&quot;uniform mat4 projection;\n&quot;</span><br><span class="line">		&quot;uniform mat4 transform;\n&quot;</span><br><span class="line">		&quot;out vec3 ourColor;\n&quot;</span><br><span class="line">		&quot;void main()&#123;\n&quot;</span><br><span class="line">		&quot;   gl_Position = projection * view * model * transform * vec4(aPos, 1.0);\n&quot;</span><br><span class="line">		&quot;	ourColor = aColor;\n&quot;</span><br><span class="line">		&quot;&#125;\0&quot;;</span><br><span class="line"></span><br><span class="line">	//	创建着色器对象</span><br><span class="line">	int vertexShader = glCreateShader(GL_VERTEX_SHADER);</span><br><span class="line">	//	把着色器源码附加到着色器对象上</span><br><span class="line">	glShaderSource(vertexShader, 1, &amp;vertexShaderSource, NULL);</span><br><span class="line">	//	编译着色器</span><br><span class="line">	glCompileShader(vertexShader);</span><br><span class="line"></span><br><span class="line">	//	检查编译是否成功</span><br><span class="line">	int success;</span><br><span class="line">	char infoLog[512];</span><br><span class="line">	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &amp;success);</span><br><span class="line">	if (!success) &#123;</span><br><span class="line">		glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);</span><br><span class="line">		std::cout &lt;&lt; &quot;ERROR::SHADER::VERTEX::COMPILATION_FAILED\n&quot; &lt;&lt; infoLog &lt;&lt; std::endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	//	编写并编译片段着色器</span><br><span class="line">	const char *fragmentShaderSource = &quot;#version 330 core\n&quot;</span><br><span class="line">		&quot;in vec3 ourColor;\n&quot;</span><br><span class="line">		&quot;out vec4 FragColor;\n&quot;</span><br><span class="line">		&quot;void main() &#123;\n&quot;</span><br><span class="line">		&quot;   FragColor = vec4(ourColor, 1.0f);\n&quot;</span><br><span class="line">		&quot;&#125;\n\0&quot;;</span><br><span class="line">	int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);</span><br><span class="line">	glShaderSource(fragmentShader, 1, &amp;fragmentShaderSource, NULL);</span><br><span class="line">	glCompileShader(fragmentShader);</span><br><span class="line">	// check for shader compile errors</span><br><span class="line">	glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &amp;success);</span><br><span class="line">	if (!success) &#123;</span><br><span class="line">		glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);</span><br><span class="line">		std::cout &lt;&lt; &quot;ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n&quot; &lt;&lt; infoLog &lt;&lt; std::endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	//	设置位置属性</span><br><span class="line">	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);</span><br><span class="line">	glEnableVertexAttribArray(0);</span><br><span class="line">	//	设置颜色属性</span><br><span class="line">	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));</span><br><span class="line">	glEnableVertexAttribArray(1);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	//	创建程序对象</span><br><span class="line">	int shaderProgram = glCreateProgram();</span><br><span class="line"></span><br><span class="line">	//	将着色器附加到程序对象上, 然后链接</span><br><span class="line">	glAttachShader(shaderProgram, vertexShader);</span><br><span class="line">	glAttachShader(shaderProgram, fragmentShader);</span><br><span class="line">	glLinkProgram(shaderProgram);</span><br><span class="line"></span><br><span class="line">	// 检查链接是否成功</span><br><span class="line">	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &amp;success);</span><br><span class="line">	if (!success) &#123;</span><br><span class="line">		glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);</span><br><span class="line">		std::cout &lt;&lt; &quot;ERROR::SHADER::PROGRAM::LINKING_FAILED\n&quot; &lt;&lt; infoLog &lt;&lt; std::endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	//	删除着色器对象</span><br><span class="line">	glDeleteShader(vertexShader);</span><br><span class="line">	glDeleteShader(fragmentShader);</span><br><span class="line"></span><br><span class="line">	//	开启深度测试</span><br><span class="line">	glEnable(GL_DEPTH_TEST);</span><br><span class="line"></span><br><span class="line">	//	初始化ImgUI</span><br><span class="line">	IMGUI_CHECKVERSION();</span><br><span class="line">	ImGui::CreateContext();</span><br><span class="line">	ImGuiIO&amp; io = ImGui::GetIO(); (void)io;</span><br><span class="line">	ImGui::StyleColorsDark();</span><br><span class="line">	ImGui_ImplGlfw_InitForOpenGL(window, true);</span><br><span class="line">	ImGui_ImplOpenGL3_Init(&quot;#version 150&quot;);</span><br><span class="line"></span><br><span class="line">	bool show_demo_window = true;</span><br><span class="line">	bool choose_translation = false;</span><br><span class="line">	bool choose_rotation = false;</span><br><span class="line">	bool choose_scale = false;</span><br><span class="line"></span><br><span class="line">	glm::mat4 transform = glm::mat4(1.0f);</span><br><span class="line"></span><br><span class="line">	//	循环渲染</span><br><span class="line">	while (!glfwWindowShouldClose(window)) &#123;	//	判断渲染是否结束</span><br><span class="line">		processInput(window);</span><br><span class="line"></span><br><span class="line">		//	清屏</span><br><span class="line">		glClear(GL_COLOR_BUFFER_BIT);</span><br><span class="line">		//	清除深度缓冲</span><br><span class="line">		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);</span><br><span class="line">		</span><br><span class="line"></span><br><span class="line">		// Start the Dear ImGui frame</span><br><span class="line">		ImGui_ImplOpenGL3_NewFrame();</span><br><span class="line">		ImGui_ImplGlfw_NewFrame();</span><br><span class="line">		ImGui::NewFrame();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		&#123;</span><br><span class="line">			ImGui::Begin(&quot; &quot;);</span><br><span class="line">			ImGui::SetWindowFontScale(1.4);</span><br><span class="line">			ImGui::Text(&quot;Choose a kind of Transform&quot;);</span><br><span class="line">			ImGui::Checkbox(&quot;Translation&quot;, &amp;choose_translation);</span><br><span class="line">			ImGui::Checkbox(&quot;Rotation&quot;, &amp;choose_rotation);</span><br><span class="line">			ImGui::Checkbox(&quot;Scale&quot;, &amp;choose_scale);</span><br><span class="line">			ImGui::End();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		if (choose_translation) &#123;</span><br><span class="line">			transform = glm::translate(transform, glm::vec3(0.001f, 0.0f, 0.0f));</span><br><span class="line">		&#125;</span><br><span class="line">		else if (choose_rotation) &#123;</span><br><span class="line">			transform = glm::rotate(transform, (float)glfwGetTime() / 1000, glm::vec3(0.0f, 0.0f, 1.0f));</span><br><span class="line">		&#125;</span><br><span class="line">		else if (choose_scale) &#123;</span><br><span class="line">			transform = glm::scale(transform, glm::vec3(1.0001f, 1.0001f, 1.0001f));</span><br><span class="line">		&#125;</span><br><span class="line">		unsigned int transformLoc = glGetUniformLocation(shaderProgram, &quot;transform&quot;);</span><br><span class="line">		glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));</span><br><span class="line"></span><br><span class="line">		//	激活着色器</span><br><span class="line">		glUseProgram(shaderProgram);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		//	创建坐标转换矩阵, 将局部坐标变换为标准设备坐标 </span><br><span class="line">		glm::mat4 model = glm::mat4(1.0f); </span><br><span class="line">		glm::mat4 view = glm::mat4(1.0f);</span><br><span class="line">		glm::mat4 projection = glm::mat4(1.0f);</span><br><span class="line">		model = glm::scale(model, glm::vec3(0.25, 0.25, 0.25));</span><br><span class="line">		view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));</span><br><span class="line">		projection = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);</span><br><span class="line">		// 获取Uniform变量的位置</span><br><span class="line">		unsigned int modelLoc = glGetUniformLocation(shaderProgram, &quot;model&quot;);</span><br><span class="line">		unsigned int viewLoc = glGetUniformLocation(shaderProgram, &quot;view&quot;);</span><br><span class="line">		unsigned int projectionLoc = glGetUniformLocation(shaderProgram, &quot;projection&quot;);</span><br><span class="line">		// 将矩阵传入着色器</span><br><span class="line">		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));</span><br><span class="line">		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));</span><br><span class="line">		glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));</span><br><span class="line"></span><br><span class="line">		</span><br><span class="line">		//	绘制图元</span><br><span class="line">		glBindVertexArray(VAO);</span><br><span class="line">		glDrawArrays(GL_TRIANGLES, 0, 36);</span><br><span class="line">		</span><br><span class="line"></span><br><span class="line">		// Rendering</span><br><span class="line">		ImGui::Render();</span><br><span class="line">		int display_w, display_h;</span><br><span class="line">		glfwMakeContextCurrent(window);</span><br><span class="line">		glfwGetFramebufferSize(window, &amp;display_w, &amp;display_h);</span><br><span class="line">		glViewport(0, 0, display_w, display_h);</span><br><span class="line">		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());</span><br><span class="line"></span><br><span class="line">		glfwPollEvents();</span><br><span class="line">		glfwSwapBuffers(window);		//	交换颜色缓冲, 即渲染</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	//	释放VAO、VBO</span><br><span class="line">	glDeleteVertexArrays(1, &amp;VAO);</span><br><span class="line">	glDeleteBuffers(1, &amp;VBO);</span><br><span class="line"></span><br><span class="line">	//	释放渲染资源</span><br><span class="line">	glfwTerminate();</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/计算机图形学/计算机图形学/学习(二)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/计算机图形学/计算机图形学/学习(二)/" itemprop="url">学习二</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-08T11:47:56+08:00">
-                2019-04-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机图形学/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机图形学</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="第二次作业"><a href="#第二次作业" class="headerlink" title="第二次作业"></a>第二次作业</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br><span class="line">496</span><br><span class="line">497</span><br><span class="line">498</span><br><span class="line">499</span><br><span class="line">500</span><br><span class="line">501</span><br><span class="line">502</span><br><span class="line">503</span><br><span class="line">504</span><br><span class="line">505</span><br><span class="line">506</span><br><span class="line">507</span><br><span class="line">508</span><br><span class="line">509</span><br><span class="line">510</span><br><span class="line">511</span><br><span class="line">512</span><br><span class="line">513</span><br><span class="line">514</span><br><span class="line">515</span><br><span class="line">516</span><br><span class="line">517</span><br><span class="line">518</span><br><span class="line">519</span><br><span class="line">520</span><br><span class="line">521</span><br><span class="line">522</span><br><span class="line">523</span><br><span class="line">524</span><br><span class="line">525</span><br><span class="line">526</span><br><span class="line">527</span><br><span class="line">528</span><br><span class="line">529</span><br><span class="line">530</span><br><span class="line">531</span><br><span class="line">532</span><br><span class="line">533</span><br><span class="line">534</span><br><span class="line">535</span><br><span class="line">536</span><br><span class="line">537</span><br><span class="line">538</span><br><span class="line">539</span><br><span class="line">540</span><br><span class="line">541</span><br><span class="line">542</span><br><span class="line">543</span><br><span class="line">544</span><br><span class="line">545</span><br><span class="line">546</span><br><span class="line">547</span><br><span class="line">548</span><br><span class="line">549</span><br><span class="line">550</span><br><span class="line">551</span><br><span class="line">552</span><br><span class="line">553</span><br><span class="line">554</span><br><span class="line">555</span><br><span class="line">556</span><br><span class="line">557</span><br><span class="line">558</span><br><span class="line">559</span><br><span class="line">560</span><br><span class="line">561</span><br><span class="line">562</span><br><span class="line">563</span><br><span class="line">564</span><br><span class="line">565</span><br><span class="line">566</span><br><span class="line">567</span><br><span class="line">568</span><br><span class="line">569</span><br><span class="line">570</span><br><span class="line">571</span><br><span class="line">572</span><br><span class="line">573</span><br><span class="line">574</span><br><span class="line">575</span><br><span class="line">576</span><br><span class="line">577</span><br><span class="line">578</span><br><span class="line">579</span><br><span class="line">580</span><br><span class="line">581</span><br><span class="line">582</span><br><span class="line">583</span><br><span class="line">584</span><br><span class="line">585</span><br><span class="line">586</span><br><span class="line">587</span><br><span class="line">588</span><br><span class="line">589</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;glad/glad.h&gt;</span><br><span class="line">#include &lt;GLFW/glfw3.h&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &quot;imgui.h&quot;</span><br><span class="line">#include &quot;imgui_impl_glfw.h&quot;</span><br><span class="line">#include &quot;imgui_impl_opengl3.h&quot;</span><br><span class="line">#include &lt;cmath&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void framebuffer_size_callback(GLFWwindow* window, int width, int height) &#123;</span><br><span class="line">	//	设置渲染窗口的尺寸. 参数分别是距左下角的x, y距离, 宽, 高</span><br><span class="line">	glViewport(0, 0, width, height);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void processInput(GLFWwindow *window) &#123;</span><br><span class="line">	//	检测用户是否按下了Esc, 按下则退出窗口</span><br><span class="line">	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)</span><br><span class="line">		glfwSetWindowShouldClose(window, true);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void BresenhamLine(int x1, int y1, int x2, int y2, float(&amp;vertices)[10000], int&amp; length) &#123;</span><br><span class="line">	int dx = x2 - x1;</span><br><span class="line">	int dy = y2 - y1;</span><br><span class="line"></span><br><span class="line">	//	斜率不存在</span><br><span class="line">	if (dx == 0) &#123;</span><br><span class="line">		if (dy &lt; 0) &#123;</span><br><span class="line">			swap(x1, x2);</span><br><span class="line">			swap(y1, y2);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		int x = x1;</span><br><span class="line">		int y = y1;</span><br><span class="line">		for (int i = 0; i &lt; dy; i++) &#123;</span><br><span class="line">			vertices[length] = x / 400.0f;</span><br><span class="line">			vertices[length + 1] = y / 400.0f;</span><br><span class="line">			vertices[length + 2] = 0.f;</span><br><span class="line">			length += 3;</span><br><span class="line">			y++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	else &#123;</span><br><span class="line">		float m = (float)dy / dx;</span><br><span class="line"></span><br><span class="line">		if (fabs(m) &lt;= 1 &amp;&amp; x1 &gt; x2) &#123;</span><br><span class="line">			swap(x1, x2);</span><br><span class="line">			swap(y1, y2);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		if (fabs(m) &gt; 1 &amp;&amp; y1 &gt; y2) &#123;</span><br><span class="line">			swap(x1, x2);</span><br><span class="line">			swap(y1, y2);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		dx = x2 - x1;</span><br><span class="line">		dy = y2 - y1;</span><br><span class="line">		m = (float)dy / dx;</span><br><span class="line"></span><br><span class="line">		if (fabs(m) &lt;= 1) &#123;</span><br><span class="line">			int steps = x2 - x1;</span><br><span class="line"></span><br><span class="line">			if (dy &gt;= 0) &#123;</span><br><span class="line">				int p = 2 * dy - dx;</span><br><span class="line">				int x = x1;</span><br><span class="line">				int y = y1;</span><br><span class="line"></span><br><span class="line">				vertices[length] = x / 400.0f;</span><br><span class="line">				vertices[length + 1] = y / 400.0f;</span><br><span class="line">				vertices[length + 2] = 0.f;</span><br><span class="line">				length += 3;</span><br><span class="line"></span><br><span class="line">				for (int i = 0; i &lt; steps; i++) &#123;</span><br><span class="line">					if (p &lt;= 0) &#123;</span><br><span class="line">						x = x + 1;</span><br><span class="line">						p = p + 2 * dy;</span><br><span class="line">					&#125;</span><br><span class="line">					else &#123;</span><br><span class="line">						x = x + 1;</span><br><span class="line">						y = y + 1;</span><br><span class="line">						p = p + 2 * dy - 2 * dx;</span><br><span class="line">					&#125;</span><br><span class="line"></span><br><span class="line">					vertices[length] = x / 400.0f;</span><br><span class="line">					vertices[length + 1] = y / 400.0f;</span><br><span class="line">					vertices[length + 2] = 0.f;</span><br><span class="line">					length += 3;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			else &#123;</span><br><span class="line">				int p = 2 * (-dy) - dx;</span><br><span class="line">				int x = x1;</span><br><span class="line">				int y = -y1;</span><br><span class="line"></span><br><span class="line">				vertices[length] = x / 400.0f;</span><br><span class="line">				vertices[length + 1] = -y / 400.0f;</span><br><span class="line">				vertices[length + 2] = 0.f;</span><br><span class="line">				length += 3;</span><br><span class="line"></span><br><span class="line">				for (int i = 0; i &lt; steps; i++) &#123;</span><br><span class="line">					if (p &lt;= 0) &#123;</span><br><span class="line">						x = x + 1;</span><br><span class="line">						p = p + 2 * (-dy);</span><br><span class="line">					&#125;</span><br><span class="line">					else &#123;</span><br><span class="line">						x = x + 1;</span><br><span class="line">						y = y + 1;</span><br><span class="line">						p = p + 2 * (-dy) - 2 * dx;</span><br><span class="line">					&#125;</span><br><span class="line"></span><br><span class="line">					vertices[length] = x / 400.0f;</span><br><span class="line">					vertices[length + 1] = -y / 400.0f;</span><br><span class="line">					vertices[length + 2] = 0.f;</span><br><span class="line">					length += 3;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		else &#123;</span><br><span class="line">			int steps = y2 - y1;</span><br><span class="line">			if (dx &gt;= 0) &#123;</span><br><span class="line">				int p = 2 * dy - dx;</span><br><span class="line">				int x = x1;</span><br><span class="line">				int y = y1;</span><br><span class="line"></span><br><span class="line">				vertices[length] = x / 400.0f;</span><br><span class="line">				vertices[length + 1] = y / 400.0f;</span><br><span class="line">				vertices[length + 2] = 0.f;</span><br><span class="line">				length += 3;</span><br><span class="line"></span><br><span class="line">				for (int i = 0; i &lt; steps; i++) &#123;</span><br><span class="line">					if (p &lt;= 0) &#123;</span><br><span class="line">						y = y + 1;</span><br><span class="line">						p = p + 2 * dx;</span><br><span class="line">					&#125;</span><br><span class="line">					else &#123;</span><br><span class="line">						x = x + 1;</span><br><span class="line">						y = y + 1;</span><br><span class="line">						p = p + 2 * dx - 2 * dy;</span><br><span class="line">					&#125;</span><br><span class="line"></span><br><span class="line">					vertices[length] = x / 400.0f;</span><br><span class="line">					vertices[length + 1] = y / 400.0f;</span><br><span class="line">					vertices[length + 2] = 0.f;</span><br><span class="line">					length += 3;</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">			&#125;</span><br><span class="line">			else &#123;</span><br><span class="line">				int p = 2 * (-dx) - dy;</span><br><span class="line">				int x = -x1;</span><br><span class="line">				int y = y1;</span><br><span class="line"></span><br><span class="line">				vertices[length] = -x / 400.0f;</span><br><span class="line">				vertices[length + 1] = y / 400.0f;</span><br><span class="line">				vertices[length + 2] = 0.f;</span><br><span class="line">				length += 3;</span><br><span class="line"></span><br><span class="line">				for (int i = 0; i &lt; steps; i++) &#123;</span><br><span class="line">					if (p &lt;= 0) &#123;</span><br><span class="line">						y = y + 1;</span><br><span class="line">						p = p + 2 * (-dx);</span><br><span class="line">					&#125;</span><br><span class="line">					else &#123;</span><br><span class="line">						x = x + 1;</span><br><span class="line">						y = y + 1;</span><br><span class="line">						p = p + 2 * (-dx) - 2 * dy;</span><br><span class="line">					&#125;</span><br><span class="line"></span><br><span class="line">					vertices[length] = -x / 400.0f;</span><br><span class="line">					vertices[length + 1] = y / 400.0f;</span><br><span class="line">					vertices[length + 2] = 0.f;</span><br><span class="line">					length += 3;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int printLine(float(&amp;vertices)[10000], int x1, int y1, int x2, int y2, int x3, int y3) &#123;</span><br><span class="line">	int length = 0;</span><br><span class="line">	BresenhamLine(x1, y1, x2, y2, vertices, length);</span><br><span class="line">	BresenhamLine(x1, y1, x3, y3, vertices, length);</span><br><span class="line">	BresenhamLine(x2, y2, x3, y3, vertices, length);</span><br><span class="line"></span><br><span class="line">	return length;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int printCircle(float(&amp;vertices)[10000], int xc, int yc, int r) &#123;</span><br><span class="line">	int length = 0;</span><br><span class="line"></span><br><span class="line">	float xi = 0, yi = r;</span><br><span class="line">	float p = 1.25 - r;</span><br><span class="line">	while (abs(xi) &lt;= (r / (float)sqrt(2))) &#123;</span><br><span class="line">		vertices[length] = (xc + xi) / 800.0f;</span><br><span class="line">		vertices[length + 1] = (yc + yi) / 800.0f;</span><br><span class="line">		vertices[length + 2] = 0.f;</span><br><span class="line">		length += 3;</span><br><span class="line"></span><br><span class="line">		vertices[length] = (xc - xi) / 800.0f;</span><br><span class="line">		vertices[length + 1] = (yc + yi) / 800.0f;</span><br><span class="line">		vertices[length + 2] = 0.f;</span><br><span class="line">		length += 3;</span><br><span class="line"></span><br><span class="line">		vertices[length] = (xc + xi) / 800.0f;</span><br><span class="line">		vertices[length + 1] = (yc - yi) / 800.0f;</span><br><span class="line">		vertices[length + 2] = 0.f;</span><br><span class="line">		length += 3;</span><br><span class="line"></span><br><span class="line">		vertices[length] = (xc - xi) / 800.0f;</span><br><span class="line">		vertices[length + 1] = (yc - yi) / 800.0f;</span><br><span class="line">		vertices[length + 2] = 0.f;</span><br><span class="line">		length += 3;</span><br><span class="line"></span><br><span class="line">		vertices[length] = (xc + yi) / 800.0f;</span><br><span class="line">		vertices[length + 1] = (yc + xi) / 800.0f;</span><br><span class="line">		vertices[length + 2] = 0.f;</span><br><span class="line">		length += 3;</span><br><span class="line"></span><br><span class="line">		vertices[length] = (xc - yi) / 800.0f;</span><br><span class="line">		vertices[length + 1] = (yc + xi) / 800.0f;</span><br><span class="line">		vertices[length + 2] = 0.f;</span><br><span class="line">		length += 3;</span><br><span class="line"></span><br><span class="line">		vertices[length] = (xc + yi) / 800.0f;</span><br><span class="line">		vertices[length + 1] = (yc - xi) / 800.0f;</span><br><span class="line">		vertices[length + 2] = 0.f;</span><br><span class="line">		length += 3;</span><br><span class="line"></span><br><span class="line">		vertices[length] = (xc - yi) / 800.0f;</span><br><span class="line">		vertices[length + 1] = (yc - xi) / 800.0f;</span><br><span class="line">		vertices[length + 2] = 0.f;</span><br><span class="line">		length += 3;</span><br><span class="line"></span><br><span class="line">		if (p &lt;= 0) &#123;</span><br><span class="line">			xi = xi + 1;</span><br><span class="line">			yi = yi;</span><br><span class="line">			p = p + 2 * xi + 2;</span><br><span class="line">		&#125;</span><br><span class="line">		else &#123;</span><br><span class="line">			xi = xi + 1;</span><br><span class="line">			yi = yi - 1;</span><br><span class="line">			p = p + 2 * (xi - yi) + 5;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	return length;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">vector&lt;int&gt; lineEquation(int x1, int y1, int x2, int y2) &#123;</span><br><span class="line">	// line equation: Ax+ By+ C= 0</span><br><span class="line">	vector&lt;int&gt; res;</span><br><span class="line">	int A = y2 - y1;</span><br><span class="line">	int B = x1 - x2;</span><br><span class="line">	int C = x2 * y1 - x1 * y2;</span><br><span class="line">	res.push_back(A);</span><br><span class="line">	res.push_back(B);</span><br><span class="line">	res.push_back(C);</span><br><span class="line">	return res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">vector&lt;int&gt; rasterizeTriangle(int x1, int y1, int x2, int y2, int x3, int y3) &#123;</span><br><span class="line">	int max_x = max(x1, max(x2, x3));</span><br><span class="line">	int min_x = min(x1, min(x2, x3));</span><br><span class="line">	int max_y = max(y1, max(y2, y3));</span><br><span class="line">	int min_y = min(y1, min(y2, y3));</span><br><span class="line">	int center_x = (max_x - min_x) / 2;</span><br><span class="line">	int center_y = (max_y - min_y) / 2;</span><br><span class="line">	vector&lt; vector&lt;int&gt; &gt; lines;</span><br><span class="line">	lines.push_back(lineEquation(x1, y1, x2, y2));</span><br><span class="line">	lines.push_back(lineEquation(x1, y1, x3, y3));</span><br><span class="line">	lines.push_back(lineEquation(x3, y3, x2, y2));</span><br><span class="line"></span><br><span class="line">	for (int i = 0; i&lt; 3; i++) &#123;</span><br><span class="line">		int x_temp, y_temp;</span><br><span class="line">		if (i == 0) &#123;</span><br><span class="line">			x_temp = x3; y_temp = y3;</span><br><span class="line">		&#125;</span><br><span class="line">		else if (i == 1) &#123;</span><br><span class="line">			x_temp = x2; y_temp = y2;</span><br><span class="line">		&#125;</span><br><span class="line">		else &#123;</span><br><span class="line">			x_temp = x1; y_temp = y1;</span><br><span class="line">		&#125;</span><br><span class="line">		if (lines[i][0] * x_temp + lines[i][1] * y_temp + lines[i][2]&lt; 0) &#123;</span><br><span class="line">			for (int j = 0; j&lt; lines[i].size(); j++) &#123;</span><br><span class="line">				lines[i][j] *= -1;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	// set pixel</span><br><span class="line">	vector&lt;int&gt; pixels;</span><br><span class="line">	for (int x = min_x; x &lt;= max_x; x++) &#123;</span><br><span class="line">		for (int y = min_y; y &lt;= max_y; y++) &#123;</span><br><span class="line">			bool isInside = true;</span><br><span class="line">			for (int i = 0; i&lt; 3; i++) &#123;</span><br><span class="line">				if (lines[i][0] * x + lines[i][1] * y + lines[i][2]&lt; 0) &#123;</span><br><span class="line">					isInside = false;</span><br><span class="line">					break;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			if (isInside) &#123;</span><br><span class="line">				pixels.push_back(x);</span><br><span class="line">				pixels.push_back(y);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return pixels;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">float *creatVertices(vector&lt;int&gt; v) &#123;</span><br><span class="line">	int point_num = v.size() / 2;</span><br><span class="line">	int total = point_num * 6;</span><br><span class="line">	float *vertices = new float[total];</span><br><span class="line">	for (int i = 0; i&lt; point_num; i++) &#123;</span><br><span class="line">		// position</span><br><span class="line">		vertices[i * 6 + 0] = v[i * 2 + 0] / 400.0f;</span><br><span class="line">		vertices[i * 6 + 1] = v[i * 2 + 1] / 400.0f;</span><br><span class="line">		vertices[i * 6 + 2] = 0.0f;</span><br><span class="line">		// colors</span><br><span class="line">		vertices[i * 6 + 3] = 0.8f;</span><br><span class="line">		vertices[i * 6 + 4] = 1.0f;</span><br><span class="line">		vertices[i * 6 + 5] = 0.8f;</span><br><span class="line">	&#125;</span><br><span class="line">	return vertices;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">	//	初始化</span><br><span class="line">	glfwInit();</span><br><span class="line">	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);</span><br><span class="line">	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);</span><br><span class="line">	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	//	创建一个窗口</span><br><span class="line">	GLFWwindow* window = glfwCreateWindow(800, 800, &quot;LearnOpenGL&quot;, NULL, NULL);</span><br><span class="line">	if (window == NULL)</span><br><span class="line">	&#123;</span><br><span class="line">		std::cout &lt;&lt; &quot;Failed to create GLFW window&quot; &lt;&lt; std::endl;</span><br><span class="line">		glfwTerminate();</span><br><span class="line">		return -1;</span><br><span class="line">	&#125;</span><br><span class="line">	//	设置窗口上下文为当前线程的主上下文</span><br><span class="line">	glfwMakeContextCurrent(window);</span><br><span class="line">	//	当窗口大小改变时调用此函数</span><br><span class="line">	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	//	使用GLAD加载OpenGL提供的函数指针</span><br><span class="line">	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) &#123;</span><br><span class="line">		std::cout &lt;&lt; &quot;Failed to initialize GLAD&quot; &lt;&lt; std::endl;</span><br><span class="line">		return -1;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	IMGUI_CHECKVERSION();</span><br><span class="line">	ImGui::CreateContext();</span><br><span class="line">	ImGuiIO&amp; io = ImGui::GetIO(); (void)io;</span><br><span class="line">	ImGui::StyleColorsDark();</span><br><span class="line">	ImGui_ImplGlfw_InitForOpenGL(window, true);</span><br><span class="line">	ImGui_ImplOpenGL3_Init(&quot;#version 150&quot;);</span><br><span class="line"></span><br><span class="line">	bool show_demo_window = true;</span><br><span class="line">	bool show_another_window = false;</span><br><span class="line"></span><br><span class="line">	int x1, x2, x3, y1, y2, y3;</span><br><span class="line">	cout &lt;&lt; &quot;请输入: x1 y1 x2 y2 x3 y3(取值范围为-200~200)&quot; &lt;&lt; endl;</span><br><span class="line">	cin &gt;&gt; x1 &gt;&gt; y1 &gt;&gt; x2 &gt;&gt; y2 &gt;&gt; x3 &gt;&gt; y3;</span><br><span class="line">	float lineVertices[10000] = &#123; 0.0f &#125;;</span><br><span class="line">	int lineVerticesLength = printLine(lineVertices, x1, y1, x2, y2, x3, y3);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	int xc, yc, r;</span><br><span class="line">	cout &lt;&lt; &quot;请输入: xc yc(取值范围为-200~200) r(取值范围为0~50)&quot; &lt;&lt; endl;</span><br><span class="line">	cin &gt;&gt; xc &gt;&gt; yc &gt;&gt; r;</span><br><span class="line">	float circleVertices[10000] = &#123; 0.0f &#125;;</span><br><span class="line">	int circleVerticesLength = printCircle(circleVertices, xc, yc, r);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	//	创建VAO对象</span><br><span class="line">	unsigned int VAO;</span><br><span class="line">	glGenVertexArrays(1, &amp;VAO);</span><br><span class="line">	//	绑定VAO</span><br><span class="line">	glBindVertexArray(VAO);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	//	生成VBO对象</span><br><span class="line">	unsigned int VBO;</span><br><span class="line">	glGenBuffers(1, &amp;VBO);</span><br><span class="line">	glBindBuffer(GL_ARRAY_BUFFER, VBO);</span><br><span class="line">	glBufferData(GL_ARRAY_BUFFER, lineVerticesLength * sizeof(float), lineVertices, GL_STATIC_DRAW);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	//	使用GLSL语言编写顶点着色器</span><br><span class="line">	const char *vertexShaderSource = &quot;#version 330 core\n&quot;</span><br><span class="line">		&quot;layout (location = 0) in vec3 aPos;\n&quot;</span><br><span class="line">		&quot;void main()&#123;\n&quot;</span><br><span class="line">		&quot;   gl_Position = vec4(aPos, 1.0);\n&quot;</span><br><span class="line">		&quot;&#125;\0&quot;;</span><br><span class="line"></span><br><span class="line">	//	创建着色器对象</span><br><span class="line">	int vertexShader = glCreateShader(GL_VERTEX_SHADER);</span><br><span class="line">	//	把着色器源码附加到着色器对象上</span><br><span class="line">	glShaderSource(vertexShader, 1, &amp;vertexShaderSource, NULL);</span><br><span class="line">	//	编译着色器</span><br><span class="line">	glCompileShader(vertexShader);</span><br><span class="line"></span><br><span class="line">	//	检查编译是否成功</span><br><span class="line">	int success;</span><br><span class="line">	char infoLog[512];</span><br><span class="line">	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &amp;success);</span><br><span class="line">	if (!success) &#123;</span><br><span class="line">		glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);</span><br><span class="line">		std::cout &lt;&lt; &quot;ERROR::SHADER::VERTEX::COMPILATION_FAILED\n&quot; &lt;&lt; infoLog &lt;&lt; std::endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	//	编写并编译片段着色器</span><br><span class="line">	const char *fragmentShaderSource = &quot;#version 330 core\n&quot;</span><br><span class="line">		&quot;out vec4 FragColor;\n&quot;</span><br><span class="line">		&quot;void main() &#123;\n&quot;</span><br><span class="line">		&quot;   FragColor = vec4(0.6f, 0.6, 0.6f, 1.0f);\n&quot;</span><br><span class="line">		&quot;&#125;\n\0&quot;;</span><br><span class="line">	int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);</span><br><span class="line">	glShaderSource(fragmentShader, 1, &amp;fragmentShaderSource, NULL);</span><br><span class="line">	glCompileShader(fragmentShader);</span><br><span class="line">	// check for shader compile errors</span><br><span class="line">	glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &amp;success);</span><br><span class="line">	if (!success) &#123;</span><br><span class="line">		glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);</span><br><span class="line">		std::cout &lt;&lt; &quot;ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n&quot; &lt;&lt; infoLog &lt;&lt; std::endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	//	设置位置属性</span><br><span class="line">	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);</span><br><span class="line">	glEnableVertexAttribArray(0);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	//	创建程序对象</span><br><span class="line">	int shaderProgram = glCreateProgram();</span><br><span class="line"></span><br><span class="line">	//	将着色器附加到程序对象上, 然后链接</span><br><span class="line">	glAttachShader(shaderProgram, vertexShader);</span><br><span class="line">	glAttachShader(shaderProgram, fragmentShader);</span><br><span class="line">	glLinkProgram(shaderProgram);</span><br><span class="line"></span><br><span class="line">	// 检查链接是否成功</span><br><span class="line">	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &amp;success);</span><br><span class="line">	if (!success) &#123;</span><br><span class="line">		glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);</span><br><span class="line">		std::cout &lt;&lt; &quot;ERROR::SHADER::PROGRAM::LINKING_FAILED\n&quot; &lt;&lt; infoLog &lt;&lt; std::endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	//	删除着色器对象</span><br><span class="line">	glDeleteShader(vertexShader);</span><br><span class="line">	glDeleteShader(fragmentShader);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	glBindBuffer(GL_ARRAY_BUFFER, 0);</span><br><span class="line"></span><br><span class="line">	bool if_change = false;</span><br><span class="line">	bool if_ras = false;</span><br><span class="line"></span><br><span class="line">	//	循环渲染</span><br><span class="line">	while (!glfwWindowShouldClose(window)) &#123;	//	判断渲染是否结束</span><br><span class="line">		processInput(window);</span><br><span class="line"></span><br><span class="line">		//	清屏</span><br><span class="line">		glClear(GL_COLOR_BUFFER_BIT);</span><br><span class="line"></span><br><span class="line">		glfwPollEvents();</span><br><span class="line"></span><br><span class="line">		// Start the Dear ImGui frame</span><br><span class="line">		ImGui_ImplOpenGL3_NewFrame();</span><br><span class="line">		ImGui_ImplGlfw_NewFrame();</span><br><span class="line">		ImGui::NewFrame();</span><br><span class="line"></span><br><span class="line">		if (show_demo_window)</span><br><span class="line">			ImGui::ShowDemoWindow(&amp;show_demo_window);</span><br><span class="line"></span><br><span class="line">		&#123;</span><br><span class="line">			ImGui::Begin(&quot;SHAPE CHANGER&quot;);</span><br><span class="line">			ImGui::SetWindowFontScale(1.4);</span><br><span class="line">			static float f = 0.0f;</span><br><span class="line">			static int counter = 0;</span><br><span class="line">			ImGui::Text(&quot;Change the shape!&quot;);</span><br><span class="line">			ImGui::Checkbox(&quot;CHANGE TO CIRCLE&quot;, &amp;if_change);</span><br><span class="line">			ImGui::Checkbox(&quot;Rasterize&quot;, &amp;if_ras);</span><br><span class="line">			ImGui::SliderInt(&quot;CHOOSE THE RADIUS&quot;, &amp;r, 0, 200);</span><br><span class="line">			ImGui::End();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		vector&lt;int&gt; test;</span><br><span class="line"></span><br><span class="line">		if (if_change) &#123;</span><br><span class="line">			circleVerticesLength = printCircle(circleVertices, xc, yc, r);</span><br><span class="line"></span><br><span class="line">			glBindBuffer(GL_ARRAY_BUFFER, VBO);</span><br><span class="line">			glBufferData(GL_ARRAY_BUFFER, circleVerticesLength * sizeof(float), circleVertices, GL_STATIC_DRAW);</span><br><span class="line"></span><br><span class="line">			//	设置位置属性</span><br><span class="line">			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);</span><br><span class="line">			glEnableVertexAttribArray(0);</span><br><span class="line"></span><br><span class="line">			//Unbind</span><br><span class="line">			glBindBuffer(GL_ARRAY_BUFFER, 0);</span><br><span class="line">			glBindVertexArray(VAO);</span><br><span class="line"></span><br><span class="line">			//	激活着色器并绘制图元</span><br><span class="line">			glUseProgram(shaderProgram);</span><br><span class="line">			glBindVertexArray(VAO);</span><br><span class="line"></span><br><span class="line">			glDrawArrays(GL_POINTS, 0, circleVerticesLength / 3);	//	设置图形的形状, 顶点数组的起始索引, 顶点数</span><br><span class="line">		&#125;</span><br><span class="line">		else &#123;</span><br><span class="line"></span><br><span class="line">			glBindBuffer(GL_ARRAY_BUFFER, VBO);</span><br><span class="line">			glBufferData(GL_ARRAY_BUFFER, lineVerticesLength * sizeof(float), lineVertices, GL_STATIC_DRAW);</span><br><span class="line"></span><br><span class="line">			//	设置位置属性</span><br><span class="line">			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);</span><br><span class="line">			glEnableVertexAttribArray(0);</span><br><span class="line"></span><br><span class="line">			//Unbind</span><br><span class="line">			glBindBuffer(GL_ARRAY_BUFFER, 0);</span><br><span class="line">			glBindVertexArray(VAO);</span><br><span class="line"></span><br><span class="line">			//	激活着色器并绘制图元</span><br><span class="line">			glUseProgram(shaderProgram);</span><br><span class="line">			glBindVertexArray(VAO);</span><br><span class="line"></span><br><span class="line">			glDrawArrays(GL_POINTS, 0, lineVerticesLength / 3);	//	设置图形的形状, 顶点数组的起始索引, 顶点数</span><br><span class="line"></span><br><span class="line">			if (if_ras) &#123;</span><br><span class="line">				test = rasterizeTriangle(x1, y1, x2, y2, x3, y3);</span><br><span class="line"></span><br><span class="line">				int point_num = test.size() / 2;</span><br><span class="line">				int total = point_num * 6;</span><br><span class="line">				float *vertices = creatVertices(test);</span><br><span class="line"></span><br><span class="line">				glBindBuffer(GL_ARRAY_BUFFER, VBO);</span><br><span class="line">				glBufferData(GL_ARRAY_BUFFER, total * sizeof(float), vertices, GL_STREAM_DRAW);</span><br><span class="line"></span><br><span class="line">				//Location</span><br><span class="line">				glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);</span><br><span class="line">				glEnableVertexAttribArray(0);</span><br><span class="line">				//Color</span><br><span class="line">				glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));</span><br><span class="line">				glEnableVertexAttribArray(1);</span><br><span class="line"></span><br><span class="line">				//Unbind</span><br><span class="line">				glBindBuffer(GL_ARRAY_BUFFER, 0);</span><br><span class="line">				glBindVertexArray(VAO);</span><br><span class="line"></span><br><span class="line">				glDrawArrays(GL_POINTS, 0, point_num);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line"></span><br><span class="line">		// Rendering</span><br><span class="line">		ImGui::Render();</span><br><span class="line">		int display_w, display_h;</span><br><span class="line">		glfwMakeContextCurrent(window);</span><br><span class="line">		glfwGetFramebufferSize(window, &amp;display_w, &amp;display_h);</span><br><span class="line">		glViewport(0, 0, display_w, display_h);</span><br><span class="line">		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		glfwSwapBuffers(window);		//	交换颜色缓冲, 即渲染</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// Cleanup</span><br><span class="line">	ImGui_ImplOpenGL3_Shutdown();</span><br><span class="line">	ImGui_ImplGlfw_Shutdown();</span><br><span class="line">	ImGui::DestroyContext();</span><br><span class="line"></span><br><span class="line">	//	释放VAO、VBO</span><br><span class="line">	glDeleteVertexArrays(1, &amp;VAO);</span><br><span class="line">	glDeleteBuffers(1, &amp;VBO);</span><br><span class="line"></span><br><span class="line">	//	释放渲染资源</span><br><span class="line">	glfwTerminate();</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/系统分析与设计/系统分析与设计/第二章/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/系统分析与设计/系统分析与设计/第二章/" itemprop="url">第二章</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-20T09:00:53+08:00">
-                2019-03-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/系统分析与设计/" itemprop="url" rel="index">
-                    <span itemprop="name">系统分析与设计</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="简答题"><a href="#简答题" class="headerlink" title="简答题"></a>简答题</h1><h3 id="用简短的语言给出对分析、设计的理解"><a href="#用简短的语言给出对分析、设计的理解" class="headerlink" title="用简短的语言给出对分析、设计的理解"></a>用简短的语言给出对分析、设计的理解</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">分析: 对用户给出的软件功能等方面的需求进行系统的研究, 确定待开发软件的功能、性能、接口、数据、界面等具体的细节要求. 突出强调对问题和需求的调查研究, 而不是解决方案</span><br><span class="line"></span><br><span class="line">设计: 基于需求规划出目标系统的逻辑模型, 然后以此为目的建立工作计划实现成品的过程. 突出强调满足需求的概念上的解决方案, 而不是其具实现</span><br></pre></td></tr></table></figure>
-<h3 id="用一句话描述面向对象的分析与设计的优势"><a href="#用一句话描述面向对象的分析与设计的优势" class="headerlink" title="用一句话描述面向对象的分析与设计的优势"></a>用一句话描述面向对象的分析与设计的优势</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">通过分析现实世界中存在的问题, 构建相对应的问题模型, 保持了他们的结构、关系和行为模式, 使设计更加生动, 具有更强的自我解释能力</span><br></pre></td></tr></table></figure>
-<h3 id="简述-UML（统一建模语言）的作用。考试考哪些图？"><a href="#简述-UML（统一建模语言）的作用。考试考哪些图？" class="headerlink" title="简述 UML（统一建模语言）的作用。考试考哪些图？"></a>简述 UML（统一建模语言）的作用。考试考哪些图？</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">UML: 用于可视化、构建和编写一个面向对象的软件项目. 它可以将面向对象分析和面向对象设计使用统一定义的符号表示出来, 方便软件开发者之间沟通设计方法、理解对象之间的协作方式</span><br><span class="line"></span><br><span class="line">考试考的UML图: </span><br><span class="line">	1. 用例视图: </span><br><span class="line">		(1) 用例图</span><br><span class="line">	2. 静态图: </span><br><span class="line">		(1) 类图</span><br><span class="line">		(2) 对象图</span><br><span class="line">		(3) 包图</span><br><span class="line">	3. 行为图: </span><br><span class="line">		(1) 交互图</span><br><span class="line">		(2) 状态图</span><br><span class="line">		(3) 活动图</span><br><span class="line">	4. 实现图:</span><br><span class="line">		(1) 构件图</span><br><span class="line">		(2) 部署图</span><br></pre></td></tr></table></figure>
-<h3 id="从软件本质的角度，解释软件范围（需求）控制的可行性"><a href="#从软件本质的角度，解释软件范围（需求）控制的可行性" class="headerlink" title="从软件本质的角度，解释软件范围（需求）控制的可行性"></a>从软件本质的角度，解释软件范围（需求）控制的可行性</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(1) 软件的本质是信息自动化处理工具, 它具有复杂性、一致性、可变性和不可视性, 因此, 软件范围多数情况下对于客户和开发者都是模糊的, 在多数情况下, 客户与开发者能就项目的 20% 内容给出严格的需求约定, 80% 的内容都是相对模糊的</span><br><span class="line"></span><br><span class="line">(2) 项目范围的变更必然会造成项目进度计划、人员安排、成本等各方面的变化, 处理不当则会增加项目风险, 甚至造成项目陷入混乱的状态</span><br><span class="line"></span><br><span class="line">(3) 变更是不可避免的, 为防止范围蔓延, 在每个项目上, 都必须强制实施某种形式的变更控制. 目的是在出现范围变更需求后, 管理相关的计划、资源安排以及项目成果, 使得项目各部分可以很好地配合在一起, 避免变更带来的负面影响</span><br></pre></td></tr></table></figure>
-<h1 id="项目管理实践"><a href="#项目管理实践" class="headerlink" title="项目管理实践"></a>项目管理实践</h1><h3 id="看板使用练习"><a href="#看板使用练习" class="headerlink" title="看板使用练习"></a>看板使用练习</h3><p><img src="./../../images/TIM截图20190320103913.png" alt="TIM截图20190320103913"></p>
-<h3 id="UML绘图工具练习"><a href="#UML绘图工具练习" class="headerlink" title="UML绘图工具练习"></a>UML绘图工具练习</h3><p><img src="./../../images/TIM截图20190320105359.png" alt="TIM截图20190320105359"></p>
-<p>教材P182, 图16-2</p>
 
           
         
@@ -1776,7 +1774,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">99</span>
+                  <span class="site-state-item-count">100</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1787,7 +1785,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
