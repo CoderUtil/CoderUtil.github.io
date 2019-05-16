@@ -259,6 +259,1205 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/算法/算法/动态规划DP--区间模型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/算法/算法/动态规划DP--区间模型/" itemprop="url">动态规划DP--区间模型</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-11T13:54:38+08:00">
+                2018-11-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="区间模型特征"><a href="#区间模型特征" class="headerlink" title="区间模型特征"></a>区间模型特征</h1><p>​    区间模型的状态一般为d[i][j]表示区间[i, j]的最优解, 求解[i, j]的最优解可以通过递归求解[i+1, j]或[i, j-1]上的最优解. 最终求得整个区间的最优解d[1][length]</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">对于c[i][j] = c[i+1][j-1]...这种类型:(计算c[i][j]需要c[i+1][j-1], 但是此时c[i+1][j-1]还未计算出来, 说明这种状态转移方程不行. 因此不直接枚举左右端点i、j, 而是枚举长度l和左端点i, 进而得到右端点j)</span><br><span class="line">	for (int l = 1; l &lt; len; l++) </span><br><span class="line">		for (int i = 0; i + l - 1 &lt; len; i++) </span><br><span class="line">			int j = i + l - 1;</span><br><span class="line">			</span><br><span class="line">对于c[i][j] = c[i-1][j]...或c[i][j] == c[i][j-1]...这种类型:</span><br><span class="line">	for (int i = 0; i &lt; len; i++)</span><br><span class="line">		for (int j = 0; j &lt; len; j++)</span><br></pre></td></tr></table></figure>
+<h1 id="最长公共子串"><a href="#最长公共子串" class="headerlink" title="最长公共子串"></a>最长公共子串</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">对于两个序列X=&#123;A,B,C,B,D,A,B&#125;，Y=&#123;B,D,C,A,B,A&#125;, 求它们最长公共子串的长度</span><br><span class="line"></span><br><span class="line">最长公共子串LCS有以下性质:</span><br><span class="line">	对于子串X[1...m], Y[1...n]. 子串X[1...m-1], [1...n-1]的LCS长度是length</span><br><span class="line">	1. 如果X[m] = Y[n], 则它们的LCS长度是length + 1</span><br><span class="line">	2. 如果X[m] != Y[n], 则它们的LCS长度是length</span><br><span class="line">	</span><br><span class="line">int c[m][n] = &#123;0&#125;;		//	c[i][j]表示以元素X[i]结尾的子序列和以元素Y[j]结尾的最长子串的长度</span><br><span class="line">for (int i = 1; i &lt;= m; i++) &#123;			//	循环从1开始防止数组越界</span><br><span class="line">  for (int j = 1; j &lt;= n; j++) &#123;</span><br><span class="line">    if (X[i] == Y[j])</span><br><span class="line">    	c[i][j] = c[i-1][j-1] + 1;</span><br><span class="line">    else </span><br><span class="line">    	c[i][j] = 0;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="最长公共子序列"><a href="#最长公共子序列" class="headerlink" title="最长公共子序列"></a>最长公共子序列</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">对于两个序列X=&#123;A,B,C,B,D,A,B&#125;，Y=&#123;B,D,C,A,B,A&#125;, 求它们最长公共子序列的长度</span><br><span class="line"></span><br><span class="line">最长公共子序列LCS有以下性质:</span><br><span class="line">	对于子序列X[1...m], Y[1...n], 它们的LCS是Z[1...k]</span><br><span class="line">	1. 如果X[m] = Y[n], 则X[m] = Y[n] = Z[k], Z[1..k-1]是X[1...m-1]和Y[1...n-1]的LCS</span><br><span class="line">	2. 如果X[m] != Y[n], 且X[m] != Z[k], Y[n] = Z[k], 则Z[1...k-1]是X[1...m]和Y[1...n-1]的LCS</span><br><span class="line">	3. 如果X[m] != Y[n], 且X[m] = Z[k], Y[n] != Z[k], 则Z[1...k-1]是X[1...m-1]和Y[1...n]的LCS</span><br><span class="line">	</span><br><span class="line">int c[m][n] = &#123;0&#125;;		//	c[i][j]表示以元素X[i]结尾的子序列和以元素Y[j]结尾的最长子序列的长度</span><br><span class="line">for (int i = 0; i &lt; m; i++) &#123;</span><br><span class="line">  for (int j = 0; j &lt; n; j++) &#123;</span><br><span class="line">    if (X[i] == Y[j])</span><br><span class="line">    	c[i][j] = c[i-1][j-1] + 1;</span><br><span class="line">    else if (c[i-1][j] &gt; c[i][j-1])		//	即X[m] != Y[n] &amp;&amp; X[m] = Z[k]</span><br><span class="line">    	c[i][j] = c[i-1][j];</span><br><span class="line">    else</span><br><span class="line">    	c[i][j] = c[i][j-1];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="数人头问题"><a href="#数人头问题" class="headerlink" title="数人头问题"></a>数人头问题</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">确定n个独立但是不规则的硬币落地时有k个正面朝上的概率. 第i个硬币正面朝上的概率为pi</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">c[n][k] = &#123;0&#125;;		//	c[i][j]表示j个硬币中有i个正面朝上的概率</span><br><span class="line">for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">  for (int j = 0; j &lt; k; j++) &#123;</span><br><span class="line">    c[i][j] = p[i] * c[i-1][j-1] + (1 - p[i]) * c[i-1][j];		//	如果第i个硬币正面朝上, 则从剩余硬币中挑选出j-1个; 若第i个硬币反面朝上, 则从剩余硬币中挑选出j个</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="矩阵链乘"><a href="#矩阵链乘" class="headerlink" title="矩阵链乘"></a>矩阵链乘</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">已知n个矩阵A1 * A2 * ... * An, 维度分别为M0*M1, M1*M2, ..., Mn-1*Mn, 求矩阵相乘的最小代价.</span><br><span class="line"></span><br><span class="line">例如, 四个矩阵的维度依次为50*20, 20*1, 1*10, 10*100. 通过矩阵相乘的结合律可知, A*((B*C)*D)的代价为120200比((A*B)*(C*D))的代价7000要大. </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int C[n][n] = &#123;0&#125;;						//	C[i][j]表示Ai*Ai+1...*Aj的最小代价</span><br><span class="line">for (int i = 0; i &lt; n; i++) 	</span><br><span class="line">  C[i][i] = 0;</span><br><span class="line"></span><br><span class="line">for (int i = 0; i &lt; n; i++) &#123;			//	将矩阵链分为两部分, 计算完左、右、中间部件, 再相加</span><br><span class="line">  for (int j = i+1; j &lt; n; j++) &#123;</span><br><span class="line">  	for (int k = i; k &lt;= j; k++) &#123;</span><br><span class="line">      C[i][j] = min(C[i][k] + C[k+1][j] + M[i-1]*M[k]*m[j]);		//	M[i]表示矩阵i的列数</span><br><span class="line">  	&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">return C[1][n];</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/算法/算法/动态规划DP--简述动态规划/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/算法/算法/动态规划DP--简述动态规划/" itemprop="url">动态规划DP--简述动态规划</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-11T09:48:49+08:00">
+                2018-11-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h1><ul>
+<li><p>将问题分为具有重叠子结构的问题</p>
+</li>
+<li><p>避免重复计算重叠子结构</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">A * &quot;1+1+1+1+1+1+1+1 =？&quot; *</span><br><span class="line"></span><br><span class="line">A : &quot;上面等式的值是多少&quot;</span><br><span class="line">B : *计算* &quot;8!&quot;</span><br><span class="line"></span><br><span class="line">A *在上面等式的左边写上 &quot;1+&quot; *</span><br><span class="line">A : &quot;此时等式的值为多少&quot;</span><br><span class="line">B : *quickly* &quot;9!&quot;</span><br><span class="line">A : &quot;你怎么这么快就知道答案了&quot;</span><br><span class="line">A : &quot;只要在8的基础上加1就行了&quot;</span><br><span class="line">A : &quot;所以你不用重新计算因为你记住了第一个等式的值为8!动态规划算法也可以说是 &apos;记住求过的解来节省时间&apos;&quot;</span><br></pre></td></tr></table></figure>
+<h1 id="动态规划的两种形式"><a href="#动态规划的两种形式" class="headerlink" title="动态规划的两种形式"></a>动态规划的两种形式</h1><p>① 递归(记忆化搜索)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">斐波那契数列:</span><br><span class="line">  Fibonacci (0) = 1; </span><br><span class="line">  Fibonacci (1) = 1;  </span><br><span class="line">  Fibonacci (n) = Fibonacci(n-1) + Fibonacci(n-2);	n &gt; 1</span><br><span class="line">  </span><br><span class="line">int memory[n] = &#123;0&#125;;  </span><br><span class="line"> </span><br><span class="line">int  Fibonacci(int n) &#123;</span><br><span class="line">  if (memory[n] != 0)</span><br><span class="line">  	return memory[n];</span><br><span class="line">  if (n == 0 || n == 1)</span><br><span class="line">  	memory[n] = 1;</span><br><span class="line">  else </span><br><span class="line">  	memory[n] = Fibonacci(n - 1) + Fibonacci(n - 2);</span><br><span class="line">  </span><br><span class="line">  return memory[n];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>② 迭代</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">int Fibonacci(int n) &#123;</span><br><span class="line">  if (n &lt; 2)</span><br><span class="line">  	return 1;</span><br><span class="line">  int memory_result;</span><br><span class="line">  int memory_sum1 = 1;</span><br><span class="line">  int memeory_sum2 = 1;	</span><br><span class="line">  for (int i = 2; i &lt;= n; i++) &#123;</span><br><span class="line">    memory_result = memory_sum1 + memory_sum2;</span><br><span class="line">    memory_sum1 = memory_sum2;</span><br><span class="line">    memory_sum2 = memory_result;</span><br><span class="line">  &#125;</span><br><span class="line">  return memory_result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="分治与动态规划"><a href="#分治与动态规划" class="headerlink" title="分治与动态规划"></a>分治与动态规划</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">相同: 都是将问题分成子问题来解决</span><br><span class="line"></span><br><span class="line">不同: </span><br><span class="line">    分治: 解决不具有重叠子结构的问题(如二分查找, 分出来的子区间不重叠)</span><br><span class="line">    动态规划: 解决具有重叠子结构的问题</span><br></pre></td></tr></table></figure>
+<h1 id="回溯与动态规划"><a href="#回溯与动态规划" class="headerlink" title="回溯与动态规划"></a>回溯与动态规划</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">回溯: 一种采用DFS的搜索方法, 比如八皇后问题</span><br><span class="line"></span><br><span class="line">动态规划: 将问题分成子问题, 且会记录重复子问题的解</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">例如, 问将n分解成1和2, 问有多少种组合?</span><br><span class="line"></span><br><span class="line">    (1) 采用回溯的思想, 就是从0开始, 每一轮+1或+2, 直至为n. 即一棵以问题起点为根, 问题终点为其中一个叶子的树</span><br><span class="line"></span><br><span class="line">    (2) 采用动态规划的思想, 得到状态转移方程F(n) = F(n - 1) + F(n - 2), 直至n=0. 即一棵以问题终点为根, 问题起点为其中一个叶子的树</span><br></pre></td></tr></table></figure>
+<p><img src="../../images\TIM截图20190419124507.png" alt="TIM截图20190419124507"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Android/Android/Android学习--内容提供器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Android/Android/Android学习--内容提供器/" itemprop="url">内容提供器Content Provider</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-08T15:17:09+08:00">
+                2018-11-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="内容提供器Content-Provider"><a href="#内容提供器Content-Provider" class="headerlink" title="内容提供器Content Provider"></a>内容提供器Content Provider</h1><p>​    用于在不同的应用程序之间实现数据共享</p>
+<h2 id="使用Content-Resolve读取通讯录"><a href="#使用Content-Resolve读取通讯录" class="headerlink" title="使用Content Resolve读取通讯录"></a>使用Content Resolve读取通讯录</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">1. 在AndroidManifest.xml文件中声明读取通讯录的权限</span><br><span class="line">&lt;manifest xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">	package=&quot;com.example.contactstest&quot;&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;uses-permission android:name=&quot;android.permission.READ_CONTACTS&quot;/&gt;</span><br><span class="line">	...</span><br><span class="line">&lt;/manifest&gt;</span><br><span class="line"></span><br><span class="line">2. </span><br><span class="line">private void readContacts(String username) &#123;</span><br><span class="line">  Cursor cursor = null;</span><br><span class="line">  try &#123;</span><br><span class="line">  	//	根据联系人用户名查询手机号</span><br><span class="line">    cursor = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, </span><br><span class="line">    		null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + &quot; = \&quot;&quot; + username + 			&quot;\&quot;&quot;, null, null);</span><br><span class="line">    		</span><br><span class="line">    /*</span><br><span class="line">    	第1个参数: 		某个应用下的某个表</span><br><span class="line">    	第2个参数:		指定查询的列名</span><br><span class="line">    	第3、4个参数:	where约束条件</span><br><span class="line">        第5个参数:		查询结果的排序方式</span><br><span class="line">    */</span><br><span class="line">    </span><br><span class="line">    if (cursor != null) &#123;</span><br><span class="line">      String number = &quot;\nPhone: &quot;;</span><br><span class="line">      do &#123;</span><br><span class="line">        //	获取联系人手机号</span><br><span class="line">        number += cursor.getString(cursor.getColumnIndex</span><br><span class="line">        				(ContactsContract.CommonDataKinds.Phone.NUMBER));</span><br><span class="line">      &#125; while (cursor.moveToNext());</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; catch (Exception e) &#123;</span><br><span class="line">  	e.printStackTrace();</span><br><span class="line">  &#125; finally &#123;</span><br><span class="line">    if (cursor != null)</span><br><span class="line">    	cursor.close();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="从图库中获取图片"><a href="#从图库中获取图片" class="headerlink" title="从图库中获取图片"></a>从图库中获取图片</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">private ImageView addImage;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">	super.onCreate(savedInstanceState);</span><br><span class="line">	setContentView(R.layout.activity_main);</span><br><span class="line">	addImage = (ImageView)findViewById(R.id.addImage);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public void load() &#123;</span><br><span class="line">     // 激活系统图库，选择一张图片</span><br><span class="line">     Intent intent = new Intent();</span><br><span class="line">     intent.setAction(Intent.ACTION_PICK);</span><br><span class="line">     intent.setType(&quot;image/*&quot;);</span><br><span class="line">     startActivityForResult(intent, 0);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">protected void onActivityResult(int requestCode, int resultCode, Intent data) &#123;</span><br><span class="line"></span><br><span class="line">	if (data != null) &#123;</span><br><span class="line">		// 得到图片的全路径</span><br><span class="line">		Uri uri = data.getData();</span><br><span class="line">		addImage.setImageURI(uri);</span><br><span class="line">	&#125;</span><br><span class="line">	super.onActivityResult(requestCode, resultCode, data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/算法/算法/动态规划DP--线性模型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/算法/算法/动态规划DP--线性模型/" itemprop="url">动态规划DP--线性模型</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-08T10:42:16+08:00">
+                2018-11-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="线性模型特征"><a href="#线性模型特征" class="headerlink" title="线性模型特征"></a>线性模型特征</h1><ol>
+<li>约束条件可以表示成线性函数. 例如, Fibonacci函数</li>
+<li>状态的排布呈线性. 例如, 钢条切割</li>
+<li>状态用一维数组保存</li>
+</ol>
+<h1 id="走楼梯"><a href="#走楼梯" class="headerlink" title="走楼梯"></a>走楼梯</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">有一座高度是10级台阶的楼梯，从下往上走，每跨一步只能向上1级或者2级台阶。要求用程序来求出一共有多少种走法。</span><br><span class="line"></span><br><span class="line">f(n) = f(n - 1) + f(n - 2)		//	f(n)表示n级台阶有f(n)种走法, 即先走n - 1级再走1级, 或者先走n - 2级再走2级</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">count[n] = &#123;0&#125;;			//	count[i]表示第i级台阶(从0级开始)有多少种走法</span><br><span class="line">count[0] = 1;</span><br><span class="line">count[1] = 2;</span><br><span class="line">for (int i = 2; i &lt; n; i++) &#123;</span><br><span class="line">  count[i] = count[i - 1] + count[i - 2];</span><br><span class="line">&#125;</span><br><span class="line">return count[n-1];</span><br></pre></td></tr></table></figure>
+<h1 id="钢条切割"><a href="#钢条切割" class="headerlink" title="钢条切割"></a>钢条切割</h1><p><img src="D:\WorkEnvironment\Hexo\blog\source\images\TIM截图20181111122207.png" alt="TIM截图20181111122207"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">自顶向下备忘录法:</span><br><span class="line">int maxMoney[n] = &#123;0&#125;;			//	表示长度为n的钢条最大收益</span><br><span class="line">int Memory(int n) &#123;</span><br><span class="line">  if (maxMoney[n] != 0)</span><br><span class="line">  	return maxMoney[n];</span><br><span class="line">  for (int i = 1; i &lt;= n; i++) &#123;</span><br><span class="line">    maxMoney[n] = max(Memory(i) + p[n - i]);</span><br><span class="line">  &#125;</span><br><span class="line">  return maxMoney[n];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">自底向上法:</span><br><span class="line">int maxMoney[n] = &#123;0&#125;;</span><br><span class="line">int DP(int n) &#123;</span><br><span class="line">  for (int i = 1; i &lt;= n; i++) &#123;</span><br><span class="line">  	for (int j = 1; j &lt;= i; j++) &#123;</span><br><span class="line">      maxMoney[i] = max(maxMoney[j] + p[i - j]);</span><br><span class="line">  	&#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return maxMoney[n];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="最长递增子序列-最长不下降子序列"><a href="#最长递增子序列-最长不下降子序列" class="headerlink" title="最长递增子序列/最长不下降子序列"></a>最长递增子序列/最长不下降子序列</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">对于一个序列如&#123;1, -1, 2, -3, 4, -5, 6, -7&#125;，其最长第增子序列为1, 2, 4, 6</span><br><span class="line"></span><br><span class="line">自顶向下备忘录法:</span><br><span class="line">int maxLength[n] = &#123;1&#125;;		//	maxLength表示以a[n]为终点的子序列的最大长度</span><br><span class="line">bool hasMax[n] = &#123;false&#125;;</span><br><span class="line"></span><br><span class="line">int Memory(int n) &#123;</span><br><span class="line">  if (hasMax[n] != false)</span><br><span class="line">  	return maxLength[n];</span><br><span class="line">  for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">  	if (a[i] &lt; a[n])</span><br><span class="line">    	maxLength[n] = max(i) + 1;</span><br><span class="line">    	hasMax[n] = true;</span><br><span class="line">  &#125;</span><br><span class="line">  return maxLength[n];</span><br><span class="line">&#125;</span><br><span class="line">return max(maxLength[n]);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">自底向上法:</span><br><span class="line">int maxLength[n] = &#123;1&#125;;</span><br><span class="line">for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">	for (int j = 0; j &lt; i; j++) &#123;</span><br><span class="line">	if (a[j] &lt; a[i])</span><br><span class="line">      	maxLength[i] = max(maxLength[j]) + 1;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">return max(maxLength[n]);</span><br></pre></td></tr></table></figure>
+<h1 id="最大连续子序列和"><a href="#最大连续子序列和" class="headerlink" title="最大连续子序列和"></a>最大连续子序列和</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">长度为n的数组a, 其中元素可正可负可零, 如[-1, 1, -2, -4], 求连续元素之和的最大值</span><br><span class="line"></span><br><span class="line">有以下性质:</span><br><span class="line">	1. 如果maxSum[i]表示a[1...i]的子数组的最大和, 那么maxSum[i] = max&#123;a[i], maxSum[i-1] + a[i]&#125;</span><br><span class="line">	2. 结果求的是一个区间, 但是却是线性模型, 不是区间模型</span><br><span class="line"></span><br><span class="line">自底向上法:</span><br><span class="line">int maxSum[n];</span><br><span class="line"></span><br><span class="line">for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">  maxSum[i] = max(a[i], maxSum[i-1] + a[i]);</span><br><span class="line">&#125;</span><br><span class="line">return max(maxSum[n]);</span><br></pre></td></tr></table></figure>
+<h1 id="直线选点问题"><a href="#直线选点问题" class="headerlink" title="直线选点问题"></a>直线选点问题</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">计划修建一系列酒店, n个可能的选点位于一条直线上, 它们距直线起点的距离依次为m1, m2, ..., mn(mn &gt; ...., m2 &gt; m1). 在位置i建设酒店的利润为pi, 两个酒店至少间隔k， 求最大的利润总额</span><br><span class="line"></span><br><span class="line">int maxSum[n] = &#123;0&#125;;		//	maxSum[i]表示以酒店i为结束的最大利润总额</span><br><span class="line"></span><br><span class="line">for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">  for (int j = 0; m[i] - m[j] &gt;= k; j++) &#123;</span><br><span class="line">    maxSum[i] = max(maxSum[j] + p[i]);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/算法/算法/哈夫曼编码树Huffman/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/算法/算法/哈夫曼编码树Huffman/" itemprop="url">哈夫曼编码树Huffman</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-08T09:46:38+08:00">
+                2018-11-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="哈夫曼编码树"><a href="#哈夫曼编码树" class="headerlink" title="哈夫曼编码树"></a>哈夫曼编码树</h1><ul>
+<li>性质: 对于任意一个叶子节点, 其编号不会是其他叶子节点编号的前缀(对于任意一个字符, 它的编号不会是其他字符编号的前缀)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;queue&gt;</span><br><span class="line"></span><br><span class="line">struct node &#123;</span><br><span class="line">	char c;</span><br><span class="line">	int f;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line"></span><br><span class="line">	vector&lt;node&gt;  v;</span><br><span class="line">	priority_queue&lt;node&gt; q;</span><br><span class="line"></span><br><span class="line">    for (int i = 0; i &lt; v.size(); i++) &#123;</span><br><span class="line">        q.push(v[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    while (q.size() &gt; 1) &#123;	//	至少有两个元素</span><br><span class="line">        node x = q.top();</span><br><span class="line">        q.pop();</span><br><span class="line">        node y = q.top();</span><br><span class="line">        q.pop();</span><br><span class="line">        q.push(x + y);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/算法/算法/最小生成树MST/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/算法/算法/最小生成树MST/" itemprop="url">最小生成树MST</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-08T09:26:07+08:00">
+                2018-11-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="最小生成树MST"><a href="#最小生成树MST" class="headerlink" title="最小生成树MST"></a>最小生成树MST</h1><p>​    从一个图中获取一棵连接了所有节点的树, 同时这棵树的总权重最小</p>
+<h1 id="Kruskal"><a href="#Kruskal" class="headerlink" title="Kruskal"></a>Kruskal</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在未被选中的边中不断重复选择 权重最小 &amp; 不会形成环的边, 直至已选择的边数 = |V| - 1</span><br></pre></td></tr></table></figure>
+<h1 id="Prim"><a href="#Prim" class="headerlink" title="Prim"></a>Prim</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">将已选择的点集称为V&apos;. 在与V&apos;相邻的节点中不断重复选择权重最小的边, 然后把另一个端点v放入V&apos;, 直至V&apos; = V</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/算法/算法/搜索--广度优先搜索BFS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/算法/算法/搜索--广度优先搜索BFS/" itemprop="url">广度优先搜索BFS</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-07T17:16:57+08:00">
+                2018-11-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="广度优先搜索"><a href="#广度优先搜索" class="headerlink" title="广度优先搜索"></a>广度优先搜索</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 队列实现</span><br><span class="line">	a) 将起始节点放入队列中</span><br><span class="line">	b) 将队首v弹出, 标记为访问过</span><br><span class="line">	c) 将v的相邻未访问节点放入队尾</span><br><span class="line">	d) 重复b、c直至队列为空</span><br></pre></td></tr></table></figure>
+<h2 id="判断连通部件个数个数"><a href="#判断连通部件个数个数" class="headerlink" title="判断连通部件个数个数"></a>判断连通部件个数个数</h2><p><img src="../../images/TIM截图20190416154202.png" alt="TIM截图20190416154202"></p>
+<h3 id="DFS实现"><a href="#DFS实现" class="headerlink" title="DFS实现"></a>DFS实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">#include &lt;queue&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int row = 6;</span><br><span class="line">const int column = 7;</span><br><span class="line">int matrix[row][column] = &#123;	&#123;0,1,1,1,0,0,1&#125;,</span><br><span class="line">							&#123;0,0,1,0,0,0,0&#125;,</span><br><span class="line">							&#123;0,0,0,0,1,0,0&#125;,</span><br><span class="line">							&#123;0,0,0,1,1,1,0&#125;,</span><br><span class="line">							&#123;1,1,1,0,1,0,0&#125;,</span><br><span class="line">							&#123;1,1,1,1,0,0,0&#125;&#125;;</span><br><span class="line"></span><br><span class="line">//	1.防止走回头路</span><br><span class="line">bool isVisited[6][7] = &#123; false &#125;;	</span><br><span class="line">//	2.增量数组</span><br><span class="line">int I[4] = &#123; 0, 0, 1, -1 &#125;;</span><br><span class="line">int J[4] = &#123; 1, -1, 0, 0 &#125;;</span><br><span class="line"></span><br><span class="line">int chunkCount = 0;</span><br><span class="line"></span><br><span class="line">//	DFS</span><br><span class="line">void findElementInChunk(int i, int j) &#123;</span><br><span class="line">	isVisited[i][j] = true;</span><br><span class="line"></span><br><span class="line">	for (int k = 0; k &lt; 4; k++) &#123;</span><br><span class="line">		int newI = i + I[k];</span><br><span class="line">		int newJ = j + J[k];</span><br><span class="line">		//	3.判断坐标是否合法</span><br><span class="line">		if (0 &lt;= newI &amp;&amp; newI &lt; row &amp;&amp; 0 &lt;= newJ &amp;&amp; newJ &lt; column) &#123;</span><br><span class="line">			if (matrix[newI][newJ] == 1 &amp;&amp; !isVisited[newI][newJ]) </span><br><span class="line">				findElementInChunk(newI, newJ);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">	for (int i = 0; i &lt; row; i++) &#123;</span><br><span class="line">		for (int j = 0; j &lt; column; j++) &#123;</span><br><span class="line">			if (matrix[i][j] == 1 &amp;&amp; !isVisited[i][j]) &#123;</span><br><span class="line">				chunkCount++;</span><br><span class="line">				findElementInChunk(i, j);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; chunkCount &lt;&lt; endl;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="BFS实现"><a href="#BFS实现" class="headerlink" title="BFS实现"></a>BFS实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">#include &lt;queue&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const int row = 6;</span><br><span class="line">const int column = 7;</span><br><span class="line">int matrix[row][column] = &#123;	&#123;0,1,1,1,0,0,1&#125;,</span><br><span class="line">							&#123;0,0,1,0,0,0,0&#125;,</span><br><span class="line">							&#123;0,0,0,0,1,0,0&#125;,</span><br><span class="line">							&#123;0,0,0,1,1,1,0&#125;,</span><br><span class="line">							&#123;1,1,1,0,1,0,0&#125;,</span><br><span class="line">							&#123;1,1,1,1,0,0,0&#125;&#125;;</span><br><span class="line"></span><br><span class="line">//	1.防止走回头路</span><br><span class="line">bool isVisited[6][7] = &#123; false &#125;;	</span><br><span class="line">//	2.增量数组</span><br><span class="line">int I[4] = &#123; 0, 0, 1, -1 &#125;;</span><br><span class="line">int J[4] = &#123; 1, -1, 0, 0 &#125;;</span><br><span class="line"></span><br><span class="line">int chunkCount = 0;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//	BFS</span><br><span class="line">void findElementInChunk(int i, int j) &#123;</span><br><span class="line">	queue&lt;pair&lt;int, int&gt;&gt; q;</span><br><span class="line">	q.push(make_pair(i, j));</span><br><span class="line">	isVisited[i][j] = true;</span><br><span class="line"></span><br><span class="line">	while (!q.empty()) &#123;</span><br><span class="line">		pair&lt;int, int&gt; temp = q.front();</span><br><span class="line">		q.pop();</span><br><span class="line"></span><br><span class="line">		for (int k = 0; k &lt; 4; k++) &#123;</span><br><span class="line">			int newI = temp.first + I[k];</span><br><span class="line">			int newJ = temp.second + J[k];</span><br><span class="line"></span><br><span class="line">			if (0 &lt;= newI &amp;&amp; newI &lt; row &amp;&amp; 0 &lt;= newJ &amp;&amp; newJ &lt; column) &#123;</span><br><span class="line">				if (matrix[newI][newJ] == 1 &amp;&amp; !isVisited[newI][newJ]) &#123;</span><br><span class="line">					isVisited[newI][newJ] = true;</span><br><span class="line">					q.push(make_pair(newI, newJ));</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">	for (int i = 0; i &lt; row; i++) &#123;</span><br><span class="line">		for (int j = 0; j &lt; column; j++) &#123;</span><br><span class="line">			if (matrix[i][j] == 1 &amp;&amp; !isVisited[i][j]) &#123;</span><br><span class="line">				chunkCount++;</span><br><span class="line">				findElementInChunk(i, j);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; chunkCount &lt;&lt; endl;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="最短路径"><a href="#最短路径" class="headerlink" title="最短路径"></a>最短路径</h1><h2 id="BFS"><a href="#BFS" class="headerlink" title="BFS"></a>BFS</h2><ul>
+<li>边长全为1</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">dist(v)		从源节点s到v的最低费用</span><br><span class="line">prev(v)		从源节点到v的最低费用路径的上一个节点</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">for all nodes v ∈ V :</span><br><span class="line">	dist(v) = ∞</span><br><span class="line">	prev(v) = nill</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">dist(s) = 0</span><br><span class="line">Q = [s]			//	队列Q</span><br><span class="line"></span><br><span class="line">while Q is not empty</span><br><span class="line">	t = Q.pop()</span><br><span class="line">	for each neighbor node v of t</span><br><span class="line">    	if not visited(v) :</span><br><span class="line">    		Q.push(v)</span><br><span class="line">    		dist(v) = dist(t) + 1</span><br><span class="line">    		prev(v) = t</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">//	s到u的最低费用</span><br><span class="line">cout &lt;&lt; dist(u)</span><br><span class="line"></span><br><span class="line">//	s到u的最低费用路径</span><br><span class="line">temp = u</span><br><span class="line">while temp != s</span><br><span class="line">	cout &lt;&lt; temp</span><br><span class="line">	temp = temp.prev</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h2 id="Dijkstra"><a href="#Dijkstra" class="headerlink" title="Dijkstra"></a>Dijkstra</h2><ul>
+<li>单源</li>
+<li>边长为非负</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">u			源节点</span><br><span class="line">dist(v) 	从源节点u到目的节点v的最低费用</span><br><span class="line">pre(v) 		从源节点u到目的节点v的最低费用路径的上一节点</span><br><span class="line">N&apos;			从源节点u出发最低费用路径已知的节点子集</span><br><span class="line"></span><br><span class="line">//	初始化</span><br><span class="line">N&apos; = &#123;u&#125;</span><br><span class="line">for all nodes v ∈ V :</span><br><span class="line">	if v is a neighbor of u</span><br><span class="line">		then dist(v) = c(u, v)</span><br><span class="line">	else </span><br><span class="line">		dist(v) = ∞</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">while N&apos; != V</span><br><span class="line">	find w not in N&apos; &amp; dist(w) is minimum</span><br><span class="line">	N&apos;.push(w)</span><br><span class="line">	for all neighbor nodes v of w &amp; v not in N&apos;</span><br><span class="line">		if dist(v) &gt; dist(w) + c(w, v) : </span><br><span class="line">			dist(v) = dist(w) + c(w, v)</span><br><span class="line">			prev(v) = w</span><br><span class="line">	end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h2 id="获取两个顶点s-u的距离–Bellman-Ford"><a href="#获取两个顶点s-u的距离–Bellman-Ford" class="headerlink" title="获取两个顶点s, u的距离–Bellman-Ford"></a>获取两个顶点s, u的距离–Bellman-Ford</h2><p>​    适用于边长为负的图</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">for all nodes v ∈ V :</span><br><span class="line">	dist(v) = ∞</span><br><span class="line">	prev(v) = nill</span><br><span class="line">	</span><br><span class="line">dist(s) = 0</span><br><span class="line"></span><br><span class="line">repeat |V| - 1 times : </span><br><span class="line">	for all e(t, v) ∈ E:</span><br><span class="line">		if dist(v) &gt; dist(t) + c(t, v) : </span><br><span class="line">			dist(v) = dist(t) + c(t, v)</span><br><span class="line">			prev(v) = t</span><br><span class="line">	end</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/算法/算法/搜索--深度优先搜索DFS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/算法/算法/搜索--深度优先搜索DFS/" itemprop="url">深度优先搜索DFS</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-07T15:58:49+08:00">
+                2018-11-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="图"><a href="#图" class="headerlink" title="图"></a>图</h1><ul>
+<li>邻接矩阵: 用一个二维数组G[][]保存顶点i, v之间的权值为e</li>
+<li>邻接表: 用一个链表数组, 数组i的链表保存相邻顶点v与权值e</li>
+</ul>
+<h1 id="深度优先搜索"><a href="#深度优先搜索" class="headerlink" title="深度优先搜索"></a>深度优先搜索</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1. 栈实现</span><br><span class="line">	a) 将起始节点放入栈中</span><br><span class="line">	b) 将栈顶元素v弹出, 标记为访问过</span><br><span class="line">	c) 将v的相邻未访问节点压入栈</span><br><span class="line">	d) 重复b、c直至栈为空</span><br><span class="line">	</span><br><span class="line">2. 递归实现</span><br><span class="line">	a) 外层循环遍历所有节点, 并对每个节点调用递归函数</span><br><span class="line">	b) 函数中将节点标记为已访问, 并对它的相邻未访问节点调用递归函数</span><br></pre></td></tr></table></figure>
+<h2 id="判断两个节点u-v是否连通"><a href="#判断两个节点u-v是否连通" class="headerlink" title="判断两个节点u, v是否连通"></a>判断两个节点u, v是否连通</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function DFS(G(V, E))</span><br><span class="line">	for all v ∈ V:</span><br><span class="line">		visited(v) = false		//	visited存储节点是否访问过</span><br><span class="line">	end</span><br><span class="line">	</span><br><span class="line">	explore(u)</span><br><span class="line">	</span><br><span class="line">	return visited(v)</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">function explore(u)</span><br><span class="line">	visited(u) = true</span><br><span class="line">	</span><br><span class="line">	for each neighbor node v of u</span><br><span class="line">    	if not visited(v) : explore(v)</span><br><span class="line">    end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h2 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h2><p>​    将顶点按照post值降序排列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">function DFS(G)</span><br><span class="line">	for all v ∈ V:</span><br><span class="line">		visited(v) = false		</span><br><span class="line">	end</span><br><span class="line">	</span><br><span class="line">	for all v ∈ V:</span><br><span class="line">		if not visited(v) : </span><br><span class="line">			explore(v)</span><br><span class="line">		end</span><br><span class="line">	end</span><br><span class="line">	</span><br><span class="line">	sort post[v] with descend</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function postvisit(v)</span><br><span class="line">	post[v] = clock</span><br><span class="line">	clock + 1</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function explore(u)</span><br><span class="line">	visited(u) = true</span><br><span class="line">	</span><br><span class="line">	for each neighbor node v of u</span><br><span class="line">    	if not visited(v) : explore(v)</span><br><span class="line">    end</span><br><span class="line">    </span><br><span class="line">    postvisit(u)</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h1 id="连通块"><a href="#连通块" class="headerlink" title="连通块"></a>连通块</h1><ul>
+<li>连通: 无向图中任意两个点能相互到达</li>
+<li>强连通: 有向图中任意两个点能相互到达</li>
+</ul>
+<h2 id="无向图划分连通分量"><a href="#无向图划分连通分量" class="headerlink" title="无向图划分连通分量"></a>无向图划分连通分量</h2><p>​    连通分量中的任意两点是连通的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">function DFS(G(V, E))</span><br><span class="line">	for all v ∈ V:</span><br><span class="line">		visited(v) = false</span><br><span class="line">	end</span><br><span class="line">	</span><br><span class="line">	index = 0		//	连通部件编号</span><br><span class="line">	</span><br><span class="line">	for all v ∈ V:</span><br><span class="line">		if not visited(v) : </span><br><span class="line">			explore(v)</span><br><span class="line">			index++</span><br><span class="line">		end</span><br><span class="line">	end</span><br><span class="line">	</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">function explore(v)</span><br><span class="line">	visited(v) = true</span><br><span class="line">	num(v) = index			//	num存储节点的连通部件编号</span><br><span class="line">	</span><br><span class="line">	for each neighbor node u of v</span><br><span class="line">    	if not visited(u) : explore(u)</span><br><span class="line">    end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h2 id="有向图划分连通分量–Kosaraju算法"><a href="#有向图划分连通分量–Kosaraju算法" class="headerlink" title="有向图划分连通分量–Kosaraju算法"></a>有向图划分连通分量–Kosaraju算法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">1. 对图G的逆图G^T运行DFS, 计算出各顶点v完成搜索的时间post(v), 即离开节点v的时间</span><br><span class="line"></span><br><span class="line">function DFS(G^T)</span><br><span class="line">	for all v ∈ V:</span><br><span class="line">		visited(v) = false		//	visited存储节点是否访问过</span><br><span class="line">	end</span><br><span class="line">	</span><br><span class="line">	for all v ∈ V:</span><br><span class="line">		if not visited(v) : </span><br><span class="line">			explore(v)</span><br><span class="line">		end</span><br><span class="line">	end</span><br><span class="line">	</span><br><span class="line">	return visited(v)</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function postvisit(v)</span><br><span class="line">	post[v] = clock</span><br><span class="line">	clock + 1</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function explore(u)</span><br><span class="line">	visited(u) = true</span><br><span class="line">	</span><br><span class="line">	for each neighbor node v of u</span><br><span class="line">    	if not visited(v) : explore(v)</span><br><span class="line">    end</span><br><span class="line">    </span><br><span class="line">    postvisit(u)</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">2. 对图G使用无向图获取连通部件的算法, 但是这次DFS的顺序不是节点的编号, 而是图G的post(v). post(v)大的先explore</span><br><span class="line"></span><br><span class="line">function DFS(G(V, E))</span><br><span class="line">	for all v ∈ V:</span><br><span class="line">		visited(v) = false</span><br><span class="line">	end</span><br><span class="line">	</span><br><span class="line">	index = 0		//	连通部件编号</span><br><span class="line">	</span><br><span class="line">	for all v  ∈ V sort by post(v) :</span><br><span class="line">		if not visited(v) : </span><br><span class="line">			explore(v)</span><br><span class="line">			index++</span><br><span class="line">		end</span><br><span class="line">	end</span><br><span class="line">	</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">function explore(v)</span><br><span class="line">	visited(v) = true</span><br><span class="line">	num(v) = index			//	num存储节点的连通部件编号</span><br><span class="line">	</span><br><span class="line">	for each neighbor node u of v</span><br><span class="line">    	if not visited(u) : explore(u)</span><br><span class="line">    end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/算法/算法/排序--快速排序/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -534,1183 +1733,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/算法/算法/分治算法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/算法/算法/分治算法/" itemprop="url">分治算法的时间复杂度</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-01T15:14:55+08:00">
-                2018-11-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="主定理"><a href="#主定理" class="headerlink" title="主定理"></a>主定理</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">将规模为n的问题分解a个规模为n/b的子问题, 然后在O(n ^ d)时间内将子问题的解合并起来, 有:</span><br><span class="line">	T(n) = aT(n/b) + O(n ^ d)</span><br><span class="line">	</span><br><span class="line">if d &gt; logb(a), T(n) = O(n ^ d)</span><br><span class="line">if d = logb(a), T(n) = O((n ^ d) * log(n))</span><br><span class="line">if d &lt; logb(a), T(n) = O(n ^ (logb(a)))</span><br></pre></td></tr></table></figure>
-<h1 id="二分搜索的时间复杂度"><a href="#二分搜索的时间复杂度" class="headerlink" title="二分搜索的时间复杂度"></a>二分搜索的时间复杂度</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">第1轮: 将规模为n的数组分解为1个规模为n / 2的子数组, 然后在O(1)的时间内将子数组合并(不合并)</span><br><span class="line">第2轮: 将规模为n的数组分解为1个规模为n / 4的子数组, 然后在O(1)的时间内将子数组合并</span><br><span class="line">...</span><br><span class="line">第n轮: 将规模为n的数组分解为1个规模为n / 2 ^ n的子数组, 然后在O(1)的时间内将子数组合并</span><br><span class="line"></span><br><span class="line">T(n) = T(n / 2) + O(1)</span><br><span class="line"></span><br><span class="line">a = 1, b = 2, d = 0, 由主定理可得, d = logb(a), 因此T(n) = O((n ^ d) * log(n)) = O(log(n))</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/算法/算法/最大公因数GCD与最小公倍数LCM/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/算法/算法/最大公因数GCD与最小公倍数LCM/" itemprop="url">最大公因数GCD与最小公倍数LCM</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-01T14:59:49+08:00">
-                2018-11-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="最大公因数GCD"><a href="#最大公因数GCD" class="headerlink" title="最大公因数GCD"></a>最大公因数GCD</h1><h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">欧几里得规则: </span><br><span class="line"> (1) if x &gt;= y &gt; 0, gcd(x, y) = gcd(y, x mod y)</span><br><span class="line"> (2) if y == 0, gcd(x, y) = x</span><br></pre></td></tr></table></figure>
-<h2 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function Euclid(x, y)</span><br><span class="line">  if b = 0 : return a</span><br><span class="line">  </span><br><span class="line">  if x &lt; y : swap(x, y)</span><br><span class="line">  return Euclid(y, x mod y)</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-<h1 id="最小公倍数LCM"><a href="#最小公倍数LCM" class="headerlink" title="最小公倍数LCM"></a>最小公倍数LCM</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lcm(a, b) = a * b / gcd(a, b)</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Android/Android/Android学习--数据存储/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Android/Android/Android学习--数据存储/" itemprop="url">数据存储</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-31T11:57:29+08:00">
-                2018-10-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="文件存储"><a href="#文件存储" class="headerlink" title="文件存储"></a>文件存储</h1><p>​    文件存储, 以字符串形式保存</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">//	存储</span><br><span class="line">FileOutputStream out = null;</span><br><span class="line">BufferedWriter writer = null;</span><br><span class="line">try &#123;</span><br><span class="line">  out = openFileOutput(&quot;data&quot;, MODE_PRIVATE);		//	保存在名字为data的文件中, 写入是覆盖式写入, MODE_APPEND表示追加式写入</span><br><span class="line">  writer = new BufferedWriter(new OutputStreamWriter(out));</span><br><span class="line">  writer.write(&quot;Data to save&quot;);</span><br><span class="line">&#125; catch (IOException e) &#123;</span><br><span class="line">  e.printStackTrace();</span><br><span class="line">&#125; finally &#123;</span><br><span class="line">  try &#123;</span><br><span class="line">    if (writer != null)</span><br><span class="line">    	writer.close();</span><br><span class="line">  &#125; catch (IOException e) &#123;</span><br><span class="line">    e.printStackTrace(); </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 	读取</span><br><span class="line">FileInputStream in = null;</span><br><span class="line">BufferedReader reader = null;</span><br><span class="line">StringBuilder content = new StringBuilder();	</span><br><span class="line"></span><br><span class="line">try &#123;</span><br><span class="line">  in = openFileInput(&quot;data&quot;);</span><br><span class="line">  reader = new BufferedReader(new InputStreamReader(in));</span><br><span class="line">  String line = &quot;&quot;;</span><br><span class="line">  while ((line = reader.readLine()) != null) &#123;</span><br><span class="line">    content.append(line);</span><br><span class="line">  &#125;</span><br><span class="line">&#125; catch (IOException e) &#123;</span><br><span class="line">  e.printStackTrace();</span><br><span class="line">&#125; finally &#123;</span><br><span class="line">  if (reader != null) &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">      reader.close();</span><br><span class="line">    &#125; catch (IOException e) &#123;</span><br><span class="line">      e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="SharedPreference"><a href="#SharedPreference" class="headerlink" title="SharedPreference"></a>SharedPreference</h1><p>​    文件存储, 以键值对形式存储数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//	存储</span><br><span class="line">SharedPreferences pref = getSharedPreferences(&quot;data&quot;, MODE_PRIVATE);	//	键值对保存在名为data的文件中, 只有MODE_PRIVATE这一种模式</span><br><span class="line">SharedPreferences.Editor editor = pref.edit();</span><br><span class="line">editor.putString(&quot;name&quot;, &quot;Tom&quot;);</span><br><span class="line">editor.putInt(&quot;age&quot;, 28);</span><br><span class="line">editor.putBoolean(&quot;married&quot;, false);</span><br><span class="line">editor.apply();</span><br><span class="line"></span><br><span class="line">//	获取</span><br><span class="line">SharedPreferences pref = getSharedPreferences(&quot;data&quot;, MODE_PRIVATE);</span><br><span class="line">String name = pref.getString(&quot;name&quot;, &quot;&quot;);		//	第二个参数为缺省值, 当SharedPreference中找不到这个键值对, 将它赋给name</span><br><span class="line">int age = pref.getInt(&quot;age&quot;, 0);</span><br><span class="line">boolean married = pref.getBoolean(&quot;married&quot;, false);</span><br></pre></td></tr></table></figure>
-<h1 id="SQLite数据库"><a href="#SQLite数据库" class="headerlink" title="SQLite数据库"></a>SQLite数据库</h1><p>​    Android内置数据库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line">//	MyDatabaseHelper.java</span><br><span class="line">public class MyDatabaseHelper extends SQLiteOpenHelper &#123;</span><br><span class="line">  </span><br><span class="line">  public static final String CREATE_BOOK = &quot;create table Book (&quot;</span><br><span class="line">  	+ &quot;id integer primary key autoincrement, &quot;</span><br><span class="line">  	+ &quot;author text, &quot;</span><br><span class="line">  	+ &quot;price real, &quot;</span><br><span class="line">  	+ &quot;pages integer, &quot;</span><br><span class="line">  	+ &quot;name text)&quot;;</span><br><span class="line">  	</span><br><span class="line">  	/*</span><br><span class="line">  		integer =&gt; 	整形</span><br><span class="line">  		real 	=&gt;	浮点型</span><br><span class="line">  		text	=&gt;	文本型</span><br><span class="line">  		blob	=&gt;	布尔型</span><br><span class="line">  	*/</span><br><span class="line">  	</span><br><span class="line">  	private Context mContext;</span><br><span class="line">  	</span><br><span class="line">  	public MyDatabaseHelper(Context context, String dataBaseName, </span><br><span class="line">  							SQLiteDatabase.CursorFactory factory, int dataBaseVersion) &#123;</span><br><span class="line">                              </span><br><span class="line">  		super(context, dataBaseName, factory, dataBaseVersion);</span><br><span class="line">  		mContext = context;</span><br><span class="line">  	&#125;</span><br><span class="line">  	</span><br><span class="line">  	//	只会在生成当前版本号的数据库时调用, 即使编译多次也只会调用1次</span><br><span class="line">  	@Override</span><br><span class="line">  	public void onCreate(SQLiteDatabase db) &#123;</span><br><span class="line">      db.execSQL(CREATE_BOOK);		//	执行创建数据表</span><br><span class="line">  	&#125;</span><br><span class="line">  	</span><br><span class="line">  	//	当版本号改变时调用. 比如需要生成第2张表时, 可以用另一个版本号生成MyDatabaseHelper</span><br><span class="line">  	@Override </span><br><span class="line">  	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) &#123;</span><br><span class="line">      </span><br><span class="line">  	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//	MainActivity.java</span><br><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">  private MyDatabaseHelper dbHelper;</span><br><span class="line">  </span><br><span class="line">  @Override</span><br><span class="line">  protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">    super.onCreate(savedInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">    dbHelper = new MyDatabaseHelper(this, &quot;BookStore.db&quot;, null, 1);</span><br><span class="line">    dbHelper.getWritableDatabase();</span><br><span class="line">    SQLiteDatabase db = dbHelper.getWritableDatabase();</span><br><span class="line">    </span><br><span class="line">    //	插入数据</span><br><span class="line">    ContentValues values1 = new ContentValues();</span><br><span class="line">    values1.put(&quot;name&quot;, &quot;Hello World&quot;);</span><br><span class="line">    values1.put(&quot;author&quot;, &quot;Tom&quot;);</span><br><span class="line">    values1.put(&quot;pages&quot;, 450);</span><br><span class="line">    values1.put(&quot;price&quot;, 16.9);</span><br><span class="line">    db.insert(&quot;Book&quot;, null, values1);</span><br><span class="line">    </span><br><span class="line">    //	插入第2组数据</span><br><span class="line">    values1.clear();</span><br><span class="line">    values1.put(&quot;name&quot;, &quot;Hello Android&quot;);</span><br><span class="line">    values1.put(&quot;author&quot;, &quot;John&quot;);</span><br><span class="line">    values1.put(&quot;pages&quot;, 100);</span><br><span class="line">    values1.put(&quot;price&quot;, 10.1);</span><br><span class="line">    db.insert(&quot;Book&quot;, null, values1);</span><br><span class="line">    </span><br><span class="line">    //	更新数据</span><br><span class="line">    ContentValues values2 = new ContentValues();</span><br><span class="line">    values2.put(&quot;price&quot;, 17.5);</span><br><span class="line">    db.update(&quot;Book&quot;, values, &quot;name = ?&quot;, new String[] &#123; &quot;Hello World&quot; &#125;);		//	将书名为Hello World的书的价格修改为17.5</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  	//	删除数据</span><br><span class="line">  	db.delete(&quot;Book&quot;, &quot;pages &gt; ?&quot;, new String[] &#123; &quot;500&quot; &#125;);		//	将页数大于500的书删除</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	//	查询数据</span><br><span class="line">	Cursor cursor = db.query(&quot;Book&quot;, null, null, null, null, null, null);</span><br><span class="line">	/*</span><br><span class="line">		第1个参数: 	表名</span><br><span class="line">		第2个参数: 	要查询的列, 不指定则默认为所有列</span><br><span class="line">		第3、4个参数: 约束查询的行</span><br><span class="line">		第5个参数:	需要group by的列, 不指定则不group by</span><br><span class="line">		第6个参数:	通过group by过滤, 不指定则不过滤</span><br><span class="line">		第7个参数:	结果排序方式</span><br><span class="line">	*/</span><br><span class="line">	</span><br><span class="line">	//	Cursor cursor = db.query(&quot;User&quot;, new  String[] &#123; &quot;username&quot;, &quot;password&quot; &#125;, &quot;username = ?&quot;, new  String[]&#123; username.getText().toString()&#125;, null, null, null);</span><br><span class="line">	</span><br><span class="line">	if (cursor.moveToFirst()) &#123;			//	cursor的默认下标是-1, 用之前要moveToFirst()</span><br><span class="line">	//	依次遍历所有结果</span><br><span class="line">      do &#123;</span><br><span class="line">        String name = cursor.getString(cursor.getColumnIndex(&quot;name&quot;));</span><br><span class="line">        String author = cursor.getString(cursor.getColumnIndex(&quot;author&quot;));</span><br><span class="line">        int pages = cursor.getInt(cursor.getColumnIndex(&quot;pages&quot;));</span><br><span class="line">        double price = cursor.getDouble(cursor.getColumnIndex(&quot;price&quot;));</span><br><span class="line">      &#125; while (cursor.moveToNext());</span><br><span class="line">	&#125;</span><br><span class="line">	cursor.close();</span><br><span class="line">	</span><br><span class="line">	//	关闭数据库</span><br><span class="line">	db.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="SQLite保存图片"><a href="#SQLite保存图片" class="headerlink" title="SQLite保存图片"></a>SQLite保存图片</h1><p>​    先将图片转换为二进制形式再保存</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">1. 创建表</span><br><span class="line">	db.execSQL(&quot;Create table express ( id INTEGER PRIMARY KEY AUTOINCREMENT, img BLOB );&quot;); </span><br><span class="line">	</span><br><span class="line">2. 向数据库插入图片</span><br><span class="line">	ContentValues values = new ContentValues();  </span><br><span class="line">    final ByteArrayOutputStream os = new ByteArrayOutputStream();</span><br><span class="line">    //  从ImageView获取Bitmap</span><br><span class="line">    addImage.setDrawingCacheEnabled(true);</span><br><span class="line">    Bitmap bitmap = Bitmap.createBitmap(addImage.getDrawingCache());</span><br><span class="line">    addImage.setDrawingCacheEnabled(false);</span><br><span class="line">    bitmap.compress(Bitmap.CompressFormat.PNG, 100, os);</span><br><span class="line">    values.put(&quot;image&quot;, os.toByteArray());</span><br><span class="line">    db.insert(&quot;User&quot;, null, values);</span><br><span class="line">    </span><br><span class="line">3 (1). 从数据库读取图片</span><br><span class="line">	byte[] in = cur.getBlob(cur.getColumnIndex(&quot;img&quot;));  </span><br><span class="line">	Bitmap bmpout = BitmapFactory.decodeByteArray(in,0,in.length);  </span><br><span class="line">	</span><br><span class="line">3 (2). 显示在ImageView上</span><br><span class="line">	ImageView imageView = (ImageView) view.findViewById(R.id.img);   </span><br><span class="line">    ByteArrayInputStream stream = new ByteArrayInputStream(cur.getBlob(cur.getColumnIndex(&quot;img&quot;)));   </span><br><span class="line">    imageView.setImageDrawable(Drawable.createFromStream(stream, &quot;img&quot;));</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/LeetCode/LeetCode/动态规划问题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/LeetCode/LeetCode/动态规划问题/" itemprop="url">动态规划问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-29T11:13:08+08:00">
-                2018-10-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">给数组nums[n], 每次选一个数nums[i], 得到count += nums[i - 1] * nums[i] * nums[i + 1](若nums[i - 1], nums[i + 1]越界, 则用1代替), 然后把nums[i]从nums中剔除, 重复该步骤直至数组为空, 问count的最大值是多少? </span><br><span class="line"></span><br><span class="line">例如:</span><br><span class="line">Input: [3,1,5,8]</span><br><span class="line">Output: 167 </span><br><span class="line">Explanation: nums = [3,1,5,8] --&gt; [3,5,8] --&gt;   [3,8]   --&gt;  [8]  --&gt; []</span><br><span class="line">             count =  3*1*5      +  3*5*8    +  1*3*8      + 1*8*1   = 167</span><br></pre></td></tr></table></figure>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">首先要明确, 这不是一个贪心算法, 因为如果想着找每一轮, nums[i - 1] * nums[i] * nums[i + 1]最大的值, 就会发现, 对于[3, 1, 5, 8]剔除的是1(count15)而不是8(count=40)</span><br><span class="line"></span><br><span class="line">然后我设计了一个回溯算法, 使用for循环, 假设每个元素是这轮选择的元素, 递归求解数组剩下元素的最大值, 然后比较, 找出for中选择的最大的元素. 接着我想起来自己忘记把重复计算的东西去掉, 因此我用一个map保存了计算过的元素, 记忆回溯的实现如下</span><br></pre></td></tr></table></figure>
-<h1 id="DP、回溯、分治"><a href="#DP、回溯、分治" class="headerlink" title="DP、回溯、分治"></a>DP、回溯、分治</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">对于这类必须遍历所有的可能性找最值, 一般用动态规划或记忆回溯算法. 现在简单阐述一下回溯, 分治, 动态规划: </span><br><span class="line">	1. 分治算法: 把一个复杂的问题分成多个相似的子问题, 子问题可以直接求解, 最后原问题的解等于子问题解的合并</span><br><span class="line">	2. 动态规划算法: 在最优子结构的前提下, 自底向上进行搜索，并且在每一步都根据当前问题的状况作出选择，从而作出最优决策</span><br><span class="line">	3. 回溯算法: 类似于一个枚举的过程, 自顶向下尝试搜索问题的解, 发现解不满足条件时就回溯, 尝试别的路径. 它的求解过程有些像二叉树从根到叶节点遍历</span><br><span class="line">	4. 记忆算法: 保存回溯算法中已经计算过的数据, 比如斐波那契数列, 对于F(10), 它求F(9)的时候计算了F(0) + F(1), 求F(8)的时候也计算了F(0) + F(1), 因此需要把计算结果保存起来.</span><br><span class="line">	</span><br><span class="line">分治和动规, 回溯的区别是: 前者划分的子问题是相互独立的; 而后两者划分的子问题往往不是相互独立的(下一个子问题的求解建立在上一个子问题解的基础上, 比如这里每用掉一个元素就要剔除)</span><br><span class="line"></span><br><span class="line">动规和记忆算法的区别: 时间复杂度一样, 但是空间复杂度更低. 同时动规使用地带的方式自底向上推导结果. 比如对求斐波那契数列F(10), 记忆回溯是采用先求解F(9)和F(8)来求解F(10), F（9)和F(8)又需要通过F(7), F(6)来求解, 以此类推; 而动规则反过来, 先求F(1), F(2), ... F(9), 最后F(10) = F(8) + F(9). 因此, 记忆算法会求出并保存F(9) ~ F(1), 空间复杂度为O(n); 而动规只需要保存两个状态(最近的状态覆盖旧状态), 空间复杂度为O(1)</span><br></pre></td></tr></table></figure>
-<p>以下是DP算法的教程:</p>
-<p>​    <a href="https://blog.csdn.net/baidu_37107022/article/details/73188963" target="_blank" rel="noopener">https://blog.csdn.net/baidu_37107022/article/details/73188963</a></p>
-<p>求DP算法首先写出递归式, 接着自底向上迭代. 对于多个参数, 比如在人数n固定的情况下获取最多金钱m, 使用二维数组array[n][m]保存</p>
-<h1 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h1><h2 id="记忆算法"><a href="#记忆算法" class="headerlink" title="记忆算法"></a>记忆算法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">	int maxCoins(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">		if (nums.size() == 0)</span><br><span class="line">			return 0;</span><br><span class="line"></span><br><span class="line">		if (m.find(nums) != m.end())</span><br><span class="line">			return m[nums];</span><br><span class="line"></span><br><span class="line">		int maxCount = 0;</span><br><span class="line">		int maxCountIndex = -1;</span><br><span class="line"></span><br><span class="line">		for (int i = 0; i &lt; nums.size(); i++) &#123;</span><br><span class="line">			int tempCount, left, right;</span><br><span class="line">			if (i == 0)</span><br><span class="line">				left = 1;</span><br><span class="line">			else</span><br><span class="line">				left = nums[i - 1];</span><br><span class="line"></span><br><span class="line">			if (i == nums.size() - 1)</span><br><span class="line">				right = 1;</span><br><span class="line">			else</span><br><span class="line">				right = nums[i + 1];</span><br><span class="line"></span><br><span class="line">			vector&lt;int&gt; temp = nums;</span><br><span class="line">			temp.erase(temp.begin() + i);</span><br><span class="line"></span><br><span class="line">			tempCount = left * right * nums[i] + maxCoins(temp);</span><br><span class="line"></span><br><span class="line">			if (tempCount &gt; maxCount || (tempCount == maxCount &amp;&amp; nums[i] &lt; nums[maxCountIndex])) &#123;</span><br><span class="line">				maxCount = tempCount;</span><br><span class="line">				maxCountIndex = i;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		m[nums] = maxCount;</span><br><span class="line"></span><br><span class="line">		return maxCount;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">private:</span><br><span class="line">	map&lt;vector&lt;int&gt;, int&gt; m;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h1 id="DP"><a href="#DP" class="headerlink" title="DP"></a>DP</h1><p>​    这题是一道典型的矩阵链乘问题, 以下是矩阵链乘的DP算法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">已知n个矩阵A1 * A2 * ... * An, 维度分别为M0*M1, M1*M2, ..., Mn-1*Mn, 求矩阵相乘的最小代价.</span><br><span class="line"></span><br><span class="line">例如, 四个矩阵的维度依次为50*20, 20*1, 1*10, 10*100. 通过矩阵相乘的结合律可知, A*((B*C)*D)的代价为120200比((A*B)*(C*D))的代价7000要大. </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int C[n][n] = &#123;0&#125;;						//	C[i][j]表示Ai*Ai+1...*Aj的最小代价</span><br><span class="line">for (int i = 0; i &lt; n; i++) 	</span><br><span class="line">  C[i][i] = 0;</span><br><span class="line"></span><br><span class="line">for (int i = 0; i &lt; n; i++) &#123;			//	将矩阵链分为两部分, 计算完左、右、中间部件, 再相加</span><br><span class="line">  for (int j = i+1; j &lt; n; j++) &#123;</span><br><span class="line">  	for (int k = i; k &lt;= j; k++) &#123;</span><br><span class="line">      C[i][j] = min(C[i][k] + C[k+1][j] + M[i-1]*M[k]*m[j]);		//	M[i]表示矩阵i的列数</span><br><span class="line">  	&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">return C[1][n];</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/LeetCode/LeetCode/8数码问题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/LeetCode/LeetCode/8数码问题/" itemprop="url">8数码问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-21T18:40:30+08:00">
-                2018-10-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">给一个2 * 3的矩阵board, 里面的数字为0 ~ 5, 只移动0, 达到目标状态[[1 2 3], [4, 5, 0]]最少需要多少步</span><br><span class="line"></span><br><span class="line">例子:</span><br><span class="line">	board = [[1,2,3],[4,0,5]]</span><br><span class="line">	Ouput: 1</span><br><span class="line">	</span><br><span class="line">	board = [[1,2,3],[5,4,0]]</span><br><span class="line">	Output: -1</span><br></pre></td></tr></table></figure>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">这道题是人工智能课上说过的一道经典的搜索题--8数码问题, 利用BFS求解:</span><br><span class="line">	将矩阵看作一个状态, 队列中保存矩阵的状态, 用BFS的方式得到目标状态以及需要移动的步数.</span><br></pre></td></tr></table></figure>
-<h1 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">	int slidingPuzzle(vector&lt;vector&lt;int&gt;&gt;&amp; board) &#123;</span><br><span class="line">		queue&lt;vector&lt;vector&lt;int&gt;&gt;&gt; myQueue;</span><br><span class="line"></span><br><span class="line">		myQueue.push(board);</span><br><span class="line"></span><br><span class="line">		while (!myQueue.empty()) &#123;</span><br><span class="line">			vector&lt;vector&lt;int&gt;&gt; popData = myQueue.front();</span><br><span class="line">			myQueue.pop();</span><br><span class="line">			if (judge(popData))</span><br><span class="line">				return counts[popData];</span><br><span class="line">			</span><br><span class="line">			for (int i = 0; i &lt; 2; i++) &#123;</span><br><span class="line">				for (int j = 0; j &lt; 3; j++) &#123;</span><br><span class="line">					if (i != 1 &amp;&amp; popData[i + 1][j] == 0) &#123;</span><br><span class="line">						vector&lt;vector&lt;int&gt;&gt; pushData = popData;</span><br><span class="line">						int temp = pushData[i][j];</span><br><span class="line">						pushData[i][j] = pushData[i + 1][j];</span><br><span class="line">						pushData[i + 1][j] = temp;</span><br><span class="line"></span><br><span class="line">						if (counts[pushData] == 0) &#123;</span><br><span class="line">							counts[pushData] = counts[popData] + 1;</span><br><span class="line">							myQueue.push(pushData);</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">					</span><br><span class="line">					if (i != 0 &amp;&amp; popData[i - 1][j] == 0) &#123;</span><br><span class="line">						vector&lt;vector&lt;int&gt;&gt; pushData = popData;</span><br><span class="line">						int temp = pushData[i][j];</span><br><span class="line">						pushData[i][j] = pushData[i - 1][j];</span><br><span class="line">						pushData[i - 1][j] = temp;</span><br><span class="line"></span><br><span class="line">						if (counts[pushData] == 0) &#123;</span><br><span class="line">							counts[pushData] = counts[popData] + 1;</span><br><span class="line">							myQueue.push(pushData);</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line"></span><br><span class="line">					if (j != 2 &amp;&amp; popData[i][j + 1] == 0) &#123;</span><br><span class="line">						vector&lt;vector&lt;int&gt;&gt; pushData = popData;</span><br><span class="line">						int temp = pushData[i][j];</span><br><span class="line">						pushData[i][j] = pushData[i][j + 1];</span><br><span class="line">						pushData[i][j + 1] = temp;</span><br><span class="line"></span><br><span class="line">						if (counts[pushData] == 0) &#123;</span><br><span class="line">							counts[pushData] = counts[popData] + 1;</span><br><span class="line">							myQueue.push(pushData);</span><br><span class="line">						&#125;</span><br><span class="line"></span><br><span class="line">					&#125;</span><br><span class="line"></span><br><span class="line">					if (j != 0 &amp;&amp; popData[i][j - 1] == 0) &#123;</span><br><span class="line">						vector&lt;vector&lt;int&gt;&gt; pushData = popData;</span><br><span class="line">						int temp = pushData[i][j];</span><br><span class="line">						pushData[i][j] = pushData[i][j - 1];</span><br><span class="line">						pushData[i][j - 1] = temp;</span><br><span class="line"></span><br><span class="line">						if (counts[pushData] == 0) &#123;</span><br><span class="line">							counts[pushData] = counts[popData] + 1;</span><br><span class="line">							myQueue.push(pushData);</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		return -1;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">private:</span><br><span class="line">	map&lt;vector&lt;vector&lt;int&gt;&gt;, int&gt; counts;</span><br><span class="line"></span><br><span class="line">	//	判断是否是目标状态</span><br><span class="line">	bool judge(vector&lt;vector&lt;int&gt;&gt;&amp; temp) &#123;</span><br><span class="line">		for (int i = 0; i &lt; temp[0].size(); i++) </span><br><span class="line">			if (temp[0][i] != i + 1)</span><br><span class="line">				return false;</span><br><span class="line"></span><br><span class="line">		for (int i = 0; i &lt; temp[1].size(); i++) </span><br><span class="line">			if (temp[1][i] != i + 4 &amp;&amp; i != 2)</span><br><span class="line">				return false;</span><br><span class="line"></span><br><span class="line">		return true;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Android/Android/Android学习--通知服务/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Android/Android/Android学习--通知服务/" itemprop="url">通知服务</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-17T14:50:30+08:00">
-                2018-10-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="更改包名"><a href="#更改包名" class="headerlink" title="更改包名"></a>更改包名</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://blog.csdn.net/qq_35270692/article/details/78336049</span><br></pre></td></tr></table></figure>
-<h1 id="Cannot-resolve-method"><a href="#Cannot-resolve-method" class="headerlink" title="Cannot resolve method"></a>Cannot resolve method</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果Alt + Enter无法导入包, 则在method前面加上getContext()或者参数是context就直接加context</span><br></pre></td></tr></table></figure>
-<h1 id="广播"><a href="#广播" class="headerlink" title="广播"></a>广播</h1><ul>
-<li>标准广播: 所有广播接收器同时收到消息</li>
-<li>有序广播: 优先级高的广播接收器先接收, 优先级低的后接收. 优先级高的还可以截断此广播, 使低的无法接收</li>
-</ul>
-<h1 id="注册广播接收器"><a href="#注册广播接收器" class="headerlink" title="注册广播接收器"></a>注册广播接收器</h1><h2 id="动态注册"><a href="#动态注册" class="headerlink" title="动态注册"></a>动态注册</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">  private IntentFilter intentFilter;</span><br><span class="line">  private MyBroadcastReceiver receiver;</span><br><span class="line">  </span><br><span class="line">  @Override</span><br><span class="line">  protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">    super.onCreate(savedInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">    </span><br><span class="line">    intentFilter = new IntentFilter();</span><br><span class="line">    intentFilter.addAciton(&quot;com.example.broadcasttest.MY_BROADCAST&quot;);		//	action指明监听的类型</span><br><span class="line">    receiver = new MyBroadcastReceiver();</span><br><span class="line">    registerReceiver(receiver, intentFilter);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  @Override</span><br><span class="line">  protected void onDestroy() &#123;</span><br><span class="line">    super.onDestroy();</span><br><span class="line">    unregisterReceiver(receiver);											//	记得取消监听</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  class MyBroadcastReceiver extends BroadcastReceiver &#123;</span><br><span class="line">    </span><br><span class="line">    @Override</span><br><span class="line">    public void onReceiver(Context context, Intent intent) &#123;</span><br><span class="line">      Toast.makeText(context, &quot;received broadcast&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="静态注册"><a href="#静态注册" class="headerlink" title="静态注册"></a>静态注册</h2><p>​    动态注册在程序启动后才能接收</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">1. 右键com.example.xxx -&gt; New -&gt; Other -&gt; Broadcast Receiver创建名为MyBroadcastReceive的广播接收器</span><br><span class="line">	Exported: 是否能接收本程序外的广播</span><br><span class="line">	Enabled: 是否启用这个广播</span><br><span class="line">	</span><br><span class="line">2. 修改Broadcast Receiver</span><br><span class="line">public class MyBroadcastReceiver extends BroadcastReceiver &#123;</span><br><span class="line">  @Override</span><br><span class="line">  public void onReceive(Context context, Intent intent) &#123;</span><br><span class="line">    Toast.makeText(context, &quot;receive broadcast&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">3. 修改AndroidManifest.xml</span><br><span class="line"></span><br><span class="line">&lt;receiver</span><br><span class="line">	android:name=&quot;.MyBroadcastReceive&quot;</span><br><span class="line">	android:enabled=&quot;true&quot;</span><br><span class="line">	android:exported=&quot;true&quot;&gt;</span><br><span class="line">	&lt;intent-filter&gt;</span><br><span class="line">		&lt;action android:name=&quot;com.example.broadcasttest.MY_BROADCAST&quot;/&gt;			//	接收值action为&quot;com.example.broadcasttest.MY_BROADCAST&quot;的广播</span><br><span class="line">	&lt;/intent-filter&gt;</span><br><span class="line">&lt;/receiver&gt;</span><br></pre></td></tr></table></figure>
-<h1 id="发送广播"><a href="#发送广播" class="headerlink" title="发送广播"></a>发送广播</h1><h2 id="标准广播"><a href="#标准广播" class="headerlink" title="标准广播"></a>标准广播</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class MainAcitivity extends AppCompatAcitivity &#123;</span><br><span class="line">   @Override</span><br><span class="line">  protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">    super.onCreate(savedInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    Button button = (Button)findViewById(R.id.button);</span><br><span class="line">    button.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">      @Override</span><br><span class="line">      public void onClick(View v) &#123;</span><br><span class="line">        Intent intent = new Intent(&quot;com.example.broadcasttest.MY_BROADCAST&quot;);</span><br><span class="line">        sendBroadcast(intent);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="有序广播"><a href="#有序广播" class="headerlink" title="有序广播"></a>有序广播</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">1. 将发送的sendBroadcast改为sendOrderedBroadcast</span><br><span class="line"></span><br><span class="line">2. 修改AndroidManifest.xml设置优先级</span><br><span class="line">&lt;receiver</span><br><span class="line">	android:name=&quot;.MyBroadcastReceive&quot;</span><br><span class="line">	android:enabled=&quot;true&quot;</span><br><span class="line">	android:exported=&quot;true&quot;&gt;</span><br><span class="line">	&lt;intent-filter android:priority=&quot;100&quot;&gt;		设置优先级</span><br><span class="line">		&lt;action android:name=&quot;com.example.broadcasttest.MY_BROADCAST&quot;/&gt;			</span><br><span class="line">	&lt;/intent-filter&gt;</span><br><span class="line">&lt;/receiver&gt;</span><br><span class="line"></span><br><span class="line">3. 如果需要截断广播, 在onReceive中调用</span><br><span class="line">	abortBroadcast();</span><br></pre></td></tr></table></figure>
-<h1 id="本地广播"><a href="#本地广播" class="headerlink" title="本地广播"></a>本地广播</h1><p>​    本地广播, 只有程序内的接收器才能接收广播</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">  private IntentFilter intentFilter;</span><br><span class="line">  private LocalReceiver localReceiver;</span><br><span class="line">  private LocalBroadcastManager localBroadcastManager;</span><br><span class="line">  </span><br><span class="line">  @Override</span><br><span class="line">  protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">    super.onCreate(savedInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">    localBroadcastManager = LocalBroadcastManager.getInstance(this);		//	获取本地广播实例</span><br><span class="line">    </span><br><span class="line">    //	发送广播</span><br><span class="line">    Button button = (Button)findViewById(R.id.button);</span><br><span class="line">    button.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">      @Override</span><br><span class="line">      public void onClick(View v) &#123;</span><br><span class="line">        Intent intent = new Intent(&quot;com.example.broadcasttest.LOCAL_BROADCAST&quot;);</span><br><span class="line">        localBroadcastManager.sendBroadcast(intent);					//	发送本地有序广播</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    //	接收广播</span><br><span class="line">    intentFilter = new IntentFilter();</span><br><span class="line">    intentFilter.addAction(&quot;com.example.broadcasttest.MY_BROADCAST&quot;);</span><br><span class="line">    localReceiver = new LocalReceiver();</span><br><span class="line">    localBroadcastManager.registerReceiver(localReceiver, intentFilter);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  @Override</span><br><span class="line">  protected void onDestroy() &#123;</span><br><span class="line">    super.onDestroy();</span><br><span class="line">    localBroadcastManager.unregisterReceiver(localReceiver);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  class LocalReceiver extends BroadcastReceiver &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void onReceive(Context context, Intent intent) &#123;</span><br><span class="line">      Toast.makeText(context, &quot;receive broadcast&quot;, Toast.LENGTH_SHORT).show();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="通知Notification"><a href="#通知Notification" class="headerlink" title="通知Notification"></a>通知Notification</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">public class MainActivity extends AppCompatActivity &#123;</span><br><span class="line">  </span><br><span class="line">  @Override</span><br><span class="line">  protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">    super.onCreate(savedInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">    button.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">      @Override</span><br><span class="line">      public void onClick(View v) &#123;</span><br><span class="line">       	            Item item = (Item)intent.getSerializableExtra(&quot;item&quot;);</span><br><span class="line"></span><br><span class="line">            Intent targetIntent = new Intent(MainAcitivity.this, DetailPage.class);</span><br><span class="line">            targetIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);</span><br><span class="line">            targetIntent.putExtra(&quot;item&quot;, item);</span><br><span class="line">            PendingIntent pi = PendingIntent.getActivity(context, 唯一值, targetIntent, 0);</span><br><span class="line">            //	当notification的intent需要传递数据时, intent设置FLAG并且第二个参数是一个唯一值</span><br><span class="line"></span><br><span class="line">            NotificationManager manager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);</span><br><span class="line">            Notification.Builder builder = new Notification.Builder(context);</span><br><span class="line"></span><br><span class="line">            builder.setContentTitle(&quot;今日推荐&quot;)             //  设置通知栏标题：发件人</span><br><span class="line">                    .setContentText(item.getName())         //  设置通知栏显示内容：短信内容</span><br><span class="line">                    .setTicker(&quot;您有一条新消息&quot;)             //  通知首次出现在通知栏，带上升动画效果的</span><br><span class="line">                    .setSmallIcon(R.drawable.empty_star)    //  设置通知小ICON（通知栏），可以用以前的素材，例如空星</span><br><span class="line">                    .setContentIntent(pi)                   //  传递内容</span><br><span class="line">                    .setAutoCancel(true);                   //  设置这个标志当用户单击面板就可以让通知将自动取消</span><br><span class="line"></span><br><span class="line">            Notification notify = builder.build();</span><br><span class="line">            manager.notify(0,notify);                   //	第一个参数表示通知的ID, 必须唯一</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="EventBus"><a href="#EventBus" class="headerlink" title="EventBus"></a>EventBus</h1><p>​    eventBus和广播的作用是在不改变activity的情况下传递消息, eventBus相对而言更加简单</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Matlab/Matlab/Matlab图像处理/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Matlab/Matlab/Matlab图像处理/" itemprop="url">图像处理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-11T18:55:12+08:00">
-                2018-10-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Matlab/" itemprop="url" rel="index">
-                    <span itemprop="name">Matlab</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">读取图片并512*512*3的矩阵进行保存:</span><br><span class="line">	I=imread(&apos;lena.jpg&apos;);</span><br><span class="line"></span><br><span class="line">显示图片:</span><br><span class="line">	imshow(I);</span><br><span class="line">	figure(1);</span><br><span class="line"></span><br><span class="line">保存图片:</span><br><span class="line">	imwrite(I, &apos;lenaSave,jpg&apos;);</span><br><span class="line">	</span><br><span class="line">转换为灰度图:</span><br><span class="line">	I1=rgb2gray(I);</span><br><span class="line"></span><br><span class="line">矩阵I一开始是uint8格式, 与double类型相乘之前, 需要I=double(I). 要显示图片, 最后需要再转换为uint8, I=uint8(I)</span><br></pre></td></tr></table></figure>
-<h1 id="图片切换动画"><a href="#图片切换动画" class="headerlink" title="图片切换动画"></a>图片切换动画</h1><p><a href="https://blog.csdn.net/qq_32892383/article/details/79553001?tdsourcetag=s_pctim_aiomsg" target="_blank" rel="noopener">https://blog.csdn.net/qq_32892383/article/details/79553001?tdsourcetag=s_pctim_aiomsg</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/LeetCode/LeetCode/构建最大频率栈/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/LeetCode/LeetCode/构建最大频率栈/" itemprop="url">构建最大频率栈</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-11T13:23:05+08:00">
-                2018-10-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">实现一个最大频率栈, 每次出栈时弹出一个出现频率最大的元素, 若有多个元素则弹出最靠近栈顶的元素</span><br></pre></td></tr></table></figure>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">最开始的想法是:</span><br><span class="line">	用一个vector模拟栈, 再用一个map记录频率, 每次pop的时候遍历map算出要出栈的元素, 然后从后往前遍历vector, 找个这个元素弹出, 并将他后面的元素往前移一格, 然后TLE了. </span><br><span class="line">	</span><br><span class="line">然后考虑:</span><br><span class="line">	vector中重复的元素只保存一次, 且它们的排序是频率. 但是问题是当pop后, 无法重新排序</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1760,7 +1787,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-count">108</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1771,7 +1798,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1. 简答题1.1 用例的概念1234567用例是软件工程或系统工程中对系统反应外界请求的描述，它包含一组相关的成功和失败场景集合，用以说明系统是如何和最终用户或其它系统互动需要注意: 	1. 用例不是图形，而是文本；	2. 用例建模主要是编写文本，而不是绘制图表；	3. 关于用例没有任何面向对象的东西；	4. 用例是经典OOA/D的关键需求输入； 1.2 用例和场景的关系？什么是主场景或 hap">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HW6">
+<meta property="og:url" content="http://utilcoder.com/系统分析与设计/系统分析与设计/HW6/index.html">
+<meta property="og:site_name" content="Code">
+<meta property="og:description" content="1. 简答题1.1 用例的概念1234567用例是软件工程或系统工程中对系统反应外界请求的描述，它包含一组相关的成功和失败场景集合，用以说明系统是如何和最终用户或其它系统互动需要注意: 	1. 用例不是图形，而是文本；	2. 用例建模主要是编写文本，而不是绘制图表；	3. 关于用例没有任何面向对象的东西；	4. 用例是经典OOA/D的关键需求输入； 1.2 用例和场景的关系？什么是主场景或 hap">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://utilcoder.com/系统分析与设计/images/system-symbol.jpg">
+<meta property="og:image" content="http://utilcoder.com/系统分析与设计/images/use-case-symbol.jpg">
+<meta property="og:image" content="http://utilcoder.com/系统分析与设计/images/actor-symbol.jpg">
+<meta property="og:image" content="http://utilcoder.com/系统分析与设计/images/relationships-symbol.jpg">
+<meta property="og:image" content="http://utilcoder.com/系统分析与设计/images/ticket.jpg">
+<meta property="og:image" content="http://utilcoder.com/系统分析与设计/images/hotel.jpg">
+<meta property="og:updated_time" content="2019-05-16T01:33:44.958Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HW6">
+<meta name="twitter:description" content="1. 简答题1.1 用例的概念1234567用例是软件工程或系统工程中对系统反应外界请求的描述，它包含一组相关的成功和失败场景集合，用以说明系统是如何和最终用户或其它系统互动需要注意: 	1. 用例不是图形，而是文本；	2. 用例建模主要是编写文本，而不是绘制图表；	3. 关于用例没有任何面向对象的东西；	4. 用例是经典OOA/D的关键需求输入； 1.2 用例和场景的关系？什么是主场景或 hap">
+<meta name="twitter:image" content="http://utilcoder.com/系统分析与设计/images/system-symbol.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://utilcoder.com/系统分析与设计/系统分析与设计/HW6/"/>
+
+
+
+
+
+  <title>HW6 | Code</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Code</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/系统分析与设计/系统分析与设计/HW6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">HW6</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-15T14:37:56+08:00">
+                2019-05-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/系统分析与设计/" itemprop="url" rel="index">
+                    <span itemprop="name">系统分析与设计</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-简答题"><a href="#1-简答题" class="headerlink" title="1. 简答题"></a>1. 简答题</h1><h2 id="1-1-用例的概念"><a href="#1-1-用例的概念" class="headerlink" title="1.1 用例的概念"></a>1.1 用例的概念</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">用例是软件工程或系统工程中对系统反应外界请求的描述，它包含一组相关的成功和失败场景集合，用以说明系统是如何和最终用户或其它系统互动</span><br><span class="line"></span><br><span class="line">需要注意: </span><br><span class="line">	1. 用例不是图形，而是文本；</span><br><span class="line">	2. 用例建模主要是编写文本，而不是绘制图表；</span><br><span class="line">	3. 关于用例没有任何面向对象的东西；</span><br><span class="line">	4. 用例是经典OOA/D的关键需求输入；</span><br></pre></td></tr></table></figure>
+<h2 id="1-2-用例和场景的关系？什么是主场景或-happy-path？"><a href="#1-2-用例和场景的关系？什么是主场景或-happy-path？" class="headerlink" title="1.2 用例和场景的关系？什么是主场景或 happy path？"></a>1.2 用例和场景的关系？什么是主场景或 happy path？</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">场景是参与者和系统之间的一系列特定的活动和交互，也称为用例实例; 用例是一组场景（主场景加上零个或多个可选场景）的集合；</span><br><span class="line"></span><br><span class="line">主场景（或Happy Path）也被称为“理想路径”场景，是指系统的主要交互场景，能够直接实现用户的目标。</span><br></pre></td></tr></table></figure>
+<h2 id="1-3-用例有哪些形式？"><a href="#1-3-用例有哪些形式？" class="headerlink" title="1.3 用例有哪些形式？"></a>1.3 用例有哪些形式？</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">用例有三种常用形式：</span><br><span class="line"></span><br><span class="line">	1. Brief：简洁的总结，通常用于主成功场景；在早期的需求分析中，能够快速了解主题和范围</span><br><span class="line"></span><br><span class="line">	2. Casual：非正式的段落格式，涵盖各种场景的多个段落；主要应用于早期的需求分析；</span><br><span class="line"></span><br><span class="line">	3. Fully：详细编写所有步骤及各种变化，同时具有补充部分，如前置条件和成功保证；在以一种简短的格式确定并编写了许多用例之后，会详细地编写一些具有体系结构重要性和高价值的用例。</span><br></pre></td></tr></table></figure>
+<h2 id="1-4-对于复杂业务，为什么编制完整用例非常难？"><a href="#1-4-对于复杂业务，为什么编制完整用例非常难？" class="headerlink" title="1.4 对于复杂业务，为什么编制完整用例非常难？"></a>1.4 对于复杂业务，为什么编制完整用例非常难？</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">对于复杂业务，涉及的场景数量会很多, 各个场景之间的关联使得用例设计变得特别困难，很难将所有的目标、故事、使用场景遵循一定的顺序列举出来，较难实现用户与服务之间的完整与协调，用例的完整性难以保障。</span><br></pre></td></tr></table></figure>
+<h2 id="1-5-什么是用例图？"><a href="#1-5-什么是用例图？" class="headerlink" title="1.5 什么是用例图？"></a>1.5 什么是用例图？</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 用例图是一种优秀的系统语境图，用以描述用例名称和参与者之间的连接关系, 说明的是谁要使用系统，以及他们使用该系统可以做些什么</span><br><span class="line"></span><br><span class="line">2. 用例图能够展示系统边界、位于边界之外的事物以及系统如何被使用</span><br><span class="line"></span><br><span class="line">3. 用例图可以作为沟通的工具，用以概括系统及其参与者的行为。</span><br></pre></td></tr></table></figure>
+<h2 id="1-6-用例图的基本符号与元素？用例图的基本符号与元素？"><a href="#1-6-用例图的基本符号与元素？用例图的基本符号与元素？" class="headerlink" title="1.6 用例图的基本符号与元素？用例图的基本符号与元素？"></a>1.6 用例图的基本符号与元素？用例图的基本符号与元素？</h2><ul>
+<li>系统：使用包含用例的矩形绘制系统的边界，将参与者置于系统边界之外：</li>
+</ul>
+<p><img src="../../images\system-symbol.jpg" alt="system-symbol"></p>
+<ul>
+<li>用例：使用椭圆绘制用例，用表示系统功能的动词标记椭圆：</li>
+</ul>
+<p><img src="../../images\use-case-symbol.jpg" alt="use-case-symbol"></p>
+<ul>
+<li>参与者：参与者是系统的用户，当一个系统是另一个系统的参与者时，用参与者原型标记参与者系统：</li>
+</ul>
+<p><img src="../../images\actor-symbol.jpg" alt="actor-symbol"></p>
+<ul>
+<li>关系：用简单的一行说明一个参与者和一个用例之间的关系；对于用例之间的关系，使用标记为<code>include</code>或<code>extend</code>的箭头<ul>
+<li><code>include</code>: 表示<strong>主要</strong>的功能</li>
+<li><code>extend</code>: 表示一个功能是可选的</li>
+</ul>
+</li>
+</ul>
+<p><img src="../../images\relationships-symbol.jpg" alt="relationships-symbol"></p>
+<h2 id="1-7-用例图的画法与步骤："><a href="#1-7-用例图的画法与步骤：" class="headerlink" title="1.7 用例图的画法与步骤："></a>1.7 用例图的画法与步骤：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">1. 确定系统边界</span><br><span class="line"></span><br><span class="line">2. 确定参与者: </span><br><span class="line">	a. 确定谁将使用该系统的主要功能；</span><br><span class="line">	b. 谁将需要该系统的支持；</span><br><span class="line">	c. 谁将需要维护、管理该系统，以及保持该系统处于工作状态；</span><br><span class="line">	d. 系统需要处理哪些硬件设备；</span><br><span class="line">	e. 与该系统交互的是什么系统；</span><br><span class="line">	f. 谁或者什么系统对本系统产生的结果感兴趣；</span><br><span class="line"></span><br><span class="line">3. 识别用例: </span><br><span class="line">	a. 从分析系统的参与者开始，考虑每一个参与者是如何使用系统的</span><br><span class="line">	b. 考虑特定参与者希望系统提供什么功能；</span><br><span class="line">	c. 考虑系统是否存储和检索信息，如果是，有哪个参与者触发；</span><br><span class="line">	d. 当系统改变状态时，是否通知参与者；</span><br><span class="line">	e. 是否存在影响系统的外部事件；</span><br><span class="line">	f. 哪个参与者通知系统这些事件；</span><br><span class="line"></span><br><span class="line">4. 确定用例间的关系:</span><br><span class="line">	a. 关联关系：使用实线将参与者与相应的用例相连</span><br><span class="line">	b. 包含关系：客户用例和提供者用例之间用include箭头相连</span><br><span class="line">	c. 扩展关系：基础用例和扩展用例之间用extends箭头相连</span><br><span class="line">	d. 泛化关系：子用例与父用例之间用泛化箭头相连</span><br><span class="line"></span><br><span class="line">5. 确定关联的外部支持系统；</span><br></pre></td></tr></table></figure>
+<h2 id="1-8-用例图给利益相关人与开发者的价值有哪些？"><a href="#1-8-用例图给利益相关人与开发者的价值有哪些？" class="headerlink" title="1.8 用例图给利益相关人与开发者的价值有哪些？"></a>1.8 用例图给利益相关人与开发者的价值有哪些？</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">利益相关人：可以直观看到系统的结果和用户的功能体验，保证系统按照用户的需求进行设计；用例能够根据需要对复杂程度和形式化程序进行增减调节，即能够响应用户（利益相关人)提出的需求，而用例图则使得这种调节更加便利，可以通过修改图形间的关系实现。</span><br><span class="line"></span><br><span class="line">开发者：用例图是设计者设计过程的结论与参考，设计者与开发者之间的交流工具，开发者开发过程的蓝图；用例图使得开发者能够更明确地获得需求，更好地理解需求；用例图可以指导开发和测试，同时可以在整个过程中对其他工作流起到指导作用。</span><br></pre></td></tr></table></figure>
+<h1 id="2-建模练习题"><a href="#2-建模练习题" class="headerlink" title="2. 建模练习题"></a>2. 建模练习题</h1><h2 id="2-1-选择2-3个你熟悉的类似业务的在线服务系统，分别绘制它们用例图-并满足以下要求："><a href="#2-1-选择2-3个你熟悉的类似业务的在线服务系统，分别绘制它们用例图-并满足以下要求：" class="headerlink" title="2.1 选择2-3个你熟悉的类似业务的在线服务系统，分别绘制它们用例图, 并满足以下要求："></a>2.1 选择2-3个你熟悉的类似业务的在线服务系统，分别绘制它们用例图, 并满足以下要求：</h2><ul>
+<li>请使用用户的视角，描述用户目标或系统提供的服务；</li>
+<li>粒度达到子用例级别，并用 include 和 exclude 关联它们；</li>
+<li>请用色彩标注出你认为创新（区别于竞争对手的）用例或子用例；</li>
+<li>尽可能识别外部系统和服务</li>
+</ul>
+<ol>
+<li>订电影票</li>
+</ol>
+<p><img src="../../images\ticket.jpg" alt="ticket"></p>
+<ol>
+<li>订酒店</li>
+</ol>
+<p><img src="../../images\hotel.jpg" alt="hotel"></p>
+<h2 id="2-2-回答下列问题："><a href="#2-2-回答下列问题：" class="headerlink" title="2.2 回答下列问题："></a>2.2 回答下列问题：</h2><h3 id="2-2-1-为什么相似系统的用例图是相似的？"><a href="#2-2-1-为什么相似系统的用例图是相似的？" class="headerlink" title="2.2.1 为什么相似系统的用例图是相似的？"></a>2.2.1 为什么相似系统的用例图是相似的？</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">相似系统面向的参与者是相似的，在相似的最终目标下，系统的参与者、用例、边界以及它们之间的关系构成也是相似的, 所以最终画出来的用例图也就是相似的</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-2-如果是定旅馆业务，请对比-Asg-RH-用例图，简述如何利用不同时代、不同地区产品的用例图，展现、突出创新业务和技术；"><a href="#2-2-2-如果是定旅馆业务，请对比-Asg-RH-用例图，简述如何利用不同时代、不同地区产品的用例图，展现、突出创新业务和技术；" class="headerlink" title="2.2.2 如果是定旅馆业务，请对比 Asg_RH 用例图，简述如何利用不同时代、不同地区产品的用例图，展现、突出创新业务和技术；"></a>2.2.2 如果是定旅馆业务，请对比 Asg_RH 用例图，简述如何利用不同时代、不同地区产品的用例图，展现、突出创新业务和技术；</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Asg_RH用例图提供了最基本的服务，而现今的订旅馆业务则更综合与人性化，可以综合周边环境、旅馆类别、距离、价格、交通等因素推荐更适宜于用户的旅馆。</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-3-如何利用用例图定位创新思路（业务创新、或技术创新、或商业模式创新）在系统中的作用；"><a href="#2-2-3-如何利用用例图定位创新思路（业务创新、或技术创新、或商业模式创新）在系统中的作用；" class="headerlink" title="2.2.3 如何利用用例图定位创新思路（业务创新、或技术创新、或商业模式创新）在系统中的作用；"></a>2.2.3 如何利用用例图定位创新思路（业务创新、或技术创新、或商业模式创新）在系统中的作用；</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1. 在用例图中使用颜色对创新思路进行高亮标记；</span><br><span class="line">2. 判断创新思路在用例图中的位置；</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-4-请使用-SCRUM-方法，选择一个用例图，编制某定旅馆开发的需求（backlog）开发计划表；"><a href="#2-2-4-请使用-SCRUM-方法，选择一个用例图，编制某定旅馆开发的需求（backlog）开发计划表；" class="headerlink" title="2.2.4 请使用 SCRUM 方法，选择一个用例图，编制某定旅馆开发的需求（backlog）开发计划表；"></a>2.2.4 请使用 SCRUM 方法，选择一个用例图，编制某定旅馆开发的需求（backlog）开发计划表；</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">ID</th>
+<th style="text-align:center">Name</th>
+<th style="text-align:center">Imp</th>
+<th style="text-align:center">Est</th>
+<th style="text-align:center">How to demo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">注册</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">点击注册按钮，输入手机号，获取验证码，输入密码</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">登陆</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">点击登陆，输入手机号，选择密码登陆或短信验证登陆，填写密码或获取验证码并正确填写验证码</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">查询酒店</td>
+<td style="text-align:center">15</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">通过位置，种类价格，档次等属性筛选或排序酒店，或直接通过酒店名查找酒店</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">预订酒店</td>
+<td style="text-align:center">20</td>
+<td style="text-align:center">16</td>
+<td style="text-align:center">选择酒店后，选择房间类型，根据条件筛选房间，确定入住日期，预付定金</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">取消预订</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">选择订单，点击退订，返回定金</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">酒店评价</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">交易完成后，可选择对酒店进行评论及评分</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-2-5-根据任务4，参考-使用用例点估算软件成本，给出项目用例点的估算；"><a href="#2-2-5-根据任务4，参考-使用用例点估算软件成本，给出项目用例点的估算；" class="headerlink" title="2.2.5 根据任务4，参考 使用用例点估算软件成本，给出项目用例点的估算；"></a>2.2.5 根据任务4，参考 使用用例点估算软件成本，给出项目用例点的估算；</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">用例</th>
+<th style="text-align:center"># 业务</th>
+<th style="text-align:center"># 计算</th>
+<th style="text-align:center">原因</th>
+<th style="text-align:center">UC比重</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">注册</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">简单</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">登陆</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">简单</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">查询酒店</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">一般</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">预订酒店</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">一般</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">取消预订</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">简单</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">酒店评价</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">简单</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/计算机图形学/计算机图形学/学习(六)/" rel="next" title="学习六">
+                <i class="fa fa-chevron-left"></i> 学习六
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/系统分析与设计/系统分析与设计/HW7/" rel="prev" title="HW7">
+                HW7 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="CoderUtil" />
+            
+              <p class="site-author-name" itemprop="name">CoderUtil</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">108</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CoderUtil" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:853130236@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://icytown.com/" title="Mega Show's Blog" target="_blank">Mega Show's Blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-简答题"><span class="nav-number">1.</span> <span class="nav-text">1. 简答题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-用例的概念"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 用例的概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-用例和场景的关系？什么是主场景或-happy-path？"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 用例和场景的关系？什么是主场景或 happy path？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-用例有哪些形式？"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 用例有哪些形式？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-对于复杂业务，为什么编制完整用例非常难？"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 对于复杂业务，为什么编制完整用例非常难？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-什么是用例图？"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 什么是用例图？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-用例图的基本符号与元素？用例图的基本符号与元素？"><span class="nav-number">1.6.</span> <span class="nav-text">1.6 用例图的基本符号与元素？用例图的基本符号与元素？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-7-用例图的画法与步骤："><span class="nav-number">1.7.</span> <span class="nav-text">1.7 用例图的画法与步骤：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-8-用例图给利益相关人与开发者的价值有哪些？"><span class="nav-number">1.8.</span> <span class="nav-text">1.8 用例图给利益相关人与开发者的价值有哪些？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-建模练习题"><span class="nav-number">2.</span> <span class="nav-text">2. 建模练习题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-选择2-3个你熟悉的类似业务的在线服务系统，分别绘制它们用例图-并满足以下要求："><span class="nav-number">2.1.</span> <span class="nav-text">2.1 选择2-3个你熟悉的类似业务的在线服务系统，分别绘制它们用例图, 并满足以下要求：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-回答下列问题："><span class="nav-number">2.2.</span> <span class="nav-text">2.2 回答下列问题：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-为什么相似系统的用例图是相似的？"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.2.1 为什么相似系统的用例图是相似的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-如果是定旅馆业务，请对比-Asg-RH-用例图，简述如何利用不同时代、不同地区产品的用例图，展现、突出创新业务和技术；"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2.2 如果是定旅馆业务，请对比 Asg_RH 用例图，简述如何利用不同时代、不同地区产品的用例图，展现、突出创新业务和技术；</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-3-如何利用用例图定位创新思路（业务创新、或技术创新、或商业模式创新）在系统中的作用；"><span class="nav-number">2.2.3.</span> <span class="nav-text">2.2.3 如何利用用例图定位创新思路（业务创新、或技术创新、或商业模式创新）在系统中的作用；</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-4-请使用-SCRUM-方法，选择一个用例图，编制某定旅馆开发的需求（backlog）开发计划表；"><span class="nav-number">2.2.4.</span> <span class="nav-text">2.2.4 请使用 SCRUM 方法，选择一个用例图，编制某定旅馆开发的需求（backlog）开发计划表；</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-5-根据任务4，参考-使用用例点估算软件成本，给出项目用例点的估算；"><span class="nav-number">2.2.5.</span> <span class="nav-text">2.2.5 根据任务4，参考 使用用例点估算软件成本，给出项目用例点的估算；</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CoderUtil</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Code">
 <meta property="og:description" content="颜色 物体的颜色, 是由物体反射光源后得到的  123glm::vec3 lightColor(1.0f, 1.0f, 1.0f);		//	光源颜色为白色glm::vec3 toyColor(1.0f, 0.5f, 0.31f);		//	物体颜色glm::vec3 result = lightColor * toyColor;	//	反射后的颜色 创建光照场景创建物体1234567891011">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-30T08:59:45.463Z">
+<meta property="og:updated_time" content="2019-05-06T14:25:23.925Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习五">
 <meta name="twitter:description" content="颜色 物体的颜色, 是由物体反射光源后得到的  123glm::vec3 lightColor(1.0f, 1.0f, 1.0f);		//	光源颜色为白色glm::vec3 toyColor(1.0f, 0.5f, 0.31f);		//	物体颜色glm::vec3 result = lightColor * toyColor;	//	反射后的颜色 创建光照场景创建物体1234567891011">
@@ -370,7 +370,7 @@
 <h2 id="漫反射光照Diffuse"><a href="#漫反射光照Diffuse" class="headerlink" title="漫反射光照Diffuse"></a>漫反射光照Diffuse</h2><ul>
 <li>模拟光源对物体的方向性影响。物体的某一部分越是正对着光源，它就会越亮。</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//	用光源发出的光线与物体表面法向量形成的夹角，计算物体表面的漫反射光照</span><br><span class="line"></span><br><span class="line">    //	顶点着色器</span><br><span class="line">    Normal = mat3(transpose(inverse(model))) * aNormal;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    //	片段着色器</span><br><span class="line">    vec3 norm = normalize(Normal);</span><br><span class="line">    vec3 lightDir = normalize(lightPos - FragPos);</span><br><span class="line">    float diff = max(dot(norm, lightDir), 0.0);</span><br><span class="line">    vec3 diffuse = diffuseStrength * diff * lightColor;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//	用光源发出的光线与物体表面法向量形成的夹角，计算物体表面的漫反射光照</span><br><span class="line"></span><br><span class="line">    //	顶点着色器</span><br><span class="line">    Normal = mat3(transpose(inverse(model))) * aNormal;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    //	片段着色器</span><br><span class="line">    vec3 norm = normalize(Normal);		//	normalize返回该方向的单位向量</span><br><span class="line">    vec3 lightDir = normalize(lightPos - FragPos);</span><br><span class="line">    float diff = max(dot(norm, lightDir), 0.0);</span><br><span class="line">    vec3 diffuse = diffuseStrength * diff * lightColor;</span><br></pre></td></tr></table></figure>
 <h2 id="镜面光照Specular"><a href="#镜面光照Specular" class="headerlink" title="镜面光照Specular"></a>镜面光照Specular</h2><ul>
 <li>模拟有光泽物体上面出现的亮点。镜面光照的颜色相比于物体的颜色会更倾向于光的颜色</li>
 </ul>
@@ -417,6 +417,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/计算机图形学/计算机图形学/期中复习/" rel="prev" title="期中复习">
+                期中复习 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -497,7 +501,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-count">108</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -508,7 +512,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

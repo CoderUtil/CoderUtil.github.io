@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="计算机图形学CG​    所有可视化内容的综合体(模型 + 渲染 + 处理 + 动画) 模型Model​    在计算机上创建物体的3D形状和外观  表示方法: 数字矩阵, 三角网格  渲染Render​    在计算机上显示3D模型的2D图像  包括: 逼真渲染、交互渲染、艺术渲染  动画Animation​    显示物体的实时变化 与其他学科的关系 计算机图形学: 生成图像 图像处理: 图像">
+<meta property="og:type" content="article">
+<meta property="og:title" content="期中复习">
+<meta property="og:url" content="http://utilcoder.com/计算机图形学/计算机图形学/期中复习/index.html">
+<meta property="og:site_name" content="Code">
+<meta property="og:description" content="计算机图形学CG​    所有可视化内容的综合体(模型 + 渲染 + 处理 + 动画) 模型Model​    在计算机上创建物体的3D形状和外观  表示方法: 数字矩阵, 三角网格  渲染Render​    在计算机上显示3D模型的2D图像  包括: 逼真渲染、交互渲染、艺术渲染  动画Animation​    显示物体的实时变化 与其他学科的关系 计算机图形学: 生成图像 图像处理: 图像">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://utilcoder.com/计算机图形学/images/TIM截图20190506203021.png">
+<meta property="og:image" content="http://utilcoder.com/计算机图形学/images/TIM截图20190505135817.png">
+<meta property="og:image" content="http://utilcoder.com/计算机图形学/images/TIM截图20190505171100.png">
+<meta property="og:image" content="http://utilcoder.com/计算机图形学/images/TIM截图20190507091136.png">
+<meta property="og:image" content="http://utilcoder.com/计算机图形学/images/TIM截图20190507091329.png">
+<meta property="og:image" content="http://utilcoder.com/计算机图形学/images/TIM截图20190506140843.png">
+<meta property="og:image" content="http://utilcoder.com/计算机图形学/images/TIM截图20190507093222.png">
+<meta property="og:image" content="http://utilcoder.com/计算机图形学/images/TIM截图20190507093301.png">
+<meta property="og:image" content="http://utilcoder.com/计算机图形学/images/TIM截图20190506202200.png">
+<meta property="og:image" content="http://utilcoder.com/计算机图形学/images/TIM截图20190506190004.png">
+<meta property="og:image" content="http://utilcoder.com/计算机图形学/images/TIM截图20190506185806.png">
+<meta property="og:image" content="http://utilcoder.com/计算机图形学/images/TIM截图20190506190832.png">
+<meta property="og:image" content="http://utilcoder.com/计算机图形学/images/TIM截图20190506195602.png">
+<meta property="og:image" content="http://utilcoder.com/计算机图形学/images/TIM截图20190506201043.png">
+<meta property="og:image" content="http://utilcoder.com/计算机图形学/images/TIM截图20190506200526.png">
+<meta property="og:image" content="http://utilcoder.com/计算机图形学/images/TIM截图20190506213135.png">
+<meta property="og:updated_time" content="2019-05-07T08:43:45.561Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="期中复习">
+<meta name="twitter:description" content="计算机图形学CG​    所有可视化内容的综合体(模型 + 渲染 + 处理 + 动画) 模型Model​    在计算机上创建物体的3D形状和外观  表示方法: 数字矩阵, 三角网格  渲染Render​    在计算机上显示3D模型的2D图像  包括: 逼真渲染、交互渲染、艺术渲染  动画Animation​    显示物体的实时变化 与其他学科的关系 计算机图形学: 生成图像 图像处理: 图像">
+<meta name="twitter:image" content="http://utilcoder.com/计算机图形学/images/TIM截图20190506203021.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://utilcoder.com/计算机图形学/计算机图形学/期中复习/"/>
+
+
+
+
+
+  <title>期中复习 | Code</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Code</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/计算机图形学/计算机图形学/期中复习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">期中复习</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-05T10:21:08+08:00">
+                2019-05-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机图形学/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机图形学</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="计算机图形学CG"><a href="#计算机图形学CG" class="headerlink" title="计算机图形学CG"></a>计算机图形学CG</h1><p>​    所有可视化内容的综合体(模型 + 渲染 + 处理 + 动画)</p>
+<h2 id="模型Model"><a href="#模型Model" class="headerlink" title="模型Model"></a>模型Model</h2><p>​    在计算机上创建物体的3D形状和外观</p>
+<ul>
+<li>表示方法: 数字矩阵, 三角网格</li>
+</ul>
+<h2 id="渲染Render"><a href="#渲染Render" class="headerlink" title="渲染Render"></a>渲染Render</h2><p>​    在计算机上显示3D模型的2D图像</p>
+<ul>
+<li>包括: 逼真渲染、交互渲染、艺术渲染</li>
+</ul>
+<h2 id="动画Animation"><a href="#动画Animation" class="headerlink" title="动画Animation"></a>动画Animation</h2><p>​    显示物体的实时变化</p>
+<h1 id="与其他学科的关系"><a href="#与其他学科的关系" class="headerlink" title="与其他学科的关系"></a>与其他学科的关系</h1><ul>
+<li>计算机图形学: 生成图像</li>
+<li>图像处理: 图像变换</li>
+<li>计算机视觉: 从图像中提取特征值</li>
+</ul>
+<h1 id="帧缓存FrameBuffer-显存"><a href="#帧缓存FrameBuffer-显存" class="headerlink" title="帧缓存FrameBuffer(显存)"></a>帧缓存FrameBuffer(显存)</h1><p>​    帧缓存的每一个存储单元对应屏幕的一个像素, 整个帧缓存对应一帧图像</p>
+<ul>
+<li>一般采用double-buffer, 即显示一个buffer时, 填充另一个buffer</li>
+</ul>
+<h1 id="通道"><a href="#通道" class="headerlink" title="通道"></a>通道</h1><p>​    只存储了单一R、G、B值的图像矩阵</p>
+<ul>
+<li>若用400 <em> 400 </em> 3的矩阵表示图像, 则R通道, G通道, B通道: 分别表示[400, 400, 0], [400, 400, 1], [400, 400, 2]</li>
+</ul>
+<ul>
+<li>alpha通道: alpha表示透明度, 取值为0~1</li>
+</ul>
+<h1 id="渲染管线"><a href="#渲染管线" class="headerlink" title="渲染管线"></a>渲染管线</h1><p>​    完成渲染的流水线过程</p>
+<p><img src="../../images\TIM截图20190506203021.png" alt="TIM截图20190506203021"></p>
+<ul>
+<li>顶点着色器: 对顶点进行处理, 如空间坐标系的转换、裁剪</li>
+</ul>
+<ul>
+<li>光栅化: 把顶点转换为栅格状的片段, 每个片段对应帧缓存的一个像素</li>
+</ul>
+<p><img src="../../images/TIM截图20190505135817.png" alt="TIM截图20190505135817"></p>
+<ul>
+<li>片段着色器: 计算每一个片元的颜色</li>
+</ul>
+<h1 id="光栅化Rasterization"><a href="#光栅化Rasterization" class="headerlink" title="光栅化Rasterization"></a>光栅化Rasterization</h1><h2 id="画线"><a href="#画线" class="headerlink" title="画线"></a>画线</h2><ul>
+<li>数值微分法DDA: 选择abs(dx)和abs(dy)大的方向进行单位步进, 另一个方向根据斜率进行步进(且步进 &lt; 1)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">int round(float x) &#123;</span><br><span class="line">    return (int)(x+0.5);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void lineDDA(int x0, int y0, int xEnd, int yEnd) &#123;</span><br><span class="line">    int dx = xEnd - x0, dy = yEnd - y0, steps;</span><br><span class="line">    float xIncrement, yIncrement, x = x0, y = y0;</span><br><span class="line">    </span><br><span class="line">    //	abs(dx)和abs(dy)大的作为单位步进方向</span><br><span class="line">    if (abs(dx) &gt; abs(dy)) </span><br><span class="line">        steps = abs(dx);</span><br><span class="line">    else</span><br><span class="line">        steps = abs(dy);</span><br><span class="line">    xIncrement = float(dx) / float(steps);</span><br><span class="line">    yIncrement = float(dy) / float(steps);</span><br><span class="line"> </span><br><span class="line">    setPixel(round(x), round(y));</span><br><span class="line">    for (int i = 0; i &lt; steps; i++) &#123;</span><br><span class="line">        x += xIncrement;</span><br><span class="line">        y += yIncrement;</span><br><span class="line">        setPixel(round(x), round(y));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>布兰森汉姆Bresenham: 在DDA的基础上, 进行改进(不是简单的向上取整, 而是看向上取整还是向下取整更精确)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. abs(dx)和abs(dy)大的作为单位步进方向</span><br><span class="line"></span><br><span class="line">2. 若在x进行单位步进, 则在y方向上的步进小于1, 此时y + 1/k是约等于Ym还是Ym+1更精确呢?</span><br><span class="line"></span><br><span class="line">3. 那我们就需要比较Dupper和Ddown的大小, 较大则说明偏的远</span><br></pre></td></tr></table></figure>
+<p><img src="../../images\TIM截图20190505171100.png" alt="TIM截图20190505171100"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">//	abs(dx) &gt; abs(dy)的情景</span><br><span class="line">//	对于abs(dy) &gt; abs(dx)的情景, 只要传参时(x0, xEnd)和(y0, yEnd)进行交换</span><br><span class="line">void lineBres(int x0, int y0, int xEnd, int yEnd) &#123;</span><br><span class="line">    int dx = fabs(xEnd - x0);</span><br><span class="line">    int dy = fabs(yEnd - y0);</span><br><span class="line">    int p = 2 * dy - dx;</span><br><span class="line">    int x, y;</span><br><span class="line"> </span><br><span class="line"> 	//	选定x较小的方向为初始点</span><br><span class="line">    if (x0 &gt; xEnd) &#123;</span><br><span class="line">        x = xEnd;</span><br><span class="line">        y = yEnd;</span><br><span class="line">        xEnd = x0;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        x = x0;</span><br><span class="line">        y = y0;</span><br><span class="line">    &#125;</span><br><span class="line">    setPixel(x, y);</span><br><span class="line"> </span><br><span class="line">    while (x &lt; xEnd) &#123;</span><br><span class="line">        if (p &lt; 0) </span><br><span class="line">            p += 2 * dy;</span><br><span class="line">        else &#123;</span><br><span class="line">            y++;</span><br><span class="line">            p += 2 * (dy - dx);</span><br><span class="line">        &#125;</span><br><span class="line">        x++;</span><br><span class="line">        setPixel(x, y);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="画圆"><a href="#画圆" class="headerlink" title="画圆"></a>画圆</h2><p>​    将圆分成8份, 选一份计算出起点和终点, 再使用Bresenham画线算法(根据abs(dx)和abs(dy)传参), 然后根据对称性, 得出另外七份</p>
+<h1 id="三角形填充"><a href="#三角形填充" class="headerlink" title="三角形填充"></a>三角形填充</h1><ul>
+<li>Edge-Walking</li>
+</ul>
+<p><img src="../../images\TIM截图20190507091136.png" alt="TIM截图20190507091136"></p>
+<ul>
+<li>Edge-equation</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. 计算三条边的一般式方程Ax+By+C=0</span><br><span class="line"></span><br><span class="line">2. 将三条边“中心化”(中心化后, 三角形中的任意一个点代入3条曲线, 都会使Ax+By+C &gt;= 0). 中心化的方式, 对于每条边的方程, 代入另一个顶点, 若小于0，则将参数A、B、C都乘以-1</span><br><span class="line"></span><br><span class="line">3. 计算三角形的外接矩形</span><br><span class="line"></span><br><span class="line">4. 遍历外接矩形中的每一个点(x, y)，若对于三条边, Ax+By+C都&gt;=0, 则说明点在三角形内, 画出该点</span><br></pre></td></tr></table></figure>
+<p><img src="../../images\TIM截图20190507091329.png" alt="TIM截图20190507091329"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; lineEquation(int x1, int y1, int x2, int y2) &#123;</span><br><span class="line">    // line equation: Ax+ By+ C= 0</span><br><span class="line">    vector&lt;int&gt; res;</span><br><span class="line">    int A= y2- y1;</span><br><span class="line">    int B= x1- x2;</span><br><span class="line">    int C= x2* y1- x1* y2;</span><br><span class="line">    res.push_back(A);</span><br><span class="line">    res.push_back(B);</span><br><span class="line">    res.push_back(C);</span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">vector&lt;int&gt; rasterizeTriangle(int x1, int y1, int x2, int y2, int x3, int y3) &#123;</span><br><span class="line">    int max_x= max(x1, max(x2, x3));</span><br><span class="line">    int min_x= min(x1, min(x2, x3));</span><br><span class="line">    int max_y= max(y1, max(y2, y3));</span><br><span class="line">    int min_y= min(y1, min(y2, y3));</span><br><span class="line">    int center_x= (max_x- min_x)/ 2;</span><br><span class="line">    int center_y= (max_y- min_y)/ 2;</span><br><span class="line">    vector&lt; vector&lt;int&gt; &gt; lines;</span><br><span class="line">    lines.push_back(lineEquation(x1, y1, x2, y2));</span><br><span class="line">    lines.push_back(lineEquation(x1, y1, x3, y3));</span><br><span class="line">    lines.push_back(lineEquation(x3, y3, x2, y2));</span><br><span class="line">    // centerlize the equations</span><br><span class="line">    for (int i= 0; i&lt; 3; i++) &#123;</span><br><span class="line">        int x_temp, y_temp;</span><br><span class="line">        if (i== 0) &#123;</span><br><span class="line">            x_temp= x3; y_temp= y3;</span><br><span class="line">        &#125; else if (i== 1) &#123;</span><br><span class="line">            x_temp= x2; y_temp= y2;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            x_temp= x1; y_temp= y1;</span><br><span class="line">        &#125;</span><br><span class="line">        // A*x+ B*y+ C</span><br><span class="line">        if (lines[i][0]* x_temp+ lines[i][1]* y_temp+ lines[i][2]&lt; 0) &#123;</span><br><span class="line">            for (int j= 0; j&lt; lines[i].size(); j++) &#123;</span><br><span class="line">                lines[i][j]*= -1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    // set pixel</span><br><span class="line">    vector&lt;int&gt; pixels;</span><br><span class="line">    for (int x= min_x; x&lt;= max_x; x++) &#123;</span><br><span class="line">        for (int y= min_y; y&lt;= max_y; y++) &#123;</span><br><span class="line">            bool isInside= true;</span><br><span class="line">            for (int i= 0; i&lt; 3; i++) &#123;</span><br><span class="line">                if (lines[i][0]* x+ lines[i][1]* y+ lines[i][2]&lt; 0) &#123;</span><br><span class="line">                    isInside= false;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if (isInside) &#123;</span><br><span class="line">                pixels.push_back(x);</span><br><span class="line">                pixels.push_back(y);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return pixels;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="坐标系"><a href="#坐标系" class="headerlink" title="坐标系"></a>坐标系</h1><h2 id="齐次坐标"><a href="#齐次坐标" class="headerlink" title="齐次坐标"></a>齐次坐标</h2><ul>
+<li>概念: 在空间直角坐标系中, 任意一点可用一个三维坐标矩阵[x y z]表示。如果将该点用一个四维坐标的矩阵[Hx Hy Hz Hw]表示时, 则称为齐次坐标表示方法(Hw称为比例因子, Hw为0表示一个点, Hw为1表示一个向量)</li>
+</ul>
+<ul>
+<li>齐次坐标与笛卡尔坐标的区别: 笛卡尔坐标下平行直线不会相交; 而在齐次坐标系下,  满足透视学中无穷远处相交于一点的需要</li>
+</ul>
+<ul>
+<li>齐次坐标与笛卡尔坐标的转换: 当w不为零时, 齐次点坐标(x, y, z, w) = 三维空间点坐标(x/w, y/w, z/w); 当w为零时, 齐次点(x, y, z, 0.0)表示此点位于某方向的无穷远处</li>
+</ul>
+<ul>
+<li>使用场景: 所有仿射变换都可以变为齐次坐标下的矩阵运算</li>
+</ul>
+<h2 id="右手系与左手系"><a href="#右手系与左手系" class="headerlink" title="右手系与左手系"></a>右手系与左手系</h2><ul>
+<li>右手系: 伸开右手， 大拇指指向X轴正方向, 食指指向Y轴正方向, 其他三个手指向手心弯曲90°, 指向Z轴正方向</li>
+<li>左手系: 伸开左手， 大拇指指向X轴正方向, 食指指向Y轴正方向, 其他三个手指向手心弯曲90°, 指向Z轴正方向</li>
+</ul>
+<ul>
+<li>OpenGl采用右手系</li>
+</ul>
+<h2 id="仿射变换"><a href="#仿射变换" class="headerlink" title="仿射变换"></a>仿射变换</h2><p>​    向量P‘ = 变换矩阵 * 向量P</p>
+<ul>
+<li>实现原理</li>
+</ul>
+<p><img src="../../images\TIM截图20190506140843.png" alt="TIM截图20190506140843"></p>
+<p><img src="../../images\TIM截图20190507093222.png" alt="TIM截图20190507093222"></p>
+<p><img src="../../images\TIM截图20190507093301.png" alt="TIM截图20190507093301"></p>
+<ul>
+<li>glm提供了支持</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">scale = glm::scale(trans, glm::vec3(0.5, 0.5, 0.5));</span><br><span class="line"></span><br><span class="line">trans = glm::translate(trans, glm::vec3(1.0f, 1.0f, 0.0f));</span><br><span class="line"></span><br><span class="line">rotate = glm::rotate(trans, glm::radians(90.0f), glm::vec3(0.0, 0.0, 1.0));</span><br></pre></td></tr></table></figure>
+<h2 id="坐标系转换"><a href="#坐标系转换" class="headerlink" title="坐标系转换"></a>坐标系转换</h2><p><img src="../../images\TIM截图20190506202200.png" alt="TIM截图20190506202200"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">坐标系:</span><br><span class="line">	1. 局部空间: 物体中心为原点</span><br><span class="line">	</span><br><span class="line">	2. 世界空间: 屏幕中心为原点. 面对屏幕, 你的右边是x正轴, 上面是y正轴, 屏幕指向你为z正轴. 世界空间包含物体、相机、光源</span><br><span class="line">	</span><br><span class="line">	3. 观察空间: 以相机为原点. 当物体在原点, 相机在轴正向的效果 &lt;=&gt; 相机在原点, 物体在z轴负向</span><br><span class="line">	</span><br><span class="line">	4. 裁剪空间: 以视区窗口为原点</span><br><span class="line">	</span><br><span class="line">	5. 屏幕空间: </span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">坐标系变换:</span><br><span class="line">    Modeling Transformation: 因为世界空间以屏幕中心为原点, 因此要将每个物体的位置设为相对屏幕中心的</span><br><span class="line"></span><br><span class="line">    Viewing Transformation: 因为观察空间以相机为原点, 因此要将除相机外每个物体的位置设为相对相机的</span><br><span class="line"></span><br><span class="line">    Projection Transformation: 通过投影, 将3D物体投影到2D相机屏幕</span><br><span class="line">    </span><br><span class="line">    Viewport Transformation: 将投影后的屏幕的图像映射到视区</span><br></pre></td></tr></table></figure>
+<h2 id="LookAt矩阵"><a href="#LookAt矩阵" class="headerlink" title="LookAt矩阵"></a>LookAt矩阵</h2><p>​    用于生成Viewing Transformation矩阵</p>
+<ul>
+<li>实现原理</li>
+</ul>
+<p><img src="../../images\TIM截图20190506190004.png" alt="TIM截图20190506190004"></p>
+<ul>
+<li>glm提供了支持</li>
+</ul>
+<p><img src="../../images\TIM截图20190506185806.png" alt="TIM截图20190506185806"></p>
+<p><img src="../../images\TIM截图20190506190832.png" alt="TIM截图20190506190832"></p>
+<h2 id="正交投影、透视投影"><a href="#正交投影、透视投影" class="headerlink" title="正交投影、透视投影"></a>正交投影、透视投影</h2><p>​    用于生成Projection Transformation矩阵</p>
+<ul>
+<li>正交投影Orthogonal Projection: 显示出来的物体大小与物体距离相机的距离无关</li>
+</ul>
+<ul>
+<li>透视投影Perspective Projection:  距离相机越远, 物体越小</li>
+</ul>
+<p><img src="../../images\TIM截图20190506195602.png" alt="TIM截图20190506195602"></p>
+<ul>
+<li>glm提供了支持(注意, 第3、4个参数表示到相机的距离, 距离只能为正)</li>
+</ul>
+<p><img src="../../images\TIM截图20190506201043.png" alt="TIM截图20190506201043"></p>
+<p><img src="../../images\TIM截图20190506200526.png" alt="TIM截图20190506200526"></p>
+<h1 id="裁剪"><a href="#裁剪" class="headerlink" title="裁剪"></a>裁剪</h1><ul>
+<li>Cohen-Sutherland算法: </li>
+</ul>
+<p><a href="https://blog.csdn.net/pleasecallmewhy/article/details/8393445" target="_blank" rel="noopener">https://blog.csdn.net/pleasecallmewhy/article/details/8393445</a></p>
+<h2 id="深度缓冲-Z缓冲"><a href="#深度缓冲-Z缓冲" class="headerlink" title="深度缓冲(Z缓冲)"></a>深度缓冲(Z缓冲)</h2><p>​    保存了某点到观察点的距离</p>
+<h2 id="窗口、视区"><a href="#窗口、视区" class="headerlink" title="窗口、视区"></a>窗口、视区</h2><ul>
+<li>窗口Window: 执行程序后显示的窗口, 通过glutInitWindowSize设置窗口大小, gluOrtho2D设置窗口位置</li>
+</ul>
+<ul>
+<li>视区Viewport: 窗口中用于显示图形的一块矩形区域(通常视区和窗口一样大, 但是若想在窗口上同时画两个图, 则视区为窗口一半). 只有绘制在视区的图形才能被显示, 如果图形有一部分超出了视区, 那么那一部分是看不到的. 通过glViewport设置视区在窗口的位置和大小</li>
+</ul>
+<h1 id="光照"><a href="#光照" class="headerlink" title="光照"></a>光照</h1><p>​    物体显示的颜色 = 光源颜色向量和物体颜色向量的点积. 三种光照可以组合使用即 (ambient + diffuse + specular) * objectColor</p>
+<p><img src="../../images\TIM截图20190506213135.png" alt="TIM截图20190506213135"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/计算机图形学/计算机图形学/学习(五)/" rel="next" title="学习五">
+                <i class="fa fa-chevron-left"></i> 学习五
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/数据挖掘/数据挖掘/(一) Python回顾/" rel="prev" title="(一) Python回顾">
+                (一) Python回顾 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="CoderUtil" />
+            
+              <p class="site-author-name" itemprop="name">CoderUtil</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">108</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CoderUtil" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:853130236@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://icytown.com/" title="Mega Show's Blog" target="_blank">Mega Show's Blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机图形学CG"><span class="nav-number">1.</span> <span class="nav-text">计算机图形学CG</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#模型Model"><span class="nav-number">1.1.</span> <span class="nav-text">模型Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#渲染Render"><span class="nav-number">1.2.</span> <span class="nav-text">渲染Render</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动画Animation"><span class="nav-number">1.3.</span> <span class="nav-text">动画Animation</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#与其他学科的关系"><span class="nav-number">2.</span> <span class="nav-text">与其他学科的关系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#帧缓存FrameBuffer-显存"><span class="nav-number">3.</span> <span class="nav-text">帧缓存FrameBuffer(显存)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#通道"><span class="nav-number">4.</span> <span class="nav-text">通道</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#渲染管线"><span class="nav-number">5.</span> <span class="nav-text">渲染管线</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#光栅化Rasterization"><span class="nav-number">6.</span> <span class="nav-text">光栅化Rasterization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#画线"><span class="nav-number">6.1.</span> <span class="nav-text">画线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#画圆"><span class="nav-number">6.2.</span> <span class="nav-text">画圆</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三角形填充"><span class="nav-number">7.</span> <span class="nav-text">三角形填充</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#坐标系"><span class="nav-number">8.</span> <span class="nav-text">坐标系</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#齐次坐标"><span class="nav-number">8.1.</span> <span class="nav-text">齐次坐标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#右手系与左手系"><span class="nav-number">8.2.</span> <span class="nav-text">右手系与左手系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#仿射变换"><span class="nav-number">8.3.</span> <span class="nav-text">仿射变换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#坐标系转换"><span class="nav-number">8.4.</span> <span class="nav-text">坐标系转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LookAt矩阵"><span class="nav-number">8.5.</span> <span class="nav-text">LookAt矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正交投影、透视投影"><span class="nav-number">8.6.</span> <span class="nav-text">正交投影、透视投影</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#裁剪"><span class="nav-number">9.</span> <span class="nav-text">裁剪</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#深度缓冲-Z缓冲"><span class="nav-number">9.1.</span> <span class="nav-text">深度缓冲(Z缓冲)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#窗口、视区"><span class="nav-number">9.2.</span> <span class="nav-text">窗口、视区</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#光照"><span class="nav-number">10.</span> <span class="nav-text">光照</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CoderUtil</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
