@@ -259,6 +259,1216 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/计算机图形学/计算机图形学/学习(七)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/计算机图形学/计算机图形学/学习(七)/" itemprop="url">学习七</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-02T19:59:18+08:00">
+                2019-06-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机图形学/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机图形学</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="纹理"><a href="#纹理" class="headerlink" title="纹理"></a>纹理</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line">1. 引入官方的库</span><br><span class="line"></span><br><span class="line">	#define STB_IMAGE_IMPLEMENTATION</span><br><span class="line">	#include &quot;stb_image.h&quot;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">2. 读取图片, 生成纹理</span><br><span class="line"></span><br><span class="line">	unsigned int floorTexture;</span><br><span class="line">	glGenTextures(1, &amp;floorTexture);</span><br><span class="line">	glBindTexture(GL_TEXTURE_2D, floorTexture);</span><br><span class="line">	// 为当前绑定的纹理对象设置环绕、过滤方式</span><br><span class="line">	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);</span><br><span class="line">	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);</span><br><span class="line">	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);</span><br><span class="line">	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);</span><br><span class="line"></span><br><span class="line">	int width, height, nrChannels;</span><br><span class="line">	unsigned char* data = stbi_load(&quot;textures/blocks/dirt.png&quot;, &amp;width, &amp;height, &amp;nrChannels, 0);			//	图片地址相对于当前文件的地址</span><br><span class="line">	if (data) &#123;</span><br><span class="line">		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);		//	注意用GL_RGBA</span><br><span class="line">		glGenerateMipmap(GL_TEXTURE_2D);</span><br><span class="line">	&#125;</span><br><span class="line">	else &#123;</span><br><span class="line">		std::cout &lt;&lt; &quot;Failed to load texture&quot; &lt;&lt; std::endl;</span><br><span class="line">	&#125;</span><br><span class="line">	//	释放图片内存</span><br><span class="line">	stbi_image_free(data);</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">3. vertexShader.vs</span><br><span class="line"></span><br><span class="line">	#version 330 core</span><br><span class="line">    layout (location = 0) in vec3 aPos;</span><br><span class="line">    layout (location = 1) in vec2 aTexCoord;</span><br><span class="line"></span><br><span class="line">    uniform mat4 model;</span><br><span class="line">    uniform mat4 view;</span><br><span class="line">    uniform mat4 projection;</span><br><span class="line"></span><br><span class="line">    out vec2 TexCoord;</span><br><span class="line"></span><br><span class="line">    void main()&#123;</span><br><span class="line">        gl_Position = projection * view * model * vec4(aPos, 1.0);</span><br><span class="line">        TexCoord = aTexCoord;</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">   </span><br><span class="line">4. fragmentShader.fs</span><br><span class="line"></span><br><span class="line">	#version 330 core</span><br><span class="line">    in vec2 TexCoord;</span><br><span class="line">    out vec4 FragColor;</span><br><span class="line"></span><br><span class="line">    uniform sampler2D ourTexture;</span><br><span class="line"></span><br><span class="line">    void main() &#123;</span><br><span class="line">        FragColor = texture(ourTexture, TexCoord);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">5. 着色器设置uniform</span><br><span class="line"></span><br><span class="line">	Shader defaultShader(&quot;vertexShader.vs&quot;, &quot;fragmentShader.fs&quot;);</span><br><span class="line">	defaultShader.use();</span><br><span class="line">	defaultShader.setInt(&quot;floorTexture&quot;, 0);</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">6. 顶点数组</span><br><span class="line"></span><br><span class="line">	float vertices[] = &#123;</span><br><span class="line">    //     ---- 位置 ----       ---- 颜色 ----     - 纹理坐标 -</span><br><span class="line">         0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // 右上</span><br><span class="line">         0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // 右下</span><br><span class="line">        -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // 左下</span><br><span class="line">        -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // 左上</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    //	设置纹理属性</span><br><span class="line">    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));</span><br><span class="line">    glEnableVertexAttribArray(1);</span><br><span class="line">    </span><br><span class="line"> </span><br><span class="line">7. 循环渲染中激活纹理</span><br><span class="line">	while(...) &#123;</span><br><span class="line">        ...</span><br><span class="line">        //	激活纹理</span><br><span class="line">		glActiveTexture(GL_TEXTURE0);</span><br><span class="line">		glBindTexture(GL_TEXTURE_2D, floorTexture);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="纹理坐标"><a href="#纹理坐标" class="headerlink" title="纹理坐标"></a>纹理坐标</h1><p>纹理坐标在x和y轴上，坐标起始于(0, 0)，也就是纹理图片的左下角，终始于(1, 1)，即纹理图片的右上角</p>
+<p><img src="../../images\tex_coords.png" alt="tex_coords"></p>
+<h1 id="天空盒"><a href="#天空盒" class="headerlink" title="天空盒"></a>天空盒</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br></pre></td><td class="code"><pre><span class="line">1. 加载天空盒6个面的纹理</span><br><span class="line"></span><br><span class="line">	//	加载天空盒纹理</span><br><span class="line">    unsigned int loadSkyBoxTexture() &#123;</span><br><span class="line"></span><br><span class="line">        vector&lt;std::string&gt; faces</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;textures/skybox/right.jpg&quot;,</span><br><span class="line">            &quot;textures/skybox/left.jpg&quot;,</span><br><span class="line">            &quot;textures/skybox/top.jpg&quot;,</span><br><span class="line">            &quot;textures/skybox/bottom.jpg&quot;,</span><br><span class="line">            &quot;textures/skybox/front.jpg&quot;,</span><br><span class="line">            &quot;textures/skybox/back.jpg&quot;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        unsigned int textureID;</span><br><span class="line">        glGenTextures(1, &amp;textureID);</span><br><span class="line">        glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);</span><br><span class="line"></span><br><span class="line">        int width, height, nrChannels;</span><br><span class="line">        for (unsigned int i = 0; i &lt; faces.size(); i++) &#123;</span><br><span class="line">            unsigned char *data = stbi_load(faces[i].c_str(), &amp;width, &amp;height, &amp;nrChannels, 0);</span><br><span class="line"></span><br><span class="line">            glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);</span><br><span class="line">            stbi_image_free(data);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);</span><br><span class="line">        glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);</span><br><span class="line">        glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);</span><br><span class="line">        glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);</span><br><span class="line">        glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);</span><br><span class="line"></span><br><span class="line">        return textureID;</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">	unsigned int floorTexture = loadBlockTexture(&quot;textures/blocks/iron_block.png&quot;);</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">2. 天空盒着色器</span><br><span class="line"></span><br><span class="line">		Shader skyBoxShader(&quot;skyBox.vs&quot;, &quot;skyBox.fs&quot;);</span><br><span class="line">        skyBoxShader.use();</span><br><span class="line">        skyBoxShader.setInt(&quot;skyBoxTexture&quot;, 0);</span><br><span class="line">        </span><br><span class="line">        //	skyBoxTexture.vs</span><br><span class="line">        #version 330 core</span><br><span class="line">        layout (location = 0) in vec3 aPos;</span><br><span class="line"></span><br><span class="line">        out vec3 TexCoords;</span><br><span class="line"></span><br><span class="line">        uniform mat4 projection;</span><br><span class="line">        uniform mat4 view;</span><br><span class="line"></span><br><span class="line">        void main()&#123;</span><br><span class="line">            TexCoords = aPos;</span><br><span class="line">            vec4 pos = projection * view * vec4(aPos, 1.0);</span><br><span class="line">            gl_Position = pos.xyww;</span><br><span class="line">        &#125;  </span><br><span class="line">        </span><br><span class="line">        //	skyBoxTexture.fs</span><br><span class="line">        #version 330 core</span><br><span class="line">        out vec4 FragColor;</span><br><span class="line"></span><br><span class="line">        in vec3 TexCoords;</span><br><span class="line"></span><br><span class="line">        uniform samplerCube skybox;</span><br><span class="line"></span><br><span class="line">        void main()&#123;    </span><br><span class="line">            FragColor = texture(skybox, TexCoords);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">3. 天空盒的VAO, VBO</span><br><span class="line"></span><br><span class="line">	float skyBoxVertices[] = &#123;</span><br><span class="line">        // positions          </span><br><span class="line">        -1.0f,  1.0f, -1.0f,</span><br><span class="line">        -1.0f, -1.0f, -1.0f,</span><br><span class="line">        1.0f, -1.0f, -1.0f,</span><br><span class="line">        1.0f, -1.0f, -1.0f,</span><br><span class="line">        1.0f,  1.0f, -1.0f,</span><br><span class="line">        -1.0f,  1.0f, -1.0f,</span><br><span class="line"></span><br><span class="line">        -1.0f, -1.0f,  1.0f,</span><br><span class="line">        -1.0f, -1.0f, -1.0f,</span><br><span class="line">        -1.0f,  1.0f, -1.0f,</span><br><span class="line">        -1.0f,  1.0f, -1.0f,</span><br><span class="line">        -1.0f,  1.0f,  1.0f,</span><br><span class="line">        -1.0f, -1.0f,  1.0f,</span><br><span class="line"></span><br><span class="line">        1.0f, -1.0f, -1.0f,</span><br><span class="line">        1.0f, -1.0f,  1.0f,</span><br><span class="line">        1.0f,  1.0f,  1.0f,</span><br><span class="line">        1.0f,  1.0f,  1.0f,</span><br><span class="line">        1.0f,  1.0f, -1.0f,</span><br><span class="line">        1.0f, -1.0f, -1.0f,</span><br><span class="line"></span><br><span class="line">        -1.0f, -1.0f,  1.0f,</span><br><span class="line">        -1.0f,  1.0f,  1.0f,</span><br><span class="line">        1.0f,  1.0f,  1.0f,</span><br><span class="line">        1.0f,  1.0f,  1.0f,</span><br><span class="line">        1.0f, -1.0f,  1.0f,</span><br><span class="line">        -1.0f, -1.0f,  1.0f,</span><br><span class="line"></span><br><span class="line">        -1.0f,  1.0f, -1.0f,</span><br><span class="line">        1.0f,  1.0f, -1.0f,</span><br><span class="line">        1.0f,  1.0f,  1.0f,</span><br><span class="line">        1.0f,  1.0f,  1.0f,</span><br><span class="line">        -1.0f,  1.0f,  1.0f,</span><br><span class="line">        -1.0f,  1.0f, -1.0f,</span><br><span class="line"></span><br><span class="line">        -1.0f, -1.0f, -1.0f,</span><br><span class="line">        -1.0f, -1.0f,  1.0f,</span><br><span class="line">        1.0f, -1.0f, -1.0f,</span><br><span class="line">        1.0f, -1.0f, -1.0f,</span><br><span class="line">        -1.0f, -1.0f,  1.0f,</span><br><span class="line">        1.0f, -1.0f,  1.0f</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    //	设置skyBoxVAO、skyBoxVBO</span><br><span class="line">	unsigned int skyBoxVAO;</span><br><span class="line">	unsigned int skyBoxVBO;</span><br><span class="line">	glGenVertexArrays(1, &amp;skyBoxVAO);</span><br><span class="line">	glBindVertexArray(skyBoxVAO);</span><br><span class="line"></span><br><span class="line">	glGenBuffers(1, &amp;skyBoxVBO);</span><br><span class="line">	glBindBuffer(GL_ARRAY_BUFFER, skyBoxVBO);</span><br><span class="line">	glBufferData(GL_ARRAY_BUFFER, sizeof(skyBoxVertices), &amp;skyBoxVertices, GL_STATIC_DRAW);</span><br><span class="line"></span><br><span class="line">	glEnableVertexAttribArray(0);</span><br><span class="line">	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">4. 渲染其他物体后, 最后渲染天空盒</span><br><span class="line"></span><br><span class="line">	while(...) &#123;</span><br><span class="line">		</span><br><span class="line">        渲染其他物体...</span><br><span class="line">        </span><br><span class="line">        //	深度欺骗</span><br><span class="line">		glDepthFunc(GL_LEQUAL);  </span><br><span class="line"></span><br><span class="line">		view = glm::mat4(glm::mat3(camera.GetViewMatrix()));</span><br><span class="line">		skyBoxShader.use();</span><br><span class="line">		skyBoxShader.setMat4(&quot;view&quot;, view);</span><br><span class="line">		skyBoxShader.setMat4(&quot;projection&quot;, projection);</span><br><span class="line"></span><br><span class="line">		//	绘制天空盒</span><br><span class="line">		glBindVertexArray(skyBoxVAO);</span><br><span class="line">		//	激活天空盒纹理</span><br><span class="line">		glActiveTexture(GL_TEXTURE0);</span><br><span class="line">		glBindTexture(GL_TEXTURE_CUBE_MAP, skyBoxTexture);</span><br><span class="line">		glDrawArrays(GL_TRIANGLES, 0, 36);</span><br><span class="line">		glBindVertexArray(0);</span><br><span class="line"></span><br><span class="line">		glDepthFunc(GL_LESS);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="模型导入"><a href="#模型导入" class="headerlink" title="模型导入"></a>模型导入</h1><h2 id="assimp编译"><a href="#assimp编译" class="headerlink" title="assimp编译"></a>assimp编译</h2><p><a href="https://blog.csdn.net/qq_36237800/article/details/88427262" target="_blank" rel="noopener">https://blog.csdn.net/qq_36237800/article/details/88427262</a></p>
+<p><a href="https://www.jianshu.com/p/4f3a1271ce0b" target="_blank" rel="noopener">https://www.jianshu.com/p/4f3a1271ce0b</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/分布式系统/分布式系统/05 基本图算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/分布式系统/分布式系统/05 基本图算法/" itemprop="url">05 基本图算法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-23T19:00:56+08:00">
+                2019-05-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/分布式系统/" itemprop="url" rel="index">
+                    <span itemprop="name">分布式系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="基本图算法"><a href="#基本图算法" class="headerlink" title="基本图算法"></a>基本图算法</h1><p><img src="../../images\TIM截图20190523190104.png" alt="TIM截图20190523190104"></p>
+<h2 id="基于洪泛的同步单一启动者生成树算法"><a href="#基于洪泛的同步单一启动者生成树算法" class="headerlink" title="基于洪泛的同步单一启动者生成树算法"></a>基于洪泛的同步单一启动者生成树算法</h2><p><img src="../../images\TIM截图20190523191227.png" alt="TIM截图20190523191227"></p>
+<p><img src="../../images\TIM截图20190523191255.png" alt="TIM截图20190523191255"></p>
+<h2 id="基于洪泛的异步单一启动者生成树算法"><a href="#基于洪泛的异步单一启动者生成树算法" class="headerlink" title="基于洪泛的异步单一启动者生成树算法"></a>基于洪泛的异步单一启动者生成树算法</h2><p><img src="../../images\TIM截图20190523191818.png" alt="TIM截图20190523191818"></p>
+<p><img src="../../images\TIM截图20190523191938.png" alt="TIM截图20190523191938"></p>
+<p><img src="../../images\TIM截图20190523192626.png" alt="TIM截图20190523192626"></p>
+<p><img src="../../images\TIM截图20190523193308.png" alt="TIM截图20190523193308"></p>
+<h2 id="基于洪泛的异步并发启动者生成树算法"><a href="#基于洪泛的异步并发启动者生成树算法" class="headerlink" title="基于洪泛的异步并发启动者生成树算法"></a>基于洪泛的异步并发启动者生成树算法</h2><p>最终生成一棵树，而不是每个启动者生成一棵树</p>
+<ul>
+<li>基本步骤<ul>
+<li>每个启动者自主、并发启动发展生成树</li>
+<li>一棵树在发展过程中，发送QUERY消息时，同时携带树根的进程号</li>
+<li>两个启动者各自发展的生成树在某个节点上遭遇时，根节点进程号较小的生成树自动放弃</li>
+</ul>
+</li>
+</ul>
+<p><img src="../../images\TIM截图20190523194623.png" alt="TIM截图20190523194623"></p>
+<p><img src="../../images\TIM截图20190523195331.png" alt="TIM截图20190523195331"></p>
+<p><img src="../../images\TIM截图20190523195436.png" alt="TIM截图20190523195436"></p>
+<p><img src="../../images\TIM截图20190523195513.png" alt="TIM截图20190523195513"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/分布式系统/分布式系统/04 全局快照算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/分布式系统/分布式系统/04 全局快照算法/" itemprop="url">04 全局快照算法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-23T13:51:22+08:00">
+                2019-05-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/分布式系统/" itemprop="url" rel="index">
+                    <span itemprop="name">分布式系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="全局状态的应用"><a href="#全局状态的应用" class="headerlink" title="全局状态的应用"></a>全局状态的应用</h1><ul>
+<li>故障恢复: 可周期性的保存所有进程的全局状态，一旦某个进程出现故障，可回退到最近保存的状态</li>
+</ul>
+<ul>
+<li>分布式调试的断点设置: 调试分布式程序时，可在一个一致的全局状态处设置断点</li>
+</ul>
+<ul>
+<li>死锁检测: 找出一个一致的全局状态，检查其中是否包含死锁</li>
+</ul>
+<h1 id="全局快照算法"><a href="#全局快照算法" class="headerlink" title="全局快照算法"></a>全局快照算法</h1><h2 id="Chandy-Lamport算法-FIFO通道"><a href="#Chandy-Lamport算法-FIFO通道" class="headerlink" title="Chandy-Lamport算法(FIFO通道)"></a>Chandy-Lamport算法(FIFO通道)</h2><ul>
+<li>基本步骤: 发起者进程向自己的每个外出通道发送一个快照记录标志Marker; 每个接收到标志的进程分别执行标记发送规则和标记接收规则, 最终将快照记录标志广播到所有进程</li>
+</ul>
+<ul>
+<li>标记发送规则: 进程记录自己的本地状态, 然后向每个外出通道发送快照记录标志Marker</li>
+</ul>
+<ul>
+<li>标记接收规则: 进程在流入通道C收到Marker标志<ul>
+<li>如果进程还未记录自己的本地状态, 则记录通道C的消息状态为空, 开始记录其它各流入通道的消息</li>
+<li>否则说明进程已经从其它流入通道收到了Marker标志, 将通道C上收集的消息作为该通道的状态，即：消息收集截止</li>
+</ul>
+</li>
+</ul>
+<p><img src="../../images\TIM截图20190523171122.png" alt="TIM截图20190523171122"></p>
+<h2 id="Lai-Yang算法-非FIFO通道"><a href="#Lai-Yang算法-非FIFO通道" class="headerlink" title="Lai-Yang算法(非FIFO通道)"></a>Lai-Yang算法(非FIFO通道)</h2><ul>
+<li>非FIFO通道的挑战: 先于Marker标志发送的消息，有可能后于Marker标志到达</li>
+</ul>
+<ul>
+<li><p>基本步骤: </p>
+<ul>
+<li><p>每个进程开始是白色，记录快照时变成红色，进程变红时执行标记发送规则，促使其它进程也变红</p>
+</li>
+<li><p>红色进程发送红色消息，白色进程发送白色消息、</p>
+</li>
+<li>每个进程必须在接收到第一个红色消息之前记录本地状态</li>
+</ul>
+</li>
+</ul>
+<p><img src="../../images\TIM截图20190523171614.png" alt="TIM截图20190523171614"></p>
+<h2 id="Lai-Yang算法的改进-Mattern算法"><a href="#Lai-Yang算法的改进-Mattern算法" class="headerlink" title="Lai-Yang算法的改进(Mattern算法)"></a>Lai-Yang算法的改进(Mattern算法)</h2><ul>
+<li>每个进程i保存一个计数器Count_i，记录进程i在保存本地状态之前，发送和接收的白色消息之差</li>
+<li>进程将自己的本地状态、计数器、记录本地状态之后接收到的白色消息，这三者发送给快照启动者</li>
+<li>快照启动者计算∑Count_i ，如果快照启动者收到陆续到达的白色消息总数达到∑Count_i ，则说明所有在PAST发送的白色消息都被接收了，这些后面陆续到达的白色消息就是通道状态</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/分布式系统/分布式系统/03 逻辑时钟与物理时钟同步/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/分布式系统/分布式系统/03 逻辑时钟与物理时钟同步/" itemprop="url">03 逻辑时钟与物理时钟同步</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-21T21:06:27+08:00">
+                2019-05-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/分布式系统/" itemprop="url" rel="index">
+                    <span itemprop="name">分布式系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="逻辑时钟系统"><a href="#逻辑时钟系统" class="headerlink" title="逻辑时钟系统"></a>逻辑时钟系统</h1><p>由一个时间域T和映射关系C组成</p>
+<ul>
+<li>时间域𝑇: 一个集合，它包含了所有事件的发生时间</li>
+</ul>
+<ul>
+<li>映射关系𝐶: 每个事件发生的时间：C:H⟼T，例如C(e)表示事件e的发生时间</li>
+</ul>
+<p>##逻辑时间系统的两个要素</p>
+<ul>
+<li><p>时间表示数据结构</p>
+</li>
+<li><p>推进方法</p>
+</li>
+</ul>
+<h2 id="一致性与强一致性"><a href="#一致性与强一致性" class="headerlink" title="一致性与强一致性"></a>一致性与强一致性</h2><ul>
+<li>一致性: </li>
+</ul>
+<p><img src="../../images\TIM截图20190521214047.png" alt="TIM截图20190521214047"></p>
+<ul>
+<li>强一致性:</li>
+</ul>
+<p><img src="../../images\TIM截图20190521214140.png" alt="TIM截图20190521214140"></p>
+<h3 id="标量时间"><a href="#标量时间" class="headerlink" title="标量时间"></a>标量时间</h3><p><img src="../../images\TIM截图20190521213841.png" alt="TIM截图20190521213841"></p>
+<h3 id="向量时间"><a href="#向量时间" class="headerlink" title="向量时间"></a>向量时间</h3><p><img src="../../images\TIM截图20190521215219.png" alt="TIM截图20190521215219"></p>
+<p><img src="../../images\TIM截图20190521220204.png" alt="TIM截图20190521220204"></p>
+<h3 id="矩阵时间"><a href="#矩阵时间" class="headerlink" title="矩阵时间"></a>矩阵时间</h3><p><img src="../../images\TIM截图20190521215444.png" alt="TIM截图20190521215444"></p>
+<p><img src="../../images\TIM截图20190521215545.png" alt="TIM截图20190521215545"></p>
+<h1 id="NTP时钟同步"><a href="#NTP时钟同步" class="headerlink" title="NTP时钟同步"></a>NTP时钟同步</h1><p><img src="../../images\TIM截图20190521215905.png" alt="TIM截图20190521215905"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/分布式系统/分布式系统/02 基本模型与进程间通信/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/分布式系统/分布式系统/02 基本模型与进程间通信/" itemprop="url">02 基本模型与进程间通信</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-21T19:55:31+08:00">
+                2019-05-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/分布式系统/" itemprop="url" rel="index">
+                    <span itemprop="name">分布式系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="分布式程序的定义"><a href="#分布式程序的定义" class="headerlink" title="分布式程序的定义"></a>分布式程序的定义</h1><p><img src="../../images\TIM截图20190521200017.png" alt="TIM截图20190521200017"></p>
+<h2 id="同一进程中事件顺序"><a href="#同一进程中事件顺序" class="headerlink" title="同一进程中事件顺序"></a>同一进程中事件顺序</h2><p><img src="../../images\TIM截图20190521200524.png" alt="TIM截图20190521200524"></p>
+<h2 id="不同进程中事件顺序"><a href="#不同进程中事件顺序" class="headerlink" title="不同进程中事件顺序"></a>不同进程中事件顺序</h2><p><img src="../../images\TIM截图20190521200548.png" alt="TIM截图20190521200548"></p>
+<h2 id="传递性"><a href="#传递性" class="headerlink" title="传递性"></a>传递性</h2><p><img src="../../images\TIM截图20190521200918.png" alt="TIM截图20190521200918"></p>
+<h1 id="全局状态"><a href="#全局状态" class="headerlink" title="全局状态"></a>全局状态</h1><p>全局状态包含各进程的本地状态和各信道状态</p>
+<h2 id="本地状态"><a href="#本地状态" class="headerlink" title="本地状态"></a>本地状态</h2><p><img src="../../images\TIM截图20190521201735.png" alt="TIM截图20190521201735"></p>
+<h2 id="信道状态"><a href="#信道状态" class="headerlink" title="信道状态"></a>信道状态</h2><p><img src="../../images\TIM截图20190521201916.png" alt="TIM截图20190521201916"></p>
+<h2 id="全局状态的一致性"><a href="#全局状态的一致性" class="headerlink" title="全局状态的一致性"></a>全局状态的一致性</h2><p>若全局状态中每一个本地状态后发送的消息，都不属于全局状态包含的信道状态中; 且该消息的接收操作，也都不属于全局状态包含的本地状态, 则全局状态是一致的</p>
+<p><img src="../../images\TIM截图20190523163856.png" alt="TIM截图20190523163856"></p>
+<h2 id="运行分割"><a href="#运行分割" class="headerlink" title="运行分割"></a>运行分割</h2><p><img src="../../images\TIM截图20190521203254.png" alt="TIM截图20190521203254"></p>
+<h1 id="进程间通信"><a href="#进程间通信" class="headerlink" title="进程间通信"></a>进程间通信</h1><ul>
+<li><p>Send</p>
+<ul>
+<li>缓冲模式：Send消息时，先将数据从用户态缓冲区拷贝到内核态缓冲区，由内核态缓冲区将数据放到信道上</li>
+<li>非缓冲模式：Send消息时，将数据从用户态缓冲区直接发送到信道上</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Recv: 与Send操作</li>
+</ul>
+<p><img src="../../images\TIM截图20190521204347.png" alt="TIM截图20190521204347"></p>
+<h2 id="同步、异步、阻塞和非阻塞"><a href="#同步、异步、阻塞和非阻塞" class="headerlink" title="同步、异步、阻塞和非阻塞"></a>同步、异步、阻塞和非阻塞</h2><ul>
+<li>同步: 函数在没有得到结果之前不返回。最常见的例子就是SendMessage函数发送一个消息给某个窗口，在对方处理完消息之前，这个函数不返回。当对方处理完毕以后，该函数返回给调用者</li>
+</ul>
+<ul>
+<li>异步: 当一个异步过程调用发出后，调用者不能立刻得到结果。实际处理这个调用的部件在完成后，通过状态、通知和回调来通知调用者</li>
+</ul>
+<ul>
+<li>阻塞: 调用是指调用结果返回之前，当前线程会被挂起</li>
+</ul>
+<ul>
+<li>非阻塞: 不能立刻得到结果之前该函数不会阻塞当前线程，而会立刻返回</li>
+</ul>
+<p><img src="../../images\TIM截图20190521210256.png" alt="TIM截图20190521210256"></p>
+<p><img src="../../images\TIM截图20190521210321.png" alt="TIM截图20190521210321"></p>
+<h2 id="通信的顺序模型"><a href="#通信的顺序模型" class="headerlink" title="通信的顺序模型"></a>通信的顺序模型</h2><ul>
+<li>FIFO模型: 信道运行为一个先进先出的队列模型</li>
+</ul>
+<ul>
+<li>非FIFO模型: 信道为一个集合，发送者向里面添加消息，接受者在里面移除消息，添加和移除是无序的</li>
+</ul>
+<ul>
+<li>因果依赖模型: 对于发向同一进程的两个消息，如果它们的发送操作是有依赖顺序的，那么接收操作的顺序必须与发送顺序一致</li>
+</ul>
+<p><img src="../../images\TIM截图20190521210510.png" alt="TIM截图20190521210510"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/分布式系统/分布式系统/01 分布式计算基本概念/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/分布式系统/分布式系统/01 分布式计算基本概念/" itemprop="url">01 分布式计算基本概念</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-21T19:15:49+08:00">
+                2019-05-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/分布式系统/" itemprop="url" rel="index">
+                    <span itemprop="name">分布式系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="分布式系统"><a href="#分布式系统" class="headerlink" title="分布式系统"></a>分布式系统</h1><p>其硬件或软件组件分布在连网的计算机上，组件之间通过消息传递进行通信和动作协调的系统</p>
+<ul>
+<li>特征: 并发、缺乏全局时钟、故障独立性</li>
+</ul>
+<h1 id="分布式计算"><a href="#分布式计算" class="headerlink" title="分布式计算"></a>分布式计算</h1><ul>
+<li>分布式计算是一种基于网络的分治计算方式</li>
+<li>分布式计算是一种基于网络的资源聚合方式</li>
+</ul>
+<h1 id="可扩展性"><a href="#可扩展性" class="headerlink" title="可扩展性"></a>可扩展性</h1><p>一个系统为了支持持续增长的用户/任务数量可以不断扩展的能力</p>
+<ul>
+<li>两种扩展方式<ul>
+<li>Scale Out：增加资源数量，例如，将计算节点增加100个</li>
+<li>Scale Up：增加单个资源的能力，例如，将单机内存扩展到1TB</li>
+</ul>
+</li>
+</ul>
+<h1 id="并发性"><a href="#并发性" class="headerlink" title="并发性"></a>并发性</h1><p>独立任务并发处理、享资源并发访问</p>
+<h1 id="异步性"><a href="#异步性" class="headerlink" title="异步性"></a>异步性</h1><p>没有全局时钟、两个进程对应时钟之间的漂移、进程间通信延迟难以确定</p>
+<h1 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h1><ul>
+<li><p>常用攻击手段:</p>
+<ul>
+<li><p>窃听：未经授权获得数据</p>
+</li>
+<li><p>伪装：伪装成其他主体的身份发送消息</p>
+</li>
+<li><p>篡改：接获消息，篡改后转发到目的地</p>
+</li>
+<li><p>重发：存储截获的消息，随后再次发送</p>
+</li>
+<li><p>拒绝服务：用大量的消息攻击目标，使正常用户的请求不能响应</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="可靠性"><a href="#可靠性" class="headerlink" title="可靠性"></a>可靠性</h1><p>数据、消息、服务等等不会丢失</p>
+<h1 id="可用性"><a href="#可用性" class="headerlink" title="可用性"></a>可用性</h1><p>数据、服务能够被正常访问</p>
+<ul>
+<li>可靠性不能蕴含可用性: 数据没有丢失，但无法被用户访问到</li>
+</ul>
+<h1 id="并行计算"><a href="#并行计算" class="headerlink" title="并行计算"></a>并行计算</h1><p>被求解的问题分解成若干个部分，各部分均由一个独立的单元来并行计算</p>
+<ul>
+<li><p>并行计算实现方式:</p>
+<ul>
+<li><p>时间上的并行：流水线技术</p>
+</li>
+<li><p>空间上的并行：多核、多线程、MPP大规模并行处理</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>并行计算与分布式计算的差异</p>
+<ul>
+<li><p>并行计算主要目的是提升处理能力，分布式计算除此之外还有资源聚合的功能</p>
+</li>
+<li><p>并行计算假定系统是同步的，分布式系统不做此假定</p>
+</li>
+<li>并行计算是紧耦合的，分布式计算是松耦合的</li>
+<li>分布式计算对网络有最低要求，连通即可; 并行计算一般依托超级计算机，网络具有一定的拓扑结构</li>
+</ul>
+</li>
+</ul>
+<h1 id="网格计算"><a href="#网格计算" class="headerlink" title="网格计算"></a>网格计算</h1><p>利用互联网将地理上广域分散的各种资源，借助分布式计算的各种技术连接成一个逻辑的整体</p>
+<h1 id="P2P计算"><a href="#P2P计算" class="headerlink" title="P2P计算"></a>P2P计算</h1><p>P2P计算是一种分布式的计算范式，它没有集中式的控制，参与计算的节点之间是对等的。参与者共享他们所拥有的软硬件资源，这些共享资源能被其它对等节点(Peer)直接访问而无需经过中间实体</p>
+<h1 id="云计算"><a href="#云计算" class="headerlink" title="云计算"></a>云计算</h1><p>云计算是一种模型，可以实现随时随地、便捷地、按需地从可配置计算资源池中获取所需的资源</p>
+<h1 id="边缘计算"><a href="#边缘计算" class="headerlink" title="边缘计算"></a>边缘计算</h1><p>边缘计算将网络边缘上的计算、网络与存储资源组成统一的平台为用户提供服务，使数据在源头附近就能得到及时有效的处理。这种模式不同于云计算要将所有数据传输到数据中心，绕过了网络带宽与延迟的瓶颈</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Django/Django/Django学习(二)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Django/Django/Django学习(二)/" itemprop="url">Django学习(二)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-16T13:52:43+08:00">
+                2019-05-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Django/" itemprop="url" rel="index">
+                    <span itemprop="name">Django</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h1><p>Nginx是一个高性能的HTTP和反向代理服务器</p>
+<h2 id="代理服务"><a href="#代理服务" class="headerlink" title="代理服务"></a>代理服务</h2><p>位于客户端和服务器端之间的服务器</p>
+<h2 id="正向代理"><a href="#正向代理" class="headerlink" title="正向代理"></a>正向代理</h2><ul>
+<li>客户端先与代理服务器创建连接, 接着代理服务器与服务器创建连接, 并获得目标服务器的指定资源, 再发送给客户端</li>
+</ul>
+<h2 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h2><ul>
+<li><p>由于单个服务器的处理客户端请求能力有一个极限, 可以使用多个服务器来共同分担用户请求. 服务器端接受到客户端的请求后, 代理会把请求分发给不同的服务器进行处理, 然后再将服务器的响应结果反馈给客户端.</p>
+</li>
+<li><p>当增加/移除某台服务器时, 只需要修改服务器列表，而不会影响客户访问</p>
+</li>
+<li>避免服务器的ip和端口直接暴露在internet, 使主机免于安全漏洞</li>
+</ul>
+<h2 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h2><p>负载均衡建立在现有网络结构之上, 通过将访问请求分摊到多台服务器, 增加了网络的带宽和吞吐量, 还可以单点故障问题, 提高了可靠性</p>
+<h3 id="uWSGI"><a href="#uWSGI" class="headerlink" title="uWSGI"></a>uWSGI</h3><p>是一个<code>web</code>服务器, 实现了<code>WSGI</code>协议、<code>uwsgi</code>协议、<code>http</code>协议等</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/系统分析与设计/系统分析与设计/HW9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -367,6 +1577,8 @@
 </ul>
 </li>
 </ul>
+<p>领域模型的关系</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">*(不包含0)</span><br><span class="line">0...1</span><br><span class="line">0...n</span><br></pre></td></tr></table></figure>
 <h4 id="Make-Reservation"><a href="#Make-Reservation" class="headerlink" title="Make Reservation"></a>Make Reservation</h4><ul>
 <li>领域建模</li>
 </ul>
@@ -880,1232 +2092,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/计算机图形学/计算机图形学/学习(六)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/计算机图形学/计算机图形学/学习(六)/" itemprop="url">学习六</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-12T16:21:21+08:00">
-                2019-05-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机图形学/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机图形学</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="阴影映射shadow-mapping"><a href="#阴影映射shadow-mapping" class="headerlink" title="阴影映射shadow mapping"></a>阴影映射shadow mapping</h1><p>实现阴影的一种技术. </p>
-<h2 id="实现思想"><a href="#实现思想" class="headerlink" title="实现思想"></a>实现思想</h2><p>如果我们绘制一条从光源出发的光线, 将光线第一次击中物体的点和光线上其他点进行对比, 看看其他点是否比该点更远, 如果是的话，这个点就在阴影中. </p>
-<p><img src="../../images\TIM截图20190512163046.png" alt="TIM截图20190512163046"></p>
-<p>阴影渲染两大基本步骤：<br>    1)以光源视角渲染场景，得到深度图DepthMap, 并存储为texture</p>
-<p>​    2)以camera视角渲染场景，使用Shadowing Mapping算法(比较当前深度值与在DepthMap Texture的深度 值)，决定某个点是否在阴影下</p>
-<p><img src="../../images\TIM截图20190512163841.png" alt="TIM截图20190512163841"></p>
-<p>1) 左图中, 我们以光源为观察者, 通过投影矩阵来渲染场景并创建一个深度贴图。这个投影和视图矩阵结合在一起成为一个T变换，它可以将任何三维位置转变到光源的可见坐标空间</p>
-<p>2) 在右图中,  渲染点P¯处的片元，需要决定它是否在阴影中。我们先得使用T把P¯变换到光源的坐标空间里. 它的z坐标就对应于它的深度，例子中这个值是0.9。使用点P¯在光源的坐标空间的坐标，我们可以索引深度贴图，来获得从光的视角中最近的可见深度，结果是点C¯，最近的深度是0.4。因为索引深度贴图的结果是一个小于点P¯的深度，我们可以断定P¯被挡住了，它在阴影中了。</p>
-<h2 id="生成深度贴图"><a href="#生成深度贴图" class="headerlink" title="生成深度贴图"></a>生成深度贴图</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">//	1. 创建一个帧缓冲对象</span><br><span class="line">GLuint depthMapFBO;</span><br><span class="line">glGenFramebuffers(1, &amp;depthMapFBO);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//	2. 创建一个2D纹理, 提供给帧缓冲的深度缓冲使用</span><br><span class="line">const GLuint SHADOW_WIDTH = 1024, SHADOW_HEIGHT = 1024;</span><br><span class="line"></span><br><span class="line">GLuint depthMap;</span><br><span class="line">glGenTextures(1, &amp;depthMap);</span><br><span class="line">glBindTexture(GL_TEXTURE_2D, depthMap);</span><br><span class="line">glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, </span><br><span class="line">             SHADOW_WIDTH, SHADOW_HEIGHT, 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);	//	把纹理格式指定为GL_DEPTH_COMPONENT, 把纹理的高宽设置为1024</span><br><span class="line">glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);</span><br><span class="line">glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);</span><br><span class="line">glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT); </span><br><span class="line">glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//	3. 把生成的深度纹理作为帧缓冲的深度缓冲</span><br><span class="line">glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);</span><br><span class="line">glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthMap, 0);</span><br><span class="line">glDrawBuffer(GL_NONE);	//	我们只需要深度信息，颜色缓冲没有用, 通过将调用glDrawBuffer和glReadBuffer把读和绘制缓冲设置为GL_NONE来告诉OpenGL我们不适用任何颜色数据进行渲染</span><br><span class="line">glReadBuffer(GL_NONE);</span><br><span class="line">glBindFramebuffer(GL_FRAMEBUFFER, 0);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 4. 渲染深度贴图</span><br><span class="line">glViewport(0, 0, SHADOW_WIDTH, SHADOW_HEIGHT);</span><br><span class="line">glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);</span><br><span class="line">    glClear(GL_DEPTH_BUFFER_BIT);</span><br><span class="line">    ConfigureShaderAndMatrices();</span><br><span class="line">    RenderScene();</span><br><span class="line">glBindFramebuffer(GL_FRAMEBUFFER, 0);</span><br><span class="line"></span><br><span class="line">// 5. 使用深度贴图渲染场景</span><br><span class="line">glViewport(0, 0, SCR_WIDTH, SCR_HEIGHT);</span><br><span class="line">glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);</span><br><span class="line">ConfigureShaderAndMatrices();</span><br><span class="line">glBindTexture(GL_TEXTURE_2D, depthMap);</span><br><span class="line">RenderScene();</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/A-Frame/A-Frame/A-Frame学习/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/A-Frame/A-Frame/A-Frame学习/" itemprop="url">A-Frame学习</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-08T22:49:58+08:00">
-                2019-05-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/A-Frame/" itemprop="url" rel="index">
-                    <span itemprop="name">A-Frame</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="引入CDN文件"><a href="#引入CDN文件" class="headerlink" title="引入CDN文件"></a>引入CDN文件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Production Version, Minified --&gt;</span><br><span class="line">&lt;script src=&quot;https://aframe.io/releases/0.5.0/aframe.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;!-- Development Version, Uncompressed with Source Maps --&gt;</span><br><span class="line">&lt;script src=&quot;https://aframe.io/releases/0.5.0/aframe.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<h1 id="初始化场景"><a href="#初始化场景" class="headerlink" title="初始化场景"></a>初始化场景</h1><pre><code>右手系, z轴指向屏幕外
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;a-scene&gt;</span><br><span class="line">    &lt;a-box position=&quot;-1 0.5 -3&quot; rotation=&quot;0 45 0&quot; color=&quot;#4CC3D9&quot;&gt;&lt;/a-box&gt;  # 添加几何模型, 包括box, cylinder, sphere</span><br><span class="line"></span><br><span class="line">    &lt;a-assets&gt;                                                              # 定义并使用纹理</span><br><span class="line">        &lt;img id=&quot;texture&quot; src=&quot;images/3video.jpg&quot; alt=&quot;&quot;&gt;</span><br><span class="line">    &lt;/a-assets&gt;</span><br><span class="line">    &lt;a-box src=&quot;#texture&quot; color=&quot;#B76705&quot; depth=&quot;2&quot;height=&quot;2&quot; width=&quot;4&quot; position=&quot;0 0 -1.25&quot;&gt;&lt;/a-box&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &lt;a-sky color=&quot;#DDDDDD&quot;&gt;&lt;/a-sky&gt;     # 添加天空盒(背景), 每个场景都需要一个背景</span><br><span class="line"></span><br><span class="line">    &lt;a-camera                           # 存在缺省相机, 更改默认相机属性</span><br><span class="line">        position=&quot;0 1 14&quot;</span><br><span class="line">        cursor-visible=&quot;true&quot;</span><br><span class="line">        cursor-scale=&quot;2&quot;</span><br><span class="line">        cursor-color=&quot;#0095DD&quot;</span><br><span class="line">        cursor-opacity=&quot;0.5&quot;&gt;</span><br><span class="line">    &lt;/a-camera&gt;</span><br><span class="line"></span><br><span class="line">    &lt;a-light                            # 存在缺省光源, 添加平行光和环境光</span><br><span class="line">        type=&quot;directional&quot;</span><br><span class="line">        color=&quot;#FFF&quot;</span><br><span class="line">        intensity=&quot;0.5&quot;</span><br><span class="line">        position=&quot;-1 1 2&quot;&gt;</span><br><span class="line">    &lt;/a-light&gt;</span><br><span class="line">    &lt;a-light</span><br><span class="line">        type=&quot;ambient&quot;</span><br><span class="line">        color=&quot;#FFF&quot;&gt;</span><br><span class="line">    &lt;/a-light&gt;</span><br><span class="line">&lt;/a-scene&gt;</span><br></pre></td></tr></table></figure>
-<h1 id="自定义组件"><a href="#自定义组件" class="headerlink" title="自定义组件"></a>自定义组件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a-entity geometry=&quot;primitive: box; depth: 0.5; height: 0.5; width 0.5&quot; material=&quot;color: red; shader: standard&quot;&gt;&lt;/a-entity&gt;</span><br></pre></td></tr></table></figure>
-<h1 id="查询场景、组件querySelector"><a href="#查询场景、组件querySelector" class="headerlink" title="查询场景、组件querySelector"></a>查询场景、组件querySelector</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">window.onload=function()&#123;</span><br><span class="line">    var scene = document.querySelector(&apos;a-scene&apos;);</span><br><span class="line">    var box = scene.querySelector(&apos;a-box&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="获取、修改属性"><a href="#获取、修改属性" class="headerlink" title="获取、修改属性"></a>获取、修改属性</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">window.onload=function()&#123;</span><br><span class="line">    var scene = document.querySelector(&apos;a-scene&apos;);</span><br><span class="line">    var box = scene.querySelector(&apos;a-box&apos;);</span><br><span class="line">    </span><br><span class="line">    // 获取属性</span><br><span class="line">    console.log(box.getAttribute(&apos;position&apos;));   </span><br><span class="line"></span><br><span class="line">    //  修改属性</span><br><span class="line">    box.setAttribute(&apos;color&apos;, &apos;red&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="监听事件"><a href="#监听事件" class="headerlink" title="监听事件"></a>监听事件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">window.onload=function()&#123;</span><br><span class="line">    var scene = document.querySelector(&apos;a-scene&apos;);</span><br><span class="line">    var box = scene.querySelector(&apos;a-box&apos;);</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    box.addEventListener(&apos;click&apos;, function () &#123;</span><br><span class="line">        box.setAttribute(&apos;color&apos;, &apos;red&apos;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/数据挖掘/数据挖掘/(二)-Python数据分析/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/数据挖掘/数据挖掘/(二)-Python数据分析/" itemprop="url">(二) Python数据分析</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-07T21:39:50+08:00">
-                2019-05-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据挖掘/" itemprop="url" rel="index">
-                    <span itemprop="name">数据挖掘</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="../../images\TIM截图20190507213840.png" alt="TIM截图20190507213840"></p>
-<h1 id="Numpy"><a href="#Numpy" class="headerlink" title="Numpy"></a>Numpy</h1><p>​    提供数组功能</p>
-<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line"># 数组创建</span><br><span class="line">    a = np.array([1, 2, 3])</span><br><span class="line"></span><br><span class="line">    a1 = np.array([1, 2, 3], dtype = int32)</span><br><span class="line"></span><br><span class="line">    a2 = np.arange(-10, 10, step = 1)</span><br><span class="line"></span><br><span class="line"># 数组切分</span><br><span class="line">    b = a[1:3]</span><br></pre></td></tr></table></figure>
-<h2 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import random</span><br><span class="line"></span><br><span class="line"># 矩阵创建</span><br><span class="line">    a = np.mat(np.array([1, 2, 3]))  </span><br><span class="line"></span><br><span class="line">    a1 = np.mat(np.zeros(3, 3))</span><br><span class="line"></span><br><span class="line">    a2 = np.mat(np.ones(3, 3))   </span><br><span class="line"></span><br><span class="line">    a3 = np.mat(random.rand(3, 3))  </span><br><span class="line"></span><br><span class="line">    a4 = np.mat(np.eye(3, 3, dtype = int))       3*3的对角矩阵</span><br><span class="line"></span><br><span class="line"># 矩阵运算</span><br><span class="line">    a = b1 * b2</span><br><span class="line"></span><br><span class="line">    a1 = multiply(b1, b2)    对应位置的元素相乘</span><br><span class="line"></span><br><span class="line"># 矩阵的逆</span><br><span class="line">    a = b.I</span><br><span class="line"></span><br><span class="line"># 矩阵的转置</span><br><span class="line">    a = b.T</span><br><span class="line"></span><br><span class="line"># 矩阵的分割</span><br><span class="line">    b = a[1:, 1:]       分割出第二行以后的行和第二列以后的列的所有元素</span><br><span class="line"></span><br><span class="line"># 矩阵的合成</span><br><span class="line">    c = vstack((a, b))  按列合并，即增加行数</span><br><span class="line"></span><br><span class="line">    d = hstack((a, b))  按行合并，即增加列数</span><br><span class="line"></span><br><span class="line"># 矩阵索引</span><br><span class="line">    mat[i]</span><br><span class="line">    mat[i, j]</span><br><span class="line">    mat[i, ]</span><br><span class="line"></span><br><span class="line"># np.mat、python list、np.array的转换</span><br><span class="line"></span><br><span class="line">    array = np.array(list)          # list -&gt; array</span><br><span class="line">    list = array.tolist()           # array -&gt; list</span><br><span class="line"></span><br><span class="line">    mat = np.mat(array)             # array -&gt; mat</span><br><span class="line">    array = mat.getA()              # mat -&gt; array</span><br><span class="line"></span><br><span class="line">    mat = np.mat(list)              # list -&gt; mat</span><br><span class="line">    list = mat.tolist()             # mat -&gt; list</span><br><span class="line"></span><br><span class="line"># mat转换为数值</span><br><span class="line">    mat = np.mat([1])</span><br><span class="line">    value = mat[0, 0]</span><br></pre></td></tr></table></figure>
-<h1 id="Matplotlib"><a href="#Matplotlib" class="headerlink" title="Matplotlib"></a>Matplotlib</h1><p>​    提供可视化功能</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"></span><br><span class="line">x = np.linspace(0, 10, 1000)   # 自变量x</span><br><span class="line">y = np.sin(x) + 1               # 因变量y</span><br><span class="line">z = np.cos(x ** 2) + 1          # 因变量z</span><br><span class="line"></span><br><span class="line">plt.figure(figsize = (8, 4))    # 设置图像大小</span><br><span class="line">plt.plot(x, y, label = &apos;$\sin x + 1$&apos;, color = &apos;red&apos;, linewidth = 2)    # 作x与y的图形, 设置标签、颜色、线条大小</span><br><span class="line">plt.plot(x, z, &apos;b--&apos;, label = &apos;$\cos x^2 + 1$&apos;)     # 作x与z的图形, 设置线条类型</span><br><span class="line">plt.rcParams[&apos;axes.unicode_minus&apos;] = False  # 显示负号</span><br><span class="line">plt.xlabel(&apos;Time(s)&apos;)           # x轴名称</span><br><span class="line">plt.ylabel(&apos;Volt&apos;)              # y轴名称</span><br><span class="line">plt.rcParams[&apos;font.sans-serif&apos;] = [&apos;SimHei&apos;]    # 显示中文标题</span><br><span class="line">plt.title(&apos;样例&apos;)               # 标题</span><br><span class="line">plt.ylim(0, 2.2)                # y轴显示范围</span><br><span class="line">plt.legend()                    # 作图</span><br><span class="line">plt.show()                      # 显示图像</span><br></pre></td></tr></table></figure>
-<h1 id="Pandas"><a href="#Pandas" class="headerlink" title="Pandas"></a>Pandas</h1><p>​    提供大量数据处理函数, 主要的数据结构是Series和DataFrame</p>
-<h2 id="Series"><a href="#Series" class="headerlink" title="Series"></a>Series</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line"></span><br><span class="line"># 创建Series</span><br><span class="line">    s = pd.Series(np.arange(10))</span><br><span class="line"></span><br><span class="line">    s1 = pd.Series(np.array([1, 2, 3]), index = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;])</span><br><span class="line"></span><br><span class="line">    s2 = </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">pd.read_excel(&apos;data.xls&apos;)                       # 读取Excel文件, 并返回DataFrame</span><br><span class="line">pd.read_csv(&apos;data.csv&apos;, encoding = &apos;utf-8&apos;)     # 读取文本数据, 并返回DataFrame</span><br></pre></td></tr></table></figure>
-<h2 id="DataFrame"><a href="#DataFrame" class="headerlink" title="DataFrame"></a>DataFrame</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 创建DataFrame</span><br><span class="line">    d = pd.DataFrame(np.array([[1, 2], [3, 4]]))</span><br><span class="line"></span><br><span class="line">    d1 = pd.DataFrame(np.array([[1, 2], [3, 4]]), index = [&apos;a&apos;, &apos;b&apos;])</span><br></pre></td></tr></table></figure>
-<p><img src="../../images\TIM截图20190508215334.png" alt="TIM截图20190508215334"></p>
-<h1 id="Sklearn"><a href="#Sklearn" class="headerlink" title="Sklearn"></a>Sklearn</h1><p>​    提供了机器学习相关的函数, 包括数据预处理、分类、回归、聚类、预测和模型分析</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.linear_model import *</span><br><span class="line"></span><br><span class="line">对于所有模型, 提供的接口: </span><br><span class="line">    model.fit(): 训练模型, 对于监督模型是fit(X, y), 对于非监督模型是fit(X)</span><br><span class="line"></span><br><span class="line">对于监督模型, 提供的接口:</span><br><span class="line">    model.predict(X_new): 预测新样本</span><br><span class="line">    model.predict_proba(X_new): 预测概率</span><br><span class="line">    model.score(): 得分越高, fit越好</span><br><span class="line"></span><br><span class="line">对于非监督模型, 提供的接口:</span><br><span class="line">    model.transform(): 从数据中学到新的&quot;基空间&quot;</span><br><span class="line">    model.fit_transform(): 从数据中学到新的基并将这个数据按照这组&quot;基&quot;进行转换</span><br></pre></td></tr></table></figure>
-<h1 id="Keras"><a href="#Keras" class="headerlink" title="Keras"></a>Keras</h1><p>​    提供了人工神经网络的模型</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/数据挖掘/数据挖掘/(一) Python回顾/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/数据挖掘/数据挖掘/(一) Python回顾/" itemprop="url">(一) Python回顾</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-07T20:10:57+08:00">
-                2019-05-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据挖掘/" itemprop="url" rel="index">
-                    <span itemprop="name">数据挖掘</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="输出中文"><a href="#输出中文" class="headerlink" title="输出中文"></a>输出中文</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: UTF-8 -*-</span><br><span class="line">print (&apos;你好&apos;)</span><br></pre></td></tr></table></figure>
-<h1 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a ** 2		# 幂运算</span><br></pre></td></tr></table></figure>
-<h1 id="条件判断"><a href="#条件判断" class="headerlink" title="条件判断"></a>条件判断</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if 条件1:</span><br><span class="line"></span><br><span class="line">elif 条件2:</span><br><span class="line"></span><br><span class="line">else:</span><br></pre></td></tr></table></figure>
-<h1 id="for"><a href="#for" class="headerlink" title="for"></a>for</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for k in range(101):		# range用于生成连续序列[0, 100], range(a, b, c)表示首项为a、差为b、小于c的序列</span><br><span class="line">	print k</span><br></pre></td></tr></table></figure>
-<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">1.  </span><br><span class="line">  def add2(x):</span><br><span class="line">    return x + 2</span><br><span class="line">	</span><br><span class="line">2. 默认参数</span><br><span class="line">	def add2(x = 0, y = 2):</span><br><span class="line">    return [x + 2, y + 2]   # 返回列表</span><br><span class="line"></span><br><span class="line">3. </span><br><span class="line">  def add2(x, y): </span><br><span class="line">    return x + 2, y + 2     # 双重返回</span><br><span class="line"></span><br><span class="line">  x, y = add2(1, 2)</span><br></pre></td></tr></table></figure>
-<h1 id="lambda"><a href="#lambda" class="headerlink" title="lambda"></a>lambda</h1><p>  即匿名函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f = lambda x, y: x + y    # 定义函数f(x, y): return x + y</span><br></pre></td></tr></table></figure></p>
-<h1 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h1><p>  容器中元素类型可以不同<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">1. List</span><br><span class="line">  # 声明List </span><br><span class="line">  a = [1, 2, 3]</span><br><span class="line"></span><br><span class="line">  # 修改List</span><br><span class="line">  a[0] = 2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  # 别名</span><br><span class="line">  b = a</span><br><span class="line"></span><br><span class="line">  # 复制</span><br><span class="line">  c = a[:]</span><br><span class="line"></span><br><span class="line">  # 返回列表中最大、小值</span><br><span class="line">  max = max(a)</span><br><span class="line">  min = min(a)</span><br><span class="line"></span><br><span class="line">  # 列表求和</span><br><span class="line">  sum = sum(a)</span><br><span class="line"></span><br><span class="line">  # 列表升序</span><br><span class="line">  sorted(a)</span><br><span class="line"></span><br><span class="line">  # 填加元素</span><br><span class="line">  a = []</span><br><span class="line">  a.append(4)</span><br><span class="line"></span><br><span class="line">  # 列表解析</span><br><span class="line">  b = [i + 2 for i in a]    # 即 for i in a: b.append(i + 2)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2. Tuple</span><br><span class="line">  # 声明元组</span><br><span class="line">  a = (1, 2, 3)</span><br><span class="line"></span><br><span class="line">  a[0] = 2  # 错误, Tuple不可以被修改</span><br><span class="line"></span><br><span class="line">  # 返回元组个数</span><br><span class="line">  len(a)</span><br><span class="line"></span><br><span class="line">3. Dictionary</span><br><span class="line"></span><br><span class="line">  d = &#123;&#125;</span><br><span class="line">  d[&apos;name&apos;] = &apos;Tom&apos;</span><br></pre></td></tr></table></figure></p>
-<h1 id="import"><a href="#import" class="headerlink" title="import"></a>import</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">1. 导入函数库</span><br><span class="line">  import math</span><br><span class="line"></span><br><span class="line">2. 给库起别名</span><br><span class="line">  import math as m</span><br><span class="line"></span><br><span class="line">3. 导入库中的函数</span><br><span class="line">  from math import exp    # 区分import math与from math import *, 后者将大量的函数单独导入</span><br><span class="line"></span><br><span class="line">4. 给函数起别名</span><br><span class="line">  from math import exp as e</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/计算机图形学/计算机图形学/期中复习/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/计算机图形学/计算机图形学/期中复习/" itemprop="url">期中复习</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-05T10:21:08+08:00">
-                2019-05-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机图形学/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机图形学</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="计算机图形学CG"><a href="#计算机图形学CG" class="headerlink" title="计算机图形学CG"></a>计算机图形学CG</h1><p>​    所有可视化内容的综合体(模型 + 渲染 + 处理 + 动画)</p>
-<h2 id="模型Model"><a href="#模型Model" class="headerlink" title="模型Model"></a>模型Model</h2><p>​    在计算机上创建物体的3D形状和外观</p>
-<ul>
-<li>表示方法: 数字矩阵, 三角网格</li>
-</ul>
-<h2 id="渲染Render"><a href="#渲染Render" class="headerlink" title="渲染Render"></a>渲染Render</h2><p>​    在计算机上显示3D模型的2D图像</p>
-<ul>
-<li>包括: 逼真渲染、交互渲染、艺术渲染</li>
-</ul>
-<h2 id="动画Animation"><a href="#动画Animation" class="headerlink" title="动画Animation"></a>动画Animation</h2><p>​    显示物体的实时变化</p>
-<h1 id="与其他学科的关系"><a href="#与其他学科的关系" class="headerlink" title="与其他学科的关系"></a>与其他学科的关系</h1><ul>
-<li>计算机图形学: 生成图像</li>
-<li>图像处理: 图像变换</li>
-<li>计算机视觉: 从图像中提取特征值</li>
-</ul>
-<h1 id="帧缓存FrameBuffer-显存"><a href="#帧缓存FrameBuffer-显存" class="headerlink" title="帧缓存FrameBuffer(显存)"></a>帧缓存FrameBuffer(显存)</h1><p>​    帧缓存的每一个存储单元对应屏幕的一个像素, 整个帧缓存对应一帧图像</p>
-<ul>
-<li>一般采用double-buffer, 即显示一个buffer时, 填充另一个buffer</li>
-</ul>
-<h1 id="通道"><a href="#通道" class="headerlink" title="通道"></a>通道</h1><p>​    只存储了单一R、G、B值的图像矩阵</p>
-<ul>
-<li>若用400 <em> 400 </em> 3的矩阵表示图像, 则R通道, G通道, B通道: 分别表示[400, 400, 0], [400, 400, 1], [400, 400, 2]</li>
-</ul>
-<ul>
-<li>alpha通道: alpha表示透明度, 取值为0~1</li>
-</ul>
-<h1 id="渲染管线"><a href="#渲染管线" class="headerlink" title="渲染管线"></a>渲染管线</h1><p>​    完成渲染的流水线过程</p>
-<p><img src="../../images\TIM截图20190506203021.png" alt="TIM截图20190506203021"></p>
-<ul>
-<li>顶点着色器: 对顶点进行处理, 如空间坐标系的转换、裁剪</li>
-</ul>
-<ul>
-<li>光栅化: 把顶点转换为栅格状的片段, 每个片段对应帧缓存的一个像素</li>
-</ul>
-<p><img src="../../images/TIM截图20190505135817.png" alt="TIM截图20190505135817"></p>
-<ul>
-<li>片段着色器: 计算每一个片元的颜色</li>
-</ul>
-<h1 id="光栅化Rasterization"><a href="#光栅化Rasterization" class="headerlink" title="光栅化Rasterization"></a>光栅化Rasterization</h1><h2 id="画线"><a href="#画线" class="headerlink" title="画线"></a>画线</h2><ul>
-<li>数值微分法DDA: 选择abs(dx)和abs(dy)大的方向进行单位步进, 另一个方向根据斜率进行步进(且步进 &lt; 1)</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">int round(float x) &#123;</span><br><span class="line">    return (int)(x+0.5);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void lineDDA(int x0, int y0, int xEnd, int yEnd) &#123;</span><br><span class="line">    int dx = xEnd - x0, dy = yEnd - y0, steps;</span><br><span class="line">    float xIncrement, yIncrement, x = x0, y = y0;</span><br><span class="line">    </span><br><span class="line">    //	abs(dx)和abs(dy)大的作为单位步进方向</span><br><span class="line">    if (abs(dx) &gt; abs(dy)) </span><br><span class="line">        steps = abs(dx);</span><br><span class="line">    else</span><br><span class="line">        steps = abs(dy);</span><br><span class="line">    xIncrement = float(dx) / float(steps);</span><br><span class="line">    yIncrement = float(dy) / float(steps);</span><br><span class="line"> </span><br><span class="line">    setPixel(round(x), round(y));</span><br><span class="line">    for (int i = 0; i &lt; steps; i++) &#123;</span><br><span class="line">        x += xIncrement;</span><br><span class="line">        y += yIncrement;</span><br><span class="line">        setPixel(round(x), round(y));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>布兰森汉姆Bresenham: 在DDA的基础上, 进行改进(不是简单的向上取整, 而是看向上取整还是向下取整更精确)</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. abs(dx)和abs(dy)大的作为单位步进方向</span><br><span class="line"></span><br><span class="line">2. 若在x进行单位步进, 则在y方向上的步进小于1, 此时y + 1/k是约等于Ym还是Ym+1更精确呢?</span><br><span class="line"></span><br><span class="line">3. 那我们就需要比较Dupper和Ddown的大小, 较大则说明偏的远</span><br></pre></td></tr></table></figure>
-<p><img src="../../images\TIM截图20190505171100.png" alt="TIM截图20190505171100"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">//	abs(dx) &gt; abs(dy)的情景</span><br><span class="line">//	对于abs(dy) &gt; abs(dx)的情景, 只要传参时(x0, xEnd)和(y0, yEnd)进行交换</span><br><span class="line">void lineBres(int x0, int y0, int xEnd, int yEnd) &#123;</span><br><span class="line">    int dx = fabs(xEnd - x0);</span><br><span class="line">    int dy = fabs(yEnd - y0);</span><br><span class="line">    int p = 2 * dy - dx;</span><br><span class="line">    int x, y;</span><br><span class="line"> </span><br><span class="line"> 	//	选定x较小的方向为初始点</span><br><span class="line">    if (x0 &gt; xEnd) &#123;</span><br><span class="line">        x = xEnd;</span><br><span class="line">        y = yEnd;</span><br><span class="line">        xEnd = x0;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        x = x0;</span><br><span class="line">        y = y0;</span><br><span class="line">    &#125;</span><br><span class="line">    setPixel(x, y);</span><br><span class="line"> </span><br><span class="line">    while (x &lt; xEnd) &#123;</span><br><span class="line">        if (p &lt; 0) </span><br><span class="line">            p += 2 * dy;</span><br><span class="line">        else &#123;</span><br><span class="line">            y++;</span><br><span class="line">            p += 2 * (dy - dx);</span><br><span class="line">        &#125;</span><br><span class="line">        x++;</span><br><span class="line">        setPixel(x, y);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="画圆"><a href="#画圆" class="headerlink" title="画圆"></a>画圆</h2><p>​    将圆分成8份, 选一份计算出起点和终点, 再使用Bresenham画线算法(根据abs(dx)和abs(dy)传参), 然后根据对称性, 得出另外七份</p>
-<h1 id="三角形填充"><a href="#三角形填充" class="headerlink" title="三角形填充"></a>三角形填充</h1><ul>
-<li>Edge-Walking</li>
-</ul>
-<p><img src="../../images\TIM截图20190507091136.png" alt="TIM截图20190507091136"></p>
-<ul>
-<li>Edge-equation</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. 计算三条边的一般式方程Ax+By+C=0</span><br><span class="line"></span><br><span class="line">2. 将三条边“中心化”(中心化后, 三角形中的任意一个点代入3条曲线, 都会使Ax+By+C &gt;= 0). 中心化的方式, 对于每条边的方程, 代入另一个顶点, 若小于0，则将参数A、B、C都乘以-1</span><br><span class="line"></span><br><span class="line">3. 计算三角形的外接矩形</span><br><span class="line"></span><br><span class="line">4. 遍历外接矩形中的每一个点(x, y)，若对于三条边, Ax+By+C都&gt;=0, 则说明点在三角形内, 画出该点</span><br></pre></td></tr></table></figure>
-<p><img src="../../images\TIM截图20190507091329.png" alt="TIM截图20190507091329"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; lineEquation(int x1, int y1, int x2, int y2) &#123;</span><br><span class="line">    // line equation: Ax+ By+ C= 0</span><br><span class="line">    vector&lt;int&gt; res;</span><br><span class="line">    int A= y2- y1;</span><br><span class="line">    int B= x1- x2;</span><br><span class="line">    int C= x2* y1- x1* y2;</span><br><span class="line">    res.push_back(A);</span><br><span class="line">    res.push_back(B);</span><br><span class="line">    res.push_back(C);</span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">vector&lt;int&gt; rasterizeTriangle(int x1, int y1, int x2, int y2, int x3, int y3) &#123;</span><br><span class="line">    int max_x= max(x1, max(x2, x3));</span><br><span class="line">    int min_x= min(x1, min(x2, x3));</span><br><span class="line">    int max_y= max(y1, max(y2, y3));</span><br><span class="line">    int min_y= min(y1, min(y2, y3));</span><br><span class="line">    int center_x= (max_x- min_x)/ 2;</span><br><span class="line">    int center_y= (max_y- min_y)/ 2;</span><br><span class="line">    vector&lt; vector&lt;int&gt; &gt; lines;</span><br><span class="line">    lines.push_back(lineEquation(x1, y1, x2, y2));</span><br><span class="line">    lines.push_back(lineEquation(x1, y1, x3, y3));</span><br><span class="line">    lines.push_back(lineEquation(x3, y3, x2, y2));</span><br><span class="line">    // centerlize the equations</span><br><span class="line">    for (int i= 0; i&lt; 3; i++) &#123;</span><br><span class="line">        int x_temp, y_temp;</span><br><span class="line">        if (i== 0) &#123;</span><br><span class="line">            x_temp= x3; y_temp= y3;</span><br><span class="line">        &#125; else if (i== 1) &#123;</span><br><span class="line">            x_temp= x2; y_temp= y2;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            x_temp= x1; y_temp= y1;</span><br><span class="line">        &#125;</span><br><span class="line">        // A*x+ B*y+ C</span><br><span class="line">        if (lines[i][0]* x_temp+ lines[i][1]* y_temp+ lines[i][2]&lt; 0) &#123;</span><br><span class="line">            for (int j= 0; j&lt; lines[i].size(); j++) &#123;</span><br><span class="line">                lines[i][j]*= -1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    // set pixel</span><br><span class="line">    vector&lt;int&gt; pixels;</span><br><span class="line">    for (int x= min_x; x&lt;= max_x; x++) &#123;</span><br><span class="line">        for (int y= min_y; y&lt;= max_y; y++) &#123;</span><br><span class="line">            bool isInside= true;</span><br><span class="line">            for (int i= 0; i&lt; 3; i++) &#123;</span><br><span class="line">                if (lines[i][0]* x+ lines[i][1]* y+ lines[i][2]&lt; 0) &#123;</span><br><span class="line">                    isInside= false;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if (isInside) &#123;</span><br><span class="line">                pixels.push_back(x);</span><br><span class="line">                pixels.push_back(y);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return pixels;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="坐标系"><a href="#坐标系" class="headerlink" title="坐标系"></a>坐标系</h1><h2 id="齐次坐标"><a href="#齐次坐标" class="headerlink" title="齐次坐标"></a>齐次坐标</h2><ul>
-<li>概念: 在空间直角坐标系中, 任意一点可用一个三维坐标矩阵[x y z]表示。如果将该点用一个四维坐标的矩阵[Hx Hy Hz Hw]表示时, 则称为齐次坐标表示方法(Hw称为比例因子, Hw为0表示一个点, Hw为1表示一个向量)</li>
-</ul>
-<ul>
-<li>齐次坐标与笛卡尔坐标的区别: 笛卡尔坐标下平行直线不会相交; 而在齐次坐标系下,  满足透视学中无穷远处相交于一点的需要</li>
-</ul>
-<ul>
-<li>齐次坐标与笛卡尔坐标的转换: 当w不为零时, 齐次点坐标(x, y, z, w) = 三维空间点坐标(x/w, y/w, z/w); 当w为零时, 齐次点(x, y, z, 0.0)表示此点位于某方向的无穷远处</li>
-</ul>
-<ul>
-<li>使用场景: 所有仿射变换都可以变为齐次坐标下的矩阵运算</li>
-</ul>
-<h2 id="右手系与左手系"><a href="#右手系与左手系" class="headerlink" title="右手系与左手系"></a>右手系与左手系</h2><ul>
-<li>右手系: 伸开右手， 大拇指指向X轴正方向, 食指指向Y轴正方向, 其他三个手指向手心弯曲90°, 指向Z轴正方向</li>
-<li>左手系: 伸开左手， 大拇指指向X轴正方向, 食指指向Y轴正方向, 其他三个手指向手心弯曲90°, 指向Z轴正方向</li>
-</ul>
-<ul>
-<li>OpenGl采用右手系</li>
-</ul>
-<h2 id="仿射变换"><a href="#仿射变换" class="headerlink" title="仿射变换"></a>仿射变换</h2><p>​    向量P‘ = 变换矩阵 * 向量P</p>
-<ul>
-<li>实现原理</li>
-</ul>
-<p><img src="../../images\TIM截图20190506140843.png" alt="TIM截图20190506140843"></p>
-<p><img src="../../images\TIM截图20190507093222.png" alt="TIM截图20190507093222"></p>
-<p><img src="../../images\TIM截图20190507093301.png" alt="TIM截图20190507093301"></p>
-<ul>
-<li>glm提供了支持</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">scale = glm::scale(trans, glm::vec3(0.5, 0.5, 0.5));</span><br><span class="line"></span><br><span class="line">trans = glm::translate(trans, glm::vec3(1.0f, 1.0f, 0.0f));</span><br><span class="line"></span><br><span class="line">rotate = glm::rotate(trans, glm::radians(90.0f), glm::vec3(0.0, 0.0, 1.0));</span><br></pre></td></tr></table></figure>
-<h2 id="坐标系转换"><a href="#坐标系转换" class="headerlink" title="坐标系转换"></a>坐标系转换</h2><p><img src="../../images\TIM截图20190506202200.png" alt="TIM截图20190506202200"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">坐标系:</span><br><span class="line">	1. 局部空间: 物体中心为原点</span><br><span class="line">	</span><br><span class="line">	2. 世界空间: 屏幕中心为原点. 面对屏幕, 你的右边是x正轴, 上面是y正轴, 屏幕指向你为z正轴. 世界空间包含物体、相机、光源</span><br><span class="line">	</span><br><span class="line">	3. 观察空间: 以相机为原点. 当物体在原点, 相机在轴正向的效果 &lt;=&gt; 相机在原点, 物体在z轴负向</span><br><span class="line">	</span><br><span class="line">	4. 裁剪空间: 以视区窗口为原点</span><br><span class="line">	</span><br><span class="line">	5. 屏幕空间: </span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">坐标系变换:</span><br><span class="line">    Modeling Transformation: 因为世界空间以屏幕中心为原点, 因此要将每个物体的位置设为相对屏幕中心的</span><br><span class="line"></span><br><span class="line">    Viewing Transformation: 因为观察空间以相机为原点, 因此要将除相机外每个物体的位置设为相对相机的</span><br><span class="line"></span><br><span class="line">    Projection Transformation: 通过投影, 将3D物体投影到2D相机屏幕</span><br><span class="line">    </span><br><span class="line">    Viewport Transformation: 将投影后的屏幕的图像映射到视区</span><br></pre></td></tr></table></figure>
-<h2 id="LookAt矩阵"><a href="#LookAt矩阵" class="headerlink" title="LookAt矩阵"></a>LookAt矩阵</h2><p>​    用于生成Viewing Transformation矩阵</p>
-<ul>
-<li>实现原理</li>
-</ul>
-<p><img src="../../images\TIM截图20190506190004.png" alt="TIM截图20190506190004"></p>
-<ul>
-<li>glm提供了支持</li>
-</ul>
-<p><img src="../../images\TIM截图20190506185806.png" alt="TIM截图20190506185806"></p>
-<p><img src="../../images\TIM截图20190506190832.png" alt="TIM截图20190506190832"></p>
-<h2 id="正交投影、透视投影"><a href="#正交投影、透视投影" class="headerlink" title="正交投影、透视投影"></a>正交投影、透视投影</h2><p>​    用于生成Projection Transformation矩阵</p>
-<ul>
-<li>正交投影Orthogonal Projection: 显示出来的物体大小与物体距离相机的距离无关</li>
-</ul>
-<ul>
-<li>透视投影Perspective Projection:  距离相机越远, 物体越小</li>
-</ul>
-<p><img src="../../images\TIM截图20190506195602.png" alt="TIM截图20190506195602"></p>
-<ul>
-<li>glm提供了支持(注意, 第3、4个参数表示到相机的距离, 距离只能为正)</li>
-</ul>
-<p><img src="../../images\TIM截图20190506201043.png" alt="TIM截图20190506201043"></p>
-<p><img src="../../images\TIM截图20190506200526.png" alt="TIM截图20190506200526"></p>
-<h1 id="裁剪"><a href="#裁剪" class="headerlink" title="裁剪"></a>裁剪</h1><ul>
-<li>Cohen-Sutherland算法: </li>
-</ul>
-<p><a href="https://blog.csdn.net/pleasecallmewhy/article/details/8393445" target="_blank" rel="noopener">https://blog.csdn.net/pleasecallmewhy/article/details/8393445</a></p>
-<h2 id="深度缓冲-Z缓冲"><a href="#深度缓冲-Z缓冲" class="headerlink" title="深度缓冲(Z缓冲)"></a>深度缓冲(Z缓冲)</h2><p>​    保存了某点到观察点的距离</p>
-<h2 id="窗口、视区"><a href="#窗口、视区" class="headerlink" title="窗口、视区"></a>窗口、视区</h2><ul>
-<li>窗口Window: 执行程序后显示的窗口, 通过glutInitWindowSize设置窗口大小, gluOrtho2D设置窗口位置</li>
-</ul>
-<ul>
-<li>视区Viewport: 窗口中用于显示图形的一块矩形区域(通常视区和窗口一样大, 但是若想在窗口上同时画两个图, 则视区为窗口一半). 只有绘制在视区的图形才能被显示, 如果图形有一部分超出了视区, 那么那一部分是看不到的. 通过glViewport设置视区在窗口的位置和大小</li>
-</ul>
-<h1 id="光照"><a href="#光照" class="headerlink" title="光照"></a>光照</h1><p>​    物体显示的颜色 = 光源颜色向量和物体颜色向量的点积. 三种光照可以组合使用即 (ambient + diffuse + specular) * objectColor</p>
-<p><img src="../../images\TIM截图20190506213135.png" alt="TIM截图20190506213135"></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/计算机图形学/计算机图形学/学习(五)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/计算机图形学/计算机图形学/学习(五)/" itemprop="url">学习五</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-29T14:26:52+08:00">
-                2019-04-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机图形学/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机图形学</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h1><ul>
-<li>物体的颜色, 是由物体反射光源后得到的</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">glm::vec3 lightColor(1.0f, 1.0f, 1.0f);		//	光源颜色为白色</span><br><span class="line">glm::vec3 toyColor(1.0f, 0.5f, 0.31f);		//	物体颜色</span><br><span class="line">glm::vec3 result = lightColor * toyColor;	//	反射后的颜色</span><br></pre></td></tr></table></figure>
-<h1 id="创建光照场景"><a href="#创建光照场景" class="headerlink" title="创建光照场景"></a>创建光照场景</h1><h2 id="创建物体"><a href="#创建物体" class="headerlink" title="创建物体"></a>创建物体</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">1. 创建物体VAO	</span><br><span class="line">	//	cubeVAO</span><br><span class="line">	unsigned int cubeVAO;</span><br><span class="line">	glGenVertexArrays(1, &amp;cubeVAO);</span><br><span class="line">	glBindVertexArray(cubeVAO);</span><br><span class="line"></span><br><span class="line">	//	VBO</span><br><span class="line">	unsigned int VBO;</span><br><span class="line">	glGenBuffers(1, &amp;VBO);</span><br><span class="line">	glBindBuffer(GL_ARRAY_BUFFER, VBO);</span><br><span class="line">	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);</span><br><span class="line"></span><br><span class="line">	//	设置位置属性</span><br><span class="line">	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);</span><br><span class="line">	glEnableVertexAttribArray(0);</span><br><span class="line"></span><br><span class="line">	//	法向量属性</span><br><span class="line">	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));</span><br><span class="line">	glEnableVertexAttribArray(1);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	when(...) &#123;</span><br><span class="line">		2. 激活物体着色器并传递参数</span><br><span class="line">        Shader cubeShader(&quot;cubeShader.vs&quot;, &quot;cubeShader.fs&quot;);</span><br><span class="line">		cubeShader.use();</span><br><span class="line">		cubeShader.setVec3(...)</span><br><span class="line">		cubeShader.setMat4(&quot;model&quot;, model);</span><br><span class="line">		cubeShader.setMat4(&quot;projection&quot;, projection);</span><br><span class="line">        cubeShader(&quot;view&quot;, view);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        3. 绘制物体</span><br><span class="line">        glBindVertexArray(cubeVAO);</span><br><span class="line">        glDrawArrays(GL_TRIANGLES, 0, 36);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="创建光源"><a href="#创建光源" class="headerlink" title="创建光源"></a>创建光源</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">1. 创建光源VAO	</span><br><span class="line">	//	lightVAO</span><br><span class="line">	unsigned int lightVAO;</span><br><span class="line">	glGenVertexArrays(1, &amp;lightVAO);</span><br><span class="line">	glBindVertexArray(lightVAO);</span><br><span class="line"></span><br><span class="line">	//	VBO</span><br><span class="line">	glBindBuffer(GL_ARRAY_BUFFER, VBO);</span><br><span class="line"></span><br><span class="line">	//	设置位置属性</span><br><span class="line">	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);</span><br><span class="line">	glEnableVertexAttribArray(0);</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	when(...) &#123;</span><br><span class="line">		2. 激活光源着色器并传递参数</span><br><span class="line">        Shader lightShader(&quot;lightShader.vs&quot;, &quot;lightShader.fs&quot;);</span><br><span class="line">		lightShader.use();</span><br><span class="line">		lightShader.setVec3(...)</span><br><span class="line">		lightShader.setMat4(&quot;model&quot;, model);</span><br><span class="line">		lightShader.setMat4(&quot;projection&quot;, projection);</span><br><span class="line">        lightShader(&quot;view&quot;, view);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        3. 绘制光源</span><br><span class="line">        glBindVertexArray(lightVAO);</span><br><span class="line">        glDrawArrays(GL_TRIANGLES, 0, 36);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="冯氏光照模型"><a href="#冯氏光照模型" class="headerlink" title="冯氏光照模型"></a>冯氏光照模型</h1><ul>
-<li><p>Phong Shading : 在片段着色器实现冯氏光照模型</p>
-</li>
-<li><p>Gouraud Shading: 在顶点着色器实现的冯氏光照模型</p>
-</li>
-</ul>
-<h1 id="Phong-Shading"><a href="#Phong-Shading" class="headerlink" title="Phong Shading"></a>Phong Shading</h1><h2 id="环境光照Ambient"><a href="#环境光照Ambient" class="headerlink" title="环境光照Ambient"></a>环境光照Ambient</h2><ul>
-<li>即使在黑暗的情况下，世界上通常也仍然有一些光亮（月亮、远处的光），所以物体几乎永远不会是完全黑暗的。为了模拟这个，我们会使用一个环境光照常量，它永远会给物体一些颜色</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//	用光的颜色乘以一个很小的常量环境因子，再乘以物体的颜色</span><br><span class="line"></span><br><span class="line">    //	片段着色器</span><br><span class="line">    float ambientStrength = 0.1;</span><br><span class="line">    vec3 ambient = ambientStrength * lightColor;</span><br><span class="line"></span><br><span class="line">    vec3 result = ambient * objectColor;</span><br><span class="line">    FragColor = vec4(result, 1.0);</span><br></pre></td></tr></table></figure>
-<h2 id="漫反射光照Diffuse"><a href="#漫反射光照Diffuse" class="headerlink" title="漫反射光照Diffuse"></a>漫反射光照Diffuse</h2><ul>
-<li>模拟光源对物体的方向性影响。物体的某一部分越是正对着光源，它就会越亮。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//	用光源发出的光线与物体表面法向量形成的夹角，计算物体表面的漫反射光照</span><br><span class="line"></span><br><span class="line">    //	顶点着色器</span><br><span class="line">    Normal = mat3(transpose(inverse(model))) * aNormal;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    //	片段着色器</span><br><span class="line">    vec3 norm = normalize(Normal);		//	normalize返回该方向的单位向量</span><br><span class="line">    vec3 lightDir = normalize(lightPos - FragPos);</span><br><span class="line">    float diff = max(dot(norm, lightDir), 0.0);</span><br><span class="line">    vec3 diffuse = diffuseStrength * diff * lightColor;</span><br></pre></td></tr></table></figure>
-<h2 id="镜面光照Specular"><a href="#镜面光照Specular" class="headerlink" title="镜面光照Specular"></a>镜面光照Specular</h2><ul>
-<li>模拟有光泽物体上面出现的亮点。镜面光照的颜色相比于物体的颜色会更倾向于光的颜色</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//	需要设置一个观察者的位置变量，然后进行镜面光照计算</span><br><span class="line"></span><br><span class="line">	//	片段着色器</span><br><span class="line">	vec3 viewDir = normalize(viewPos - FragPos);</span><br><span class="line"> 	vec3 reflectDir = reflect(-lightDir, norm);  </span><br><span class="line"> 	float spec = pow(max(dot(viewDir, reflectDir), 0.0), ShininessStrength);</span><br><span class="line"> 	vec3 specular = specularStrength * spec * lightColor;</span><br></pre></td></tr></table></figure>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">//	顶点着色器</span><br><span class="line">#version 330 core</span><br><span class="line">layout (location = 0) in vec3 aPos;</span><br><span class="line">layout (location = 1) in vec3 aNormal;</span><br><span class="line"></span><br><span class="line">out vec3 FragPos;</span><br><span class="line">out vec3 Normal;</span><br><span class="line"></span><br><span class="line">uniform mat4 model;</span><br><span class="line">uniform mat4 view;</span><br><span class="line">uniform mat4 projection;</span><br><span class="line"></span><br><span class="line">void main() &#123;</span><br><span class="line">    FragPos = vec3(model * vec4(aPos, 1.0));</span><br><span class="line">    Normal = mat3(transpose(inverse(model))) * aNormal;  </span><br><span class="line">    </span><br><span class="line">    gl_Position = projection * view * vec4(FragPos, 1.0);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//	片段着色器</span><br><span class="line">#version 330 core</span><br><span class="line"></span><br><span class="line">out vec4 FragColor;</span><br><span class="line"></span><br><span class="line">in vec3 Normal;  </span><br><span class="line">in vec3 FragPos;  </span><br><span class="line"></span><br><span class="line">uniform float ambientStrength;</span><br><span class="line">uniform float diffuseStrength;</span><br><span class="line">uniform float specularStrength; </span><br><span class="line">uniform int ShininessStrength;</span><br><span class="line"></span><br><span class="line">uniform vec3 lightPos; </span><br><span class="line">uniform vec3 objectColor;</span><br><span class="line">uniform vec3 lightColor;</span><br><span class="line">uniform vec3 viewPos; </span><br><span class="line"></span><br><span class="line">void main() &#123;</span><br><span class="line">	//	环境光</span><br><span class="line">    vec3 ambient = ambientStrength * lightColor;</span><br><span class="line"></span><br><span class="line">	//	漫反射</span><br><span class="line">	vec3 norm = normalize(Normal);</span><br><span class="line">	vec3 lightDir = normalize(lightPos - FragPos);</span><br><span class="line">	float diff = max(dot(norm, lightDir), 0.0);</span><br><span class="line">	vec3 diffuse = diffuseStrength * diff * lightColor;</span><br><span class="line"></span><br><span class="line">	//	镜面光</span><br><span class="line">	vec3 viewDir = normalize(viewPos - FragPos);</span><br><span class="line">	vec3 reflectDir = reflect(-lightDir, norm);  </span><br><span class="line">	float spec = pow(max(dot(viewDir, reflectDir), 0.0), ShininessStrength);</span><br><span class="line">	vec3 specular = specularStrength * spec * lightColor;  </span><br><span class="line"></span><br><span class="line">	vec3 result = (ambient + diffuse + specular) * objectColor;</span><br><span class="line">    FragColor = vec4(result, 1.0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="Gouraud-Shading"><a href="#Gouraud-Shading" class="headerlink" title="Gouraud Shading"></a>Gouraud Shading</h1><ul>
-<li>将Phong Shading在片段着色器中的计算移动到顶点着色器中.</li>
-</ul>
-<ul>
-<li>相对Phong Shading, 开销较小; 但是由于片段的颜色是由插值决定的, 因此拟真度较低</li>
-</ul>
-<h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">//	顶点着色器</span><br><span class="line">#version 330 core</span><br><span class="line">layout (location = 0) in vec3 aPos;</span><br><span class="line">layout (location = 1) in vec3 aNormal;</span><br><span class="line"></span><br><span class="line">out vec3 LightingColor; </span><br><span class="line"></span><br><span class="line">uniform float ambientStrength;</span><br><span class="line">uniform float diffuseStrength;</span><br><span class="line">uniform float specularStrength; </span><br><span class="line">uniform int ShininessStrength;</span><br><span class="line"></span><br><span class="line">uniform vec3 lightPos;</span><br><span class="line">uniform vec3 viewPos;</span><br><span class="line">uniform vec3 lightColor;</span><br><span class="line"></span><br><span class="line">uniform mat4 model;</span><br><span class="line">uniform mat4 view;</span><br><span class="line">uniform mat4 projection;</span><br><span class="line"></span><br><span class="line">void main() &#123;</span><br><span class="line">    gl_Position = projection * view * model * vec4(aPos, 1.0);</span><br><span class="line">    </span><br><span class="line">    // gouraud shading</span><br><span class="line">    vec3 Position = vec3(model * vec4(aPos, 1.0));</span><br><span class="line">    vec3 Normal = mat3(transpose(inverse(model))) * aNormal;</span><br><span class="line">    </span><br><span class="line">    // 环境光</span><br><span class="line">    vec3 ambient = ambientStrength * lightColor;</span><br><span class="line">  	</span><br><span class="line">    // 漫反射 </span><br><span class="line">    vec3 norm = normalize(Normal);</span><br><span class="line">    vec3 lightDir = normalize(lightPos - Position);</span><br><span class="line">    float diff = max(dot(norm, lightDir), 0.0);</span><br><span class="line">    vec3 diffuse = diffuseStrength * diff * lightColor;</span><br><span class="line">    </span><br><span class="line">    // 镜面光</span><br><span class="line">    vec3 viewDir = normalize(viewPos - Position);</span><br><span class="line">    vec3 reflectDir = reflect(-lightDir, norm);  </span><br><span class="line">    float spec = pow(max(dot(viewDir, reflectDir), 0.0), ShininessStrength);</span><br><span class="line">    vec3 specular = specularStrength * spec * lightColor;      </span><br><span class="line"></span><br><span class="line">    LightingColor = ambient + diffuse + specular;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//	片段着色器</span><br><span class="line">#version 330 core</span><br><span class="line">out vec4 FragColor;</span><br><span class="line"></span><br><span class="line">in vec3 LightingColor; </span><br><span class="line"></span><br><span class="line">uniform vec3 objectColor;</span><br><span class="line"></span><br><span class="line">void main() &#123;</span><br><span class="line">   FragColor = vec4(LightingColor * objectColor, 1.0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="光源来回移动"><a href="#光源来回移动" class="headerlink" title="光源来回移动"></a>光源来回移动</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1. 定义全局光源坐标</span><br><span class="line"></span><br><span class="line">	glm::vec3 lightPos(20.0f, 8.0f, 20.0f);</span><br><span class="line">	</span><br><span class="line">2. 光源随时间移动</span><br><span class="line"></span><br><span class="line">	when(...) &#123;</span><br><span class="line">        if (enable_translate) &#123;</span><br><span class="line">			lightPos.x = sin(glfwGetTime()) * 8.0f;</span><br><span class="line">			lightPos.y = sin(glfwGetTime()) * 8.0f;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Django/Django/Django学习(一)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Django/Django/Django学习(一)/" itemprop="url">Django学习(一)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-22T17:12:17+08:00">
-                2019-04-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index">
-                    <span itemprop="name">Django</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">django-admin startproject 项目名</span><br></pre></td></tr></table></figure>
-<h2 id="运行服务器"><a href="#运行服务器" class="headerlink" title="运行服务器"></a>运行服务器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py runserver (端口号)	//	默认为8000</span><br></pre></td></tr></table></figure>
-<h2 id="创建应用"><a href="#创建应用" class="headerlink" title="创建应用"></a>创建应用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. python manage.py startapp 应用名</span><br><span class="line"></span><br><span class="line">2. 在settings.py的INSTALLED_APPS中加上应用名</span><br></pre></td></tr></table></figure>
-<h2 id="添加路由"><a href="#添加路由" class="headerlink" title="添加路由"></a>添加路由</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1. 在应用目录下创建urls.py</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2. 在根目录的urls.py中添加应用的url</span><br><span class="line">	path(&apos;&apos;, include(&apos;blog.urls&apos;))</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">3. 在应用的urls.py中添加访问的路径及调用的函数</span><br><span class="line">	path(&apos;index/&apos;, views.index)</span><br></pre></td></tr></table></figure>
-<h2 id="请求与响应"><a href="#请求与响应" class="headerlink" title="请求与响应"></a>请求与响应</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># index.py</span><br><span class="line">from django.http import HttpResponse</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	def search_get(request):</span><br><span class="line">    	request.encoding=&apos;utf-8&apos;</span><br><span class="line">    	name = &apos;&apos;</span><br><span class="line">    		</span><br><span class="line">    	if request.method == &apos;GET&apos;:</span><br><span class="line">    		name = request.GET[&apos;name&apos;]</span><br><span class="line">    	elif request.method == &apos;POST&apos;</span><br><span class="line">    		name = request.POST[&apos;name&apos;]</span><br><span class="line">    	return HttpResponse(&#123;&apos;name&apos;: name&#125;);</span><br></pre></td></tr></table></figure>
-<h2 id="区分字典和对象"><a href="#区分字典和对象" class="headerlink" title="区分字典和对象"></a>区分字典和对象</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1. 和数据库有关的是对象, 用.访问 </span><br><span class="line">	</span><br><span class="line">	test1 = models.Test.objects.get(name=&apos;Tom&apos;)</span><br><span class="line">	test1.name = &apos;John&apos;</span><br><span class="line">	test1.save()</span><br><span class="line">	</span><br><span class="line">2. POST参数传递的是字典, 用[]访问</span><br><span class="line">	</span><br><span class="line">	parameters = json.loads(request.body)</span><br><span class="line">	print(parameters[&apos;task&apos;][&apos;task_bonus&apos;])</span><br></pre></td></tr></table></figure>
-<h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">M: Model, 对应数据表</span><br><span class="line">V: View, 对应模板</span><br><span class="line">C: Control, 对应路由</span><br></pre></td></tr></table></figure>
-<h2 id="编写Model"><a href="#编写Model" class="headerlink" title="编写Model"></a>编写Model</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">1. 在应用中创建models.py</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2. 创建类, 继承models.Model, 该类对应数据表</span><br><span class="line"></span><br><span class="line">    # models.py</span><br><span class="line">    from django.db import models</span><br><span class="line"></span><br><span class="line">    class Test(models.Model):</span><br><span class="line">        name = models.CharField(max_length=20)</span><br><span class="line">        </span><br><span class="line">        def _str_(self):		//	在admin中将每一个数据项显示为name</span><br><span class="line">        	return self.name</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">3. 在settings.py的INSTALLED_APPS中添加类名</span><br><span class="line"></span><br><span class="line">	INSTALLED_APPS = (</span><br><span class="line">    	&apos;TestModel&apos;,              </span><br><span class="line">	)</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">4. 生成数据表</span><br><span class="line">	python manage.py makemigrations 应用名</span><br><span class="line">	python manage.py migrate</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">5. 可以在应用的migrations中查看生成的数据表</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">6. 通过SQLite Expert Personal打开根目录下的db.sqlite3查看数据库</span><br></pre></td></tr></table></figure>
-<p><img src="../../images\TIM截图20190424102452.png" alt="TIM截图20190424102452"></p>
-<p><img src="../../images\TIM截图20190424102540.png" alt="TIM截图20190424102540"></p>
-<p><img src="../../images\TIM截图20190424205155.png" alt="TIM截图20190424205155"></p>
-<h2 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h2><h2 id="get、filter"><a href="#get、filter" class="headerlink" title="get、filter"></a>get、filter</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">两者都是获取数据库条目</span><br><span class="line"></span><br><span class="line">get: 当符合条件的条目只有一条时, 才能使用get, 返回对象. 若有多个符合条件的条目, 则会错误</span><br><span class="line"></span><br><span class="line">filter: 返回符合条件的对象列表</span><br></pre></td></tr></table></figure>
-<h2 id="增删改查"><a href="#增删改查" class="headerlink" title="增删改查"></a>增删改查</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">from . import models</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">1. 增</span><br><span class="line">	test1 = models.Test()</span><br><span class="line">	test1.name=&apos;Tom&apos;</span><br><span class="line">	test1.save()</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">2. 删</span><br><span class="line">	test1 = models.Test.objects.get(name=&apos;Tom&apos;)</span><br><span class="line">	test1.delete()</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">3. 改</span><br><span class="line">	test1 = models.Test.objects.get(name=&apos;Tom&apos;)</span><br><span class="line">	test1.name = &apos;John&apos;</span><br><span class="line">	test1.save()</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">4. 查</span><br><span class="line"></span><br><span class="line">	//	获取指定数据</span><br><span class="line">	test1 = models.Test.objects.filter(name=&apos;Tom&apos;).order_by(&apos;id&apos;)		//	&apos;id&apos;是升序, &apos;-id&apos;是降序</span><br><span class="line">	arr = []</span><br><span class="line">    for i in test1:</span><br><span class="line">        content = &#123;&apos;姓名&apos;: i.name&#125;</span><br><span class="line">        arr.append(content)</span><br><span class="line">    return HttpResponse(&#123;&apos;tests&apos;: arr&#125;)</span><br><span class="line">	</span><br><span class="line">	//	获取所有数据</span><br><span class="line">	test2 = models.Test.ojects.all()	</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">5. 不同app的数据表之间关联外键</span><br><span class="line"></span><br><span class="line">	不需要import</span><br><span class="line">	</span><br><span class="line">	class Bill(models.Model):</span><br><span class="line">    	user_id = models.ForeignKey(&apos;user.User&apos;,on_delete=models.CASCADE)</span><br></pre></td></tr></table></figure>
-<h1 id="时区"><a href="#时区" class="headerlink" title="时区"></a>时区</h1><p>​    当setting.py中USE_TZ = False, 则关闭了时区功能, 默认为当前时区</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">存:</span><br><span class="line">	1. </span><br><span class="line">		models.DateTimeField(auto_now_add=True), 在创建数据条目时生成, 此后无法更改 </span><br><span class="line">		</span><br><span class="line">	或</span><br><span class="line">	</span><br><span class="line">	2. </span><br><span class="line">		models.DateTimeField(default=None, null=True), 创建数据条目时设为null, 此后手动修改</span><br><span class="line">		get_delivery.delivery_complishDate = strftime(&apos;%Y-%m-%d %H:%M:%S&apos;, localtime())</span><br><span class="line">取: </span><br><span class="line">	get_delivery.delivery_complishDate.strftime(&apos;%Y-%m-%d %H:%M:%S&apos;)</span><br></pre></td></tr></table></figure>
-<h1 id="Admin"><a href="#Admin" class="headerlink" title="Admin"></a>Admin</h1><p>​    数据库管理界面</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1. 创建超级用户</span><br><span class="line">	python manage.py createsuperuser</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">2. admin入口</span><br><span class="line">	localhost:8000/admin</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">3. 为了管理当前应用的数据表, 在admin.py中</span><br><span class="line">	from blog.models import Test</span><br><span class="line">	</span><br><span class="line">	admin.site.register(Test)</span><br></pre></td></tr></table></figure>
-<h2 id="连接MySQL"><a href="#连接MySQL" class="headerlink" title="连接MySQL"></a>连接MySQL</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">1. 对于python3, 安装数据库驱动pymysql</span><br><span class="line">	pip install pymysql</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">2. 在根目录的_init_.py添加</span><br><span class="line">	import pymysql</span><br><span class="line">	pymysql.install_as_MySQLdb()</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">3. 更改settings.py的DATABASES</span><br><span class="line">	DATABASES = &#123;</span><br><span class="line">        &apos;default&apos;: &#123;</span><br><span class="line">            &apos;ENGINE&apos;: &apos;django.db.backends.mysql&apos;,</span><br><span class="line">            &apos;NAME&apos;: &apos;django_mysql&apos;,		# 数据库名</span><br><span class="line">            &apos;USER&apos;: &apos;root&apos;,</span><br><span class="line">            &apos;PASSWORD&apos;: &apos;123456&apos;,</span><br><span class="line">            &apos;HOST&apos;: &apos;127.0.0.1&apos;,</span><br><span class="line">            &apos;PORT&apos;: &apos;3306&apos;,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">4. 在使用makemeigrations生成数据表前, 手动创建数据库django_mysql</span><br><span class="line"></span><br><span class="line">	(1) 进入MySQL Command Line</span><br><span class="line"></span><br><span class="line">	(2)</span><br><span class="line">		mysql&gt; create database django_mysql;</span><br><span class="line">		Query OK, 1 row affected (0.01 sec)</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		MYSQL语法补充: </span><br><span class="line">			1. 查看所有数据库 show databases;</span><br><span class="line">			2. 进入数据库 	use 数据库名;</span><br><span class="line">			3. 删除数据库 	drop database 数据库名;</span><br><span class="line">			4. 查看所有数据表 show tables;</span><br><span class="line">			5. 查看指定数据表 select * from 数据表名</span><br><span class="line">			6. 删除数据表	drop table 数据表名</span><br><span class="line">		</span><br><span class="line"></span><br><span class="line">5. </span><br><span class="line">	python manage.py makemigrations</span><br><span class="line">	python manage.py migrate</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">6. </span><br><span class="line">	mysql&gt; use django_mysqls;</span><br><span class="line">	mysql&gt; show tables</span><br><span class="line">	</span><br><span class="line">	此时能看到生成的数据表</span><br></pre></td></tr></table></figure>
-<h2 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h2><h3 id="Session原理"><a href="#Session原理" class="headerlink" title="Session原理"></a>Session原理</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">用户登录:</span><br><span class="line">	1. 服务器生成一个JSON&#123;&quot;sessionid&quot;: 随机字符串&#125;, 并设置session[&apos;login&apos;] = True</span><br><span class="line">	2. 生成的JSON通过cookie返回给前端, 前端从cookie中获取到随机字符串</span><br><span class="line">	3. 后端将&#123;&quot;sessionid&quot;: 随机字符串, &quot;login&quot;: True&#125;保存到服务器的cache中</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">用户访问:</span><br><span class="line">	1. 在发送的请求头中设置cookie, 并将&#123;&quot;sessionid&quot;: 随机字符串&#125;放入cookie中. 服务器凭借该随机字符串, 在服务器的cache中找到对应的条目, 再查看login</span><br><span class="line">	2. 根据session[&apos;login&apos;]判断是否登录</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">用户退出:</span><br><span class="line">	1. 服务器在cache中删除对应条目</span><br></pre></td></tr></table></figure>
-<h3 id="Session的弊端"><a href="#Session的弊端" class="headerlink" title="Session的弊端"></a>Session的弊端</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 当一台电脑, 有多个用户登录时, 前端只会保存最新登录用户的sessionid, 即后登录用户会覆盖前一个用户的登录状态</span><br><span class="line"></span><br><span class="line">2. 当一个用户, 在多台电脑时. 当用户在电脑A登录, 返回的sessionid保存在电脑A; 若用户要在电脑B登录, 得重新登录</span><br></pre></td></tr></table></figure>
-<h3 id="Django的session"><a href="#Django的session" class="headerlink" title="Django的session"></a>Django的session</h3><ul>
-<li>很多细节, 比如: cookie, 生成随机字符串, 将session保存在服务器cache, 通过随机字符串从cache中获取对应的session这些都不用自己实现</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1. 登录</span><br><span class="line">	request.session[&apos;login&apos;] = True</span><br><span class="line">	request.session.set_expiry(datatiem类型)		# session在datatime时间后自动失效</span><br><span class="line"></span><br><span class="line">2. 访问其他页面</span><br><span class="line">	</span><br><span class="line">	若request.session.get(&apos;login&apos;, None) == True, 则访问成功		# None表示默认值</span><br><span class="line">	否则, 需要登录</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">3. 登出</span><br><span class="line">	del request.session[&apos;login&apos;]</span><br></pre></td></tr></table></figure>
-<h3 id="session共享"><a href="#session共享" class="headerlink" title="session共享"></a>session共享</h3><p>当有多台服务器时, 因为session是保存在服务器的cache中, 若用户登录时访问的是服务器A, 下次访问服务器B, B中的cache没有该用户的session. 因此多台服务器需要将session保存在数据库中</p>
-<h2 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h2><p>​    跨域请求伪造</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">		①用户正常登录A银行网站,</span><br><span class="line"></span><br><span class="line">        ②A网站返回cookie信息给用户,浏览器保存cookie信息</span><br><span class="line"></span><br><span class="line">        ③在A网站没有退出登录的情况下(或者说cookie信息没过期), 登录了恶意网站B</span><br><span class="line"></span><br><span class="line">        ④恶意网站B,提前准备好转账表单或者其它请求 ,将其隐藏. 把提交到A网站的按钮设置为一个&quot;领取优惠券&quot;的图片链接.用户 点击链接</span><br><span class="line"></span><br><span class="line">        ⑤在用户主观未知的情况下,访问A网站,此时浏览器会自动携带cookie信息</span><br><span class="line"></span><br><span class="line">        ⑥A网站识别到cookie信息,默认为是用户本人做出的请求,根据请求做出相应的操作.</span><br><span class="line"></span><br><span class="line">        ⑦用户收到损失.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">防范原理:</span><br><span class="line">	登录时生成一个csrftoken放在cookie中，前端从cookie中取出该csrftoken并保存. </span><br><span class="line">	当用户再次向服务器发送请求时, 服务器会对比cookie和前端发送的请求头中的csrftoken, 若一样证明是用户操作.</span><br><span class="line">    对于hacker, 即使他获取了cookie, 但是他无法从cookie中取出csrftoken(加密), 因此他不能在请求中附带上csrftoken</span><br></pre></td></tr></table></figure>
-<h3 id="django下csrf验证"><a href="#django下csrf验证" class="headerlink" title="django下csrf验证"></a>django下csrf验证</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">默认是全局开启的, 即对于所有路由函数都需要CSRF认证. 对于不需要CSRF认证的函数, 加上@csrf_exempt</span><br><span class="line"></span><br><span class="line">from django.views.decorators.csrf import csrf_exempt</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">0. </span><br><span class="line">	对于登录以及登录之前的操作, 例如注册, 使用@csrf_exempt, 不使用csrf验证</span><br><span class="line"></span><br><span class="line">1. </span><br><span class="line">	在登录函数, 调用get_token(request), 在cookie中设置csrftoken</span><br><span class="line">	</span><br><span class="line">	from django.middleware.csrf import get_token</span><br><span class="line">	</span><br><span class="line">2. </span><br><span class="line">	对于登录后的操作, 前端需要传递csrftoken(和传递sessionid一样)</span><br></pre></td></tr></table></figure>
-<h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><h3 id="mysql和redis的区别"><a href="#mysql和redis的区别" class="headerlink" title="mysql和redis的区别"></a>mysql和redis的区别</h3><ul>
-<li><p>mysql是关系型数据库, 保存数据表, 因此涉及多表的访问时, 读取速度较慢</p>
-</li>
-<li><p>redis是非关系型数据库,  将保存键值对, 对于频繁访问的、键值对类型的数据, 可以放到redis中, 读取速度较快</p>
-</li>
-</ul>
-<h2 id="import机制"><a href="#import机制" class="headerlink" title="import机制"></a>import机制</h2><p><a href="https://blog.csdn.net/qq_28072715/article/details/80939699" target="_blank" rel="noopener">https://blog.csdn.net/qq_28072715/article/details/80939699</a></p>
-<h2 id="virtualenv"><a href="#virtualenv" class="headerlink" title="virtualenv"></a>virtualenv</h2><p>​    防止不同项目之间的依赖冲突. 比如项目A用到MySQL1.0, 项目B用到MySQL2.0, 会产生冲突, 因此需要通过virtualenv给每个项目创建一个虚拟的环境, 环境之间是隔离的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">1. 安装virtualenv</span><br><span class="line"></span><br><span class="line">	pip install virtualenv </span><br><span class="line">	</span><br><span class="line">2. 创建虚拟环境</span><br><span class="line"></span><br><span class="line">	virtualenv 环境名(例如test)</span><br><span class="line"></span><br><span class="line">3. 激活虚拟环境</span><br><span class="line">	</span><br><span class="line">	进入test/Scripts, 输入activate, 然后会发现命令行前面带有(test)</span><br><span class="line"></span><br><span class="line">4. 退出虚拟环境</span><br><span class="line"></span><br><span class="line">	进入test/Scripts, 输入deactivate</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2155,7 +2146,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">108</span>
+                  <span class="site-state-item-count">115</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2166,7 +2157,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
