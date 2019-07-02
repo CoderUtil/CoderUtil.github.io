@@ -259,6 +259,363 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/环境配置/环境配置/服务器配置Node和Mongo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/环境配置/环境配置/服务器配置Node和Mongo/" itemprop="url">服务器配置Node和Mongo</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-29T20:30:31+08:00">
+                2018-12-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/环境配置/" itemprop="url" rel="index">
+                    <span itemprop="name">环境配置</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h1><ol>
+<li>去官网下载二进制包(注意是.xz结尾的二进制包, 不是以.gz结尾的源码包)</li>
+<li>通过FileZilla上传到云服务器的/usr/local/tools文件夹下</li>
+<li>tar -xvf node-v10.15.0-linux.xz 以解压</li>
+<li>mv node-10.15.0/   ../node/ 将解压后的文件夹移入到node文件夹</li>
+<li>通过vi修改/etc/profile文件, 在结尾添加</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PATH=$PATH:/usr/local/node/node-v10.15.0-linux-x64/bin</span><br></pre></td></tr></table></figure>
+<ol>
+<li>运行source /etc/profile</li>
+<li>在根目录下运行node -v以查看结果</li>
+</ol>
+<h1 id="MongoDb"><a href="#MongoDb" class="headerlink" title="MongoDb"></a>MongoDb</h1><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>​    <a href="https://www.cnblogs.com/xiaohuochai/p/7636245.html" target="_blank" rel="noopener">https://www.cnblogs.com/xiaohuochai/p/7636245.html</a></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol>
+<li>官网下载Mongodb的二进制包(.gz后缀)</li>
+<li>通过FileZilla上传到云服务器/usr/local/tools下</li>
+<li>在tools文件夹下解压</li>
+<li>创建/usr/local/mongodb, 然后运行mv命令将解压后的文件夹放入其中</li>
+<li>mongodb文件夹下创建conf和logs文件夹</li>
+<li>在logs文件夹下, 通过命令touch mongodb.log生成日志文件</li>
+<li>在conf文件夹下, 通过命令vi mongodb.conf配置</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">dbpath=/data/db</span><br><span class="line">fork=true		//	保证控制台关闭后Mongo仍然开启</span><br><span class="line">port=27017</span><br><span class="line">logappend=true</span><br><span class="line">journal=true</span><br><span class="line">quiet=true</span><br><span class="line">logpath=/usr/local/mongodb/logs/mongodb.log</span><br></pre></td></tr></table></figure>
+<ol>
+<li>在根目录下创建/data/db文件夹</li>
+<li>执行export PATH=/usr/local/mongodb/bin:$PATH 添加路径</li>
+<li>创建软链接</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ln -s /usr/local/mongodb/mongodb-linux-x86_64-4.0.5/bin/mongod /usr/local/bin/mongod</span><br><span class="line">ln -s /usr/local/mongodb/mongodb-linux-x86_64-4.0.5/bin/mongo /usr/local/bin/mongo</span><br><span class="line">ln -s /usr/local/mongodb/mongodb-linux-x86_64-4.0.5/bin/mongodump /usr/local/bin/mongodump</span><br></pre></td></tr></table></figure>
+<ol>
+<li>运行mongod -f /usr/local/mongodb/conf/mongodb.conf开启mongodb数据库</li>
+<li>创建一个新的终端, 输入mongo以验证结果</li>
+</ol>
+<h1 id="Pm2"><a href="#Pm2" class="headerlink" title="Pm2"></a>Pm2</h1><p>​    通过npm start启动的项目在遇到bug自动退出后不会重新启动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1. 安装</span><br><span class="line">	npm install -g pm2</span><br><span class="line">	</span><br><span class="line">2. 查看安装结果</span><br><span class="line">	pm2 list</span><br><span class="line">	</span><br><span class="line">3. 通过pm2启动app.js文件</span><br><span class="line">	pm2 start app.js</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/环境配置/环境配置/服务器配置JDK和Tomcat/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/环境配置/环境配置/服务器配置JDK和Tomcat/" itemprop="url">服务器配置JDK和Tomcat</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-29T13:12:44+08:00">
+                2018-12-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/环境配置/" itemprop="url" rel="index">
+                    <span itemprop="name">环境配置</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p>​    <a href="https://www.cnblogs.com/yangxiansen/p/7860001.html" target="_blank" rel="noopener">https://www.cnblogs.com/yangxiansen/p/7860001.html</a></p>
+<h1 id="安装JDK"><a href="#安装JDK" class="headerlink" title="安装JDK"></a>安装JDK</h1><p>​    为了使用JAVA语言, 并且Tomcat需要JDK支持</p>
+<ol>
+<li>官网下载JDK的tar.gz安装包</li>
+<li>在云服务器的/usr/local下创建文件夹tools和jdk</li>
+<li>将安装包通过Filezilla放入tools文件夹中</li>
+<li>在tools文件夹下,  运行tar -zxvf  jdk-11.0.1.tar.gz解压</li>
+<li>在tools文件夹下,  运行mv      jdk-11.0.1/     …/jdk/以将jdk-11.0.1移动到jdk目录中</li>
+<li>通过vi profile打开/etc/目录下的profile文件</li>
+<li>按i进入编辑模式, 拷贝下面的代码, 然后按esc, 输入:wq保存并退出</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># idea - jdk8 settings start</span><br><span class="line"></span><br><span class="line">JAVA_HOME=/usr/local/jdk/jdk-11.0.1</span><br><span class="line"></span><br><span class="line">JRE_HOME=$JAVA_HOME/</span><br><span class="line"></span><br><span class="line">PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin</span><br><span class="line"></span><br><span class="line">CLASSPATH=:$JAVA_HOME/lib</span><br><span class="line"></span><br><span class="line">export JAVA_HOME JRE_HOME PATH CLASSPATH</span><br><span class="line"></span><br><span class="line"># idea - jdk8 settings end</span><br></pre></td></tr></table></figure>
+<ol>
+<li>输入source /etc/profile</li>
+<li>运行java -version查看结果</li>
+</ol>
+<h1 id="安装Tomcat"><a href="#安装Tomcat" class="headerlink" title="安装Tomcat"></a>安装Tomcat</h1><p>​    Tomcat是Java Web服务器, 安装前需要安装Java JDK</p>
+<ol>
+<li>去官网下载Tomcat的tar.gz安装包</li>
+<li>在云服务器的/usr/local下创建文件夹tomcat</li>
+<li>将安装包通过Filezilla放入tools文件夹中</li>
+<li>在tools文件夹下,  运行tar -zxvf  tomcat…..tar.gz解压</li>
+<li>在tools文件夹下,  运行mv   apache-tomcat-9.14.0/      …/tomcat/以将 apache-tomcat-9.14.0移动到tomcat目录中</li>
+<li>通过vi profile打开/etc/目录下的profile文件</li>
+<li>按i进入编辑模式, 拷贝下面的代码, 然后按esc, 输入:wq保存并退出</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># idea - tomcat9 config start </span><br><span class="line"></span><br><span class="line">CATALINA_HOME=/usr/local/tomcat/apache-tomcat-9.14.0</span><br><span class="line"></span><br><span class="line">CATALINA_BASE=/usr/local/tomcat/apache-tomcat-9.14.0</span><br><span class="line"></span><br><span class="line">PATH=$PATH:$CATALINA_BASE/bin</span><br><span class="line"></span><br><span class="line">export PATH CATALINA_BASE</span><br><span class="line"></span><br><span class="line"># idea - tomcat9 config end</span><br></pre></td></tr></table></figure>
+<ol>
+<li>进入/usr/local/tomcat/apache-tomcat-9.14.0/conf</li>
+<li>通过vi命令打开server.xml, 找到如下代码, 以查看端口号</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot; connectionTimeout=&quot;20000&quot; redirectPort=&quot;8443&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>进入进入/usr/local/tomcat/apache-tomcat-9.14.0/bin, 打开catalina.sh</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">JAVA_HOME=/usr/local/jdk/jdk-11.0.1</span><br><span class="line"></span><br><span class="line">JRE_HOME=$JAVA_HOME</span><br></pre></td></tr></table></figure>
+<ol>
+<li>在bin下输入./startup.sh以启动tomcat</li>
+<li>浏览器访问ip:8080以查看结果</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/LeetCode/LeetCode/Capacitated-Facility-Location-Problem/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2298,306 +2655,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/LeetCode/LeetCode/Longest Palindromic Substring/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/LeetCode/LeetCode/Longest Palindromic Substring/" itemprop="url">Longest Palindromic Substring</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-01T16:45:06+08:00">
-                2018-12-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>Given a string <strong>s</strong>, find the longest palindromic substring in <strong>s</strong>. You may assume that the maximum length of <strong>s</strong> is 1000.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;babad&quot;</span><br><span class="line">Output: &quot;bab&quot;</span><br><span class="line">Note: &quot;aba&quot; is also a valid answer.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;cbbd&quot;</span><br><span class="line">Output: &quot;bb&quot;</span><br></pre></td></tr></table></figure>
-<h1 id="思路一-动态规划"><a href="#思路一-动态规划" class="headerlink" title="思路一: 动态规划"></a>思路一: 动态规划</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1. 设置二维数组length[i][j]</span><br><span class="line">	length[i][j] = 0 	=&gt; 		s[i...j]不是回文串</span><br><span class="line">	length[i][j] = n	=&gt;		回文串s[i...j]的长度为n</span><br><span class="line">	</span><br><span class="line">2. 根据递归式</span><br><span class="line">	如果s[i] = s[j]且s[i+1...j-1]是回文串, length[i][j]=length[i+1][j-1]+2</span><br><span class="line">	如果s[i] = s[j]且s[i+1...j-1]不是回文串, length[i][j]=0</span><br><span class="line">	如果s[i] != s[j], length[i][j]=0</span><br><span class="line">	</span><br><span class="line">时间复杂度为O(n^2)</span><br></pre></td></tr></table></figure>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">	string longestPalindrome(string s) &#123;</span><br><span class="line">		//	动态创建二维数组</span><br><span class="line">		int** length = new int*[s.size()];</span><br><span class="line">		for (int i = 0; i &lt; s.size(); i++) &#123;</span><br><span class="line">			length[i] = new int[s.size()];</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		//	初始化</span><br><span class="line">		for (int i = 0; i &lt; s.size(); i++) &#123;</span><br><span class="line">			for (int j = 0; j &lt; s.size(); j++) &#123;</span><br><span class="line">				length[i][j] = i == j ? 1 : 0;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		//	DP</span><br><span class="line">		for (int i = 0; i &lt; s.size(); i++) &#123;</span><br><span class="line">			for (int j = i + 1; j &lt; s.size(); j++) &#123;</span><br><span class="line">				if (s[i] == s[j]) &#123;</span><br><span class="line">					if (i == j - 1) &#123;</span><br><span class="line">						length[i][j] = 2;</span><br><span class="line">					&#125;</span><br><span class="line">					else if (i + 1 == j - 1) &#123;</span><br><span class="line">						length[i][j] = length[i + 1][j - 1] + 2;</span><br><span class="line">					&#125;</span><br><span class="line">					else &#123;</span><br><span class="line">						length[i][j] = length[i + 1][j - 1] == 0 ? 0 : length[i + 1][j - 1] + 2;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				else</span><br><span class="line">					length[i][j] = 0;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		//	Find max Length</span><br><span class="line">		int maxLength = 0;</span><br><span class="line">		int firstIndex = -1;</span><br><span class="line">		for (int i = 0; i &lt; s.size(); i++) &#123;</span><br><span class="line">			for (int j = 0; j &lt; s.size(); j++) &#123;</span><br><span class="line">				if (maxLength &lt; length[i][j]) &#123;</span><br><span class="line">					maxLength = length[i][j];</span><br><span class="line">					firstIndex = i;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		return s.substr(firstIndex, maxLength);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h1 id="思路二"><a href="#思路二" class="headerlink" title="思路二"></a>思路二</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">					步骤									时间复杂度</span><br><span class="line">1. 在字符串S中选定一个位置作为回文串的中点O						O(n)</span><br><span class="line">2. 选择回文串一半的长度L								  		  O(n)</span><br><span class="line">3. 根据中点O和回文串一半长度L构建回文串并判断是否是回文串, 记录长度	 O(1)</span><br><span class="line"></span><br><span class="line">总的时间复杂度=O(n)*O(n)=O(n^2)</span><br></pre></td></tr></table></figure>
-<h1 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">	string longestPalindrome(string s) &#123;</span><br><span class="line">		int maxLength = 0;</span><br><span class="line">		int maxLengthHead = 0;</span><br><span class="line">		for (int i = 0; i &lt; s.length(); i++) &#123;</span><br><span class="line">			int tempLength = 0;</span><br><span class="line">			int tempLengthHead = 0;</span><br><span class="line">			int j;</span><br><span class="line"></span><br><span class="line">			//	回文长度为奇数</span><br><span class="line">			for (j = 0; i + j &lt; s.length() &amp;&amp; i - j &gt;= 0; j++) &#123;</span><br><span class="line">				if (s[i + j] != s[i - j]) </span><br><span class="line">					break;</span><br><span class="line">			&#125;</span><br><span class="line">			j--;</span><br><span class="line">			tempLength = 2 * j + 1;</span><br><span class="line">			tempLengthHead = i - j;</span><br><span class="line">			if (maxLength &lt; tempLength) &#123;</span><br><span class="line">				maxLength = tempLength;</span><br><span class="line">				maxLengthHead = tempLengthHead;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			//	回文长度为偶数</span><br><span class="line">			tempLength = 0;</span><br><span class="line">			tempLengthHead = 0;</span><br><span class="line">			for (j = 1; i + j &lt; s.length() &amp;&amp; i - j + 1 &gt;= 0; j++) &#123;</span><br><span class="line">				if (s[i + j] != s[i - j + 1]) </span><br><span class="line">					break;</span><br><span class="line">			&#125;</span><br><span class="line">			j--;</span><br><span class="line">			tempLength = 2 * j;</span><br><span class="line">			tempLengthHead = i - j + 1;</span><br><span class="line">			if (maxLength &lt; tempLength) &#123;</span><br><span class="line">				maxLength = tempLength;</span><br><span class="line">				maxLengthHead = tempLengthHead;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		return s.substr(maxLengthHead, maxLength);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/LeetCode/LeetCode/Longest Substring Without Repeating/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/LeetCode/LeetCode/Longest Substring Without Repeating/" itemprop="url">Longest Substring Without Repeating</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-01T14:55:57+08:00">
-                2018-12-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>Given a string, find the length of the <strong>longest substring</strong> without repeating characters.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;abcabcbb&quot;</span><br><span class="line">Output: 3 </span><br><span class="line">Explanation: The answer is &quot;abc&quot;, with the length of 3.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;bbbbb&quot;</span><br><span class="line">Output: 1</span><br><span class="line">Explanation: The answer is &quot;b&quot;, with the length of 1.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 3:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;pwwkew&quot;</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: The answer is &quot;wke&quot;, with the length of 3. </span><br><span class="line">             Note that the answer must be a substring, &quot;pwke&quot; is a subsequence and not a substring.</span><br></pre></td></tr></table></figure>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">		步骤															时间复杂度</span><br><span class="line">1. 扫描字符串S, 当前字符为C, 已扫描字符构成的Map&lt;字符, 字符的下标&gt;		 		O(n)</span><br><span class="line">2. 如果C不在Map中, 则将C放入Map, 并将C加入到最长子串S&apos;后面		 		 		O(1)</span><br><span class="line">3. 如果C在Map中, 下一次扫描从Map[C]+1开始, 更新子串[start, end]的区间			  O(1)</span><br><span class="line"></span><br><span class="line">总的时间复杂度为O(n)*O(1)=O(1)</span><br></pre></td></tr></table></figure>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">	int lengthOfLongestSubstring(string s) &#123;</span><br><span class="line">		int maxCount = 0;</span><br><span class="line">		int start = 0;				//	子字符串的区间为[start, end], 长度为end - start + 1</span><br><span class="line">		int end = 0;</span><br><span class="line">		map&lt;char, int&gt; m;</span><br><span class="line"></span><br><span class="line">		for (int i = 0; i &lt; s.size(); i++) &#123;</span><br><span class="line">			end = i;</span><br><span class="line">			//	m[s[i]] != i &amp;&amp; m[s[i]] &gt;= start, 防止没有清空map导致的问题</span><br><span class="line">			if (m.find(s[i]) != m.end() &amp;&amp; m[s[i]] != i &amp;&amp; m[s[i]] &gt;= start) &#123;</span><br><span class="line">				swap(i, m[s[i]]);			//	下一次搜索从m[s[i]]+1开始, 更新m[s[i]]的位置</span><br><span class="line">				start = i + 1;</span><br><span class="line">			&#125;</span><br><span class="line">			else </span><br><span class="line">				m[s[i]] = i;</span><br><span class="line">			maxCount = maxCount &lt; end - start + 1 ? end - start + 1 : maxCount;</span><br><span class="line">		&#125;</span><br><span class="line">		return maxCount;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2652,7 +2709,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">115</span>
+                  <span class="site-state-item-count">117</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

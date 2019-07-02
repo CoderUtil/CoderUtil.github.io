@@ -259,6 +259,363 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Cocos2d/Cocos2d/Cocos2d学习(四)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Cocos2d/Cocos2d/Cocos2d学习(四)/" itemprop="url">Cocos2d学习(四)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-05T10:46:28+08:00">
+                2018-06-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Cocos2d/" itemprop="url" rel="index">
+                    <span itemprop="name">Cocos2d</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="翻转"><a href="#翻转" class="headerlink" title="翻转"></a>翻转</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 将图片水平翻转</span><br><span class="line">	player-&gt;setFlipX(true);</span><br><span class="line"></span><br><span class="line">2. 取消图片翻转(用于翻转后翻转回来)</span><br><span class="line">	player-&gt;setFlipX(false);</span><br></pre></td></tr></table></figure>
+<h1 id="碰撞检测"><a href="#碰撞检测" class="headerlink" title="碰撞检测"></a>碰撞检测</h1><p>​    函数为containsPoint()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">通过判断两个精灵的Rect是否重叠来判断</span><br><span class="line"></span><br><span class="line">Rect的构造函数有四个参数: x, y, width, height</span><br><span class="line">	x, y: 表示Rect左下角的坐标</span><br><span class="line">	width: 表示Rect宽度</span><br><span class="line">	height: 表示Rect高度</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">   Sprite* Factory::collider(Rect rect) &#123;</span><br><span class="line">       for (auto i : monster) &#123;</span><br><span class="line">           if (rect.containsPoint(i-&gt;getPosition())) &#123;</span><br><span class="line">               return i;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return NULL;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Rect playerRect = player-&gt;getBoundingBox();</span><br><span class="line">Rect attackRectLeft = Rect(playerRect.getMinX() - 30,</span><br><span class="line">						   playerRect.getMinY(),</span><br><span class="line">						   playerRect.getMaxX() - playerRect.getMinX(),</span><br><span class="line">						   playerRect.getMaxY() - playerRect.getMinY());</span><br><span class="line"></span><br><span class="line">Rect attackRectRight = Rect(playerRect.getMinX(), </span><br><span class="line">						    playerRect.getMinY(),</span><br><span class="line">							playerRect.getMaxX() - playerRect.getMinX() + 30, </span><br><span class="line">							playerRect.getMaxY() - playerRect.getMinY());</span><br><span class="line"></span><br><span class="line">Sprite* collision = fac-&gt;collider(toward == &apos;a&apos; ? attackRectLeft : attackRectRight);</span><br><span class="line">if (collision != NULL) &#123;</span><br><span class="line">	//	移除怪物</span><br><span class="line">	fac-&gt;removeMonster(collision);</span><br><span class="line">	//	加血</span><br><span class="line">	hp = (hp + 25 &gt; 100 ? 100 : hp + 25);</span><br><span class="line">	//	增加击杀数</span><br><span class="line">	killNum++;</span><br><span class="line">	//	更新数据库</span><br><span class="line">	setKillNumByDataBase();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><h2 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector<t></t></h2><p>​    是cocos2d::Vector而不是std::vector</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">1. T必须是cocos2d::Ref*类型</span><br><span class="line"></span><br><span class="line">2. 没有重载[]</span><br><span class="line"></span><br><span class="line">3. 使用</span><br><span class="line">    Sprite* sprite = Sprite::create(&quot;CloseNormal.png&quot;);</span><br><span class="line">    </span><br><span class="line">    //	创建Vector</span><br><span class="line">    cocos2d::Vector&lt;Sprite*&gt; container;</span><br><span class="line">    </span><br><span class="line">    //	在最后插入</span><br><span class="line">    container.pushBack(sprite);</span><br><span class="line">    </span><br><span class="line">    //	在index = 2插入</span><br><span class="line">	container.insert(2, sprite);</span><br><span class="line">	</span><br><span class="line">	//	判断对象是否在容器</span><br><span class="line">	bool isHere = container.contains(sprite);</span><br><span class="line">	</span><br><span class="line">	//	获取index = 1的指针</span><br><span class="line">	Sprite* pSprite = container.at(1);</span><br><span class="line">	</span><br><span class="line">	//	c++的for_in遍历</span><br><span class="line">	for (auto sp:container) &#123;</span><br><span class="line">      </span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	//	c++的迭代器遍历</span><br><span class="line">	cocos2d::Vector&lt;Sprite*&gt;::iterator it = container.begin();</span><br><span class="line">	for (;it != container.end(); it++) &#123;</span><br><span class="line">      </span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	//	遍历中删除元素</span><br><span class="line">	cocos2d::Vector&lt;Sprite*&gt;::iterator it = container.begin();</span><br><span class="line">	for (;it != container.end();) &#123;</span><br><span class="line">      	if (*it == sprite) &#123;</span><br><span class="line">          it = container.erase(it);		//	erase()返回被删除元素的下一位</span><br><span class="line">      	&#125;</span><br><span class="line">      	else &#123;</span><br><span class="line">          it++;</span><br><span class="line">      	&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	//	删除指定元素</span><br><span class="line">	container.eraseObject(sprite);</span><br></pre></td></tr></table></figure>
+<h2 id="Map-lt-K-V-gt"><a href="#Map-lt-K-V-gt" class="headerlink" title="Map&lt;K, V&gt;"></a>Map&lt;K, V&gt;</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">1. 没有重载[]</span><br><span class="line"></span><br><span class="line">2. 使用</span><br><span class="line">	Sprite* sprite = Sprite::create(&quot;CloseNormal.png&quot;);</span><br><span class="line">	</span><br><span class="line">	//	创建Map</span><br><span class="line">	cocos2d::Map&lt;string, Sprite*&gt; map;</span><br><span class="line">	</span><br><span class="line">	//	插入键值对</span><br><span class="line">	map.insert(&quot;monster&quot;, sprite);</span><br><span class="line">	</span><br><span class="line">	//	根据Key获取Value</span><br><span class="line">	map.at(&quot;monster&quot;);</span><br></pre></td></tr></table></figure>
+<h2 id="Value"><a href="#Value" class="headerlink" title="Value"></a>Value</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 它是基本类型的封装</span><br><span class="line"></span><br><span class="line">2. 使用</span><br><span class="line">	Value val(10);</span><br><span class="line">	Value val(&quot;hello&quot;);</span><br></pre></td></tr></table></figure>
+<h1 id="本地存储"><a href="#本地存储" class="headerlink" title="本地存储"></a>本地存储</h1><p>​    包括UserDefault和SQLite</p>
+<h2 id="UserDefault"><a href="#UserDefault" class="headerlink" title="UserDefault"></a>UserDefault</h2><p>​    微型数据库, 将数据保存在usedefault.xml文件中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#define database UserDefault::getInstance()</span><br><span class="line"></span><br><span class="line">//	检测xml文件是否存在</span><br><span class="line">if	(!database-&gt;getBoolForKey(&quot;isExist&quot;))&#123;</span><br><span class="line">	database-&gt;setBoolForKey(&quot;isExist&quot;, true) ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//	简单存取</span><br><span class="line">database-&gt;setIntegerForKey(&quot;value&quot;,	10);  </span><br><span class="line">database-&gt;setStringForKey(&quot;string&quot;,	&quot;hello&quot;);</span><br><span class="line"></span><br><span class="line">//	保存</span><br><span class="line">database-&gt;flush();</span><br></pre></td></tr></table></figure>
+<h2 id="SQLite"><a href="#SQLite" class="headerlink" title="SQLite"></a>SQLite</h2><h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;sqlite3.h&quot;</span><br><span class="line"></span><br><span class="line">//	数据库指针</span><br><span class="line">sqlite3* pdb = NULL;</span><br><span class="line"></span><br><span class="line">//	数据库路径</span><br><span class="line">string path = FileUtils::getInstance()-&gt;getWritablePath() + &quot;save.db&quot;;</span><br><span class="line"></span><br><span class="line">//	根据路径path打开或创建数据库</span><br><span class="line">int	result = sqlite3_open(path.c_str(), &amp;pdb);		//	若成功result等于SQLITE_OK</span><br></pre></td></tr></table></figure>
+<h3 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//	SQLite语句 创建一个主键为ID, 名字为hero的表</span><br><span class="line">std::string	sql = &quot;create table	hero (ID int primary key not null, name char(10));&quot;;</span><br><span class="line"></span><br><span class="line">//	运行SQLite语句，参数分别为数据库指针，SQLite语句，回调函数，回调参数，错误信息 </span><br><span class="line">result = sqlite3_exec(pdb, sql.c_ str(), NULL, NULL, NULL);</span><br></pre></td></tr></table></figure>
+<h3 id="增删改"><a href="#增删改" class="headerlink" title="增删改"></a>增删改</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//	向表中插入一条ID为１，name为iori的数据</span><br><span class="line">sql = &quot;insert into hero values(1,&apos;iori&apos;);&quot;;</span><br><span class="line"></span><br><span class="line">//	删除表中id为1的一条数据</span><br><span class="line">sql = &quot;delete from hero where id=1;&quot;;</span><br><span class="line"></span><br><span class="line">//	把id为2的数据name改为hehe</span><br><span class="line">sql = &quot;update hero set name=&apos;hehe&apos; where id=2;&quot;;</span><br></pre></td></tr></table></figure>
+<h3 id="查"><a href="#查" class="headerlink" title="查"></a>查</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">char** re;		//查询结果</span><br><span class="line"></span><br><span class="line">int row, col;	//行、列</span><br><span class="line"></span><br><span class="line">//	根据语句获取表中数据</span><br><span class="line">sqlite3_get_table(pdb, &quot;select * from hero&quot;, &amp;re, &amp;row,  &amp;col, NULL);</span><br><span class="line"></span><br><span class="line">//	遍历存储数组打印数据 </span><br><span class="line">for (int i = 1; i &lt;= row; i++)&#123;</span><br><span class="line">	for (int j = 0; j &lt; col; j++)&#123;</span><br><span class="line">		log(&quot;%s&quot;, re[i*col + j]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//	查询后释放指针  </span><br><span class="line">sqlite3_free_table(re);</span><br></pre></td></tr></table></figure>
+<h1 id="TileMap瓦片地图"><a href="#TileMap瓦片地图" class="headerlink" title="TileMap瓦片地图"></a>TileMap瓦片地图</h1><p>​    大地图由许多小的图块(瓦片)构成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">分为普通地图(直90°)、斜45°地图、斜45°交错地图</span><br><span class="line"></span><br><span class="line">TileMap的坐标系原点在左上角, x轴从左到右, y轴从上到下</span><br></pre></td></tr></table></figure>
+<h2 id="TileMap地图层"><a href="#TileMap地图层" class="headerlink" title="TileMap地图层"></a>TileMap地图层</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. 每个地图层都被表示为TMXLayer类</span><br><span class="line"></span><br><span class="line">2. 每个单一的瓦片都被表示为Sprite类, 且有一个全局表示GID, 父节点为TMXLayer</span><br><span class="line"></span><br><span class="line">3. 每个地图层只能用一套瓦片, 用多套瓦片需要用多个地图层</span><br><span class="line"></span><br><span class="line">4. TileMap的锚点和瓦片的锚点默认为(0, 0)</span><br></pre></td></tr></table></figure>
+<h2 id="TileMap对象层"><a href="#TileMap对象层" class="headerlink" title="TileMap对象层"></a>TileMap对象层</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">对象层中的对象在TMX文件以键值对形式存在, 可以直接在TMX文件中修改</span><br></pre></td></tr></table></figure>
+<h2 id="地图编辑器"><a href="#地图编辑器" class="headerlink" title="地图编辑器"></a>地图编辑器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 可以在地图编辑器中设置对象属性</span><br><span class="line"></span><br><span class="line">2. 地图编辑器中, 排在前面的图层zOrder较大</span><br></pre></td></tr></table></figure>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="画TileMap"><a href="#画TileMap" class="headerlink" title="画TileMap"></a>画TileMap</h3><p><img src="https://CoderUtil.github.io/images/TIM截图20180606143210.png" alt="Cocos2d"></p>
+<p><img src="https://CoderUtil.github.io/images/TIM截图20180606143241.png" alt="Cocos2d"></p>
+<p><img src="https://CoderUtil.github.io/images/TIM截图20180606144933.png" alt="Cocos2d"></p>
+<h3 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//	将tmx, png, tsx文件放入Resources文件夹中</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//	根据文件路径快速导入瓦片地图</span><br><span class="line">TMXTiledMap* tmx = TMXTiledMap::create(&quot;tileMap.tmx&quot;);</span><br><span class="line"></span><br><span class="line">//	设置位置</span><br><span class="line">tmx-&gt;setPosition(visibleSize.width / 2, visibleSize.height / 2);</span><br><span class="line"></span><br><span class="line">//	设置锚点</span><br><span class="line">tmx-&gt;setAnchorPoint(Vec2(0.5, 0.5));</span><br><span class="line"></span><br><span class="line">//	添加到游戏图层中</span><br><span class="line">this-&gt;addChild(tmx);</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Verilog/Verilog/Verilog学习(一)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Verilog/Verilog/Verilog学习(一)/" itemprop="url">Verilog学习(一)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-27T10:28:15+08:00">
+                2018-05-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Verilog/" itemprop="url" rel="index">
+                    <span itemprop="name">Verilog</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h1><p><img src="https://CoderUtil.github.io/images/TIM截图20180527102913.png" alt="Verilog学习"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">`timescale 1ns/1ns</span><br><span class="line">`include  可综合模块.v    .  .  .  .</span><br><span class="line">`include  外围电路.v       .  .  .  .</span><br><span class="line">`include  激励信号.v       .  .  .  .</span><br><span class="line">module top;</span><br><span class="line">	wire   连线定义  .  .  .  . </span><br><span class="line">	reg    初试化块中寄存器定义  .  .  .  . </span><br><span class="line">	initial</span><br><span class="line">		begin   </span><br><span class="line">			定义波形记录、输入数据文件、记录输出文件 、</span><br><span class="line">			监视重要信号、记录重要时刻、设置仿真时间等。               </span><br><span class="line">		end</span><br><span class="line">	信号模块   xh1( .clock( clk), .reset(rst), .ack(ackn) ……); ……</span><br><span class="line">	可综合模块  mysj1(. clock(clk), reset(rst),.ack(ackn) ……); ……</span><br><span class="line">	外围模块      ram1(.read(rd), .write(wrt), .data(databus) ……); ……</span><br><span class="line">endmodule</span><br></pre></td></tr></table></figure>
+<h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//和/**/</span><br></pre></td></tr></table></figure>
+<h2 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">以数字, 字母, 下划线构成. 以下划线或字母开头</span><br></pre></td></tr></table></figure>
+<h2 id="整数"><a href="#整数" class="headerlink" title="整数"></a>整数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+/-&lt;位宽&gt;&apos;&lt;进制&gt;&lt;数字&gt;</span><br><span class="line"></span><br><span class="line">位宽: 数字对应的二进制数的宽度</span><br><span class="line">进制: 二进制(b, B)、八进制(o, O), 十进制(d, D)、十六进制(h, H)</span><br><span class="line"></span><br><span class="line">8&apos;b1100_0101	(下划线单纯用于分隔数字, 没有实际意义)</span><br><span class="line">5&apos;O27			(八进制27, 对应二进制宽为5位)</span><br></pre></td></tr></table></figure>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用双引号包括, 不能分成多行书写</span><br></pre></td></tr></table></figure>
+<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><h2 id="wire-reg"><a href="#wire-reg" class="headerlink" title="wire, reg"></a>wire, reg</h2><ul>
+<li>wire: 线, 没有存储功能</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">在assign中赋值的变量, 用wire</span><br><span class="line"></span><br><span class="line">wire a;				//	1位宽	</span><br><span class="line">wire[7:0] databus;	//	8位宽, 从0~7</span><br></pre></td></tr></table></figure>
+<ul>
+<li>reg: 寄存器, 有存储功能</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">在initial, always中赋值的, 用reg</span><br><span class="line"></span><br><span class="line">reg b;				//	1位宽	</span><br><span class="line">reg[7:0] myOut;		//	8位宽, 从0~7</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">因为Verilog没有多维数组, 通过扩展reg来实现多维数组</span><br><span class="line"></span><br><span class="line">reg [7:0] mema [255:0]	//	mema有8个256位reg</span><br><span class="line">mema[3] = 0;</span><br></pre></td></tr></table></figure>
+<h1 id="过程赋值-reg变量"><a href="#过程赋值-reg变量" class="headerlink" title="过程赋值(reg变量)"></a>过程赋值(reg变量)</h1><ul>
+<li>initial: 块中的语句在开始时执行一次</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">reg A,B,C;                                       </span><br><span class="line">initial begin               </span><br><span class="line">	A = 0;                  </span><br><span class="line">	B = 0;               </span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<ul>
+<li>always: 块中的语句能不断重复执行</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">always @(a)	当a的值发生改变时, 执行</span><br><span class="line">begin</span><br><span class="line">	...</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">1. @(a)					信号a的值发生改变</span><br><span class="line">2. @(a or b)			信号a或b的值发生改变</span><br><span class="line">3. @(posedge clock)		 clock上升沿到来</span><br><span class="line">4. @(negedge clock)		 clock下降沿到来</span><br><span class="line">5. @(posedge clk or negedge reset)</span><br><span class="line"></span><br><span class="line">信号和时钟不能混用</span><br></pre></td></tr></table></figure>
+<ul>
+<li>过程赋值分为阻塞和非阻塞</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//	阻塞赋值, 在该语句结束时立即完成赋值</span><br><span class="line">b = a;	</span><br><span class="line"></span><br><span class="line">//	非阻塞赋值, 在整个块结束后才完成赋值</span><br><span class="line">b &lt;= a;  </span><br><span class="line"></span><br><span class="line">在同一个always中, 阻塞和非阻塞不要混用</span><br></pre></td></tr></table></figure>
+<h1 id="持续赋值-wire变量"><a href="#持续赋值-wire变量" class="headerlink" title="持续赋值(wire变量)"></a>持续赋值(wire变量)</h1><ul>
+<li>assign</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">assign c = a &amp; b		</span><br><span class="line"></span><br><span class="line">其中a, b, c都为wire</span><br></pre></td></tr></table></figure>
+<h2 id="param"><a href="#param" class="headerlink" title="param"></a>param</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用于定义一个参数</span><br></pre></td></tr></table></figure>
+<h1 id="向量"><a href="#向量" class="headerlink" title="向量"></a>向量</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">宽度为1的变量称为标量:</span><br><span class="line">	reg a;</span><br><span class="line">	wire b;</span><br><span class="line">	</span><br><span class="line">宽度大于1的, 用[msb:lsb]表示的称为向量:</span><br><span class="line">	wire[7:0] databus;</span><br></pre></td></tr></table></figure>
+<h2 id="位选择、域选择"><a href="#位选择、域选择" class="headerlink" title="位选择、域选择"></a>位选择、域选择</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">位选择: 选择向量中的一位</span><br><span class="line">	A = databus[6];</span><br><span class="line">	c = a[7] &amp; b[5];</span><br><span class="line">	</span><br><span class="line">域选择: 选择向量中的几位:</span><br><span class="line">	B = databus[5:2];</span><br><span class="line">	c = a[7:4] + b[3:0];</span><br></pre></td></tr></table></figure>
+<h1 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h1><h2 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">模 %</span><br></pre></td></tr></table></figure>
+<h2 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">与	&amp;&amp;</span><br><span class="line">或	||</span><br><span class="line">非	!</span><br></pre></td></tr></table></figure>
+<h2 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">按位取反	~</span><br><span class="line">按位与		&amp;</span><br><span class="line">按位或		|</span><br><span class="line">按位异或	^</span><br><span class="line">按位同或	^~</span><br></pre></td></tr></table></figure>
+<h2 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">等于		==</span><br><span class="line">不等于	    !=</span><br></pre></td></tr></table></figure>
+<h2 id="三目运算符"><a href="#三目运算符" class="headerlink" title="三目运算符"></a>三目运算符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?:</span><br></pre></td></tr></table></figure>
+<h2 id="位拼接运算符"><a href="#位拼接运算符" class="headerlink" title="位拼接运算符"></a>位拼接运算符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#125;, 将多个位拼接起来</span><br><span class="line"></span><br><span class="line">&#123;信号1的某几位, 信号2的某几位, ..., 信号n的某几位&#125;</span><br><span class="line">&#123;a, b[3:0], c[2], 1&apos;b1&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="if"><a href="#if" class="headerlink" title="if"></a>if</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">if (表达式1) </span><br><span class="line">	语句1;</span><br><span class="line">else if (表达式2) </span><br><span class="line">	语句2;</span><br><span class="line">else </span><br><span class="line">	语句3;</span><br><span class="line">	</span><br><span class="line">if(a&gt;b)</span><br><span class="line">     begin</span><br><span class="line">       out1 &lt;= int1;</span><br><span class="line">       out2 &lt;= int2;</span><br><span class="line">     end</span><br><span class="line">else</span><br><span class="line">    begin</span><br><span class="line">       out1 &lt;= int2;</span><br><span class="line">       out2 &lt;= int1;</span><br><span class="line">    end</span><br></pre></td></tr></table></figure>
+<h1 id="case"><a href="#case" class="headerlink" title="case"></a>case</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">case (表达式)</span><br><span class="line">	值1: 语句1;</span><br><span class="line">	值2: 语句2;</span><br><span class="line">	default: 语句3;</span><br><span class="line">endcase</span><br></pre></td></tr></table></figure>
+<p><img src="https://CoderUtil.github.io/images/TIM截图20180527122008.png" alt="Verilog学习"></p>
+<h1 id="if和case防止锁存器产生"><a href="#if和case防止锁存器产生" class="headerlink" title="if和case防止锁存器产生"></a>if和case防止锁存器产生</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">如果用到if语句，最好写上else项。</span><br><span class="line">如果用case语句，最好写上default项</span><br></pre></td></tr></table></figure>
+<h1 id="for"><a href="#for" class="headerlink" title="for"></a>for</h1><p><img src="https://CoderUtil.github.io/images/TIM截图20180527122317.png" alt="Verilog学习"></p>
+<h1 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h1><p>​    以`开头</p>
+<h2 id="宏"><a href="#宏" class="headerlink" title="宏"></a>宏</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`define sum ina+inb+inc</span><br></pre></td></tr></table></figure>
+<h2 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`include &quot;文件名&quot;</span><br></pre></td></tr></table></figure>
+<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><p>​    只能调用当前module内的函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function &lt;返回值位宽&gt; 函数名;</span><br><span class="line">端口声明;</span><br><span class="line">局部变量定义;</span><br><span class="line">其他语句;</span><br><span class="line">endfunctino</span><br></pre></td></tr></table></figure>
+<h1 id="模块化设计"><a href="#模块化设计" class="headerlink" title="模块化设计"></a>模块化设计</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">定义:</span><br><span class="line">	顶层模块top, 底层模块bottom1, bottom2分别位于top.v, bottom1.v, bottom2.v</span><br><span class="line"></span><br><span class="line">引用底层模块:</span><br><span class="line">	`include 引入底层模块文件</span><br><span class="line"></span><br><span class="line">调用底层模块:</span><br><span class="line">	底层模块名 你给底层模块起的名(.底层模块形参名(顶层模块实参名), ……)</span><br><span class="line">	</span><br><span class="line">`include &quot;bottom1.v&quot;</span><br><span class="line">`include &quot;bottom2.v&quot;</span><br><span class="line"></span><br><span class="line">module  top(clk, reset, rec, send, data); // 顶层模块    </span><br><span class="line">input  clk, reset, rec;    </span><br><span class="line">output  send;    </span><br><span class="line">output [15:0]  data;</span><br><span class="line"></span><br><span class="line">    bottom1  my_bottom1(        // 底层模块1    </span><br><span class="line">    .rec(rec), .clk(clk), .reset(reset), .data(data)    </span><br><span class="line">    );    </span><br><span class="line">    bottom2  my_bottom2(        // 底层模块2    </span><br><span class="line">    .data(data), .clk(clk), .reset(reset), .send(send)    </span><br><span class="line">    ); </span><br><span class="line">endmodule</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/操作系统/操作系统/第八章-内存管理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1864,333 +2221,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/操作系统/操作系统/第四章 线程/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/操作系统/操作系统/第四章 线程/" itemprop="url">第四章 线程</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-10T16:17:26+08:00">
-                2018-05-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/操作系统/" itemprop="url" rel="index">
-                    <span itemprop="name">操作系统</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><ul>
-<li>共享堆内存和全局变量</li>
-</ul>
-<h2 id="线程模型"><a href="#线程模型" class="headerlink" title="线程模型"></a>线程模型</h2><ul>
-<li>根据是否受到内核的干预分为: 用户线程和内核线程</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">线程模型</th>
-<th style="text-align:center">含义</th>
-<th style="text-align:center">优点</th>
-<th style="text-align:center">缺点</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">多对一</td>
-<td style="text-align:center">多个用户线程映射一个内核线程</td>
-<td style="text-align:center">内核线程少, 减少开销</td>
-<td style="text-align:center">只有一个内核线程, 所以用户线程不能并发执行</td>
-</tr>
-<tr>
-<td style="text-align:center">一对一</td>
-<td style="text-align:center">一个用户线程映射一个内核线程</td>
-<td style="text-align:center">多个用户线程能并发执行</td>
-<td style="text-align:center">内核线程多, 开销大</td>
-</tr>
-<tr>
-<td style="text-align:center">多对多</td>
-<td style="text-align:center">多个用户线程映射多个内核线程</td>
-<td style="text-align:center">多个用户线程能并发执行. 且内核线程数量相对固定, 开销不大</td>
-</tr>
-</tbody>
-</table>
-<h2 id="线程取消"><a href="#线程取消" class="headerlink" title="线程取消"></a>线程取消</h2><p>​    在线程完成前终止线程</p>
-<ul>
-<li>异步取消: 立即终止目标线程</li>
-<li>延迟取消: 不断检查目标线程是否应该取消 </li>
-</ul>
-<h2 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h2><p>​    在进程开始时创建一定数量的线程, 并放入到池中等待工作. 当服务器收到请求时, 唤醒池中的一个线程并传递给要请求. 当请求完成, 将线程放回线程池</p>
-<h1 id="POSIX线程库"><a href="#POSIX线程库" class="headerlink" title="POSIX线程库"></a>POSIX线程库</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;pthread.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line"></span><br><span class="line">#define MAX_SIZE 10</span><br><span class="line"></span><br><span class="line">int arr[MAX_SIZE] = &#123;0&#125;;        //  线程中的资源是共享的</span><br><span class="line"></span><br><span class="line">long fibonacci(int num) &#123;</span><br><span class="line">    if (num == 0)</span><br><span class="line">        return 0;</span><br><span class="line">    if (num == 1) </span><br><span class="line">        arr[num - 1] = 0;</span><br><span class="line">    else if (num == 2)</span><br><span class="line">        arr[num - 1] = 1;</span><br><span class="line">    else </span><br><span class="line">        arr[num - 1] = fibonacci(num - 1) + fibonacci(num - 2);</span><br><span class="line">    return arr[num - 1];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void* runner(void* param) &#123;     //  线程通过runner函数执行</span><br><span class="line">    int num = atoi(param);</span><br><span class="line">    fibonacci(num);</span><br><span class="line">    pthread_exit(0);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char* argv[]) &#123;</span><br><span class="line">    pthread_t tid;              //  子线程的id</span><br><span class="line">    pthread_attr_t attr;        //  子线程的属性</span><br><span class="line"></span><br><span class="line">    if (argc != 2) &#123;</span><br><span class="line">        fprintf(stderr, &quot;usage: a.out &lt;integer value&gt;\n&quot;);</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (atoi(argv[1]) &lt; 0) &#123;</span><br><span class="line">        fprintf(stderr, &quot;%d should &gt;= 0\n&quot;, atoi(argv[1]));</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (atoi(argv[1]) &gt; 10) &#123;</span><br><span class="line">        fprintf(stderr, &quot;%d shouldn&apos;t &gt; 10\n&quot;, atoi(argv[1]));</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    pthread_attr_init(&amp;attr);   //  设置线程的属性</span><br><span class="line"></span><br><span class="line">    pthread_create(&amp;tid, &amp;attr, runner, argv[1]);  //  创建线程</span><br><span class="line"></span><br><span class="line">    pthread_join(tid, NULL);    //  父线程等待子线程执行完后才执行</span><br><span class="line"></span><br><span class="line">    for (int i = 0; i &lt; atoi(argv[1]); i++) &#123;</span><br><span class="line">        printf(&quot;%d &quot;, arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;\n&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/环境配置/环境配置/Eclipse的使用/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/环境配置/环境配置/Eclipse的使用/" itemprop="url">Eclipse的使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-03T22:36:58+08:00">
-                2018-05-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/环境配置/" itemprop="url" rel="index">
-                    <span itemprop="name">环境配置</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Eclipse的使用"><a href="#Eclipse的使用" class="headerlink" title="Eclipse的使用"></a>Eclipse的使用</h1><p>​    项目可以含多个main函数. 运行特定文件的main函数, 只需要在对应文件中点击Runner按钮</p>
-<h1 id="Eclipse中引入第三方jar包"><a href="#Eclipse中引入第三方jar包" class="headerlink" title="Eclipse中引入第三方jar包"></a>Eclipse中引入第三方jar包</h1><p>​    详情见E:/大二下/软件工程实训/第二周/eclipse使用手册</p>
-<h1 id="Eclipse配置代码补全"><a href="#Eclipse配置代码补全" class="headerlink" title="Eclipse配置代码补全"></a>Eclipse配置代码补全</h1><p>​    详情见E:/大二下/软件工程实训/第二周/eclipse使用手册</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2245,7 +2275,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">115</span>
+                  <span class="site-state-item-count">117</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

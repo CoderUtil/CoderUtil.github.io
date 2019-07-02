@@ -259,6 +259,642 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/系统分析与设计/系统分析与设计/HW9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/系统分析与设计/系统分析与设计/HW9/" itemprop="url">HW9</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-16T09:37:24+08:00">
+                2019-05-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/系统分析与设计/" itemprop="url" rel="index">
+                    <span itemprop="name">系统分析与设计</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>使用类图，分别对 Asg_RH 文档中 Make Reservation 用例以及 Payment 用例开展领域建模。然后，根据上述模型，给出建议的数据表以及主要字段，特别是主键和外键</li>
+</ol>
+<ul>
+<li>注意事项：<ul>
+<li>对象必须是名词、特别是技术名词、报表、描述类的处理；</li>
+<li>关联必须有多重性、部分有名称与导航方向；</li>
+<li>属性要注意计算字段；</li>
+</ul>
+</li>
+<li>数据建模，为了简化描述仅需要给出表清单，例如：<ul>
+<li>Hotel（ID/Key，Name，LoctionID/Fkey，Address…..）；</li>
+</ul>
+</li>
+</ul>
+<p>领域模型的关系</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">*(不包含0)</span><br><span class="line">0...1</span><br><span class="line">0...n</span><br></pre></td></tr></table></figure>
+<h4 id="Make-Reservation"><a href="#Make-Reservation" class="headerlink" title="Make Reservation"></a>Make Reservation</h4><ul>
+<li>领域建模</li>
+</ul>
+<p><img src="../../images\20190507005030340.png" alt="20190507005030340"></p>
+<ul>
+<li>数据表</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">Traveller (</span><br><span class="line">	TravellerID/Key, </span><br><span class="line">	name, </span><br><span class="line">	email</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">Reservation (</span><br><span class="line">	ReservationID/Key, </span><br><span class="line">	TravellerID/FKey, </span><br><span class="line">	HotelID/FKey, </span><br><span class="line">	checkInDate, </span><br><span class="line">	numberofNights</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">ReservationItem (</span><br><span class="line">	ReservationItemID/Key, </span><br><span class="line">	ReservationID/FKey, </span><br><span class="line">	RoomID/Fkey, </span><br><span class="line">	type, </span><br><span class="line">	checkInDate, </span><br><span class="line">	checkOutDate, </span><br><span class="line">	numberOfNights, </span><br><span class="line">	numberOfAdults, </span><br><span class="line">	numberOfChildren, </span><br><span class="line">	ageOfChildren</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">Hotel (</span><br><span class="line">	HotelID/Key, </span><br><span class="line">	LoctionID/Fkey, </span><br><span class="line">	name, </span><br><span class="line">	address, </span><br><span class="line">	star, </span><br><span class="line">	address, </span><br><span class="line">	loc-code, </span><br><span class="line">	brief-intro, </span><br><span class="line">	isFavourite, </span><br><span class="line">	isLowPrice, </span><br><span class="line">	rating, </span><br><span class="line">	isMaxDiscountOff</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">Location(</span><br><span class="line">	LocationID/Key, </span><br><span class="line">	HotelID/Fkey</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">Room (</span><br><span class="line">	RoomID/Key, </span><br><span class="line">	HotelID/FKey, </span><br><span class="line">	type, </span><br><span class="line">	date, </span><br><span class="line">	isAvailiable, </span><br><span class="line">	isReserved, </span><br><span class="line">	price, </span><br><span class="line">	reservedNumber, </span><br><span class="line">	totalNumber</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">RoomDescription(</span><br><span class="line">	RoomID/FKey, </span><br><span class="line">	type, </span><br><span class="line">	total, </span><br><span class="line">	list-price, </span><br><span class="line">	description</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">RoomCatalog(</span><br><span class="line">	RoomID/FKey, </span><br><span class="line">	type</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h4 id="Payment"><a href="#Payment" class="headerlink" title="Payment"></a>Payment</h4><ul>
+<li>领域建模</li>
+</ul>
+<p><img src="../../images\20190507010558258.png" alt="20190507010558258"></p>
+<ul>
+<li>数据表</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">Payment(</span><br><span class="line">	ID/key, </span><br><span class="line">	totalPrice, </span><br><span class="line">	reservationID/Fkey, </span><br><span class="line">	cardID/Fkey</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">ReservationItem(</span><br><span class="line">	ID/key, </span><br><span class="line">	RoomID/Fkey, </span><br><span class="line">	BasketID/Fkey, </span><br><span class="line">	checkInDate, </span><br><span class="line">	checkOutDate, </span><br><span class="line">	NumberOfAdults, </span><br><span class="line">	NumberOfChildren, </span><br><span class="line">	Price</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">CreditCard(</span><br><span class="line">	ID/key, </span><br><span class="line">	Type, </span><br><span class="line">	CardSecurityCode, </span><br><span class="line">	ExpiryDate, </span><br><span class="line">	CardHolderID/Fkey</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">CardHolder(</span><br><span class="line">	ID/key, </span><br><span class="line">	Title, </span><br><span class="line">	FirstName, </span><br><span class="line">	LastName, </span><br><span class="line">	Address1, </span><br><span class="line">	Address2, </span><br><span class="line">	City, </span><br><span class="line">	CountyOrState, </span><br><span class="line">	Country, </span><br><span class="line">	Postcode, </span><br><span class="line">	DaytimeTelephone, </span><br><span class="line">	EveningTelephone</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>2、使用 UML State Model，对每个订单对象生命周期建模：</p>
+<ul>
+<li>建模对象： 参考 Asg_RH 文档， 对 Reservation/Order 对象建模；</li>
+<li>建模要求： 参考练习不能提供足够信息帮助你对订单对象建模，请参考现在 定旅馆 的旅游网站，尽可能分析围绕订单发生的各种情况，直到订单通过销售事件（柜台销售）结束订单。</li>
+</ul>
+<p><img src="../../images\TIM截图20190516100454.png" alt="TIM截图20190516100454"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/系统分析与设计/系统分析与设计/HW7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/系统分析与设计/系统分析与设计/HW7/" itemprop="url">HW7</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-16T09:01:59+08:00">
+                2019-05-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/系统分析与设计/" itemprop="url" rel="index">
+                    <span itemprop="name">系统分析与设计</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-根据订旅馆建模文档，Asg-RH-pdf："><a href="#1-根据订旅馆建模文档，Asg-RH-pdf：" class="headerlink" title="1. 根据订旅馆建模文档，Asg-RH.pdf："></a>1. 根据订旅馆建模文档，<a href="https://sysu-swsad.github.io/swad-guide/material/Asg_RH.pdf" target="_blank" rel="noopener">Asg-RH.pdf</a>：</h2><h3 id="1-1-绘制用例图模型-到子用例"><a href="#1-1-绘制用例图模型-到子用例" class="headerlink" title="1.1 绘制用例图模型(到子用例)"></a>1.1 绘制用例图模型(到子用例)</h3><p><img src="../../images\TIM截图20190516091455.png" alt="TIM截图20190516091455"></p>
+<h3 id="1-2-给出-make-reservation-用例的活动图："><a href="#1-2-给出-make-reservation-用例的活动图：" class="headerlink" title="1.2 给出 make reservation 用例的活动图："></a>1.2 给出 make reservation 用例的活动图：</h3><p><img src="../../images\TIM截图20190516092209.png" alt="TIM截图20190516092209"></p>
+<h2 id="2-根据课程练习“投递员使用投递箱给收件人快递包裹”的业务场景"><a href="#2-根据课程练习“投递员使用投递箱给收件人快递包裹”的业务场景" class="headerlink" title="2. 根据课程练习“投递员使用投递箱给收件人快递包裹”的业务场景"></a>2. 根据课程练习“投递员使用投递箱给收件人快递包裹”的业务场景</h2><h3 id="2-1-分别用多泳道图建模三个场景的业务过程"><a href="#2-1-分别用多泳道图建模三个场景的业务过程" class="headerlink" title="2.1 分别用多泳道图建模三个场景的业务过程"></a>2.1 分别用多泳道图建模三个场景的业务过程</h3><ul>
+<li>x科技公司发明了投递柜，它们自建了投递柜以及远程控制系统。注册的投递员在推广期免费使用投递柜。由于缺乏资源，仅能使用y移动平台向客户发送短信通知：</li>
+</ul>
+<p><img src="../../images\TIM截图20190516092916.png" alt="TIM截图20190516092916"></p>
+<ul>
+<li>随着产品推广，x公司与各大快递z公司达成协议。x公司在快递柜上添加了二维码扫描装置，z公司的快递员不仅可在快递柜上登陆（由z公司提供认证服务），且可扫描快递单号，投递入柜后自动由z公司发短信给客户。客户取件后，自动发送给z公司投递完成：</li>
+</ul>
+<p><img src="../../images\TIM截图20190516092959.png" alt="TIM截图20190516092959"></p>
+<ul>
+<li>x公司进一步优化服务，开发了微信小程序实现扫码取快递。如果用户关注了该公司公众号，直接通过过公众号推送给用户取件码等信息。不再发送短信：</li>
+</ul>
+<p><img src="../../images\TIM截图20190516093210.png" alt="TIM截图20190516093210"></p>
+<h3 id="2-2-根据上述流程，给出快递柜系统最终的用例图模型："><a href="#2-2-根据上述流程，给出快递柜系统最终的用例图模型：" class="headerlink" title="2.2 根据上述流程，给出快递柜系统最终的用例图模型："></a>2.2 根据上述流程，给出快递柜系统最终的用例图模型：</h3><ul>
+<li>用正常色彩表示第一个业务流程反映的用例；</li>
+<li>用绿色背景表述第二个业务场景添加或修改的用例，以及支持 Actor；</li>
+<li>用黄色背景表述第三个业务场景添加或修改的用例，以及支持 Actor；</li>
+</ul>
+<p><img src="../../images\TIM截图20190516093449.png" alt="TIM截图20190516093449"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/系统分析与设计/系统分析与设计/HW6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/系统分析与设计/系统分析与设计/HW6/" itemprop="url">HW6</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-15T14:37:56+08:00">
+                2019-05-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/系统分析与设计/" itemprop="url" rel="index">
+                    <span itemprop="name">系统分析与设计</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-简答题"><a href="#1-简答题" class="headerlink" title="1. 简答题"></a>1. 简答题</h1><h2 id="1-1-用例的概念"><a href="#1-1-用例的概念" class="headerlink" title="1.1 用例的概念"></a>1.1 用例的概念</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">用例是软件工程或系统工程中对系统反应外界请求的描述，它包含一组相关的成功和失败场景集合，用以说明系统是如何和最终用户或其它系统互动</span><br><span class="line"></span><br><span class="line">需要注意: </span><br><span class="line">	1. 用例不是图形，而是文本；</span><br><span class="line">	2. 用例建模主要是编写文本，而不是绘制图表；</span><br><span class="line">	3. 关于用例没有任何面向对象的东西；</span><br><span class="line">	4. 用例是经典OOA/D的关键需求输入；</span><br></pre></td></tr></table></figure>
+<h2 id="1-2-用例和场景的关系？什么是主场景或-happy-path？"><a href="#1-2-用例和场景的关系？什么是主场景或-happy-path？" class="headerlink" title="1.2 用例和场景的关系？什么是主场景或 happy path？"></a>1.2 用例和场景的关系？什么是主场景或 happy path？</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">场景是参与者和系统之间的一系列特定的活动和交互，也称为用例实例; 用例是一组场景（主场景加上零个或多个可选场景）的集合；</span><br><span class="line"></span><br><span class="line">主场景（或Happy Path）也被称为“理想路径”场景，是指系统的主要交互场景，能够直接实现用户的目标。</span><br></pre></td></tr></table></figure>
+<h2 id="1-3-用例有哪些形式？"><a href="#1-3-用例有哪些形式？" class="headerlink" title="1.3 用例有哪些形式？"></a>1.3 用例有哪些形式？</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">用例有三种常用形式：</span><br><span class="line"></span><br><span class="line">	1. Brief：简洁的总结，通常用于主成功场景；在早期的需求分析中，能够快速了解主题和范围</span><br><span class="line"></span><br><span class="line">	2. Casual：非正式的段落格式，涵盖各种场景的多个段落；主要应用于早期的需求分析；</span><br><span class="line"></span><br><span class="line">	3. Fully：详细编写所有步骤及各种变化，同时具有补充部分，如前置条件和成功保证；在以一种简短的格式确定并编写了许多用例之后，会详细地编写一些具有体系结构重要性和高价值的用例。</span><br></pre></td></tr></table></figure>
+<h2 id="1-4-对于复杂业务，为什么编制完整用例非常难？"><a href="#1-4-对于复杂业务，为什么编制完整用例非常难？" class="headerlink" title="1.4 对于复杂业务，为什么编制完整用例非常难？"></a>1.4 对于复杂业务，为什么编制完整用例非常难？</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">对于复杂业务，涉及的场景数量会很多, 各个场景之间的关联使得用例设计变得特别困难，很难将所有的目标、故事、使用场景遵循一定的顺序列举出来，较难实现用户与服务之间的完整与协调，用例的完整性难以保障。</span><br></pre></td></tr></table></figure>
+<h2 id="1-5-什么是用例图？"><a href="#1-5-什么是用例图？" class="headerlink" title="1.5 什么是用例图？"></a>1.5 什么是用例图？</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 用例图是一种优秀的系统语境图，用以描述用例名称和参与者之间的连接关系, 说明的是谁要使用系统，以及他们使用该系统可以做些什么</span><br><span class="line"></span><br><span class="line">2. 用例图能够展示系统边界、位于边界之外的事物以及系统如何被使用</span><br><span class="line"></span><br><span class="line">3. 用例图可以作为沟通的工具，用以概括系统及其参与者的行为。</span><br></pre></td></tr></table></figure>
+<h2 id="1-6-用例图的基本符号与元素？用例图的基本符号与元素？"><a href="#1-6-用例图的基本符号与元素？用例图的基本符号与元素？" class="headerlink" title="1.6 用例图的基本符号与元素？用例图的基本符号与元素？"></a>1.6 用例图的基本符号与元素？用例图的基本符号与元素？</h2><ul>
+<li>系统：使用包含用例的矩形绘制系统的边界，将参与者置于系统边界之外：</li>
+</ul>
+<p><img src="../../images\system-symbol.jpg" alt="system-symbol"></p>
+<ul>
+<li>用例：使用椭圆绘制用例，用表示系统功能的动词标记椭圆：</li>
+</ul>
+<p><img src="../../images\use-case-symbol.jpg" alt="use-case-symbol"></p>
+<ul>
+<li>参与者：参与者是系统的用户，当一个系统是另一个系统的参与者时，用参与者原型标记参与者系统：</li>
+</ul>
+<p><img src="../../images\actor-symbol.jpg" alt="actor-symbol"></p>
+<ul>
+<li>关系：用简单的一行说明一个参与者和一个用例之间的关系；对于用例之间的关系，使用标记为<code>include</code>或<code>extend</code>的箭头<ul>
+<li><code>include</code>: 表示<strong>主要</strong>的功能</li>
+<li><code>extend</code>: 表示一个功能是可选的</li>
+</ul>
+</li>
+</ul>
+<p><img src="../../images\relationships-symbol.jpg" alt="relationships-symbol"></p>
+<h2 id="1-7-用例图的画法与步骤："><a href="#1-7-用例图的画法与步骤：" class="headerlink" title="1.7 用例图的画法与步骤："></a>1.7 用例图的画法与步骤：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">1. 确定系统边界</span><br><span class="line"></span><br><span class="line">2. 确定参与者: </span><br><span class="line">	a. 确定谁将使用该系统的主要功能；</span><br><span class="line">	b. 谁将需要该系统的支持；</span><br><span class="line">	c. 谁将需要维护、管理该系统，以及保持该系统处于工作状态；</span><br><span class="line">	d. 系统需要处理哪些硬件设备；</span><br><span class="line">	e. 与该系统交互的是什么系统；</span><br><span class="line">	f. 谁或者什么系统对本系统产生的结果感兴趣；</span><br><span class="line"></span><br><span class="line">3. 识别用例: </span><br><span class="line">	a. 从分析系统的参与者开始，考虑每一个参与者是如何使用系统的</span><br><span class="line">	b. 考虑特定参与者希望系统提供什么功能；</span><br><span class="line">	c. 考虑系统是否存储和检索信息，如果是，有哪个参与者触发；</span><br><span class="line">	d. 当系统改变状态时，是否通知参与者；</span><br><span class="line">	e. 是否存在影响系统的外部事件；</span><br><span class="line">	f. 哪个参与者通知系统这些事件；</span><br><span class="line"></span><br><span class="line">4. 确定用例间的关系:</span><br><span class="line">	a. 关联关系：使用实线将参与者与相应的用例相连</span><br><span class="line">	b. 包含关系：客户用例和提供者用例之间用include箭头相连</span><br><span class="line">	c. 扩展关系：基础用例和扩展用例之间用extends箭头相连</span><br><span class="line">	d. 泛化关系：子用例与父用例之间用泛化箭头相连</span><br><span class="line"></span><br><span class="line">5. 确定关联的外部支持系统；</span><br></pre></td></tr></table></figure>
+<h2 id="1-8-用例图给利益相关人与开发者的价值有哪些？"><a href="#1-8-用例图给利益相关人与开发者的价值有哪些？" class="headerlink" title="1.8 用例图给利益相关人与开发者的价值有哪些？"></a>1.8 用例图给利益相关人与开发者的价值有哪些？</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">利益相关人：可以直观看到系统的结果和用户的功能体验，保证系统按照用户的需求进行设计；用例能够根据需要对复杂程度和形式化程序进行增减调节，即能够响应用户（利益相关人)提出的需求，而用例图则使得这种调节更加便利，可以通过修改图形间的关系实现。</span><br><span class="line"></span><br><span class="line">开发者：用例图是设计者设计过程的结论与参考，设计者与开发者之间的交流工具，开发者开发过程的蓝图；用例图使得开发者能够更明确地获得需求，更好地理解需求；用例图可以指导开发和测试，同时可以在整个过程中对其他工作流起到指导作用。</span><br></pre></td></tr></table></figure>
+<h1 id="2-建模练习题"><a href="#2-建模练习题" class="headerlink" title="2. 建模练习题"></a>2. 建模练习题</h1><h2 id="2-1-选择2-3个你熟悉的类似业务的在线服务系统，分别绘制它们用例图-并满足以下要求："><a href="#2-1-选择2-3个你熟悉的类似业务的在线服务系统，分别绘制它们用例图-并满足以下要求：" class="headerlink" title="2.1 选择2-3个你熟悉的类似业务的在线服务系统，分别绘制它们用例图, 并满足以下要求："></a>2.1 选择2-3个你熟悉的类似业务的在线服务系统，分别绘制它们用例图, 并满足以下要求：</h2><ul>
+<li>请使用用户的视角，描述用户目标或系统提供的服务；</li>
+<li>粒度达到子用例级别，并用 include 和 exclude 关联它们；</li>
+<li>请用色彩标注出你认为创新（区别于竞争对手的）用例或子用例；</li>
+<li>尽可能识别外部系统和服务</li>
+</ul>
+<ol>
+<li>订电影票</li>
+</ol>
+<p><img src="../../images\ticket.jpg" alt="ticket"></p>
+<ol>
+<li>订酒店</li>
+</ol>
+<p><img src="../../images\hotel.jpg" alt="hotel"></p>
+<h2 id="2-2-回答下列问题："><a href="#2-2-回答下列问题：" class="headerlink" title="2.2 回答下列问题："></a>2.2 回答下列问题：</h2><h3 id="2-2-1-为什么相似系统的用例图是相似的？"><a href="#2-2-1-为什么相似系统的用例图是相似的？" class="headerlink" title="2.2.1 为什么相似系统的用例图是相似的？"></a>2.2.1 为什么相似系统的用例图是相似的？</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">相似系统面向的参与者是相似的，在相似的最终目标下，系统的参与者、用例、边界以及它们之间的关系构成也是相似的, 所以最终画出来的用例图也就是相似的</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-2-如果是定旅馆业务，请对比-Asg-RH-用例图，简述如何利用不同时代、不同地区产品的用例图，展现、突出创新业务和技术；"><a href="#2-2-2-如果是定旅馆业务，请对比-Asg-RH-用例图，简述如何利用不同时代、不同地区产品的用例图，展现、突出创新业务和技术；" class="headerlink" title="2.2.2 如果是定旅馆业务，请对比 Asg_RH 用例图，简述如何利用不同时代、不同地区产品的用例图，展现、突出创新业务和技术；"></a>2.2.2 如果是定旅馆业务，请对比 Asg_RH 用例图，简述如何利用不同时代、不同地区产品的用例图，展现、突出创新业务和技术；</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Asg_RH用例图提供了最基本的服务，而现今的订旅馆业务则更综合与人性化，可以综合周边环境、旅馆类别、距离、价格、交通等因素推荐更适宜于用户的旅馆。</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-3-如何利用用例图定位创新思路（业务创新、或技术创新、或商业模式创新）在系统中的作用；"><a href="#2-2-3-如何利用用例图定位创新思路（业务创新、或技术创新、或商业模式创新）在系统中的作用；" class="headerlink" title="2.2.3 如何利用用例图定位创新思路（业务创新、或技术创新、或商业模式创新）在系统中的作用；"></a>2.2.3 如何利用用例图定位创新思路（业务创新、或技术创新、或商业模式创新）在系统中的作用；</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1. 在用例图中使用颜色对创新思路进行高亮标记；</span><br><span class="line">2. 判断创新思路在用例图中的位置；</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-4-请使用-SCRUM-方法，选择一个用例图，编制某定旅馆开发的需求（backlog）开发计划表；"><a href="#2-2-4-请使用-SCRUM-方法，选择一个用例图，编制某定旅馆开发的需求（backlog）开发计划表；" class="headerlink" title="2.2.4 请使用 SCRUM 方法，选择一个用例图，编制某定旅馆开发的需求（backlog）开发计划表；"></a>2.2.4 请使用 SCRUM 方法，选择一个用例图，编制某定旅馆开发的需求（backlog）开发计划表；</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">ID</th>
+<th style="text-align:center">Name</th>
+<th style="text-align:center">Imp</th>
+<th style="text-align:center">Est</th>
+<th style="text-align:center">How to demo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">注册</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">点击注册按钮，输入手机号，获取验证码，输入密码</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">登陆</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">点击登陆，输入手机号，选择密码登陆或短信验证登陆，填写密码或获取验证码并正确填写验证码</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">查询酒店</td>
+<td style="text-align:center">15</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">通过位置，种类价格，档次等属性筛选或排序酒店，或直接通过酒店名查找酒店</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">预订酒店</td>
+<td style="text-align:center">20</td>
+<td style="text-align:center">16</td>
+<td style="text-align:center">选择酒店后，选择房间类型，根据条件筛选房间，确定入住日期，预付定金</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">取消预订</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">选择订单，点击退订，返回定金</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">酒店评价</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">交易完成后，可选择对酒店进行评论及评分</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-2-5-根据任务4，参考-使用用例点估算软件成本，给出项目用例点的估算；"><a href="#2-2-5-根据任务4，参考-使用用例点估算软件成本，给出项目用例点的估算；" class="headerlink" title="2.2.5 根据任务4，参考 使用用例点估算软件成本，给出项目用例点的估算；"></a>2.2.5 根据任务4，参考 使用用例点估算软件成本，给出项目用例点的估算；</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">用例</th>
+<th style="text-align:center"># 业务</th>
+<th style="text-align:center"># 计算</th>
+<th style="text-align:center">原因</th>
+<th style="text-align:center">UC比重</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">注册</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">简单</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">登陆</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">简单</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">查询酒店</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">一般</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">预订酒店</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">一般</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">取消预订</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">简单</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">酒店评价</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">简单</td>
+</tr>
+</tbody>
+</table>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://utilcoder.com/计算机图形学/计算机图形学/学习(六)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -509,162 +1145,6 @@
 <h1 id="查询场景、组件querySelector"><a href="#查询场景、组件querySelector" class="headerlink" title="查询场景、组件querySelector"></a>查询场景、组件querySelector</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">window.onload=function()&#123;</span><br><span class="line">    var scene = document.querySelector(&apos;a-scene&apos;);</span><br><span class="line">    var box = scene.querySelector(&apos;a-box&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="获取、修改属性"><a href="#获取、修改属性" class="headerlink" title="获取、修改属性"></a>获取、修改属性</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">window.onload=function()&#123;</span><br><span class="line">    var scene = document.querySelector(&apos;a-scene&apos;);</span><br><span class="line">    var box = scene.querySelector(&apos;a-box&apos;);</span><br><span class="line">    </span><br><span class="line">    // 获取属性</span><br><span class="line">    console.log(box.getAttribute(&apos;position&apos;));   </span><br><span class="line"></span><br><span class="line">    //  修改属性</span><br><span class="line">    box.setAttribute(&apos;color&apos;, &apos;red&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="监听事件"><a href="#监听事件" class="headerlink" title="监听事件"></a>监听事件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">window.onload=function()&#123;</span><br><span class="line">    var scene = document.querySelector(&apos;a-scene&apos;);</span><br><span class="line">    var box = scene.querySelector(&apos;a-box&apos;);</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    box.addEventListener(&apos;click&apos;, function () &#123;</span><br><span class="line">        box.setAttribute(&apos;color&apos;, &apos;red&apos;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/数据挖掘/数据挖掘/(二)-Python数据分析/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/数据挖掘/数据挖掘/(二)-Python数据分析/" itemprop="url">(二) Python数据分析</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-07T21:39:50+08:00">
-                2019-05-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据挖掘/" itemprop="url" rel="index">
-                    <span itemprop="name">数据挖掘</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="../../images\TIM截图20190507213840.png" alt="TIM截图20190507213840"></p>
-<h1 id="Numpy"><a href="#Numpy" class="headerlink" title="Numpy"></a>Numpy</h1><p>​    提供数组功能</p>
-<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line"># 数组创建</span><br><span class="line">    a = np.array([1, 2, 3])</span><br><span class="line"></span><br><span class="line">    a1 = np.array([1, 2, 3], dtype = int32)</span><br><span class="line"></span><br><span class="line">    a2 = np.arange(-10, 10, step = 1)</span><br><span class="line"></span><br><span class="line"># 数组切分</span><br><span class="line">    b = a[1:3]</span><br></pre></td></tr></table></figure>
-<h2 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import random</span><br><span class="line"></span><br><span class="line"># 矩阵创建</span><br><span class="line">    a = np.mat(np.array([1, 2, 3]))  </span><br><span class="line"></span><br><span class="line">    a1 = np.mat(np.zeros(3, 3))</span><br><span class="line"></span><br><span class="line">    a2 = np.mat(np.ones(3, 3))   </span><br><span class="line"></span><br><span class="line">    a3 = np.mat(random.rand(3, 3))  </span><br><span class="line"></span><br><span class="line">    a4 = np.mat(np.eye(3, 3, dtype = int))       3*3的对角矩阵</span><br><span class="line"></span><br><span class="line"># 矩阵运算</span><br><span class="line">    a = b1 * b2</span><br><span class="line"></span><br><span class="line">    a1 = multiply(b1, b2)    对应位置的元素相乘</span><br><span class="line"></span><br><span class="line"># 矩阵的逆</span><br><span class="line">    a = b.I</span><br><span class="line"></span><br><span class="line"># 矩阵的转置</span><br><span class="line">    a = b.T</span><br><span class="line"></span><br><span class="line"># 矩阵的分割</span><br><span class="line">    b = a[1:, 1:]       分割出第二行以后的行和第二列以后的列的所有元素</span><br><span class="line"></span><br><span class="line"># 矩阵的合成</span><br><span class="line">    c = vstack((a, b))  按列合并，即增加行数</span><br><span class="line"></span><br><span class="line">    d = hstack((a, b))  按行合并，即增加列数</span><br><span class="line"></span><br><span class="line"># 矩阵索引</span><br><span class="line">    mat[i]</span><br><span class="line">    mat[i, j]</span><br><span class="line">    mat[i, ]</span><br><span class="line"></span><br><span class="line"># np.mat、python list、np.array的转换</span><br><span class="line"></span><br><span class="line">    array = np.array(list)          # list -&gt; array</span><br><span class="line">    list = array.tolist()           # array -&gt; list</span><br><span class="line"></span><br><span class="line">    mat = np.mat(array)             # array -&gt; mat</span><br><span class="line">    array = mat.getA()              # mat -&gt; array</span><br><span class="line"></span><br><span class="line">    mat = np.mat(list)              # list -&gt; mat</span><br><span class="line">    list = mat.tolist()             # mat -&gt; list</span><br><span class="line"></span><br><span class="line"># mat转换为数值</span><br><span class="line">    mat = np.mat([1])</span><br><span class="line">    value = mat[0, 0]</span><br></pre></td></tr></table></figure>
-<h1 id="Matplotlib"><a href="#Matplotlib" class="headerlink" title="Matplotlib"></a>Matplotlib</h1><p>​    提供可视化功能</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"></span><br><span class="line">x = np.linspace(0, 10, 1000)   # 自变量x</span><br><span class="line">y = np.sin(x) + 1               # 因变量y</span><br><span class="line">z = np.cos(x ** 2) + 1          # 因变量z</span><br><span class="line"></span><br><span class="line">plt.figure(figsize = (8, 4))    # 设置图像大小</span><br><span class="line">plt.plot(x, y, label = &apos;$\sin x + 1$&apos;, color = &apos;red&apos;, linewidth = 2)    # 作x与y的图形, 设置标签、颜色、线条大小</span><br><span class="line">plt.plot(x, z, &apos;b--&apos;, label = &apos;$\cos x^2 + 1$&apos;)     # 作x与z的图形, 设置线条类型</span><br><span class="line">plt.rcParams[&apos;axes.unicode_minus&apos;] = False  # 显示负号</span><br><span class="line">plt.xlabel(&apos;Time(s)&apos;)           # x轴名称</span><br><span class="line">plt.ylabel(&apos;Volt&apos;)              # y轴名称</span><br><span class="line">plt.rcParams[&apos;font.sans-serif&apos;] = [&apos;SimHei&apos;]    # 显示中文标题</span><br><span class="line">plt.title(&apos;样例&apos;)               # 标题</span><br><span class="line">plt.ylim(0, 2.2)                # y轴显示范围</span><br><span class="line">plt.legend()                    # 作图</span><br><span class="line">plt.show()                      # 显示图像</span><br></pre></td></tr></table></figure>
-<h1 id="Pandas"><a href="#Pandas" class="headerlink" title="Pandas"></a>Pandas</h1><p>​    提供大量数据处理函数, 主要的数据结构是Series和DataFrame</p>
-<h2 id="Series"><a href="#Series" class="headerlink" title="Series"></a>Series</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line"></span><br><span class="line"># 创建Series</span><br><span class="line">    s = pd.Series(np.arange(10))</span><br><span class="line"></span><br><span class="line">    s1 = pd.Series(np.array([1, 2, 3]), index = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">pd.read_excel(&apos;data.xls&apos;)                       # 读取Excel文件, 并返回DataFrame</span><br><span class="line">pd.read_csv(&apos;data.csv&apos;, encoding = &apos;utf-8&apos;)     # 读取文本数据, 并返回DataFrame</span><br></pre></td></tr></table></figure>
-<h2 id="DataFrame"><a href="#DataFrame" class="headerlink" title="DataFrame"></a>DataFrame</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 创建DataFrame</span><br><span class="line">    d = pd.DataFrame(np.array([[1, 2], [3, 4]]))</span><br><span class="line"></span><br><span class="line">    d1 = pd.DataFrame(np.array([[1, 2], [3, 4]]), index = [&apos;a&apos;, &apos;b&apos;])</span><br></pre></td></tr></table></figure>
-<p><img src="../../images\TIM截图20190508215334.png" alt="TIM截图20190508215334"></p>
-<h2 id="DataFrame中选取数据"><a href="#DataFrame中选取数据" class="headerlink" title="DataFrame中选取数据"></a>DataFrame中选取数据</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">    name   age  gender isMarried</span><br><span class="line"></span><br><span class="line">a    Joe  25.0       1       yes</span><br><span class="line"></span><br><span class="line">b   Mike  32.0       0       yes</span><br><span class="line"></span><br><span class="line">c   Jack  18.0       1        no</span><br><span class="line"></span><br><span class="line">d   Rose   NaN       1       yes</span><br><span class="line"></span><br><span class="line">e  David  15.0       0        no</span><br><span class="line"></span><br><span class="line">f  Marry  20.0       1        no</span><br><span class="line"></span><br><span class="line">g  Wansi  41.0       0        no</span><br><span class="line"></span><br><span class="line">h   Sidy   NaN       0       yes</span><br><span class="line"></span><br><span class="line">i  Jason  37.0       1        no</span><br><span class="line"></span><br><span class="line">j   Even  32.0       0        no</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">df.at[&apos;b&apos;, &apos;name&apos;]   # 只能使用标签索引, 返回&apos;Mike&apos;</span><br><span class="line"></span><br><span class="line">df.iat[1, 0]         # 只能使用整数索引, &apos;Mike&apos;</span><br></pre></td></tr></table></figure>
-<h2 id="读写数据"><a href="#读写数据" class="headerlink" title="读写数据"></a>读写数据</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line"></span><br><span class="line">pd.read_csv(&apos;data.csv&apos;, encoding = &quot;utf-8&quot;)     # 默认以第一行的数据作为列索引</span><br><span class="line"></span><br><span class="line">pd.read_csv(&apos;data.csv&apos;, encoding = &quot;utf-8&quot;, header = None, names = range(0, 50))    </span><br><span class="line"></span><br><span class="line"># header用指定行数作为列名, 默认第0行为列名, None表示没有列名</span><br><span class="line"># names = range(0, 50)表示以[0...49]作为数据列名, names = names=[&apos;uid&apos;, &apos;age_group&apos;]表示以这两个作为列名</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 读取大型文件</span><br><span class="line"></span><br><span class="line">    1. </span><br><span class="line">    chunks = []                                     # 分块读取大型文件</span><br><span class="line">    for chunk in pd.read_csv(fileName, encoding = &apos;utf-8&apos;, header = None, chunksize = 100000):</span><br><span class="line">        chunks.append(chunk)</span><br><span class="line"></span><br><span class="line">    data = pd.concat(chunks, ignore_index = True)   # 将多个块组合成一个DataFrame</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    2.</span><br><span class="line">    trainDataFolds = pd.read_csv(&apos;train&apos; + str(n) + &apos;.csv&apos;, encoding = &apos;utf-8&apos;, header = None, iterator = True)</span><br><span class="line"></span><br><span class="line">    while True:</span><br><span class="line">        try:</span><br><span class="line">            trainData = trainDataFolds.get_chunk(100000)</span><br><span class="line">            trainData = np.array(trainData)                     # 将DataFrame转换为array</span><br><span class="line"></span><br><span class="line">        except StopIteration:</span><br><span class="line">            break</span><br></pre></td></tr></table></figure>
-<h1 id="Sklearn"><a href="#Sklearn" class="headerlink" title="Sklearn"></a>Sklearn</h1><p>​    提供了机器学习相关的函数, 包括数据预处理、分类、回归、聚类、预测和模型分析</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.linear_model import *</span><br><span class="line"></span><br><span class="line">对于所有模型, 提供的接口: </span><br><span class="line">    model.fit(): 训练模型, 对于监督模型是fit(X, y), 对于非监督模型是fit(X)</span><br><span class="line"></span><br><span class="line">对于监督模型, 提供的接口:</span><br><span class="line">    model.predict(X_new): 预测新样本</span><br><span class="line">    model.predict_proba(X_new): 预测概率</span><br><span class="line">    model.score(): 得分越高, fit越好</span><br><span class="line"></span><br><span class="line">对于非监督模型, 提供的接口:</span><br><span class="line">    model.transform(): 从数据中学到新的&quot;基空间&quot;</span><br><span class="line">    model.fit_transform(): 从数据中学到新的基并将这个数据按照这组&quot;基&quot;进行转换</span><br></pre></td></tr></table></figure>
-<h1 id="Keras"><a href="#Keras" class="headerlink" title="Keras"></a>Keras</h1><p>​    提供了人工神经网络的模型</p>
-
           
         
       
@@ -1679,305 +2159,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/算法/算法/数据结构--堆/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/算法/算法/数据结构--堆/" itemprop="url">堆</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-20T20:56:26+08:00">
-                2019-04-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h1><h1 id="最大堆"><a href="#最大堆" class="headerlink" title="最大堆"></a>最大堆</h1><ul>
-<li>是一颗完全二叉树(因此, 有ceil(n/2)个叶子节点, 非叶子节点为1~floor(n/2))</li>
-<li>每个节点都不小于子节点</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">//	从数组的下标1开始保存元素, i的左孩子是2i, 右孩子是2i+1</span><br><span class="line">int heap[100];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//	向下调整: 将当前节点V与它的子节点比较, 若V比子节点小, 将V与较大的子节点交换; 然后继续将V和子节点进行比较, 直至V不小于子节点</span><br><span class="line">void downAdjust(int low, int high) &#123;</span><br><span class="line">    int i = low, j = i * 2;		//	i为要调整的节点, j为i的左子节点</span><br><span class="line">    while (j &lt;= high) &#123;</span><br><span class="line">        if (j + 1 &lt;= high &amp;&amp; heap[j + 1] &gt; heap[j])		//	右子节点存在, 且比左子节点大</span><br><span class="line">        	j = j + 1;</span><br><span class="line">    </span><br><span class="line">    	if (heap[j] &gt; heap[i]) &#123;</span><br><span class="line">            swap(heap[i], heap[j]);</span><br><span class="line">            i = j;</span><br><span class="line">            j = 2 * i;</span><br><span class="line">    	&#125;</span><br><span class="line">    	else </span><br><span class="line">    		break;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//	建堆</span><br><span class="line">void createHeap() &#123;</span><br><span class="line">    for (int i = n / 2; i &gt;= 1; i--)</span><br><span class="line">    	downAdjust(i, n);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//	删除堆顶元素</span><br><span class="line">void deleteTop() &#123;</span><br><span class="line">    heap[1] = heap[n--];</span><br><span class="line">    downAdjust(1, n);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//	向上调整</span><br><span class="line">void upAdjust(int low, int high) &#123;</span><br><span class="line">	int i = high, j = i / 2;</span><br><span class="line">	while (j &gt;= low) &#123;</span><br><span class="line">        if (heap[j] &lt; heap[i]) &#123;</span><br><span class="line">            swap(heap[j], heap[i]);</span><br><span class="line">            i = j;</span><br><span class="line">            j = i / 2;</span><br><span class="line">        &#125;</span><br><span class="line">        else </span><br><span class="line">        	break;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//	添加元素</span><br><span class="line">void insert(int x) &#123;</span><br><span class="line">	heap[++n] = x;</span><br><span class="line">	upAdjust(1, n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h1><ul>
-<li>每一轮将堆顶元素和最后一个元素交换, 让堆元素减一, 再对堆顶元素进行一次向下调整</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">void heapSort() &#123;</span><br><span class="line">    createHeap();</span><br><span class="line">    for (int i = n; i &gt; 1; i--) &#123;</span><br><span class="line">		swap(heap[i], heap[1]);</span><br><span class="line">		downAdjust(1, i-1);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/算法/算法/并查集/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/算法/算法/并查集/" itemprop="url">并查集</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-20T20:14:23+08:00">
-                2019-04-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h1><ul>
-<li>用于判断两个元素是否在一个集合中</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">int father[N];		//	father[i]表示元素i的父节点</span><br><span class="line"></span><br><span class="line">//	初始化</span><br><span class="line">for (int i = 0; i &lt; N; i++)</span><br><span class="line">	father[i] = i;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">//	查找父节点</span><br><span class="line">int findFather(int x) &#123;</span><br><span class="line">	while(father[x] != x)</span><br><span class="line">		x = father[x];</span><br><span class="line">	return x;	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//	合并集合</span><br><span class="line">void union(int a, int b) &#123;</span><br><span class="line">    int faA = findFather(a);</span><br><span class="line">    int faB = findFather(b);</span><br><span class="line">    if (faA != faB)</span><br><span class="line">    	father[faA] = faB;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="路径压缩"><a href="#路径压缩" class="headerlink" title="路径压缩"></a>路径压缩</h2><ul>
-<li>路径压缩后,  任意节点到其根节点的距离为1, 查找根节点的时间复杂度为O(1)</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">int findFather(int x) &#123;</span><br><span class="line">	int a = x;		//	保存x</span><br><span class="line">	</span><br><span class="line">	while (x != father[x])</span><br><span class="line">		x = father[x];</span><br><span class="line">		</span><br><span class="line">	//	将a到a的根节点这条路径上的所有节点, 都指向a的根节点</span><br><span class="line">	while (a != father[a]) &#123;</span><br><span class="line">		int temp = father[a];</span><br><span class="line">		father[a] = x;</span><br><span class="line">		a = temp;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	return x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2032,7 +2213,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">115</span>
+                  <span class="site-state-item-count">117</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
