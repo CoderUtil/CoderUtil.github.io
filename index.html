@@ -259,7 +259,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/系统分析与设计/系统分析与设计/Final Report/">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/计算机网络学习/面经/计算机网络学习/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CoderUtil">
@@ -278,7 +278,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/系统分析与设计/系统分析与设计/Final Report/" itemprop="url">16340039-CoderUtil Final Report</a></h1>
+                <a class="post-title-link" href="/计算机网络学习/面经/计算机网络学习/" itemprop="url">面经</a></h1>
         
 
         <div class="post-meta">
@@ -290,8 +290,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-02T20:15:36+08:00">
-                2019-07-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-08T15:12:16+08:00">
+                2020-04-08
               </time>
             
 
@@ -313,8 +313,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/系统分析与设计/" itemprop="url" rel="index">
-                    <span itemprop="name">系统分析与设计</span>
+                  <a href="/categories/计算机网络学习/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机网络学习</span>
                   </a>
                 </span>
 
@@ -352,304 +352,576 @@
       
         
           
-            <h1 id="16340039-CoderUtil-Final-Report"><a href="#16340039-CoderUtil-Final-Report" class="headerlink" title="16340039-CoderUtil Final Report"></a>16340039-CoderUtil Final Report</h1><h2 id="1-简短的课程学习自我总结（400字以内）"><a href="#1-简短的课程学习自我总结（400字以内）" class="headerlink" title="1. 简短的课程学习自我总结（400字以内）"></a>1. 简短的课程学习自我总结（400字以内）</h2><h3 id="1-1-学习收获"><a href="#1-1-学习收获" class="headerlink" title="1.1 学习收获"></a>1.1 学习收获</h3><p> 通过本次课程和作业，主要有以下收获：</p>
-<ol>
-<li>体会到领域模型设计对于数据库模型设计的重要指导作用</li>
-<li>体会到 Restful api 接口设计的重要性</li>
-<li>体会到前后端分离开发的重要性</li>
-<li>得到 Web 应用整体架构设计经验</li>
-<li>实现 Nginx 配置转发路径实现前后端分离开发</li>
-<li>了解如何通过Django框架进行后台开发</li>
-<li>学习使用Django自带admin功能进行数据库管理</li>
-<li>学习使用Django的test功能对api进行测试</li>
-<li>学习使用Redis数据库作为缓存进行存储常用数据</li>
-<li>了解如何使用POSTMAN对API进行测试</li>
-<li>进一步规范化 github 分支管理协同开发的流程</li>
-</ol>
-<p>…</p>
-<h3 id="1-2-特别感谢"><a href="#1-2-特别感谢" class="headerlink" title="1.2 特别感谢"></a>1.2 特别感谢</h3><p>缺少以下<strong>任何一个同学</strong>的配合与合作，我都无法按时完成这个挣闲钱系统，特此表示感谢！</p>
-<ul>
-<li>16340035-CHENwz</li>
-<li>16340034-watchcat2k</li>
-<li>16340252-qq253235907</li>
-<li>16340043-Saltish</li>
-<li>16319058-Xujj28</li>
+            <ul>
+<li>OSI七层网络模型</li>
 </ul>
-<h2 id="2-PSP-2-1-统计表"><a href="#2-PSP-2-1-统计表" class="headerlink" title="2. PSP 2.1 统计表"></a>2. PSP 2.1 统计表</h2><table>
+<p>应用层、表示层、会话层、传输层、网络层、链路层、物理层</p>
+<ul>
+<li>TCP和UDP</li>
+</ul>
+<p>TCP: 面向连接、可靠(有流量控制、拥塞控制)</p>
+<p>UDP: 不连接、不可靠</p>
+<ul>
+<li>TCP编程</li>
+</ul>
+<p>服务器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">用socket()创建一个socket</span><br><span class="line"></span><br><span class="line">用setsockopt()设置socket属性; </span><br><span class="line"></span><br><span class="line">用bind()绑定IP地址、端口等信息到socket;</span><br><span class="line"></span><br><span class="line">用listen()开启监听；</span><br><span class="line"></span><br><span class="line">用accept()接收客户端连接；</span><br><span class="line"></span><br><span class="line">用send()和recv()收发数据;</span><br><span class="line"></span><br><span class="line">关闭网络连接；</span><br><span class="line"></span><br><span class="line">关闭监听.</span><br></pre></td></tr></table></figure>
+<p>客户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">用socket()创建一个socket</span><br><span class="line"></span><br><span class="line">用setsockopt()设置socket属性; </span><br><span class="line"></span><br><span class="line">用bind()绑定IP地址、端口等信息到socket;</span><br><span class="line"></span><br><span class="line">用connect()发送客户端连接；</span><br><span class="line"></span><br><span class="line">用send()和recv()收发数据;</span><br><span class="line"></span><br><span class="line">关闭网络连接；</span><br></pre></td></tr></table></figure>
+<ul>
+<li>UDP编程</li>
+</ul>
+<p>服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">用socket()创建一个socket</span><br><span class="line"></span><br><span class="line">用setsockopt()设置socket属性; </span><br><span class="line"></span><br><span class="line">用bind()绑定IP地址、端口等信息到socket;</span><br><span class="line"></span><br><span class="line">用recvfroem()循环接收数据;</span><br><span class="line"></span><br><span class="line">关闭网络连接；</span><br></pre></td></tr></table></figure>
+<p>客户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">用socket()创建一个socket</span><br><span class="line"></span><br><span class="line">用setsockopt()设置socket属性; </span><br><span class="line"></span><br><span class="line">用bind()绑定IP地址、端口等信息到socket;</span><br><span class="line"></span><br><span class="line">用sendto()发送数据;</span><br><span class="line"></span><br><span class="line">关闭网络连接；</span><br></pre></td></tr></table></figure>
+<ul>
+<li>端口</li>
+</ul>
+<p>端口是一个抽象的概念, 并没有真正的端口, 端口号看成某个进程的标识</p>
+<ul>
+<li><p>TCP三次握手</p>
+<p>不携带数据, 只消耗一个序列号(用于流量控制, 当发生丢包可以将期望及以后的包重传)</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Client: SYN = 1, seq = x</span><br><span class="line"></span><br><span class="line">Server: SYN = 1, ACK = 1, ack = x + 1, seq = y</span><br><span class="line"></span><br><span class="line">Client: ACK = 1, ack = y + 1, seq = x + 1</span><br></pre></td></tr></table></figure>
+<p>为什么要三次握手:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">为了防止失效的连接请求到底服务器</span><br><span class="line"></span><br><span class="line">假设客户端发送的第一次请求在网络中滞留，客户端得到不到相应后就会重新发送请求建立连接。假设第一次无效的连接，很久后又到达了服务器，假设只有两次握手，则这时服务的就会进入连接建立状态，而客户端却认为这次请求是无效的</span><br></pre></td></tr></table></figure>
+<ul>
+<li>TCP四次挥手</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Client: FIN = 1, seq = x</span><br><span class="line"></span><br><span class="line">Server: FIN = 1, ACK = 1, ack = x + 1, seq = y</span><br><span class="line"></span><br><span class="line">服务端在回复完客户端的TCP断开请求后，不会马上进行TCP连接的断开，服务端会先确保断开前，所有传输的数据都传输完毕. 当服务器端传输完毕后, 向客户端发送断开连接的请求</span><br><span class="line"></span><br><span class="line">Server: FIN = 1, ACK = 1, ack = x + 1, seq = z</span><br><span class="line"></span><br><span class="line">Client: FIN = 1, ACK = 1, ack = z + 1, seq = x + 1</span><br></pre></td></tr></table></figure>
+<p>为什么要四次挥手</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">当Server端收到FIN报文时，很可能并不会立即关闭SOCKET，所以只能先回复一个ACK报文，告诉Client端，”你发的FIN报文我收到了”。只有等到我Server端所有的报文都发送完了，我才能发送FIN报文，因此不能一起发送。故需要四步握手。</span><br></pre></td></tr></table></figure>
+<ul>
+<li>TIME_WAIT</li>
+</ul>
+<p>客户端在发送完第四次挥手后，不是立马进入CLOSE状态，而是进入持续2MSL(最大报文段寿命)的TIME_WAIT阶段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 确保最后一个确认报文能够到达。如果没能到达，服务端就会会重发FIN请求释放连接, 客户端再发送一次LAST ack信号</span><br><span class="line"></span><br><span class="line">2. 让本连接所产生的所有报文都从网络中消失，使得下一个新的连接不会出现旧的连接请求报文</span><br></pre></td></tr></table></figure>
+<p><strong>TIME_WAIT</strong> 表示主动关闭，<strong>CLOSE_WAIT</strong> 表示被动关闭</p>
+<ul>
+<li>socket半关闭</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">当A发送给B控制FIN的时候，A到B这个方向的连接就关闭了，这个时候处于半关闭的状态</span><br><span class="line"></span><br><span class="line">当B将数据全部发送完毕之后才会发送FIN给A, 此时socket全关闭</span><br></pre></td></tr></table></figure>
+<ul>
+<li>TCP拥塞控制</li>
+</ul>
+<p>防止过多的数据注入到网络中</p>
+<p>慢开始(指数增长): 刚建立连接时, cwnd = 1, 每经过一个RTT, cwnd翻倍(若翻倍后cwnd &gt; ssthresh， cwnd=ssthresh), 进入拥塞避免阶段</p>
+<p>拥塞避免: cwnd = ssthresh时, 每经过一个RTT, cwnd加1. 当超时, ssthresh = cwnd / 2, cwnd = 1, 进入慢开始阶段</p>
+<p>快重传, 快恢复: 当收到三个冗余ACK, 不必等待重传计时器超时, 直接重传, cwnd = ssthresh = cwnd / 2, 进入拥塞避免阶段</p>
+<ul>
+<li>流量控制</li>
+</ul>
+<p>接收方控制发送方的发送速率</p>
+<p>停止等待: 发送方发送后等待确认, 期间不能发送其他帧, WT = WR = 1</p>
+<p>后退N帧: 发送方可以一次发送多个帧, 接收方一次只能接受一个帧, 若不是期望的帧, 则要求重发期望及以后的帧, WT &gt; 1, WR = 1</p>
+<p>选择重传: 发送方可以一次发送多个帧, 接收方等窗口中所有帧到齐后一并交付, 只重传超时和出错的帧, WT &gt; 1, WR &gt; 1</p>
+<ul>
+<li>滑动窗口</li>
+</ul>
+<p>在流量控制中, 滑动窗口存储允许发送/接收的帧编号</p>
+<ul>
+<li>TCP可靠传输机制</li>
+</ul>
+<p>流量控制、拥塞控制、检验和、超时重传</p>
+<ul>
+<li>HTTP</li>
+</ul>
+<p>无状态协议</p>
+<p>HTTP1.0: 非持久连接, 每个网页元素比如图像都要单独建立TCP连接</p>
+<p>HTTP1.1: 持久连接. 支持流水线传输, 还没收到响应就能继续发送请求</p>
+<p>HTTP2.0: 支持 HTTP 首部压缩, 支持服务端推送, 即在客户端请求之前发送数据以便缓存的机制</p>
+<p>访问URL的过程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">DNS解析获取IP地址</span><br><span class="line"></span><br><span class="line">建立TCP连接</span><br><span class="line"></span><br><span class="line">发送HTTP请求</span><br><span class="line"></span><br><span class="line">获取HTTP响应</span><br><span class="line"></span><br><span class="line">释放TCP连接</span><br></pre></td></tr></table></figure>
+<ul>
+<li>HTTP方法</li>
+</ul>
+<p>GET: 获取数据的请求. 请求会附加在URL上, 数据长度受限制, 不安全</p>
+<p>POST: 修改服务器上的资源的请求. 请求放在请求中</p>
+<p>PUT: 向指定资源位置上传其最新内容 </p>
+<p>DELETE: 删除URL所标识的资源</p>
+<ul>
+<li>HTTP状态码</li>
+</ul>
+<p>200 OK</p>
+<p>301 Moved Permanently 永久重定向，资源已永久分配新URI</p>
+<p>400 Bad Request 请求报文语法错误或参数错误</p>
+<p>404 Not Found 无法找到请求资源</p>
+<p>2表示成功, 3表示重定向, 4表示客户端错误, 5表示服务器端错误</p>
+<ul>
+<li>HTTPS</li>
+</ul>
+<p>HTTPS = HTTP + TLS和 SSL</p>
+<p>HTTP是明文传输, 而 HTTPS 将明文内容进行了加密</p>
+<p>HTTPS同时使用对称加密和非对称加密. </p>
+<p>非对称加密用于在双方传递密钥, 以便对信息进行对称加密</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Client请求HTTPS连接</span><br><span class="line"></span><br><span class="line">Server发送公钥</span><br><span class="line"></span><br><span class="line">Client用公钥对自己的密钥加密, 发送密文</span><br><span class="line"></span><br><span class="line">Server用私钥对密文解密, 获取Client的密钥, 此时Client和Server拥有同样的密钥, 可以进行对称加密</span><br></pre></td></tr></table></figure>
+<ul>
+<li>数字证书、数字签名</li>
+</ul>
+<p>具有风险, 因为公钥是暴露出来的，当公钥被中间人替换成自己的公钥发送给客户端，中间人就可以得到对称加密的密钥, 因此引入数字证书和签名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Client请求HTTPS连接</span><br><span class="line"></span><br><span class="line">Server发送公钥、数字证书、签名摘要</span><br><span class="line"></span><br><span class="line">Client开始查找操作系统中内置的证书发布机构CA, 判断证书是否合法, 若合法会用公钥对证书的签名进行摘要算法, 比对摘要是否相同. 最后用公钥对自己的密钥加密, 发送密文</span><br><span class="line"></span><br><span class="line">Server用私钥对密文解密, 获取Client的密钥, 此时Client和Server拥有同样的密钥, 可以进行对称加密</span><br></pre></td></tr></table></figure>
+<ul>
+<li>加密</li>
+</ul>
+<p>对称加密: 加密和解密使用同样的密钥, 如DES</p>
+<p>非对称加密: 使用了公钥和私钥, 私钥不能外泄，而公钥则可以发给它人, 公钥加密后得用私钥解密, 如RSA</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">A生成一对密钥并将公钥发给B</span><br><span class="line"></span><br><span class="line">B得到公钥后用该密钥对信息加密, 再发送给A</span><br><span class="line"></span><br><span class="line">A用密钥对密文进行解密</span><br></pre></td></tr></table></figure>
+<p>HASH加密(摘要): 通过HASH算法将信息生成一段HASH值, HASH值无法还原成信息, 如MD5, SHA</p>
+<ul>
+<li>SSL层: 位于应用层和传输层之间, 利用身份验证, 数据验证等机制, 为基于TCP等可靠连接的应用层协议提供安全性保证</li>
+</ul>
+<ul>
+<li>Ping</li>
+</ul>
+<p>用于测试两台主机之间的连通性. ICMP差错报告协议</p>
+<ul>
+<li>TCP/IP协议族</li>
+</ul>
+<p>网络层: IP、ICMP、ARP(IP地址转换为MAC地址)</p>
+<p>传输层: TCP、UDP</p>
+<p>应用层: DNS(使用UDP)、HTTP、FTP、SMTP</p>
+<ul>
+<li>交换机的工作原理(隔离冲突域)</li>
+</ul>
+<p>通过自学习算法建立转发表. 每收到一帧, 记下源地址和进入网桥的端口, 作为转发表的一项</p>
+<p>若转发表中不存在帧的目的地址, 交换机会广播一个发现帧, 目的站收到后发送应答帧, 应答帧在返回的过程中记录沿途的交换机. 源交换机收到应答帧后, 就能得到转发的最佳端口</p>
+<ul>
+<li>路由器的工作原理(隔离广播域)</li>
+</ul>
+<p>最长前缀路由匹配</p>
+<ul>
+<li>IP分组</li>
+</ul>
+<p>因为数据比MTU(帧能承载的最大数据量)大, 因为得分组. 在第一个路由器处分装, 在目的主机重组</p>
+<ul>
+<li>抓包经历</li>
+</ul>
+<ul>
+<li>默认网关</li>
+</ul>
+<p>默认路由器的IP地址</p>
+<ul>
+<li>无分类域间路由选择CIDR</li>
+</ul>
+<p>消除A、B、C类子网以及子网划分的概念</p>
+<p>IP地址写成:  IP地址/网络前缀所占位数</p>
+<ul>
+<li>网络地址转换NAT</li>
+</ul>
+<p>将私有网络地址转换为公有地址, 对外隐藏内部IP地址, 使整个网络只要一个IP地址</p>
+<ul>
+<li><p>内部网关协议IGP</p>
+<p>自治系统内的路由选择协议</p>
+</li>
+</ul>
+<p>RIP: 使用距离向量算法, 路由表包含到所有结点的费用, 发送给相邻结点, 固定更新频率</p>
+<p>OSPF: 使用链路状态算法, 路由表包含到相邻结点的费用, 发送给所有结点, 当路由表发生变化时更新</p>
+<ul>
+<li><p>外部网关协议EGP</p>
+<p>自治系统间的路由选择协议, 包括BGP</p>
+</li>
+</ul>
+<ul>
+<li><p>DDOS攻击</p>
+<p>分布式阻断服务</p>
+</li>
+</ul>
+<p>  资源消耗类, 发送大量的攻击数据包，消耗网络带宽资源，影响正常用户的访问</p>
+<p>​    服务消耗类, 发送大量的数据库查询, 消耗服务器资源</p>
+<ul>
+<li>Socket</li>
+</ul>
+<p>socket是在应用层和传输层之间的一个抽象层, 它把TCP/IP层复杂的操作抽象为几个简单的接口供应用层调用</p>
+<ul>
+<li>cookie和session</li>
+</ul>
+<p>cookie: 存储在客户端, 单个cookie&lt;=4k, 一个站点最多保存20个cookie, 存储ASCII字符</p>
+<p>session: 存储在服务器端, 存储任何类型数据</p>
+<ul>
+<li>分组转发</li>
+</ul>
+<p>(1) 如果在同一子网内, 直接得到目的IP地址, 进入(3)</p>
+<p>(2) 如果在同一子网内, 分组从路由表得出下一跳路由器的IP地址后, 进入(3)</p>
+<p>(3) 分组封装成帧进入链路层, 根据ARP协议, 将目的IP地址转换为MAC地址, 然后发送帧. </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/数据库学习/面经/数据库学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/数据库学习/面经/数据库学习/" itemprop="url">面经</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-08T15:12:16+08:00">
+                2020-04-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库学习/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li><p>存储过程</p>
+<p>预编译的SQL语句, 可以多次调用</p>
+</li>
+</ul>
+<ul>
+<li><p>触发器</p>
+<p>特殊的存储过程, 通过事件触发而被执行</p>
+</li>
+</ul>
+<ul>
+<li><p>游标</p>
+<p>从数据表中提取出来的数据，以临时表的形式存放在内存中，在游标中有一个数据指针，在初始状态下指向的是首记录</p>
+</li>
+</ul>
+<ul>
+<li><p>视图</p>
+<p>一张虚拟的表, 可以简化用户的操作, 视图只保存了sql语句，没有保存数据，每次使用视图时会去执行sql语句在它的基表中查询数据(Django的admin)</p>
+</li>
+</ul>
+<ul>
+<li><p>事务</p>
+<p>绑定的一组SQL语句</p>
+</li>
+</ul>
+<p>  特性ACID</p>
+<p>  A: 原子性, 要么都执行, 要么都不执行</p>
+<p>  C: 一致性, 事务前后数据总额一致</p>
+<p>   I: 隔离性, 事务执行完之前不被看到过程</p>
+<p>  D: 持久性, 提交后永久改变数据</p>
+<ul>
+<li><p>脏读、不可重复读、幻读</p>
+<p>脏读: 事务A读取了事务B更新但未提交的数据，然后B回滚，那么A读取到的数据是脏数据</p>
+</li>
+</ul>
+<p>  不可重复读: 事务 A 多次读取同一数据，事务 B 在事务A多次读取的过程中，对数据作了更新并提交，导致事务A多次读取同一数据时，结果因此本事务先后两次读到的数据结果会不一致</p>
+<p>  幻读: 连续执行两次同样的SQL语句第二次的SQL语句可能返回之前不存在的行</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在事务1中，查询User表id为1的是用户否存在，如果不存在则插入一条id为1的数据。在事务1查询结束后，事务2往User表中插入了一条id为1的数据。此时事务1插入失败, 因为主键冲突</span><br></pre></td></tr></table></figure>
+<p>不可重复读与幻读的区别: </p>
+<p>不可重复读的重点是修改, 同样的条件, 你读取过的数据, 再次读取出来发现值不一样了</p>
+<p>幻读的重点在于新增或者删除, 同样的条件, 第1次和第2次读出来的记录数不一样</p>
+<ul>
+<li><p>数据库隔离级别</p>
+<p>读未提交: 可以读到未提交的内容</p>
+</li>
+</ul>
+<p>  不可重复读(读已提交): 事务 A 多次读取同一数据，事务 B 在事务A多次读取的过程中，对数据作了更新并提交，导致事务A多次读取同一数据时，结果因此本事务先后两次读到的数据结果会不一致</p>
+<p>  可重复读: MySQL默认级别, SELECT的结果是事务开始时时间点的状态，因此，同样的SELECT操作读到的结果会是一致的</p>
+<p>  串行化: 事务串行执行</p>
+<table>
 <thead>
 <tr>
-<th style="text-align:left">PSP 2.1</th>
-<th style="text-align:left">Personal Software Process Stages</th>
-<th style="text-align:left">Time (%)</th>
+<th>事务隔离级别</th>
+<th>脏读</th>
+<th>不可重复读</th>
+<th>幻读</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><strong>Planning</strong></td>
-<td style="text-align:left"><strong>计划</strong></td>
-<td style="text-align:left"><strong>7</strong></td>
+<td>读未提交 read-uncommitted</td>
+<td>是</td>
+<td>是</td>
+<td>是</td>
 </tr>
 <tr>
-<td style="text-align:left"><code></code>Estimate</td>
-<td style="text-align:left"><code></code>估计这个任务需要多少时间</td>
-<td style="text-align:left">7</td>
+<td>不可重复读 read-committed</td>
+<td>否</td>
+<td>是</td>
+<td>是</td>
 </tr>
 <tr>
-<td style="text-align:left"><strong>Development</strong></td>
-<td style="text-align:left"><strong>开发</strong></td>
-<td style="text-align:left"><strong>85</strong></td>
+<td>可重复读 repeatable-read     MySQL默认级别</td>
+<td>否</td>
+<td>否</td>
+<td>是</td>
 </tr>
 <tr>
-<td style="text-align:left"><code></code>Analysis</td>
-<td style="text-align:left"><code></code>需求分析</td>
-<td style="text-align:left">11</td>
-</tr>
-<tr>
-<td style="text-align:left"><code></code>Design Spec</td>
-<td style="text-align:left"><code></code>生成设计文档</td>
-<td style="text-align:left">6</td>
-</tr>
-<tr>
-<td style="text-align:left"><code></code>Design Review</td>
-<td style="text-align:left"><code></code>设计文档审核</td>
-<td style="text-align:left">5</td>
-</tr>
-<tr>
-<td style="text-align:left"><code></code>Coding Standard</td>
-<td style="text-align:left"><code></code>制定代码规范</td>
-<td style="text-align:left">2</td>
-</tr>
-<tr>
-<td style="text-align:left"><code></code>Design</td>
-<td style="text-align:left"><code></code>具体设计</td>
-<td style="text-align:left">4</td>
-</tr>
-<tr>
-<td style="text-align:left"><code></code>Coding</td>
-<td style="text-align:left"><code></code>构建代码</td>
-<td style="text-align:left">35</td>
-</tr>
-<tr>
-<td style="text-align:left"><code></code>Coding Review</td>
-<td style="text-align:left"><code></code>代码审核</td>
-<td style="text-align:left">8</td>
-</tr>
-<tr>
-<td style="text-align:left"><code></code>Test</td>
-<td style="text-align:left"><code></code>代码测试</td>
-<td style="text-align:left">14</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>Reporting</strong></td>
-<td style="text-align:left"><strong>报告</strong></td>
-<td style="text-align:left"><strong>8</strong></td>
-</tr>
-<tr>
-<td style="text-align:left"><code></code>Test Report</td>
-<td style="text-align:left"><code></code>测试报告</td>
-<td style="text-align:left">2</td>
-</tr>
-<tr>
-<td style="text-align:left"><code></code>Size Measurement</td>
-<td style="text-align:left"><code></code>计算工作量</td>
-<td style="text-align:left">2</td>
-</tr>
-<tr>
-<td style="text-align:left"><code></code>Process &amp; Postmortem</td>
-<td style="text-align:left"><code></code>总结与改进</td>
-<td style="text-align:left">2</td>
+<td>串行化 serializable</td>
+<td>否</td>
+<td>否</td>
+<td>否</td>
 </tr>
 </tbody>
 </table>
-<h2 id="3-个人分支的GIT统计报告"><a href="#3-个人分支的GIT统计报告" class="headerlink" title="3. 个人分支的GIT统计报告"></a>3. 个人分支的GIT统计报告</h2><p><img src="../../images/1.png" alt="1"></p>
-<p><img src="../../images/2.png" alt="2"></p>
-<h2 id="4-自认为最得意-或有价值-或有苦劳的工作清单，含简短说明"><a href="#4-自认为最得意-或有价值-或有苦劳的工作清单，含简短说明" class="headerlink" title="4. 自认为最得意/或有价值/或有苦劳的工作清单，含简短说明"></a>4. 自认为最得意/或有价值/或有苦劳的工作清单，含简短说明</h2><h4 id="4-1-最得意"><a href="#4-1-最得意" class="headerlink" title="4.1 最得意"></a><strong>4.1 最得意</strong></h4><ul>
-<li>使用Redis缓存数据库保存常用的数据</li>
-<li>实现CSRF-token认证</li>
-</ul>
-<h4 id="4-2-最有价值"><a href="#4-2-最有价值" class="headerlink" title="4.2 最有价值"></a><strong>4.2 最有价值</strong></h4><ul>
-<li>通过Django、MySQL、API文档、数据库模型构造出项目的MVVM架构, 并多次重构</li>
-</ul>
-<h4 id="4-3-最有苦劳"><a href="#4-3-最有苦劳" class="headerlink" title="4.3 最有苦劳"></a><strong>4.3 最有苦劳</strong></h4><ul>
-<li>设计符合项目的数据库模型, 并在开发的过程中不断重构与完善</li>
-<li>通过Django的test文件实现API的单元测试功能</li>
-</ul>
-<h2 id="5-个人的技术类、项目管理类博客清单"><a href="#5-个人的技术类、项目管理类博客清单" class="headerlink" title="5. 个人的技术类、项目管理类博客清单"></a>5. 个人的技术类、项目管理类博客清单</h2><ol>
-<li><p><a href="http://utilcoder.com/Django/Django/Django%E5%AD%A6%E4%B9%A0(%E4%B8%80">Django学习指南(一)</a>/&gt;). </p>
-</li>
-<li><p><a href="http://utilcoder.com/Django/Django/Django%E5%AD%A6%E4%B9%A0(%E4%BA%8C">Django学习指南(二)</a>/&gt;). </p>
-</li>
-<li><p><a href="http://utilcoder.com/Git/Git/Git%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">Git命令总结</a>. </p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/数据挖掘/数据挖掘/(二)-Python数据分析/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/数据挖掘/数据挖掘/(二)-Python数据分析/" itemprop="url">(二) Python数据分析</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-25T23:28:12+08:00">
-                2019-06-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据挖掘/" itemprop="url" rel="index">
-                    <span itemprop="name">数据挖掘</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="安装模块"><a href="#安装模块" class="headerlink" title="安装模块"></a>安装模块</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">使用清华大学的pip源，它是官网pypi的镜像，每隔5分钟同步一次</span><br><span class="line"></span><br><span class="line">安装gevent模块:</span><br><span class="line">    pip install -i https://pypi.tuna.tsinghua.edu.cn/simple gevent</span><br></pre></td></tr></table></figure>
-<p><img src="../../images\TIM截图20190507213840.png" alt="TIM截图20190507213840"></p>
-<h1 id="Numpy"><a href="#Numpy" class="headerlink" title="Numpy"></a>Numpy</h1><p>​    提供数组功能</p>
-<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line"># 数组创建</span><br><span class="line">    a = np.array([1, 2, 3])</span><br><span class="line"></span><br><span class="line">    a1 = np.array([1, 2, 3], dtype = int32)</span><br><span class="line"></span><br><span class="line">    a2 = np.arange(-10, 10, step = 1)</span><br><span class="line"></span><br><span class="line"># 数组切分</span><br><span class="line">    b = a[1:3]</span><br></pre></td></tr></table></figure>
-<h2 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import random</span><br><span class="line"></span><br><span class="line"># 矩阵创建</span><br><span class="line">    a = np.mat(np.array([1, 2, 3]))  </span><br><span class="line"></span><br><span class="line">    a1 = np.mat(np.zeros(3, 3))</span><br><span class="line"></span><br><span class="line">    a2 = np.mat(np.ones(3, 3))   </span><br><span class="line"></span><br><span class="line">    a3 = np.mat(random.rand(3, 3))  </span><br><span class="line"></span><br><span class="line">    a4 = np.mat(np.eye(3, 3, dtype = int))       3*3的对角矩阵</span><br><span class="line"></span><br><span class="line"># 矩阵运算</span><br><span class="line">    a = b1 * b2</span><br><span class="line"></span><br><span class="line">    a1 = multiply(b1, b2)    对应位置的元素相乘</span><br><span class="line"></span><br><span class="line"># 矩阵的逆</span><br><span class="line">    a = b.I</span><br><span class="line"></span><br><span class="line"># 矩阵的转置</span><br><span class="line">    a = b.T</span><br><span class="line"></span><br><span class="line"># 矩阵的分割</span><br><span class="line">    b = a[1:, 1:]       分割出第二行以后的行和第二列以后的列的所有元素</span><br><span class="line"></span><br><span class="line"># 矩阵的合成</span><br><span class="line">    c = vstack((a, b))  按列合并，即增加行数</span><br><span class="line"></span><br><span class="line">    d = hstack((a, b))  按行合并，即增加列数</span><br><span class="line"></span><br><span class="line"># 矩阵索引</span><br><span class="line">    mat[i]</span><br><span class="line">    mat[i, j]</span><br><span class="line">    mat[i, ]</span><br><span class="line"></span><br><span class="line"># np.mat、python list、np.array的转换</span><br><span class="line"></span><br><span class="line">    array = np.array(list)          # list -&gt; array</span><br><span class="line">    list = array.tolist()           # array -&gt; list</span><br><span class="line"></span><br><span class="line">    mat = np.mat(array)             # array -&gt; mat</span><br><span class="line">    array = mat.getA()              # mat -&gt; array</span><br><span class="line"></span><br><span class="line">    mat = np.mat(list)              # list -&gt; mat</span><br><span class="line">    list = mat.tolist()             # mat -&gt; list</span><br><span class="line"></span><br><span class="line"># mat转换为数值</span><br><span class="line">    mat = np.mat([1])</span><br><span class="line">    value = mat[0, 0]</span><br></pre></td></tr></table></figure>
-<h1 id="Matplotlib"><a href="#Matplotlib" class="headerlink" title="Matplotlib"></a>Matplotlib</h1><p>​    提供可视化功能</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"></span><br><span class="line">x = np.linspace(0, 10, 1000)   # 自变量x</span><br><span class="line">y = np.sin(x) + 1               # 因变量y</span><br><span class="line">z = np.cos(x ** 2) + 1          # 因变量z</span><br><span class="line"></span><br><span class="line">plt.figure(figsize = (8, 4))    # 设置图像大小</span><br><span class="line">plt.plot(x, y, label = &apos;$\sin x + 1$&apos;, color = &apos;red&apos;, linewidth = 2)    # 作x与y的图形, 设置标签、颜色、线条大小</span><br><span class="line">plt.plot(x, z, &apos;b--&apos;, label = &apos;$\cos x^2 + 1$&apos;)     # 作x与z的图形, 设置线条类型</span><br><span class="line">plt.rcParams[&apos;axes.unicode_minus&apos;] = False  # 显示负号</span><br><span class="line">plt.xlabel(&apos;Time(s)&apos;)           # x轴名称</span><br><span class="line">plt.ylabel(&apos;Volt&apos;)              # y轴名称</span><br><span class="line">plt.rcParams[&apos;font.sans-serif&apos;] = [&apos;SimHei&apos;]    # 显示中文标题</span><br><span class="line">plt.title(&apos;样例&apos;)               # 标题</span><br><span class="line">plt.ylim(0, 2.2)                # y轴显示范围</span><br><span class="line">plt.legend()                    # 作图</span><br><span class="line">plt.show()                      # 显示图像</span><br></pre></td></tr></table></figure>
-<h1 id="Pandas"><a href="#Pandas" class="headerlink" title="Pandas"></a>Pandas</h1><p>​    提供大量数据处理函数, 主要的数据结构是Series和DataFrame</p>
-<h2 id="Series"><a href="#Series" class="headerlink" title="Series"></a>Series</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line"></span><br><span class="line"># 创建Series</span><br><span class="line">    s = pd.Series(np.arange(10))</span><br><span class="line"></span><br><span class="line">    s1 = pd.Series(np.array([1, 2, 3]), index = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">pd.read_excel(&apos;data.xls&apos;)                       # 读取Excel文件, 并返回DataFrame</span><br><span class="line">pd.read_csv(&apos;data.csv&apos;, encoding = &apos;utf-8&apos;)     # 读取文本数据, 并返回DataFrame</span><br></pre></td></tr></table></figure>
-<h2 id="DataFrame"><a href="#DataFrame" class="headerlink" title="DataFrame"></a>DataFrame</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 创建DataFrame</span><br><span class="line">    d = pd.DataFrame(np.array([[1, 2], [3, 4]]))</span><br><span class="line"></span><br><span class="line">    d1 = pd.DataFrame(np.array([[1, 2], [3, 4]]), index = [&apos;a&apos;, &apos;b&apos;])</span><br></pre></td></tr></table></figure>
-<p><img src="../../images\TIM截图20190508215334.png" alt="TIM截图20190508215334"></p>
-<h2 id="DataFrame中选取数据"><a href="#DataFrame中选取数据" class="headerlink" title="DataFrame中选取数据"></a>DataFrame中选取数据</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">    name   age  gender isMarried</span><br><span class="line"></span><br><span class="line">a    Joe  25.0       1       yes</span><br><span class="line"></span><br><span class="line">b   Mike  32.0       0       yes</span><br><span class="line"></span><br><span class="line">c   Jack  18.0       1        no</span><br><span class="line"></span><br><span class="line">d   Rose   NaN       1       yes</span><br><span class="line"></span><br><span class="line">e  David  15.0       0        no</span><br><span class="line"></span><br><span class="line">f  Marry  20.0       1        no</span><br><span class="line"></span><br><span class="line">g  Wansi  41.0       0        no</span><br><span class="line"></span><br><span class="line">h   Sidy   NaN       0       yes</span><br><span class="line"></span><br><span class="line">i  Jason  37.0       1        no</span><br><span class="line"></span><br><span class="line">j   Even  32.0       0        no</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">df.at[&apos;b&apos;, &apos;name&apos;]   # 只能使用标签索引, 返回&apos;Mike&apos;</span><br><span class="line"></span><br><span class="line">df.iat[1, 0]         # 只能使用整数索引, &apos;Mike&apos;</span><br></pre></td></tr></table></figure>
 <ul>
-<li>参考链接:<br>  <a href="https://www.jianshu.com/p/6d1677cdacbb" target="_blank" rel="noopener">https://www.jianshu.com/p/6d1677cdacbb</a><br>  <a href="https://www.jianshu.com/p/f430d4f1b33f" target="_blank" rel="noopener">https://www.jianshu.com/p/f430d4f1b33f</a></li>
+<li><p>MySQL存储引擎</p>
+<p><strong>InnoDB</strong>：支持事务处理，支持外键，存储在硬盘, 索引是B+树</p>
+<p><strong>MEMORY</strong>：所有的数据都在内存中，数据的处理速度快(默认Hash索引)，但是安全性不高。如果需要很快的读写速度，对数据的安全性要求较低</p>
+</li>
 </ul>
-<h2 id="读写数据"><a href="#读写数据" class="headerlink" title="读写数据"></a>读写数据</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line"></span><br><span class="line">pd.read_csv(&apos;data.csv&apos;, encoding = &quot;utf-8&quot;)     # 默认以第一行的数据作为列索引</span><br><span class="line"></span><br><span class="line">pd.read_csv(&apos;data.csv&apos;, encoding = &quot;utf-8&quot;, header = None, names = range(0, 50))    </span><br><span class="line"></span><br><span class="line"># header用指定行数作为列名, 默认第0行为列名, None表示没有列名</span><br><span class="line"># names = range(0, 50)表示以[0...49]作为数据列名, names = names=[&apos;uid&apos;, &apos;age_group&apos;]表示以这两个作为列名</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 读取大型文件</span><br><span class="line"></span><br><span class="line">    1. </span><br><span class="line">    chunks = []                                     # 分块读取大型文件</span><br><span class="line">    for chunk in pd.read_csv(fileName, encoding = &apos;utf-8&apos;, header = None, chunksize = 100000):</span><br><span class="line">        chunks.append(chunk)</span><br><span class="line"></span><br><span class="line">    data = pd.concat(chunks, ignore_index = True)   # 将多个块组合成一个DataFrame</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    2.</span><br><span class="line">    trainDataFolds = pd.read_csv(&apos;train&apos; + str(n) + &apos;.csv&apos;, encoding = &apos;utf-8&apos;, header = None, iterator = True)</span><br><span class="line"></span><br><span class="line">    while True:</span><br><span class="line">        try:</span><br><span class="line">            trainData = trainDataFolds.get_chunk(100000)</span><br><span class="line">            trainData = np.array(trainData)                     # 将DataFrame转换为array</span><br><span class="line"></span><br><span class="line">        except StopIteration:</span><br><span class="line">            break</span><br></pre></td></tr></table></figure>
-<h2 id="groupy与agg"><a href="#groupy与agg" class="headerlink" title="groupy与agg"></a>groupy与agg</h2><p>一般与groupby一起用. 比如, 若想将一个班按照180以上的是一组, 160-180是一组, 低于160是一组进行分组, 可以使用groupby; 而我们分好组以后, 想得到每一组的平均值, 就可以用agg<br><img src="../../images\TIM截图20190615202012.png" alt="TIM截图20190615202012"><br><a href="https://blog.csdn.net/u012706792/article/details/80892510" target="_blank" rel="noopener">https://blog.csdn.net/u012706792/article/details/80892510</a></p>
-<h2 id="set-index-reset-index"><a href="#set-index-reset-index" class="headerlink" title="set_index, reset_index"></a>set_index, reset_index</h2><ul>
-<li>reset_index可以在groupby后将列索引还原, 一般与groupby一起使用<br><a href="https://www.cnblogs.com/Allen-rg/p/9694979.html" target="_blank" rel="noopener">https://www.cnblogs.com/Allen-rg/p/9694979.html</a></li>
+<ul>
+<li><p>查询语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select 列名 from 表名 where 列的条件 group by 分组方式 having 分组过滤方式 order by 按列排序</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<h2 id="columns"><a href="#columns" class="headerlink" title="columns"></a>columns</h2><p>修改列名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line">df = pd.DataFrame(&#123;&apos;$a&apos;: [1], &apos;$b&apos;: [1], &apos;$c&apos;: [1], &apos;$d&apos;: [1], &apos;$e&apos;: [1]&#125;)  # 列名为[&apos;$a&apos;, &apos;$b&apos;, &apos;$c&apos;, &apos;$d&apos;, &apos;$e&apos;] </span><br><span class="line"></span><br><span class="line">df.columns = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;]                                      # 修改列名为[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;]</span><br></pre></td></tr></table></figure></p>
-<h2 id="fillna"><a href="#fillna" class="headerlink" title="fillna"></a>fillna</h2><p>填充缺失值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">      0     1     2   3</span><br><span class="line">a   NaN   NaN   NaN   6</span><br><span class="line">b   NaN   NaN   NaN  10</span><br><span class="line">c  11.0  12.0  13.0  14</span><br><span class="line">d  15.0  16.0  17.0  18</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">data.fillna(0)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      0     1     2   3</span><br><span class="line">a   0.0   0.0   0.0   6</span><br><span class="line">b   0.0   0.0   0.0  10</span><br><span class="line">c  11.0  12.0  13.0  14</span><br><span class="line">d  15.0  16.0  17.0  18</span><br></pre></td></tr></table></figure></p>
-<h2 id="pivot"><a href="#pivot" class="headerlink" title="pivot"></a>pivot</h2><p><a href="https://blog.csdn.net/siss0siss/article/details/77871027" target="_blank" rel="noopener">https://blog.csdn.net/siss0siss/article/details/77871027</a></p>
-<h1 id="Xgboost"><a href="#Xgboost" class="headerlink" title="Xgboost"></a>Xgboost</h1><h2 id="原生xgboost"><a href="#原生xgboost" class="headerlink" title="原生xgboost"></a>原生xgboost</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import pandas as pd</span><br><span class="line">import xgboost as xgb</span><br><span class="line"></span><br><span class="line">trainSet = pd.read_csv(&apos;trainSet.csv&apos;, encoding = &apos;utf-8&apos;)  # 读取TrainSet, 并返回DataFrame</span><br><span class="line"></span><br><span class="line">trainData = trainSet.drop([&apos;label&apos;],axis=1)</span><br><span class="line">trainLabel = trainSet.label</span><br><span class="line"></span><br><span class="line">testSet = pd.read_csv(&apos;test set.csv&apos;, encoding = &apos;utf-8&apos;)</span><br><span class="line"></span><br><span class="line">params = &#123;</span><br><span class="line">    &apos;booster&apos;:&apos;gbtree&apos;,</span><br><span class="line">    &apos;objective&apos;:&apos;binary:logistic&apos;,</span><br><span class="line">    &apos;stratified&apos;:True,</span><br><span class="line">    &apos;max_depth&apos;:5,</span><br><span class="line">    &apos;min_child_weight&apos;:1,</span><br><span class="line">    &apos;gamma&apos;:3,</span><br><span class="line">    &apos;subsample&apos;:0.8,#0.7</span><br><span class="line">    &apos;colsample_bytree&apos;:0.6, </span><br><span class="line">    &apos;lambda&apos;:3, </span><br><span class="line">    &apos;eta&apos;:0.05,</span><br><span class="line">    &apos;seed&apos;:20,</span><br><span class="line">    &apos;silent&apos;:1,</span><br><span class="line">    &apos;eval_metric&apos;:&apos;auc&apos;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dtrain = xgb.DMatrix(trainData, label = trainLabel)</span><br><span class="line">dtest = xgb.DMatrix(testSet)</span><br><span class="line"></span><br><span class="line">model = xgb.train(params, dtrain)</span><br><span class="line">predict = model.predict(dtest)</span><br></pre></td></tr></table></figure>
-<h2 id="sklearn的xgboost接口"><a href="#sklearn的xgboost接口" class="headerlink" title="sklearn的xgboost接口"></a>sklearn的xgboost接口</h2><ul>
-<li>链接: <a href="https://xgboost.readthedocs.io/en/latest/python/python_api.html#xgboost.XGBClassifier" target="_blank" rel="noopener">https://xgboost.readthedocs.io/en/latest/python/python_api.html#xgboost.XGBClassifier</a></li>
+<ul>
+<li>mysql和redis<br>redis： 内存型非关系数据库，数据保存在内存中，速度快, 不适合持久保存<br>mysql：关系型数据库，数据保存在磁盘中，检索的话，会有一定的Io操作，访问速度相对慢</li>
 </ul>
+<p>​    关系型数据库: 以二维表格保存, 事务支持, 复杂查询支持</p>
+<p>​    非关系Nosql: 以键值对保存, 读写性能高, 易扩展</p>
+<p>​    Redis缓存(小量数据)、MongoDB数据库(大量数据)</p>
+<ul>
+<li><p>索引</p>
+<p>提高查询速度, 但更新时还要更新索引. 因此频繁查询使用索引, 频繁更新不用索引</p>
+</li>
+</ul>
+<p>  底层实现: B+树, 每个结点中能存储多个值, 相比AVL树更宽更矮. 相比B-树, B+树的内部节点并没有指向关键字具体信息的指针，因此其内部节点相对B树更小, 一个盘块所能容纳的关键字数量也越多</p>
+<p>  聚集: 索引顺序和数据存放的物理位置一样, 查找快因为符合条件的记录连续存放, 插入删除记录时需要对数据重新排序</p>
+<p>  非聚集: </p>
+<p>​    唯一索引: 两行的索引值不能相同, 允许有空值</p>
+<p>​    主键索引: 特殊的唯一索引, 不允许有空值</p>
+<ul>
+<li><p>B+索引和Hash索引</p>
+<p>Hash索引，等值查询效率高，不能进行范围查询, 无法排序, 发生哈希碰撞</p>
+<p>B+索引, 查询要访问多个结点, 能范围查询, 叶结点有序</p>
+</li>
+</ul>
+<ul>
+<li><p>B+树</p>
+<p>非叶结点不保存数据，只用来索引，所有数据都保存在叶子节点。<br>所有的叶子结点中包含了全部元素的信息，及指向含这些元素记录的指针，且叶子结点依关键字的大小自小而大顺序链接</p>
+</li>
+</ul>
+<ul>
+<li><p>最左前缀原则</p>
+<p>多列索引, 先看第一列, 在第一列满足条件的情况下再看第二列</p>
+</li>
+</ul>
+<ul>
+<li><p>SQL优化</p>
+<p>使用索引</p>
+<p>避免嵌套查询</p>
+<p>多个字段等值查询时用联合索引</p>
+</li>
+</ul>
+<ul>
+<li><p>varchar和char</p>
+<p>varchar: 用于字符串长度会变的</p>
+<p>char: 用于字符串长度不变的</p>
+</li>
+</ul>
+<ul>
+<li><p>数据库连接池</p>
+<p>维护一定数量的连接，减少创建连接的时间, 统一的管理</p>
+</li>
+</ul>
+<ul>
+<li><p>join</p>
+<p>inner join: 返回左表和右表中都满足条件的行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Select * from A JOIN B ON A.Aid=B.Bnameid</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>  left join: 返回左表的全部行和右表满足条件的行, 如果左表的行在右表中没有匹配，那么这一行右表中对应数据用NULL代替</p>
+<p>  right join同理</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from A Left JOIN B ON A.Aid=B.Bnameid</span><br></pre></td></tr></table></figure>
+<p>  cross join: 笛卡尔积, 左表的每一条记录和右表的每一条记录生成一条记录</p>
+<ul>
+<li><p>悲观锁和乐观锁</p>
+<p>悲观锁, 很悲观，每次去拿数据的时候都认为别人会修改，所以在做操作之前先上锁，这样别人想拿这个数据就会block直到它拿到锁。比如读锁，写锁等</p>
+</li>
+</ul>
+<p>  乐观锁，很乐观，每次去拿数据的时候都认为别人不会修改，所以不会上锁，但是在更新的时候会判断一下在此期间别人有没有去更新这个数据，若被别人更新则回滚, 可以使用版本号等机制</p>
+<ul>
+<li><p>共享锁和互斥锁</p>
+<p>共享锁, 即读锁, 其他人可以读, 但不能写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT ... LOCK IN SHARE MODE;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>​    互斥锁, 即写锁, 其他不能读写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT ... FOR UPDATE;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>数据库三范式</p>
+<p>第一范式: 字段值不可再分</p>
+</li>
+</ul>
+<p>  第二范式: 一行数据只做一件事。只要数据列中出现数据重复，就要把表拆分开来</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">一个人同时订几个房间，就会出来一个订单号多条数据，这样子联系人都是重复的，就会造成数据冗余。我们应该把他拆开来</span><br></pre></td></tr></table></figure>
+<p>  第三范式: 确保每列都和主键列直接相关</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">比如Student表（学号，姓名，年龄，性别，所在院校，院校地址，院校电话）</span><br><span class="line"></span><br><span class="line">应该拆开来，如下。</span><br><span class="line"></span><br><span class="line">（学号，姓名，年龄，性别，所在院校）--（所在院校，院校地址，院校电话）</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>数据库崩溃恢复</p>
+<p>Undo log记录事务提交前的记录, 它可以用于回滚事务</p>
+</li>
+</ul>
+<p>​    Redo log记录事务提交后的记录, 可以直接恢复到最新状态</p>
+<ul>
+<li><p>EXISTS和IN的区别</p>
+<p>EXISTS: 先执行主查询语句，然后根据每一条记录进行子查询语句判定, 查询次数为主查询记录数</p>
+</li>
+</ul>
+<p>​    IN: 先执行子查询，将子查询结果和主查询表做笛卡尔积，再选择符合条件的, 查询次数为两个表记录乘积</p>
+<p>​    当子查询表较大时，使用EXISTS</p>
+<ul>
+<li>增、删、改、查</li>
+</ul>
+<p>创建表:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE 表名 (</span><br><span class="line">	id INT PRIMARY KEY,		使用索引</span><br><span class="line">	name VARCHAR(20)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>增:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO Person(id, name) VALUES (2,&apos;Tom&apos;);</span><br></pre></td></tr></table></figure>
+<p>删:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM Person WHERE id = 1;</span><br></pre></td></tr></table></figure>
+<p>改:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPDATE Person SET name = &apos;Tom&apos;, sex = &apos;male&apos; WHERE id = 1;</span><br></pre></td></tr></table></figure>
+<p>查</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">LIMIT 第一个数为开始的行数，第二个数为要检索的行数, 从第5行（实际表中的第六行）开始，显示5行</span><br><span class="line">SELECT cust_name  FROM customers  LIMIT 5, 5;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">DESC降序, ASC升序</span><br><span class="line">SELECT prod_name FROM products ORDER BY prod_price DESC;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">WHERE 的逻辑运算符有AND ,OR, NOT,IN</span><br><span class="line">SELECT *  FROM products WHERE vend_id = 1003 AND prod_price &lt;= 10;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">聚集函数</span><br><span class="line">AVG( ) 返回某列的平均值：SELECT AVG(prod_price) FROM products;</span><br><span class="line"></span><br><span class="line">COUNT( ) 返回某列的行数</span><br><span class="line"></span><br><span class="line">MAX( ) 返回某列的最大值</span><br><span class="line"></span><br><span class="line">MIN( ) 返回某列的最小值</span><br><span class="line"></span><br><span class="line">SUM( ) 返回某列值之和</span><br></pre></td></tr></table></figure>
+<ul>
+<li>防止SQL注入</li>
+</ul>
+<p>使用预编译绑定变量的SQL语句</p>
+<p>使用正则表达式过滤传入的参数</p>
+<ul>
+<li>redis数据类型</li>
+</ul>
+<p>string: 最简单的key-value类型, 比如name: tom</p>
+<p>hash: 当一个key对应多个value时, 使用hash, 是key-map的类型, 比如tom: {age: 10, sex: male}</p>
+<p>list: </p>
+<p>set: 自动去重 </p>
+<p>sorted set: 自动排序的set</p>
+<ul>
+<li><p>redis持久化</p>
+<p>rdb: 将数据库的快照保存在rdb文件中</p>
+</li>
+</ul>
+<p>​    aof: 快照功能并不是完全持久化的, 当宕机, 已执行但未写入快照的数据将会丢失. 每当redis执行一个改变数据集的命令时，这个命令就会追加到aof文件的末尾。这样的话，当redis重新启动时，程序就会通过执行aof文件中的命令来达到重建数据集的目的</p>
+<ul>
+<li>redis事务</li>
+</ul>
+<p>mysql事务: 基于undo/redo日志实现. 能回滚, 将执行但未提交的事务回滚</p>
+<p>redis事务: 基于COMMANDS队列. 若没开始事务, command将会被立即执行. 如果事务开启, command将会进入command队列, 调用EXCE 才会执行COMMANDS队列. 不能回滚, 但能将COMMANDS队列中的command丢弃</p>
+<ul>
+<li><p>redis索引实现</p>
+<p>跳表, 即带多级索引的链表. 红黑树在查找区间元素的效率没有跳表高，其他操作时间复杂度一致</p>
+</li>
+</ul>
+<p>对于有序的单链表, 假如链表中有 n 个元素，我们每两个节点建立一个索引，那么第 1 级索引的结点个数就是 n/2 ，第二级就是 n/4，第三级就是 n/8, 依次类推</p>
+<p>跳表的插入: 从下而上, 逐层插入, 产生一个随机数，50%概率再向上扩展，否则就结束</p>
 
           
         
@@ -698,7 +970,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/数据挖掘/数据挖掘/(三) 特征工程/">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/操作系统学习/面经/操作系统学习/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CoderUtil">
@@ -717,7 +989,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/数据挖掘/数据挖掘/(三) 特征工程/" itemprop="url">(三) 特征工程</a></h1>
+                <a class="post-title-link" href="/操作系统学习/面经/操作系统学习/" itemprop="url">面经</a></h1>
         
 
         <div class="post-meta">
@@ -729,8 +1001,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-24T18:23:39+08:00">
-                2019-06-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-08T15:12:16+08:00">
+                2020-04-08
               </time>
             
 
@@ -752,8 +1024,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据挖掘/" itemprop="url" rel="index">
-                    <span itemprop="name">数据挖掘</span>
+                  <a href="/categories/操作系统学习/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统学习</span>
                   </a>
                 </span>
 
@@ -791,558 +1063,1548 @@
       
         
           
-            <h1 id="1-特征工程"><a href="#1-特征工程" class="headerlink" title="1. 特征工程"></a>1. 特征工程</h1><p><strong>参考链接:</strong> <a href="https://www.cnblogs.com/peizhe123/p/7412364.html" target="_blank" rel="noopener">https://www.cnblogs.com/peizhe123/p/7412364.html</a></p>
-<p>举一个例子, 我们需要将图片中的点进行分类. 若我们直接根据点的坐标进行分类, 则无法分类. 但若我们将坐标转换为极坐标, 则能够容易的进行分类</p>
-<p><img src="../../images/TIM截图20190624182557.png" alt="TIM截图20190624182557"></p>
-<p><img src="../../images/TIM截图20190624182801.png" alt="TIM截图20190624182801"></p>
-<p>特征工程主要分为:</p>
+            <ul>
+<li>并发和并行</li>
+</ul>
+<p>并发: 同一时间间隔</p>
+<p>并行: 一起走, 同一时刻</p>
+<ul>
+<li>线程安全</li>
+</ul>
+<p>对于拥有共享数据的多线程并发执行, 使用同步机制保证各线程可以正确执行</p>
+<ul>
+<li>中断和异常</li>
+</ul>
+<p>中断(外中断): 来自CPU和主存外部的事件</p>
+<p>异常(内中断、陷入), 比如溢出, 陷入指令</p>
+<p>发生中断/异常, CPU会保持当前上下文(PC, PSW, 通用寄存器), 切换到内核态, 再执行中断处理程序</p>
+<ul>
+<li>临界区</li>
+</ul>
+<p>一段对共享资源的保护代码，该代码保护线程对共享资源的互斥访问。</p>
+<ul>
+<li>进程和线程</li>
+</ul>
+<p>进程: 资源分配的基本单位. </p>
+<p>线程: 程序执行和调度的基本单位, 不拥有资源但可以共享进程的所有资源</p>
+<p>协程: 它是比线程更加轻量级的存在，一个线程可以拥有多个协程. 它是一个在用户态下运行的特殊函数. 一个线程中的多个协程是串行运行的</p>
+<p>僵尸进程: 指一个调用exit命令终止, 但是其父进程尚未对其进行善后处理的进程</p>
+<ul>
+<li>什么时候用进程, 什么时候用线程</li>
+</ul>
+<p>频繁创建: 用线程, 比如Web服务器, 每一个连接对应一个线程</p>
+<p>频繁调度, 切换上下文: 用线程</p>
+<p>更方便地共享数据: 线程</p>
+<p>较多同步操作: 进程</p>
+<ul>
+<li>进程状态</li>
+</ul>
+<p>运行态</p>
+<p>就绪态: 进程已获得资源, 等待CPU调度</p>
+<p>阻塞态: 进程等待资源. 阻塞态只能转到就绪态</p>
+<p>创建态</p>
+<p>结束态</p>
+<ul>
+<li>进程通信</li>
+</ul>
+<p>管道: 本质是缓冲区文件, 属于半双工通信, 数据单向流动</p>
+<p>共享存储: 对共享空间进行读/写</p>
+<p>套接字Socket: 可用于不同的进程通信</p>
+<p>信号机制: </p>
+<ul>
+<li><p>死锁</p>
+<p>多个进程因竞争资源而造成互相等待, 若无外力作用，这些进程都将无法向前推进</p>
+</li>
+</ul>
+<p>死锁条件:</p>
+<p>​    互斥: 资源每次只能被一个进程使用</p>
+<p>​    不剥夺: 进程所获得的资源在未使用完毕之前，不能被夺走</p>
+<p>​    请求和保持: 进程已经获得资源，但又提出了新的资源请求</p>
+<p>​    循环等待: 进程间形成首尾相接循环等待资源的关系</p>
+<p>死锁预防:</p>
+<p>​    破坏死锁四个条件之一</p>
+<p>死锁避免: </p>
+<p>​    系统对进程发出的资源申请进行动态检查(银行家算法),并根据检查结果决定是否分配资源,如果分配后系统可能发生死锁,则不予分配,否则予以分配</p>
+<ul>
+<li>程序运行过程</li>
+</ul>
+<p>预处理: 把include的头文件内容移到源文件中，处理宏定义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.c -&gt; .i</span><br></pre></td></tr></table></figure>
+<p>编译: 源代码编译成汇编文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.i -&gt; .s</span><br></pre></td></tr></table></figure>
+<p>汇编: 汇编代码生成目标文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.s -&gt; .obj</span><br></pre></td></tr></table></figure>
+<p>链接: 目标文件经过静态链接lib和动态链接dll生成可执行文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.obj -&gt; .exe</span><br></pre></td></tr></table></figure>
+<ul>
+<li>内存管理</li>
+</ul>
+<p>分页存储</p>
+<p>​    把内存和进程划分成固定大小的块, 进程中的块称为页, 内存中的块成为页框. 每个进程一张页表</p>
+<p>分段存储</p>
+<p>​    把进程划分成大小不等的段, 提高程序的逻辑性. 每个进程一张段表</p>
+<p>段页式存储</p>
+<p>​    把进程划分成大小不等的段, 然后将每段分成大小相等的页</p>
+<ul>
+<li>内部碎片和外部碎片</li>
+</ul>
+<p>内部碎片: 已分配但因为太小不能利用的内存</p>
+<p>外部碎片: 因为太小不能分配的内存</p>
+<ul>
+<li><p>进程调度算法</p>
+<p>先来先服务FCFS: 从就绪队列中选中进入队列的进程</p>
+</li>
+</ul>
+<p>  短作业优先SJF: 从就绪队列中选择运行时间最短的进程, 产生饥饿</p>
+<p>  轮转调度法: 按时间片, 切换上下文浪费时间</p>
+<p>  多级反馈队列: 设置多个队列, 第1级队列优先级最高, 优先级越高的队列时间片越小, 在每个队列中采用时间片轮转的方式运行</p>
+<ul>
+<li>页面置换算法</li>
+</ul>
+<p>最佳置换OPT: 置换未来最久不会使用的页面</p>
+<p>先进先出置换FIFO: 会产生随着分配的物理块增多, 缺页次数增加的Belady异常</p>
+<p>LRU: 置换最久未使用的, 使用双向链表 + map, 链表按访问时间排序, 链表头放最近访问的, 置换时从链表尾取出, map中存储key-链表中指针</p>
+<p>get: 从map中获取, 并将map中指针放到链表头</p>
+<p>put: 如果未满, 直接放入链表头, 并更新map; 若已满, 从链表尾中取出, 从map中删除链表尾的, 再将新的放入链表头, 更新map</p>
+<p>​    </p>
+<p>LFU: 置换总的使用次数最少的, 使用双向链表 + map, 统计每个页的总访问次数, </p>
+<p>时钟置换NRU: 页附加使用位, 装入内存时置1. 要替换时查找使用位为0的页, 期间遇到1置0, 循环查找</p>
+<p>改进时钟置换CLOCK:  附加使用位和修改位, 都置1. 先查找u=0, v=0. 若没有查找u=0, 期间遇到u=1置0, 循环后u都为0. 若还没有查找v=0</p>
+<ul>
+<li>工作集</li>
+</ul>
+<p>一段时间要访问的页的集合</p>
+<ul>
+<li>线程池</li>
+</ul>
+<p>为了避免一个程序需要大量创建线程与销毁线程的时间浪费, 使用线程池在初始的时候创建一些线程, 一般为CPU核心数的两倍, 放到就绪队列上</p>
+<ul>
+<li>大端法和小端法</li>
+</ul>
+<p>大端法: 先存储高位字节, 123456, 存储是123456</p>
+<p>小端法: 先存储低位字节, 123456, 存储是563412</p>
+<p>判断大端和小端:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">union Test &#123;</span><br><span class="line">    int a;</span><br><span class="line">    char b;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Test t;</span><br><span class="line">t.a = 1;</span><br><span class="line">if (t.b == 1)</span><br><span class="line">	cout &lt;&lt; &quot;小端机器&quot; &lt;&lt; endl;</span><br><span class="line">else</span><br><span class="line">	cout &lt;&lt; &quot;大端机器&quot; &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>bitmap</li>
+</ul>
+<p>用一个bit位来标记某个元素是否存在, 比如元素的大小[0, N - 1], 那么就用N bit的存储空间, 值为1代表元素存在, 值为0代表元素不存在</p>
+<p>大量数据排序, 查找数据是否存在: 遍历数据, 存储在bitmap中</p>
+<p>在大量数据中查找出重复数据: 用2个bitmap, 第一个表示是否存在, 第二个表示是否重复, 或用一个bip, 用2bit对应每个元素, 00代表不存在, 01代表存在, 10代表重复</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/python学习/面经/python学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/python学习/面经/python学习/" itemprop="url">面经</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-08T15:12:16+08:00">
+                2020-04-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python学习/" itemprop="url" rel="index">
+                    <span itemprop="name">python学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li><p>Python</p>
+<p>非独立语言, 依赖解释器</p>
+<p>动态语言(弱类型语言), 运行期间才确定数据类型</p>
+<p>面向对象的语言</p>
+</li>
+</ul>
+<ul>
+<li><p>提高Python运行效率</p>
+<p>使用生成器</p>
+<p>循环代码优化</p>
+<p>多线程并发执行</p>
+<p>核心模块用Cython, PyPy. PyPy对纯Python兼容性好, Cython对Python + C</p>
+</li>
+</ul>
+<ul>
+<li><p>生成器</p>
+<p>如果列表元素按照某种算法推算出来，那我们就可以在循环的过程中不断推算出后续的元素，这样就不必创建完整的list，从而节省大量的空间。</p>
+</li>
+</ul>
+<p>  写法1:  把一个列表生成式的[]中括号改为()</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gene = (x*x for x in range(3))</span><br><span class="line"></span><br><span class="line">for i in gene:</span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure>
+<p>  写法2: yield相当于 return 一个值，并且记住这个返回的位置，下次迭代时，代码从yield的下一条语句开始执行</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">def fib(max):</span><br><span class="line">    n,a,b = 0,0,1</span><br><span class="line">    while n &lt; max:</span><br><span class="line">        yield b</span><br><span class="line">        a, b = b, a+b</span><br><span class="line">        n = n+1</span><br><span class="line">    return &apos;done&apos;</span><br><span class="line">    </span><br><span class="line">for i in fib(6):</span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>可变数据类型: 修改值时直接在当前内存空间修改, List, Set, Dictionary</li>
+<li>不可变数据类型: 不允许变量的值变化, 如果改变了变量的值，相当于是新建了一个对象, 对于相同的值的对象，在内存中则只有一个对象，Number, String, Tuple</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = 3</span><br><span class="line">b = 3</span><br><span class="line">id(a) == id(b)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Number</p>
+<p>int, bool, float, complex (复数)</p>
+</li>
+</ul>
+<ul>
+<li><p>String</p>
+<p>用单引号或双引号, 没有字符类型</p>
+</li>
+</ul>
+<p>​    截取: [头下标 :  尾下标-1 :  步长], 左闭右开, 尾下标为负表示从右向左, -1表示倒数第2个</p>
+<p>​    </p>
+<p>​    字符与非字符不能直接连接, str(111) + ‘aaa’</p>
+<p>​    替换字符串中的值, newstr = oldstr.replace(‘a’, ‘b’)    a替换b</p>
+<ul>
+<li><p>Tuple</p>
+<p>当tuple只有1个元素时加逗号(1,)</p>
+</li>
+</ul>
+<ul>
+<li><p>List</p>
+<p>添加元素: a.append(1)</p>
+</li>
+</ul>
+<p>​    截取: [头下标 : 尾下标 - 1]</p>
+<p>​    排序(从小到大)</p>
+<p>​        list.sort(reverse = False), </p>
+<p>​        list = sorted(list, reverse = False)</p>
+<p>​        list = sorted(list, key = lambda x :  (x[‘name’], x[‘age’]), reverse = False)    # key指定先根据name进行排序, 再根据age排序</p>
+<p>​    合并, list1.extend(list2)</p>
+<ul>
+<li><p>list与string转换</p>
+<p>list = str.split(‘ ‘)</p>
+<p>str = ‘’.join(list)</p>
+</li>
+</ul>
+<ul>
+<li><p>Set</p>
+<p>自动去掉重复元素</p>
+</li>
+</ul>
+<p>​    交集: a &amp; b</p>
+<p>​    并集: a | b</p>
+<p>​    差集: a - b</p>
+<ul>
+<li>Dicitionary</li>
+</ul>
+<p>​    添加元素: dict[‘name’] = ‘tom’</p>
+<p>​    删除元素: del dict[‘name’]</p>
+<p>​    长度: len(dict)</p>
+<p>​    返回key和value的迭代器: list(dict.keys()), list(dict.values())</p>
+<p>​    按键排序, sorted(dict.items(), key = lambda x:x[0])</p>
+<p>​    合并dict1, dict2: dict1.update(dict2)</p>
+<ul>
+<li><p>模块</p>
+<p>.py文件</p>
+</li>
+</ul>
+<p>  将整个模块导入，import somemodule</p>
+<p>  从某个模块中导入函数,    from somemodule import firstfunc, secondfunc, thirdfunc</p>
+<p>  将某个模块中的全部函数导入，from somemodule import *</p>
+<ul>
+<li>del 删除对象</li>
+</ul>
+<ul>
+<li>数值的除法包含两个运算符：<strong>/</strong> 返回一个浮点数，<strong>//</strong> 返回一个整数</li>
+</ul>
+<ul>
+<li><p>布尔运算符</p>
+<p>and, or, not</p>
+<p>x and y和 x or y 若是短路求值, 会直接返回y</p>
+</li>
+</ul>
+<ul>
+<li><p>GIL</p>
+<p>GIL是Global Interpreter Lock，即全局解释锁，保证了了同一时刻只有一个线程被CPU调度, 因此Python中将多线程设计的时候只考虑了单核CPU, 设计成了并发执行, 没有实现并行执行 </p>
+</li>
+</ul>
+<ul>
+<li><p>print</p>
+<p>print(‘{} {} {}’.format(a, b, c))</p>
+<p>print(‘%d’ % a)</p>
+<p>python2可以用print a b</p>
+</li>
+</ul>
+<ul>
+<li><p>range</p>
+<p>左闭右开, [头下标 : 尾下标 - 1 : 步长], 返回值为迭代器, 可以转成list</p>
+</li>
+</ul>
+<ul>
+<li><p>pass</p>
+<p>占位符, 不做任何事</p>
+</li>
+</ul>
+<ul>
+<li><p>三元运算符</p>
+<p>min = x if condition else y</p>
+</li>
+</ul>
+<ul>
+<li><p>fun(*args, **kwargs)</p>
+<p>*args表示传不定量的非键值对参数, fun(1, 2, 3)</p>
+<p>**kwargs表示传不定量的键值对参数, fun(name=’tom’, age=10) </p>
+</li>
+</ul>
+<ul>
+<li><p>拷贝</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a = [1, [2, 3]]</span><br><span class="line">b = a, b引用a</span><br><span class="line">c = copy.copy(a), 浅拷贝, 外层是拷贝的, 内层是引用</span><br><span class="line">d = copy.deepcoyp(a), 深拷贝, 和a没有任何联系</span><br><span class="line"></span><br><span class="line">a.append(4) 	</span><br><span class="line">a[1].append(5)	c也会影响</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>闭包</p>
+<p>不改变函数代码的情况下, 使用自由变量的函数</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def outer_func():</span><br><span class="line">    a = &apos;Hello&apos;</span><br><span class="line">    def inner_func(name):</span><br><span class="line">        print(&apos;&#123;&#125; &#123;&#125;&apos;.format(a, name))</span><br><span class="line">    return inner_func</span><br><span class="line"></span><br><span class="line">func = outer_func()</span><br><span class="line">func(&apos;World&apos;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>装饰器</p>
+<p>python支持函数作为参数传递</p>
+</li>
+</ul>
+<p>  装饰器本身是一个函数, 目的是在不改变待装饰函数代码的情况下, 增加新功能. </p>
+<p>  @将被装饰函数传递给装饰器函数</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">def dec(f):</span><br><span class="line">	n = 3</span><br><span class="line">	def wrappaer(*args, **kwargs):</span><br><span class="line">		return f(*args, **kwargs) * 3</span><br><span class="line">	return wrapper</span><br><span class="line">	</span><br><span class="line">@dec</span><br><span class="line">def foo(n):</span><br><span class="line">	return n * 2</span><br><span class="line">	</span><br><span class="line">foo(2)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>lambda</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sum = lambda arg1, arg2: arg1 + arg2</span><br><span class="line">print(sum(1, 2))</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>类</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class MyClass:</span><br><span class="line"></span><br><span class="line">    &apos;&apos;&apos;公有变量&apos;&apos;&apos;</span><br><span class="line">    data = 0</span><br><span class="line"></span><br><span class="line">    &apos;&apos;&apos;私有变量&apos;&apos;&apos;</span><br><span class="line">    __data = 0</span><br><span class="line"></span><br><span class="line">    &apos;&apos;&apos;函数第一个参数必须为self&apos;&apos;&apos;</span><br><span class="line">    def printData(self):</span><br><span class="line">        print(self.__data)</span><br><span class="line"></span><br><span class="line">    &apos;&apos;&apos;私有方法&apos;&apos;&apos;</span><br><span class="line">    def __func():</span><br><span class="line">        pass</span><br><span class="line"></span><br><span class="line">    &apos;&apos;&apos;构造函数&apos;&apos;&apos;</span><br><span class="line">    def __init__(self, newdata):</span><br><span class="line">        self.__data = newdata</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">x = MyClass(1)</span><br><span class="line">x.printData()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>继承</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class SubClass(MyClass):</span><br><span class="line"></span><br><span class="line">    def __init__(self, newdata):</span><br><span class="line">        #调用父类的构函</span><br><span class="line">        MyClass.__init__(self, newdata)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>__new__和__init__区别</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class  User:</span><br><span class="line">    def __new__(cls, *args, **kwargs):</span><br><span class="line">        print(&quot;new&quot;)</span><br><span class="line"></span><br><span class="line">    def __init__(self, name):</span><br><span class="line">        self.name = name</span><br><span class="line">        print(&quot;init&quot;)</span><br></pre></td></tr></table></figure>
+<p>new: 参数是cls, 创建实例, 会自动调用init</p>
+<p>init: 参数是self, 初始化</p>
+<h4 id="通过一个类创建对象时，会先自动调用new方法，开辟一个内存空间给实例化对象，然后return这个内存空间给init方法，init方法再对这个内存空间进行初始化操作"><a href="#通过一个类创建对象时，会先自动调用new方法，开辟一个内存空间给实例化对象，然后return这个内存空间给init方法，init方法再对这个内存空间进行初始化操作" class="headerlink" title="通过一个类创建对象时，会先自动调用new方法，开辟一个内存空间给实例化对象，然后return这个内存空间给init方法，init方法再对这个内存空间进行初始化操作"></a>通过一个类创建对象时，会先自动调用new方法，开辟一个内存空间给实例化对象，然后return这个内存空间给init方法，init方法再对这个内存空间进行初始化操作</h4><ul>
+<li><p>with</p>
+<p>适用于对资源进行访问的场合, 简化try except finally的流程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">with open(&quot;/tmp/foo.txt&quot;) as file:</span><br><span class="line">    data = file.read()</span><br><span class="line">    </span><br><span class="line">代替</span><br><span class="line">try:</span><br><span class="line">    f = open(&apos;xxx&apos;)</span><br><span class="line">except:</span><br><span class="line">    print &apos;fail to open&apos;</span><br><span class="line">    exit(-1)</span><br><span class="line">try:</span><br><span class="line">    do something</span><br><span class="line">except:</span><br><span class="line">    do something</span><br><span class="line">finally:</span><br><span class="line">     f.close()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>map </p>
+<p>对list操作, 第1个参数是函数, 第二个参数是list, 返回值要转换成list</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(map(lambda x: x ** 2, [1, 2, 3]))</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>列表推导式</p>
+<p>过滤list中符合条件的值</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">res = [i for i in [1, 2, 3] if i &gt; 2]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>字典推导式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dic = &#123;k: random.randint(4, 9) for k in [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;]&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>filter</p>
+<p>过滤list中符合条件的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">res = filter(lambda i : TRUE if i &gt; 2 else FALSE, [1, 2, 3])</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>随机数</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">整数</span><br><span class="line">result = random.randint(10, 20)</span><br><span class="line"></span><br><span class="line">小数</span><br><span class="line">res = random.random()	生成0~1的小数</span><br></pre></td></tr></table></figure>
+<ul>
+<li>避免转义</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(r&apos;\na&apos;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>断言</p>
+<p>断言失败, 程序报错</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assert(a &gt; 1)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>正则</li>
+</ul>
+<p>match: 检测字符串开头是否匹配, 匹配后返回</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">re.match(正则式, 字符串, 匹配方式)</span><br><span class="line"></span><br><span class="line">print(re.match(&quot;func&quot;, &quot;function&quot;).group())</span><br></pre></td></tr></table></figure>
+<p>search : 在整个字符串中检测, 找到第一个匹配后返回</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(re.search(&quot;tion&quot;, &quot;function&quot;).group())</span><br></pre></td></tr></table></figure>
+<p>findall: 在整个字符串中检测, 返回list</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">line = &quot;Cats are smarter than dogs&quot;</span><br><span class="line"></span><br><span class="line">findObj = re.findall( r&apos;(.*) are .*&apos;, line, re.M|re.I)</span><br><span class="line"></span><br><span class="line">当有括号时, 返回括号中的匹配内容; 无括号时, 返回整条匹配的内容</span><br></pre></td></tr></table></figure>
+<p>compile: 将正则表达式编译成一个对象，加快速度，并重复使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kk = re.compile(r&apos;(.*) are (.*?) .*&apos;)</span><br><span class="line">kk.findall(line)</span><br></pre></td></tr></table></figure>
+<p>（.*）贪婪匹配，会把满足正则的尽可能多的往后匹配</p>
+<p>（.*?）非贪婪匹配，会把满足正则的尽可能少匹配</p>
+<p>sub 替换字符串中匹配的项</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">re.sub(正则式, 替换字符串, 字符串)</span><br><span class="line"></span><br><span class="line">re.sub(r&apos;\d+&apos;, &apos;100&apos;, &apos;Tom is 10&apos;)</span><br></pre></td></tr></table></figure>
+<p>split分割字符串</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">re.split(r&apos; |.&apos;, &apos;Tom is .a.&apos;)	# |表示或, 根据空格和.进行分割</span><br></pre></td></tr></table></figure>
+<ul>
+<li>时间戳</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">datetime.datetime.now().strftime(&apos;%Y-%m-%d %H:%M:%S&apos;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>异常</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">try:</span><br><span class="line">    raise ValueError	# 主动抛出异常, 后面代码不能执行</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">except ValueError:	# 发生特定异常</span><br><span class="line">    </span><br><span class="line">except:		# 发生任意异常</span><br><span class="line"> </span><br><span class="line">else:		# 不发生异常</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">try:</span><br><span class="line"></span><br><span class="line">except ValueError:</span><br><span class="line"></span><br><span class="line">finally:	# 不管是否发生异常都执行</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>zip</p>
+<p>以多个list作为参数, 返回元组list</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zip([1, 2], [3, 4])		# [(1, 3), (2, 4)]</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>单例模式</p>
+<p>类只有一个实例对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Singleton(object):</span><br><span class="line">    __instance = None </span><br><span class="line"></span><br><span class="line">    def __new__(cls, age, name):</span><br><span class="line">        if not cls.__instance:</span><br><span class="line">            cls.__instance = object.__new__(cls)</span><br><span class="line">        return cls.__instance</span><br><span class="line"></span><br><span class="line">    def __init__(self, age, name):</span><br><span class="line">        self.age = age </span><br><span class="line">        self.name = name</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">a = Singleton(18, &apos;tom&apos;)</span><br><span class="line">b = Singleton(10, &apos;sss&apos;)</span><br><span class="line"></span><br><span class="line">print(a.age)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>any和all</p>
+<p>any():只要迭代器中有一个元素为真就为真</p>
+<p>all():迭代器中所有的判断项返回都是真，结果才为真</p>
+</li>
+</ul>
+<p>​    0，空字符串，空列表、空字典、空元组、None, False都当作假</p>
+<ul>
+<li><p>魔法方法</p>
+<p>用双下划线包围的函数</p>
+</li>
+</ul>
+<p>​    删除对象时, 自动调用__del__()</p>
+<ul>
+<li><p>python垃圾回收机制</p>
+<p>以引用计数为主，标记-清除和分代清除为辅, 标记-清除和分代回收主要是为了处理循环引用</p>
+</li>
+</ul>
+<ul>
+<li>引用计数</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">python中每个东西都是对象</span><br><span class="line"></span><br><span class="line">typedef struct_object &#123;</span><br><span class="line">	int ob_refcnt;</span><br><span class="line">	struct_typeobject *ob_type;</span><br><span class="line">&#125;PyObject;</span><br><span class="line"></span><br><span class="line">ob_refcnt就是做为引用计数。当一个对象有新的引用时，它的ob_refcnt就会增加，当引用它的对象被删除，它的ob_refcnt就会减少</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>循环引用</p>
+<p>只会出现在“内部存在可以对其他对象引用的对象”，比如：list，class等</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a = [1,2]</span><br><span class="line">b = [3,4]</span><br><span class="line">a.append(b)</span><br><span class="line">b.append(a)</span><br><span class="line"></span><br><span class="line">del a	此时a的引用计数为1, 不能释放</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>标记-清除</p>
+<p>标记对象（垃圾检测），然后清除垃圾（垃圾回收）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">初始所有对象标记为白色，并确定根节点对象（这些对象是不会被删除），标记它们为黑色（表示对象有效）。将被引用的对象标记为灰色（表示还没检查），检查完灰色对象引用的对象后，将灰色标记为黑色。重复直到不存在灰色节点为止。最后白色结点都是需要清除的对象。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>分代回收</p>
+<p>分代技术是一种典型的以空间换时间的技术，这也正是java里的关键技术。这种思想简单点说就是：对象存在时间越长，越可能不是垃圾，应该越少去收集</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">分代就是将回收对象分成数个代，每个代就是一个链表</span><br><span class="line"></span><br><span class="line">python里一共有三代，每个代的threshold值表示该代最多容纳对象的个数. 0代触发将清理所有三代，1代触发会清理1,2代，2代触发后只会清理自己</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>函数传参</p>
+<p>参数传引用. 对于不可变类型，因变量不能修改，所以运算不会影响到变量自身；而对于可变类型，函数体运算可能会更改传入的参数变量。</p>
+</li>
+</ul>
+<ul>
+<li><p>r, w, a</p>
+<p>r: 文件必须存在, 只读</p>
+<p>w: 文件若不存在会创建, 只写, 覆盖写</p>
+<p>a: 文件若不存在会创建, 只写, 追加写</p>
+<p>r+: 文件必须存在, 读写</p>
+<p>w+: 文件若不存在会创建, 读写, 覆盖写</p>
+<p>a+: 文件若不存在会创建, 读写, 追加写</p>
+</li>
+</ul>
+<ul>
+<li>序列化, 反序列化</li>
+</ul>
+<p>序列化: 将内存中对象转换成二进制序列, 以便持久存储、传输</p>
+<p>使用Pickle模块</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a = 123</span><br><span class="line">with open(filename,&apos;wb&apos;) as f:</span><br><span class="line">	pickle.dump(a,f)</span><br><span class="line"></span><br><span class="line">with open(filename,&apos;wb&apos;) as f:</span><br><span class="line">	a = pickle.load(f)</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/linux学习/面经/linux学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/linux学习/面经/linux学习/" itemprop="url">面经</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-08T15:12:16+08:00">
+                2020-04-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux学习/" itemprop="url" rel="index">
+                    <span itemprop="name">linux学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>常用linux命令</li>
+</ul>
+<p>ls, cd, touch(创建文件), cat(读取文件并输出), rm, cp(复制文件到指定目录), clear(清屏)</p>
+<ul>
+<li><p>查看进程名为xx的进程信息</p>
+<p>ps -ef | grep xx</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ps: 进程查看命令</span><br><span class="line">grep: 使用正则表达式搜索文本</span><br><span class="line"></span><br><span class="line">-e: 显示所有进程</span><br><span class="line">-f: 全格式</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>杀掉指定pid的进程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kill -pid</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查找文件</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find 指定目录 文件名</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看内存和负载</li>
+</ul>
+<p>top</p>
+<ul>
+<li>查询进程名为xx的进程网络方面的信息</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat xx</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Linux的I/O模型</li>
+</ul>
+<p>进程 - 缓冲区 - IO设备</p>
+<p>阻塞IO: 进程调用recvfrom后，若缓冲区数据未准备好, 进程被阻塞, IO处理完后返回进程. </p>
+<p>非阻塞IO: 进程调用recvfrom后，如果缓冲区数据未准备好，不阻塞直接返回, 因此进程需要多次轮询</p>
+<p>IO复用: 是阻塞的, 当某块数据准备就绪,  通知进程调用recvfrom</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">将各个IO句柄注册到linux提供的IO复用函数上(select,poll或者epoll), 如果某个句柄的IO数据就绪,则函数返回通知io ready, 调用者进行后续的read write操作</span><br></pre></td></tr></table></figure>
+<p>信号驱动IO: 进程发起IO调用后，建立信号处理程序后直接返回. 当有缓冲区数据准备好后, 给进程返回一个信号量, 通知它调用recvfrom</p>
+<p>异步IO: 上述的四个都是同步IO, 同步IO需要进程自己负责读写. 异步IO在进程发起一个IO操作后，进程返回, 由内核处理完IO后再通知进程</p>
+<ul>
+<li>同步和异步、阻塞和非阻塞</li>
+</ul>
+<p>阻塞和非阻塞: 当资源未准备好时, 是否需要等待</p>
+<p>同步和异步: 进程间执行的顺序</p>
+<ul>
+<li>IO复用的实现</li>
+</ul>
+<p>select: 通过遍历文件描述符来获取已经就绪的文件, 文件描述符有最大数量限制</p>
+<p>poll: 通过遍历文件描述符来获取已经就绪的文件, 没有最大数量限制</p>
+<p>epoll: 因为大部分时候只有少数socket处于活跃状态, 因此遍历所有文件描述符开销大. 不再需要遍历文件描述符, 而是监听每个文件描述符, 一旦它就绪, 进程会得到通知</p>
+<ul>
+<li>fork</li>
+</ul>
+<p>产生一个新的进程</p>
+<p>在父进程中，fork返回新创建子进程的进程ID；<br>在子进程中，fork返回0；<br>若出现错误，fork返回一个负值；</p>
+<ul>
+<li>异步实现方式</li>
+</ul>
+<p>回调: 完成后执行回调函数</p>
+<p>事件监听: 基于事件驱动</p>
+<ul>
+<li>线程间实现同步</li>
+</ul>
+<p>锁: </p>
+<p>信号量: 信号量是一个计数器，其值为可用资源数量。它支持两个操作：执行P操作时, 信号量–，当信号量 &gt; 0, 直接获取资源; 当信号量 &lt; 0, 请求该信号量的线程会被挂起；而执行v操作时，会叫醒一个在该信号量上面等待的线程, 信号量++</p>
+<p>消息传递: 双方经过互相收发消息来实现同步. 接收消息的线程, 只有接收到消息才能继续执行</p>
+<ul>
+<li>设计模式</li>
+</ul>
+<p>单例模式</p>
+<p>工厂模式: 每次类都需要一个工厂</p>
+<p>抽象工厂模式: 创建一系列类的工厂</p>
+<p>适配器模式: 把一个类的接口变换成客户端所期待的另一种接口</p>
+<p>观察者模式</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/django学习/面经/django学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/django学习/面经/django学习/" itemprop="url">面经</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-08T15:12:16+08:00">
+                2020-04-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/django学习/" itemprop="url" rel="index">
+                    <span itemprop="name">django学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>ORM</li>
+</ul>
+<p>Object-Relation Mapping，意为对象-关系映射. 实现了数据模型与数据库的解耦. 无需关心程序底层使用的是MySQL、Oracle、sqlite….，如果数据库迁移，只需要更换Django的数据库引擎即可</p>
+<ul>
+<li>函数视图FBV、类视图CBV</li>
+</ul>
+<p>函数视图: 一个路径的所有不同HTTP请求方法写在一个函数中, 用if判断请求类型, 代码的复用性比较差</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def register(request):</span><br><span class="line">	if request.method == &apos;GET&apos;:</span><br><span class="line">	</span><br><span class="line">	else:</span><br></pre></td></tr></table></figure>
+<p>类视图: 定义一个类, 一个路径的不同请求方法用不同的函数判断</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class RegisterView(View):</span><br><span class="line">	def get(self, request):</span><br><span class="line">	</span><br><span class="line">	def post(self, request):</span><br></pre></td></tr></table></figure>
+<ul>
+<li>中间件</li>
+</ul>
+<p>帮助我们在视图函数执行之前和执行之后做一些额外的操作. </p>
+<p>HTTP请求流程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1. HTTP请求-&gt;HTTPRequest对象</span><br><span class="line">2. HTTPRequest对象-&gt;Request中间件. 若中间件返回Response, 执行5, 否则根据URL确定View</span><br><span class="line">3. Request中间件-&gt;View中间件, 若中间件返回Response, 否则执行模板中间件</span><br><span class="line">4. View中间件-&gt;Template中间件</span><br><span class="line">5. Response中间件</span><br><span class="line">6. 这个过程中如果引发了异常并抛出，会被Exception中间件处理器进行处理</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">process_request、process_view、process_template、process_response、process_exception</span><br></pre></td></tr></table></figure>
+<ul>
+<li>get, filter</li>
+</ul>
+<p>get返回一个匹配的结果, 如果满足条件的数据有多条会抛出异常</p>
+<p>filter返回匹配结果的列表</p>
+<ul>
+<li>Session原理</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">用户登录:</span><br><span class="line">	1. 服务器生成一个JSON&#123;&quot;sessionid&quot;: 随机字符串&#125;, 并保存到服务器的数据库中</span><br><span class="line">	2. 生成的JSON通过cookie返回给前端, 前端从cookie中获取到随机字符串</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">用户访问:</span><br><span class="line">	1. 在发送的请求头中设置cookie, 并将&#123;&quot;sessionid&quot;: 随机字符串&#125;放入cookie中. 服务器凭借该随机字符串, 在服务器的数据库中找到对应的条目, 再查看login</span><br><span class="line">	2. 根据session[&apos;login&apos;]判断是否登录</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">用户退出:</span><br><span class="line">	1. 服务器在数据库中删除对应条目</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Session的弊端</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2. 当一个用户, 在多台电脑时. 当用户在电脑A登录, 返回的sessionid保存在电脑A; 若用户要在电脑B登录, 得重新登录</span><br></pre></td></tr></table></figure>
+<ul>
+<li>csrf跨站请求伪造</li>
+</ul>
+<p>利用的是网站对用户网页浏览器的信任(cookie), 欺骗用户在已登录的Web上执行非本意的操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">		①用户正常登录A银行网站,</span><br><span class="line"></span><br><span class="line">        ②A网站返回cookie信息给用户,浏览器保存cookie信息</span><br><span class="line"></span><br><span class="line">        ③在A网站没有退出登录的情况下(或者说cookie信息没过期), 登录了恶意网站B</span><br><span class="line"></span><br><span class="line">        ④恶意网站B,提前准备好转账表单或者其它请求 ,将其隐藏. 把提交到A网站的按钮设置为一个&quot;领取优惠券&quot;的图片链接.用户 点击链接</span><br><span class="line"></span><br><span class="line">        ⑤在用户主观未知的情况下,访问A网站,此时浏览器会自动携带cookie信息</span><br><span class="line"></span><br><span class="line">        ⑥A网站识别到cookie信息,默认为是用户本人做出的请求,根据请求做出相应的操作.</span><br><span class="line"></span><br><span class="line">        ⑦用户收到损失.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">防范原理:</span><br><span class="line">	登录时生成一个csrftoken放在cookie中，前端从cookie中取出该csrftoken并保存. </span><br><span class="line">	当用户再次向服务器发送请求时, 服务器会对比cookie和前端发送的请求头中的csrftoken, 若一样证明是用户操作.</span><br><span class="line">    对于hacker, 即使他获取了cookie, 但是他无法从cookie中取出csrftoken(加密), 因此他不能在请求中附带上csrftoken</span><br></pre></td></tr></table></figure>
+<ul>
+<li>单元测试</li>
+</ul>
+<p>用断言判断是否相等. 会创建一个模拟数据库, 在测试完后删除该数据库</p>
+<ul>
+<li>负载均衡</li>
+</ul>
+<p>访问请求分摊到多台服务器</p>
+<ul>
+<li>代理服务器</li>
+</ul>
+<p>位于客户端和服务器端之间的服务器</p>
+<p>正向代理: 代理服务器为客户端服务. 客户端向代理服务器发送请求, 代理服务器向服务器发出请求, 获取资源后再发送给客户端</p>
+<p>反向代理: 由于单个服务器的处理客户端请求能力有一个极限, 可以使用多个服务器来共同分担用户请求. 服务器端接受到客户端的请求后, 代理会把请求分发给不同的服务器进行处理, 然后再将服务器的响应结果反馈给客户端</p>
+<ul>
+<li>Restful API</li>
+</ul>
+<p>url用名词, 小写字母, 不要加文件后缀, url最后不要加/</p>
+<p>用恰当的http方法</p>
+<ul>
+<li>Django和Flask</li>
+</ul>
+<p>Django: 较大较全面</p>
+<p>Flask: 轻量级框架</p>
+<ul>
+<li>MTV</li>
+</ul>
+<p>M: model, 数据库相关</p>
+<p>T: template, 将数据嵌入HTML页面</p>
+<p>V: view, 逻辑处理</p>
+<ul>
+<li>wsgi, uwsgi</li>
+</ul>
+<p>wsgi: 一套协议。用于接收用户请求并将请求封装后交给web框架</p>
+<p>uwsgi: Web服务器，它实现了wsgi、http等协议</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/c-学习/面经/c++学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/c-学习/面经/c++学习/" itemprop="url">面经</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-08T15:12:16+08:00">
+                2020-04-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/c-学习/" itemprop="url" rel="index">
+                    <span itemprop="name">c++学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li><p>C和C++区别</p>
+<p>C: 面向过程, 内存使用用malloc和free</p>
+<p>C++: 面向对象, 内存使用用new和delete, 有引用, 类的概念</p>
+</li>
+</ul>
+<ul>
+<li><p>面向对象</p>
+<p>基于对象和类的软件开发思想</p>
+</li>
+</ul>
+<ul>
+<li>特性: 封装、继承、多态</li>
+</ul>
+<ul>
+<li><p>多态</p>
+<p>父类指针指向子类的对象, 使父对象就可以根据当前赋值给它的子对象的特性, 以不同的方式运作</p>
+</li>
+</ul>
+<p>​    静态多态: 通过重载和模板技术实现，在编译的时候确定</p>
+<p>​    动态多态: 通过虚函数和继承关系来实现，执行动态绑定，在运行的时候确定。</p>
+<ul>
+<li><p>构造函数、析构函数调用顺序</p>
+<p>构造: 父类-&gt;子类</p>
+</li>
+</ul>
+<p>​    析构: 子类-&gt;父类</p>
+<ul>
+<li><p>友元</p>
+<p>使友元函数、友元类能访问私有成员变量</p>
+</li>
+</ul>
+<ul>
+<li><p>final</p>
+<p>禁止继承 class Father final{}</p>
+</li>
+</ul>
+<p>  禁止重写 virtual void func() final;</p>
+<ul>
+<li><p>const</p>
+<p>在编译期间完成, 使用常数直接替换掉此变量</p>
+</li>
+</ul>
+<ul>
+<li><p>存储类型</p>
+<p>栈区：局部变量</p>
+<p>堆区：由程序员自己申请 new malloc</p>
+<p>全局区：静态变量和全局变量</p>
+<p>常量区：常量字符串等</p>
+</li>
+</ul>
+<ul>
+<li><p>指针和引用的区别</p>
+<p>指针: 保存对象地址, </p>
+<p>对象: 保存对象别名, 定义时必须初始化, 必须从一而终</p>
+</li>
+</ul>
+<ul>
+<li><p>new和malloc的区别</p>
+<p>new: 运算符, 根据数据类型分配空间, 返回对象指针, 会调用构造函数</p>
+<p>malloc: 库函数, 根据字节大小分配空间, 返回void*, 不调用构造函数</p>
+</li>
+</ul>
+<ul>
+<li><p>volatile</p>
+<p>CPU会优先访问内存中数据在寄存器的副本, 但当内存中的数据变换时, 寄存器还保留着原来的结果. volatile能告诉CPU去内存读取数据</p>
+</li>
+</ul>
+<ul>
+<li><p>static</p>
+<p>在全局数据区分配空间, 而不是在栈中</p>
+</li>
+</ul>
+<p>  修饰全局变量, 变量在该文件全局可见, 但不被其他文件所见(与全局变量不同)</p>
+<p>  修饰局部变量, 每次调用当前函数, static变量会保存</p>
+<p>  修饰函数, 函数在该文件全局可见, 但不被其他文件所见</p>
+<p>  修饰成员变量, 变量被类的所有对象共享</p>
+<p>  修饰成员函数, 函数被类的所有对象共享, 只能访问静态成员变量和函数, 没有this指针, 因此不会用const和volatile修饰</p>
+<ul>
+<li><p>extern</p>
+<p>声明一个外部变量</p>
+</li>
+</ul>
+<p>  extern c: 实现C++代码调用C语言代码. C++支持函数重载, 而C并不支持函数重载</p>
+<ul>
+<li><p>const</p>
+<p>const int *</p>
+<p>int const *</p>
+<p>int* const </p>
+</li>
+</ul>
+<p>  修饰成员变量, 必须在构造函数初始化, 只能被const成员函数调用</p>
+<p>  修饰成员函数, 函数不应该修改成员变量</p>
+<ul>
+<li><p>define</p>
+<p>宏替换, 预处理器处理</p>
+</li>
+</ul>
+<ul>
+<li><p>inline</p>
+<p>解决频繁调用函数会消耗大量内存空间, 编译时展开</p>
+</li>
+</ul>
+<ul>
+<li><p>构造和析构函数中的异常</p>
+<p>构造函数可以, 析构不可以抛出异常</p>
+</li>
+</ul>
+<p>如果析构函数抛出异常，则异常点之后的程序不会执行，如果析构函数在异常点之后执行了某些必要的动作比如释放某些资源，则这些动作不会执行，会造成诸如资源泄漏的问题</p>
+<ul>
+<li><p>野指针</p>
+<p>指针未初始化</p>
+<p>delete指针未置为NULL</p>
+</li>
+</ul>
+<ul>
+<li><p>内存泄漏</p>
+<p>申请的内存没有释放</p>
+</li>
+</ul>
+<p>内存泄漏情况:</p>
+<p>​    new后没delete</p>
+<p>​    没清除嵌套指针, int**</p>
+<p>​    当基类指针指向子类对象时，如果基类的析构函数不是virtual，那么子类的析构函数将不会被调用，子类的资源没有正确是释放，因此造成内存泄露</p>
+<p>​    </p>
+<p>内存泄漏检测方法:</p>
+<p>​    对象计数, 在对象构造时计数++，析构时–-，每隔一段时间打印对象的数量</p>
+<p>​    重载new/delete，记录分配点（甚至是调用堆栈），定期打印</p>
+<ul>
+<li><p>智能指针</p>
+<p>C++没有自动内存回收机制, 智能指针会自动调用析构函数，析构函数会自动释放资源</p>
+</li>
+</ul>
+<p>​    包括auto_ptr, shared_ptr, weak_ptr, unique_ptr</p>
+<p>​    用法: auto_ptr\&lt;MyClass> obj(new MyClass(“123”))</p>
+<p>​    auto_ptr被unique_ptr取代, 无法两个unique_ptr指向同一个对象</p>
+<p>​    shared_ptr, 对象可被多个指针共享</p>
+<p>​    weak_ptr是用来解决shared_ptr相互引用时的死锁问题,如果说两个shared_ptr相互引用,那么这两个指针的引用计数永远不可能下降为0,资源永远不会释放. 把shaerd_ptr赋成</p>
+<ul>
+<li><p>c++11特性</p>
+<p>nullptr代替NULL，为了区分NULL和0</p>
+<p>自动类型推导, auto和decltype, decltype解决auto只能对变量进行推导</p>
+<p>迭代器</p>
+<p>vector&lt;vector&lt;int>&gt;</p>
+</li>
+</ul>
+<ul>
+<li><p>字节对齐的原则</p>
+<p>struct:</p>
+<p>变量存储的起始位置是该变量大小的整数倍；</p>
+<p>结构体总的大小是其最大元素的整数倍</p>
+</li>
+</ul>
+<p>  如果用pragma pack(n)更改对齐字节数 ，取n和变量自身大小较小的一个, 变量存储的起始位置是其整数倍。</p>
+<p>​    union: 多个变量公用一个空间, 节省空间</p>
+<p>​        共用体总的大小是其最大元素的整数倍</p>
+<p>​        能整除所有元素</p>
+<ul>
+<li>空结构体sizeof为1</li>
+</ul>
+<ul>
+<li><p>结构体和类的区别</p>
+<p>结构体: 默认继承方式public, 默认访问方式public</p>
+</li>
+</ul>
+<p>​    类: 默认继承方式private, 默认访问方式private</p>
+<ul>
+<li><p>拷贝构造函数参数为什么要引用</p>
+<p>不然在调用拷贝构造函数时，创建形参临时变量又会调用拷贝构造函数，会引起无限递归调用</p>
+</li>
+</ul>
+<ul>
+<li><p>静态链接与动态链接</p>
+<p>静态链接: 编译链接时直接将需要的执行代码拷贝到调用处，优点就是不需要依赖库</p>
+</li>
+</ul>
+<p>​    动态链接: 程序在运行到指定的代码时，去执行已经加载的动态库。优点是多个程序可以共享同一段代码</p>
+<ul>
+<li><p>重载和重写</p>
+<p>重载: 函数名相同, 参数不同, 不关心返回值</p>
+</li>
+</ul>
+<p>​    重写(覆盖): 子类重新定义父类的虚函数</p>
+<p>​    隐藏: 子类定义和父类相同函数, 参数不同或参数相同没有virtual时, 基类函数被隐藏</p>
+<ul>
+<li><p>虚函数</p>
+<p>virtual不能修饰构造函数、内联函数、静态成员函数</p>
+</li>
+</ul>
+<ul>
+<li><p>纯虚函数</p>
+<p>基类只做能被继承，而不能被实例化</p>
+</li>
+</ul>
+<p>​    virtual void Show() = 0;</p>
+<ul>
+<li><p>抽象类、接口类</p>
+<p>含纯虚函数的类</p>
+</li>
+</ul>
+<ul>
+<li><p>虚表</p>
+<p>存放虚函数地址的表, 可将他看作一个指针数组, 实现虚函数后, 子类虚表中的指针指向重写的函数 </p>
+</li>
+</ul>
+<p>  每个类都有一个虚表, 类中保存一个指向对应虚表的指针</p>
+<ul>
+<li><p>构造函数为什么不能定义为虚函数</p>
+<p>虚函数的执行依赖于虚函数表。而虚函数表需要在构造函数中进行初始化工作，让他指向正确的虚函数表。而在构造对象期间，虚函数表还没有被初始化，将无法进行。</p>
+</li>
+</ul>
+<ul>
+<li><p>类型转换</p>
+<p>const_cast用于将const变量转为非const</p>
+</li>
+</ul>
+<p>  static_cast用的最多，对于各种隐式转换，非const转const，void*转指针等, static_cast能用于多态向上转化</p>
+<p>  dynamic_cast用于动态类型转换。只能用于含有虚函数的类，用于类层次间的向上和向下转化。</p>
+<p>  reinterpret_cast几乎什么都可以转，比如将int转指针，可能会出问题，尽量少用；</p>
+<ul>
+<li><p>explicit</p>
+<p>被explicit关键字修饰的类构造函数，不能进行自动地隐式类型转换，只能显式地进行类型转换</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class Demo &#123;</span><br><span class="line">public:</span><br><span class="line">	Demo();</span><br><span class="line">	explicit Demo(double a);</span><br><span class="line">	</span><br><span class="line">private:</span><br><span class="line">	int a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Demo d;</span><br><span class="line">d = 12;	错误, 去掉explicit则正确</span><br></pre></td></tr></table></figure>
+<ul>
+<li>vector和list</li>
+</ul>
+<p>vector: 底层实现是数组</p>
+<p>list: 底层实现是list</p>
+<ul>
+<li>set和map</li>
+</ul>
+<p>底层实现是红黑树</p>
+<ul>
+<li>map和hashmap</li>
+</ul>
+<p>map底层是红黑树, 查找是O(lgn)</p>
+<p>hashmap底层是hash表, 查找是O(1)</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/算法/算法/数据结构--红黑树/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/算法/算法/数据结构--红黑树/" itemprop="url">红黑树</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-17T22:22:56+08:00">
+                2020-03-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li><p>特点</p>
+<p>属于弱平衡二叉树, 对于要求严格的AVL树来说，它的旋转次数少，所以对于搜索，插入，删除操作较多的情况下，通常使用红黑树</p>
+<p>根到叶子的最长路径 &lt;= 2 * 根到叶子的最短路径</p>
+</li>
+</ul>
+<ul>
+<li>性质</li>
+</ul>
 <ol>
-<li>目标转换</li>
-<li>特征编码</li>
-<li>特征提取</li>
+<li><p>根节点是黑色</p>
+</li>
+<li><p>每个叶子节点(NULL节点, 不含数字)都是黑色的空节点</p>
+</li>
+<li><p>每个红色节点的两个子节点都是黑色</p>
+</li>
+<li><p>从任一节点到其每个叶子的路径都包含相同数目的黑色节点</p>
+</li>
 </ol>
-<h2 id="1-1-目标转换"><a href="#1-1-目标转换" class="headerlink" title="1.1 目标转换"></a>1.1 目标转换</h2><p>当特征的值趋近于偏态时, 通过转换来使值趋近于正态. 比如上面举的例子, 我们通过将坐标转换为极坐标, 便能很容易的进行分类, 除此之外还可以通过log(), sqrt()等方法进行处理</p>
-<h2 id="1-2-特征编码"><a href="#1-2-特征编码" class="headerlink" title="1.2 特征编码"></a>1.2 特征编码</h2><p>将非数字特征转换为数</p>
-<h3 id="1-2-1-Labeled-Encoding"><a href="#1-2-1-Labeled-Encoding" class="headerlink" title="1.2.1 Labeled Encoding"></a>1.2.1 Labeled Encoding</h3><p>将类别变量中每一类别赋一数值.  sklearn中使用LabelEncoder进行编码. 主要用于特征存在内在顺序的, 对于[猫, 狗, 鼠]则不适合用Labeled Encoding</p>
-<p><img src="../../images/TIM截图20190624191422.png" alt="TIM截图20190624191422"></p>
-<h3 id="1-2-2-One-Hot-Encoding"><a href="#1-2-2-One-Hot-Encoding" class="headerlink" title="1.2.2 One Hot Encoding"></a>1.2.2 One Hot Encoding</h3><p>它的值只有0/1，不同的类型存储在垂直的空间.  sklearn中使用DictVectorizer,    OneHotEncoder 进行编码. 主要用于特征无内在顺序</p>
-<p><strong>参考链接: </strong><a href="https://www.cnblogs.com/sgdd123/p/7767256.html" target="_blank" rel="noopener">https://www.cnblogs.com/sgdd123/p/7767256.html</a></p>
-<p><img src="../../images/TIM截图20190624191445.png" alt="TIM截图20190624191445"></p>
 <ul>
-<li>当Feature的categorical数很大时, 将其Hash</li>
-</ul>
-<p><img src="../../images\TIM截图20190625124601.png" alt="TIM截图20190625124601"></p>
-<p><img src="../../images\TIM截图20190625124844.png" alt="TIM截图20190625124844"></p>
-<ul>
-<li>用bincount计算Feature的categorical数</li>
-</ul>
-<p><strong>参考链接: </strong> <a href="https://blog.csdn.net/xlinsist/article/details/51346523" target="_blank" rel="noopener">https://blog.csdn.net/xlinsist/article/details/51346523</a></p>
-<h3 id="1-2-3-Frequency-Encoding"><a href="#1-2-3-Frequency-Encoding" class="headerlink" title="1.2.3 Frequency Encoding"></a>1.2.3 Frequency Encoding</h3><p>根据特征频率编码为0~1之间的值. </p>
-<p><img src="../../images/TIM截图20190624191827.png" alt="TIM截图20190624191827"></p>
-<h3 id="1-2-4-Count-Encoding"><a href="#1-2-4-Count-Encoding" class="headerlink" title="1.2.4 Count Encoding"></a>1.2.4 Count Encoding</h3><p>根据特征次数编码</p>
-<p><img src="../../images\TIM截图20190625134420.png" alt="TIM截图20190625134420"></p>
-<h3 id="1-2-5-LabelCount-Encoding"><a href="#1-2-5-LabelCount-Encoding" class="headerlink" title="1.2.5 LabelCount Encoding"></a>1.2.5 LabelCount Encoding</h3><p>根据特征次数的排序编码</p>
-<p><img src="../../images\TIM截图20190625135904.png" alt="TIM截图20190625135904"></p>
-<h3 id="1-2-6-Target-Encoding"><a href="#1-2-6-Target-Encoding" class="headerlink" title="1.2.6 Target Encoding"></a>1.2.6 Target Encoding</h3><p>通过当前特征对应的目标特征频率进行编码</p>
-<p><img src="../../images\TIM截图20190625140506.png" alt="TIM截图20190625140506"></p>
-<h3 id="1-2-7-Category-Embedding"><a href="#1-2-7-Category-Embedding" class="headerlink" title="1.2.7 Category Embedding"></a>1.2.7 Category Embedding</h3><p>通过神经网络来创建密集的矩阵</p>
-<p><img src="../../images\TIM截图20190625140811.png" alt="TIM截图20190625140811"></p>
-<h3 id="1-2-8-Polynomial-Encoding"><a href="#1-2-8-Polynomial-Encoding" class="headerlink" title="1.2.8 Polynomial Encoding"></a>1.2.8 Polynomial Encoding</h3><p><img src="../../images\TIM截图20190625141121.png" alt="TIM截图20190625141121"></p>
-<h2 id="1-3-数字特征"><a href="#1-3-数字特征" class="headerlink" title="1.3 数字特征"></a>1.3 数字特征</h2><h3 id="1-3-1-Rounding"><a href="#1-3-1-Rounding" class="headerlink" title="1.3.1 Rounding"></a>1.3.1 Rounding</h3><p>四舍五入</p>
-<p><img src="../../images\TIM截图20190625142437.png" alt="TIM截图20190625142437"></p>
-<h3 id="1-3-2-Binning"><a href="#1-3-2-Binning" class="headerlink" title="1.3.2 Binning"></a>1.3.2 Binning</h3><p>装箱</p>
-<p><img src="../../images\TIM截图20190625142543.png" alt="TIM截图20190625142543"></p>
-<h3 id="1-3-3-Scaling"><a href="#1-3-3-Scaling" class="headerlink" title="1.3.3 Scaling"></a>1.3.3 Scaling</h3><p><strong>参考链接: </strong><a href="https://www.cnblogs.com/jiaxin359/p/8580057.html" target="_blank" rel="noopener">https://www.cnblogs.com/jiaxin359/p/8580057.html</a></p>
-<h3 id="1-3-4-Imputing"><a href="#1-3-4-Imputing" class="headerlink" title="1.3.4 Imputing"></a>1.3.4 Imputing</h3><p>填补缺失值</p>
-<p><img src="../../images/TIM截图20190625100832.png" alt="TIM截图20190625100832"></p>
-<h2 id="1-4-特征提取"><a href="#1-4-特征提取" class="headerlink" title="1.4 特征提取"></a>1.4 特征提取</h2><p>有很多特征需要手动提取出来, 比如:</p>
-<p><img src="../../images/TIM截图20190624201720.png" alt="TIM截图20190624201720"></p>
-<h2 id="1-5-文本数据"><a href="#1-5-文本数据" class="headerlink" title="1.5 文本数据"></a>1.5 文本数据</h2><p> 使用sklearn的CountVectorizer, TfidfTransformer提取出词以及词频, 这需要一些NPL技巧(自然语言处理技巧):</p>
-<ol>
-<li>通过分隔符切割词语</li>
-<li>移除终止符</li>
-<li>转换为小写</li>
-</ol>
-<p>…</p>
-<p>对于提取后的文本数据:</p>
-<p><img src="../../images/TIM截图20190624202455.png" alt="TIM截图20190624202455"></p>
-<ul>
-<li>TF-IDF:  <a href="https://www.jianshu.com/p/9d4df5d39b40" target="_blank" rel="noopener">https://www.jianshu.com/p/9d4df5d39b40</a></li>
-</ul>
-<h2 id="1-6-降维"><a href="#1-6-降维" class="headerlink" title="1.6 降维"></a>1.6 降维</h2><p><strong>参考资料: </strong><a href="https://www.jianshu.com/p/982c8f6760de" target="_blank" rel="noopener">https://www.jianshu.com/p/982c8f6760de</a></p>
-<p>有标签就尽可能的利用标签的数据进行LDA降维，而对于纯粹的非监督任务，则还是得用PCA进行数据降维</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/计算机图形学/计算机图形学/学习(七)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/计算机图形学/计算机图形学/学习(七)/" itemprop="url">学习七</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-02T19:59:18+08:00">
-                2019-06-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机图形学/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机图形学</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="纹理"><a href="#纹理" class="headerlink" title="纹理"></a>纹理</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line">1. 引入官方的库</span><br><span class="line"></span><br><span class="line">	#define STB_IMAGE_IMPLEMENTATION</span><br><span class="line">	#include &quot;stb_image.h&quot;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">2. 读取图片, 生成纹理</span><br><span class="line"></span><br><span class="line">	unsigned int floorTexture;</span><br><span class="line">	glGenTextures(1, &amp;floorTexture);</span><br><span class="line">	glBindTexture(GL_TEXTURE_2D, floorTexture);</span><br><span class="line">	// 为当前绑定的纹理对象设置环绕、过滤方式</span><br><span class="line">	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);</span><br><span class="line">	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);</span><br><span class="line">	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);</span><br><span class="line">	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);</span><br><span class="line"></span><br><span class="line">	int width, height, nrChannels;</span><br><span class="line">	unsigned char* data = stbi_load(&quot;textures/blocks/dirt.png&quot;, &amp;width, &amp;height, &amp;nrChannels, 0);			//	图片地址相对于当前文件的地址</span><br><span class="line">	if (data) &#123;</span><br><span class="line">		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);		//	注意用GL_RGBA</span><br><span class="line">		glGenerateMipmap(GL_TEXTURE_2D);</span><br><span class="line">	&#125;</span><br><span class="line">	else &#123;</span><br><span class="line">		std::cout &lt;&lt; &quot;Failed to load texture&quot; &lt;&lt; std::endl;</span><br><span class="line">	&#125;</span><br><span class="line">	//	释放图片内存</span><br><span class="line">	stbi_image_free(data);</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">3. vertexShader.vs</span><br><span class="line"></span><br><span class="line">	#version 330 core</span><br><span class="line">    layout (location = 0) in vec3 aPos;</span><br><span class="line">    layout (location = 1) in vec2 aTexCoord;</span><br><span class="line"></span><br><span class="line">    uniform mat4 model;</span><br><span class="line">    uniform mat4 view;</span><br><span class="line">    uniform mat4 projection;</span><br><span class="line"></span><br><span class="line">    out vec2 TexCoord;</span><br><span class="line"></span><br><span class="line">    void main()&#123;</span><br><span class="line">        gl_Position = projection * view * model * vec4(aPos, 1.0);</span><br><span class="line">        TexCoord = aTexCoord;</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">   </span><br><span class="line">4. fragmentShader.fs</span><br><span class="line"></span><br><span class="line">	#version 330 core</span><br><span class="line">    in vec2 TexCoord;</span><br><span class="line">    out vec4 FragColor;</span><br><span class="line"></span><br><span class="line">    uniform sampler2D ourTexture;</span><br><span class="line"></span><br><span class="line">    void main() &#123;</span><br><span class="line">        FragColor = texture(ourTexture, TexCoord);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">5. 着色器设置uniform</span><br><span class="line"></span><br><span class="line">	Shader defaultShader(&quot;vertexShader.vs&quot;, &quot;fragmentShader.fs&quot;);</span><br><span class="line">	defaultShader.use();</span><br><span class="line">	defaultShader.setInt(&quot;floorTexture&quot;, 0);</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">6. 顶点数组</span><br><span class="line"></span><br><span class="line">	float vertices[] = &#123;</span><br><span class="line">    //     ---- 位置 ----       ---- 颜色 ----     - 纹理坐标 -</span><br><span class="line">         0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // 右上</span><br><span class="line">         0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // 右下</span><br><span class="line">        -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // 左下</span><br><span class="line">        -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // 左上</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    //	设置纹理属性</span><br><span class="line">    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));</span><br><span class="line">    glEnableVertexAttribArray(1);</span><br><span class="line">    </span><br><span class="line"> </span><br><span class="line">7. 循环渲染中激活纹理</span><br><span class="line">	while(...) &#123;</span><br><span class="line">        ...</span><br><span class="line">        //	激活纹理</span><br><span class="line">		glActiveTexture(GL_TEXTURE0);</span><br><span class="line">		glBindTexture(GL_TEXTURE_2D, floorTexture);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="纹理坐标"><a href="#纹理坐标" class="headerlink" title="纹理坐标"></a>纹理坐标</h1><p>纹理坐标在x和y轴上，坐标起始于(0, 0)，也就是纹理图片的左下角，终始于(1, 1)，即纹理图片的右上角</p>
-<p><img src="../../images\tex_coords.png" alt="tex_coords"></p>
-<h1 id="天空盒"><a href="#天空盒" class="headerlink" title="天空盒"></a>天空盒</h1><p><img src="../../images\TIM截图20190611230532.png" alt="TIM截图20190611230532"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br></pre></td><td class="code"><pre><span class="line">1. 加载天空盒6个面的纹理</span><br><span class="line"></span><br><span class="line">	//	加载天空盒纹理</span><br><span class="line">    unsigned int loadSkyBoxTexture() &#123;</span><br><span class="line"></span><br><span class="line">        vector&lt;std::string&gt; faces</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;textures/skybox/right.jpg&quot;,</span><br><span class="line">            &quot;textures/skybox/left.jpg&quot;,</span><br><span class="line">            &quot;textures/skybox/top.jpg&quot;,</span><br><span class="line">            &quot;textures/skybox/bottom.jpg&quot;,</span><br><span class="line">            &quot;textures/skybox/front.jpg&quot;,</span><br><span class="line">            &quot;textures/skybox/back.jpg&quot;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        unsigned int textureID;</span><br><span class="line">        glGenTextures(1, &amp;textureID);</span><br><span class="line">        glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);</span><br><span class="line"></span><br><span class="line">        int width, height, nrChannels;</span><br><span class="line">        for (unsigned int i = 0; i &lt; faces.size(); i++) &#123;</span><br><span class="line">            unsigned char *data = stbi_load(faces[i].c_str(), &amp;width, &amp;height, &amp;nrChannels, 0);</span><br><span class="line"></span><br><span class="line">            glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);</span><br><span class="line">            stbi_image_free(data);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);</span><br><span class="line">        glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);</span><br><span class="line">        glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);</span><br><span class="line">        glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);</span><br><span class="line">        glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);</span><br><span class="line"></span><br><span class="line">        return textureID;</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">	unsigned int floorTexture = loadBlockTexture(&quot;textures/blocks/iron_block.png&quot;);</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">2. 天空盒着色器</span><br><span class="line"></span><br><span class="line">		Shader skyBoxShader(&quot;skyBox.vs&quot;, &quot;skyBox.fs&quot;);</span><br><span class="line">        skyBoxShader.use();</span><br><span class="line">        skyBoxShader.setInt(&quot;skyBoxTexture&quot;, 0);</span><br><span class="line">        </span><br><span class="line">        //	skyBoxTexture.vs</span><br><span class="line">        #version 330 core</span><br><span class="line">        layout (location = 0) in vec3 aPos;</span><br><span class="line"></span><br><span class="line">        out vec3 TexCoords;</span><br><span class="line"></span><br><span class="line">        uniform mat4 projection;</span><br><span class="line">        uniform mat4 view;</span><br><span class="line"></span><br><span class="line">        void main()&#123;</span><br><span class="line">            TexCoords = aPos;</span><br><span class="line">            vec4 pos = projection * view * vec4(aPos, 1.0);</span><br><span class="line">            gl_Position = pos.xyww;</span><br><span class="line">        &#125;  </span><br><span class="line">        </span><br><span class="line">        //	skyBoxTexture.fs</span><br><span class="line">        #version 330 core</span><br><span class="line">        out vec4 FragColor;</span><br><span class="line"></span><br><span class="line">        in vec3 TexCoords;</span><br><span class="line"></span><br><span class="line">        uniform samplerCube skybox;</span><br><span class="line"></span><br><span class="line">        void main()&#123;    </span><br><span class="line">            FragColor = texture(skybox, TexCoords);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">3. 天空盒的VAO, VBO</span><br><span class="line"></span><br><span class="line">	float skyBoxVertices[] = &#123;</span><br><span class="line">        // positions          </span><br><span class="line">        -1.0f,  1.0f, -1.0f,</span><br><span class="line">        -1.0f, -1.0f, -1.0f,</span><br><span class="line">        1.0f, -1.0f, -1.0f,</span><br><span class="line">        1.0f, -1.0f, -1.0f,</span><br><span class="line">        1.0f,  1.0f, -1.0f,</span><br><span class="line">        -1.0f,  1.0f, -1.0f,</span><br><span class="line"></span><br><span class="line">        -1.0f, -1.0f,  1.0f,</span><br><span class="line">        -1.0f, -1.0f, -1.0f,</span><br><span class="line">        -1.0f,  1.0f, -1.0f,</span><br><span class="line">        -1.0f,  1.0f, -1.0f,</span><br><span class="line">        -1.0f,  1.0f,  1.0f,</span><br><span class="line">        -1.0f, -1.0f,  1.0f,</span><br><span class="line"></span><br><span class="line">        1.0f, -1.0f, -1.0f,</span><br><span class="line">        1.0f, -1.0f,  1.0f,</span><br><span class="line">        1.0f,  1.0f,  1.0f,</span><br><span class="line">        1.0f,  1.0f,  1.0f,</span><br><span class="line">        1.0f,  1.0f, -1.0f,</span><br><span class="line">        1.0f, -1.0f, -1.0f,</span><br><span class="line"></span><br><span class="line">        -1.0f, -1.0f,  1.0f,</span><br><span class="line">        -1.0f,  1.0f,  1.0f,</span><br><span class="line">        1.0f,  1.0f,  1.0f,</span><br><span class="line">        1.0f,  1.0f,  1.0f,</span><br><span class="line">        1.0f, -1.0f,  1.0f,</span><br><span class="line">        -1.0f, -1.0f,  1.0f,</span><br><span class="line"></span><br><span class="line">        -1.0f,  1.0f, -1.0f,</span><br><span class="line">        1.0f,  1.0f, -1.0f,</span><br><span class="line">        1.0f,  1.0f,  1.0f,</span><br><span class="line">        1.0f,  1.0f,  1.0f,</span><br><span class="line">        -1.0f,  1.0f,  1.0f,</span><br><span class="line">        -1.0f,  1.0f, -1.0f,</span><br><span class="line"></span><br><span class="line">        -1.0f, -1.0f, -1.0f,</span><br><span class="line">        -1.0f, -1.0f,  1.0f,</span><br><span class="line">        1.0f, -1.0f, -1.0f,</span><br><span class="line">        1.0f, -1.0f, -1.0f,</span><br><span class="line">        -1.0f, -1.0f,  1.0f,</span><br><span class="line">        1.0f, -1.0f,  1.0f</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    //	设置skyBoxVAO、skyBoxVBO</span><br><span class="line">	unsigned int skyBoxVAO;</span><br><span class="line">	unsigned int skyBoxVBO;</span><br><span class="line">	glGenVertexArrays(1, &amp;skyBoxVAO);</span><br><span class="line">	glBindVertexArray(skyBoxVAO);</span><br><span class="line"></span><br><span class="line">	glGenBuffers(1, &amp;skyBoxVBO);</span><br><span class="line">	glBindBuffer(GL_ARRAY_BUFFER, skyBoxVBO);</span><br><span class="line">	glBufferData(GL_ARRAY_BUFFER, sizeof(skyBoxVertices), &amp;skyBoxVertices, GL_STATIC_DRAW);</span><br><span class="line"></span><br><span class="line">	glEnableVertexAttribArray(0);</span><br><span class="line">	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">4. 渲染其他物体后, 最后渲染天空盒</span><br><span class="line"></span><br><span class="line">	while(...) &#123;</span><br><span class="line">		</span><br><span class="line">        渲染其他物体...</span><br><span class="line">        </span><br><span class="line">        //	深度欺骗</span><br><span class="line">		glDepthFunc(GL_LEQUAL);  </span><br><span class="line"></span><br><span class="line">		view = glm::mat4(glm::mat3(camera.GetViewMatrix()));</span><br><span class="line">		skyBoxShader.use();</span><br><span class="line">		skyBoxShader.setMat4(&quot;view&quot;, view);</span><br><span class="line">		skyBoxShader.setMat4(&quot;projection&quot;, projection);</span><br><span class="line"></span><br><span class="line">		//	绘制天空盒</span><br><span class="line">		glBindVertexArray(skyBoxVAO);</span><br><span class="line">		//	激活天空盒纹理</span><br><span class="line">		glActiveTexture(GL_TEXTURE0);</span><br><span class="line">		glBindTexture(GL_TEXTURE_CUBE_MAP, skyBoxTexture);</span><br><span class="line">		glDrawArrays(GL_TRIANGLES, 0, 36);</span><br><span class="line">		glBindVertexArray(0);</span><br><span class="line"></span><br><span class="line">		glDepthFunc(GL_LESS);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="模型导入"><a href="#模型导入" class="headerlink" title="模型导入"></a>模型导入</h1><h2 id="assimp编译"><a href="#assimp编译" class="headerlink" title="assimp编译"></a>assimp编译</h2><p><a href="https://blog.csdn.net/qq_36237800/article/details/88427262" target="_blank" rel="noopener">https://blog.csdn.net/qq_36237800/article/details/88427262</a></p>
-<p><a href="https://www.jianshu.com/p/4f3a1271ce0b" target="_blank" rel="noopener">https://www.jianshu.com/p/4f3a1271ce0b</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/分布式系统/分布式系统/05 基本图算法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/分布式系统/分布式系统/05 基本图算法/" itemprop="url">05 基本图算法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-23T19:00:56+08:00">
-                2019-05-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/分布式系统/" itemprop="url" rel="index">
-                    <span itemprop="name">分布式系统</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="基本图算法"><a href="#基本图算法" class="headerlink" title="基本图算法"></a>基本图算法</h1><p><img src="../../images\TIM截图20190523190104.png" alt="TIM截图20190523190104"></p>
-<h2 id="基于洪泛的同步单一启动者生成树算法"><a href="#基于洪泛的同步单一启动者生成树算法" class="headerlink" title="基于洪泛的同步单一启动者生成树算法"></a>基于洪泛的同步单一启动者生成树算法</h2><p><img src="../../images\TIM截图20190523191227.png" alt="TIM截图20190523191227"></p>
-<p><img src="../../images\TIM截图20190523191255.png" alt="TIM截图20190523191255"></p>
-<h2 id="基于洪泛的异步单一启动者生成树算法"><a href="#基于洪泛的异步单一启动者生成树算法" class="headerlink" title="基于洪泛的异步单一启动者生成树算法"></a>基于洪泛的异步单一启动者生成树算法</h2><p><img src="../../images\TIM截图20190523191818.png" alt="TIM截图20190523191818"></p>
-<p><img src="../../images\TIM截图20190523191938.png" alt="TIM截图20190523191938"></p>
-<p><img src="../../images\TIM截图20190523192626.png" alt="TIM截图20190523192626"></p>
-<p><img src="../../images\TIM截图20190523193308.png" alt="TIM截图20190523193308"></p>
-<h2 id="基于洪泛的异步并发启动者生成树算法"><a href="#基于洪泛的异步并发启动者生成树算法" class="headerlink" title="基于洪泛的异步并发启动者生成树算法"></a>基于洪泛的异步并发启动者生成树算法</h2><p>最终生成一棵树，而不是每个启动者生成一棵树</p>
-<ul>
-<li>基本步骤<ul>
-<li>每个启动者自主、并发启动发展生成树</li>
-<li>一棵树在发展过程中，发送QUERY消息时，同时携带树根的进程号</li>
-<li>两个启动者各自发展的生成树在某个节点上遭遇时，根节点进程号较小的生成树自动放弃</li>
-</ul>
+<li><p>插入</p>
+<p>插入结点设置为红色</p>
 </li>
-</ul>
-<p><img src="../../images\TIM截图20190523194623.png" alt="TIM截图20190523194623"></p>
-<p><img src="../../images\TIM截图20190523195331.png" alt="TIM截图20190523195331"></p>
-<p><img src="../../images\TIM截图20190523195436.png" alt="TIM截图20190523195436"></p>
-<p><img src="../../images\TIM截图20190523195513.png" alt="TIM截图20190523195513"></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/分布式系统/分布式系统/04 全局快照算法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/分布式系统/分布式系统/04 全局快照算法/" itemprop="url">04 全局快照算法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-23T13:51:22+08:00">
-                2019-05-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/分布式系统/" itemprop="url" rel="index">
-                    <span itemprop="name">分布式系统</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="全局状态的应用"><a href="#全局状态的应用" class="headerlink" title="全局状态的应用"></a>全局状态的应用</h1><ul>
-<li>故障恢复: 可周期性的保存所有进程的全局状态，一旦某个进程出现故障，可回退到最近保存的状态</li>
-</ul>
-<ul>
-<li>分布式调试的断点设置: 调试分布式程序时，可在一个一致的全局状态处设置断点</li>
-</ul>
-<ul>
-<li>死锁检测: 找出一个一致的全局状态，检查其中是否包含死锁</li>
-</ul>
-<h1 id="全局快照算法"><a href="#全局快照算法" class="headerlink" title="全局快照算法"></a>全局快照算法</h1><h2 id="Chandy-Lamport算法-FIFO通道"><a href="#Chandy-Lamport算法-FIFO通道" class="headerlink" title="Chandy-Lamport算法(FIFO通道)"></a>Chandy-Lamport算法(FIFO通道)</h2><ul>
-<li>基本步骤: 发起者进程向自己的每个外出通道发送一个快照记录标志Marker; 每个接收到标志的进程分别执行标记发送规则和标记接收规则, 最终将快照记录标志广播到所有进程</li>
-</ul>
-<ul>
-<li>标记发送规则: 进程记录自己的本地状态, 然后向每个外出通道发送快照记录标志Marker</li>
-</ul>
-<ul>
-<li>标记接收规则: 进程在流入通道C收到Marker标志<ul>
-<li>如果进程还未记录自己的本地状态, 则记录通道C的消息状态为空, 开始记录其它各流入通道的消息</li>
-<li>否则说明进程已经从其它流入通道收到了Marker标志, 将通道C上收集的消息作为该通道的状态，即：消息收集截止</li>
-</ul>
-</li>
-</ul>
-<p><img src="../../images\TIM截图20190523171122.png" alt="TIM截图20190523171122"></p>
-<h2 id="Lai-Yang算法-非FIFO通道"><a href="#Lai-Yang算法-非FIFO通道" class="headerlink" title="Lai-Yang算法(非FIFO通道)"></a>Lai-Yang算法(非FIFO通道)</h2><ul>
-<li>非FIFO通道的挑战: 先于Marker标志发送的消息，有可能后于Marker标志到达</li>
-</ul>
-<ul>
-<li><p>基本步骤: </p>
-<ul>
-<li><p>每个进程开始是白色，记录快照时变成红色，进程变红时执行标记发送规则，促使其它进程也变红</p>
-</li>
-<li><p>红色进程发送红色消息，白色进程发送白色消息、</p>
-</li>
-<li>每个进程必须在接收到第一个红色消息之前记录本地状态</li>
-</ul>
-</li>
-</ul>
-<p><img src="../../images\TIM截图20190523171614.png" alt="TIM截图20190523171614"></p>
-<h2 id="Lai-Yang算法的改进-Mattern算法"><a href="#Lai-Yang算法的改进-Mattern算法" class="headerlink" title="Lai-Yang算法的改进(Mattern算法)"></a>Lai-Yang算法的改进(Mattern算法)</h2><ul>
-<li>每个进程i保存一个计数器Count_i，记录进程i在保存本地状态之前，发送和接收的白色消息之差</li>
-<li>进程将自己的本地状态、计数器、记录本地状态之后接收到的白色消息，这三者发送给快照启动者</li>
-<li>快照启动者计算∑Count_i ，如果快照启动者收到陆续到达的白色消息总数达到∑Count_i ，则说明所有在PAST发送的白色消息都被接收了，这些后面陆续到达的白色消息就是通道状态</li>
 </ul>
 
           
@@ -1392,7 +2654,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/分布式系统/分布式系统/03 逻辑时钟与物理时钟同步/">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/算法/算法/数据结构--字典树/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CoderUtil">
@@ -1411,7 +2673,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/分布式系统/分布式系统/03 逻辑时钟与物理时钟同步/" itemprop="url">03 逻辑时钟与物理时钟同步</a></h1>
+                <a class="post-title-link" href="/算法/算法/数据结构--字典树/" itemprop="url">字典树</a></h1>
         
 
         <div class="post-meta">
@@ -1423,8 +2685,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-21T21:06:27+08:00">
-                2019-05-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-11T07:52:05+08:00">
+                2020-03-11
               </time>
             
 
@@ -1446,8 +2708,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/分布式系统/" itemprop="url" rel="index">
-                    <span itemprop="name">分布式系统</span>
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
                   </a>
                 </span>
 
@@ -1485,34 +2747,8 @@
       
         
           
-            <h1 id="逻辑时钟系统"><a href="#逻辑时钟系统" class="headerlink" title="逻辑时钟系统"></a>逻辑时钟系统</h1><p>由一个时间域T和映射关系C组成</p>
-<ul>
-<li>时间域𝑇: 一个集合，它包含了所有事件的发生时间</li>
-</ul>
-<ul>
-<li>映射关系𝐶: 每个事件发生的时间：C:H⟼T，例如C(e)表示事件e的发生时间</li>
-</ul>
-<p>##逻辑时间系统的两个要素</p>
-<ul>
-<li><p>时间表示数据结构</p>
-</li>
-<li><p>推进方法</p>
-</li>
-</ul>
-<h2 id="一致性与强一致性"><a href="#一致性与强一致性" class="headerlink" title="一致性与强一致性"></a>一致性与强一致性</h2><ul>
-<li>一致性: </li>
-</ul>
-<p><img src="../../images\TIM截图20190521214047.png" alt="TIM截图20190521214047"></p>
-<ul>
-<li>强一致性:</li>
-</ul>
-<p><img src="../../images\TIM截图20190521214140.png" alt="TIM截图20190521214140"></p>
-<h3 id="标量时间"><a href="#标量时间" class="headerlink" title="标量时间"></a>标量时间</h3><p><img src="../../images\TIM截图20190521213841.png" alt="TIM截图20190521213841"></p>
-<h3 id="向量时间"><a href="#向量时间" class="headerlink" title="向量时间"></a>向量时间</h3><p><img src="../../images\TIM截图20190521215219.png" alt="TIM截图20190521215219"></p>
-<p><img src="../../images\TIM截图20190521220204.png" alt="TIM截图20190521220204"></p>
-<h3 id="矩阵时间"><a href="#矩阵时间" class="headerlink" title="矩阵时间"></a>矩阵时间</h3><p><img src="../../images\TIM截图20190521215444.png" alt="TIM截图20190521215444"></p>
-<p><img src="../../images\TIM截图20190521215545.png" alt="TIM截图20190521215545"></p>
-<h1 id="NTP时钟同步"><a href="#NTP时钟同步" class="headerlink" title="NTP时钟同步"></a>NTP时钟同步</h1><p><img src="../../images\TIM截图20190521215905.png" alt="TIM截图20190521215905"></p>
+            <h1 id="字典树"><a href="#字典树" class="headerlink" title="字典树"></a>字典树</h1><p>​    又称单词查找树, 用于排序和保存大量的字符串. 利用字符串的公共前缀来减少查询时间, 从根节点到某一节点，路径上经过的字符连接起来，为该节点对应的字符串</p>
+<h2 id="求最长公共前缀"><a href="#求最长公共前缀" class="headerlink" title="求最长公共前缀"></a>求最长公共前缀</h2><p>​    先找到两个树结点的最近公共祖先, 根结点到最近公共祖先结点就算最长公共前缀. 对于二叉树, 可以直接遍历; 对于非二叉树, 分别遍历两个路径, 并保存在两个vector中, 他们的前缀一定相同, 因此只要同步遍历vector即可</p>
 
           
         
@@ -1561,7 +2797,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/分布式系统/分布式系统/02 基本模型与进程间通信/">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/算法/算法/链表逆置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CoderUtil">
@@ -1580,7 +2816,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/分布式系统/分布式系统/02 基本模型与进程间通信/" itemprop="url">02 基本模型与进程间通信</a></h1>
+                <a class="post-title-link" href="/算法/算法/链表逆置/" itemprop="url">链表逆置</a></h1>
         
 
         <div class="post-meta">
@@ -1592,8 +2828,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-21T19:55:31+08:00">
-                2019-05-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-07T12:36:41+08:00">
+                2020-03-07
               </time>
             
 
@@ -1615,8 +2851,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/分布式系统/" itemprop="url" rel="index">
-                    <span itemprop="name">分布式系统</span>
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
                   </a>
                 </span>
 
@@ -1654,414 +2890,8 @@
       
         
           
-            <h1 id="分布式程序的定义"><a href="#分布式程序的定义" class="headerlink" title="分布式程序的定义"></a>分布式程序的定义</h1><p><img src="../../images\TIM截图20190521200017.png" alt="TIM截图20190521200017"></p>
-<h2 id="同一进程中事件顺序"><a href="#同一进程中事件顺序" class="headerlink" title="同一进程中事件顺序"></a>同一进程中事件顺序</h2><p><img src="../../images\TIM截图20190521200524.png" alt="TIM截图20190521200524"></p>
-<h2 id="不同进程中事件顺序"><a href="#不同进程中事件顺序" class="headerlink" title="不同进程中事件顺序"></a>不同进程中事件顺序</h2><p><img src="../../images\TIM截图20190521200548.png" alt="TIM截图20190521200548"></p>
-<h2 id="传递性"><a href="#传递性" class="headerlink" title="传递性"></a>传递性</h2><p><img src="../../images\TIM截图20190521200918.png" alt="TIM截图20190521200918"></p>
-<h1 id="全局状态"><a href="#全局状态" class="headerlink" title="全局状态"></a>全局状态</h1><p>全局状态包含各进程的本地状态和各信道状态</p>
-<h2 id="本地状态"><a href="#本地状态" class="headerlink" title="本地状态"></a>本地状态</h2><p><img src="../../images\TIM截图20190521201735.png" alt="TIM截图20190521201735"></p>
-<h2 id="信道状态"><a href="#信道状态" class="headerlink" title="信道状态"></a>信道状态</h2><p><img src="../../images\TIM截图20190521201916.png" alt="TIM截图20190521201916"></p>
-<h2 id="全局状态的一致性"><a href="#全局状态的一致性" class="headerlink" title="全局状态的一致性"></a>全局状态的一致性</h2><p>若全局状态中每一个本地状态后发送的消息，都不属于全局状态包含的信道状态中; 且该消息的接收操作，也都不属于全局状态包含的本地状态, 则全局状态是一致的</p>
-<p><img src="../../images\TIM截图20190523163856.png" alt="TIM截图20190523163856"></p>
-<h2 id="运行分割"><a href="#运行分割" class="headerlink" title="运行分割"></a>运行分割</h2><p><img src="../../images\TIM截图20190521203254.png" alt="TIM截图20190521203254"></p>
-<h1 id="进程间通信"><a href="#进程间通信" class="headerlink" title="进程间通信"></a>进程间通信</h1><ul>
-<li><p>Send</p>
-<ul>
-<li>缓冲模式：Send消息时，先将数据从用户态缓冲区拷贝到内核态缓冲区，由内核态缓冲区将数据放到信道上</li>
-<li>非缓冲模式：Send消息时，将数据从用户态缓冲区直接发送到信道上</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>Recv: 与Send操作</li>
-</ul>
-<p><img src="../../images\TIM截图20190521204347.png" alt="TIM截图20190521204347"></p>
-<h2 id="同步、异步、阻塞和非阻塞"><a href="#同步、异步、阻塞和非阻塞" class="headerlink" title="同步、异步、阻塞和非阻塞"></a>同步、异步、阻塞和非阻塞</h2><ul>
-<li>同步: 函数在没有得到结果之前不返回。最常见的例子就是SendMessage函数发送一个消息给某个窗口，在对方处理完消息之前，这个函数不返回。当对方处理完毕以后，该函数返回给调用者</li>
-</ul>
-<ul>
-<li>异步: 当一个异步过程调用发出后，调用者不能立刻得到结果。实际处理这个调用的部件在完成后，通过状态、通知和回调来通知调用者</li>
-</ul>
-<ul>
-<li>阻塞: 调用是指调用结果返回之前，当前线程会被挂起</li>
-</ul>
-<ul>
-<li>非阻塞: 不能立刻得到结果之前该函数不会阻塞当前线程，而会立刻返回</li>
-</ul>
-<p><img src="../../images\TIM截图20190521210256.png" alt="TIM截图20190521210256"></p>
-<p><img src="../../images\TIM截图20190521210321.png" alt="TIM截图20190521210321"></p>
-<h2 id="通信的顺序模型"><a href="#通信的顺序模型" class="headerlink" title="通信的顺序模型"></a>通信的顺序模型</h2><ul>
-<li>FIFO模型: 信道运行为一个先进先出的队列模型</li>
-</ul>
-<ul>
-<li>非FIFO模型: 信道为一个集合，发送者向里面添加消息，接受者在里面移除消息，添加和移除是无序的</li>
-</ul>
-<ul>
-<li>因果依赖模型: 对于发向同一进程的两个消息，如果它们的发送操作是有依赖顺序的，那么接收操作的顺序必须与发送顺序一致</li>
-</ul>
-<p><img src="../../images\TIM截图20190521210510.png" alt="TIM截图20190521210510"></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/分布式系统/分布式系统/01 分布式计算基本概念/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/分布式系统/分布式系统/01 分布式计算基本概念/" itemprop="url">01 分布式计算基本概念</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-21T19:15:49+08:00">
-                2019-05-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/分布式系统/" itemprop="url" rel="index">
-                    <span itemprop="name">分布式系统</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="分布式系统"><a href="#分布式系统" class="headerlink" title="分布式系统"></a>分布式系统</h1><p>其硬件或软件组件分布在连网的计算机上，组件之间通过消息传递进行通信和动作协调的系统</p>
-<ul>
-<li>特征: 并发、缺乏全局时钟、故障独立性</li>
-</ul>
-<h1 id="分布式计算"><a href="#分布式计算" class="headerlink" title="分布式计算"></a>分布式计算</h1><ul>
-<li>分布式计算是一种基于网络的分治计算方式</li>
-<li>分布式计算是一种基于网络的资源聚合方式</li>
-</ul>
-<h1 id="可扩展性"><a href="#可扩展性" class="headerlink" title="可扩展性"></a>可扩展性</h1><p>一个系统为了支持持续增长的用户/任务数量可以不断扩展的能力</p>
-<ul>
-<li>两种扩展方式<ul>
-<li>Scale Out：增加资源数量，例如，将计算节点增加100个</li>
-<li>Scale Up：增加单个资源的能力，例如，将单机内存扩展到1TB</li>
-</ul>
-</li>
-</ul>
-<h1 id="并发性"><a href="#并发性" class="headerlink" title="并发性"></a>并发性</h1><p>独立任务并发处理、享资源并发访问</p>
-<h1 id="异步性"><a href="#异步性" class="headerlink" title="异步性"></a>异步性</h1><p>没有全局时钟、两个进程对应时钟之间的漂移、进程间通信延迟难以确定</p>
-<h1 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h1><ul>
-<li><p>常用攻击手段:</p>
-<ul>
-<li><p>窃听：未经授权获得数据</p>
-</li>
-<li><p>伪装：伪装成其他主体的身份发送消息</p>
-</li>
-<li><p>篡改：接获消息，篡改后转发到目的地</p>
-</li>
-<li><p>重发：存储截获的消息，随后再次发送</p>
-</li>
-<li><p>拒绝服务：用大量的消息攻击目标，使正常用户的请求不能响应</p>
-</li>
-</ul>
-</li>
-</ul>
-<h1 id="可靠性"><a href="#可靠性" class="headerlink" title="可靠性"></a>可靠性</h1><p>数据、消息、服务等等不会丢失</p>
-<h1 id="可用性"><a href="#可用性" class="headerlink" title="可用性"></a>可用性</h1><p>数据、服务能够被正常访问</p>
-<ul>
-<li>可靠性不能蕴含可用性: 数据没有丢失，但无法被用户访问到</li>
-</ul>
-<h1 id="并行计算"><a href="#并行计算" class="headerlink" title="并行计算"></a>并行计算</h1><p>被求解的问题分解成若干个部分，各部分均由一个独立的单元来并行计算</p>
-<ul>
-<li><p>并行计算实现方式:</p>
-<ul>
-<li><p>时间上的并行：流水线技术</p>
-</li>
-<li><p>空间上的并行：多核、多线程、MPP大规模并行处理</p>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>并行计算与分布式计算的差异</p>
-<ul>
-<li><p>并行计算主要目的是提升处理能力，分布式计算除此之外还有资源聚合的功能</p>
-</li>
-<li><p>并行计算假定系统是同步的，分布式系统不做此假定</p>
-</li>
-<li>并行计算是紧耦合的，分布式计算是松耦合的</li>
-<li>分布式计算对网络有最低要求，连通即可; 并行计算一般依托超级计算机，网络具有一定的拓扑结构</li>
-</ul>
-</li>
-</ul>
-<h1 id="网格计算"><a href="#网格计算" class="headerlink" title="网格计算"></a>网格计算</h1><p>利用互联网将地理上广域分散的各种资源，借助分布式计算的各种技术连接成一个逻辑的整体</p>
-<h1 id="P2P计算"><a href="#P2P计算" class="headerlink" title="P2P计算"></a>P2P计算</h1><p>P2P计算是一种分布式的计算范式，它没有集中式的控制，参与计算的节点之间是对等的。参与者共享他们所拥有的软硬件资源，这些共享资源能被其它对等节点(Peer)直接访问而无需经过中间实体</p>
-<h1 id="云计算"><a href="#云计算" class="headerlink" title="云计算"></a>云计算</h1><p>云计算是一种模型，可以实现随时随地、便捷地、按需地从可配置计算资源池中获取所需的资源</p>
-<h1 id="边缘计算"><a href="#边缘计算" class="headerlink" title="边缘计算"></a>边缘计算</h1><p>边缘计算将网络边缘上的计算、网络与存储资源组成统一的平台为用户提供服务，使数据在源头附近就能得到及时有效的处理。这种模式不同于云计算要将所有数据传输到数据中心，绕过了网络带宽与延迟的瓶颈</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/Django/Django/Django学习(二)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CoderUtil">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Code">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Django/Django/Django学习(二)/" itemprop="url">Django学习(二)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-16T13:52:43+08:00">
-                2019-05-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index">
-                    <span itemprop="name">Django</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h1><p>Nginx是一个高性能的HTTP和反向代理服务器</p>
-<h2 id="代理服务"><a href="#代理服务" class="headerlink" title="代理服务"></a>代理服务</h2><p>位于客户端和服务器端之间的服务器</p>
-<h2 id="正向代理"><a href="#正向代理" class="headerlink" title="正向代理"></a>正向代理</h2><ul>
-<li>客户端先与代理服务器创建连接, 接着代理服务器与服务器创建连接, 并获得目标服务器的指定资源, 再发送给客户端</li>
-</ul>
-<h2 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h2><ul>
-<li><p>由于单个服务器的处理客户端请求能力有一个极限, 可以使用多个服务器来共同分担用户请求. 服务器端接受到客户端的请求后, 代理会把请求分发给不同的服务器进行处理, 然后再将服务器的响应结果反馈给客户端.</p>
-</li>
-<li><p>当增加/移除某台服务器时, 只需要修改服务器列表，而不会影响客户访问</p>
-</li>
-<li>避免服务器的ip和端口直接暴露在internet, 使主机免于安全漏洞</li>
-</ul>
-<h2 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h2><p>负载均衡建立在现有网络结构之上, 通过将访问请求分摊到多台服务器, 增加了网络的带宽和吞吐量, 还可以单点故障问题, 提高了可靠性</p>
-<h3 id="uWSGI"><a href="#uWSGI" class="headerlink" title="uWSGI"></a>uWSGI</h3><p>是一个<code>web</code>服务器, 实现了<code>WSGI</code>协议、<code>uwsgi</code>协议、<code>http</code>协议等</p>
+            <h1 id="头插法"><a href="#头插法" class="headerlink" title="头插法"></a>头插法</h1><p>​    适用于带头结点的链表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">void ReverseList() &#123;</span><br><span class="line">        Node&lt;T&gt; *curr, *post;</span><br><span class="line">        curr = head-&gt;next;</span><br><span class="line">        post = curr-&gt;next;</span><br><span class="line"></span><br><span class="line">        while (post) &#123;</span><br><span class="line">            curr-&gt;next = head-&gt;next;</span><br><span class="line">            head-&gt;next = curr;</span><br><span class="line"></span><br><span class="line">            curr = post;</span><br><span class="line">            post = post-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        curr-&gt;next = head-&gt;next;	/*处理`curr`指向最后一个节点*/</span><br><span class="line">        head-&gt;next = curr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
           
         
@@ -2101,7 +2931,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2151,7 +2981,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">117</span>
+                  <span class="site-state-item-count">128</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2162,7 +2992,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2231,7 +3061,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

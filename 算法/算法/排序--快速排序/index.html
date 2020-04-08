@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Code">
 <meta property="og:description" content="快速排序算法12345678910这是一个典型的分治算法第1轮: 将规模为n的数组分解为n / 2个规模为2的子数组, 然后在O(n)的时间内将子数组合并第2轮: 将规模为n的数组分解为n / 4个规模为4的子数组, 然后在O(n)的时间内将子数组合并...第n轮: 将规模为n的数组分解为2个规模为n / 2的子数组, 然后在O(n)的时间内将子数组合并由第n轮可得, T(n) =  2T(n /">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-13T12:49:42.522Z">
+<meta property="og:updated_time" content="2020-03-14T14:03:16.448Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="快速排序">
 <meta name="twitter:description" content="快速排序算法12345678910这是一个典型的分治算法第1轮: 将规模为n的数组分解为n / 2个规模为2的子数组, 然后在O(n)的时间内将子数组合并第2轮: 将规模为n的数组分解为n / 4个规模为4的子数组, 然后在O(n)的时间内将子数组合并...第n轮: 将规模为n的数组分解为2个规模为n / 2的子数组, 然后在O(n)的时间内将子数组合并由第n轮可得, T(n) =  2T(n /">
@@ -352,7 +352,7 @@
 
       
         <h1 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h1><h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">这是一个典型的分治算法</span><br><span class="line"></span><br><span class="line">第1轮: 将规模为n的数组分解为n / 2个规模为2的子数组, 然后在O(n)的时间内将子数组合并</span><br><span class="line">第2轮: 将规模为n的数组分解为n / 4个规模为4的子数组, 然后在O(n)的时间内将子数组合并</span><br><span class="line">...</span><br><span class="line">第n轮: 将规模为n的数组分解为2个规模为n / 2的子数组, 然后在O(n)的时间内将子数组合并</span><br><span class="line"></span><br><span class="line">由第n轮可得, T(n) =  2T(n / 2) + O(n)</span><br><span class="line"></span><br><span class="line">a = 2, b = 2, d = 1, 由主定理得T(n) = O((n ^ d) * log(n)) = O(nlog(n))</span><br></pre></td></tr></table></figure>
-<h2 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">function quicksort(a[low...high])</span><br><span class="line">	if low &lt; high : </span><br><span class="line">		p = partition(a[low...high])</span><br><span class="line">		return quicksort(a[low...p-1])·p·quicksort(a[p+1...high])</span><br><span class="line">	else : return a</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">function partition(a[low...high])</span><br><span class="line">	pivot = a[low]</span><br><span class="line">	i = low + 1</span><br><span class="line">	j = high</span><br><span class="line">	while i &lt; j</span><br><span class="line">		//	从右边开始扫描, 找到比第一个比锚点小的元素</span><br><span class="line">		while i &lt; j &amp; a[j] &gt;= pivot</span><br><span class="line">			j--</span><br><span class="line">		end</span><br><span class="line">		</span><br><span class="line">		//	从左边开始扫描, 找到比第一个比锚点大的元素</span><br><span class="line">		while i &lt; j &amp; a[i] &lt;= pivot</span><br><span class="line">			i++</span><br><span class="line">		end</span><br><span class="line">		</span><br><span class="line">		//	交换两者</span><br><span class="line">		swap(a[i], a[j])</span><br><span class="line">		</span><br><span class="line">	end</span><br><span class="line">	</span><br><span class="line">	swap(a[i], pivot)</span><br><span class="line">	</span><br><span class="line">	return i</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h2 id="C-实现"><a href="#C-实现" class="headerlink" title="C++实现"></a>C++实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">void QuickSort(vector&lt;int&gt;&amp; v, int low, int high) &#123;</span><br><span class="line">	if (low &lt; high) &#123;</span><br><span class="line">		int p = part(v, low, high);</span><br><span class="line">		QuickSort(v, low, p - 1);</span><br><span class="line">		QuickSort(v, p + 1, high);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int part(vector&lt;int&gt;&amp; v, int low, int high) &#123;</span><br><span class="line">	int i = low + 1;</span><br><span class="line">	int j = high;</span><br><span class="line"></span><br><span class="line">	while (i &lt;= j) &#123;</span><br><span class="line">		while (v[i] &lt; v[low])</span><br><span class="line">			i++;</span><br><span class="line"></span><br><span class="line">		while (v[j] &gt; v[low])</span><br><span class="line">			j--;</span><br><span class="line"></span><br><span class="line">		</span><br><span class="line">		if (i &lt; j)</span><br><span class="line">			swap(v[i++], v[j--]);</span><br><span class="line">		else i++;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	swap(v[j], v[low]);</span><br><span class="line">	return j;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="找出无序数列中第K大的数"><a href="#找出无序数列中第K大的数" class="headerlink" title="找出无序数列中第K大的数"></a>找出无序数列中第K大的数</h1><h2 id="随机选择算法"><a href="#随机选择算法" class="headerlink" title="随机选择算法"></a>随机选择算法</h2><p>​    最好时间复杂度O(n), 最坏O(lgn)</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">使用快排的思想:</span><br><span class="line">1.当通过锚点把数列分为两部分后, 锚点arr[m]就是第m - low + 1大的数</span><br><span class="line">2.比较k和m-low+1</span><br><span class="line">3. k &lt; m-low+1时, 第k大的数在锚点的左边; k = m-low+1时, 锚点就是第k大的数</span><br></pre></td></tr></table></figure>
 
@@ -472,7 +472,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">117</span>
+                  <span class="site-state-item-count">128</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -483,7 +483,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -548,7 +548,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#快速排序"><span class="nav-number">1.</span> <span class="nav-text">快速排序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#算法"><span class="nav-number">1.1.</span> <span class="nav-text">算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伪代码"><span class="nav-number">1.2.</span> <span class="nav-text">伪代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#找出无序数列中第K大的数"><span class="nav-number">2.</span> <span class="nav-text">找出无序数列中第K大的数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#随机选择算法"><span class="nav-number">2.1.</span> <span class="nav-text">随机选择算法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#快速排序"><span class="nav-number">1.</span> <span class="nav-text">快速排序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#算法"><span class="nav-number">1.1.</span> <span class="nav-text">算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-实现"><span class="nav-number">1.2.</span> <span class="nav-text">C++实现</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#找出无序数列中第K大的数"><span class="nav-number">2.</span> <span class="nav-text">找出无序数列中第K大的数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#随机选择算法"><span class="nav-number">2.1.</span> <span class="nav-text">随机选择算法</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -568,7 +568,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

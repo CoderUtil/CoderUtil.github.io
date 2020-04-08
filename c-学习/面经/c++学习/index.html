@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="C和C++区别 C: 面向过程, 内存使用用malloc和free C++: 面向对象, 内存使用用new和delete, 有引用, 类的概念    面向对象 基于对象和类的软件开发思想    特性: 封装、继承、多态   多态 父类指针指向子类的对象, 使父对象就可以根据当前赋值给它的子对象的特性, 以不同的方式运作   ​    静态多态: 通过重载和模板技术实现，在编译的时候确定 ​">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面经">
+<meta property="og:url" content="http://utilcoder.com/c-学习/面经/c++学习/index.html">
+<meta property="og:site_name" content="Code">
+<meta property="og:description" content="C和C++区别 C: 面向过程, 内存使用用malloc和free C++: 面向对象, 内存使用用new和delete, 有引用, 类的概念    面向对象 基于对象和类的软件开发思想    特性: 封装、继承、多态   多态 父类指针指向子类的对象, 使父对象就可以根据当前赋值给它的子对象的特性, 以不同的方式运作   ​    静态多态: 通过重载和模板技术实现，在编译的时候确定 ​">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-04-08T07:13:06.892Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="面经">
+<meta name="twitter:description" content="C和C++区别 C: 面向过程, 内存使用用malloc和free C++: 面向对象, 内存使用用new和delete, 有引用, 类的概念    面向对象 基于对象和类的软件开发思想    特性: 封装、继承、多态   多态 父类指针指向子类的对象, 使父对象就可以根据当前赋值给它的子对象的特性, 以不同的方式运作   ​    静态多态: 通过重载和模板技术实现，在编译的时候确定 ​">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://utilcoder.com/c-学习/面经/c++学习/"/>
+
+
+
+
+
+  <title>面经 | Code</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Code</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://utilcoder.com/c-学习/面经/c++学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderUtil">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">面经</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-08T15:12:16+08:00">
+                2020-04-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/c-学习/" itemprop="url" rel="index">
+                    <span itemprop="name">c++学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li><p>C和C++区别</p>
+<p>C: 面向过程, 内存使用用malloc和free</p>
+<p>C++: 面向对象, 内存使用用new和delete, 有引用, 类的概念</p>
+</li>
+</ul>
+<ul>
+<li><p>面向对象</p>
+<p>基于对象和类的软件开发思想</p>
+</li>
+</ul>
+<ul>
+<li>特性: 封装、继承、多态</li>
+</ul>
+<ul>
+<li><p>多态</p>
+<p>父类指针指向子类的对象, 使父对象就可以根据当前赋值给它的子对象的特性, 以不同的方式运作</p>
+</li>
+</ul>
+<p>​    静态多态: 通过重载和模板技术实现，在编译的时候确定</p>
+<p>​    动态多态: 通过虚函数和继承关系来实现，执行动态绑定，在运行的时候确定。</p>
+<ul>
+<li><p>构造函数、析构函数调用顺序</p>
+<p>构造: 父类-&gt;子类</p>
+</li>
+</ul>
+<p>​    析构: 子类-&gt;父类</p>
+<ul>
+<li><p>友元</p>
+<p>使友元函数、友元类能访问私有成员变量</p>
+</li>
+</ul>
+<ul>
+<li><p>final</p>
+<p>禁止继承 class Father final{}</p>
+</li>
+</ul>
+<p>  禁止重写 virtual void func() final;</p>
+<ul>
+<li><p>const</p>
+<p>在编译期间完成, 使用常数直接替换掉此变量</p>
+</li>
+</ul>
+<ul>
+<li><p>存储类型</p>
+<p>栈区：局部变量</p>
+<p>堆区：由程序员自己申请 new malloc</p>
+<p>全局区：静态变量和全局变量</p>
+<p>常量区：常量字符串等</p>
+</li>
+</ul>
+<ul>
+<li><p>指针和引用的区别</p>
+<p>指针: 保存对象地址, </p>
+<p>对象: 保存对象别名, 定义时必须初始化, 必须从一而终</p>
+</li>
+</ul>
+<ul>
+<li><p>new和malloc的区别</p>
+<p>new: 运算符, 根据数据类型分配空间, 返回对象指针, 会调用构造函数</p>
+<p>malloc: 库函数, 根据字节大小分配空间, 返回void*, 不调用构造函数</p>
+</li>
+</ul>
+<ul>
+<li><p>volatile</p>
+<p>CPU会优先访问内存中数据在寄存器的副本, 但当内存中的数据变换时, 寄存器还保留着原来的结果. volatile能告诉CPU去内存读取数据</p>
+</li>
+</ul>
+<ul>
+<li><p>static</p>
+<p>在全局数据区分配空间, 而不是在栈中</p>
+</li>
+</ul>
+<p>  修饰全局变量, 变量在该文件全局可见, 但不被其他文件所见(与全局变量不同)</p>
+<p>  修饰局部变量, 每次调用当前函数, static变量会保存</p>
+<p>  修饰函数, 函数在该文件全局可见, 但不被其他文件所见</p>
+<p>  修饰成员变量, 变量被类的所有对象共享</p>
+<p>  修饰成员函数, 函数被类的所有对象共享, 只能访问静态成员变量和函数, 没有this指针, 因此不会用const和volatile修饰</p>
+<ul>
+<li><p>extern</p>
+<p>声明一个外部变量</p>
+</li>
+</ul>
+<p>  extern c: 实现C++代码调用C语言代码. C++支持函数重载, 而C并不支持函数重载</p>
+<ul>
+<li><p>const</p>
+<p>const int *</p>
+<p>int const *</p>
+<p>int* const </p>
+</li>
+</ul>
+<p>  修饰成员变量, 必须在构造函数初始化, 只能被const成员函数调用</p>
+<p>  修饰成员函数, 函数不应该修改成员变量</p>
+<ul>
+<li><p>define</p>
+<p>宏替换, 预处理器处理</p>
+</li>
+</ul>
+<ul>
+<li><p>inline</p>
+<p>解决频繁调用函数会消耗大量内存空间, 编译时展开</p>
+</li>
+</ul>
+<ul>
+<li><p>构造和析构函数中的异常</p>
+<p>构造函数可以, 析构不可以抛出异常</p>
+</li>
+</ul>
+<p>如果析构函数抛出异常，则异常点之后的程序不会执行，如果析构函数在异常点之后执行了某些必要的动作比如释放某些资源，则这些动作不会执行，会造成诸如资源泄漏的问题</p>
+<ul>
+<li><p>野指针</p>
+<p>指针未初始化</p>
+<p>delete指针未置为NULL</p>
+</li>
+</ul>
+<ul>
+<li><p>内存泄漏</p>
+<p>申请的内存没有释放</p>
+</li>
+</ul>
+<p>内存泄漏情况:</p>
+<p>​    new后没delete</p>
+<p>​    没清除嵌套指针, int**</p>
+<p>​    当基类指针指向子类对象时，如果基类的析构函数不是virtual，那么子类的析构函数将不会被调用，子类的资源没有正确是释放，因此造成内存泄露</p>
+<p>​    </p>
+<p>内存泄漏检测方法:</p>
+<p>​    对象计数, 在对象构造时计数++，析构时–-，每隔一段时间打印对象的数量</p>
+<p>​    重载new/delete，记录分配点（甚至是调用堆栈），定期打印</p>
+<ul>
+<li><p>智能指针</p>
+<p>C++没有自动内存回收机制, 智能指针会自动调用析构函数，析构函数会自动释放资源</p>
+</li>
+</ul>
+<p>​    包括auto_ptr, shared_ptr, weak_ptr, unique_ptr</p>
+<p>​    用法: auto_ptr\&lt;MyClass> obj(new MyClass(“123”))</p>
+<p>​    auto_ptr被unique_ptr取代, 无法两个unique_ptr指向同一个对象</p>
+<p>​    shared_ptr, 对象可被多个指针共享</p>
+<p>​    weak_ptr是用来解决shared_ptr相互引用时的死锁问题,如果说两个shared_ptr相互引用,那么这两个指针的引用计数永远不可能下降为0,资源永远不会释放. 把shaerd_ptr赋成</p>
+<ul>
+<li><p>c++11特性</p>
+<p>nullptr代替NULL，为了区分NULL和0</p>
+<p>自动类型推导, auto和decltype, decltype解决auto只能对变量进行推导</p>
+<p>迭代器</p>
+<p>vector&lt;vector&lt;int>&gt;</p>
+</li>
+</ul>
+<ul>
+<li><p>字节对齐的原则</p>
+<p>struct:</p>
+<p>变量存储的起始位置是该变量大小的整数倍；</p>
+<p>结构体总的大小是其最大元素的整数倍</p>
+</li>
+</ul>
+<p>  如果用pragma pack(n)更改对齐字节数 ，取n和变量自身大小较小的一个, 变量存储的起始位置是其整数倍。</p>
+<p>​    union: 多个变量公用一个空间, 节省空间</p>
+<p>​        共用体总的大小是其最大元素的整数倍</p>
+<p>​        能整除所有元素</p>
+<ul>
+<li>空结构体sizeof为1</li>
+</ul>
+<ul>
+<li><p>结构体和类的区别</p>
+<p>结构体: 默认继承方式public, 默认访问方式public</p>
+</li>
+</ul>
+<p>​    类: 默认继承方式private, 默认访问方式private</p>
+<ul>
+<li><p>拷贝构造函数参数为什么要引用</p>
+<p>不然在调用拷贝构造函数时，创建形参临时变量又会调用拷贝构造函数，会引起无限递归调用</p>
+</li>
+</ul>
+<ul>
+<li><p>静态链接与动态链接</p>
+<p>静态链接: 编译链接时直接将需要的执行代码拷贝到调用处，优点就是不需要依赖库</p>
+</li>
+</ul>
+<p>​    动态链接: 程序在运行到指定的代码时，去执行已经加载的动态库。优点是多个程序可以共享同一段代码</p>
+<ul>
+<li><p>重载和重写</p>
+<p>重载: 函数名相同, 参数不同, 不关心返回值</p>
+</li>
+</ul>
+<p>​    重写(覆盖): 子类重新定义父类的虚函数</p>
+<p>​    隐藏: 子类定义和父类相同函数, 参数不同或参数相同没有virtual时, 基类函数被隐藏</p>
+<ul>
+<li><p>虚函数</p>
+<p>virtual不能修饰构造函数、内联函数、静态成员函数</p>
+</li>
+</ul>
+<ul>
+<li><p>纯虚函数</p>
+<p>基类只做能被继承，而不能被实例化</p>
+</li>
+</ul>
+<p>​    virtual void Show() = 0;</p>
+<ul>
+<li><p>抽象类、接口类</p>
+<p>含纯虚函数的类</p>
+</li>
+</ul>
+<ul>
+<li><p>虚表</p>
+<p>存放虚函数地址的表, 可将他看作一个指针数组, 实现虚函数后, 子类虚表中的指针指向重写的函数 </p>
+</li>
+</ul>
+<p>  每个类都有一个虚表, 类中保存一个指向对应虚表的指针</p>
+<ul>
+<li><p>构造函数为什么不能定义为虚函数</p>
+<p>虚函数的执行依赖于虚函数表。而虚函数表需要在构造函数中进行初始化工作，让他指向正确的虚函数表。而在构造对象期间，虚函数表还没有被初始化，将无法进行。</p>
+</li>
+</ul>
+<ul>
+<li><p>类型转换</p>
+<p>const_cast用于将const变量转为非const</p>
+</li>
+</ul>
+<p>  static_cast用的最多，对于各种隐式转换，非const转const，void*转指针等, static_cast能用于多态向上转化</p>
+<p>  dynamic_cast用于动态类型转换。只能用于含有虚函数的类，用于类层次间的向上和向下转化。</p>
+<p>  reinterpret_cast几乎什么都可以转，比如将int转指针，可能会出问题，尽量少用；</p>
+<ul>
+<li><p>explicit</p>
+<p>被explicit关键字修饰的类构造函数，不能进行自动地隐式类型转换，只能显式地进行类型转换</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class Demo &#123;</span><br><span class="line">public:</span><br><span class="line">	Demo();</span><br><span class="line">	explicit Demo(double a);</span><br><span class="line">	</span><br><span class="line">private:</span><br><span class="line">	int a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Demo d;</span><br><span class="line">d = 12;	错误, 去掉explicit则正确</span><br></pre></td></tr></table></figure>
+<ul>
+<li>vector和list</li>
+</ul>
+<p>vector: 底层实现是数组</p>
+<p>list: 底层实现是list</p>
+<ul>
+<li>set和map</li>
+</ul>
+<p>底层实现是红黑树</p>
+<ul>
+<li>map和hashmap</li>
+</ul>
+<p>map底层是红黑树, 查找是O(lgn)</p>
+<p>hashmap底层是hash表, 查找是O(1)</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/算法/算法/数据结构--红黑树/" rel="next" title="红黑树">
+                <i class="fa fa-chevron-left"></i> 红黑树
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/django学习/面经/django学习/" rel="prev" title="面经">
+                面经 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="CoderUtil" />
+            
+              <p class="site-author-name" itemprop="name">CoderUtil</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">128</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CoderUtil" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:853130236@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://icytown.com/" title="Mega Show's Blog" target="_blank">Mega Show's Blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CoderUtil</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
